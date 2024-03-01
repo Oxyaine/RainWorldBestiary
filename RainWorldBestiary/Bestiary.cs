@@ -74,11 +74,15 @@ namespace RainWorldBestiary
     public class Description : IEnumerable<DescriptionModule>
     {
         [JsonProperty("values")]
-        DescriptionModule[] _values = new DescriptionModule[1];
+        DescriptionModule[] _values = { new DescriptionModule() };
 
+        /// <inheritdoc/>
         public IEnumerator<DescriptionModule> GetEnumerator() => _values.AsEnumerable().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
 
+        /// <summary>
+        /// Returns this description as a string where only the parts of the entry that are visible are added
+        /// </summary>
         public override string ToString()
         {
             string result = "";
