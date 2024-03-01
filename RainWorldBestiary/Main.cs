@@ -30,9 +30,6 @@ namespace RainWorldBestiary
                 On.RainWorld.OnModsInit += RainWorld_OnModsInit;
                 On.RainWorld.OnModsDisabled += RainWorld_OnModsDisabled;
 
-                //Bestiary.LoadDefaultEntriesFromFile();
-                //Bestiary.LoadDownpourEntriesFromFile();
-
                 Logger.LogInfo("Plugin Bestiary is loaded!");
             }
             catch (Exception data)
