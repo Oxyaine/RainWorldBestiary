@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -13,6 +14,7 @@ namespace RainWorldBestiary
         bool IsInit;
         bool IsPostInit;
         new ManualLogSource Logger;
+
         public static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
 
         private void Awake()
@@ -22,15 +24,16 @@ namespace RainWorldBestiary
                 Logger = base.Logger;
                 Logger.LogInfo("Loading plugin Bestiary");
 
+                ResourceManager.Initialize();
+
                 On.RainWorld.OnModsEnabled += RainWorld_OnModsEnabled;
                 On.RainWorld.OnModsInit += RainWorld_OnModsInit;
                 On.RainWorld.OnModsDisabled += RainWorld_OnModsDisabled;
 
-                Bestiary.LoadDefaultEntriesFromFile();
-                Bestiary.LoadDownpourEntriesFromFile();
+                //Bestiary.LoadDefaultEntriesFromFile();
+                //Bestiary.LoadDownpourEntriesFromFile();
 
                 Logger.LogInfo("Plugin Bestiary is loaded!");
-
             }
             catch (Exception data)
             {
@@ -49,7 +52,7 @@ namespace RainWorldBestiary
                 string creatureName = self.ToString().Substring(0, self.ToString().IndexOf("ID")).Trim();
                 if (killerName.Trim().Equals("Slugcat"))
                 {
-                    Bestiary.AddUnlockedModule(string.Concat("Kill_", creatureName.Replace(" ", string.Empty)).Trim());
+                    //Bestiary.AddUnlockedModule(string.Concat("Kill_", creatureName.Replace(" ", string.Empty)).Trim());
                 }
             }
         }
@@ -84,7 +87,7 @@ namespace RainWorldBestiary
 
         private static void CheckBestiaryDependencies()
         {
-            Bestiary.IncludeDownpour = false;
+            //Bestiary.IncludeDownpour = false;
             foreach (ModManager.Mod mod in ModManager.ActiveMods)
             {
                 if (mod == null)
@@ -92,7 +95,7 @@ namespace RainWorldBestiary
 
                 if (mod.id.Equals(MoreSlugCatsID))
                 {
-                    Bestiary.IncludeDownpour = true;
+                    //Bestiary.IncludeDownpour = true;
                     break;
                 }
             }

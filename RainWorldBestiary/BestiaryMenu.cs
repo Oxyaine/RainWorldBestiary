@@ -44,26 +44,26 @@ namespace RainWorldBestiary
             TextDisplay = new SimpleButton(this, pages[0], "", "NONE", new Vector2(Screen.width - TextBoxSize, 0), new Vector2(TextBoxSize, Screen.height));
             pages[0].subObjects.Add(TextDisplay);
 
-            List<Bestiary.Entry> allEntries = Bestiary.GetAllAvailableEntries();
+            BasicEntryInfo[] allEntries = Bestiary.GetAllEntriesBasicInfo();
 
-            for (int i = 0; i < allEntries.Count; i++)
-            {
-                if (i % MaxButtonsPerRow == 0)
-                {
-                    currentButtonRow++;
-                    currentButtonPosition = ButtonSpacing;
-                }
+            //for (int i = 0; i < allEntries.Length; i++)
+            //{
+            //    if (i % MaxButtonsPerRow == 0)
+            //    {
+            //        currentButtonRow++;
+            //        currentButtonPosition = ButtonSpacing;
+            //    }
 
-                if (allEntries[i].IsLocked)
-                {
-                    if (!allEntries[i].HiddenIfLocked)
-                        AddButton("???", allEntries[i].Name, allEntries[i].SpriteName, in currentButtonPosition, in currentButtonRow);
-                }
-                else
-                    AddButton(allEntries[i].Name, allEntries[i].Name, allEntries[i].SpriteName, in currentButtonPosition, in currentButtonRow);
+            //    if (allEntries[i].IsLocked)
+            //    {
+            //        if (!allEntries[i].HiddenIfLocked)
+            //            AddButton("???", allEntries[i].Name, allEntries[i].SpriteName, in currentButtonPosition, in currentButtonRow);
+            //    }
+            //    else
+            //        AddButton(allEntries[i].Name, allEntries[i].Name, allEntries[i].SpriteName, in currentButtonPosition, in currentButtonRow);
 
-                currentButtonPosition += ButtonSizeX + ButtonSpacing;
-            }
+            //    currentButtonPosition += ButtonSizeX + ButtonSpacing;
+            //}
         }
 
         void AddButton(string displayText, string entryName, string spriteName, in int currentButtonPosition, in int currentButtonRow)
@@ -126,12 +126,12 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
                 string entryName = message.Substring(ReadEntryID.Length);
-                Bestiary.Entry entry = Bestiary.GetEntryByName(entryName);
+                //Entry entry = Bestiary.GetEntryByName(entryName);
 
-                if (entry.IsLocked)
-                    TextDisplay.menuLabel.text = WrapText(entry.LockedText, WordWrapChars);
-                else
-                    TextDisplay.menuLabel.text = WrapText(entry.FullDescription, WordWrapChars);
+                //if (entry.IsLocked)
+                //    TextDisplay.menuLabel.text = WrapText(entry.LockedText, WordWrapChars);
+                //else
+                //    TextDisplay.menuLabel.text = WrapText(entry.FullDescription, WordWrapChars);
             }
         }
         static string WrapText(string text, int wrapCount)
@@ -158,46 +158,4 @@ namespace RainWorldBestiary
             return result;
         }
     }
-
-
-    //public class PictureButton : SymbolButton
-    //{
-    //    public PictureButton(Menu.Menu menu, MenuObject owner, string symbolName, string singalText, Vector2 pos, Vector3 size)
-    //        : base(menu, owner, symbolName, singalText, pos)
-    //    {
-    //        this.size = size;
-    //        new FSprite(new FAtlas())
-    //    }
-
-    //    public override void GrafUpdate(float timeStacker)
-    //    {
-    //        base.GrafUpdate(timeStacker);
-    //        float num = 0.5f - 0.5f * Mathf.Sin(Mathf.Lerp(buttonBehav.lastSin, buttonBehav.sin, timeStacker) / 30f * (float)Math.PI * 2f);
-    //        num *= buttonBehav.sizeBump;
-    //        symbolSprite.color = (buttonBehav.greyedOut ? Menu.Menu.MenuRGB(Menu.Menu.MenuColors.VeryDarkGrey) : Color.Lerp(base.MyColor(timeStacker), Menu.Menu.MenuRGB(Menu.Menu.MenuColors.VeryDarkGrey), num));
-    //        symbolSprite.x = DrawX(timeStacker) + DrawSize(timeStacker).x / 2f;
-    //        symbolSprite.y = DrawY(timeStacker) + DrawSize(timeStacker).y / 2f;
-    //        Color color = Color.Lerp(Menu.Menu.MenuRGB(Menu.Menu.MenuColors.Black), Menu.Menu.MenuRGB(Menu.Menu.MenuColors.White), Mathf.Lerp(buttonBehav.lastFlash, buttonBehav.flash, timeStacker));
-    //        for (int i = 0; i < 9; i++)
-    //        {
-    //            roundedRect.sprites[i].color = color;
-    //        }
-    //    }
-
-    //    public void UpdateSymbol(string newSymbolName)
-    //    {
-    //        symbolSprite.element = Futile.atlasManager.GetElementWithName(newSymbolName);
-    //    }
-
-    //    public override void RemoveSprites()
-    //    {
-    //        symbolSprite.RemoveFromContainer();
-    //        base.RemoveSprites();
-    //    }
-
-    //    public override void Clicked()
-    //    {
-    //        Singal(this, signalText);
-    //    }
-    //}
 }
