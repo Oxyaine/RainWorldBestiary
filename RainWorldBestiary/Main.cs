@@ -13,7 +13,7 @@ namespace RainWorldBestiary
         public static DMSOptions Options;
         bool IsInit;
         bool IsPostInit;
-        new ManualLogSource Logger;
+        public static new ManualLogSource Logger;
 
         public static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
 

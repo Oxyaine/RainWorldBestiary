@@ -52,25 +52,17 @@ namespace RainWorldBestiary
                     currentButtonPosition = ButtonSpacing;
                 }
 
-                AddButton(allEntries[i], allEntries[i], string.Empty, in currentButtonPosition, in currentButtonRow);
+                AddButton(allEntries[i], allEntries[i], in currentButtonPosition, in currentButtonRow);
 
                 currentButtonPosition += ButtonSizeX + ButtonSpacing;
             }
         }
 
-        void AddButton(string displayText, string entryName, string spriteName, in int currentButtonPosition, in int currentButtonRow)
+        void AddButton(string displayText, string entryName, in int currentButtonPosition, in int currentButtonRow)
         {
             float y = Screen.height - ButtonSpacing - (currentButtonRow * (ButtonSizeY + ButtonSpacing));
-
             ButtonTemplate button = new SimpleButton(this, pages[0], displayText, string.Concat(ReadEntryID, entryName), new Vector2(currentButtonPosition, y), new Vector2(ButtonSizeX, ButtonSizeY));
-
             pages[0].subObjects.Add(button);
-
-            if (spriteName != null)
-            {
-                button = new SymbolButton(this, pages[0], spriteName, string.Concat(ReadEntryID, entryName), new Vector2(currentButtonPosition - 10, y));
-                pages[0].subObjects.Add(button);
-            }
         }
 
         public override void Update()

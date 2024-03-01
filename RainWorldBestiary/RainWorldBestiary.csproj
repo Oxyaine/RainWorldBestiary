@@ -89,6 +89,9 @@
     <Reference Include="MonoMod.Utils">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Rain World\BepInEx\core\MonoMod.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RWDreams">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\312520\3167100554\plugins\RWDreams.dll</HintPath>
     </Reference>
