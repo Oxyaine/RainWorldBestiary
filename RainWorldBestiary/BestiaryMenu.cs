@@ -1,6 +1,5 @@
 ﻿using Menu;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -30,7 +29,6 @@ namespace RainWorldBestiary
             this.owner = owner;
 
             leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
-            //float rightAnchor = 1366f - leftAnchor;
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 50f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
@@ -44,26 +42,20 @@ namespace RainWorldBestiary
             TextDisplay = new SimpleButton(this, pages[0], "", "NONE", new Vector2(Screen.width - TextBoxSize, 0), new Vector2(TextBoxSize, Screen.height));
             pages[0].subObjects.Add(TextDisplay);
 
-            BasicEntryInfo[] allEntries = Bestiary.GetAllEntriesBasicInfo();
+            string[] allEntries = Bestiary.GetAllEntriesNames();
 
-            //for (int i = 0; i < allEntries.Length; i++)
-            //{
-            //    if (i % MaxButtonsPerRow == 0)
-            //    {
-            //        currentButtonRow++;
-            //        currentButtonPosition = ButtonSpacing;
-            //    }
+            for (int i = 0; i < allEntries.Length; i++)
+            {
+                if (i % MaxButtonsPerRow == 0)
+                {
+                    currentButtonRow++;
+                    currentButtonPosition = ButtonSpacing;
+                }
 
-            //    if (allEntries[i].IsLocked)
-            //    {
-            //        if (!allEntries[i].HiddenIfLocked)
-            //            AddButton("???", allEntries[i].Name, allEntries[i].SpriteName, in currentButtonPosition, in currentButtonRow);
-            //    }
-            //    else
-            //        AddButton(allEntries[i].Name, allEntries[i].Name, allEntries[i].SpriteName, in currentButtonPosition, in currentButtonRow);
+                AddButton(allEntries[i], allEntries[i], string.Empty, in currentButtonPosition, in currentButtonRow);
 
-            //    currentButtonPosition += ButtonSizeX + ButtonSpacing;
-            //}
+                currentButtonPosition += ButtonSizeX + ButtonSpacing;
+            }
         }
 
         void AddButton(string displayText, string entryName, string spriteName, in int currentButtonPosition, in int currentButtonRow)

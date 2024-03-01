@@ -38,21 +38,6 @@ namespace RainWorldBestiary
             }
         }
 
-        private void Creature_Die(On.Creature.orig_Die orig, Creature self)
-        {
-            orig(self);
-
-            if (self.killTag != null)
-            {
-                string killTag = self.killTag.ToString();
-                string killerName = killTag.Substring(0, killTag.IndexOf("ID")).Trim();
-                string creatureName = self.ToString().Substring(0, self.ToString().IndexOf("ID")).Trim();
-                if (killerName.Trim().Equals("Slugcat"))
-                {
-                    //Bestiary.AddUnlockedModule(string.Concat("Kill_", creatureName.Replace(" ", string.Empty)).Trim());
-                }
-            }
-        }
         const string MoreSlugCatsID = "moreslugcats";
 
         private void RainWorld_OnModsDisabled(On.RainWorld.orig_OnModsDisabled original, RainWorld self, ModManager.Mod[] newlyDisabledMods)
@@ -84,7 +69,7 @@ namespace RainWorldBestiary
 
         private static void CheckBestiaryDependencies()
         {
-            //Bestiary.IncludeDownpour = false;
+            Bestiary.IncludeDownpour = false;
             foreach (ModManager.Mod mod in ModManager.ActiveMods)
             {
                 if (mod == null)
@@ -92,7 +77,7 @@ namespace RainWorldBestiary
 
                 if (mod.id.Equals(MoreSlugCatsID))
                 {
-                    //Bestiary.IncludeDownpour = true;
+                    Bestiary.IncludeDownpour = true;
                     break;
                 }
             }

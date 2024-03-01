@@ -5,12 +5,14 @@ namespace RainWorldBestiary
 {
     internal static class ResourceManager
     {
-        static string WorkingDirectory = null;
-        static string EntriesPath => Path.Combine(WorkingDirectory, "entries");
+        static string ModDirectory = null;
+        public static string EntriesPath => Path.Combine(ModDirectory, "entries");
+        public static string BaseEntriesPath => Path.Combine(EntriesPath, "base");
+        public static string DownpourEntriesPath => Path.Combine(EntriesPath, "downpour");
 
         public static void Initialize()
         {
-            WorkingDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
         }
     }
 }
