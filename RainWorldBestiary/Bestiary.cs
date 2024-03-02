@@ -7,11 +7,16 @@ using System.Linq;
 
 namespace RainWorldBestiary
 {
+    /// <summary>
+    /// The main class for the bestiary, gives access to all the current entries, and lets you add your own
+    /// </summary>
     public static class Bestiary
     {
-        public static bool IncludeDownpour = false;
-
-        public static string[] GetAllEntriesNames()
+        /// <summary>
+        /// Whether to include downpour entries or not
+        /// </summary>
+        internal static bool IncludeDownpour = false;
+        internal static string[] GetAllEntriesNames()
         {
             IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
             if (IncludeDownpour)
@@ -25,18 +30,27 @@ namespace RainWorldBestiary
 
             return entries.ToArray();
         }
-
-        public static Entry GetEntryByName()
+        internal static Entry GetEntryByName()
         {
             throw new NotImplementedException();
         }
     }
 
+    /// <summary>
+    /// A class representing an entry
+    /// </summary>
     public class Entry
     {
+        /// <summary>
+        /// The name of this entry
+        /// </summary>
         public string Name;
+        /// <summary>
+        /// The information of this entry, such as its unlock id, icon, scene to show while reading, and description
+        /// </summary>
         public EntryInfo Info;
     }
+
     /// <summary>
     /// The contents of the entry file
     /// </summary>
@@ -66,6 +80,9 @@ namespace RainWorldBestiary
         public Description Description = new Description();
     }
 
+    /// <summary>
+    /// A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
+    /// </summary>
     public class Description : IEnumerable<DescriptionModule>
     {
         [JsonProperty("values")]
@@ -89,6 +106,9 @@ namespace RainWorldBestiary
         }
     }
 
+    /// <summary>
+    /// A piece of a description, can be given a lock ID to lock this part of an entries description
+    /// </summary>
     public class DescriptionModule
     {
         /// <summary>
