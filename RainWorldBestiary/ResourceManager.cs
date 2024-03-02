@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 
 namespace RainWorldBestiary
@@ -13,6 +15,20 @@ namespace RainWorldBestiary
         public static void Initialize()
         {
             ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+        }
+
+        public static string GetFileByName(string name)
+        {
+            IEnumerable<string> files = Directory.EnumerateFiles(EntriesPath, "*", SearchOption.AllDirectories);
+            foreach (string file in files)
+            {
+                if (Path.GetFileNameWithoutExtension(file).Equals(name, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return file;
+                }
+            }
+
+            return string.Empty;
         }
     }
 }

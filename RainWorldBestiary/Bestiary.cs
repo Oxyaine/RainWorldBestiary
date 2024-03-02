@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using UnityEngine;
-using Newtonsoft.Json;
-using System.Collections;
 
 namespace RainWorldBestiary
 {
@@ -15,16 +13,13 @@ namespace RainWorldBestiary
 
         public static string[] GetAllEntriesNames()
         {
-            IEnumerable<string> files = Directory.EnumerateDirectories(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
+            IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
             if (IncludeDownpour)
-                files = files.Concat(Directory.EnumerateDirectories(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories));
+                files = files.Concat(Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories));
             List<string> entries = new List<string>();
             foreach (string file in files)
             {
-                string fileName = Path.GetFileName(file);
-                if (fileName.StartsWith("."))
-                    continue;
-
+                string fileName = Path.GetFileNameWithoutExtension(file);
                 entries.Add(fileName);
             }
 

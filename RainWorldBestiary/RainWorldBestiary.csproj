@@ -53,9 +53,6 @@
     <Reference Include="com.rlabrecque.steamworks.net">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
     </Reference>
-    <Reference Include="DressMySlugcat">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\workshop\content\312520\2948971756\plugins\DressMySlugcat.dll</HintPath>
-    </Reference>
     <Reference Include="GalaxyCSharp">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\GalaxyCSharp.dll</HintPath>
     </Reference>
@@ -92,11 +89,8 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RWDreams">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\312520\3167100554\plugins\RWDreams.dll</HintPath>
-    </Reference>
-    <Reference Include="SlugcatEyebrowRaise">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\312520\2930800455\plugins\SlugcatEyebrowRaise.dll</HintPath>
+    <Reference Include="SBCameraScroll">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\312520\2928752589\plugins\SBCameraScroll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
