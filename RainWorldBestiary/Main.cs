@@ -15,19 +15,18 @@ namespace RainWorldBestiary
         public static new ManualLogSource Logger;
 
         public static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
+        public static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
+        public static ProcessManager.ProcessID EntryReadingTab => new ProcessManager.ProcessID("EntryReadingTab", register: true);
 
         private void Awake()
         {
             try
             {
                 Logger = base.Logger;
-                Logger.LogInfo("Loading plugin Bestiary");
 
                 On.RainWorld.OnModsEnabled += RainWorld_OnModsEnabled;
                 On.RainWorld.OnModsInit += RainWorld_OnModsInit;
                 On.RainWorld.OnModsDisabled += RainWorld_OnModsDisabled;
-
-                Logger.LogInfo("Plugin Bestiary is loaded!");
             }
             catch (Exception data)
             {
@@ -53,6 +52,7 @@ namespace RainWorldBestiary
                     IsInit = true;
 
                     ResourceManager.Initialize();
+                    Bestiary.Initialize();
 
                     On.Menu.MainMenu.ctor += MainMenu_ctor;
 

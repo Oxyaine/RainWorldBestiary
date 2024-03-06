@@ -7,37 +7,30 @@ namespace RainWorldBestiary
 {
     internal static class ResourceManager
     {
+        static bool Initialized = false;
+
         static string ModDirectory = null;
         public static string EntriesPath => Path.Combine(ModDirectory, "entries");
         public static string BaseEntriesPath => Path.Combine(EntriesPath, "base");
         public static string DownpourEntriesPath => Path.Combine(EntriesPath, "downpour");
 
-        public static void Initialize()
+        internal static void Initialize()
         {
-            ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
-            string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
-            string[] images = Directory.GetFiles(illustrationsPath);
-            int removeLength = ModDirectory.Length + 1;
-            foreach (string image in images)
+            if (!Initialized)
             {
-                string tmp = image.Substring(removeLength);
-                Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
-            }
-        }
+                Initialized = true;
 
-        public static string GetFileByName(string name)
-        {
-            IEnumerable<string> files = Directory.EnumerateFiles(EntriesPath, "*", SearchOption.AllDirectories);
-            foreach (string file in files)
-            {
-                if (Path.GetFileNameWithoutExtension(file).Equals(name, StringComparison.CurrentCultureIgnoreCase))
+                ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+
+                string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
+                string[] images = Directory.GetFiles(illustrationsPath);
+                int removeLength = ModDirectory.Length + 1;
+                foreach (string image in images)
                 {
-                    return file;
+                    string tmp = image.Substring(removeLength);
+                    Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
                 }
             }
-
-            return string.Empty;
         }
     }
 }

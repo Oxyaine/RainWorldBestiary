@@ -359,10 +359,13 @@
   <ItemGroup>
     <Compile Include="Bestiary.cs" />
     <Compile Include="BestiaryMenu.cs" />
+    <Compile Include="BestiaryTabMenu.cs" />
     <Compile Include="DMSOptions.cs" />
+    <Compile Include="EntryReadingTab.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemixMenu.cs" />
     <Compile Include="ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup />

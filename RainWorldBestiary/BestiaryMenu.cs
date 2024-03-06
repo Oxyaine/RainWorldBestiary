@@ -4,31 +4,23 @@ using UnityEngine;
 
 namespace RainWorldBestiary
 {
-    internal class BestiaryMenu : Dialog, SelectOneButton.SelectOneButtonOwner
+    internal class BestiaryMenu : Dialog
     {
-        public PauseMenu owner;
-        public bool InGame => owner != null;
-
-        private readonly float leftAnchor;
-
         private const int ButtonSizeX = 145;
-        private const int ButtonSizeY = 30;
+        private const int ButtonSizeY = 25;
         private const int ButtonSpacing = 8;
         private const int MaxButtonsPerRow = 5;
         private const int TextBoxSize = 600;
         private const int WordWrapChars = 85;
 
         const string ReadEntryID = "ReadEntry";
+        const string ViewTabID = "ViewTab";
         const string BackButtonMessage = "BACK";
 
-        readonly SimpleButton TextDisplay;
-
-        public BestiaryMenu(ProcessManager manager, PauseMenu owner = null)
+        public BestiaryMenu(ProcessManager manager)
             : base(manager)
         {
-            this.owner = owner;
-
-            leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
+            float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 50f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
@@ -36,34 +28,59 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            int currentButtonPosition = ButtonSpacing;
-            int currentButtonRow = 0;
+            BuildMenu();
+        }
 
-            TextDisplay = new SimpleButton(this, pages[0], "", "NONE", new Vector2(Screen.width - TextBoxSize, 0), new Vector2(TextBoxSize, Screen.height));
-            pages[0].subObjects.Add(TextDisplay);
-
-            string[] allEntries = Bestiary.GetAllEntriesNames();
-
-            for (int i = 0; i < allEntries.Length; i++)
+        void BuildMenu()
+        {
+            int i = 0;
+            foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
-                if (i % MaxButtonsPerRow == 0)
-                {
-                    currentButtonRow++;
-                    currentButtonPosition = ButtonSpacing;
-                }
+                int currentButtonPosition = ButtonSpacing;
+                int currentButtonRow = 0;
 
-                AddButton(allEntries[i], allEntries[i], in currentButtonPosition, in currentButtonRow);
+                AddButton(tab, pages[0], in currentButtonPosition, in currentButtonRow);
 
-                currentButtonPosition += ButtonSizeX + ButtonSpacing;
+                i++;
             }
         }
 
-        void AddButton(string displayText, string entryName, in int currentButtonPosition, in int currentButtonRow)
+        void AddButton(EntriesTab tab, Page page, in int currentButtonPosition, in int currentButtonRow)
         {
             float y = Screen.height - ButtonSpacing - (currentButtonRow * (ButtonSizeY + ButtonSpacing));
-            ButtonTemplate button = new SimpleButton(this, pages[0], displayText, string.Concat(ReadEntryID, entryName), new Vector2(currentButtonPosition, y), new Vector2(ButtonSizeX, ButtonSizeY));
-            pages[0].subObjects.Add(button);
+
+            SimpleButton button = new SimpleButton(this, page, tab.Name, string.Concat(ReadEntryID, tab.Name), new Vector2(currentButtonPosition, y), new Vector2(ButtonSizeX, ButtonSizeY));
+            page.subObjects.Add(button);
         }
+
+        /// <summary>
+        /// Gets all the first chars after a space or any other white space character
+        /// </summary>
+        string GetInitials(string s)
+        {
+            string result = string.Empty;
+
+            bool previousWasWhiteSpace = true;
+
+            foreach (char c in s)
+            {
+                if (char.IsWhiteSpace(c))
+                {
+                    previousWasWhiteSpace = true;
+                }
+                else
+                {
+                    if (previousWasWhiteSpace)
+                    {
+                        previousWasWhiteSpace = false;
+                        result += c;
+                    }
+                }
+            }
+
+            return result;
+        }
+
 
         public override void Update()
         {
@@ -93,19 +110,26 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                if (InGame)
-                {
-                    manager.StopSideProcess(this);
-                }
-                else
-                {
-                    manager.RequestMainProcessSwitch(ProcessManager.ProcessID.MainMenu);
-                }
-
+                manager.RequestMainProcessSwitch(ProcessManager.ProcessID.MainMenu);
                 return;
             }
 
-            if (message.StartsWith(ReadEntryID))
+            if (message.StartsWith(ViewTabID))
+            {
+                PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
+
+                string id = message.Substring(ViewTabID.Length);
+                pages[0].subObjects.RemoveRange(Bestiary.EntriesTabs.Count, pages[0].subObjects.Count - Bestiary.EntriesTabs.Count);
+                foreach (EntriesTab v in Bestiary.EntriesTabs)
+                {
+                    if (v.Name.Equals(id))
+                    {
+
+                        break;
+                    }
+                }
+            }
+            else if (message.StartsWith(ReadEntryID))
             {
                 PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
