@@ -15,6 +15,15 @@ namespace RainWorldBestiary
         public static void Initialize()
         {
             ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+
+            string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
+            string[] images = Directory.GetFiles(illustrationsPath);
+            int removeLength = ModDirectory.Length + 1;
+            foreach (string image in images)
+            {
+                string tmp = image.Substring(removeLength);
+                Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
+            }
         }
 
         public static string GetFileByName(string name)

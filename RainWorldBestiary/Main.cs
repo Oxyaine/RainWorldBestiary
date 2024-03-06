@@ -10,7 +10,7 @@ namespace RainWorldBestiary
     {
         public const string GUID = "oxyaine.bestiary";
         public static DMSOptions Options;
-        bool IsInit;
+        private bool IsInit;
         bool IsPostInit;
         public static new ManualLogSource Logger;
 
@@ -22,8 +22,6 @@ namespace RainWorldBestiary
             {
                 Logger = base.Logger;
                 Logger.LogInfo("Loading plugin Bestiary");
-
-                ResourceManager.Initialize();
 
                 On.RainWorld.OnModsEnabled += RainWorld_OnModsEnabled;
                 On.RainWorld.OnModsInit += RainWorld_OnModsInit;
@@ -53,6 +51,8 @@ namespace RainWorldBestiary
                 if (!IsInit)
                 {
                     IsInit = true;
+
+                    ResourceManager.Initialize();
 
                     On.Menu.MainMenu.ctor += MainMenu_ctor;
 
