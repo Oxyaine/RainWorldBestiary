@@ -5,7 +5,7 @@ namespace RainWorldBestiary
 {
     internal class EntryReadingMenu : Dialog
     {
-        const int WrapCount = 120;
+        const int WrapCount = 180;
 
         const string BackButtonMessage = "BACK";
         public EntryReadingMenu(ProcessManager manager) : base(manager)
@@ -55,7 +55,7 @@ namespace RainWorldBestiary
 
         public void DisplayEntryInformation(Entry entry)
         {
-            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(Screen.width / 3.5f, Screen.height / 2), new Vector2(1, 1), false);
+            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(Screen.width / 2f, Screen.height / 2), new Vector2(1, 1), false);
             pages[0].subObjects.Add(label);
 
             FLabel label2 = new FLabel("DisplayFont", entry.Name)
@@ -68,10 +68,10 @@ namespace RainWorldBestiary
 
             if (Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
             {
-                FSprite sprite = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 - (entry.Name.Length * 20), y = Screen.height - 50 };
+                FSprite sprite = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 - (entry.Name.Length * 20) - 10, y = Screen.height - 50 };
                 pages[0].Container.AddChild(sprite);
 
-                FSprite sprite2 = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 + (entry.Name.Length * 20), y = Screen.height - 50 };
+                FSprite sprite2 = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 + (entry.Name.Length * 20) + 10, y = Screen.height - 50 };
                 pages[0].Container.AddChild(sprite2);
             }
         }
@@ -81,7 +81,7 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, 0.3f);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, Main.Options.MenuFadeTime);
                 return;
             }
         }

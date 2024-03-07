@@ -26,7 +26,7 @@ namespace RainWorldBestiary
                 scaleY = 770f,
                 x = -1f,
                 y = -1f,
-                alpha = 0.85f
+                alpha = 0.5f
             };
             pages[0].Container.AddChild(darkSprite);
 
@@ -91,7 +91,7 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Switch_Page_In);
                 CurrentSelectedTab = message.Substring(BUTTON_ID.Length);
 
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, 0.3f);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, Main.Options.MenuFadeTime);
             }
         }
     }

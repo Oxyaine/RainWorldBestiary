@@ -10,6 +10,8 @@ namespace RainWorldBestiary
         public RemixMenu()
         {
             UnlockAllEntries = config.Bind("oxyaine_unlock_all_entries", false);
+
+            _MenuFadeTime = config.Bind("oxyaine_menu_fade_time", 4);
         }
 
         public override void Initialize()
@@ -20,7 +22,8 @@ namespace RainWorldBestiary
 
             UIelement[] uiElements = new UIelement[]
             {
-
+                new OpLabel(20f, 552.5f, "Menu Fade Time", false),
+                new OpSlider(_MenuFadeTime, new Vector2(140f, 550f), 150, false) { max = 10 },
             };
             def.AddItems(uiElements);
 
@@ -33,5 +36,7 @@ namespace RainWorldBestiary
         }
 
         public readonly Configurable<bool> UnlockAllEntries;
+        private readonly Configurable<int> _MenuFadeTime;
+        public float MenuFadeTime => _MenuFadeTime.Value / 10f;
     }
 }

@@ -24,7 +24,7 @@ namespace RainWorldBestiary
                 scaleY = 770f,
                 x = -1f,
                 y = -1f,
-                alpha = 0.85f
+                alpha = 0.80f
             };
             pages[0].Container.AddChild(darkSprite);
 
@@ -112,7 +112,7 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryMenu, 0.3f);
+                manager.RequestMainProcessSwitch(Main.BestiaryMenu, Main.Options.MenuFadeTime);
                 return;
             }
             
@@ -121,7 +121,7 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Switch_Page_In);
                 CurrentSelectedEntry = message.Substring(EntryPressedID.Length);
 
-                manager.RequestMainProcessSwitch(Main.EntryReadingTab, 0.3f);
+                manager.RequestMainProcessSwitch(Main.EntryReadingTab, Main.Options.MenuFadeTime);
             }
         }
 
