@@ -12,6 +12,22 @@ namespace RainWorldBestiary
         {
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
+            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
+            pages[0].subObjects.Add(scene);
+
+            darkSprite = new FSprite("pixel")
+            {
+                color = new Color(0f, 0f, 0f),
+                anchorX = 0f,
+                anchorY = 0f,
+                scaleX = 1368f,
+                scaleY = 770f,
+                x = -1f,
+                y = -1f,
+                alpha = 0.90f
+            };
+            pages[0].Container.AddChild(darkSprite);
+
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
             backObject = backButton;
@@ -49,6 +65,15 @@ namespace RainWorldBestiary
                 y = Screen.height - 50
             };
             pages[0].Container.AddChild(label2);
+
+            if (Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
+            {
+                FSprite sprite = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 - (entry.Name.Length * 20), y = Screen.height - 50 };
+                pages[0].Container.AddChild(sprite);
+
+                FSprite sprite2 = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 + (entry.Name.Length * 20), y = Screen.height - 50 };
+                pages[0].Container.AddChild(sprite2);
+            }
         }
 
         public override void Singal(MenuObject sender, string message)

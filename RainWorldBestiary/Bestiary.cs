@@ -283,11 +283,13 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("entry_icon")]
         public string EntryIcon = "";
-        /// <summary>
-        /// The scene that is shown while reading the entry
-        /// </summary>
-        [JsonProperty("scene_while_reading")]
-        public string SceneWhileReading = "";
+
+        // Hopefully in the future!
+        //// <summary>
+        //// The scene that is shown while reading the entry
+        //// </summary>
+        //[JsonProperty("scene_while_reading")]
+        //public string SceneWhileReading = "";
 
         /// <summary>
         /// The description of this entry, when converted to string, only returns the parts of the entry that are visible
