@@ -360,7 +360,6 @@
     <Compile Include="Bestiary.cs" />
     <Compile Include="BestiaryMenu.cs" />
     <Compile Include="BestiaryTabMenu.cs" />
-    <Compile Include="DMSOptions.cs" />
     <Compile Include="EntryReadingMenu.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MenuHooks.cs" />
