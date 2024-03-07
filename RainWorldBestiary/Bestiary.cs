@@ -302,7 +302,6 @@ namespace RainWorldBestiary
     /// </summary>
     public class Description : IEnumerable<DescriptionModule>, ICollection<DescriptionModule>
     {
-        [JsonProperty("values")]
         readonly List<DescriptionModule> _values = new List<DescriptionModule>() { new DescriptionModule() };
 
         /// <inheritdoc/>
