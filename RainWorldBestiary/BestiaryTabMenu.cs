@@ -34,5 +34,14 @@ namespace RainWorldBestiary
                 return;
             }
         }
+
+        public override void Update()
+        {
+            base.Update();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Singal(backObject, BackButtonMessage);
+            }
+        }
     }
 }
