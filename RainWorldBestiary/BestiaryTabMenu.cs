@@ -6,6 +6,7 @@ namespace RainWorldBestiary
     internal class BestiaryTabMenu : Dialog
     {
         const string BackButtonMessage = "BACK";
+        const string EntryPressedID = "Read_Entry_";
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
@@ -43,7 +44,7 @@ namespace RainWorldBestiary
                     {
                         FSprite sprite = new FSprite(tab.TitleImage.ElementName)
                         {
-                            scale = tab.TitleImage.Scale,
+                            scale = 0.3f * tab.TitleImage.Scale,
                             x = Screen.width / 2 + tab.TitleImage.XOffset,
                             y = Screen.height - 50 + tab.TitleImage.YOffset
                         };
@@ -84,7 +85,7 @@ namespace RainWorldBestiary
                     currentX = ButtonSpacing;
                 }
 
-                SimpleButton textButton = new SimpleButton(this, pages[0], tab[i].Name, "", new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
+                SimpleButton textButton = new SimpleButton(this, pages[0], tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
                 pages[0].subObjects.Add(textButton);
 
                 if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
@@ -101,13 +102,22 @@ namespace RainWorldBestiary
             }
         }
 
+        public static string CurrentSelectedEntry = string.Empty;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryMenu, 0.2f);
+                manager.RequestMainProcessSwitch(Main.BestiaryMenu, 0.3f);
                 return;
+            }
+            
+            if (message.StartsWith(EntryPressedID))
+            {
+                PlaySound(SoundID.MENU_Switch_Page_In);
+                CurrentSelectedEntry = message.Substring(EntryPressedID.Length);
+
+                manager.RequestMainProcessSwitch(Main.EntryReadingTab, 0.3f);
             }
         }
 

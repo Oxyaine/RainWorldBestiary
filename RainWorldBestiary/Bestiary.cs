@@ -26,12 +26,12 @@ namespace RainWorldBestiary
             IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
             Entry[] entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab("Rain World", entries) { TitleImage = new TabTitleImage("illustrations\\Rain_World_Title") { Scale = 0.3f } });
-            
+            EntriesTabs.Add(new EntriesTab("Rain World", entries) { TitleImage = new TabTitleImage("illustrations\\Rain_World_Title") });
+
             files = Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories);
             entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries) { TitleImage = new TabTitleImage("illustrations\\Downpour_Title") { Scale = 0.3f } });
+            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries) { TitleImage = new TabTitleImage("illustrations\\Downpour_Title") });
         }
         ///
         internal static Entry[] GetFilesAsEntries(IEnumerable<string> files)
@@ -50,8 +50,51 @@ namespace RainWorldBestiary
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
         /// </summary>
-        public static List<EntriesTab> EntriesTabs = new List<EntriesTab>();
+        public static EntriesTabList EntriesTabs = new EntriesTabList();
     }
+
+    /// <summary>
+    /// A class that represents a list of <see cref="EntriesTab"/>
+    /// </summary>
+    /// <remarks>Not using regular list since this allows more control such as preventing two <see cref="EntriesTab"/> with the same name</remarks>
+    public class EntriesTabList : IEnumerable<EntriesTab>, ICollection<EntriesTab>
+    {
+        readonly List<EntriesTab> _tabs = new List<EntriesTab>();
+
+        /// <inheritdoc/>
+        public int Count => _tabs.Count;
+        /// <inheritdoc/>
+        public bool IsReadOnly => ((ICollection<EntriesTab>)_tabs).IsReadOnly;
+        /// <inheritdoc/>
+        public void Add(EntriesTab item)
+        {
+            foreach (EntriesTab tab in _tabs)
+            {
+                if (tab.Name.Equals(item.Name))
+                    throw new Exception("A tab with the name " + item.Name + " already exists!");
+            }
+
+            _tabs.Add(item);
+        }
+        /// <inheritdoc/>
+        public void Clear() => _tabs.Clear();
+        /// <inheritdoc/>
+        public bool Contains(EntriesTab item) => _tabs.Contains(item);
+        /// <inheritdoc/>
+        public void CopyTo(EntriesTab[] array, int arrayIndex) => _tabs.CopyTo(array, arrayIndex);
+        /// <inheritdoc/>
+        public bool Remove(EntriesTab item) => _tabs.Remove(item);
+
+        /// <inheritdoc/>
+        public IEnumerator<EntriesTab> GetEnumerator() => _tabs.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _tabs.GetEnumerator();
+
+        /// <summary>
+        /// Gets the <see cref="EntriesTab"/> at the given index
+        /// </summary>
+        public EntriesTab this[int index] => _tabs[index];
+    }
+
 
     /// <summary>
     /// Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values
@@ -129,15 +172,41 @@ namespace RainWorldBestiary
         /// <inheritdoc/>
         public bool IsReadOnly => ((ICollection<Entry>)_entries).IsReadOnly;
         /// <inheritdoc/>
-        public void Add(Entry item) => _entries.Add(item);
+        public void Add(Entry item)
+        {
+            if (Contains(item.Name))
+                throw new Exception("The entry with the name " + item.Name + " already exists in this tab!");
+
+            _entries.Add(item);
+        }
         /// <summary>
         /// Adds all the entries from the collection into this tab
         /// </summary>
-        public void AddRange(IEnumerable<Entry> items) => _entries.AddRange(items);
+        public void AddRange(IEnumerable<Entry> items)
+        {
+            foreach (Entry item in items)
+            {
+                Add(item);
+            }
+        }
         /// <inheritdoc/>
         public void Clear() => _entries.Clear();
         /// <inheritdoc/>
         public bool Contains(Entry item) => _entries.Contains(item);
+        /// <summary>
+        /// Determines whether this tab contains an entry with the given name
+        /// </summary>
+        /// <param name="entryName">The name of the entry to check for</param>
+        public bool Contains(string entryName)
+        {
+            foreach (Entry entry in _entries)
+            {
+                if (entry.Name.Equals(entryName))
+                    return true;
+            }
+
+            return false;
+        }
         /// <inheritdoc/>
         public void CopyTo(Entry[] array, int arrayIndex) => _entries.CopyTo(array, arrayIndex);
         /// <inheritdoc/>
@@ -149,18 +218,21 @@ namespace RainWorldBestiary
         public Entry this[int index] { get => _entries[index]; set => _entries[index] = value; }
 
         /// <summary>
-        /// Gets or sets an entry with the given name
+        /// Gets an entry with the given name
         /// </summary>
-        [Obsolete]
         public Entry this[string entryName]
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
+                foreach (Entry entry in _entries)
+                {
+                    if (entry.Name.Equals(entryName))
+                    {
+                        return entry;
+                    }
+                }
 
+                throw new KeyNotFoundException("The entry with the name " + entryName + " was not found in the tab.");
             }
         }
 

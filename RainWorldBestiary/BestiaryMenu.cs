@@ -5,15 +5,14 @@ namespace RainWorldBestiary
 {
     internal class BestiaryMenu : Dialog
     {
-        private const int ButtonSizeX = 150;
+        private const int ButtonSizeX = 250;
         private const int ButtonSizeY = 40;
         private const int ButtonSpacing = 10;
 
         const string BUTTON_ID = "Tab_Pressed";
         const string BackButtonMessage = "BACK";
 
-        public BestiaryMenu(ProcessManager manager)
-            : base(manager)
+        public BestiaryMenu(ProcessManager manager) : base(manager)
         {
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.subBackground);
             pages[0].subObjects.Add(scene);
@@ -92,7 +91,7 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Switch_Page_In);
                 CurrentSelectedTab = message.Substring(BUTTON_ID.Length);
 
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, 0.2f);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, 0.3f);
             }
         }
         static string WrapText(string text, int wrapCount)
