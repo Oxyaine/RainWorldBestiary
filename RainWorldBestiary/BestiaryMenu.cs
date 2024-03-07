@@ -44,6 +44,9 @@ namespace RainWorldBestiary
             int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing - 200;
             foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
+                if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
+                    continue;
+
                 AddButton(tab, pages[0], X, currentButtonY);
 
                 currentButtonY -= ButtonSizeY + ButtonSpacing;
@@ -56,7 +59,7 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            //mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         void AddButton(EntriesTab tab, Page page, in int x, in int y)

@@ -50,6 +50,8 @@ namespace RainWorldBestiary
                     break;
                 }
             }
+
+            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         private const int ButtonSizeX = 155;
@@ -72,13 +74,15 @@ namespace RainWorldBestiary
                 SimpleButton textButton = new SimpleButton(this, pages[0], tab[i].Name, "", new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
                 pages[0].subObjects.Add(textButton);
 
-                FSprite icon = new FSprite(tab[i].Info.EntryIcon)
+                if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
                 {
-                    x = currentX + 5,
-                    y = currentY + (ButtonSizeY / 2)
-                };
-                pages[0].Container.AddChild(icon);
-
+                    FSprite icon = new FSprite(tab[i].Info.EntryIcon)
+                    {
+                        x = currentX + 5,
+                        y = currentY + (ButtonSizeY / 2)
+                    };
+                    pages[0].Container.AddChild(icon);
+                }
 
                 currentX += ButtonSizeX + ButtonSpacing;
             }

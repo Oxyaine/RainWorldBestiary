@@ -17,6 +17,8 @@ namespace RainWorldBestiary
         /// </summary>
         internal static bool IncludeDownpour = false;
 
+        internal const string DownpourTabName = "Downpour";
+
         internal static void Initialize()
         {
             ResourceManager.Initialize();
@@ -29,10 +31,10 @@ namespace RainWorldBestiary
             files = Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories);
             entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab("Downpour", entries));
+            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries));
         }
         ///
-        public static Entry[] GetFilesAsEntries(IEnumerable<string> files)
+        internal static Entry[] GetFilesAsEntries(IEnumerable<string> files)
         {
             Entry[] entries = new Entry[files.Count()];
             int i = -1;
@@ -52,6 +54,35 @@ namespace RainWorldBestiary
     }
 
     /// <summary>
+    /// Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values
+    /// </summary>
+    public class TabTitleImage
+    {
+        /// <summary>
+        /// The name of the element in the atlas manager
+        /// </summary>
+        public string ElementName = string.Empty;
+        /// <summary>
+        /// The scale of the image when drawn to the screen
+        /// </summary>
+        public float Scale = 1;
+        /// <summary>
+        /// The offset on the X axis from the default position
+        /// </summary>
+        public int XOffset = 100;
+        /// <summary>
+        /// THe offset on the Y axis from the default position
+        /// </summary>
+        public int YOffset = 0;
+
+        ///
+        public TabTitleImage(string elementName)
+        {
+            ElementName = elementName;
+        }
+    }
+
+    /// <summary>
     /// A class representing a tab full of entries in the bestiary
     /// </summary>
     public class EntriesTab : IEnumerable<Entry>, ICollection<Entry>
@@ -60,6 +91,10 @@ namespace RainWorldBestiary
         /// The name of this tab
         /// </summary>
         public string Name = string.Empty;
+        /// <summary>
+        /// The image that gets displayed at the top when of the screen when viewing the tab, if left blank, some text will be placed instead
+        /// </summary>
+        public TabTitleImage TitleImage = null;
         readonly List<Entry> _entries = new List<Entry>();
 
         /// <summary>
