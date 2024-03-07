@@ -16,44 +16,6 @@ namespace RainWorldBestiary
         /// Whether to include downpour entries or not
         /// </summary>
         internal static bool IncludeDownpour = false;
-        [Obsolete]
-        internal static string[] GetAllEntriesNames()
-        {
-            IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
-            if (IncludeDownpour)
-                files = files.Concat(Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories));
-            string[] entries = new string[files.Count()];
-            int i = -1;
-            foreach (string file in files)
-            {
-                string fileName = Path.GetFileNameWithoutExtension(file);
-                entries[++i] = fileName;
-            }
-
-            return entries.ToArray();
-        }
-        [Obsolete]
-        internal static Entry[] GetAllEntries()
-        {
-            IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
-            if (IncludeDownpour)
-                files = files.Concat(Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories));
-            Entry[] entries = new Entry[files.Count()];
-            int i = -1;
-            foreach (string file in files)
-            {
-                string fileName = Path.GetFileNameWithoutExtension(file);
-                entries[++i] = new Entry(fileName, JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)));
-            }
-
-            return entries.ToArray();
-        }
-        [Obsolete]
-        internal static Entry GetEntryByName()
-        {
-            return default;
-        }
-
 
         internal static void Initialize()
         {
