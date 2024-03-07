@@ -38,28 +38,8 @@ namespace RainWorldBestiary
             {
                 if (tab.Name.Equals(BestiaryMenu.CurrentSelectedTab))
                 {
-                    PlaceEntriesFromTab(tab);
-
-                    if (tab.TitleImage != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleImage.ElementName))
-                    {
-                        FSprite sprite = new FSprite(tab.TitleImage.ElementName)
-                        {
-                            scale = 0.3f * tab.TitleImage.Scale,
-                            x = Screen.width / 2 + tab.TitleImage.XOffset,
-                            y = Screen.height - 50 + tab.TitleImage.YOffset
-                        };
-                        pages[0].Container.AddChild(sprite);
-                    }
-                    else
-                    {
-                        FLabel label2 = new FLabel("DisplayFont", tab.Name)
-                        {
-                            scale = 3f,
-                            x = Screen.width / 2,
-                            y = Screen.height - 50
-                        };
-                        pages[0].Container.AddChild(label2);
-                    }
+                    CreateEntryButtonsFromTab(tab);
+                    GetTabTitle(tab);
 
                     break;
                 }
@@ -68,11 +48,35 @@ namespace RainWorldBestiary
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
+        public void GetTabTitle(EntriesTab tab)
+        {
+            if (tab.TitleImage != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleImage.ElementName))
+            {
+                FSprite sprite = new FSprite(tab.TitleImage.ElementName)
+                {
+                    scale = 0.3f * tab.TitleImage.Scale,
+                    x = Screen.width / 2 + tab.TitleImage.XOffset,
+                    y = Screen.height - 50 + tab.TitleImage.YOffset
+                };
+                pages[0].Container.AddChild(sprite);
+            }
+            else
+            {
+                FLabel label2 = new FLabel("DisplayFont", tab.Name)
+                {
+                    scale = 3f,
+                    x = Screen.width / 2,
+                    y = Screen.height - 50
+                };
+                pages[0].Container.AddChild(label2);
+            }
+        }
+
         private const int ButtonSizeX = 155;
         private const int ButtonSizeY = 35;
         private const int ButtonSpacing = 15;
         private const int MaxButtonsPerRow = 8;
-        public void PlaceEntriesFromTab(EntriesTab tab)
+        public void CreateEntryButtonsFromTab(EntriesTab tab)
         {
             int currentX = ButtonSpacing;
             int currentY = Screen.height - 100;

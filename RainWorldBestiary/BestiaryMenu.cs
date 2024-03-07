@@ -46,7 +46,7 @@ namespace RainWorldBestiary
                 if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
                     continue;
 
-                AddButton(tab, pages[0], X, currentButtonY);
+                AddButton(tab, X, currentButtonY);
 
                 currentButtonY -= ButtonSizeY + ButtonSpacing;
             }
@@ -61,10 +61,10 @@ namespace RainWorldBestiary
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
-        void AddButton(EntriesTab tab, Page page, in int x, in int y)
+        void AddButton(EntriesTab tab, in int x, in int y)
         {
-            SimpleButton button = new SimpleButton(this, page, tab.Name, string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
-            page.subObjects.Add(button);
+            SimpleButton button = new SimpleButton(this, pages[0], tab.Name, string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
+            pages[0].subObjects.Add(button);
         }
 
         public override void Update()
@@ -93,29 +93,6 @@ namespace RainWorldBestiary
 
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, 0.3f);
             }
-        }
-        static string WrapText(string text, int wrapCount)
-        {
-            string result = "";
-            int l = 0;
-
-            string[] split = text.Split(' ');
-            foreach (string s in split)
-            {
-                if (s.Contains("\n"))
-                    l = 0;
-
-                if (l + s.Length > wrapCount)
-                {
-                    result += '\n';
-                    l = 0;
-                }
-
-                result += " " + s;
-                l += s.Length;
-            }
-
-            return result;
         }
     }
 }
