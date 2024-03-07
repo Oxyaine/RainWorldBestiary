@@ -1,5 +1,4 @@
 ﻿using Menu;
-using System;
 using UnityEngine;
 
 namespace RainWorldBestiary
