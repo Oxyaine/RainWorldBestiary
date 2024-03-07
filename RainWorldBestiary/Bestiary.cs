@@ -26,12 +26,12 @@ namespace RainWorldBestiary
             IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
             Entry[] entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab("Rain World", entries));
-
+            EntriesTabs.Add(new EntriesTab("Rain World", entries) { TitleImage = new TabTitleImage("illustrations\\Rain_World_Title") { Scale = 0.3f } });
+            
             files = Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories);
             entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries));
+            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries) { TitleImage = new TabTitleImage("illustrations\\Downpour_Title") { Scale = 0.3f } });
         }
         ///
         internal static Entry[] GetFilesAsEntries(IEnumerable<string> files)
@@ -69,7 +69,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// The offset on the X axis from the default position
         /// </summary>
-        public int XOffset = 100;
+        public int XOffset = 0;
         /// <summary>
         /// THe offset on the Y axis from the default position
         /// </summary>

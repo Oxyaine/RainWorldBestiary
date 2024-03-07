@@ -39,13 +39,26 @@ namespace RainWorldBestiary
                 {
                     PlaceEntriesFromTab(tab);
 
-                    FLabel label2 = new FLabel("DisplayFont", tab.Name)
+                    if (tab.TitleImage != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleImage.ElementName))
                     {
-                        scale = 4,
-                        x = Screen.width / 2,
-                        y = Screen.height - 50
-                    };
-                    pages[0].Container.AddChild(label2);
+                        FSprite sprite = new FSprite(tab.TitleImage.ElementName)
+                        {
+                            scale = tab.TitleImage.Scale,
+                            x = Screen.width / 2 + tab.TitleImage.XOffset,
+                            y = Screen.height - 50 + tab.TitleImage.YOffset
+                        };
+                        pages[0].Container.AddChild(sprite);
+                    }
+                    else
+                    {
+                        FLabel label2 = new FLabel("DisplayFont", tab.Name)
+                        {
+                            scale = 3f,
+                            x = Screen.width / 2,
+                            y = Screen.height - 50
+                        };
+                        pages[0].Container.AddChild(label2);
+                    }
 
                     break;
                 }
