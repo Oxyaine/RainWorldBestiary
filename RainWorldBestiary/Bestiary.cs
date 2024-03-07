@@ -125,7 +125,9 @@ namespace RainWorldBestiary
             _entries = entries.ToList();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the amount of entries in this tab
+        /// </summary>
         public int Count => _entries.Count;
         /// <inheritdoc/>
         public bool IsReadOnly => ((ICollection<Entry>)_entries).IsReadOnly;

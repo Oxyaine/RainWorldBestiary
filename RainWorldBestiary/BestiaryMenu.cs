@@ -10,15 +10,39 @@ namespace RainWorldBestiary
         private const int ButtonSizeY = 40;
         private const int ButtonSpacing = 10;
 
-        const string ReadEntryID = "ReadEntry";
-        const string ViewTabID = "ViewTab";
+        const string BUTTON_ID = "Tab_Pressed";
         const string BackButtonMessage = "BACK";
 
         public BestiaryMenu(ProcessManager manager)
             : base(manager)
         {
+            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.subBackground);
+            pages[0].subObjects.Add(scene);
+
+            darkSprite = new FSprite("pixel")
+            {
+                color = new Color(0f, 0f, 0f),
+                anchorX = 0f,
+                anchorY = 0f,
+                scaleX = 1368f,
+                scaleY = 770f,
+                x = -1f,
+                y = -1f,
+                alpha = 0.85f
+            };
+            pages[0].Container.AddChild(darkSprite);
+
+            FSprite bestiaryTitle = new FSprite("illustrations\\Menu_Title")
+            {
+                color = new Color(162f, 157f, 170f),
+                scale = 0.6f,
+                x = Screen.width / 2,
+                y = Screen.height - 100
+            };
+            pages[0].Container.AddChild(bestiaryTitle);
+
             int X = Screen.width / 2 - ButtonSizeX / 2;
-            int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing;
+            int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing - 200;
             foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
                 AddButton(tab, pages[0], X, currentButtonY);
@@ -32,11 +56,13 @@ namespace RainWorldBestiary
             backObject = backButton;
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
+
+            //mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         void AddButton(EntriesTab tab, Page page, in int x, in int y)
         {
-            SimpleButton button = new SimpleButton(this, page, tab.Name, string.Concat(ReadEntryID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
+            SimpleButton button = new SimpleButton(this, page, tab.Name, string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
             page.subObjects.Add(button);
         }
 
@@ -49,6 +75,7 @@ namespace RainWorldBestiary
             }
         }
 
+        public static string CurrentSelectedTab;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -58,32 +85,12 @@ namespace RainWorldBestiary
                 return;
             }
 
-            if (message.StartsWith(ViewTabID))
+            if (message.StartsWith(BUTTON_ID))
             {
-                PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
+                PlaySound(SoundID.MENU_Switch_Page_In);
+                CurrentSelectedTab = message.Substring(BUTTON_ID.Length);
 
-                string id = message.Substring(ViewTabID.Length);
-                pages[0].subObjects.RemoveRange(Bestiary.EntriesTabs.Count, pages[0].subObjects.Count - Bestiary.EntriesTabs.Count);
-                foreach (EntriesTab v in Bestiary.EntriesTabs)
-                {
-                    if (v.Name.Equals(id))
-                    {
-
-                        break;
-                    }
-                }
-            }
-            else if (message.StartsWith(ReadEntryID))
-            {
-                PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
-
-                string entryName = message.Substring(ReadEntryID.Length);
-                //Entry entry = Bestiary.GetEntryByName(entryName);
-
-                //if (entry.IsLocked)
-                //    TextDisplay.menuLabel.text = WrapText(entry.LockedText, WordWrapChars);
-                //else
-                //    TextDisplay.menuLabel.text = WrapText(entry.FullDescription, WordWrapChars);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, 0.2f);
             }
         }
         static string WrapText(string text, int wrapCount)

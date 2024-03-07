@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RainWorldBestiary
 {
-    internal class EntryReadingTab
+    internal class EntryReadingMenu
     {
     }
 }

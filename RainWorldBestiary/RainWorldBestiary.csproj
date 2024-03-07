@@ -361,7 +361,7 @@
     <Compile Include="BestiaryMenu.cs" />
     <Compile Include="BestiaryTabMenu.cs" />
     <Compile Include="DMSOptions.cs" />
-    <Compile Include="EntryReadingTab.cs" />
+    <Compile Include="EntryReadingMenu.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
