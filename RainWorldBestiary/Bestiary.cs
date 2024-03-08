@@ -285,9 +285,9 @@ namespace RainWorldBestiary
         public string EntryIcon = "";
 
         // Hopefully in the future!
-        //// <summary>
-        //// The scene that is shown while reading the entry
-        //// </summary>
+        ///// <summary>
+        ///// The scene that is shown while reading the entry
+        ///// </summary>
         //[JsonProperty("scene_while_reading")]
         //public string SceneWhileReading = "";
 

@@ -34,16 +34,8 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            foreach (EntriesTab tab in Bestiary.EntriesTabs)
-            {
-                if (tab.Name.Equals(BestiaryMenu.CurrentSelectedTab))
-                {
-                    CreateEntryButtonsFromTab(tab);
-                    GetTabTitle(tab);
-
-                    break;
-                }
-            }
+            CreateEntryButtonsFromTab(BestiaryMenu.CurrentSelectedTab);
+            GetTabTitle(BestiaryMenu.CurrentSelectedTab);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
@@ -106,7 +98,7 @@ namespace RainWorldBestiary
             }
         }
 
-        public static string CurrentSelectedEntry = string.Empty;
+        public static Entry CurrentSelectedEntry;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -118,10 +110,28 @@ namespace RainWorldBestiary
 
             if (message.StartsWith(EntryPressedID))
             {
-                PlaySound(SoundID.MENU_Switch_Page_In);
-                CurrentSelectedEntry = message.Substring(EntryPressedID.Length);
+                string msg = message.Substring(EntryPressedID.Length);
 
-                manager.RequestMainProcessSwitch(Main.EntryReadingTab, Main.Options.MenuFadeTime);
+                foreach (Entry entry in BestiaryMenu.CurrentSelectedTab)
+                {
+                    if (entry.Name.Equals(msg))
+                    {
+                        CurrentSelectedEntry = entry;
+                        break;
+                    }
+                }
+
+
+#warning Change later when entries can be locked
+                if (CurrentSelectedEntry.Info.UnlockID.Equals("LOCKED")) // If the entry is locked, change this later
+                {
+                    PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
+                }
+                else
+                {
+                    PlaySound(SoundID.MENU_Switch_Page_In);
+                    manager.RequestMainProcessSwitch(Main.EntryReadingTab, Main.Options.MenuFadeTime);
+                }
             }
         }
 

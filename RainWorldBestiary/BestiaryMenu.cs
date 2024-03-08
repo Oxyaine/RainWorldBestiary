@@ -76,7 +76,7 @@ namespace RainWorldBestiary
             }
         }
 
-        public static string CurrentSelectedTab;
+        public static EntriesTab CurrentSelectedTab;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -88,9 +88,18 @@ namespace RainWorldBestiary
 
             if (message.StartsWith(BUTTON_ID))
             {
-                PlaySound(SoundID.MENU_Switch_Page_In);
-                CurrentSelectedTab = message.Substring(BUTTON_ID.Length);
+                string msg = message.Substring(BUTTON_ID.Length);
 
+                foreach (EntriesTab tab in Bestiary.EntriesTabs)
+                {
+                    if (tab.Name.Equals(msg))
+                    {
+                        CurrentSelectedTab = tab;
+                        break;
+                    }
+                }
+
+                PlaySound(SoundID.MENU_Switch_Page_In);
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, Main.Options.MenuFadeTime);
             }
         }

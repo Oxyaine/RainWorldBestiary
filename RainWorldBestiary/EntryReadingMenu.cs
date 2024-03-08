@@ -34,23 +34,7 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            foreach (EntriesTab tab in Bestiary.EntriesTabs)
-            {
-                if (tab.Name.Equals(BestiaryMenu.CurrentSelectedTab))
-                {
-                    foreach (Entry entry in tab)
-                    {
-                        if (entry.Name.Equals(BestiaryTabMenu.CurrentSelectedEntry))
-                        {
-                            DisplayEntryInformation(entry);
-
-                            break;
-                        }
-                    }
-
-                    break;
-                }
-            }
+            DisplayEntryInformation(BestiaryTabMenu.CurrentSelectedEntry);
         }
 
         public void DisplayEntryInformation(Entry entry)
