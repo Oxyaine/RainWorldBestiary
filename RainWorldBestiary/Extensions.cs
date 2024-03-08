@@ -38,12 +38,4 @@ namespace RainWorldBestiary
             return result;
         }
     }
-
-    /// <summary>
-    /// Provides some nice functions that are used is some cases
-    /// </summary>
-    public static class Global
-    {
-
-    }
 }
