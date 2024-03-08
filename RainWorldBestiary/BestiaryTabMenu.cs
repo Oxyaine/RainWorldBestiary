@@ -62,13 +62,13 @@ namespace RainWorldBestiary
             }
             else
             {
-                FLabel label2 = new FLabel("DisplayFont", tab.Name)
-                {
-                    scale = 3f,
-                    x = Screen.width / 2,
-                    y = Screen.height - 50
-                };
-                pages[0].Container.AddChild(label2);
+                GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(tab.Name);
+                fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
+                fontText.Y = Screen.height - 50;
+
+                FSprite[] sprites = fontText.ToFSpriteArray();
+                for (int i = 0; i < sprites.Length; i++)
+                    pages[0].Container.AddChild(sprites[i]);
             }
         }
 
@@ -115,7 +115,7 @@ namespace RainWorldBestiary
                 manager.RequestMainProcessSwitch(Main.BestiaryMenu, Main.Options.MenuFadeTime);
                 return;
             }
-            
+
             if (message.StartsWith(EntryPressedID))
             {
                 PlaySound(SoundID.MENU_Switch_Page_In);

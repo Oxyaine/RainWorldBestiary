@@ -55,25 +55,14 @@ namespace RainWorldBestiary
 
         public void DisplayEntryInformation(Entry entry)
         {
-            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(Screen.width / 2f, Screen.height / 2), new Vector2(1, 1), false);
-            pages[0].subObjects.Add(label);
+            GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(entry.Name);
 
-            FLabel label2 = new FLabel("DisplayFont", entry.Name)
-            {
-                scale = 3f,
-                x = Screen.width / 2,
-                y = Screen.height - 50
-            };
-            pages[0].Container.AddChild(label2);
+            fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
+            fontText.Y = Screen.height - 50;
 
-            if (Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
-            {
-                FSprite sprite = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 - (entry.Name.Length * 20) - 10, y = Screen.height - 50 };
-                pages[0].Container.AddChild(sprite);
-
-                FSprite sprite2 = new FSprite(entry.Info.EntryIcon) { scale = 2, x = Screen.width / 2 + (entry.Name.Length * 20) + 10, y = Screen.height - 50 };
-                pages[0].Container.AddChild(sprite2);
-            }
+            FSprite[] sprites = fontText.ToFSpriteArray();
+            for (int i = 0; i < sprites.Length; i++)
+                pages[0].Container.AddChild(sprites[i]);
         }
 
         public override void Singal(MenuObject sender, string message)

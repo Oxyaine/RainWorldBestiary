@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using UnityEngine;
 
 namespace RainWorldBestiary
 {
@@ -13,6 +14,8 @@ namespace RainWorldBestiary
         public static string BaseEntriesPath => Path.Combine(EntriesPath, "base");
         public static string DownpourEntriesPath => Path.Combine(EntriesPath, "downpour");
 
+        internal static List<Font> CustomFonts = new List<Font>();
+
         internal static void Initialize()
         {
             if (!Initialized)
@@ -20,16 +23,106 @@ namespace RainWorldBestiary
                 Initialized = true;
 
                 ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                int removeLength = ModDirectory.Length + 1;
 
                 string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
                 string[] images = Directory.GetFiles(illustrationsPath);
-                int removeLength = ModDirectory.Length + 1;
                 foreach (string image in images)
                 {
                     string tmp = image.Substring(removeLength);
                     Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
                 }
+
+                IEnumerable<string> fonts = Directory.GetDirectories(Path.Combine(ModDirectory, "fonts"), "*", SearchOption.TopDirectoryOnly);
+                foreach (string font in fonts)
+                {
+                    string configFile = font + ".txt";
+                    if (File.Exists(configFile))
+                    {
+                        IEnumerable<string> files = Directory.GetFiles(font, "*", SearchOption.AllDirectories);
+                        foreach (string file in files)
+                        {
+                            string tmp = file.Substring(removeLength);
+                            Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
+                        }
+
+                        CustomFonts.Add(new Font(configFile));
+                    }
+                }
             }
+        }
+    }
+
+    internal class Font
+    {
+        public Font(string fontConfigPath)
+        {
+            string[] lines = File.ReadAllLines(fontConfigPath);
+            foreach (string line in lines)
+            {
+                string[] splitLine = line.Split('=');
+                FontCharacters.Add(splitLine[0][0], splitLine[1]);
+            }
+        }
+
+        readonly Dictionary<char, string> FontCharacters = new Dictionary<char, string>();
+
+        public GeneratedFontText Generate(string text)
+        {
+            int textLength = text.Length;
+            FSprite[] sprites = new FSprite[textLength];
+
+            float currentX = 0;
+            for (int i = 0; i < textLength; i++)
+            {
+                if (FontCharacters.TryGetValue(char.ToLower(text[i]), out string atlasName))
+                {
+                    sprites[i] = new FSprite(atlasName)
+                    {
+                        x = currentX
+                    };
+
+                    currentX += sprites[i].width + ((1f - (sprites[i].width / 65f)) * 20f);
+                }
+                else
+                {
+                    sprites[i] = new FSprite(FontCharacters[' '])
+                    {
+                        x = currentX
+                    };
+
+                    currentX += sprites[i].width;
+                }
+            }
+
+            return new GeneratedFontText(sprites, currentX);
+        }
+    }
+
+    internal class GeneratedFontText
+    {
+        public float X = 0, Y = 0;
+        public float Scale = 1;
+        public readonly float TotalWidth;
+
+        readonly FSprite[] Sprites;
+
+        public GeneratedFontText(FSprite[] sprites, float totalWidth)
+        {
+            Sprites = sprites;
+            TotalWidth = totalWidth;
+        }
+
+        public FSprite[] ToFSpriteArray()
+        {
+            for (int i = 0; i < Sprites.Length; i++)
+            {
+                Sprites[i].x += X;
+                Sprites[i].y += Y;
+                Sprites[i].scale *= Scale;
+            }
+
+            return Sprites;
         }
     }
 }
