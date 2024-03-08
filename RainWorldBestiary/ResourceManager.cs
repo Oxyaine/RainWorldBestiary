@@ -121,8 +121,8 @@ namespace RainWorldBestiary
     {
         public float X = 0, Y = 0;
         public float Scale = 1;
-        public readonly float TotalWidth;
 
+        public readonly float TotalWidth;
         readonly FSprite[] Sprites;
 
         public GeneratedFontText(FSprite[] sprites, float totalWidth)
@@ -131,7 +131,7 @@ namespace RainWorldBestiary
             TotalWidth = totalWidth;
         }
 
-        public FSprite[] ToFSpriteArray()
+        public FSprite[] Finalize()
         {
             for (int i = 0; i < Sprites.Length; i++)
             {

@@ -66,7 +66,7 @@ namespace RainWorldBestiary
                 fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
                 fontText.Y = Screen.height - 50;
 
-                FSprite[] sprites = fontText.ToFSpriteArray();
+                FSprite[] sprites = fontText.Finalize();
                 for (int i = 0; i < sprites.Length; i++)
                     pages[0].Container.AddChild(sprites[i]);
             }
