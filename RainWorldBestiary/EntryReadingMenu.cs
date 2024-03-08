@@ -63,6 +63,26 @@ namespace RainWorldBestiary
             FSprite[] sprites = fontText.ToFSpriteArray();
             for (int i = 0; i < sprites.Length; i++)
                 pages[0].Container.AddChild(sprites[i]);
+
+            if (Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
+            {
+                FSprite sprite = new FSprite(entry.Info.EntryIcon)
+                {
+                    y = Screen.height - 50,
+                    x = Screen.width / 2f - (fontText.TotalWidth / 2f + 60),
+                    scale = 2
+                };
+                pages[0].Container.AddChild(sprite);
+
+                FSprite sprite2 = new FSprite(entry.Info.EntryIcon)
+                {
+                    y = Screen.height - 50,
+                    x = Screen.width / 2f + (fontText.TotalWidth / 2f + 10),
+                    scale = 2
+                };
+                pages[0].Container.AddChild(sprite2);
+
+            }
         }
 
         public override void Singal(MenuObject sender, string message)
