@@ -8,7 +8,7 @@ namespace RainWorldBestiary
     [BepInPlugin(GUID, "Bestiary", "0.0.1")]
     internal class Main : BaseUnityPlugin
     {
-        public const string GUID = "oxyaine.bestiary";
+        internal const string GUID = "oxyaine.bestiary";
         private bool IsInit;
         bool IsPostInit;
 
