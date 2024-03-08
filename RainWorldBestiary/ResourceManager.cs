@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
@@ -14,7 +15,21 @@ namespace RainWorldBestiary
         public static string BaseEntriesPath => Path.Combine(EntriesPath, "base");
         public static string DownpourEntriesPath => Path.Combine(EntriesPath, "downpour");
 
-        internal static List<Font> CustomFonts = new List<Font>();
+        internal static readonly List<Font> CustomFonts = new List<Font>();
+        internal static bool GetCustomFontByName(string fontName, out Font result, StringComparison comparisonType = StringComparison.InvariantCulture)
+        {
+            foreach (Font font in CustomFonts)
+            {
+                if (font.FontName.Equals(fontName, comparisonType))
+                {
+                    result = font;
+                    return true;
+                }
+            }
+
+            result = null;
+            return false;
+        }
 
         internal static void Initialize()
         {
@@ -46,7 +61,7 @@ namespace RainWorldBestiary
                             Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
                         }
 
-                        CustomFonts.Add(new Font(configFile));
+                        CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
                     }
                 }
             }
@@ -55,8 +70,12 @@ namespace RainWorldBestiary
 
     internal class Font
     {
-        public Font(string fontConfigPath)
+        public readonly string FontName;
+
+        public Font(string fontName, string fontConfigPath)
         {
+            FontName = fontName;
+
             string[] lines = File.ReadAllLines(fontConfigPath);
             foreach (string line in lines)
             {
