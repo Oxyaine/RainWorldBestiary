@@ -93,7 +93,7 @@ namespace RainWorldBestiary
                     {
                         FSprite icon = new FSprite(tab[i].Info.EntryIcon)
                         {
-                            color = new Color(0, 0, 0, 255),
+                            color = tab[i].Info.EntryLocked ? new Color(0, 0, 0, 255) : Color.white,
                             x = currentX + 5,
                             y = currentY + (ButtonSizeY / 2)
                         };

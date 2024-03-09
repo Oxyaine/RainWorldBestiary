@@ -66,7 +66,6 @@ namespace RainWorldBestiary
                     scale = 2
                 };
                 pages[0].Container.AddChild(sprite2);
-
             }
         }
 
