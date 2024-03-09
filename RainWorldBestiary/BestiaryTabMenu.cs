@@ -38,6 +38,9 @@ namespace RainWorldBestiary
             GetTabTitle(BestiaryMenu.CurrentSelectedTab);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+
+            TipLabel = new MenuLabel(this, pages[0], "", new Vector2(Screen.width / 2f, 25), Vector2.one, false);
+            pages[0].subObjects.Add(TipLabel);
         }
 
         public void GetTabTitle(EntriesTab tab)
@@ -102,6 +105,10 @@ namespace RainWorldBestiary
         }
 
         public static Entry CurrentSelectedEntry;
+
+        private readonly MenuLabel TipLabel;
+        private float TipLabelAlpha;
+
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -127,8 +134,9 @@ namespace RainWorldBestiary
                 if (CurrentSelectedEntry.Info.EntryLocked)
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
-                    MenuLabel tip = new MenuLabel(this, pages[0], CurrentSelectedEntry.Info.LockedText, new Vector2(Screen.width / 2f, 25), Vector2.one, false);
-                    pages[0].subObjects.Add(tip);
+
+                    TipLabel.text = CurrentSelectedEntry.Info.LockedText;
+                    TipLabelAlpha = 1f;
                 }
                 else
                 {
@@ -140,11 +148,16 @@ namespace RainWorldBestiary
 
         public override void Update()
         {
-            base.Update();
             if (Input.GetKeyDown(KeyCode.Escape))
-            {
                 Singal(backObject, BackButtonMessage);
+
+            if (TipLabelAlpha > 0)
+            {
+                TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
+                TipLabelAlpha -= Time.deltaTime;
             }
+
+            base.Update();
         }
     }
 }
