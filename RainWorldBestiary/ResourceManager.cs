@@ -100,7 +100,7 @@ namespace RainWorldBestiary
                         x = currentX
                     };
 
-                    currentX += sprites[i].width + ((1f - (sprites[i].width / 65f)) * 20f);
+                    currentX += sprites[i].width + ((1f - (sprites[i].width / 40f)) * 20f);
                 }
                 else
                 {

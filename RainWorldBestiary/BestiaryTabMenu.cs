@@ -81,18 +81,21 @@ namespace RainWorldBestiary
                     currentX = ButtonSpacing;
                 }
 
-                SimpleButton textButton = new SimpleButton(this, pages[0], tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
+                string buttonText = tab[i].Info.EntryLocked ? "???" : tab[i].Name;
+
+                SimpleButton textButton = new SimpleButton(this, pages[0], buttonText, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
                 pages[0].subObjects.Add(textButton);
 
-                if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
-                {
-                    FSprite icon = new FSprite(tab[i].Info.EntryIcon)
+                    if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
                     {
-                        x = currentX + 5,
-                        y = currentY + (ButtonSizeY / 2)
-                    };
-                    pages[0].Container.AddChild(icon);
-                }
+                        FSprite icon = new FSprite(tab[i].Info.EntryIcon)
+                        {
+                            color = new Color(0, 0, 0, 255),
+                            x = currentX + 5,
+                            y = currentY + (ButtonSizeY / 2)
+                        };
+                        pages[0].Container.AddChild(icon);
+                    }
 
                 currentX += ButtonSizeX + ButtonSpacing;
             }
@@ -121,11 +124,11 @@ namespace RainWorldBestiary
                     }
                 }
 
-
-#warning Change later when entries can be locked
-                if (CurrentSelectedEntry.Info.UnlockID.Equals("LOCKED")) // If the entry is locked, change this later
+                if (CurrentSelectedEntry.Info.EntryLocked)
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
+                    MenuLabel tip = new MenuLabel(this, pages[0], CurrentSelectedEntry.Info.LockedText, new Vector2(Screen.width / 2f, 25), Vector2.one, false);
+                    pages[0].subObjects.Add(tip);
                 }
                 else
                 {

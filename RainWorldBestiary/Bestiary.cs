@@ -46,6 +46,13 @@ namespace RainWorldBestiary
             return entries;
         }
 
+
+        /// <summary>
+        /// All the ID's of entries that have been unlocked, and can be viewed (doesn't completely unlock entry, just makes it available, individual description components must still be unlocked individualy)
+        /// </summary>
+        public static List<string> UnlockedEntriesIDs = new List<string>();
+
+
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
         /// </summary>
@@ -276,13 +283,38 @@ namespace RainWorldBestiary
         /// The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
         /// </summary>
         [JsonProperty("unlock_id")]
-        public string UnlockID = "";
+        public string ID = string.Empty;
+
+        /// <summary>
+        /// The condition that specifies whether this entry is locked or not, if this returns true, then the entry is locked. You can leave this as the default, or set your own custom condition.
+        /// </summary>
+        /// <remarks>Defaults to <see cref="DefaultEntryLockedCondition(EntryInfo)"/>, which checks if <see cref="Bestiary.UnlockedEntriesIDs"/> contains <see cref="ID"/></remarks>
+        [JsonIgnore]
+        public Func<EntryInfo, bool> EntryLockedCondition = DefaultEntryLockedCondition;
+        /// <summary>
+        /// Checks whether <see cref="ID"/> is found in <see cref="Bestiary.UnlockedEntriesIDs"/>
+        /// </summary>
+        /// <returns>True if the id was not found in the list, otherwise false</returns>
+        public static bool DefaultEntryLockedCondition(EntryInfo info) => !Bestiary.UnlockedEntriesIDs.Contains(info.ID);
+        /// <summary>
+        /// Returns false if <see cref="EntryLockedCondition"/> is null, or if it returns false, otherwise true
+        /// </summary>
+        [JsonIgnore]
+        public bool EntryLocked => EntryLockedCondition != null && EntryLockedCondition(this);
+
+
+        /// <summary>
+        /// The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
+        /// </summary>
+        [JsonProperty("locked_text")]
+        public string LockedText = "This entry is locked.";
+
 
         /// <summary>
         /// The local path to the icon that is displayed on the button
         /// </summary>
         [JsonProperty("entry_icon")]
-        public string EntryIcon = "";
+        public string EntryIcon = string.Empty;
 
         // Hopefully in the future!
         ///// <summary>
@@ -303,6 +335,12 @@ namespace RainWorldBestiary
     /// </summary>
     public class Description : IEnumerable<DescriptionModule>, ICollection<DescriptionModule>
     {
+        /// <summary>
+        /// Whether the entire description should be available to read, regardless of which module are locked or unlocked
+        /// </summary>
+        [JsonProperty("unlock_full_description")]
+        public bool UnlockFullDescription = false;
+
         readonly List<DescriptionModule> _values = new List<DescriptionModule>() { new DescriptionModule() };
 
         /// <inheritdoc/>
@@ -316,7 +354,6 @@ namespace RainWorldBestiary
         public DescriptionModule this[int index] { get => _values[index]; set => _values[index] = value; }
 
 
-
         /// <inheritdoc/>
         public IEnumerator<DescriptionModule> GetEnumerator() => _values.AsEnumerable().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
@@ -326,10 +363,13 @@ namespace RainWorldBestiary
         /// </summary>
         public override string ToString()
         {
-            string result = "";
+            string result = string.Empty;
             foreach (DescriptionModule module in _values)
             {
-
+                if (!module.ModuleLocked)
+                {
+                    result = string.Concat(result, module);
+                }
             }
             return result;
         }
@@ -355,12 +395,30 @@ namespace RainWorldBestiary
         /// The ID of this description component, used to determine whether this part of the dictionary is visible or not
         /// </summary>
         [JsonProperty("unlock_id")]
-        public string UnlockID = "";
+        public string ID = string.Empty;
+
+        /// <summary>
+        /// The condition that specifies whether this entry is locked or not, if this returns true, then the entry is locked. You can leave this as the default, or set your own custom condition.
+        /// </summary>
+        /// <remarks>Defaults to <see cref="DefaultModuleLockedCondition(DescriptionModule)"/></remarks>
+        [JsonIgnore]
+        public Func<DescriptionModule, bool> ModuleLockedCondition = DefaultModuleLockedCondition;
+
+        public static bool DefaultModuleLockedCondition(DescriptionModule info) => false;
+
+        /// <summary>
+        /// Returns false if <see cref="ModuleLockedCondition"/> is null, or if it returns false, otherwise true
+        /// </summary>
+        [JsonIgnore]
+        public bool ModuleLocked => ModuleLockedCondition != null && ModuleLockedCondition(this);
 
         /// <summary>
         /// The text of this part of the entries description
         /// </summary>
         [JsonProperty("text")]
-        public string Text = "";
+        public string Text = string.Empty;
+
+        /// <inheritdoc/>
+        public override string ToString() => Text;
     }
 }
