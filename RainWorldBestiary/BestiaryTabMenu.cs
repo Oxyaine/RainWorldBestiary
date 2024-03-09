@@ -154,8 +154,7 @@ namespace RainWorldBestiary
             if (TipLabelAlpha > 0)
             {
                 TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
-
-                TipLabelAlpha -= Time.deltaTime;
+                TipLabelAlpha -= Time.deltaTime / TipLabelAlpha;
             }
 
             base.Update();
