@@ -12,12 +12,12 @@ namespace RainWorldBestiary
         private bool IsInit;
         bool IsPostInit;
 
-        public static new ManualLogSource Logger;
+        internal static new ManualLogSource Logger;
         public static RemixMenu Options;
 
-        public static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
-        public static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
-        public static ProcessManager.ProcessID EntryReadingTab => new ProcessManager.ProcessID("EntryReadingTab", register: true);
+        internal static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
+        internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
+        internal static ProcessManager.ProcessID EntryReadingTab => new ProcessManager.ProcessID("EntryReadingTab", register: true);
 
         private void Awake()
         {

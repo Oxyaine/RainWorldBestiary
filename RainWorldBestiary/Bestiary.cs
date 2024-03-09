@@ -294,8 +294,9 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks whether <see cref="ID"/> is found in <see cref="Bestiary.UnlockedEntriesIDs"/>
         /// </summary>
-        /// <returns>True if the id was not found in the list, otherwise false</returns>
-        public static bool DefaultEntryLockedCondition(EntryInfo info) => !Bestiary.UnlockedEntriesIDs.Contains(info.ID);
+        /// <returns>True if the the entry is locked, otherwise false</returns>
+        public static bool DefaultEntryLockedCondition(EntryInfo info) => !Main.Options.UnlockAllEntries.Value && !Bestiary.UnlockedEntriesIDs.Contains(info.ID);
+
         /// <summary>
         /// Returns false if <see cref="EntryLockedCondition"/> is null, or if it returns false, otherwise true
         /// </summary>
@@ -341,7 +342,7 @@ namespace RainWorldBestiary
         [JsonProperty("unlock_full_description")]
         public bool UnlockFullDescription = false;
 
-        readonly List<DescriptionModule> _values = new List<DescriptionModule>() { new DescriptionModule() };
+        readonly List<DescriptionModule> _values = new List<DescriptionModule>();
 
         /// <inheritdoc/>
         public int Count => _values.Count;
