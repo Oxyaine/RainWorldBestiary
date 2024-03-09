@@ -84,16 +84,16 @@ namespace RainWorldBestiary
                     currentX = ButtonSpacing;
                 }
 
-                string buttonText = tab[i].Info.EntryLocked ? "???" : tab[i].Name;
+                bool entryLocked = tab[i].Info.EntryLocked;
 
-                SimpleButton textButton = new SimpleButton(this, pages[0], buttonText, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
+                SimpleButton textButton = new SimpleButton(this, pages[0], entryLocked ? "???" : tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
                 pages[0].subObjects.Add(textButton);
 
                     if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
                     {
                         FSprite icon = new FSprite(tab[i].Info.EntryIcon)
                         {
-                            color = tab[i].Info.EntryLocked ? new Color(0, 0, 0, 255) : Color.white,
+                            color = entryLocked ? new Color(0, 0, 0, 255) : Color.white,
                             x = currentX + 5,
                             y = currentY + (ButtonSizeY / 2)
                         };
