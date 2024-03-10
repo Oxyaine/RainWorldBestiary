@@ -66,6 +66,17 @@ namespace RainWorldBestiary
                 };
                 pages[0].Container.AddChild(sprite2);
             }
+
+            for (int i = 0; i < entry.Info.Description.Count; i++)
+            {
+                FSprite pip = new FSprite(entry.Info.Description[i].ModuleLocked ? "illustrations\\unlock_pip" : "illustrations\\unlock_pip_full")
+                {
+                    x = Screen.width - 20,
+                    y = Screen.height - (i * 20) - 20,
+                    scale = 1f
+                };
+                pages[0].Container.AddChild(pip);
+            }
         }
 
         public override void Singal(MenuObject sender, string message)
