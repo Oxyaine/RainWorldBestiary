@@ -32,12 +32,12 @@ namespace RainWorldBestiary
             IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
             Entry[] entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab("Rain World", entries) { TitleImage = new TabTitleImage("illustrations\\Rain_World_Title") });
+            EntriesTabs.Add(new EntriesTab("Rain World", entries) { TitleImage = new TitleSprite("illustrations\\Rain_World_Title") });
 
             files = Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories);
             entries = GetFilesAsEntries(files);
 
-            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries) { TitleImage = new TabTitleImage("illustrations\\Downpour_Title") });
+            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries) { TitleImage = new TitleSprite("illustrations\\Downpour_Title") });
         }
         internal static Entry[] GetFilesAsEntries(IEnumerable<string> files)
         {
@@ -59,11 +59,77 @@ namespace RainWorldBestiary
         public static List<string> UnlockedEntriesIDs = new List<string>();
 
 
+
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
         /// </summary>
         public static EntriesTabList EntriesTabs = new EntriesTabList();
     }
+
+    
+    /// <summary>
+    /// A class the represents an unlocked module that can be used by <see cref="DescriptionModule"/>, to check whether it can be made visible
+    /// </summary>
+    public class UnlockedDescriptionModuleID
+    {
+        /// <summary>
+        /// The type of unlock
+        /// </summary>
+        public enum Type
+        {
+            /// <summary>
+            /// Killing the creature
+            /// </summary>
+            /// <remarks>Useful for unlocking parts about what it takes to kill the creature, how many spears or even how many rocks, up to you</remarks>
+            Killing,
+            /// <summary>
+            /// Taming the creature, only applicable to tamable creatures
+            /// </summary>
+            /// <remarks>Useful for unlocking parts about what is required to tame the creature / how much it eats before tamed</remarks>
+            Taming,
+            /// <summary>
+            /// Evading the creature, by dodging, climbing to a place it can't reach, etc
+            /// </summary>
+            /// <remarks>For unlocking parts about techniques the player could use to evade the creature. Very similar to <see cref="ObserveHunted"/></remarks>
+            Evading,
+            /// <summary>
+            /// Sneaking past the creature
+            /// </summary>
+            /// <remarks>For unlocking parts about the creatures vision range or how much it relies on sound, if at all</remarks>
+            Sneaking,
+            /// <summary>
+            /// Stunning the creature with a rock, or other stunning object
+            /// </summary>
+            /// <remarks>For unlocking parts about what happens when a creature is stunned, such as that lizards flip over when stunned, or vultures are mostly* unaffected</remarks>
+            Stunning,
+            /// <summary>
+            /// Hitting the creature with a damaging weapon, such as a spear
+            /// </summary>
+            /// <remarks>For unlocking parts about a creatures toughness and how it reacts to getting hit</remarks>
+            Impaling,
+            /// <summary>
+            /// Looking at the creature / noticing the creature
+            /// </summary>
+            /// <remarks>For unlocking parts about the creatures appearance</remarks>
+            Observing,
+            /// <summary>
+            /// Noticing the creatures fears
+            /// </summary>
+            /// <remarks>For unlocking parts about what the creature fears / how it can be scared away</remarks>
+            ObserveFear,
+            /// <summary>
+            /// Noticing the creature eating
+            /// </summary>
+            /// <remarks>For unlocking parts about what the creature eats / can be distracted by (when it comes to food)</remarks>
+            ObserveFood,
+            /// <summary>
+            /// Getting hunted by the creature / getting chased
+            /// </summary>
+            /// <remarks>For unlocking parts about abilities and hunting techniques the creature uses</remarks>
+            ObserveHunted,
+        }
+    }
+
 
     /// <summary>
     /// A class that represents a list of <see cref="EntriesTab"/>
@@ -111,7 +177,7 @@ namespace RainWorldBestiary
     /// <summary>
     /// Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values
     /// </summary>
-    public class TabTitleImage
+    public class TitleSprite
     {
         /// <summary>
         /// The name of the element in the atlas manager
@@ -131,7 +197,7 @@ namespace RainWorldBestiary
         public int YOffset = 0;
 
         ///
-        public TabTitleImage(string elementName)
+        public TitleSprite(string elementName)
         {
             ElementName = elementName;
         }
@@ -147,9 +213,16 @@ namespace RainWorldBestiary
         /// </summary>
         public string Name = string.Empty;
         /// <summary>
-        /// The image that gets displayed at the top when of the screen when viewing the tab, if left blank, some text will be placed instead
+        /// The title image that gets displayed at the top when of the screen when viewing the tab, if left blank, some generated text will be placed instead
         /// </summary>
-        public TabTitleImage TitleImage = null;
+        /// <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
+        public TitleSprite TitleImage = null;
+
+        /// <summary>
+        /// The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
+        /// </summary>
+        public ProcessManager.ProcessID EntriesTabMenu = Main.BestiaryTabMenu;
+
         readonly List<Entry> _entries = new List<Entry>();
 
         /// <summary>
@@ -322,6 +395,15 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("entry_icon")]
         public string EntryIcon = string.Empty;
+
+#if DEBUG
+        /// <summary>
+        /// The title image that gets displayed at the top when of the screen while reading the entry, if left blank, some generated text will be placed instead
+        /// </summary>
+        /// <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
+        [Obsolete("This is currently un-used, you can set it for future use, but otherwise avoid this, as the name may change in the future")]
+        public TitleSprite TitleSprite = null;
+#endif
 
         // Hopefully in the future!
         ///// <summary>
