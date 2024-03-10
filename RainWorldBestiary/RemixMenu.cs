@@ -5,7 +5,7 @@ namespace RainWorldBestiary
 {
     public class RemixMenu : OptionInterface
     {
-        private Color CheatColor = new Color32(255, 125, 125, 255);
+        private Color CheatColor = new Color(1f, .5f, .5f);
 
         internal RemixMenu()
         {
