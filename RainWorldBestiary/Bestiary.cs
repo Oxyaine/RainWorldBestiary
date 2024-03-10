@@ -12,10 +12,16 @@ namespace RainWorldBestiary
     /// </summary>
     public static class Bestiary
     {
-        /// <summary>
-        /// Whether to include downpour entries or not
-        /// </summary>
         internal static bool IncludeDownpour = false;
+
+        /// <summary>
+        /// Whether downpour entries are shown or not, true if more slug cats is enables, otherwise false
+        /// </summary>
+        public static bool IncludeDownpourEntries => IncludeDownpour;
+        /// <summary>
+        /// Whether the UnlockAllEntries cheat in the remix menu is enabled
+        /// </summary>
+        public static bool UnlockAllEntries => Main.Options.UnlockAllEntries.Value;
 
         internal const string DownpourTabName = "Downpour";
 
