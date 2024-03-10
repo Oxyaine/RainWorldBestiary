@@ -344,9 +344,31 @@ namespace RainWorldBestiary
 
         readonly List<DescriptionModule> _values = new List<DescriptionModule>();
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the amount of description modules in this description
+        /// </summary>
         public int Count => _values.Count;
-        /// <inheritdoc/>
+
+        /// <summary>
+        /// Gets the amount of description modules that are visible to the player
+        /// </summary>
+        public int UnlockedCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (DescriptionModule module in _values)
+                {
+                    if (!module.ModuleLocked)
+                        count++;
+                }
+                return count;
+            }
+        }
+
+        /// <summary>
+        /// This is unused in <see cref="Description"/>
+        /// </summary>
         public bool IsReadOnly => ((ICollection<DescriptionModule>)_values).IsReadOnly;
 
         /// <summary>
