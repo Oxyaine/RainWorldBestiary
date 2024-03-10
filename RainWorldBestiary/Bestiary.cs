@@ -213,7 +213,7 @@ namespace RainWorldBestiary
         /// </summary>
         public string Name = string.Empty;
         /// <summary>
-        /// The title image that gets displayed at the top when of the screen when viewing the tab, if left blank, some generated text will be placed instead
+        /// The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
         /// </summary>
         /// <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
         public TitleSprite TitleImage = null;
@@ -391,19 +391,24 @@ namespace RainWorldBestiary
 
 
         /// <summary>
+        /// Whether the two icons specified by <see cref="EntryIcon"/> will be displayed either side of the title
+        /// </summary>
+        [JsonProperty("icons_next_to_title")]
+        public bool IconsNextToTitle = true;
+
+
+        /// <summary>
         /// The local path to the icon that is displayed on the button
         /// </summary>
         [JsonProperty("entry_icon")]
         public string EntryIcon = string.Empty;
 
-#if DEBUG
         /// <summary>
-        /// The title image that gets displayed at the top when of the screen while reading the entry, if left blank, some generated text will be placed instead
+        /// The title image that gets displayed at the top when of the screen while reading the entry, if set to null, or if the image isn't found, some generated text will be placed instead
         /// </summary>
         /// <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
-        [Obsolete("This is currently un-used, you can set it for future use, but otherwise avoid this, as the name may change in the future")]
+        [JsonProperty("title_sprite")]
         public TitleSprite TitleSprite = null;
-#endif
 
         // Hopefully in the future!
         ///// <summary>

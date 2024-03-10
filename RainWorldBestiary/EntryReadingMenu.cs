@@ -39,21 +39,40 @@ namespace RainWorldBestiary
 
         public void DisplayEntryInformation(Entry entry)
         {
-            GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(entry.Name);
+            float widthOffset;
 
-            fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
-            fontText.Y = Screen.height - 50;
+            if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
+            {
+                FSprite sprite = new FSprite(entry.Info.TitleSprite.ElementName)
+                {
+                    scale = 0.3f * entry.Info.TitleSprite.Scale,
+                    x = Screen.width / 2 + entry.Info.TitleSprite.XOffset,
+                    y = Screen.height - 50 + entry.Info.TitleSprite.YOffset
+                };
+                pages[0].Container.AddChild(sprite);
 
-            FSprite[] sprites = fontText.Finalize();
-            for (int i = 0; i < sprites.Length; i++)
-                pages[0].Container.AddChild(sprites[i]);
+                widthOffset = sprite.width / 2f;
+            }
+            else
+            {
+                GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(entry.Name);
 
-            if (Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
+                fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
+                fontText.Y = Screen.height - 50;
+
+                FSprite[] sprites = fontText.Finalize();
+                for (int i = 0; i < sprites.Length; i++)
+                    pages[0].Container.AddChild(sprites[i]);
+
+                widthOffset = fontText.TotalWidth / 2f;
+            }
+
+            if (entry.Info.IconsNextToTitle && Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
             {
                 FSprite sprite = new FSprite(entry.Info.EntryIcon)
                 {
                     y = Screen.height - 50,
-                    x = Screen.width / 2f - (fontText.TotalWidth / 2f + 60),
+                    x = Screen.width / 2f - (widthOffset + 60),
                     scale = 2
                 };
                 pages[0].Container.AddChild(sprite);
@@ -61,7 +80,7 @@ namespace RainWorldBestiary
                 FSprite sprite2 = new FSprite(entry.Info.EntryIcon)
                 {
                     y = Screen.height - 50,
-                    x = Screen.width / 2f + (fontText.TotalWidth / 2f + 10),
+                    x = Screen.width / 2f + (widthOffset + 10),
                     scale = 2
                 };
                 pages[0].Container.AddChild(sprite2);
