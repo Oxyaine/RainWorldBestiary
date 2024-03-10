@@ -339,6 +339,12 @@ namespace RainWorldBestiary
         /// The information of this entry, such as its unlock id, icon, scene to show while reading, and description
         /// </summary>
         public EntryInfo Info;
+
+        /// <summary>
+        /// The process ID that gets called when an entry button gets pressed, you can leave this as the default menu, or make a custom menu to display the entry's information.
+        /// </summary>
+        public ProcessManager.ProcessID EntryReadingMenu = Main.EntryReadingMenu;
+
         ///
         public Entry()
         {

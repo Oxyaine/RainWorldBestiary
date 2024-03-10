@@ -47,7 +47,7 @@ namespace RainWorldBestiary
                 {
                     self.currentMainLoop = new BestiaryTabMenu(self);
                 }
-                else if (ID == Main.EntryReadingTab)
+                else if (ID == Main.EntryReadingMenu)
                 {
                     self.currentMainLoop = new EntryReadingMenu(self);
                 }

@@ -17,7 +17,7 @@ namespace RainWorldBestiary
 
         internal static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
         internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
-        internal static ProcessManager.ProcessID EntryReadingTab => new ProcessManager.ProcessID("EntryReadingTab", register: true);
+        internal static ProcessManager.ProcessID EntryReadingMenu => new ProcessManager.ProcessID("EntryReadingTab", register: true);
 
         private void Awake()
         {

@@ -150,7 +150,7 @@ namespace RainWorldBestiary
                 else
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
-                    manager.RequestMainProcessSwitch(Main.EntryReadingTab, Main.Options.MenuFadeTime);
+                    manager.RequestMainProcessSwitch(CurrentSelectedEntry.EntryReadingMenu, Main.Options.MenuFadeTime);
                 }
             }
         }
