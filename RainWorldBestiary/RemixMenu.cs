@@ -7,11 +7,12 @@ namespace RainWorldBestiary
     {
         private Color CheatColor = new Color(1f, .5f, .5f);
 
-        internal RemixMenu()
+        public RemixMenu()
         {
             UnlockAllEntries = config.Bind("oxyaine_unlock_all_entries", false);
 
             _MenuFadeTime = config.Bind("oxyaine_menu_fade_time", 4);
+            ShowModuleLockPips = config.Bind("oxyaine_show_module_lock_pips", true);
         }
 
         public override void Initialize()
@@ -24,6 +25,8 @@ namespace RainWorldBestiary
             {
                 new OpLabel(20f, 552.5f, "Menu Fade Time", false),
                 new OpSlider(_MenuFadeTime, new Vector2(140f, 550f), 150, false) { max = 10 },
+                new OpLabel(20f, 582.5f, "Show Unlock Pips", false),
+                new OpCheckBox(ShowModuleLockPips, new Vector2(140f, 580f)),
             };
             def.AddItems(uiElements);
 
@@ -35,8 +38,15 @@ namespace RainWorldBestiary
             cheats.AddItems(uiElements2);
         }
 
+
+        // Cheats
         public readonly Configurable<bool> UnlockAllEntries;
+
+
+        // Default
         private readonly Configurable<int> _MenuFadeTime;
         public float MenuFadeTime => _MenuFadeTime.Value / 10f;
+
+        public readonly Configurable<bool> ShowModuleLockPips;
     }
 }

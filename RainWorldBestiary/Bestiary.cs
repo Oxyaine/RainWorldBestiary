@@ -182,18 +182,22 @@ namespace RainWorldBestiary
         /// <summary>
         /// The name of the element in the atlas manager
         /// </summary>
+        [JsonProperty("element_name")]
         public string ElementName = string.Empty;
         /// <summary>
         /// The scale of the image when drawn to the screen
         /// </summary>
+        [JsonProperty("scale")]
         public float Scale = 1;
         /// <summary>
         /// The offset on the X axis from the default position
         /// </summary>
+        [JsonProperty("x_offset")]
         public int XOffset = 0;
         /// <summary>
         /// THe offset on the Y axis from the default position
         /// </summary>
+        [JsonProperty("y_offset")]
         public int YOffset = 0;
 
         ///
