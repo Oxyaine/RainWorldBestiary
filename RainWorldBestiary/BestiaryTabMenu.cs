@@ -71,10 +71,16 @@ namespace RainWorldBestiary
         private const int ButtonSizeY = 35;
         private const int ButtonSpacing = 15;
         private const int MaxButtonsPerRow = 8;
+
+        private HSLColor LockedColor = new HSLColor(0f, 0.55f, 0.85f);
+        private HSLColor UnlockedColor = new HSLColor(0.4f, 0.6f, 0.9f);
+
         public void CreateEntryButtonsFromTab(EntriesTab tab)
         {
             int currentX = ButtonSpacing;
             int currentY = Screen.height - 100;
+
+            Vector2 buttonSize = new Vector2(ButtonSizeX, ButtonSizeY);
 
             for (int i = 0; i < tab.Count; i++)
             {
@@ -86,19 +92,22 @@ namespace RainWorldBestiary
 
                 bool entryLocked = tab[i].Info.EntryLocked;
 
-                SimpleButton textButton = new SimpleButton(this, pages[0], entryLocked ? "???" : tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), new Vector2(ButtonSizeX, ButtonSizeY));
+                SimpleButton textButton = new SimpleButton(this, pages[0], entryLocked ? "???" : tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
+                {
+                    rectColor = entryLocked ? LockedColor : UnlockedColor
+                };
                 pages[0].subObjects.Add(textButton);
 
-                    if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
+                if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
+                {
+                    FSprite icon = new FSprite(tab[i].Info.EntryIcon)
                     {
-                        FSprite icon = new FSprite(tab[i].Info.EntryIcon)
-                        {
-                            color = entryLocked ? new Color(0, 0, 0, 255) : Color.white,
-                            x = currentX + 5,
-                            y = currentY + (ButtonSizeY / 2)
-                        };
-                        pages[0].Container.AddChild(icon);
-                    }
+                        color = entryLocked ? new Color(0, 0, 0, 255) : Color.white,
+                        x = currentX + 5,
+                        y = currentY + (ButtonSizeY / 2)
+                    };
+                    pages[0].Container.AddChild(icon);
+                }
 
                 currentX += ButtonSizeX + ButtonSpacing;
             }
