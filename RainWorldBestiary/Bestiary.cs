@@ -8,7 +8,7 @@ using System.Linq;
 namespace RainWorldBestiary
 {
     /// <summary>
-    /// The main class for the bestiary, gives access to all the current entries, and lets you add your own
+    /// The main class for the bestiary, everything should be accessible from this class
     /// </summary>
     public static class Bestiary
     {

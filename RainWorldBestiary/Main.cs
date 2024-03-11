@@ -57,7 +57,9 @@ namespace RainWorldBestiary
                     ResourceManager.Initialize();
                     Bestiary.Initialize();
 
-                    MenuHooks.Init();
+                    CreatureHooks.Initialize();
+
+                    MenuHooks.Initialize();
                     CheckBestiaryDependencies();
                 }
             }

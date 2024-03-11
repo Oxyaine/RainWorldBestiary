@@ -8,7 +8,7 @@ namespace RainWorldBestiary
 {
     internal class MenuHooks
     {
-        public static void Init()
+        public static void Initialize()
         {
             On.Menu.MainMenu.ctor += MainMenu_ctor;
             IL.Menu.MainMenu.AddMainMenuButton += MainMenu_AddMainMenuButton;
