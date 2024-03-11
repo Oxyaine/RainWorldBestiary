@@ -41,6 +41,9 @@ namespace RainWorldBestiary
         {
             float widthOffset;
 
+            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(Screen.width / 2f, Screen.height / 2f), Vector2.one, false);
+            pages[0].subObjects.Add(label);
+
             if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
             {
                 FSprite sprite = new FSprite(entry.Info.TitleSprite.ElementName)
