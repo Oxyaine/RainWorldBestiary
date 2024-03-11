@@ -25,8 +25,8 @@ namespace RainWorldBestiary
             {
                 new OpLabel(20f, 552.5f, "Menu Fade Time", false),
                 new OpSlider(_MenuFadeTime, new Vector2(140f, 550f), 150, false) { max = 10 },
-                new OpLabel(20f, 582.5f, "Show Unlock Pips", false),
-                new OpCheckBox(ShowModuleLockPips, new Vector2(140f, 580f)),
+                new OpLabel(20f, 522.5f, "Show Unlock Pips", false),
+                new OpCheckBox(ShowModuleLockPips, new Vector2(140f, 520f)),
             };
             def.AddItems(uiElements);
 
