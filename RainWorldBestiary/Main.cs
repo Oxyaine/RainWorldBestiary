@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -11,7 +10,6 @@ namespace RainWorldBestiary
     {
         internal const string GUID = "oxyaine.bestiary";
         private bool IsInit;
-        bool IsPostInit;
 
         internal static new ManualLogSource Logger;
         public static RemixMenu Options;

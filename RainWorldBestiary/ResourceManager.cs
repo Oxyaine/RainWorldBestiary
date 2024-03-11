@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,7 +27,7 @@ namespace RainWorldBestiary
             result = null;
             return false;
         }
-        
+
         internal static void Initialize()
         {
             if (!Initialized)
