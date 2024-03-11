@@ -246,6 +246,14 @@ namespace RainWorldBestiary
     /// <remarks>Not using regular list since this allows more control such as preventing two <see cref="EntriesTab"/> with the same name</remarks>
     public class EntriesTabList : IEnumerable<EntriesTab>, ICollection<EntriesTab>
     {
+        ///
+        public EntriesTabList() { }
+        ///
+        public EntriesTabList(params EntriesTab[] tabs)
+        {
+            _tabs = tabs.ToList();
+        }
+
         readonly List<EntriesTab> _tabs = new List<EntriesTab>();
 
         /// <inheritdoc/>
@@ -553,9 +561,9 @@ namespace RainWorldBestiary
         /// <summary>
         /// A default entry that's just an error, is always unlocked, and serves as a placeholder that appears when another entry cant be loaded
         /// </summary>
-        public static Entry Error => new Entry("ENTRY ERRORED")
+        public static Entry Error => new Entry("ERROR")
         {
-            Info = new EntryInfo("Something went wrong with an entry, so this has been created as a warning.\nYou can check the log to see exactly what went wrong.", entryIcon: "illustrations\\error") { EntryLockedCondition = e => true }
+            Info = new EntryInfo("Something went wrong with an entry, so this has been created as a warning.\nYou can check the log to see exactly what went wrong.\n", entryIcon: "illustrations\\error") { EntryLockedCondition = e => false }
         };
     }
 
