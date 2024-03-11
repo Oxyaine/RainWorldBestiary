@@ -116,7 +116,6 @@ namespace RainWorldBestiary
             return new GeneratedFontText(sprites, currentX);
         }
     }
-
     internal class GeneratedFontText
     {
         public float X = 0, Y = 0;
