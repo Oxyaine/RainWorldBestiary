@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace RainWorldBestiary
@@ -366,8 +365,8 @@ namespace RainWorldBestiary
         public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryTabMenu;
 
         [JsonProperty("tab_menu_process_id", DefaultValueHandling = DefaultValueHandling.Populate)]
-        private string MenuProcessID 
-        { 
+        private string MenuProcessID
+        {
             get => TabMenuProcessID.value;
             set
             {
