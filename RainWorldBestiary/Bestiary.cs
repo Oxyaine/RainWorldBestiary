@@ -14,7 +14,7 @@ namespace RainWorldBestiary
         internal static bool IncludeDownpour = false;
 
         /// <summary>
-        /// Whether downpour entries are shown or not, true if more slug cats is enables, otherwise false
+        /// Whether downpour entries are shown or not, true if more slug cats is enabled, otherwise false
         /// </summary>
         public static bool IncludeDownpourEntries => IncludeDownpour;
         /// <summary>
