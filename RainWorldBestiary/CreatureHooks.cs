@@ -1,6 +1,4 @@
-﻿using On;
-
-namespace RainWorldBestiary
+﻿namespace RainWorldBestiary
 {
     internal class CreatureHooks
     {
@@ -10,6 +8,13 @@ namespace RainWorldBestiary
 
             On.Creature.Die += Creature_Die;
             On.Creature.Stun += Creature_Stun;
+
+            On.Spear.LodgeInCreature += Spear_LodgeInCreature;
+        }
+
+        private static void Spear_LodgeInCreature(On.Spear.orig_LodgeInCreature orig, Spear self, SharedPhysics.CollisionResult result, bool eu)
+        {
+            orig(self, result, eu);
         }
 
         private static void Creature_Stun(On.Creature.orig_Stun orig, Creature self, int st)
