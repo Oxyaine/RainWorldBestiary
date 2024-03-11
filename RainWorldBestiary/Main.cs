@@ -19,7 +19,7 @@ namespace RainWorldBestiary
         internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
         internal static ProcessManager.ProcessID EntryReadingMenu => new ProcessManager.ProcessID("EntryReadingTab", register: true);
 
-        private void Awake()
+        internal void Awake()
         {
             try
             {
@@ -57,8 +57,6 @@ namespace RainWorldBestiary
                     ResourceManager.Initialize();
                     Bestiary.Initialize();
 
-                    On.Menu.MainMenu.ctor += MainMenu_ctor;
-
                     MenuHooks.Init();
                     CheckBestiaryDependencies();
                 }
@@ -89,22 +87,6 @@ namespace RainWorldBestiary
         {
             original(self, newlyEnabledMods);
             CheckBestiaryDependencies();
-        }
-
-        private void MainMenu_ctor(On.Menu.MainMenu.orig_ctor original, Menu.MainMenu self, ProcessManager manager, bool showRegionSpecificBkg)
-        {
-            original(self, manager, showRegionSpecificBkg);
-            try
-            {
-                if (!IsPostInit)
-                {
-                    IsPostInit = true;
-                }
-            }
-            catch (Exception exception)
-            {
-                Debug.LogException(exception);
-            }
         }
     }
 }
