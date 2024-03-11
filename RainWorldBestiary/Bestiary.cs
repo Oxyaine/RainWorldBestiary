@@ -58,7 +58,16 @@ namespace RainWorldBestiary
         /// </summary>
         public static List<string> UnlockedEntriesIDs = new List<string>();
 
+        private readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
+        /// <summary>
+        /// All the module unlock tokens that are automatically tallied and registered, you can check <see cref="AutoTokenType"/> to see what is automatically detected
+        /// </summary>
+        public static List<AutoModuleUnlockToken> AutoModuleUnlocks => _AutoModuleUnlocks;
 
+        /// <summary>
+        /// All the module unlock tokens that are manually registered, you can check <see cref="TokenType"/> to see what is manually detected
+        /// </summary>
+        public static List<ModuleUnlockToken> ModuleUnlocks = new List<ModuleUnlockToken>();
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
@@ -66,68 +75,196 @@ namespace RainWorldBestiary
         public static EntriesTabList EntriesTabs = new EntriesTabList();
     }
 
-    
+
     /// <summary>
-    /// A class the represents an unlocked module that can be used by <see cref="DescriptionModule"/>, to check whether it can be made visible
+    /// A base unlock module, holds shared unlock module logic
     /// </summary>
-    public class UnlockedDescriptionModuleID
+    public abstract class BaseUnlockModule : IEquatable<BaseUnlockModule>
     {
         /// <summary>
-        /// The type of unlock
+        /// The ID of the creature this unlock token applies to
         /// </summary>
-        public enum Type
+        public readonly string CreatureID = string.Empty;
+        /// <summary>
+        /// The amount of times the unlock token was registered, caps at 255
+        /// </summary>
+        protected byte _value = 1;
+
+        ///
+        public BaseUnlockModule(string creatureID, byte startingValue = 1)
         {
-            /// <summary>
-            /// Killing the creature
-            /// </summary>
-            /// <remarks>Useful for unlocking parts about what it takes to kill the creature, how many spears or even how many rocks, up to you</remarks>
-            Killing,
-            /// <summary>
-            /// Taming the creature, only applicable to tamable creatures
-            /// </summary>
-            /// <remarks>Useful for unlocking parts about what is required to tame the creature / how much it eats before tamed</remarks>
-            Taming,
-            /// <summary>
-            /// Evading the creature, by dodging, climbing to a place it can't reach, etc
-            /// </summary>
-            /// <remarks>For unlocking parts about techniques the player could use to evade the creature. Very similar to <see cref="ObserveHunted"/></remarks>
-            Evading,
-            /// <summary>
-            /// Sneaking past the creature
-            /// </summary>
-            /// <remarks>For unlocking parts about the creatures vision range or how much it relies on sound, if at all</remarks>
-            Sneaking,
-            /// <summary>
-            /// Stunning the creature with a rock, or other stunning object
-            /// </summary>
-            /// <remarks>For unlocking parts about what happens when a creature is stunned, such as that lizards flip over when stunned, or vultures are mostly* unaffected</remarks>
-            Stunning,
-            /// <summary>
-            /// Hitting the creature with a damaging weapon, such as a spear
-            /// </summary>
-            /// <remarks>For unlocking parts about a creatures toughness and how it reacts to getting hit</remarks>
-            Impaling,
-            /// <summary>
-            /// Looking at the creature / noticing the creature
-            /// </summary>
-            /// <remarks>For unlocking parts about the creatures appearance</remarks>
-            Observing,
-            /// <summary>
-            /// Noticing the creatures fears
-            /// </summary>
-            /// <remarks>For unlocking parts about what the creature fears / how it can be scared away</remarks>
-            ObserveFear,
-            /// <summary>
-            /// Noticing the creature eating
-            /// </summary>
-            /// <remarks>For unlocking parts about what the creature eats / can be distracted by (when it comes to food)</remarks>
-            ObserveFood,
-            /// <summary>
-            /// Getting hunted by the creature / getting chased
-            /// </summary>
-            /// <remarks>For unlocking parts about abilities and hunting techniques the creature uses</remarks>
-            ObserveHunted,
+            CreatureID = creatureID;
+            _value = startingValue;
         }
+
+        /// <remarks>
+        /// Checks if the ID matches, and if the given values count is greater than or equal to this values' count
+        /// </remarks>
+        public bool Equals(BaseUnlockModule other) => CreatureID.Equals(other.CreatureID) && other._value >= _value;
+        /// <summary>
+        /// Checks if the two objects are both <see cref="BaseUnlockModule"/>, then compares them using <see cref="Equals(BaseUnlockModule)"/>
+        /// </summary>
+        /// <remarks><see cref="Equals(BaseUnlockModule)"/> <inheritdoc cref="Equals(BaseUnlockModule)"/></remarks>
+        public override bool Equals(object obj) => obj is BaseUnlockModule token && Equals(token);
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+    }
+
+
+    /// <summary>
+    /// The type of unlock token
+    /// </summary>
+    public enum TokenType : byte
+    {
+        ///
+        Unknown,
+        /// <summary>
+        /// For when the player tames the creature
+        /// </summary>
+        Taming,
+        /// <summary>
+        /// For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
+        /// </summary>
+        Evading,
+        /// <summary>
+        /// For when the player sneaks past a creature
+        /// </summary>
+        Sneaking,
+        /// <summary>
+        /// For when the player sees the creature
+        /// </summary>
+        Observing,
+        /// <summary>
+        /// For when the player sees the creature run away in fear
+        /// </summary>
+        ObserveFear,
+        /// <summary>
+        /// For when the player sees the creature eating or hunting another creature
+        /// </summary>
+        ObserveFood,
+        /// <summary>
+        /// For when the player is getting chased by a creature
+        /// </summary>
+        ObserveHunted,
+    }
+    /// <summary>
+    /// A class that represents an unlock token for a description module, this class represents a manual unlock token
+    /// </summary>
+    public class ModuleUnlockToken : BaseUnlockModule, IEquatable<ModuleUnlockToken>
+    {
+        /// <summary>
+        /// The type of token this module unlock targets
+        /// </summary>
+        public readonly TokenType TokenType = TokenType.Unknown;
+
+        /// <inheritdoc cref="BaseUnlockModule._value"/>
+        public byte Value { get => _value; set => _value = value; }
+
+        ///
+        public ModuleUnlockToken(string creatureID, TokenType tokenType, byte startingValue = 1) : base(creatureID, startingValue)
+        {
+            TokenType = tokenType;
+        }
+
+        /// <summary>
+        /// Increments Value by one
+        /// </summary>
+        public static ModuleUnlockToken operator ++(ModuleUnlockToken module)
+        {
+            module._value++;
+            return module;
+        }
+        /// <summary>
+        /// Decrements Value by one
+        /// </summary>
+        public static ModuleUnlockToken operator --(ModuleUnlockToken module)
+        {
+            module._value--;
+            return module;
+        }
+
+        /// <summary>
+        /// Checks if both objects are <see cref="ModuleUnlockToken"/>, then compares them using <see cref="Equals(ModuleUnlockToken)"/>
+        /// </summary>
+        /// <remarks><see cref="Equals(ModuleUnlockToken)"/> <inheritdoc cref="Equals(ModuleUnlockToken)"/></remarks>
+        public override bool Equals(object obj) => obj is ModuleUnlockToken other && Equals(other);
+        /// <inheritdoc cref="BaseUnlockModule.Equals(BaseUnlockModule)"/>
+        /// <remarks>Also checks if the tokenType matches</remarks>
+        public bool Equals(ModuleUnlockToken other) => TokenType.Equals(other.TokenType) && base.Equals(other);
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => base.GetHashCode();
+    }
+
+    /// <summary>
+    /// The type of automated unlock token
+    /// </summary>
+    public enum AutoTokenType : byte
+    {
+        ///
+        Unknown,
+        /// <summary>
+        /// When a creature is killed by the player
+        /// </summary>
+        Killing,
+        /// <summary>
+        /// When a creature impaled with a spear, by the player
+        /// </summary>
+        Impaling,
+        /// <summary>
+        /// When a creature is stunned with a rock, by the player
+        /// </summary>
+        Stunning,
+    }
+    /// <summary>
+    /// A class that represents an unlock token for a description module, this class represents an automated unlock token
+    /// </summary>
+    public class AutoModuleUnlockToken : BaseUnlockModule, IEquatable<AutoModuleUnlockToken>
+    {
+        /// <summary>
+        /// The type of token this module unlock is for
+        /// </summary>
+        public readonly AutoTokenType TokenType = AutoTokenType.Unknown;
+
+        /// <inheritdoc cref="BaseUnlockModule._value"/>
+        public byte Value { get => _value; internal set => _value = value; }
+
+        ///
+        public AutoModuleUnlockToken(string creatureID, AutoTokenType tokenType, byte startingValue = 1) : base(creatureID, startingValue)
+        {
+            TokenType = tokenType;
+        }
+
+        /// <summary>
+        /// Increments Value by one
+        /// </summary>
+        public static AutoModuleUnlockToken operator ++(AutoModuleUnlockToken module)
+        {
+            module._value++;
+            return module;
+        }
+        /// <summary>
+        /// Decrements Value by one
+        /// </summary>
+        public static AutoModuleUnlockToken operator --(AutoModuleUnlockToken module)
+        {
+            module._value--;
+            return module;
+        }
+
+        /// <summary>
+        /// Checks if both objects are <see cref="AutoModuleUnlockToken"/>, then compares them using <see cref="Equals(AutoModuleUnlockToken)"/>
+        /// </summary>
+        /// <remarks><see cref="Equals(AutoModuleUnlockToken)"/> <inheritdoc cref="Equals(AutoModuleUnlockToken)"/></remarks>
+        public override bool Equals(object obj) => obj is AutoModuleUnlockToken other && Equals(other);
+        /// <inheritdoc cref="BaseUnlockModule.Equals(BaseUnlockModule)"/>
+        public bool Equals(AutoModuleUnlockToken other) => TokenType.Equals(other.TokenType) && base.Equals(other);
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => base.GetHashCode();
     }
 
 
@@ -143,7 +280,9 @@ namespace RainWorldBestiary
         public int Count => _tabs.Count;
         /// <inheritdoc/>
         public bool IsReadOnly => ((ICollection<EntriesTab>)_tabs).IsReadOnly;
-        /// <inheritdoc/>
+        /// <summary>
+        /// Adds a new tab that can be filled with entries
+        /// </summary>
         public void Add(EntriesTab item)
         {
             foreach (EntriesTab tab in _tabs)
@@ -154,6 +293,22 @@ namespace RainWorldBestiary
 
             _tabs.Add(item);
         }
+        /// <inheritdoc cref="Add(EntriesTab)"/>
+        public void Add(string tabName, params Entry[] entries)
+        {
+            Add(new EntriesTab(tabName, entries));
+        }
+        /// <inheritdoc cref="Add(EntriesTab)"/>
+        public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null)
+        {
+            Add(new EntriesTab(tabName, entries) { TitleImage = titleSprite });
+        }
+        /// <inheritdoc cref="Add(EntriesTab)"/>
+        public void Add(string tabName, IEnumerable<Entry> entries, ProcessManager.ProcessID menuProcessID, TitleSprite titleSprite = null)
+        {
+            Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleImage = titleSprite });
+        }
+
         /// <inheritdoc/>
         public void Clear() => _tabs.Clear();
         /// <inheritdoc/>
@@ -219,13 +374,13 @@ namespace RainWorldBestiary
         /// <summary>
         /// The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
         /// </summary>
-        /// <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
+        /// <remarks>By title, I mean the name of the tab that is visible at the top while viewing entries in the tab</remarks>
         public TitleSprite TitleImage = null;
 
         /// <summary>
         /// The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
         /// </summary>
-        public ProcessManager.ProcessID EntriesTabMenu = Main.BestiaryTabMenu;
+        public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryTabMenu;
 
         readonly List<Entry> _entries = new List<Entry>();
 
@@ -245,10 +400,14 @@ namespace RainWorldBestiary
             Name = string.Empty;
             _entries = entries.ToList();
         }
-        /// <summary>
-        /// Creates an <see cref="EntriesTab"/> with all entries in <paramref name="entries"/> as the entries
-        /// </summary>
+        /// <inheritdoc cref="EntriesTab(IEnumerable{Entry})"/>
         public EntriesTab(string tabName, IEnumerable<Entry> entries)
+        {
+            Name = tabName;
+            _entries = entries.ToList();
+        }
+        /// <inheritdoc cref="EntriesTab(IEnumerable{Entry})"/>
+        public EntriesTab(string tabName, params Entry[] entries)
         {
             Name = tabName;
             _entries = entries.ToList();
@@ -260,7 +419,10 @@ namespace RainWorldBestiary
         public int Count => _entries.Count;
         /// <inheritdoc/>
         public bool IsReadOnly => ((ICollection<Entry>)_entries).IsReadOnly;
-        /// <inheritdoc/>
+        /// <summary>
+        /// Adds a new entry to this tab
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         public void Add(Entry item)
         {
             if (Contains(item.Name))
@@ -268,6 +430,22 @@ namespace RainWorldBestiary
 
             _entries.Add(item);
         }
+        /// <inheritdoc cref="Add(Entry)"/>
+        public void Add(string entryName, EntryInfo info)
+        {
+            Add(new Entry(entryName, info));
+        }
+        /// <inheritdoc cref="Add(Entry)"/>
+        public void Add(string entryName, string unlockID, string iconAtlasName, Description description)
+        {
+            Add(new Entry(entryName, new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, Description = description }));
+        }
+        /// <inheritdoc cref="Add(Entry)"/>
+        public void Add(string entryName, string unlockID, string iconAtlasName, string description)
+        {
+            Add(new Entry(entryName, new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, Description = new Description(new DescriptionModule() { Body = description }) }));
+        }
+
         /// <summary>
         /// Adds all the entries from the collection into this tab
         /// </summary>
@@ -361,6 +539,22 @@ namespace RainWorldBestiary
             Name = name;
             Info = info;
         }
+        /// <param name="name">The name of the entry</param>
+        /// <param name="description">The main body of this entry</param>
+        /// <param name="unlockID">The ID that will be used to determine whether this entry is unlocked or not</param>
+        /// <param name="iconAtlasName">The name of the entry's icon in the atlas manager</param>
+        /// <param name="lockedText">The text that is shown when pressing on the entry while its locked</param>
+        public Entry(string name, Description description, string unlockID = "", string iconAtlasName = "", string lockedText = "This entry is locked.")
+        {
+            Name = name;
+            Info = new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, Description = description, LockedText = lockedText };
+        }
+        /// <inheritdoc cref="Entry(string, Description, string, string, string)"/>
+        public Entry(string name, string description, string unlockID = "", string iconAtlasName = "", string lockedText = "This entry is locked.")
+        {
+            Name = name;
+            Info = new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, LockedText = lockedText, Description = new Description(new DescriptionModule() { Body = description }) };
+        }
     }
 
     /// <summary>
@@ -408,7 +602,7 @@ namespace RainWorldBestiary
 
 
         /// <summary>
-        /// The local path to the icon that is displayed on the button
+        /// The name of the sprite in the atlas manager that will be used as the entry icon
         /// </summary>
         [JsonProperty("entry_icon")]
         public string EntryIcon = string.Empty;
@@ -420,18 +614,41 @@ namespace RainWorldBestiary
         [JsonProperty("title_sprite")]
         public TitleSprite TitleSprite = null;
 
-        // Hopefully in the future!
-        ///// <summary>
-        ///// The scene that is shown while reading the entry
-        ///// </summary>
-        //[JsonProperty("scene_while_reading")]
-        //public string SceneWhileReading = "";
-
         /// <summary>
-        /// The description of this entry, when converted to string, only returns the parts of the entry that are visible
+        /// The body of this entry, when converted to string, only returns the parts of the entry that are visible
         /// </summary>
         [JsonProperty("description")]
         public Description Description = new Description();
+
+        ///
+        public EntryInfo()
+        {
+        }
+        /// <param name="description">The body of this entry</param>
+        /// <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
+        /// <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
+        /// <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
+        public EntryInfo(Description description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
+        {
+            ID = iD;
+            LockedText = lockedText;
+            EntryIcon = entryIcon;
+            Description = description;
+        }
+        /// <summary>
+        /// Creates a new entry info with one description module that is by default visible
+        /// </summary>
+        /// <param name="description">The body of this entry</param>
+        /// <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
+        /// <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
+        /// <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
+        public EntryInfo(string description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
+        {
+            ID = iD;
+            LockedText = lockedText;
+            EntryIcon = entryIcon;
+            Description = new Description(description);
+        }
     }
 
     /// <summary>
@@ -440,12 +657,32 @@ namespace RainWorldBestiary
     public class Description : IEnumerable<DescriptionModule>, ICollection<DescriptionModule>
     {
         /// <summary>
-        /// Whether the entire description should be available to read, regardless of which module are locked or unlocked
+        /// Whether the entire description should be available to read, regardless of which module are locked or unlocked, this is not saved by the json converter
         /// </summary>
-        [JsonProperty("unlock_full_description")]
+        [JsonIgnore]
         public bool UnlockFullDescription = false;
 
         readonly List<DescriptionModule> _values = new List<DescriptionModule>();
+
+        ///
+        public Description() { }
+        ///
+        public Description(IEnumerable<DescriptionModule> modules)
+        {
+            _values = modules.ToList();
+        }
+        ///
+        public Description(params DescriptionModule[] modules)
+        {
+            _values = modules.ToList();
+        }
+        /// <summary>
+        /// Creates a new description with one module that defaults to unlocked
+        /// </summary>
+        public Description(string description)
+        {
+            _values = new List<DescriptionModule>() { new DescriptionModule() { Body = description } };
+        }
 
         /// <summary>
         /// Gets the amount of description modules in this description
@@ -494,7 +731,7 @@ namespace RainWorldBestiary
             {
                 if (!module.ModuleLocked)
                 {
-                    result = string.Concat(result, module);
+                    result += "\n" + module;
                 }
             }
             return result;
@@ -510,6 +747,11 @@ namespace RainWorldBestiary
         public void CopyTo(DescriptionModule[] array, int arrayIndex) => _values.CopyTo(array, arrayIndex);
         /// <inheritdoc/>
         public bool Remove(DescriptionModule item) => _values.Remove(item);
+
+        ///
+        public static implicit operator Description(DescriptionModule[] modules) => new Description(modules);
+        ///
+        public static implicit operator Description(List<DescriptionModule> modules) => new Description(modules);
     }
 
     /// <summary>
@@ -542,9 +784,17 @@ namespace RainWorldBestiary
         /// The text of this part of the entries description
         /// </summary>
         [JsonProperty("text")]
-        public string Text = string.Empty;
+        public string Body = string.Empty;
+
+        ///
+        public DescriptionModule() { }
+        ///
+        public DescriptionModule(string body)
+        {
+            Body = body;
+        }
 
         /// <inheritdoc/>
-        public override string ToString() => Text;
+        public override string ToString() => Body;
     }
 }
