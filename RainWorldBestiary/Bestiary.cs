@@ -25,34 +25,6 @@ namespace RainWorldBestiary
 
         internal const string DownpourTabName = "Downpour";
 
-        internal static void Initialize()
-        {
-            ResourceManager.Initialize();
-
-            IEnumerable<string> files = Directory.EnumerateFiles(ResourceManager.BaseEntriesPath, "*", SearchOption.AllDirectories);
-            Entry[] entries = GetFilesAsEntries(files);
-
-            EntriesTabs.Add(new EntriesTab("Rain World", entries) { TitleImage = new TitleSprite("illustrations\\Rain_World_Title") });
-
-            files = Directory.EnumerateFiles(ResourceManager.DownpourEntriesPath, "*", SearchOption.AllDirectories);
-            entries = GetFilesAsEntries(files);
-
-            EntriesTabs.Add(new EntriesTab(DownpourTabName, entries) { TitleImage = new TitleSprite("illustrations\\Downpour_Title") });
-        }
-        internal static Entry[] GetFilesAsEntries(IEnumerable<string> files)
-        {
-            Entry[] entries = new Entry[files.Count()];
-            int i = -1;
-            foreach (string file in files)
-            {
-                string fileName = Path.GetFileNameWithoutExtension(file);
-                entries[++i] = new Entry(fileName, JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)));
-            }
-
-            return entries;
-        }
-
-
         /// <summary>
         /// All the ID's of entries that have been unlocked, and can be viewed (doesn't completely unlock entry, just makes it available, individual description components must still be unlocked individually)
         /// </summary>
@@ -365,23 +337,43 @@ namespace RainWorldBestiary
     /// <summary>
     /// A class representing a tab full of entries in the bestiary
     /// </summary>
-    public class EntriesTab : IEnumerable<Entry>, ICollection<Entry>
+    public class EntriesTab
     {
         /// <summary>
         /// The name of this tab
         /// </summary>
+        [JsonProperty("name")]
         public string Name = string.Empty;
         /// <summary>
         /// The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
         /// </summary>
         /// <remarks>By title, I mean the name of the tab that is visible at the top while viewing entries in the tab</remarks>
+        [JsonProperty("title_image")]
         public TitleSprite TitleImage = null;
 
         /// <summary>
         /// The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
         /// </summary>
+        [JsonIgnore]
         public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryTabMenu;
 
+        [JsonProperty("tab_menu_process_id", DefaultValueHandling = DefaultValueHandling.Populate)]
+        private string MenuProcessID 
+        { 
+            get => TabMenuProcessID.value;
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    if (!Main.BestiaryTabMenu.value.Equals(value))
+                    {
+                        TabMenuProcessID = new ProcessManager.ProcessID(value, true);
+                    }
+                }
+            }
+        }
+
+        [JsonIgnore]
         readonly List<Entry> _entries = new List<Entry>();
 
         /// <summary>
@@ -452,9 +444,7 @@ namespace RainWorldBestiary
         public void AddRange(IEnumerable<Entry> items)
         {
             foreach (Entry item in items)
-            {
                 Add(item);
-            }
         }
         /// <inheritdoc/>
         public void Clear() => _entries.Clear();
@@ -505,7 +495,6 @@ namespace RainWorldBestiary
 
         /// <inheritdoc/>
         public IEnumerator<Entry> GetEnumerator() => _entries.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => _entries.GetEnumerator();
     }
 
     /// <summary>

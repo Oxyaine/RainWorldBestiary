@@ -10,37 +10,44 @@ namespace RainWorldBestiary
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
-            float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
-
-            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
-            pages[0].subObjects.Add(scene);
-
-            darkSprite = new FSprite("pixel")
+            try
             {
-                color = new Color(0f, 0f, 0f),
-                anchorX = 0f,
-                anchorY = 0f,
-                scaleX = 1368f,
-                scaleY = 770f,
-                x = -1f,
-                y = -1f,
-                alpha = 0.80f
-            };
-            pages[0].Container.AddChild(darkSprite);
+                float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-            pages[0].subObjects.Add(backButton);
-            backObject = backButton;
-            backButton.nextSelectable[0] = backButton;
-            backButton.nextSelectable[2] = backButton;
+                scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
+                pages[0].subObjects.Add(scene);
 
-            CreateEntryButtonsFromTab(BestiaryMenu.CurrentSelectedTab);
-            GetTabTitle(BestiaryMenu.CurrentSelectedTab);
+                darkSprite = new FSprite("pixel")
+                {
+                    color = new Color(0f, 0f, 0f),
+                    anchorX = 0f,
+                    anchorY = 0f,
+                    scaleX = 1368f,
+                    scaleY = 770f,
+                    x = -1f,
+                    y = -1f,
+                    alpha = 0.80f
+                };
+                pages[0].Container.AddChild(darkSprite);
 
-            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+                SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                pages[0].subObjects.Add(backButton);
+                backObject = backButton;
+                backButton.nextSelectable[0] = backButton;
+                backButton.nextSelectable[2] = backButton;
 
-            TipLabel = new MenuLabel(this, pages[0], "", new Vector2(Screen.width / 2f, 25), Vector2.one, false);
-            pages[0].subObjects.Add(TipLabel);
+                CreateEntryButtonsFromTab(BestiaryMenu.CurrentSelectedTab);
+                GetTabTitle(BestiaryMenu.CurrentSelectedTab);
+
+                mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+
+                TipLabel = new MenuLabel(this, pages[0], "", new Vector2(Screen.width / 2f, 25), Vector2.one, false);
+                pages[0].subObjects.Add(TipLabel);
+            }
+            catch (System.Exception ex)
+            {
+                Main.Logger.LogError(ex);
+            }
         }
 
         public void GetTabTitle(EntriesTab tab)

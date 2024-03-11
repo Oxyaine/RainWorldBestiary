@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -55,7 +56,6 @@ namespace RainWorldBestiary
                     IsInit = true;
 
                     ResourceManager.Initialize();
-                    Bestiary.Initialize();
 
                     CreatureHooks.Initialize();
 

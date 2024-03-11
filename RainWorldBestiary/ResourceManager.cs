@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace RainWorldBestiary
@@ -10,9 +12,6 @@ namespace RainWorldBestiary
         private static bool Initialized = false;
 
         static string ModDirectory = null;
-        public static string EntriesPath => Path.Combine(ModDirectory, "entries");
-        public static string BaseEntriesPath => Path.Combine(EntriesPath, "base");
-        public static string DownpourEntriesPath => Path.Combine(EntriesPath, "downpour");
 
         internal static readonly List<Font> CustomFonts = new List<Font>();
         internal static bool GetCustomFontByName(string fontName, out Font result)
@@ -29,7 +28,7 @@ namespace RainWorldBestiary
             result = null;
             return false;
         }
-
+        
         internal static void Initialize()
         {
             if (!Initialized)
@@ -63,7 +62,56 @@ namespace RainWorldBestiary
                         CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
                     }
                 }
+
+                GetAllEntries();
             }
+        }
+
+        internal static void GetAllEntries()
+        {
+            const string EntriesLocalPath = "bestiary";
+
+            foreach (ModManager.Mod mod in ModManager.ActiveMods)
+            {
+                if (mod.enabled)
+                {
+                    string path = Path.Combine(mod.path, EntriesLocalPath);
+                    if (Directory.Exists(path))
+                    {
+                        CheckFolder(path);
+                    }
+                }
+            }
+        }
+
+        internal static void CheckFolder(string path)
+        {
+            string[] folders = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
+            foreach (string folder in folders)
+            {
+                EntriesTab tab;
+
+                if (File.Exists(folder + ".json"))
+                    tab = JsonConvert.DeserializeObject<EntriesTab>(File.ReadAllText(folder + ".json"));
+                else
+                    tab = new EntriesTab(Path.GetFileName(folder));
+
+                string[] files = Directory.GetFiles(folder, "*", SearchOption.AllDirectories);
+                Entry[] entries = GetFilesAsEntries(files);
+                tab.AddRange(entries);
+
+                Bestiary.EntriesTabs.Add(tab);
+            }
+        }
+
+        internal static Entry[] GetFilesAsEntries(string[] files)
+        {
+            Entry[] entries = new Entry[files.Count()];
+            int i = 0;
+            foreach (string file in files)
+                entries[i++] = new Entry(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)));
+
+            return entries;
         }
     }
 
