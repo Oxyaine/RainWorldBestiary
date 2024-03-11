@@ -7,7 +7,7 @@ namespace RainWorldBestiary
 {
     internal static class ResourceManager
     {
-        static bool Initialized = false;
+        private static bool Initialized = false;
 
         static string ModDirectory = null;
         public static string EntriesPath => Path.Combine(ModDirectory, "entries");
@@ -15,11 +15,11 @@ namespace RainWorldBestiary
         public static string DownpourEntriesPath => Path.Combine(EntriesPath, "downpour");
 
         internal static readonly List<Font> CustomFonts = new List<Font>();
-        internal static bool GetCustomFontByName(string fontName, out Font result, StringComparison comparisonType = StringComparison.InvariantCulture)
+        internal static bool GetCustomFontByName(string fontName, out Font result)
         {
             foreach (Font font in CustomFonts)
             {
-                if (font.FontName.Equals(fontName, comparisonType))
+                if (font.FontName.Equals(fontName))
                 {
                     result = font;
                     return true;
