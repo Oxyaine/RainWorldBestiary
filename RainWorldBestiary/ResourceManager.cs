@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -82,7 +83,6 @@ namespace RainWorldBestiary
                 }
             }
         }
-
         internal static void CheckFolder(string path)
         {
             string[] folders = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
@@ -91,9 +91,22 @@ namespace RainWorldBestiary
                 EntriesTab tab;
 
                 if (File.Exists(folder + ".json"))
-                    tab = JsonConvert.DeserializeObject<EntriesTab>(File.ReadAllText(folder + ".json"));
+                {
+                    try
+                    {
+                        tab = JsonConvert.DeserializeObject<EntriesTab>(File.ReadAllText(folder + ".json"));
+                    }
+                    catch (Exception ex)
+                    {
+                        tab = new EntriesTab(Path.GetFileName(folder));
+                        Main.Logger.LogWarning("Something went wrong trying to parse " + folder + ".json, creating the tab as a default tab using the folders name.");
+                        Main.Logger.LogError(ex.Message);
+                    }
+                }
                 else
+                {
                     tab = new EntriesTab(Path.GetFileName(folder));
+                }
 
                 string[] files = Directory.GetFiles(folder, "*", SearchOption.AllDirectories);
                 Entry[] entries = GetFilesAsEntries(files);
@@ -102,13 +115,25 @@ namespace RainWorldBestiary
                 Bestiary.EntriesTabs.Add(tab);
             }
         }
-
         internal static Entry[] GetFilesAsEntries(string[] files)
         {
             Entry[] entries = new Entry[files.Count()];
             int i = 0;
             foreach (string file in files)
-                entries[i++] = new Entry(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)));
+            {
+                try
+                {
+                    entries[i] = new Entry(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)));
+                }
+                catch (Exception ex)
+                {
+                    entries[i] = Entry.Error;
+                    Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(file) + " at " + file + ", into entry info");
+                    Main.Logger.LogError(ex.Message);
+                }
+
+                ++i;
+            }
 
             return entries;
         }

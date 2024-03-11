@@ -523,6 +523,11 @@ namespace RainWorldBestiary
             Info = new EntryInfo();
         }
         ///
+        public Entry(string name)
+        {
+            Name = name;
+        }
+        ///
         public Entry(string name, EntryInfo info)
         {
             Name = name;
@@ -544,6 +549,14 @@ namespace RainWorldBestiary
             Name = name;
             Info = new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, LockedText = lockedText, Description = new Description(new DescriptionModule() { Body = description }) };
         }
+
+        /// <summary>
+        /// A default entry that's just an error, is always unlocked, and serves as a placeholder that appears when another entry cant be loaded
+        /// </summary>
+        public static Entry Error => new Entry("ENTRY ERRORED")
+        {
+            Info = new EntryInfo("Something went wrong with an entry, so this has been created as a warning.\nYou can check the log to see exactly what went wrong.", entryIcon: "illustrations\\error") { EntryLockedCondition = e => true }
+        };
     }
 
     /// <summary>
