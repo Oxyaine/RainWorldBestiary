@@ -54,7 +54,7 @@ namespace RainWorldBestiary
 
 
         /// <summary>
-        /// All the ID's of entries that have been unlocked, and can be viewed (doesn't completely unlock entry, just makes it available, individual description components must still be unlocked individualy)
+        /// All the ID's of entries that have been unlocked, and can be viewed (doesn't completely unlock entry, just makes it available, individual description components must still be unlocked individually)
         /// </summary>
         public static List<string> UnlockedEntriesIDs = new List<string>();
 
