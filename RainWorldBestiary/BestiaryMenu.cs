@@ -69,11 +69,10 @@ namespace RainWorldBestiary
 
         public override void Update()
         {
-            base.Update();
             if (Input.GetKeyDown(KeyCode.Escape))
-            {
                 Singal(backObject, BackButtonMessage);
-            }
+
+            base.Update();
         }
 
         public static EntriesTab CurrentSelectedTab;

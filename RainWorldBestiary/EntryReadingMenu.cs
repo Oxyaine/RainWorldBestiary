@@ -110,17 +110,15 @@ namespace RainWorldBestiary
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, Main.Options.MenuFadeTime);
-                return;
             }
         }
 
         public override void Update()
         {
-            base.Update();
             if (Input.GetKeyDown(KeyCode.Escape))
-            {
                 Singal(backObject, BackButtonMessage);
-            }
+
+            base.Update();
         }
     }
 }
