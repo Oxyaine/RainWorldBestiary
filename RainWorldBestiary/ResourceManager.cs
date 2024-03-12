@@ -112,7 +112,7 @@ namespace RainWorldBestiary
                 Entry[] entries = GetFilesAsEntries(files);
                 tab.AddRange(entries);
 
-                Bestiary.EntriesTabs.Add(tab);
+                Bestiary.EntriesTabs.Add(tab, true);
             }
         }
         internal static Entry[] GetFilesAsEntries(string[] files)
@@ -128,9 +128,9 @@ namespace RainWorldBestiary
                 catch (Exception ex)
                 {
                     Entry er = Entry.Error;
-                    er.Info.Description.Add(new DescriptionModule(ex.Message));
-                    entries[i] = Entry.Error;
-                    Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(file) + " at " + file + ", into entry info");
+                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(file) + "\n" + ex.Message) { ModuleLockedCondition = e => false});
+                    entries[i] = er;
+                    Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(file) + " at " + file);
                     Main.Logger.LogError(ex);
                 }
 
