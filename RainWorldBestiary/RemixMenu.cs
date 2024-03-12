@@ -18,6 +18,7 @@ namespace RainWorldBestiary
         public override void Initialize()
         {
             OpTab def = new OpTab(this, "Default");
+            //OpTab experimental = new OpTab(this, "Experimental");
             OpTab cheats = new OpTab(this, "Cheats") { colorButton = CheatColor };
             Tabs = new[] { def, cheats };
 
