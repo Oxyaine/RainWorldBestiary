@@ -75,7 +75,6 @@ namespace RainWorldBestiary
             base.Update();
         }
 
-        public static EntriesTab CurrentSelectedTab;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -93,13 +92,13 @@ namespace RainWorldBestiary
                 {
                     if (tab.Name.Equals(msg))
                     {
-                        CurrentSelectedTab = tab;
+                        Bestiary.CurrentSelectedTab = tab;
                         break;
                     }
                 }
 
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.RequestMainProcessSwitch(CurrentSelectedTab.TabMenuProcessID, Main.Options.MenuFadeTime);
+                manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, Main.Options.MenuFadeTime);
             }
         }
     }

@@ -34,8 +34,8 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            CreateEntryButtonsFromTab(BestiaryMenu.CurrentSelectedTab);
-            GetTabTitle(BestiaryMenu.CurrentSelectedTab);
+            CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab);
+            GetTabTitle(Bestiary.CurrentSelectedTab);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
 
@@ -73,7 +73,6 @@ namespace RainWorldBestiary
         private const int MaxButtonsPerRow = 8;
 
         private HSLColor LockedColor = new HSLColor(0f, 0.55f, 0.85f);
-        private HSLColor UnlockedColor = new HSLColor(0.4f, 0.6f, 0.9f);
 
         public void CreateEntryButtonsFromTab(EntriesTab tab)
         {
@@ -94,26 +93,29 @@ namespace RainWorldBestiary
 
                 SimpleButton textButton = new SimpleButton(this, pages[0], entryLocked ? "???" : tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
                 {
-                    rectColor = entryLocked ? LockedColor : UnlockedColor
+                    rectColor = entryLocked ? LockedColor : tab[i].Info.EntryColor
                 };
                 pages[0].subObjects.Add(textButton);
 
-                if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcon))
+                float iconOffset = 0;
+                for (int j = 0; j < tab[i].Info.EntryIcons.Length; j++)
                 {
-                    FSprite icon = new FSprite(tab[i].Info.EntryIcon)
+                    if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcons[j]))
                     {
-                        color = entryLocked ? new Color(0, 0, 0, 255) : Color.white,
-                        x = currentX + 5,
-                        y = currentY + (ButtonSizeY / 2)
-                    };
-                    pages[0].Container.AddChild(icon);
+                        FSprite icon = new FSprite(tab[i].Info.EntryIcons[j])
+                        {
+                            color = entryLocked ? Color.black : Color.white,
+                            x = currentX + 5 + iconOffset,
+                            y = currentY + (ButtonSizeY / 2)
+                        };
+                        iconOffset += icon.width;
+                        pages[0].Container.AddChild(icon);
+                    }
                 }
 
                 currentX += ButtonSizeX + ButtonSpacing;
             }
         }
-
-        public static Entry CurrentSelectedEntry;
 
         private readonly MenuLabel TipLabel;
         private float TipLabelAlpha;
@@ -131,26 +133,26 @@ namespace RainWorldBestiary
             {
                 string msg = message.Substring(EntryPressedID.Length);
 
-                foreach (Entry entry in BestiaryMenu.CurrentSelectedTab)
+                foreach (Entry entry in Bestiary.CurrentSelectedTab)
                 {
                     if (entry.Name.Equals(msg))
                     {
-                        CurrentSelectedEntry = entry;
+                        Bestiary.CurrentSelectedEntry = entry;
                         break;
                     }
                 }
 
-                if (CurrentSelectedEntry.Info.EntryLocked)
+                if (Bestiary.CurrentSelectedEntry.Info.EntryLocked)
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
-                    TipLabel.text = CurrentSelectedEntry.Info.LockedText;
+                    TipLabel.text = Bestiary.CurrentSelectedEntry.Info.LockedText;
                     TipLabelAlpha = 1f;
                 }
                 else
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
-                    manager.RequestMainProcessSwitch(CurrentSelectedEntry.EntryReadingMenu, Main.Options.MenuFadeTime);
+                    manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedEntry.EntryReadingMenu, Main.Options.MenuFadeTime);
                 }
             }
         }

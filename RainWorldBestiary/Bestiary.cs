@@ -44,6 +44,16 @@ namespace RainWorldBestiary
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
         /// </summary>
         public static EntriesTabList EntriesTabs = new EntriesTabList();
+
+
+        /// <summary>
+        /// The tab that is currently selected
+        /// </summary>
+        public static EntriesTab CurrentSelectedTab { get; internal set; }
+        /// <summary>
+        /// The entry that is currently selected
+        /// </summary>
+        public static Entry CurrentSelectedEntry { get; internal set; }
     }
 
 
@@ -178,17 +188,21 @@ namespace RainWorldBestiary
         ///
         Unknown,
         /// <summary>
-        /// When a creature is killed by the player
+        /// When the creature is killed by the player
         /// </summary>
         Killing,
         /// <summary>
-        /// When a creature impaled with a spear, by the player
+        /// When the creature impaled with a spear, by the player
         /// </summary>
         Impaling,
         /// <summary>
-        /// When a creature is stunned with a rock, by the player
+        /// When the creature is stunned with a rock, by the player
         /// </summary>
         Stunning,
+        /// <summary>
+        /// When the player is killed by the creature
+        /// </summary>
+        Killed,
     }
     /// <summary>
     /// A class that represents an unlock token for a description module, this class represents an automated unlock token
@@ -260,33 +274,58 @@ namespace RainWorldBestiary
         /// <inheritdoc/>
         public bool IsReadOnly => ((ICollection<EntriesTab>)_tabs).IsReadOnly;
         /// <summary>
-        /// Adds a new tab that can be filled with entries
+        /// Adds a new tab of entries to this collection
         /// </summary>
-        public void Add(EntriesTab item)
+        /// <param name="item">The item to add</param>
+        /// <param name="merge">
+        /// Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <see cref="EntriesTab.MergeWith(in EntriesTab)"/><code></code>
+        /// </param>
+        public void Add(EntriesTab item, bool merge = false)
         {
-            foreach (EntriesTab tab in _tabs)
+            for (int i = 0; i < _tabs.Count; i++)
             {
-                if (tab.Name.Equals(item.Name))
-                    throw new Exception("A tab with the name " + item.Name + " already exists!");
+                if (_tabs[i].Name.Equals(item.Name))
+                {
+                    if (!merge)
+                    {
+                        Main.Logger.LogError("A tab with the name " + item.Name + "already exists.");
+                        throw new Exception("A tab with the name " + item.Name + " already exists.");
+                    }
+                    else
+                    {
+                        _tabs[i].AddRange(item.GetEnumerator());
+                        return;
+                    }
+                }
             }
 
             _tabs.Add(item);
         }
-        /// <inheritdoc cref="Add(EntriesTab)"/>
+        /// <inheritdoc cref="Add(EntriesTab, bool)"/>
+        public void Add(EntriesTab item) => Add(item, false);
+
+        /// <inheritdoc cref="Add(EntriesTab, bool)"/>
         public void Add(string tabName, params Entry[] entries)
         {
-            Add(new EntriesTab(tabName, entries));
+            Add(new EntriesTab(tabName, entries), false);
         }
-        /// <inheritdoc cref="Add(EntriesTab)"/>
-        public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null)
+        /// <inheritdoc cref="Add(EntriesTab, bool)"/>
+        public void Add(string tabName, bool merge, params Entry[] entries)
         {
-            Add(new EntriesTab(tabName, entries) { TitleImage = titleSprite });
+            Add(new EntriesTab(tabName, entries), merge);
         }
-        /// <inheritdoc cref="Add(EntriesTab)"/>
-        public void Add(string tabName, IEnumerable<Entry> entries, ProcessManager.ProcessID menuProcessID, TitleSprite titleSprite = null)
+        /// <inheritdoc cref="Add(EntriesTab, bool)"/>
+        public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = false)
         {
-            Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleImage = titleSprite });
+            Add(new EntriesTab(tabName, entries) { TitleImage = titleSprite }, merge);
         }
+        /// <inheritdoc cref="Add(EntriesTab, bool)"/>
+        public void Add(string tabName, IEnumerable<Entry> entries, ProcessManager.ProcessID menuProcessID, TitleSprite titleSprite = null, bool merge = false)
+        {
+            Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleImage = titleSprite }, merge);
+        }
+
+
 
         /// <inheritdoc/>
         public void Clear() => _tabs.Clear();
@@ -364,10 +403,9 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryTabMenu;
 
-        [JsonProperty("tab_menu_process_id", DefaultValueHandling = DefaultValueHandling.Populate)]
+        [JsonProperty("tab_menu_process_id")]
         private string MenuProcessID
         {
-            get => TabMenuProcessID.value;
             set
             {
                 if (!string.IsNullOrWhiteSpace(value))
@@ -453,6 +491,33 @@ namespace RainWorldBestiary
             foreach (Entry item in items)
                 Add(item);
         }
+        /// <inheritdoc cref="AddRange(IEnumerable{Entry})"/>
+        public void AddRange(IEnumerator<Entry> items)
+        {
+            do
+            {
+                Add(items.Current);
+            }
+            while (items.MoveNext());
+        }
+
+        /// <summary>
+        /// Adds <paramref name="tab"/>'s entries to this this<code></code>
+        /// If this TitleImage is null, it gets replaced with <paramref name="tab"/>'s TitleImage<code></code>
+        /// If this TabMenuProcessID is set to the default, it sets it to <paramref name="tab"/>'s TabMenuProcessID
+        /// </summary>
+        /// <param name="tab"></param>
+        public void MergeWith(in EntriesTab tab)
+        {
+            _entries.AddRange(tab._entries);
+
+            if (TitleImage == null)
+                TitleImage = tab.TitleImage;
+
+            if (TabMenuProcessID == Main.BestiaryTabMenu && tab.TabMenuProcessID != Main.BestiaryTabMenu)
+                TabMenuProcessID = tab.TabMenuProcessID;
+        }
+
         /// <inheritdoc/>
         public void Clear() => _entries.Clear();
         /// <inheritdoc/>
@@ -562,7 +627,11 @@ namespace RainWorldBestiary
         /// </summary>
         public static Entry Error => new Entry("ERROR")
         {
-            Info = new EntryInfo("Something went wrong with an entry, so this has been created as a warning.\nYou can check the log to see exactly what went wrong.\n", entryIcon: "illustrations\\error") { EntryLockedCondition = e => false }
+            Info = new EntryInfo("Something went wrong with an entry, so this has been created as a warning.\nYou can check the log to see exactly what went wrong.\n", entryIcon: "illustrations\\error")
+            {
+                EntryLockedCondition = e => false,
+                EntryColor = new HSLColor(0f, 0.8f, 0.6f)
+            },
         };
     }
 
@@ -614,7 +683,19 @@ namespace RainWorldBestiary
         /// The name of the sprite in the atlas manager that will be used as the entry icon
         /// </summary>
         [JsonProperty("entry_icon")]
-        public string EntryIcon = string.Empty;
+        public string EntryIcon
+        {
+            set
+            {
+                EntryIcons = EntryIcons.Append(value).ToArray();
+            }
+        }
+
+        /// <summary>
+        /// The name of the sprites in the atlas manager that will be used as the entry's icons
+        /// </summary>
+        [JsonProperty("entry_icons")]
+        public string[] EntryIcons = new string[0];
 
         /// <summary>
         /// The title image that gets displayed at the top when of the screen while reading the entry, if set to null, or if the image isn't found, some generated text will be placed instead
@@ -622,6 +703,61 @@ namespace RainWorldBestiary
         /// <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
         [JsonProperty("title_sprite")]
         public TitleSprite TitleSprite = null;
+
+
+        /// <summary>
+        /// The color of the entry's button and title image, to not have this apply to the title image, use <see cref="ApplyEntryColorToTitle"/>
+        /// </summary>
+        [JsonIgnore]
+        public HSLColor EntryColor = new HSLColor(0.4f, 0.6f, 0.9f);
+
+
+        [JsonProperty("color")]
+        private string JSON_Color
+        {
+            set
+            {
+                string def;
+                if (value.Length > 6)
+                    def = value.Substring(value.Length - 6);
+                else
+                    def = "DFF5D6".Substring(0, value.Length) + value;
+                string[] values = def.SplitIntoGroups(2);
+
+                float R = Convert.ToByte(values[1], 16) / 255f;
+                float G = Convert.ToByte(values[2], 16) / 255f;
+                float B = Convert.ToByte(values[3], 16) / 255f;
+
+                float max = Math.Max(R, Math.Max(G, B));
+                float min = Math.Min(R, Math.Min(G, B));
+                float delta = max - min;
+
+                float Hue;
+                if (delta == 0f)
+                {
+                    Hue = 0f;
+                }
+                else
+                {
+                    if (max.Equals(R))
+                        Hue = 60f * ((G - B) / delta % 6f);
+                    else if (max.Equals(G))
+                        Hue = 60f * ((B - R) / delta + 2f);
+                    else
+                        Hue = 60f * ((R - G) / delta + 4f);
+                }
+
+                float Lightness = (max + min) / 2f;
+                float Saturation = delta == 0 ? 0 : delta / (1 - Math.Abs(2 * Lightness - 1));
+
+                if (Hue < 0)
+                    Hue += 360f;
+                Hue /= 360f;
+
+                EntryColor = new HSLColor(Hue, Lightness, Saturation);
+            }
+        }
+
 
         /// <summary>
         /// The body of this entry, when converted to string, only returns the parts of the entry that are visible
