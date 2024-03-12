@@ -1,4 +1,6 @@
-﻿namespace RainWorldBestiary
+﻿using UnityEngine;
+
+namespace RainWorldBestiary
 {
     /// <summary>
     /// A class with some extensions to speed up certain tasks
@@ -27,6 +29,29 @@
 
                 result += " " + s;
                 l += s.Length;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Splits the string into groups the size of <paramref name="groupCount"/>, if the string cannot be split evenly, the last group may contain an unexcpected amount of characters
+        /// </summary>
+        public static string[] SplitIntoGroups(this string text, int groupCount)
+        {
+            int count = Mathf.CeilToInt(text.Length / (float)groupCount);
+
+            string[] result = new string[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                if (i * groupCount + groupCount > text.Length)
+                {
+                    result[i] = text.Substring(i * groupCount);
+                    break;
+                }
+
+                result[i] = text.Substring(i * groupCount, groupCount);
             }
 
             return result;
