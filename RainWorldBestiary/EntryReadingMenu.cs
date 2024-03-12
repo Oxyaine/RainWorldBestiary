@@ -34,7 +34,7 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            DisplayEntryInformation(BestiaryTabMenu.CurrentSelectedEntry);
+            DisplayEntryInformation(Bestiary.CurrentSelectedEntry);
         }
 
         public void DisplayEntryInformation(Entry entry)
@@ -70,23 +70,32 @@ namespace RainWorldBestiary
                 widthOffset = fontText.TotalWidth / 2f;
             }
 
-            if (entry.Info.IconsNextToTitle && Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcon))
+            if (entry.Info.IconsNextToTitle)
             {
-                FSprite sprite = new FSprite(entry.Info.EntryIcon)
+                float iconOffset = 0;
+                for (int i = 0; i < entry.Info.EntryIcons.Length; i++)
                 {
-                    y = Screen.height - 50,
-                    x = Screen.width / 2f - (widthOffset + 60),
-                    scale = 2
-                };
-                pages[0].Container.AddChild(sprite);
+                    if (entry.Info.IconsNextToTitle && Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcons[i]))
+                    {
+                        FSprite sprite = new FSprite(entry.Info.EntryIcons[i])
+                        {
+                            y = Screen.height - 50,
+                            x = Screen.width / 2f - (widthOffset + 60) - iconOffset,
+                            scale = 2
+                        };
+                        pages[0].Container.AddChild(sprite);
 
-                FSprite sprite2 = new FSprite(entry.Info.EntryIcon)
-                {
-                    y = Screen.height - 50,
-                    x = Screen.width / 2f + (widthOffset + 10),
-                    scale = 2
-                };
-                pages[0].Container.AddChild(sprite2);
+                        FSprite sprite2 = new FSprite(entry.Info.EntryIcons[i])
+                        {
+                            y = Screen.height - 50,
+                            x = Screen.width / 2f + (widthOffset + 10) + iconOffset,
+                            scale = 2
+                        };
+                        pages[0].Container.AddChild(sprite2);
+
+                        iconOffset += sprite.width;
+                    }
+                }
             }
 
             if (Main.Options.ShowModuleLockPips.Value)
