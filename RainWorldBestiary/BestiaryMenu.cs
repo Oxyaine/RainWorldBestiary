@@ -46,9 +46,12 @@ namespace RainWorldBestiary
                 if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
                     continue;
 
-                AddButton(tab, X, currentButtonY);
+                if (tab.Count > 0)
+                {
+                    AddButton(tab, X, currentButtonY);
 
-                currentButtonY -= ButtonSizeY + ButtonSpacing;
+                    currentButtonY -= ButtonSizeY + ButtonSpacing;
+                }
             }
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
