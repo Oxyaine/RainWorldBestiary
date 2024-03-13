@@ -118,7 +118,7 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.Default.MenuFadeTime);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.Default.MenuFadeTimeSeconds);
             }
         }
 
