@@ -26,7 +26,7 @@ namespace RainWorldBestiary
             Tabs = new[] { def, cheats };
 
             List<UIelement> items = new List<UIelement>();
-            AddElements(ref items, "Menu Fade Time", BestiarySettings.Default._MenuFadeTime);
+            AddElements(ref items, "Menu Fade Time", BestiarySettings.Default._MenuFadeTime, true);
             AddElements(ref items, "Show Unlock Pips", BestiarySettings.Default.ShowModuleLockPips);
             def.AddItems(items.ToArray());
 
