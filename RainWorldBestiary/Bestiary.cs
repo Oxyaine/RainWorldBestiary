@@ -35,7 +35,9 @@ namespace RainWorldBestiary
             {
                 if (unlockToken.Equals(_AutoModuleUnlocks[i]))
                 {
-                    _AutoModuleUnlocks[i]++;
+                    if (_AutoModuleUnlocks[i].Value < 255)
+                        _AutoModuleUnlocks[i]++;
+
                     return;
                 }
             }
@@ -58,7 +60,9 @@ namespace RainWorldBestiary
             {
                 if (unlockToken.Equals(ModuleUnlocks[i]))
                 {
-                    ModuleUnlocks[i]++;
+                    if (ModuleUnlocks[i].Value < 255)
+                        ModuleUnlocks[i]++;
+
                     return;
                 }
             }
