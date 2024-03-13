@@ -805,7 +805,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
         /// </summary>
-        /// <remarks>Defaults to <see cref="DefaultEntryUnlockedCondition(EntryInfo)"/>, which checks if <see cref="Bestiary.UnlockedEntriesIDs"/> contains <see cref="UnlockID"/></remarks>
+        /// <remarks>Defaults to <see cref="DefaultEntryUnlockedCondition(EntryInfo)"/></remarks>
         [JsonIgnore]
         public Func<EntryInfo, bool> EntryUnlockedCondition = DefaultEntryUnlockedCondition;
         /// <summary>
