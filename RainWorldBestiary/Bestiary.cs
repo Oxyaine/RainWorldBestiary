@@ -27,9 +27,9 @@ namespace RainWorldBestiary
         /// <summary>
         /// All the ID's of entries that have been unlocked, and can be viewed (doesn't completely unlock entry, just makes it available, individual description components must still be unlocked individually)
         /// </summary>
-        public static List<string> UnlockedEntriesIDs = new List<string>();
+        public readonly static List<string> UnlockedEntriesIDs = new List<string>();
 
-        private readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
+        internal readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
         /// <summary>
         /// All the module unlock tokens that are automatically tallied and registered, you can check <see cref="AutoTokenType"/> to see what is automatically detected
         /// </summary>
@@ -38,12 +38,12 @@ namespace RainWorldBestiary
         /// <summary>
         /// All the module unlock tokens that are manually registered, you can check <see cref="TokenType"/> to see what is manually detected
         /// </summary>
-        public static List<ModuleUnlockToken> ModuleUnlocks = new List<ModuleUnlockToken>();
+        public readonly static List<ModuleUnlockToken> ModuleUnlocks = new List<ModuleUnlockToken>();
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
         /// </summary>
-        public static EntriesTabList EntriesTabs = new EntriesTabList();
+        public readonly static EntriesTabList EntriesTabs = new EntriesTabList();
 
 
         /// <summary>
@@ -65,10 +65,12 @@ namespace RainWorldBestiary
         /// <summary>
         /// The ID of the creature this unlock token applies to
         /// </summary>
+        [JsonProperty("creature_id")]
         public readonly string CreatureID = string.Empty;
         /// <summary>
         /// The amount of times the unlock token was registered, caps at 255
         /// </summary>
+        [JsonIgnore]
         protected byte _value = 1;
 
         ///
@@ -101,35 +103,21 @@ namespace RainWorldBestiary
     public enum TokenType : byte
     {
         ///
-        Unknown,
-        /// <summary>
-        /// For when the player tames the creature
-        /// </summary>
-        Taming,
-        /// <summary>
-        /// For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
-        /// </summary>
-        Evading,
-        /// <summary>
-        /// For when the player sneaks past a creature
-        /// </summary>
-        Sneaking,
-        /// <summary>
-        /// For when the player sees the creature
-        /// </summary>
-        Observing,
-        /// <summary>
-        /// For when the player sees the creature run away in fear
-        /// </summary>
-        ObserveFear,
-        /// <summary>
-        /// For when the player sees the creature eating or hunting another creature
-        /// </summary>
-        ObserveFood,
-        /// <summary>
-        /// For when the player is getting chased by a creature
-        /// </summary>
-        ObserveHunted,
+        Unknown = 0,
+        /// <inheritdoc cref="UnlockTokenType.Taming"/>
+        Taming = 1,
+        /// <inheritdoc cref="UnlockTokenType.Evading"/>
+        Evading = 2,
+        /// <inheritdoc cref="UnlockTokenType.Sneaking"/>
+        Sneaking = 3,
+        /// <inheritdoc cref="UnlockTokenType.Observing"/>
+        Observing = 4,
+        /// <inheritdoc cref="UnlockTokenType.ObserveFear"/>
+        ObserveFear = 5,
+        /// <inheritdoc cref="UnlockTokenType.ObserveFood"/>
+        ObserveFood = 6,
+        /// <inheritdoc cref="UnlockTokenType.ObserveHunting"/>
+        ObserveHunting = 7,
     }
     /// <summary>
     /// A class that represents an unlock token for a description module, this class represents a manual unlock token
@@ -186,23 +174,15 @@ namespace RainWorldBestiary
     public enum AutoTokenType : byte
     {
         ///
-        Unknown,
-        /// <summary>
-        /// When the creature is killed by the player
-        /// </summary>
-        Killing,
-        /// <summary>
-        /// When the creature impaled with a spear, by the player
-        /// </summary>
-        Impaling,
-        /// <summary>
-        /// When the creature is stunned with a rock, by the player
-        /// </summary>
-        Stunning,
-        /// <summary>
-        /// When the player is killed by the creature
-        /// </summary>
-        Killed,
+        Unknown = 0,
+        /// <inheritdoc cref="UnlockTokenType.Killing"/>
+        Killing = 8,
+        /// <inheritdoc cref="UnlockTokenType.Impaling"/>
+        Impaling = 9,
+        /// <inheritdoc cref="UnlockTokenType.Stunning"/>
+        Stunning = 10,
+        /// <inheritdoc cref="UnlockTokenType.Killed"/>
+        Killed = 11,
     }
     /// <summary>
     /// A class that represents an unlock token for a description module, this class represents an automated unlock token
@@ -250,6 +230,118 @@ namespace RainWorldBestiary
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
+    }
+
+    /// <summary>
+    /// The type of unlock this UnlockToken targets
+    /// </summary>
+    public enum UnlockTokenType : byte
+    {
+        ///
+        Unknown = 0,
+        /// <summary>
+        /// For when the player tames the creature
+        /// </summary>
+        Taming = 1,
+        /// <summary>
+        /// For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
+        /// </summary>
+        Evading = 2,
+        /// <summary>
+        /// For when the player sneaks past a creature
+        /// </summary>
+        Sneaking = 3,
+        /// <summary>
+        /// For when the player sees the creature
+        /// </summary>
+        Observing = 4,
+        /// <summary>
+        /// For when the player sees the creature run away in fear
+        /// </summary>
+        ObserveFear = 5,
+        /// <summary>
+        /// For when the player sees the creature eating or hunting another creature
+        /// </summary>
+        ObserveFood = 6,
+        /// <summary>
+        /// For when the player is getting chased by a creature
+        /// </summary>
+        ObserveHunting = 7,
+        /// <summary>
+        /// When the creature is killed by the player
+        /// </summary>
+        Killing = 8,
+        /// <summary>
+        /// When the creature impaled with a spear, by the player
+        /// </summary>
+        Impaling = 9,
+        /// <summary>
+        /// When the creature is stunned with a rock, by the player
+        /// </summary>
+        Stunning = 10,
+        /// <summary>
+        /// When the player is killed by the creature
+        /// </summary>
+        Killed = 11
+    }
+    /// <summary>
+    /// An unlock token, that can be used to detect whether this module is unlocked
+    /// </summary>
+    public class UnlockToken : BaseUnlockModule, IEquatable<UnlockToken>, IEquatable<AutoModuleUnlockToken>, IEquatable<ModuleUnlockToken>
+    {
+        /// <summary>
+        /// The type of token this module unlock targets
+        /// </summary>
+        [JsonProperty("token_type")]
+        public readonly UnlockTokenType TokenType = UnlockTokenType.Unknown;
+
+        /// <summary>
+        /// The amount of times the token specified through <see cref="BaseUnlockModule.CreatureID"/> and <see cref="TokenType"/> should be registered before this token is valid
+        /// </summary>
+        [JsonProperty("value")]
+        public byte Value { get => _value; }
+
+        /// <param name="creatureID">The ID of the creature that to look for</param>
+        /// <param name="tokenType">The type of token to look for</param>
+        /// <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        public UnlockToken(string creatureID, UnlockTokenType tokenType, byte value = 1) : base(creatureID, value)
+        {
+            TokenType = tokenType;
+        }
+
+        /// <summary>
+        /// Checks if both objects are <see cref="UnlockToken"/>, then compares them using <see cref="Equals(UnlockToken)"/>
+        /// </summary>
+        /// <remarks><see cref="Equals(UnlockToken)"/> <inheritdoc cref="Equals(UnlockToken)"/></remarks>
+        public override bool Equals(object obj)
+        {
+            switch (obj)
+            {
+                case UnlockToken token:
+                    return Equals(token);
+                case AutoModuleUnlockToken autoToken:
+                    return Equals(autoToken);
+                case ModuleUnlockToken moduleToken:
+                    return Equals(moduleToken);
+                default:
+                    return false;
+            }
+        }
+
+        /// <inheritdoc cref="BaseUnlockModule.Equals(BaseUnlockModule)"/>
+        /// <summary>Checks if the tokenType matches then:</summary>
+        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType) && base.Equals(other);
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => base.GetHashCode();
+
+        /// <summary>
+        /// Checks whether this UnlockToken matches the auto unlock token, by checking if the token type and ID matches, then checking whether <paramref name="other"/>'s value is greater than or equal to this value 
+        /// </summary>
+        public bool Equals(AutoModuleUnlockToken other) => ((byte)TokenType).Equals((byte)other.TokenType) && base.Equals(other);
+
+        /// <inheritdoc cref="Equals(AutoModuleUnlockToken)"/>
+        public bool Equals(ModuleUnlockToken other) => ((byte)TokenType).Equals((byte)other.TokenType) && base.Equals(other);
     }
 
 
@@ -706,7 +798,7 @@ namespace RainWorldBestiary
 
 
         /// <summary>
-        /// The color of the entry's button and title image, to not have this apply to the title image, use <see cref="ApplyEntryColorToTitle"/>
+        /// The color of the entry's button and title image
         /// </summary>
         [JsonIgnore]
         public HSLColor EntryColor = new HSLColor(0.4f, 0.6f, 0.9f);
@@ -908,7 +1000,7 @@ namespace RainWorldBestiary
         /// The ID of this description component, used to determine whether this part of the dictionary is visible or not
         /// </summary>
         [JsonProperty("unlock_id")]
-        public string ID = string.Empty;
+        public UnlockToken UnlockID = null;
 
         /// <summary>
         /// The condition that specifies whether this entry is locked or not, if this returns true, then the entry is locked. You can leave this as the default, or set your own custom condition.
@@ -917,7 +1009,21 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public Func<DescriptionModule, bool> ModuleLockedCondition = DefaultModuleLockedCondition;
 
-        public static bool DefaultModuleLockedCondition(DescriptionModule info) => false;
+        /// <summary>
+        /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
+        /// </summary>
+        public static bool DefaultModuleLockedCondition(DescriptionModule info)
+        {
+            foreach (AutoModuleUnlockToken autoToken in Bestiary.AutoModuleUnlocks)
+                if (info.UnlockID.Equals(autoToken))
+                    return true;
+
+            foreach (ModuleUnlockToken moduleUnlock in Bestiary.ModuleUnlocks)
+                if (info.UnlockID.Equals(moduleUnlock))
+                    return true;
+
+            return false;
+        }
 
         /// <summary>
         /// Returns false if <see cref="ModuleLockedCondition"/> is null, or if it returns false, otherwise true
