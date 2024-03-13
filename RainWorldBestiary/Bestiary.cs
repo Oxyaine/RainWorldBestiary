@@ -174,6 +174,8 @@ namespace RainWorldBestiary
         ObserveFood = 6,
         /// <inheritdoc cref="UnlockTokenType.ObserveHunting"/>
         ObserveHunting = 7,
+        /// <inheritdoc cref="UnlockTokenType.Eaten"/>
+        Eaten = 13
     }
     /// <summary>
     /// A class that represents an unlock token for a description module, this class represents a manual unlock token
@@ -347,6 +349,10 @@ namespace RainWorldBestiary
         /// When the player is grabbed by the creature
         /// </summary>
         GrabbedPlayer = 12,
+        /// <summary>
+        /// Whenever the creature gets eaten by the player, counts for both small creatures like batflies, and large creatures like lizards (for slugcats that can eat corpses only)
+        /// </summary>
+        Eaten = 13,
     }
     /// <summary>
     /// An unlock token, that can be used to detect whether this module is unlocked
