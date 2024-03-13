@@ -354,7 +354,7 @@ namespace RainWorldBestiary
         /// </summary>
         GrabbedPlayer = 12,
         /// <summary>
-        /// Whenever the creature gets eaten by the player, counts for both small creatures like batflies, and large creatures like lizards (for slugcats that can eat corpses only)
+        /// Whenever the creature gets eaten by the player
         /// </summary>
         Eaten = 13,
     }
