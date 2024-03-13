@@ -25,16 +25,86 @@ namespace RainWorldBestiary
         /// </summary>
         public readonly static List<string> UnlockedEntriesIDs = new List<string>();
 
-        internal readonly static AutoModuleUnlockTokenList _AutoModuleUnlocks = new AutoModuleUnlockTokenList();
+
+
+
+        internal readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
         /// <summary>
         /// All the module unlock tokens that are automatically tallied and registered, you can check <see cref="AutoTokenType"/> to see what is automatically detected
         /// </summary>
-        public static AutoModuleUnlockTokenList AutoModuleUnlocks => _AutoModuleUnlocks;
+        public static List<AutoModuleUnlockToken> AutoModuleUnlocks => _AutoModuleUnlocks;
+        /// <summary>
+        /// Checks if <see cref="AutoModuleUnlocks"/> contains <paramref name="unlockToken"/>, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+        /// </summary>
+        internal static void AddOrIncreaseModuleUnlock(AutoModuleUnlockToken unlockToken)
+        {
+            for (int i = 0; i < _AutoModuleUnlocks.Count; i++)
+            {
+                if (unlockToken.Equals(_AutoModuleUnlocks[i]))
+                {
+                    _AutoModuleUnlocks[i]++;
+                    return;
+                }
+            }
+
+            _AutoModuleUnlocks.Add(unlockToken);
+        }
 
         /// <summary>
         /// All the module unlock tokens that are manually registered, you can check <see cref="TokenType"/> to see what is manually detected
         /// </summary>
-        public readonly static ModuleUnlockTokenList ModuleUnlocks = new ModuleUnlockTokenList();
+        /// <remarks>To add a new module unlock, use <see cref="AddOrIncreaseModuleUnlock(ModuleUnlockToken)"/> as it wont allow duplicate module unlocks</remarks>
+        public readonly static List<ModuleUnlockToken> ModuleUnlocks = new List<ModuleUnlockToken>();
+        /// <summary>
+        /// Checks if <see cref="ModuleUnlocks"/> contains <paramref name="unlockToken"/>, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+        /// </summary>
+        public static void AddOrIncreaseModuleUnlock(ModuleUnlockToken unlockToken)
+        {
+            for (int i = 0; i < ModuleUnlocks.Count; i++)
+            {
+                if (unlockToken.Equals(ModuleUnlocks[i]))
+                {
+                    ModuleUnlocks[i]++;
+                    return;
+                }
+            }
+
+            ModuleUnlocks.Add(unlockToken);
+        }
+
+        /// <summary>
+        /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
+        /// </summary>
+        /// <remarks>Returns true if value is equal to OR greater than the value in the registered token<code></code>
+        /// Does not take into account if <see cref="BestiarySettings.Cheats.UnlockAllEntries"/> is toggled</remarks>
+        public static bool IsUnlockTokenValid(UnlockToken unlockToken)
+        {
+            foreach (AutoModuleUnlockToken autoToken in _AutoModuleUnlocks)
+                if (unlockToken.Equals(autoToken))
+                    return true;
+
+            foreach (ModuleUnlockToken moduleToken in ModuleUnlocks)
+                if (unlockToken.Equals(moduleToken))
+                    return true;
+
+            return false;
+        }
+        /// <summary>
+        /// Checks if any of the auto unlock tokens or unlock tokens have the given name as the creature id
+        /// </summary>
+        public static bool IsThereUnlockTokenWithName(string name)
+        {
+            foreach (AutoModuleUnlockToken autoToken in _AutoModuleUnlocks)
+                if (autoToken.CreatureID.Equals(name))
+                    return true;
+
+            foreach (ModuleUnlockToken moduleToken in ModuleUnlocks)
+                if (moduleToken.CreatureID.Equals(name))
+                    return true;
+
+            return false;
+        }
+
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
@@ -61,116 +131,6 @@ namespace RainWorldBestiary
         {
             return creature.creatureTemplate.name.Trim().Replace(" ", "");
         }
-    }
-
-    /// <summary>
-    /// A class representing a list of AutoModuleUnlockTokens, has custom behaviours and accessors
-    /// </summary>
-    public class AutoModuleUnlockTokenList : IEnumerable<AutoModuleUnlockToken>
-    {
-        private readonly List<AutoModuleUnlockToken> _values = new List<AutoModuleUnlockToken>();
-
-        /// <summary>
-        /// Gets the amount of items in this list
-        /// </summary>
-        public int Count => _values.Count;
-
-        /// <inheritdoc/>
-        internal void AddOrIncrease(AutoModuleUnlockToken item)
-        {
-            for (int i = 0; i < _values.Count; i++)
-            {
-                if (_values[i].Equals(item))
-                {
-                    _values[i]++;
-                    return;
-                }
-            }
-
-            _values.Add(item);
-        }
-
-        /// <summary>
-        /// Checks if the given token is valid in this collection, meaning the type and id are equal, and the value is greater than or equal to the other value
-        /// </summary>
-        public bool IsTokenValid(AutoModuleUnlockToken item)
-        {
-            foreach (AutoModuleUnlockToken autoToken in _values)
-                if (item.Equals(autoToken))
-                    return true;
-
-            return false;
-        }
-        /// <inheritdoc cref="IsTokenValid(AutoModuleUnlockToken)"/>
-        public bool IsTokenValid(UnlockToken item)
-        {
-            foreach (AutoModuleUnlockToken autoToken in _values)
-                if (item.Equals(autoToken))
-                    return true;
-
-            return false;
-        }
-
-        /// <inheritdoc/>
-        public IEnumerator<AutoModuleUnlockToken> GetEnumerator() => _values.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
-    }
-    /// <summary>
-    /// A class representing a list of ModuleUnlockTokens, has custom behaviours and accessors
-    /// </summary>
-    public class ModuleUnlockTokenList : IEnumerable<ModuleUnlockToken>
-    {
-        private readonly List<ModuleUnlockToken> _values = new List<ModuleUnlockToken>();
-
-        /// <summary>
-        /// Gets the amount of items in this list
-        /// </summary>
-        public int Count => _values.Count;
-
-        /// <inheritdoc/>
-        public void AddOrIncrease(ModuleUnlockToken item)
-        {
-            for (int i = 0; i < _values.Count; i++)
-            {
-                if (_values[i].Equals(item))
-                {
-                    _values[i]++;
-                    return;
-                }
-            }
-
-            _values.Add(item);
-        }
-
-        /// <summary>
-        /// Removes this exact item from the collection, exact meaning even the value has to be the same
-        /// </summary>
-        public void RemoveExact(ModuleUnlockToken item) => _values.Remove(item);
-
-        /// <summary>
-        /// Checks if the given token is valid in this collection, meaning the type and id are equal, and the value is greater than or equal to the other value
-        /// </summary>
-        public bool IsTokenValid(ModuleUnlockToken item)
-        {
-            foreach (ModuleUnlockToken autoToken in _values)
-                if (item.Equals(autoToken))
-                    return true;
-
-            return false;
-        }
-        /// <inheritdoc cref="IsTokenValid(ModuleUnlockToken)"/>
-        public bool IsTokenValid(UnlockToken item)
-        {
-            foreach (ModuleUnlockToken autoToken in _values)
-                if (item.Equals(autoToken))
-                    return true;
-
-            return false;
-        }
-
-        /// <inheritdoc/>
-        public IEnumerator<ModuleUnlockToken> GetEnumerator() => _values.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
     }
 
 
@@ -1135,13 +1095,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
         /// </summary>
-        public static bool DefaultModuleUnlockedCondition(DescriptionModule info)
-        {
-            if (BestiarySettings.Cheats.UnlockAllEntries.Value)
-                return true;
-
-            return Bestiary._AutoModuleUnlocks.IsTokenValid(info.UnlockID) || Bestiary.ModuleUnlocks.IsTokenValid(info.UnlockID);
-        }
+        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.Cheats.UnlockAllEntries.Value || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
         /// <summary>
         /// Returns true if the module is unlocked, else false

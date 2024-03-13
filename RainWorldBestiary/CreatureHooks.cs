@@ -17,14 +17,14 @@ namespace RainWorldBestiary
         {
             orig(self, grasp);
 
-            Bestiary._AutoModuleUnlocks.AddOrIncrease(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(grasp.grabber), AutoTokenType.GrabbedPlayer));
+            Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(grasp.grabber), AutoTokenType.GrabbedPlayer));
         }
         private static void Spear_LodgeInCreature(On.Spear.orig_LodgeInCreature orig, Spear self, SharedPhysics.CollisionResult result, bool eu)
         {
             orig(self, result, eu);
 
             if (result.obj is Creature cr)
-                Bestiary._AutoModuleUnlocks.AddOrIncrease(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(cr), AutoTokenType.Impaled));
+                Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(cr), AutoTokenType.Impaled));
         }
         private static void Creature_Die(On.Creature.orig_Die orig, Creature self)
         {
@@ -36,13 +36,13 @@ namespace RainWorldBestiary
             if (Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
             {
                 Bestiary.GetCreatureUnlockName(self);
-                Bestiary._AutoModuleUnlocks.AddOrIncrease(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(self), AutoTokenType.Killed));
+                Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(self), AutoTokenType.Killed));
             }
         }
         private static void Player_Die(On.Player.orig_Die orig, Player self)
         {
             orig(self);
-            Bestiary._AutoModuleUnlocks.AddOrIncrease(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(self.killTag), AutoTokenType.KilledPlayer));
+            Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(self.killTag), AutoTokenType.KilledPlayer));
         }
     }
 }
