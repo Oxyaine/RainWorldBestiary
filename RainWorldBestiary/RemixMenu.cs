@@ -1,18 +1,21 @@
 ﻿using Menu.Remix.MixedUI;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace RainWorldBestiary
 {
     internal class RemixMenu : OptionInterface
     {
-        private Color CheatColor = new Color(1f, .5f, .5f);
+        private Color CheatColor = new Color(1f, 0.5f, 0.5f);
 
         public RemixMenu()
         {
-            UnlockAllEntries = config.Bind("oxyaine_unlock_all_entries", false);
+            BestiarySettings.Default._MenuFadeTime = config.Bind("oxyaine_menu_fade_time", 4);
+            BestiarySettings.Default.ShowModuleLockPips = config.Bind("oxyaine_show_module_lock_pips", true);
 
-            _MenuFadeTime = config.Bind("oxyaine_menu_fade_time", 4);
-            ShowModuleLockPips = config.Bind("oxyaine_show_module_lock_pips", true);
+            BestiarySettings.Cheats.UnlockAllEntries = config.Bind("oxyaine_unlock_all_entries", false);
         }
 
         public override void Initialize()
@@ -22,32 +25,62 @@ namespace RainWorldBestiary
             OpTab cheats = new OpTab(this, "Cheats") { colorButton = CheatColor };
             Tabs = new[] { def, cheats };
 
-            UIelement[] uiElements = new UIelement[]
-            {
-                new OpLabel(20f, 552.5f, "Menu Fade Time", false),
-                new OpSlider(_MenuFadeTime, new Vector2(140f, 550f), 150, false) { max = 10 },
-                new OpLabel(20f, 522.5f, "Show Unlock Pips", false),
-                new OpCheckBox(ShowModuleLockPips, new Vector2(140f, 520f)),
-            };
-            def.AddItems(uiElements);
+            List<UIelement> items = new List<UIelement>();
+            AddElements(ref items, "Menu Fade Time", BestiarySettings.Default._MenuFadeTime);
+            AddElements(ref items, "Show Unlock Pips", BestiarySettings.Default.ShowModuleLockPips);
+            def.AddItems(items.ToArray());
 
-            UIelement[] uiElements2 = new UIelement[]
-            {
-                new OpLabel(20f, 552.5f, "Unlock All Entries", false) { color = CheatColor },
-                new OpCheckBox(UnlockAllEntries, 140f, 550f) { colorEdge = CheatColor },
-            };
-            cheats.AddItems(uiElements2);
+            items.Clear();
+            ResetElementPositions();
+
+            AddElements(ref items, "Unlock All Entries", BestiarySettings.Cheats.UnlockAllEntries, CheatColor);
+            cheats.AddItems(items.ToArray());
         }
 
+        private void ResetElementPositions()
+        {
+            currentElementX = 140f;
+            currentLabelX = 20f;
+            currentY = 550f;
+        }
+        float currentElementX = 140f, currentLabelX = 20f, currentY = 550f;
+        private void AddElements(ref List<UIelement> items, string name, UIelement element, Color? color = null)
+        {
+            items.Add(new OpLabel(currentLabelX, currentY + 2.5f, name, false) { color = color ?? Color.white });
+            items.Add(element);
 
-        // Cheats
-        public readonly Configurable<bool> UnlockAllEntries;
+            currentY -= 30f;
+        }
+        private void AddElements(ref List<UIelement> items, string name, Configurable<int> element, bool asSlider = false, Color? color = null)
+        {
+            items.Add(new OpLabel(currentLabelX, currentY + 2.5f, name, false) { color = color ?? Color.white });
+            if (asSlider)
+                items.Add(new OpSlider(element, new Vector2(currentElementX, currentY), 200) { colorEdge = color ?? Color.white });
+            else
+                items.Add(new OpDragger(element, currentElementX, currentY) { colorEdge = color ?? Color.white });
 
+            currentY -= 30f;
+        }
+        private void AddElements(ref List<UIelement> items, string name, Configurable<bool> element, Color? color = null)
+        {
+            items.Add(new OpLabel(currentLabelX, currentY + 2.5f, name, false) { color = color ?? Color.white });
+            items.Add(new OpCheckBox(element, new Vector2(currentElementX, currentY)) { colorEdge = color ?? Color.white });
 
-        // Default
-        private readonly Configurable<int> _MenuFadeTime;
-        public float MenuFadeTime => _MenuFadeTime.Value / 10f;
+            currentY -= 30f;
+        }
+    }
 
-        public readonly Configurable<bool> ShowModuleLockPips;
+    public static class BestiarySettings
+    {
+        public static class Default
+        {
+            internal static Configurable<int> _MenuFadeTime;
+            public static float MenuFadeTime => _MenuFadeTime.Value / 10f;
+            public static Configurable<bool> ShowModuleLockPips;
+        }
+        public static class Cheats
+        {
+            public static Configurable<bool> UnlockAllEntries;
+        }
     }
 }

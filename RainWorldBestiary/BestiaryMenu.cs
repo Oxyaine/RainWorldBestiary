@@ -101,7 +101,7 @@ namespace RainWorldBestiary
                 }
 
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, Main.Options.MenuFadeTime);
+                manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, BestiarySettings.Default.MenuFadeTime);
             }
         }
     }

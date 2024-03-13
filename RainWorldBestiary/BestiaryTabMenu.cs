@@ -125,7 +125,7 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryMenu, Main.Options.MenuFadeTime);
+                manager.RequestMainProcessSwitch(Main.BestiaryMenu, BestiarySettings.Default.MenuFadeTime);
                 return;
             }
 
@@ -152,7 +152,7 @@ namespace RainWorldBestiary
                 else
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
-                    manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedEntry.EntryReadingMenu, Main.Options.MenuFadeTime);
+                    manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedEntry.EntryReadingMenu, BestiarySettings.Default.MenuFadeTime);
                 }
             }
         }

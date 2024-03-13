@@ -98,7 +98,7 @@ namespace RainWorldBestiary
                 }
             }
 
-            if (Main.Options.ShowModuleLockPips.Value)
+            if (BestiarySettings.Default.ShowModuleLockPips.Value)
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {
@@ -118,7 +118,7 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, Main.Options.MenuFadeTime);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.Default.MenuFadeTime);
             }
         }
 

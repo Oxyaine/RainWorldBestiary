@@ -17,10 +17,6 @@ namespace RainWorldBestiary
         /// Whether downpour entries are shown or not, true if more slug cats is enabled, otherwise false
         /// </summary>
         public static bool IncludeDownpourEntries => IncludeDownpour;
-        /// <summary>
-        /// Whether the UnlockAllEntries cheat in the remix menu is enabled
-        /// </summary>
-        public static bool UnlockAllEntries => Main.Options.UnlockAllEntries.Value;
 
         internal const string DownpourTabName = "Downpour";
 
@@ -748,7 +744,7 @@ namespace RainWorldBestiary
         /// Checks whether <see cref="ID"/> is found in <see cref="Bestiary.UnlockedEntriesIDs"/>
         /// </summary>
         /// <returns>True if the the entry is locked, otherwise false</returns>
-        public static bool DefaultEntryLockedCondition(EntryInfo info) => !Main.Options.UnlockAllEntries.Value && !Bestiary.UnlockedEntriesIDs.Contains(info.ID);
+        public static bool DefaultEntryLockedCondition(EntryInfo info) => !BestiarySettings.Cheats.UnlockAllEntries.Value && !Bestiary.UnlockedEntriesIDs.Contains(info.ID);
 
         /// <summary>
         /// Returns false if <see cref="EntryLockedCondition"/> is null, or if it returns false, otherwise true
