@@ -9,7 +9,7 @@ namespace RainWorldBestiary
     internal class Main : BaseUnityPlugin
     {
         internal const string GUID = "oxyaine.bestiary";
-        private bool IsInit;
+        private bool Initialized;
 
         internal static new ManualLogSource Logger;
         public static RemixMenu Options;
@@ -42,6 +42,7 @@ namespace RainWorldBestiary
         {
             original(self, newlyDisabledMods);
             CheckBestiaryDependencies();
+            ResourceManager.Initialize();
         }
 
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
@@ -51,9 +52,9 @@ namespace RainWorldBestiary
             {
                 MachineConnector.SetRegisteredOI("oxyaine.bestiary", Options = new RemixMenu());
 
-                if (!IsInit)
+                if (!Initialized)
                 {
-                    IsInit = true;
+                    Initialized = true;
 
                     ResourceManager.Initialize();
 
@@ -89,6 +90,7 @@ namespace RainWorldBestiary
         {
             original(self, newlyEnabledMods);
             CheckBestiaryDependencies();
+            ResourceManager.Initialize();
         }
     }
 }

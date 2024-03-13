@@ -102,7 +102,7 @@ namespace RainWorldBestiary
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {
-                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? "illustrations\\unlock_pip" : "illustrations\\unlock_pip_full")
+                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? "illustrations\\unlock_pip_full" : "illustrations\\unlock_pip")
                     {
                         x = Screen.width - 20,
                         y = Screen.height - (i * 20) - 20,
