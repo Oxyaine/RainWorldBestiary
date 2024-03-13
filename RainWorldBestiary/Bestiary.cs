@@ -84,22 +84,6 @@ namespace RainWorldBestiary
 
             return false;
         }
-        /// <summary>
-        /// Checks if any of the auto unlock tokens or unlock tokens have the given name as the creature id
-        /// </summary>
-        public static bool IsThereUnlockTokenWithName(string name)
-        {
-            foreach (AutoModuleUnlockToken autoToken in _AutoModuleUnlocks)
-                if (autoToken.CreatureID.Equals(name) && autoToken.TokenType != AutoTokenType.None)
-                    return true;
-
-            foreach (ModuleUnlockToken moduleToken in ModuleUnlocks)
-                if (moduleToken.CreatureID.Equals(name) && moduleToken.TokenType != TokenType.None)
-                    return true;
-
-            return false;
-        }
-
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
@@ -830,8 +814,8 @@ namespace RainWorldBestiary
         /// <returns>True if the entry should be locked, otherwise false</returns>
         public static bool DefaultEntryUnlockedCondition(EntryInfo info)
         {
-#warning Very bad performance, try something else later
-            return !string.IsNullOrWhiteSpace(info.Description.ToString());
+#warning Very bad performance, try something else later, Better than string.IsNullOrWhiteSpace(info.Description.ToString()); but still not the greatest
+            return info.Description.IsAnythingVisible();
         }
 
         /// <summary>
@@ -1054,6 +1038,28 @@ namespace RainWorldBestiary
         public IEnumerator<DescriptionModule> GetEnumerator() => _values.AsEnumerable().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
 
+
+        /// <summary>
+        /// Checks if any modules of this description are visible
+        /// </summary>
+        /// <returns>True if atleast one module is visible, otherwise false</returns>
+        public bool IsAnythingVisible()
+        {
+            foreach (DescriptionModule module in _values)
+            {
+                if (module.ModuleUnlocked)
+                {
+                    if (module.ContributesToEntryUnlock)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+
         /// <summary>
         /// Returns this description as a string where only the parts of the entry that are visible are added
         /// </summary>
@@ -1115,6 +1121,13 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonIgnore]
         public bool ModuleUnlocked => ModuleUnlockedCondition == null || ModuleUnlockedCondition(this);
+
+        /// <summary>
+        /// Whether this module contributes to making the entry visible
+        /// </summary>
+        /// <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="TokenType.None"/> for more info</remarks>
+        [JsonIgnore]
+        public bool ContributesToEntryUnlock => UnlockID == null || UnlockID.TokenType != UnlockTokenType.None;
 
         /// <summary>
         /// The text of this part of the entries description
