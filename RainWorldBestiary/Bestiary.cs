@@ -20,13 +20,6 @@ namespace RainWorldBestiary
 
         internal const string DownpourTabName = "Downpour";
 
-        /// <summary>
-        /// All the ID's of entries that have been unlocked, and can be viewed (doesn't completely unlock entry, just makes it available, individual description components must still be unlocked individually)
-        /// </summary>
-        public readonly static List<string> UnlockedEntriesIDs = new List<string>();
-
-
-
 
         internal readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
         /// <summary>
@@ -50,6 +43,7 @@ namespace RainWorldBestiary
             _AutoModuleUnlocks.Add(unlockToken);
         }
 
+
         /// <summary>
         /// All the module unlock tokens that are manually registered, you can check <see cref="TokenType"/> to see what is manually detected
         /// </summary>
@@ -71,6 +65,7 @@ namespace RainWorldBestiary
 
             ModuleUnlocks.Add(unlockToken);
         }
+
 
         /// <summary>
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
@@ -650,12 +645,12 @@ namespace RainWorldBestiary
         /// <inheritdoc cref="Add(Entry)"/>
         public void Add(string entryName, string unlockID, string iconAtlasName, Description description)
         {
-            Add(new Entry(entryName, new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, Description = description }));
+            Add(new Entry(entryName, new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = description }));
         }
         /// <inheritdoc cref="Add(Entry)"/>
         public void Add(string entryName, string unlockID, string iconAtlasName, string description)
         {
-            Add(new Entry(entryName, new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, Description = new Description(new DescriptionModule() { Body = description }) }));
+            Add(new Entry(entryName, new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = new Description(new DescriptionModule() { Body = description }) }));
         }
 
         /// <summary>
@@ -788,13 +783,13 @@ namespace RainWorldBestiary
         public Entry(string name, Description description, string unlockID = "", string iconAtlasName = "", string lockedText = "This entry is locked.")
         {
             Name = name;
-            Info = new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, Description = description, LockedText = lockedText };
+            Info = new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = description, LockedText = lockedText };
         }
         /// <inheritdoc cref="Entry(string, Description, string, string, string)"/>
         public Entry(string name, string description, string unlockID = "", string iconAtlasName = "", string lockedText = "This entry is locked.")
         {
             Name = name;
-            Info = new EntryInfo() { ID = unlockID, EntryIcon = iconAtlasName, LockedText = lockedText, Description = new Description(new DescriptionModule() { Body = description }) };
+            Info = new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, LockedText = lockedText, Description = new Description(new DescriptionModule() { Body = description }) };
         }
 
         /// <summary>
@@ -819,19 +814,19 @@ namespace RainWorldBestiary
         /// The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
         /// </summary>
         [JsonProperty("unlock_id")]
-        public string ID = string.Empty;
+        public string UnlockID = string.Empty;
 
         /// <summary>
         /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
         /// </summary>
-        /// <remarks>Defaults to <see cref="DefaultEntryUnlockedCondition(EntryInfo)"/>, which checks if <see cref="Bestiary.UnlockedEntriesIDs"/> contains <see cref="ID"/></remarks>
+        /// <remarks>Defaults to <see cref="DefaultEntryUnlockedCondition(EntryInfo)"/>, which checks if <see cref="Bestiary.UnlockedEntriesIDs"/> contains <see cref="UnlockID"/></remarks>
         [JsonIgnore]
         public Func<EntryInfo, bool> EntryUnlockedCondition = DefaultEntryUnlockedCondition;
         /// <summary>
-        /// Checks whether <see cref="ID"/> is found in <see cref="Bestiary.UnlockedEntriesIDs"/>
+        /// Checks whether any unlock tokens in <see cref="Bestiary"/> have <see cref="UnlockID"/> as <see cref="BaseUnlockModule.CreatureID"/>
         /// </summary>
-        /// <returns>True if the the entry is locked, otherwise false</returns>
-        public static bool DefaultEntryUnlockedCondition(EntryInfo info) => BestiarySettings.Cheats.UnlockAllEntries.Value || Bestiary.UnlockedEntriesIDs.Contains(info.ID);
+        /// <returns>True if the entry should be locked, otherwise false</returns>
+        public static bool DefaultEntryUnlockedCondition(EntryInfo info) => BestiarySettings.Cheats.UnlockAllEntries.Value || Bestiary.IsThereUnlockTokenWithName(info.UnlockID);
 
         /// <summary>
         /// Returns true if the entry is visible, else false
@@ -950,7 +945,7 @@ namespace RainWorldBestiary
         /// <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
         public EntryInfo(Description description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
         {
-            ID = iD;
+            UnlockID = iD;
             LockedText = lockedText;
             EntryIcon = entryIcon;
             Description = description;
@@ -964,7 +959,7 @@ namespace RainWorldBestiary
         /// <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
         public EntryInfo(string description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
         {
-            ID = iD;
+            UnlockID = iD;
             LockedText = lockedText;
             EntryIcon = entryIcon;
             Description = new Description(description);
