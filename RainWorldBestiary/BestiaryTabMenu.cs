@@ -151,8 +151,8 @@ namespace RainWorldBestiary
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
-                    TipLabel.text = Bestiary.CurrentSelectedEntry.Info.LockedText;
-                    TipLabelAlpha = 1f;
+                    TipLabel.text = OptionInterface.Translate(Bestiary.CurrentSelectedEntry.Info.LockedText);
+                    TipLabelAlpha = Mathf.Clamp(TipLabel.text.Length * 0.04f, 1.5f, 5f);
                 }
             }
         }
@@ -164,8 +164,8 @@ namespace RainWorldBestiary
 
             if (TipLabelAlpha > 0)
             {
+                TipLabelAlpha -= Time.deltaTime / Mathf.Clamp(TipLabelAlpha, 0f, 1f);
                 TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
-                TipLabelAlpha -= Time.deltaTime / TipLabelAlpha;
             }
 
             base.Update();

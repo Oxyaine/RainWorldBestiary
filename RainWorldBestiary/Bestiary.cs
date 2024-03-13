@@ -90,11 +90,11 @@ namespace RainWorldBestiary
         public static bool IsThereUnlockTokenWithName(string name)
         {
             foreach (AutoModuleUnlockToken autoToken in _AutoModuleUnlocks)
-                if (autoToken.CreatureID.Equals(name))
+                if (autoToken.CreatureID.Equals(name) && autoToken.TokenType != AutoTokenType.None)
                     return true;
 
             foreach (ModuleUnlockToken moduleToken in ModuleUnlocks)
-                if (moduleToken.CreatureID.Equals(name))
+                if (moduleToken.CreatureID.Equals(name) && moduleToken.TokenType != TokenType.None)
                     return true;
 
             return false;
@@ -175,7 +175,7 @@ namespace RainWorldBestiary
     public enum TokenType : byte
     {
         ///
-        Unknown = 0,
+        None = 0,
         /// <inheritdoc cref="UnlockTokenType.Tamed"/>
         Tamed = 1,
         /// <inheritdoc cref="UnlockTokenType.Evaded"/>
@@ -199,7 +199,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// The type of token this module unlock targets
         /// </summary>
-        public readonly TokenType TokenType = TokenType.Unknown;
+        public readonly TokenType TokenType = TokenType.None;
 
         /// <inheritdoc cref="BaseUnlockModule._value"/>
         public byte Value { get => _value; set => _value = value; }
@@ -246,7 +246,7 @@ namespace RainWorldBestiary
     public enum AutoTokenType : byte
     {
         ///
-        Unknown = 0,
+        None = 0,
         /// <inheritdoc cref="UnlockTokenType.Killed"/>
         Killed = 8,
         /// <inheritdoc cref="UnlockTokenType.Impaled"/>
@@ -266,7 +266,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// The type of token this module unlock is for
         /// </summary>
-        public readonly AutoTokenType TokenType = AutoTokenType.Unknown;
+        public readonly AutoTokenType TokenType = AutoTokenType.None;
 
         /// <inheritdoc cref="BaseUnlockModule._value"/>
         public byte Value { get => _value; internal set => _value = value; }
@@ -311,8 +311,10 @@ namespace RainWorldBestiary
     /// </summary>
     public enum UnlockTokenType : byte
     {
-        ///
-        Unknown = 0,
+        /// <summary>
+        /// This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token, this wont make the entry visible
+        /// </summary>
+        None = 0,
         /// <summary>
         /// For when the player tames the creature
         /// </summary>
@@ -371,7 +373,7 @@ namespace RainWorldBestiary
         /// The type of token this module unlock targets
         /// </summary>
         [JsonProperty("token_type")]
-        public readonly UnlockTokenType TokenType = UnlockTokenType.Unknown;
+        public readonly UnlockTokenType TokenType = UnlockTokenType.None;
 
         /// <summary>
         /// The amount of times the token specified through <see cref="BaseUnlockModule.CreatureID"/> and <see cref="TokenType"/> should be registered before this token is valid
@@ -826,7 +828,11 @@ namespace RainWorldBestiary
         /// Checks whether any unlock tokens in <see cref="Bestiary"/> have <see cref="UnlockID"/> as <see cref="BaseUnlockModule.CreatureID"/>
         /// </summary>
         /// <returns>True if the entry should be locked, otherwise false</returns>
-        public static bool DefaultEntryUnlockedCondition(EntryInfo info) => BestiarySettings.Cheats.UnlockAllEntries.Value || string.IsNullOrWhiteSpace(info.UnlockID) || Bestiary.IsThereUnlockTokenWithName(info.UnlockID);
+        public static bool DefaultEntryUnlockedCondition(EntryInfo info)
+        {
+#warning Very bad performance, try something else later
+            return !string.IsNullOrWhiteSpace(info.Description.ToString());
+        }
 
         /// <summary>
         /// Returns true if the entry is visible, else false
@@ -885,8 +891,20 @@ namespace RainWorldBestiary
         [JsonProperty("color")]
         private string JSON_Color
         {
+            //get
+            //{
+            //    UnityEngine.Color rgb = EntryColor.rgb;
+            //    rgb.r.ToString("X2");
+
+            //    return (UnityEngine.Mathf.RoundToInt(rgb.r * 255f)).ToString("X2") +
+            //        (UnityEngine.Mathf.RoundToInt(rgb.g * 255f)).ToString("X2") +
+            //        (UnityEngine.Mathf.RoundToInt(rgb.b * 255f)).ToString("X2");
+            //}
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                    return;
+
                 string def;
                 if (value.Length > 6)
                     def = value.Substring(value.Length - 6);
@@ -1046,7 +1064,7 @@ namespace RainWorldBestiary
             {
                 if (module.ModuleUnlocked)
                 {
-                    result += "\n" + module;
+                    result += "\n" + OptionInterface.Translate(module.ToString());
                 }
             }
             return result;
@@ -1090,7 +1108,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
         /// </summary>
-        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.Cheats.UnlockAllEntries.Value || info.UnlockID == null || Bestiary.IsUnlockTokenValid(info.UnlockID);
+        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.Cheats.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
         /// <summary>
         /// Returns true if the module is unlocked, else false

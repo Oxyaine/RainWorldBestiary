@@ -21,30 +21,30 @@ namespace RainWorldBestiary
 
         public override void Initialize()
         {
-            OpTab def = new OpTab(this, "Default");
-            OpTab experimental = new OpTab(this, "Experimental") { colorButton = ExperimentalColor };
-            OpTab cheats = new OpTab(this, "Cheats") { colorButton = CheatColor };
+            OpTab def = new OpTab(this, Translate("Default"));
+            OpTab experimental = new OpTab(this, Translate("Experimental")) { colorButton = ExperimentalColor };
+            OpTab cheats = new OpTab(this, Translate("Cheats")) { colorButton = CheatColor };
             Tabs = new[] { def, experimental, cheats };
 
             List<UIelement> items = new List<UIelement>();
 
             //Default Tab
-            AddElements(ref items, "Menu Fade Time", BestiarySettings.Default._MenuFadeTime, asSlider: true, description: "The time the bestiary's sub-menus will take to fade from one menu to the other.");
-            AddElements(ref items, "Show Unlock Pips", BestiarySettings.Default.ShowModuleLockPips, description: "Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.");
+            AddElements(ref items, Translate("Menu Fade Time"), BestiarySettings.Default._MenuFadeTime, asSlider: true, description: Translate("MENU_FADE_TIME_DESCRIPTION"));
+            AddElements(ref items, Translate("Show Unlock Pips"), BestiarySettings.Default.ShowModuleLockPips, description: Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, "Performance Mode", BestiarySettings.Experimental.PerformanceMode, ExperimentalColor, description: "EXPERIMENTAL: Changes a couple things in the menus that may help increase performance if you're experiencing issues");
+            AddElements(ref items, Translate("Performance Mode"), BestiarySettings.Experimental.PerformanceMode, ExperimentalColor, description: Translate("PERFORMANCE_MODE_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Cheats Tab
-            AddElements(ref items, "Unlock All Entries", BestiarySettings.Cheats.UnlockAllEntries, color: CheatColor, description: "Unlocks all entries and their full descriptions.");
+            AddElements(ref items, Translate("Unlock All Entries"), BestiarySettings.Cheats.UnlockAllEntries, color: CheatColor, description: Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
             cheats.AddItems(items.ToArray());
         }
 
