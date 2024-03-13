@@ -30,61 +30,41 @@ namespace RainWorldBestiary
             };
             pages[0].Container.AddChild(darkSprite);
 
-            try
+            FSprite bestiaryTitle = new FSprite("illustrations\\Bestiary_Title")
             {
-                Main.Logger.LogDebug("Sprite Dark Created");
+                color = new Color(162f, 157f, 170f),
+                scale = 0.6f,
+                x = Screen.width / 2,
+                y = Screen.height - 100
+            };
+            pages[0].Container.AddChild(bestiaryTitle);
 
-                FSprite bestiaryTitle = new FSprite("illustrations\\Bestiary_Title")
-                {
-                    color = new Color(162f, 157f, 170f),
-                    scale = 0.6f,
-                    x = Screen.width / 2,
-                    y = Screen.height - 100
-                };
-                pages[0].Container.AddChild(bestiaryTitle);
-
-                Main.Logger.LogDebug("Title Placed");
-
-                int X = Screen.width / 2 - ButtonSizeX / 2;
-                int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing - 200;
-                foreach (EntriesTab tab in Bestiary.EntriesTabs)
-                {
-                    if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
-                        continue;
-
-                    Main.Logger.LogDebug(tab.Count);
-                    if (tab.Count > 0)
-                    {
-                        AddButton(tab, X, currentButtonY);
-                        Main.Logger.LogDebug("Button Added");
-
-                        currentButtonY -= ButtonSizeY + ButtonSpacing;
-                    }
-                }
-
-                Main.Logger.LogDebug("Adding Back Button");
-
-                SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
-                pages[0].subObjects.Add(backButton);
-
-                backObject = backButton;
-                backButton.nextSelectable[0] = backButton;
-                backButton.nextSelectable[2] = backButton;
-
-                mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-            }
-            catch (System.Exception ex)
+            int X = Screen.width / 2 - ButtonSizeX / 2;
+            int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing - 200;
+            foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
-                Main.Logger.LogError(ex);
+                if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
+                    continue;
+
+                AddButton(tab, X, currentButtonY);
+
+                currentButtonY -= ButtonSizeY + ButtonSpacing;
             }
+
+            SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
+            pages[0].subObjects.Add(backButton);
+
+            backObject = backButton;
+            backButton.nextSelectable[0] = backButton;
+            backButton.nextSelectable[2] = backButton;
+
+            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         void AddButton(EntriesTab tab, in int x, in int y)
         {
             SimpleButton button = new SimpleButton(this, pages[0], tab.Name, string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
-            Main.Logger.LogDebug("Button Created");
             pages[0].subObjects.Add(button);
-            Main.Logger.LogDebug("Added to page");
         }
 
         public override void Update()
