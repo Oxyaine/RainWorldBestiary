@@ -826,7 +826,7 @@ namespace RainWorldBestiary
         /// Checks whether any unlock tokens in <see cref="Bestiary"/> have <see cref="UnlockID"/> as <see cref="BaseUnlockModule.CreatureID"/>
         /// </summary>
         /// <returns>True if the entry should be locked, otherwise false</returns>
-        public static bool DefaultEntryUnlockedCondition(EntryInfo info) => BestiarySettings.Cheats.UnlockAllEntries.Value || Bestiary.IsThereUnlockTokenWithName(info.UnlockID);
+        public static bool DefaultEntryUnlockedCondition(EntryInfo info) => BestiarySettings.Cheats.UnlockAllEntries.Value || string.IsNullOrWhiteSpace(info.UnlockID) || Bestiary.IsThereUnlockTokenWithName(info.UnlockID);
 
         /// <summary>
         /// Returns true if the entry is visible, else false
@@ -1090,7 +1090,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
         /// </summary>
-        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.Cheats.UnlockAllEntries.Value || Bestiary.IsUnlockTokenValid(info.UnlockID);
+        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.Cheats.UnlockAllEntries.Value || info.UnlockID == null || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
         /// <summary>
         /// Returns true if the module is unlocked, else false
