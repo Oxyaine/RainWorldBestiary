@@ -70,16 +70,34 @@ namespace RainWorldBestiary
         }
     }
 
+    /// <summary>
+    /// The main class for all the bestiary mods' settings, including remix menu options
+    /// </summary>
     public static class BestiarySettings
     {
+        /// <summary>
+        /// All settings that are uncategorized, meaning they're not considered, cheats or experimental
+        /// </summary>
         public static class Default
         {
             internal static Configurable<int> _MenuFadeTime;
-            public static float MenuFadeTime => _MenuFadeTime.Value / 10f;
+            /// <summary>
+            /// The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
+            /// </summary>
+            public static float MenuFadeTimeSeconds => _MenuFadeTime.Value / 10f;
+            /// <summary>
+            /// Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
+            /// </summary>
             public static Configurable<bool> ShowModuleLockPips;
         }
+        /// <summary>
+        /// All settings that are considered cheats
+        /// </summary>
         public static class Cheats
         {
+            /// <summary>
+            /// Whether all bestiary entries should be unlocked and completely readable
+            /// </summary>
             public static Configurable<bool> UnlockAllEntries;
         }
     }
