@@ -89,7 +89,7 @@ namespace RainWorldBestiary
                     currentX = ButtonSpacing;
                 }
 
-                bool entryLocked = tab[i].Info.EntryLocked;
+                bool entryLocked = !tab[i].Info.EntryUnlocked;
 
                 SimpleButton textButton = new SimpleButton(this, pages[0], entryLocked ? "???" : tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
                 {
@@ -142,17 +142,17 @@ namespace RainWorldBestiary
                     }
                 }
 
-                if (Bestiary.CurrentSelectedEntry.Info.EntryLocked)
+                if (Bestiary.CurrentSelectedEntry.Info.EntryUnlocked)
+                {
+                    PlaySound(SoundID.MENU_Switch_Page_In);
+                    manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedEntry.EntryReadingMenu, BestiarySettings.Default.MenuFadeTimeSeconds);
+                }
+                else
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
                     TipLabel.text = Bestiary.CurrentSelectedEntry.Info.LockedText;
                     TipLabelAlpha = 1f;
-                }
-                else
-                {
-                    PlaySound(SoundID.MENU_Switch_Page_In);
-                    manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedEntry.EntryReadingMenu, BestiarySettings.Default.MenuFadeTimeSeconds);
                 }
             }
         }

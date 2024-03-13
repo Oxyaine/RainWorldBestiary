@@ -128,7 +128,7 @@ namespace RainWorldBestiary
                 catch (Exception ex)
                 {
                     Entry er = Entry.Error;
-                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(file) + "\n" + ex.Message) { ModuleLockedCondition = e => false});
+                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(file) + "\n" + ex.Message) { ModuleUnlockedCondition = e => false});
                     entries[i] = er;
                     Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(file) + " at " + file);
                     Main.Logger.LogError(ex);

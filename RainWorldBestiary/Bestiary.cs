@@ -717,7 +717,7 @@ namespace RainWorldBestiary
         {
             Info = new EntryInfo("Something went wrong with an entry, so this has been created as a warning.\nYou can check the log to see exactly what went wrong.\n", entryIcon: "illustrations\\error")
             {
-                EntryLockedCondition = e => false,
+                EntryUnlockedCondition = e => false,
                 EntryColor = new HSLColor(0f, 0.8f, 0.6f)
             },
         };
@@ -735,22 +735,22 @@ namespace RainWorldBestiary
         public string ID = string.Empty;
 
         /// <summary>
-        /// The condition that specifies whether this entry is locked or not, if this returns true, then the entry is locked. You can leave this as the default, or set your own custom condition.
+        /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
         /// </summary>
-        /// <remarks>Defaults to <see cref="DefaultEntryLockedCondition(EntryInfo)"/>, which checks if <see cref="Bestiary.UnlockedEntriesIDs"/> contains <see cref="ID"/></remarks>
+        /// <remarks>Defaults to <see cref="DefaultEntryUnlockedCondition(EntryInfo)"/>, which checks if <see cref="Bestiary.UnlockedEntriesIDs"/> contains <see cref="ID"/></remarks>
         [JsonIgnore]
-        public Func<EntryInfo, bool> EntryLockedCondition = DefaultEntryLockedCondition;
+        public Func<EntryInfo, bool> EntryUnlockedCondition = DefaultEntryUnlockedCondition;
         /// <summary>
         /// Checks whether <see cref="ID"/> is found in <see cref="Bestiary.UnlockedEntriesIDs"/>
         /// </summary>
         /// <returns>True if the the entry is locked, otherwise false</returns>
-        public static bool DefaultEntryLockedCondition(EntryInfo info) => !BestiarySettings.Cheats.UnlockAllEntries.Value && !Bestiary.UnlockedEntriesIDs.Contains(info.ID);
+        public static bool DefaultEntryUnlockedCondition(EntryInfo info) => BestiarySettings.Cheats.UnlockAllEntries.Value || Bestiary.UnlockedEntriesIDs.Contains(info.ID);
 
         /// <summary>
-        /// Returns false if <see cref="EntryLockedCondition"/> is null, or if it returns false, otherwise true
+        /// Returns true if the entry is visible, else false
         /// </summary>
         [JsonIgnore]
-        public bool EntryLocked => EntryLockedCondition != null && EntryLockedCondition(this);
+        public bool EntryUnlocked => EntryUnlockedCondition == null || EntryUnlockedCondition(this);
 
 
         /// <summary>
@@ -932,7 +932,7 @@ namespace RainWorldBestiary
                 int count = 0;
                 foreach (DescriptionModule module in _values)
                 {
-                    if (!module.ModuleLocked)
+                    if (!module.ModuleUnlocked)
                         count++;
                 }
                 return count;
@@ -962,7 +962,7 @@ namespace RainWorldBestiary
             string result = string.Empty;
             foreach (DescriptionModule module in _values)
             {
-                if (!module.ModuleLocked)
+                if (module.ModuleUnlocked)
                 {
                     result += "\n" + module;
                 }
@@ -999,17 +999,20 @@ namespace RainWorldBestiary
         public UnlockToken UnlockID = null;
 
         /// <summary>
-        /// The condition that specifies whether this entry is locked or not, if this returns true, then the entry is locked. You can leave this as the default, or set your own custom condition.
+        /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
         /// </summary>
-        /// <remarks>Defaults to <see cref="DefaultModuleLockedCondition(DescriptionModule)"/></remarks>
+        /// <remarks>Defaults to <see cref="DefaultModuleUnlockedCondition(DescriptionModule)"/></remarks>
         [JsonIgnore]
-        public Func<DescriptionModule, bool> ModuleLockedCondition = DefaultModuleLockedCondition;
+        public Func<DescriptionModule, bool> ModuleUnlockedCondition = DefaultModuleUnlockedCondition;
 
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
         /// </summary>
-        public static bool DefaultModuleLockedCondition(DescriptionModule info)
+        public static bool DefaultModuleUnlockedCondition(DescriptionModule info)
         {
+            if (BestiarySettings.Cheats.UnlockAllEntries.Value)
+                return true;
+
             foreach (AutoModuleUnlockToken autoToken in Bestiary.AutoModuleUnlocks)
                 if (info.UnlockID.Equals(autoToken))
                     return true;
@@ -1022,10 +1025,10 @@ namespace RainWorldBestiary
         }
 
         /// <summary>
-        /// Returns false if <see cref="ModuleLockedCondition"/> is null, or if it returns false, otherwise true
+        /// Returns true if the module is unlocked, else false
         /// </summary>
         [JsonIgnore]
-        public bool ModuleLocked => ModuleLockedCondition != null && ModuleLockedCondition(this);
+        public bool ModuleUnlocked => ModuleUnlockedCondition == null || ModuleUnlockedCondition(this);
 
         /// <summary>
         /// The text of this part of the entries description
