@@ -25,16 +25,16 @@ namespace RainWorldBestiary
         /// </summary>
         public readonly static List<string> UnlockedEntriesIDs = new List<string>();
 
-        internal readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
+        internal readonly static AutoModuleUnlockTokenList _AutoModuleUnlocks = new AutoModuleUnlockTokenList();
         /// <summary>
         /// All the module unlock tokens that are automatically tallied and registered, you can check <see cref="AutoTokenType"/> to see what is automatically detected
         /// </summary>
-        public static List<AutoModuleUnlockToken> AutoModuleUnlocks => _AutoModuleUnlocks;
+        public static AutoModuleUnlockTokenList AutoModuleUnlocks => _AutoModuleUnlocks;
 
         /// <summary>
         /// All the module unlock tokens that are manually registered, you can check <see cref="TokenType"/> to see what is manually detected
         /// </summary>
-        public readonly static List<ModuleUnlockToken> ModuleUnlocks = new List<ModuleUnlockToken>();
+        public readonly static ModuleUnlockTokenList ModuleUnlocks = new ModuleUnlockTokenList();
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
@@ -50,6 +50,127 @@ namespace RainWorldBestiary
         /// The entry that is currently selected
         /// </summary>
         public static Entry CurrentSelectedEntry { get; internal set; }
+
+
+        /// <inheritdoc cref="GetCreatureUnlockName(AbstractCreature)"/>
+        public static string GetCreatureUnlockName(Creature creature) => GetCreatureUnlockName(creature.abstractCreature);
+        /// <summary>
+        /// Gets the creatures name through <see cref="AbstractCreature.creatureTemplate"/> and removes all white space characters
+        /// </summary>
+        public static string GetCreatureUnlockName(AbstractCreature creature)
+        {
+            return creature.creatureTemplate.name.Trim().Replace(" ", "");
+        }
+    }
+
+    /// <summary>
+    /// A class representing a list of AutoModuleUnlockTokens, has custom behaviours and accessors
+    /// </summary>
+    public class AutoModuleUnlockTokenList : IEnumerable<AutoModuleUnlockToken>
+    {
+        private readonly List<AutoModuleUnlockToken> _values = new List<AutoModuleUnlockToken>();
+
+        /// <summary>
+        /// Gets the amount of items in this list
+        /// </summary>
+        public int Count => _values.Count;
+
+        /// <inheritdoc/>
+        internal void AddOrIncrease(AutoModuleUnlockToken item)
+        {
+            for (int i = 0; i < _values.Count; i++)
+            {
+                if (_values[i].Equals(item))
+                {
+                    _values[i]++;
+                    return;
+                }
+            }
+
+            _values.Add(item);
+        }
+
+        /// <summary>
+        /// Checks if the given token is valid in this collection, meaning the type and id are equal, and the value is greater than or equal to the other value
+        /// </summary>
+        public bool IsTokenValid(AutoModuleUnlockToken item)
+        {
+            foreach (AutoModuleUnlockToken autoToken in _values)
+                if (item.Equals(autoToken))
+                    return true;
+
+            return false;
+        }
+        /// <inheritdoc cref="IsTokenValid(AutoModuleUnlockToken)"/>
+        public bool IsTokenValid(UnlockToken item)
+        {
+            foreach (AutoModuleUnlockToken autoToken in _values)
+                if (item.Equals(autoToken))
+                    return true;
+
+            return false;
+        }
+
+        /// <inheritdoc/>
+        public IEnumerator<AutoModuleUnlockToken> GetEnumerator() => _values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
+    }
+    /// <summary>
+    /// A class representing a list of ModuleUnlockTokens, has custom behaviours and accessors
+    /// </summary>
+    public class ModuleUnlockTokenList : IEnumerable<ModuleUnlockToken>
+    {
+        private readonly List<ModuleUnlockToken> _values = new List<ModuleUnlockToken>();
+
+        /// <summary>
+        /// Gets the amount of items in this list
+        /// </summary>
+        public int Count => _values.Count;
+
+        /// <inheritdoc/>
+        public void AddOrIncrease(ModuleUnlockToken item)
+        {
+            for (int i = 0; i < _values.Count; i++)
+            {
+                if (_values[i].Equals(item))
+                {
+                    _values[i]++;
+                    return;
+                }
+            }
+
+            _values.Add(item);
+        }
+
+        /// <summary>
+        /// Removes this exact item from the collection, exact meaning even the value has to be the same
+        /// </summary>
+        public void RemoveExact(ModuleUnlockToken item) => _values.Remove(item);
+
+        /// <summary>
+        /// Checks if the given token is valid in this collection, meaning the type and id are equal, and the value is greater than or equal to the other value
+        /// </summary>
+        public bool IsTokenValid(ModuleUnlockToken item)
+        {
+            foreach (ModuleUnlockToken autoToken in _values)
+                if (item.Equals(autoToken))
+                    return true;
+
+            return false;
+        }
+        /// <inheritdoc cref="IsTokenValid(ModuleUnlockToken)"/>
+        public bool IsTokenValid(UnlockToken item)
+        {
+            foreach (ModuleUnlockToken autoToken in _values)
+                if (item.Equals(autoToken))
+                    return true;
+
+            return false;
+        }
+
+        /// <inheritdoc/>
+        public IEnumerator<ModuleUnlockToken> GetEnumerator() => _values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
     }
 
 
@@ -100,14 +221,14 @@ namespace RainWorldBestiary
     {
         ///
         Unknown = 0,
-        /// <inheritdoc cref="UnlockTokenType.Taming"/>
-        Taming = 1,
-        /// <inheritdoc cref="UnlockTokenType.Evading"/>
-        Evading = 2,
-        /// <inheritdoc cref="UnlockTokenType.Sneaking"/>
-        Sneaking = 3,
-        /// <inheritdoc cref="UnlockTokenType.Observing"/>
-        Observing = 4,
+        /// <inheritdoc cref="UnlockTokenType.Tamed"/>
+        Tamed = 1,
+        /// <inheritdoc cref="UnlockTokenType.Evaded"/>
+        Evaded = 2,
+        /// <inheritdoc cref="UnlockTokenType.SnuckPast"/>
+        SnuckPast = 3,
+        /// <inheritdoc cref="UnlockTokenType.Observed"/>
+        Observed = 4,
         /// <inheritdoc cref="UnlockTokenType.ObserveFear"/>
         ObserveFear = 5,
         /// <inheritdoc cref="UnlockTokenType.ObserveFood"/>
@@ -171,14 +292,16 @@ namespace RainWorldBestiary
     {
         ///
         Unknown = 0,
-        /// <inheritdoc cref="UnlockTokenType.Killing"/>
-        Killing = 8,
-        /// <inheritdoc cref="UnlockTokenType.Impaling"/>
-        Impaling = 9,
-        /// <inheritdoc cref="UnlockTokenType.Stunning"/>
-        Stunning = 10,
         /// <inheritdoc cref="UnlockTokenType.Killed"/>
-        Killed = 11,
+        Killed = 8,
+        /// <inheritdoc cref="UnlockTokenType.Impaled"/>
+        Impaled = 9,
+        /// <inheritdoc cref="UnlockTokenType.Stunned"/>
+        Stunned = 10,
+        /// <inheritdoc cref="UnlockTokenType.KilledPlayer"/>
+        KilledPlayer = 11,
+        /// <inheritdoc cref="UnlockTokenType.GrabbedPlayer"/>
+        GrabbedPlayer = 12,
     }
     /// <summary>
     /// A class that represents an unlock token for a description module, this class represents an automated unlock token
@@ -238,19 +361,19 @@ namespace RainWorldBestiary
         /// <summary>
         /// For when the player tames the creature
         /// </summary>
-        Taming = 1,
+        Tamed = 1,
         /// <summary>
         /// For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
         /// </summary>
-        Evading = 2,
+        Evaded = 2,
         /// <summary>
         /// For when the player sneaks past a creature
         /// </summary>
-        Sneaking = 3,
+        SnuckPast = 3,
         /// <summary>
         /// For when the player sees the creature
         /// </summary>
-        Observing = 4,
+        Observed = 4,
         /// <summary>
         /// For when the player sees the creature run away in fear
         /// </summary>
@@ -266,19 +389,23 @@ namespace RainWorldBestiary
         /// <summary>
         /// When the creature is killed by the player
         /// </summary>
-        Killing = 8,
+        Killed = 8,
         /// <summary>
         /// When the creature impaled with a spear, by the player
         /// </summary>
-        Impaling = 9,
+        Impaled = 9,
         /// <summary>
         /// When the creature is stunned with a rock, by the player
         /// </summary>
-        Stunning = 10,
+        Stunned = 10,
         /// <summary>
         /// When the player is killed by the creature
         /// </summary>
-        Killed = 11
+        KilledPlayer = 11,
+        /// <summary>
+        /// When the player is grabbed by the creature
+        /// </summary>
+        GrabbedPlayer = 12,
     }
     /// <summary>
     /// An unlock token, that can be used to detect whether this module is unlocked
@@ -1013,15 +1140,7 @@ namespace RainWorldBestiary
             if (BestiarySettings.Cheats.UnlockAllEntries.Value)
                 return true;
 
-            foreach (AutoModuleUnlockToken autoToken in Bestiary.AutoModuleUnlocks)
-                if (info.UnlockID.Equals(autoToken))
-                    return true;
-
-            foreach (ModuleUnlockToken moduleUnlock in Bestiary.ModuleUnlocks)
-                if (info.UnlockID.Equals(moduleUnlock))
-                    return true;
-
-            return false;
+            return Bestiary._AutoModuleUnlocks.IsTokenValid(info.UnlockID) || Bestiary.ModuleUnlocks.IsTokenValid(info.UnlockID);
         }
 
         /// <summary>
