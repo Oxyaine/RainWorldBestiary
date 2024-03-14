@@ -9,23 +9,29 @@ Whenever I change the code (in a way that would break dependent mods, for exampl
 # First Things First
 Everything in the mod (to do with managing and working with entries), is stored in the `Bestiary` class, all settings, including remix menu settings are in the `BestiarySettings` class. Most things should be accessible from these classes, however if something is missing or you'd like something added, leave a issue request and I'll see what I can do.
 
-# Details
-*TODO*
 
+# Structure
+
+Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a 
+
+
+# Tabs
+
+Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
+When adding entries, you can add your own tab, or use the `Modded` tab if your mod only adds a few entries that don't really warrant an entire new tab to be added.
+To add entries to the `Modded` tab, just call your folder in the bestiary `Modded` or set the name in your tab's JSON file to `Modded` (*case sensitive*)
 
 # Unlock Token Types
 
-**Automatic:**
-Automatic unlock tokens are tokens that are automatically tracked and added by the mod.
-* Killed = 8 : Whenever the player gets killed by a creature
+Automatic unlock tokens are tokens that are automatically tracked and added by the mod. Here is a list of all automatic token types:
+* Killed = 8 : When the player gets killed by a creature
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
 * Stunned = 10 : When the creature gets stunned, by the player
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 
 
-**Manual**
-Manual tokens are tokens that the mod does not track by itself, and must be tracked by your mod. These are usually manual because they are specific to one creature, or one type of creature, so it cannot be tracked for all creatures without explicit implementation.
+Manual tokens are tokens that the mod does not track by itself, and must be tracked by your mod. These are usually manual because they are specific to one creature, or one type of creature, so it cannot be tracked for all creatures without explicit implementation. Here is a list of all manual token types:
 * Tamed = 1 : For when the player tames the creature
 * Evaded = 2 : For when the player evades the creature
 * Snuck Past = 3 : For when the player sneaks past the creature
