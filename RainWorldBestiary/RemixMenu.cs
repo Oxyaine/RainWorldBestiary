@@ -1,4 +1,5 @@
 ﻿using Menu.Remix.MixedUI;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +8,16 @@ namespace RainWorldBestiary
     internal class RemixMenu : OptionInterface
     {
         private Color CheatColor = new Color(1f, 0.5f, 0.5f);
-        private Color ExperimentalColor = new Color(0.5f, 0.8f, 0.5f);
+        private Color ExperimentalColor = new Color(0.5f, 0.8f, 0.7f);
 
         public RemixMenu()
         {
-            BestiarySettings.Default._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
-            BestiarySettings.Default.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
+            BestiarySettings._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
+            BestiarySettings.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
 
-            BestiarySettings.Experimental.PerformanceMode = config.Bind("oxyaine_bestiary_performance_mode", false);
+            BestiarySettings.PerformanceMode = config.Bind("oxyaine_bestiary_performance_mode", false);
 
-            BestiarySettings.Cheats.UnlockAllEntries = config.Bind("oxyaine_bestiary_unlock_all_entries", false);
+            BestiarySettings.UnlockAllEntries = config.Bind("oxyaine_bestiary_unlock_all_entries", false);
         }
 
         public override void Initialize()
@@ -29,22 +30,22 @@ namespace RainWorldBestiary
             List<UIelement> items = new List<UIelement>();
 
             //Default Tab
-            AddElements(ref items, Translate("Menu Fade Time"), BestiarySettings.Default._MenuFadeTime, asSlider: true, description: Translate("MENU_FADE_TIME_DESCRIPTION"));
-            AddElements(ref items, Translate("Show Unlock Pips"), BestiarySettings.Default.ShowModuleLockPips, description: Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
+            AddElements(ref items, Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translate("MENU_FADE_TIME_DESCRIPTION"));
+            AddElements(ref items, Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, Translate("Performance Mode"), BestiarySettings.Experimental.PerformanceMode, ExperimentalColor, description: Translate("PERFORMANCE_MODE_DESCRIPTION"));
+            AddElements(ref items, Translate("Performance Mode"), BestiarySettings.PerformanceMode, ExperimentalColor, description: Translate("PERFORMANCE_MODE_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Cheats Tab
-            AddElements(ref items, Translate("Unlock All Entries"), BestiarySettings.Cheats.UnlockAllEntries, color: CheatColor, description: Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
+            AddElements(ref items, Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
             cheats.AddItems(items.ToArray());
         }
 
@@ -87,41 +88,29 @@ namespace RainWorldBestiary
     /// The main class for all the bestiary mods' settings, including remix menu options
     /// </summary>
     public static class BestiarySettings
-    {   
+    {
+        internal static Configurable<int> _MenuFadeTime;
         /// <summary>
-        /// All settings that are uncategorized, meaning they're not considered, cheats or experimental
+        /// The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
         /// </summary>
-        public static class Default
-        {
-            internal static Configurable<int> _MenuFadeTime;
-            /// <summary>
-            /// The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
-            /// </summary>
-            public static float MenuFadeTimeSeconds => _MenuFadeTime.Value / 10f;
-            /// <summary>
-            /// Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
-            /// </summary>
-            public static Configurable<bool> ShowModuleLockPips;
-        }
+        public static float MenuFadeTimeSeconds => _MenuFadeTime.Value / 10f;
         /// <summary>
-        /// All settings that are currently experimental
+        /// Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
         /// </summary>
-        public static class Experimental
-        {
-            /// <summary>
-            /// Changes some things about the bestiary for better performance
-            /// </summary>
-            public static Configurable<bool> PerformanceMode;
-        }
+        public static Configurable<bool> ShowModuleLockPips;
+
+
+
         /// <summary>
-        /// All settings that are considered cheats
+        /// Changes some things about the bestiary for better performance
         /// </summary>
-        public static class Cheats
-        {
-            /// <summary>
-            /// Whether all bestiary entries should be unlocked and completely readable
-            /// </summary>
-            public static Configurable<bool> UnlockAllEntries;
-        }
+        public static Configurable<bool> PerformanceMode;
+
+
+
+        /// <summary>
+        /// Whether all bestiary entries should be unlocked and completely readable
+        /// </summary>
+        public static Configurable<bool> UnlockAllEntries;
     }
 }

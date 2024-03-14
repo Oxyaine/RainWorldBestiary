@@ -82,7 +82,7 @@ namespace RainWorldBestiary
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
         /// </summary>
         /// <remarks>Returns true if value is equal to OR greater than the value in the registered token<code></code>
-        /// Does not take into account if <see cref="BestiarySettings.Cheats.UnlockAllEntries"/> is toggled</remarks>
+        /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(UnlockToken unlockToken)
         {
             foreach (AutoModuleUnlockToken autoToken in _AutoModuleUnlocks)
@@ -95,6 +95,7 @@ namespace RainWorldBestiary
 
             return false;
         }
+
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
@@ -1179,7 +1180,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
         /// </summary>
-        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.Cheats.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
+        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
         /// <summary>
         /// Returns true if the module is unlocked, else false
