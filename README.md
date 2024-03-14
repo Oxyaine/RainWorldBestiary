@@ -16,7 +16,22 @@ Everything in the mod (to do with managing and working with entries), is stored 
 # Unlock Token Types
 
 **Automatic:**
-* Killed (8) - Whenever the player gets killed by a creature
+Automatic unlock tokens are tokens that are automatically tracked and added by the mod.
+* Killed = 8 : Whenever the player gets killed by a creature
+* Impaled = 9 : When the creature gets impaled with a spear, by the player
+* Stunned = 10 : When the creature gets stunned, by the player
+* Killed Player = 11 : When the player is killed by the creature
+* Grabbed Player = 12 : When the player gets grabbed by the creature
 
 
 **Manual**
+Manual tokens are tokens that the mod does not track by itself, and must be tracked by your mod. These are usually manual because they are specific to one creature, or one type of creature, so it cannot be tracked for all creatures without explicit implementation.
+* Tamed = 1 : For when the player tames the creature
+* Evaded = 2 : For when the player evades the creature
+* Snuck Past = 3 : For when the player sneaks past the creature
+* Observed = 4 : For when the player sees the creature
+* Observe Fear = 5 : For when the player sees the creature fear something
+* Observe Food = 6 : For when the player sees the creature want to eat something or eating something
+* Observe Hunting = 7 : For when the player gets hunted / chased by the creature
+* Eaten = 13 : For when the player eats the creature
+* Observe Attraction = 14 : For when the player observes a creature being attracted to something
