@@ -12,14 +12,15 @@ Everything in the mod (to do with managing and working with entries), is stored 
 
 # Structure
 
-Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a 
+Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a [Tab](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tabs).
+
 
 
 # Tabs
 
 Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
 When adding entries, you can add your own tab, or use the `Modded` tab if your mod only adds a few entries that don't really warrant an entire new tab to be added.
-To add entries to the `Modded` tab, just call your folder in the bestiary `Modded` or set the name in your tab's JSON file to `Modded` (*case sensitive*)
+To add entries to the `Modded` tab, just call your tab folder `Modded` or set the name in your tab's JSON file to `Modded` (*case sensitive*)
 
 # Unlock Token Types
 
