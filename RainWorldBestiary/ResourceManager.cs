@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace RainWorldBestiary
         private static bool Initialized = false;
 
         static string ModDirectory = null;
+
+        private static readonly List<string> LoadedMods = new List<string>();
 
         internal static readonly List<Font> CustomFonts = new List<Font>();
         internal static bool GetCustomFontByName(string fontName, out Font result)
@@ -63,27 +66,71 @@ namespace RainWorldBestiary
                     }
                 }
 
-                GetAllEntries();
+                CheckForUnregisteredEntries();
             }
         }
 
-        internal static void GetAllEntries()
-        {
-            const string EntriesLocalPath = "bestiary";
+        const string EntriesLocalPath = "bestiary";
 
-            foreach (ModManager.Mod mod in ModManager.ActiveMods)
+        internal static IEnumerator UnloadMods(ModManager.Mod[] disabledMods)
+        {
+            List<string> IDs = new List<string>();
+            foreach (ModManager.Mod mod in disabledMods)
             {
-                if (mod.enabled)
+                IDs.Add(mod.id);
+                LoadedMods.Remove(mod.id);
+            }
+
+            for (short t = 0; t < Bestiary.EntriesTabs.Count; ++t)
+            {
+                if (Bestiary.EntriesTabs[t].ContributingMods.ContainsAny(IDs))
                 {
-                    string path = Path.Combine(mod.path, EntriesLocalPath);
-                    if (Directory.Exists(path))
+                    for (short e = 0; e < Bestiary.EntriesTabs[t].Count; ++e)
                     {
-                        CheckFolder(path);
+                        if (IDs.Contains(Bestiary.EntriesTabs[t][e].OwningModID))
+                        {
+                            Bestiary.EntriesTabs[t].RemoveAt(e);
+                            --e;
+                        }
+
+                        yield return null;
                     }
                 }
             }
         }
-        internal static void CheckFolder(string path)
+        internal static IEnumerator LoadMods(ModManager.Mod[] enabledMods)
+        {
+            foreach (ModManager.Mod mod in enabledMods)
+            {
+                if (!LoadedMods.Contains(mod.id))
+                {
+                    string path= Path.Combine(mod.path, EntriesLocalPath);
+                    if (Directory.Exists(path))
+                    {
+                        CheckFolder(path, mod.id);
+                        yield return null;
+                    }
+                    LoadedMods.Add(mod.id);
+                }
+            }
+        }
+
+        internal static void CheckForUnregisteredEntries()
+        {
+            foreach (ModManager.Mod mod in ModManager.ActiveMods)
+            {
+                if (mod.enabled && !LoadedMods.Contains(mod.id))
+                {
+                    string path = Path.Combine(mod.path, EntriesLocalPath);
+                    if (Directory.Exists(path))
+                    {
+                        CheckFolder(path, mod.id);
+                    }
+                    LoadedMods.Add(mod.id);
+                }
+            }
+        }
+        private static void CheckFolder(string path, string modID)
         {
             string[] folders = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
             foreach (string folder in folders)
@@ -109,13 +156,15 @@ namespace RainWorldBestiary
                 }
 
                 string[] files = Directory.GetFiles(folder, "*", SearchOption.AllDirectories);
-                Entry[] entries = GetFilesAsEntries(files);
+                Entry[] entries = GetFilesAsEntries(files, modID);
                 tab.AddRange(entries);
 
                 Bestiary.EntriesTabs.Add(tab, true);
+
+                Main.StartCoroutinePtr(CheckEntryUnlocks(entries));
             }
         }
-        internal static Entry[] GetFilesAsEntries(string[] files)
+        private static Entry[] GetFilesAsEntries(string[] files, string owningModID)
         {
             Entry[] entries = new Entry[files.Count()];
             int i = 0;
@@ -123,7 +172,7 @@ namespace RainWorldBestiary
             {
                 try
                 {
-                    entries[i] = new Entry(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)));
+                    entries[i] = new Entry(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)), owningModID);
                 }
                 catch (Exception ex)
                 {
@@ -138,6 +187,17 @@ namespace RainWorldBestiary
             }
 
             return entries;
+        }
+
+        static IEnumerator CheckEntryUnlocks(Entry[] entries)
+        {
+            foreach (Entry entry in entries)
+            {
+                if (entry.Info.Description.IsAnythingVisible())
+                    Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
+
+                yield return null;
+            }
         }
     }
 
