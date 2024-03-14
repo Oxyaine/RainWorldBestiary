@@ -27,13 +27,13 @@ If your mod adds a tab with the same name as an existing tab, the tabs will be "
 
 Tabs can be given a JSON file to specify some additional details about the tab, or to separate the folder name and the tabs name. The JSON file can contain the following elements:
 
-## "name"
+### "name"
 The name of the tab.
 
-## "title_image"
+### "title_image"
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab.
 
-## "tab_menu_process_id"
+### "tab_menu_process_id"
 The value of the ProcessID that will be transmitted when the tab is pressed to open, this is part of how the game switches menu processes, you can read a few more details [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#menu-process).
 
 
