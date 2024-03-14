@@ -11,3 +11,12 @@ Everything in the mod (to do with managing and working with entries), is stored 
 
 # Details
 *TODO*
+
+
+# Unlock Token Types
+
+**Automatic:**
+* Killed (8) - Whenever the player gets killed by a creature
+
+
+**Manual**
