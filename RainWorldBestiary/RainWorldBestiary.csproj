@@ -370,8 +370,9 @@
     <Compile Include="RemixMenu.cs" />
     <Compile Include="ResourceManager.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Template\" />
+    <None Include="Template\Test.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
