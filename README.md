@@ -19,13 +19,29 @@ Entries can be added to the bestiary without making the mod a dependency! This c
 
 Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
 When adding entries, you can add your own tab, or use the `Modded` tab if your mod only adds a few entries, that don't really warrant an entire new tab to be added.
-To add entries to the `Modded` tab, just call your tab folder `Modded` or set the name in your [tab's JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tabs) to `Modded` (*case sensitive*)
-If your mod adds a tab with the same name as an existing tab, the tabs will be "merged", meaning your entries will be added to the existing tab. Some other logic is used to determine whether 
+To add entries to the `Modded` tab, just call your tab folder `Modded` or set the name in your [tab's JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#structure---tabs) to `Modded` (*case sensitive*)
+If your mod adds a tab with the same name as an existing tab, the tabs will be "merged", meaning your entries will be added to the existing tab. If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-image) and the existing tab doesn't, your tabs title image will be used. Same logic applies to [`tab_menu_process_id`](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#menu-process).
+
 
 # Structure - Tabs
 
+Tabs can be given a JSON file to specify some additional details about the tab, or to separate the folder name and the tabs name. The JSON file can contain the following elements:
+
+### "name"
+The
+
 
 # Structure - Entries
+
+
+
+
+# Title Image
+
+
+
+
+# Menu Process
 
 
 
