@@ -21,6 +21,13 @@ namespace RainWorldBestiary
         internal const string DownpourTabName = "Downpour";
 
 
+        internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
+
+        /// <summary>
+        /// All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
+        /// </summary>
+        public readonly static List<string> CreatureUnlockIDs = new List<string>();
+
         internal readonly static List<AutoModuleUnlockToken> _AutoModuleUnlocks = new List<AutoModuleUnlockToken>();
         /// <summary>
         /// All the module unlock tokens that are automatically tallied and registered, you can check <see cref="AutoTokenType"/> to see what is automatically detected
@@ -587,6 +594,9 @@ namespace RainWorldBestiary
         [JsonIgnore]
         readonly List<Entry> _entries = new List<Entry>();
 
+        [JsonIgnore]
+        internal List<string> ContributingMods = new List<string>();
+
         /// <summary>
         /// Creates an empty <see cref="EntriesTab"/>
         /// </summary>
@@ -620,33 +630,39 @@ namespace RainWorldBestiary
         /// Gets the amount of entries in this tab
         /// </summary>
         public int Count => _entries.Count;
-        /// <inheritdoc/>
-        public bool IsReadOnly => ((ICollection<Entry>)_entries).IsReadOnly;
-        /// <summary>
-        /// Adds a new entry to this tab
-        /// </summary>
-        /// <exception cref="Exception"></exception>
+
+        /// <inheritdoc cref="Add(string, string, string, string, string)"/>
         public void Add(Entry item)
         {
             if (Contains(item.Name))
                 throw new Exception("The entry with the name " + item.Name + " already exists in this tab!");
 
             _entries.Add(item);
+
+            if (!ContributingMods.Contains(item.OwningModID))
+                ContributingMods.Add(item.OwningModID);
         }
-        /// <inheritdoc cref="Add(Entry)"/>
-        public void Add(string entryName, EntryInfo info)
+        /// <inheritdoc cref="Add(string, string, string, string, string)"/>
+        public void Add(string entryName, EntryInfo info, string owningModID = null)
         {
-            Add(new Entry(entryName, info));
+            Add(new Entry(entryName, info, owningModID));
         }
-        /// <inheritdoc cref="Add(Entry)"/>
-        public void Add(string entryName, string unlockID, string iconAtlasName, Description description)
+        /// <inheritdoc cref="Add(string, string, string, string, string)"/>
+        public void Add(string entryName, string unlockID, string iconAtlasName, Description description, string owningModID = null)
         {
-            Add(new Entry(entryName, new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = description }));
+            Add(new Entry(entryName, new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = description }, owningModID));
         }
-        /// <inheritdoc cref="Add(Entry)"/>
-        public void Add(string entryName, string unlockID, string iconAtlasName, string description)
+        /// <summary>
+        /// Adds a new entry to this tab
+        /// </summary>
+        /// <param name="owningModID"><inheritdoc cref="Entry(string, string)"/></param>
+        /// <param name="entryName"></param>
+        /// <param name="unlockID"></param>
+        /// <param name="iconAtlasName"></param>
+        /// <param name="description"></param>
+        public void Add(string entryName, string unlockID, string iconAtlasName, string description, string owningModID = null)
         {
-            Add(new Entry(entryName, new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = new Description(new DescriptionModule() { Body = description }) }));
+            Add(new Entry(entryName, new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = new Description(new DescriptionModule() { Body = description }) }, owningModID));
         }
 
         /// <summary>
@@ -677,16 +693,25 @@ namespace RainWorldBestiary
         {
             _entries.AddRange(tab._entries);
 
+            foreach (string contributor in tab.ContributingMods)
+                if (ContributingMods.Contains(contributor))
+                    ContributingMods.Add(contributor);
+
             if (TitleImage == null)
                 TitleImage = tab.TitleImage;
 
             if (TabMenuProcessID == Main.BestiaryTabMenu && tab.TabMenuProcessID != Main.BestiaryTabMenu)
                 TabMenuProcessID = tab.TabMenuProcessID;
         }
-
-        /// <inheritdoc/>
+        
+        /// <summary>
+        /// Clears this tab of all its entries
+        /// </summary>
         public void Clear() => _entries.Clear();
-        /// <inheritdoc/>
+        
+        /// <summary>
+        /// Checks if this tab contains the given entry
+        /// </summary>
         public bool Contains(Entry item) => _entries.Contains(item);
         /// <summary>
         /// Determines whether this tab contains an entry with the given name
@@ -702,10 +727,19 @@ namespace RainWorldBestiary
 
             return false;
         }
-        /// <inheritdoc/>
+        
+        /// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
         public void CopyTo(Entry[] array, int arrayIndex) => _entries.CopyTo(array, arrayIndex);
-        /// <inheritdoc/>
+        
+        /// <summary>
+        /// Removes the given entry from this tab
+        /// </summary>
         public bool Remove(Entry item) => _entries.Remove(item);
+
+        /// <summary>
+        /// Removes an entry at the specified index
+        /// </summary>
+        public void RemoveAt(int index) => _entries.RemoveAt(index);
 
         /// <summary>
         /// Gets or sets an entry at the given index
@@ -738,35 +772,40 @@ namespace RainWorldBestiary
     /// <summary>
     /// A class representing an entry
     /// </summary>
-    public class Entry
+    public class Entry : IEquatable<Entry>
     {
         /// <summary>
         /// The name of this entry
         /// </summary>
-        public string Name;
+        public string Name = string.Empty;
         /// <summary>
         /// The information of this entry, such as its unlock id, icon, scene to show while reading, and description
         /// </summary>
-        public EntryInfo Info;
+        public EntryInfo Info = new EntryInfo();
 
         /// <summary>
         /// The process ID that gets called when an entry button gets pressed, you can leave this as the default menu, or make a custom menu to display the entry's information.
         /// </summary>
         public ProcessManager.ProcessID EntryReadingMenu = Main.EntryReadingMenu;
 
+        internal readonly string OwningModID = null;
+
         ///
         public Entry()
         {
-            Name = "";
-            Info = new EntryInfo();
         }
-        ///
-        public Entry(string name)
+        ///<param name="name"></param>
+        /// <param name="owningModID">The ID of the mod (id that is set in `modinfo.json` file), that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled</param>
+        public Entry(string name, string owningModID = null) : this()
         {
             Name = name;
+            OwningModID = owningModID;
         }
-        ///
-        public Entry(string name, EntryInfo info)
+        /// <param name="info">The entry's info</param>
+        /// <inheritdoc cref="Entry(string, string)"/>
+        /// <param name="name"></param>
+        /// <param name="owningModID"></param>
+        public Entry(string name, EntryInfo info, string owningModID = null) : this(name, owningModID)
         {
             Name = name;
             Info = info;
@@ -776,15 +815,17 @@ namespace RainWorldBestiary
         /// <param name="unlockID">The ID that will be used to determine whether this entry is unlocked or not</param>
         /// <param name="iconAtlasName">The name of the entry's icon in the atlas manager</param>
         /// <param name="lockedText">The text that is shown when pressing on the entry while its locked</param>
-        public Entry(string name, Description description, string unlockID = "", string iconAtlasName = "", string lockedText = "This entry is locked.")
+        /// <inheritdoc cref="Entry(string, string)"/>
+        /// <param name="owningModID"></param>
+        public Entry(string name, Description description, string unlockID = "", string iconAtlasName = "", string lockedText = EntryInfo.BaseLockedText, string owningModID = null)
+            : this(name, owningModID)
         {
-            Name = name;
             Info = new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, Description = description, LockedText = lockedText };
         }
-        /// <inheritdoc cref="Entry(string, Description, string, string, string)"/>
-        public Entry(string name, string description, string unlockID = "", string iconAtlasName = "", string lockedText = "This entry is locked.")
+        /// <inheritdoc cref="Entry(string, Description, string, string, string, string)"/>
+        public Entry(string name, string description, string unlockID = "", string iconAtlasName = "", string lockedText = EntryInfo.BaseLockedText, string owningModID = null)
+            : this(name, owningModID)
         {
-            Name = name;
             Info = new EntryInfo() { UnlockID = unlockID, EntryIcon = iconAtlasName, LockedText = lockedText, Description = new Description(new DescriptionModule() { Body = description }) };
         }
 
@@ -799,13 +840,23 @@ namespace RainWorldBestiary
                 EntryColor = new HSLColor(0f, 0.8f, 0.6f)
             },
         };
+
+        /// <summary>
+        /// Checks if this entry is the same as another entry
+        /// </summary>
+        public bool Equals(Entry other) => OwningModID.Equals(other.OwningModID) && Name.Equals(other.Name) && Info.Equals(other.Info);
     }
 
     /// <summary>
     /// The contents of the entry file
     /// </summary>
-    public class EntryInfo
+    public class EntryInfo : IEquatable<EntryInfo>
     {
+        /// <summary>
+        /// A constant defining the default text that is shown when attempting to read a locked entry
+        /// </summary>
+        public const string BaseLockedText = "This entry is locked.";
+
         /// <summary>
         /// The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
         /// </summary>
@@ -824,9 +875,13 @@ namespace RainWorldBestiary
         /// <returns>True if the entry should be locked, otherwise false</returns>
         public static bool DefaultEntryUnlockedCondition(EntryInfo info)
         {
-#warning Very bad performance, try something else later, Better than string.IsNullOrWhiteSpace(info.Description.ToString()); but still not the greatest
-            return info.Description.IsAnythingVisible();
+            return Bestiary.CreatureUnlockIDs.Contains(info.UnlockID) || Bestiary.CreatureUnlockIDsOverride.Contains(info.UnlockID);
         }
+
+        /// <summary>
+        /// Checks if this entry info's unlock id and icons match
+        /// </summary>
+        public bool Equals(EntryInfo other) => UnlockID.Equals(other.UnlockID) && EntryIcons.SequenceEqual(other.EntryIcons);
 
         /// <summary>
         /// Returns true if the entry is visible, else false
@@ -839,7 +894,7 @@ namespace RainWorldBestiary
         /// The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
         /// </summary>
         [JsonProperty("locked_text")]
-        public string LockedText = "This entry is locked.";
+        public string LockedText = BaseLockedText;
 
 
         /// <summary>
@@ -955,7 +1010,7 @@ namespace RainWorldBestiary
         /// <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
         /// <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
         /// <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
-        public EntryInfo(Description description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
+        public EntryInfo(Description description, string iD = "", string lockedText = BaseLockedText, string entryIcon = "")
         {
             UnlockID = iD;
             LockedText = lockedText;
@@ -969,7 +1024,7 @@ namespace RainWorldBestiary
         /// <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
         /// <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
         /// <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
-        public EntryInfo(string description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
+        public EntryInfo(string description, string iD = "", string lockedText = BaseLockedText, string entryIcon = "")
         {
             UnlockID = iD;
             LockedText = lockedText;
