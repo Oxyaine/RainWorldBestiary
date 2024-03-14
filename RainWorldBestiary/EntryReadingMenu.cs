@@ -47,7 +47,7 @@ namespace RainWorldBestiary
 
         public void DisplayEntryInformation(Entry entry)
         {
-            float widthOffset;
+            float widthOffset, leftSpriteOffset = 60;
 
             MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(Screen.width / 2f, Screen.height / 2f), Vector2.one, false);
             pages[0].subObjects.Add(label);
@@ -64,7 +64,7 @@ namespace RainWorldBestiary
 
                 widthOffset = sprite.width / 2f;
             }
-            else
+            else //if (!BestiarySettings.PerformanceMode.Value)
             {
                 GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(entry.Name);
 
@@ -77,6 +77,15 @@ namespace RainWorldBestiary
 
                 widthOffset = fontText.TotalWidth / 2f;
             }
+            //else
+            //{
+            //    MenuLabel title = new MenuLabel(this, pages[0], entry.Name, new Vector2(Screen.width / 2f, Screen.height - 50), Vector2.one, false);
+            //    title.label.scale = 5;
+            //    pages[0].subObjects.Add(title);
+
+            //    widthOffset = entry.Name.Length * 20f;
+            //    leftSpriteOffset = 10;
+            //}
 
             if (entry.Info.IconsNextToTitle)
             {
@@ -88,7 +97,7 @@ namespace RainWorldBestiary
                         FSprite sprite = new FSprite(entry.Info.EntryIcons[i])
                         {
                             y = Screen.height - 50,
-                            x = Screen.width / 2f - (widthOffset + 60) - iconOffset,
+                            x = Screen.width / 2f - (widthOffset + leftSpriteOffset) - iconOffset,
                             scale = 2
                         };
                         pages[0].Container.AddChild(sprite);

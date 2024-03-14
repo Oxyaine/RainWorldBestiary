@@ -55,7 +55,7 @@ namespace RainWorldBestiary
                 };
                 pages[0].Container.AddChild(sprite);
             }
-            else
+            else //if (!BestiarySettings.PerformanceMode.Value)
             {
                 GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(tab.Name);
                 fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
@@ -65,6 +65,12 @@ namespace RainWorldBestiary
                 for (int i = 0; i < sprites.Length; i++)
                     pages[0].Container.AddChild(sprites[i]);
             }
+            //else
+            //{
+            //    MenuLabel label = new MenuLabel(this, pages[0], tab.Name, new Vector2(Screen.width / 2f, Screen.height - 50), Vector2.one, false);
+            //    label.label.scale = 5;
+            //    pages[0].subObjects.Add(label);
+            //}
         }
 
         private readonly int ButtonSizeX = 155;

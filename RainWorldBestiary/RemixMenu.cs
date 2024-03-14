@@ -15,8 +15,6 @@ namespace RainWorldBestiary
             BestiarySettings._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
             BestiarySettings.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
 
-            BestiarySettings.PerformanceMode = config.Bind("oxyaine_bestiary_performance_mode", false);
-
             BestiarySettings.UnlockAllEntries = config.Bind("oxyaine_bestiary_unlock_all_entries", false);
         }
 
@@ -38,7 +36,6 @@ namespace RainWorldBestiary
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, Translate("Performance Mode"), BestiarySettings.PerformanceMode, ExperimentalColor, description: Translate("PERFORMANCE_MODE_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
             items.Clear();
@@ -98,13 +95,6 @@ namespace RainWorldBestiary
         /// Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
         /// </summary>
         public static Configurable<bool> ShowModuleLockPips;
-
-
-
-        /// <summary>
-        /// Changes some things about the bestiary for better performance
-        /// </summary>
-        public static Configurable<bool> PerformanceMode;
 
 
 

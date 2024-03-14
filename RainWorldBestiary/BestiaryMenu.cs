@@ -62,6 +62,14 @@ namespace RainWorldBestiary
             backButton.nextSelectable[2] = backButton;
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+
+            foreach (MenuObject t in pages[0].subObjects)
+            {
+                Main.Logger.LogError("");
+                Main.Logger.LogError(t.ToString());
+                if (t is SimpleButton button)
+                    Main.Logger.LogError(button.pos);
+            }
         }
 
         void AddButton(EntriesTab tab, in int x, in int y)
