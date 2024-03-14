@@ -47,7 +47,12 @@
         private static void Player_Die(On.Player.orig_Die orig, Player self)
         {
             orig(self);
-            Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(self.killTag), AutoTokenType.KilledPlayer));
+
+            if (self.killTag == null)
+                return;
+
+            if (!Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
+                Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(self.killTag), AutoTokenType.KilledPlayer));
         }
     }
 }
