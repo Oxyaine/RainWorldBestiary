@@ -1,6 +1,4 @@
-﻿using UnityEngine.Assertions.Must;
-
-namespace RainWorldBestiary
+﻿namespace RainWorldBestiary
 {
     internal class CreatureHooks
     {
@@ -11,7 +9,14 @@ namespace RainWorldBestiary
             On.Spear.LodgeInCreature += Spear_LodgeInCreature;
             On.Player.Die += Player_Die;
             On.Player.Grabbed += Player_Grabbed;
+
+            //On.Player.SlugcatGrab += Player_SlugcatGrab;
         }
+
+        //private static void Player_SlugcatGrab(On.Player.orig_SlugcatGrab orig, Player self, PhysicalObject obj, int graspUsed)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
         private static void Player_Grabbed(On.Player.orig_Grabbed orig, Player self, Creature.Grasp grasp)
         {

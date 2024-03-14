@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace RainWorldBestiary
 {
@@ -55,6 +57,35 @@ namespace RainWorldBestiary
             }
 
             return result;
+        }
+
+
+        /// <summary>
+        /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
+        /// </summary>
+        public static bool ContainsAny(this List<string> source, List<string> target)
+        {
+            foreach (string t in target)
+            {
+                if (source.Contains(t))
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
+        /// </summary>
+        public static bool ContainsAny<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        {
+            foreach (T t in target)
+            {
+                if (source.Contains(t))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

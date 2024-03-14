@@ -5,8 +5,8 @@ namespace RainWorldBestiary
 {
     internal class BestiaryTabMenu : Dialog
     {
-        const string BackButtonMessage = "BACK";
-        const string EntryPressedID = "Read_Entry_";
+        readonly string BackButtonMessage = "BACK";
+        readonly string EntryPressedID = "Read_Entry_";
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
@@ -67,12 +67,12 @@ namespace RainWorldBestiary
             }
         }
 
-        private const int ButtonSizeX = 155;
-        private const int ButtonSizeY = 35;
-        private const int ButtonSpacing = 15;
-        private const int MaxButtonsPerRow = 8;
+        private readonly int ButtonSizeX = 155;
+        private readonly int ButtonSizeY = 35;
+        private readonly int ButtonSpacing = 15;
+        private readonly int MaxButtonsPerRow = 8;
 
-        private HSLColor LockedColor = new HSLColor(0f, 0.55f, 0.85f);
+        private readonly HSLColor LockedColor = new HSLColor(0f, 0.55f, 0.85f);
 
         public void CreateEntryButtonsFromTab(EntriesTab tab)
         {
@@ -155,6 +155,12 @@ namespace RainWorldBestiary
                     TipLabelAlpha = Mathf.Clamp(TipLabel.text.Length * 0.04f, 1.5f, 5f);
                 }
             }
+        }
+
+        public override void ShutDownProcess()
+        {
+            base.ShutDownProcess();
+            TipLabel.RemoveSprites();
         }
 
         public override void Update()

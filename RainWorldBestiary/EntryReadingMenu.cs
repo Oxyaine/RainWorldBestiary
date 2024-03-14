@@ -5,9 +5,9 @@ namespace RainWorldBestiary
 {
     internal class EntryReadingMenu : Dialog
     {
-        const int WrapCount = 180;
+        readonly int WrapCount = 180;
 
-        const string BackButtonMessage = "BACK";
+        readonly string BackButtonMessage = "BACK";
         public EntryReadingMenu(ProcessManager manager) : base(manager)
         {
             try

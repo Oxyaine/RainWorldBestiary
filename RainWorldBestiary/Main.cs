@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -42,15 +43,18 @@ namespace RainWorldBestiary
         {
             original(self, newlyDisabledMods);
             CheckBestiaryDependencies();
-            ResourceManager.Initialize();
+            StartCoroutine(ResourceManager.UnloadMods(newlyDisabledMods));
         }
 
+        public static Func<IEnumerator, Coroutine> StartCoroutinePtr; 
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
             original(self);
             try
             {
                 MachineConnector.SetRegisteredOI("oxyaine.bestiary", Options = new RemixMenu());
+
+                StartCoroutinePtr = StartCoroutine;
 
                 if (!Initialized)
                 {
@@ -90,7 +94,7 @@ namespace RainWorldBestiary
         {
             original(self, newlyEnabledMods);
             CheckBestiaryDependencies();
-            ResourceManager.Initialize();
+            StartCoroutine(ResourceManager.LoadMods(newlyEnabledMods));
         }
     }
 }

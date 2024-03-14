@@ -5,12 +5,12 @@ namespace RainWorldBestiary
 {
     internal class BestiaryMenu : Dialog
     {
-        private const int ButtonSizeX = 250;
-        private const int ButtonSizeY = 40;
-        private const int ButtonSpacing = 10;
+        private readonly int ButtonSizeX = 250;
+        private readonly int ButtonSizeY = 40;
+        private readonly int ButtonSpacing = 10;
 
-        const string BUTTON_ID = "Tab_Pressed";
-        const string BackButtonMessage = "BACK";
+        readonly string BUTTON_ID = "Tab_Pressed";
+        readonly string BackButtonMessage = "BACK";
 
         public BestiaryMenu(ProcessManager manager) : base(manager)
         {
@@ -46,9 +46,12 @@ namespace RainWorldBestiary
                 if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
                     continue;
 
-                AddButton(tab, X, currentButtonY);
+                if (tab.Count > 0)
+                {
+                    AddButton(tab, X, currentButtonY);
 
-                currentButtonY -= ButtonSizeY + ButtonSpacing;
+                    currentButtonY -= ButtonSizeY + ButtonSpacing;
+                }
             }
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
