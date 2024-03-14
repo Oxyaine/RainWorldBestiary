@@ -1,0 +1,10 @@
+{
+    "name": "Tab",
+    "title_image":{
+        "element_name": "",
+        "scale": 1,
+        "x_offset": 0,
+        "y_offset": 0
+    },
+    "tab_menu_process_id": null
+}

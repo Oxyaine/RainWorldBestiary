@@ -1,0 +1,27 @@
+{
+    "unlock_id": "EntryOne",
+    "locked_text": "This Entry Is Locked.",
+    "icons_next_to_title": true,
+    "entry_icon": "illustrations\\Survivor_head_(custom)",
+    "title_sprite": {
+        "element_name": "",
+        "scale": 1,
+        "x_offset": 0,
+        "y_offset": 0
+    },
+    "color": "dff5d6",
+    "description":[
+        {
+            "unlock_id": {
+                "token_type": 0,
+                "value": 1,
+                "creature_id": "EntryOne"
+            },
+            "text": "This text is always visible if the entry is visible! This will appear first!"
+        },
+        {
+            "unlock_id": null,
+            "text": "This text is always visible and will make the entry visible! This will appear second"
+        }
+    ]
+}
