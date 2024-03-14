@@ -370,9 +370,13 @@
     <Compile Include="RemixMenu.cs" />
     <Compile Include="ResourceManager.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Template\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetPath)" "D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\plugins\$(TargetName).dll"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetPath)" "D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\plugins\$(TargetName).dll"
+copy /Y "$(TargetPath)" "$(SolutionDir)Build\$(TargetName).dll"
+copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)Build\$(TargetName).xml"</PostBuildEvent>
   </PropertyGroup>
 </Project>
