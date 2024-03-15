@@ -51,7 +51,7 @@ namespace RainWorldBestiary
                 {
                     scale = 0.3f * tab.TitleSprite.Scale,
                     x = Screen.width / 2 + tab.TitleSprite.XOffset,
-                    y = Screen.height - 50 + tab.TitleSprite.YOffset
+                    y = Screen.height - 50 - tab.TitleSprite.YOffset
                 };
                 pages[0].Container.AddChild(sprite);
             }
