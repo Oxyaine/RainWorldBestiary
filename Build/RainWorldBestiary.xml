@@ -21,23 +21,22 @@
         </member>
         <member name="P:RainWorldBestiary.Bestiary.AutoModuleUnlocks">
             <summary>
-            All the module unlock tokens that are automatically tallied and registered, you can check <see cref="T:RainWorldBestiary.AutoTokenType"/> to see what is automatically detected
+            All the auto module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(RainWorldBestiary.AutoModuleUnlockToken)">
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.AutoTokenType)">
             <summary>
-            Checks if <see cref="P:RainWorldBestiary.Bestiary.AutoModuleUnlocks"/> contains <paramref name="unlockToken"/>, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+            Checks if <see cref="P:RainWorldBestiary.Bestiary.AutoModuleUnlocks"/> contains a <see cref="T:RainWorldBestiary.AutoTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
             </summary>
         </member>
         <member name="F:RainWorldBestiary.Bestiary.ModuleUnlocks">
             <summary>
-            All the module unlock tokens that are manually registered, you can check <see cref="T:RainWorldBestiary.TokenType"/> to see what is manually detected
+            All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
-            <remarks>To add a new module unlock, use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(RainWorldBestiary.ModuleUnlockToken)"/> as it wont allow duplicate module unlocks</remarks>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(RainWorldBestiary.ModuleUnlockToken)">
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.TokenType)">
             <summary>
-            Checks if <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains <paramref name="unlockToken"/>, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+            Checks if <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains a <see cref="T:RainWorldBestiary.TokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.UnlockToken)">
@@ -69,38 +68,6 @@
             <summary>
             Gets the creatures name through <see cref="F:AbstractCreature.creatureTemplate"/> and removes all white space characters
             </summary>
-        </member>
-        <member name="T:RainWorldBestiary.BaseUnlockModule">
-            <summary>
-            A base unlock module, holds shared unlock module logic
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BaseUnlockModule.CreatureID">
-            <summary>
-            The ID of the creature this unlock token applies to
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BaseUnlockModule._value">
-            <summary>
-            The amount of times the unlock token was registered, caps at 255
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.BaseUnlockModule.#ctor(System.String,System.Byte)">
-            
-        </member>
-        <member name="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)">
-            <remarks>
-            Checks if the ID matches, and if the given values count is greater than or equal to this values' count
-            </remarks>
-        </member>
-        <member name="M:RainWorldBestiary.BaseUnlockModule.Equals(System.Object)">
-            <summary>
-            Checks if the two objects are both <see cref="T:RainWorldBestiary.BaseUnlockModule"/>, then compares them using <see cref="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)"/>
-            </summary>
-            <remarks><see cref="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)"/> <inheritdoc cref="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)"/></remarks>
-        </member>
-        <member name="M:RainWorldBestiary.BaseUnlockModule.GetHashCode">
-            <inheritdoc/>
         </member>
         <member name="T:RainWorldBestiary.TokenType">
             <summary>
@@ -148,9 +115,11 @@
             </summary>
         </member>
         <member name="P:RainWorldBestiary.ModuleUnlockToken.Value">
-            <inheritdoc cref="F:RainWorldBestiary.BaseUnlockModule._value"/>
+            <summary>
+            The amount of times the unlock token was registered, caps at 255
+            </summary>
         </member>
-        <member name="M:RainWorldBestiary.ModuleUnlockToken.#ctor(System.String,RainWorldBestiary.TokenType,System.Byte)">
+        <member name="M:RainWorldBestiary.ModuleUnlockToken.#ctor(RainWorldBestiary.TokenType,System.Byte)">
             
         </member>
         <member name="M:RainWorldBestiary.ModuleUnlockToken.op_Increment(RainWorldBestiary.ModuleUnlockToken)">
@@ -170,8 +139,7 @@
             <remarks><see cref="M:RainWorldBestiary.ModuleUnlockToken.Equals(RainWorldBestiary.ModuleUnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.ModuleUnlockToken.Equals(RainWorldBestiary.ModuleUnlockToken)"/></remarks>
         </member>
         <member name="M:RainWorldBestiary.ModuleUnlockToken.Equals(RainWorldBestiary.ModuleUnlockToken)">
-            <inheritdoc cref="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)"/>
-            <remarks>Also checks if the tokenType matches</remarks>
+            <remarks>Checks if the token type matches, and if the given values count is greater than or equal to this values' count</remarks>
         </member>
         <member name="M:RainWorldBestiary.ModuleUnlockToken.GetHashCode">
             <inheritdoc/>
@@ -210,20 +178,12 @@
             </summary>
         </member>
         <member name="P:RainWorldBestiary.AutoModuleUnlockToken.Value">
-            <inheritdoc cref="F:RainWorldBestiary.BaseUnlockModule._value"/>
+            <summary>
+            The amount of times this unlock token was registered, caps at 255
+            </summary>
         </member>
-        <member name="M:RainWorldBestiary.AutoModuleUnlockToken.#ctor(System.String,RainWorldBestiary.AutoTokenType,System.Byte)">
+        <member name="M:RainWorldBestiary.AutoModuleUnlockToken.#ctor(RainWorldBestiary.AutoTokenType,System.Byte)">
             
-        </member>
-        <member name="M:RainWorldBestiary.AutoModuleUnlockToken.op_Increment(RainWorldBestiary.AutoModuleUnlockToken)">
-            <summary>
-            Increments Value by one
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.AutoModuleUnlockToken.op_Decrement(RainWorldBestiary.AutoModuleUnlockToken)">
-            <summary>
-            Decrements Value by one
-            </summary>
         </member>
         <member name="M:RainWorldBestiary.AutoModuleUnlockToken.Equals(System.Object)">
             <summary>
@@ -232,7 +192,7 @@
             <remarks><see cref="M:RainWorldBestiary.AutoModuleUnlockToken.Equals(RainWorldBestiary.AutoModuleUnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.AutoModuleUnlockToken.Equals(RainWorldBestiary.AutoModuleUnlockToken)"/></remarks>
         </member>
         <member name="M:RainWorldBestiary.AutoModuleUnlockToken.Equals(RainWorldBestiary.AutoModuleUnlockToken)">
-            <inheritdoc cref="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)"/>
+            <remarks>Checks if the token type matches, and if the given values count is greater than or equal to this values' count</remarks>
         </member>
         <member name="M:RainWorldBestiary.AutoModuleUnlockToken.GetHashCode">
             <inheritdoc/>
@@ -322,6 +282,11 @@
             An unlock token, that can be used to detect whether this module is unlocked
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.UnlockToken.CreatureID">
+            <summary>
+            The ID of the creature this unlock token applies to
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.UnlockToken.TokenType">
             <summary>
             The type of token this module unlock targets
@@ -329,7 +294,7 @@
         </member>
         <member name="P:RainWorldBestiary.UnlockToken.Value">
             <summary>
-            The amount of times the token specified through <see cref="F:RainWorldBestiary.BaseUnlockModule.CreatureID"/> and <see cref="F:RainWorldBestiary.UnlockToken.TokenType"/> should be registered before this token is valid
+            The amount of times the token specified through <see cref="F:RainWorldBestiary.UnlockToken.CreatureID"/> and <see cref="F:RainWorldBestiary.UnlockToken.TokenType"/> should be registered before this token is valid
             </summary>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.#ctor(System.String,RainWorldBestiary.UnlockTokenType,System.Byte)">
@@ -344,15 +309,16 @@
             <remarks><see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/></remarks>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)">
-            <inheritdoc cref="M:RainWorldBestiary.BaseUnlockModule.Equals(RainWorldBestiary.BaseUnlockModule)"/>
-            <summary>Checks if the tokenType matches then:</summary>
+            <remarks>
+            Checks if the token type matches, and if the given values count is greater than or equal to this values' count
+            </remarks>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.AutoModuleUnlockToken)">
             <summary>
-            Checks whether this UnlockToken matches the auto unlock token, by checking if the token type and ID matches, then checking whether <paramref name="other"/>'s value is greater than or equal to this value 
+            Checks whether this UnlockToken matches the provided unlock token, by checking if the token type matches, then checking whether <paramref name="other"/>'s value is greater than or equal to this value 
             </summary>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.ModuleUnlockToken)">
@@ -645,7 +611,7 @@
         </member>
         <member name="M:RainWorldBestiary.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.EntryInfo)">
             <summary>
-            Checks whether any unlock tokens in <see cref="T:RainWorldBestiary.Bestiary"/> have <see cref="F:RainWorldBestiary.EntryInfo.UnlockID"/> as <see cref="F:RainWorldBestiary.BaseUnlockModule.CreatureID"/>
+            Checks whether any unlock tokens in <see cref="T:RainWorldBestiary.Bestiary"/> have the <see cref="T:RainWorldBestiary.UnlockTokenType"/> for <see cref="F:RainWorldBestiary.UnlockToken.CreatureID"/> with a value that is equal to or lower than the required value
             </summary>
             <returns>True if the entry should be locked, otherwise false</returns>
         </member>
