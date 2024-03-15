@@ -1,0 +1,26 @@
+﻿BESTIARY|BESTIARY
+
+Default|Default
+Experimental|Experimental
+Cheats|Cheats
+
+HUNTING|HUNTING
+
+This entry is locked.|This entry is locked.
+
+Menu Fade Time|Menu Fade Time
+Show Unlock Pips|Show Unlock Pips
+Performance Mode|Performance Mode
+Unlock All Entries|Unlock All Entries
+
+MENU_FADE_TIME_DESCRIPTION|The time the bestiary's sub-menus will take to fade from one menu to the other.
+SHOW_UNLOCK_PIPS_DESCRIPTION|Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.
+UNLOCK_ALL_ENTRIES_DESCRIPTION|Unlocks all entries and their full descriptions.
+
+BESTIARY_BATFLY_LOCKTEXT|A passive, flying, insectoid creature, that serve as a good source of food. 
+BESTIARY_BATFLY_BASIC_INTRODUCTION|Batflies are passive, flying, insectoid creatures that act as one of Slugcat's primary food sources. They are one of the most common creatures in the game, appearing in almost every region.
+BESTIARY_BATFLY_APPEARANCE|Batflies are small black insects with two wings, antennae, and white eyes. They have no variation.
+BESTIARY_BATFLY_HUNTING_1|Batflies can be caught and eaten to fill 1 food pip.
+BESTIARY_BATFLY_HUNTING_2|Batflies are wary of Slugcats, but are usually slow in their evasion. They can be caught easily by jumping towards fast enough and catching them.
+BESTIARY_BATFLY_HUNTING_3|Catching Batflies may be easier from above, as they often stop and hover in place. Rocks and Spears can also be used to kill Batflies from afar. 
+BESTIARY_BATFLY_BATNIP|Batnip attracts Batflies, which makes them easier to catch. Unlike other food sources, Batflies do not persist in shelters, and are either auto-consumed or deleted.

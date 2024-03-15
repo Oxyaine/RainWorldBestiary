@@ -1,0 +1,80 @@
+{
+  "unlock_id": "Fly",
+  "locked_text": "BESTIARY_BATFLY_LOCKTEXT",
+  "icons_next_to_title": true,
+  "entry_icon": "illustrations\\bestiary\\entry_icons\\Batfly_icon",
+  "title_sprite": null,
+  "color": null,
+  "description": [
+    {
+      "unlock_id": {
+        "token_type": 0
+      },
+      "text": "BESTIARY_BATFLY_BASIC_INTRODUCTION"
+    },
+    {
+      "unlock_id": {
+        "token_type": 4,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_APPEARANCE"
+    },
+    {
+      "unlock_id": {
+        "token_type": 13,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "HUNTING"
+    },
+    {
+      "unlock_id": {
+        "token_type": 13,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_HUNTING_1"
+    },
+    {
+      "unlock_id": {
+        "token_type": 13,
+        "value": 4,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_HUNTING_2"
+    },
+    {
+      "unlock_id": {
+        "token_type": 13,
+        "value": 8,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_HUNTING_3"
+    },
+    {
+      "unlock_id": {
+        "token_type": 14,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_BATNIP"
+    },
+    {
+      "unlock_id": {
+        "token_type": 8,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "HEHEHEHA YOU HAVE KILLED A BATFLY"
+    },
+    {
+      "unlock_id": {
+        "token_type": 8,
+        "value": 2,
+        "creature_id": "Fly"
+      },
+      "text": "HEHEHEHA YOU HAVE KILLED ANOTHER BATFLY"
+    }
+  ]
+}

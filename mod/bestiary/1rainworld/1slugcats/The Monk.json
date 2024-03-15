@@ -1,0 +1,13 @@
+{
+  "unlock_id": "",
+  "locked_text": "This entry is locked.",
+  "icons_next_to_title": true,
+  "entry_icon": "illustrations\\bestiary\\entry_icons\\Monk_head",
+  "title_sprite": null,
+  "description": [
+    {
+      "unlock_id": "",
+      "text": ""
+    }
+  ]
+}

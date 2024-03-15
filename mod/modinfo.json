@@ -1,0 +1,10 @@
+﻿{
+	"id": "oxyaine.bestiary",
+	"name": "Bestiary",
+	"version": "0.0.1",
+	"authors": "Oxyaine",
+	"description": "An in game Bestiary that unlocks as you interact with creatures.",
+	"requirements": [],
+	"requirements_names": [],
+	"tags": [ "Tools", "Dependency", "Creatures" ]
+}

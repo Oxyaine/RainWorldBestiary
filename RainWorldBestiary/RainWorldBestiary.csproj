@@ -375,6 +375,7 @@
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\plugins\$(TargetName).dll"
 copy /Y "$(TargetPath)" "$(SolutionDir)Build\$(TargetName).dll"
-copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)Build\$(TargetName).xml"</PostBuildEvent>
+copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)Build\$(TargetName).xml"
+xcopy /Y /E "$(SolutionDir)mod" "D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
