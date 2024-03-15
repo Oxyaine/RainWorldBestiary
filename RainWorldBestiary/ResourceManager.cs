@@ -32,6 +32,11 @@ namespace RainWorldBestiary
             return false;
         }
 
+        public const string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
+        public const string UnlockPip = "illustrations\\bestiary\\icons\\unlock_pip";
+
+        public const string BestiaryTitle = "illustrations\\bestiary\\titles\\Bestiary_Title";
+
         internal static void Initialize()
         {
             if (!Initialized)
@@ -42,7 +47,7 @@ namespace RainWorldBestiary
                 int removeLength = ModDirectory.Length + 1;
 
                 string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
-                string[] images = Directory.GetFiles(illustrationsPath);
+                string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
                 foreach (string image in images)
                 {
                     string tmp = image.Substring(removeLength);
