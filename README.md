@@ -146,4 +146,16 @@ Manual tokens are tokens that the mod does not track by itself, and must be trac
 # Known Issues
 
 ## Issue - Auto Generated Title
-The auto generated titles
+The auto generated titles look a little off, The spacing between the letters is weird and inconsistent, I'm not sure why this happens, I've tested my code other places and it seems to work, just something about the way the game draws sprites throws off some of the spacing and makes the characters wonky. I've countered this a bit with some extra code, so it's harder to notice the offsets, but it's not perfect.
+
+
+
+# Future Plans
+
+I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows. There's a couple things I still plan to add, here's a somewhat complete list of what I'm planning on changing / adding.
+
+* Built in sprite loader, so you don't need to write any code to make bestiary entries.
+* Improved title sprite generator. The [issue with them](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue--auto-generated-title) is annoying me.
+* Ability to make custom unlock logic, without making the bestiary a dependency.
+* Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
+* I want to try to make as many unlock tokens automated as possible.
