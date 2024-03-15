@@ -497,12 +497,12 @@ namespace RainWorldBestiary
         /// <inheritdoc cref="Add(EntriesTab, bool)"/>
         public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = false)
         {
-            Add(new EntriesTab(tabName, entries) { TitleImage = titleSprite }, merge);
+            Add(new EntriesTab(tabName, entries) { TitleSprite = titleSprite }, merge);
         }
         /// <inheritdoc cref="Add(EntriesTab, bool)"/>
         public void Add(string tabName, IEnumerable<Entry> entries, ProcessManager.ProcessID menuProcessID, TitleSprite titleSprite = null, bool merge = false)
         {
-            Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleImage = titleSprite }, merge);
+            Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleSprite = titleSprite }, merge);
         }
 
 
@@ -575,7 +575,7 @@ namespace RainWorldBestiary
         /// </summary>
         /// <remarks>By title, I mean the name of the tab that is visible at the top while viewing entries in the tab</remarks>
         [JsonProperty("title_image")]
-        public TitleSprite TitleImage = null;
+        public TitleSprite TitleSprite = null;
 
         /// <summary>
         /// The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
@@ -704,8 +704,8 @@ namespace RainWorldBestiary
                 if (ContributingMods.Contains(contributor))
                     ContributingMods.Add(contributor);
 
-            if (TitleImage == null)
-                TitleImage = tab.TitleImage;
+            if (TitleSprite == null)
+                TitleSprite = tab.TitleSprite;
 
             if (TabMenuProcessID == Main.BestiaryTabMenu && tab.TabMenuProcessID != Main.BestiaryTabMenu)
                 TabMenuProcessID = tab.TabMenuProcessID;

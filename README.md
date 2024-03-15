@@ -25,39 +25,58 @@ If your mod adds a tab with the same name as an existing tab, the tabs will be "
 
 ## Structure - Tabs
 
-Tabs can be given a JSON file to specify some additional details about the tab, or to separate the folder name and the tabs name. The JSON file can contain the following elements:
+Tabs can be given a JSON file to specify some additional details about the tab, or to separate the folder name and the tabs name. Most features should be accessible using the JSON format, however some behaviours, such as a custom tab menu have to be coded, which would make the bestiary a dependency. The JSON file can contain the following elements:
 
-#### "name"
+#### "name" : string
 The name of the tab.
 
-#### "title_image"
+#### "title_image" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-image)
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-image).
 
-#### "tab_menu_process_id"
+#### "tab_menu_process_id" : string
 The value of the ProcessID that will be transmitted when the tab is pressed to open, this is part of how the game switches menu processes, you can read a few more details [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#menu-process).
 
 
 ## Structure - Entries
 
-Entries' content is also loaded from JSON files. The name of the file determines the name of the entry, and the content of the file determines the rest of the entry's data.
+Entries' content is also loaded from JSON files. The name of the file determines the name of the entry, and the content of the file determines the rest of the entry's data. Like with tabs, most features should be accessible using the JSON format, however some behaviours are once again, only accessible through code, I will list everything to do with coding further down, but first, a list of entry's JSON elements:
 
-*TODO*
+#### "unlock_id" : string
+The id of the creature that will be used to unlock this entry, you can see the ID by using `Bestiary.GetCreatureUnlockName()`, or by going to `AbstractCreature.creatureTemplate.name` of an instance of your creature, and removing the spaces.
+
+#### "locked_text" : string
+`Default = "This entry is locked."`
+The text / tip that is shown when attempting to read the entry while its locked. Can be used to show a tip on where to find the creature and so on.
+
+#### "entry_icon" : string
+The icon of the entry, use this if your entry only has 1 icon, otherwise use ["entry_icons"](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#entry_icons-:-string[]).
+This is the name of the icon in the atlas manager, make sure to load all your custom icons into the atlas manager, or nothing will happen.
+You can do this in code using:
+`Futile.atlasManager.LoadImage()`
 
 
-#
-#
-#
+#### "entry_icons" : string[]
+The multiple icons of your entry, use this if your entry has multiple icons. This is an array of the names of your icons in the atlas manager, once again, make sure to load all your custom icons into the atlas manager, or nothing will happen.
 
 
-# Documentation
-===============================
+#### "icons_next_to_title" : bool
+`Default = true`
+Whether to show the entry's icon(s) next to the [entry's title](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-image) while reading the entry.
 
-Bootleg Documentation for certain classes and buzz words.
+#### "title_sprite" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-image)
+The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-image).
+
+
+#### "description" : Description
+The description of the entry, uses a custom class that can be found [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description).
+
+
+## Description
 
 
 
 ## Title Image
-*TODO*
+If set to null or if the image isn't found in the atlas manager, an [auto generated title](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue--auto-generated-title) will be placed instead.
 
 
 
@@ -86,3 +105,9 @@ Manual tokens are tokens that the mod does not track by itself, and must be trac
 * Observe Hunting = 7 : For when the player gets hunted / chased by the creature
 * Eaten = 13 : For when the player eats the creature
 * Observe Attraction = 14 : For when the player observes a creature being attracted to something
+
+
+# Known Issues
+
+## Issue - Auto Generated Title
+The auto generated titles

@@ -45,13 +45,13 @@ namespace RainWorldBestiary
 
         public void GetTabTitle(EntriesTab tab)
         {
-            if (tab.TitleImage != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleImage.ElementName))
+            if (tab.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleSprite.ElementName))
             {
-                FSprite sprite = new FSprite(tab.TitleImage.ElementName)
+                FSprite sprite = new FSprite(tab.TitleSprite.ElementName)
                 {
-                    scale = 0.3f * tab.TitleImage.Scale,
-                    x = Screen.width / 2 + tab.TitleImage.XOffset,
-                    y = Screen.height - 50 + tab.TitleImage.YOffset
+                    scale = 0.3f * tab.TitleSprite.Scale,
+                    x = Screen.width / 2 + tab.TitleSprite.XOffset,
+                    y = Screen.height - 50 + tab.TitleSprite.YOffset
                 };
                 pages[0].Container.AddChild(sprite);
             }
