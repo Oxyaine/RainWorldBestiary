@@ -11,6 +11,7 @@ Everything in the mod (to do with managing and working with entries), is stored 
 
 
 ## Structure
+***To get an example of the structure of things, or to have something to look at to help you follow along, you can download / look at the template in the files above.***
 
 Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a [Tab](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tabs), and any files in the tab will be considered entries, with the name of the file being the name of the entry.
 
