@@ -1,4 +1,4 @@
-## Rain World Bestiary
+# Rain World Bestiary
 An in game bestiary that unlocks as you encounter creatures!
 
 While there are summaries and comments for all functions and variables, there is no documentation (because I am unable to figure out how to make them), this file here is hopefuly good enough to help developers get started understanding how they can make their own entries in the bestiary.
@@ -42,14 +42,15 @@ The value of the ProcessID that will be transmitted when the tab is pressed to o
 Entries' content is also loaded from JSON files. The name of the file determines the name of the entry, and the content of the file determines the rest of the entry's data. Like with tabs, most features should be accessible using the JSON format, however some behaviours are once again, only accessible through code, I will list everything to do with coding further down, but first, a list of entry's JSON elements:
 
 #### "unlock_id" : string
-The id of the creature that will be used to unlock this entry, you can see the ID by using `Bestiary.GetCreatureUnlockName()`, or by going to `AbstractCreature.creatureTemplate.name` of an instance of your creature, and removing the spaces.
+The id of the creature that will be used to unlock this entry. You can see the ID by using `Bestiary.GetCreatureUnlockName()`, or by going to `AbstractCreature.creatureTemplate.name` of an instance of your creature, and removing the spaces.
 
 #### "locked_text" : string
 `Default = "This entry is locked."`
 The text / tip that is shown when attempting to read the entry while its locked. Can be used to show a tip on where to find the creature and so on.
+This gets run through the in game translator, so you can just give it an ID and add the translation logic for it in the short strings dictionary file.
 
 #### "entry_icon" : string
-The icon of the entry, use this if your entry only has 1 icon, otherwise use ["entry_icons"](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#entry_icons-:-string[]).
+The icon of the entry, use this if your entry only has 1 icon, otherwise use ["entry_icons"](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#entry_icons--string).
 This is the name of the icon in the atlas manager, make sure to load all your custom icons into the atlas manager, or nothing will happen.
 You can do this in code using:
 `Futile.atlasManager.LoadImage()`
@@ -72,6 +73,13 @@ The description of the entry, uses a custom class that can be found [here](https
 
 
 ## Description
+An entry's description is an array of description modules, each module can be given custom unlock behaviour using [unlock tokens](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)
+
+#### "unlock_id" : [UnlockToken](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)
+The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
+
+#### "text" : string
+The text of this module, this gets run through the in game translator, and so you can make the description something like "ENTRY__BATFLY_APPEARANCE", then define a translation into whatever language using the short strings dictionary in `text\text_eng\strings.txt`
 
 
 
@@ -83,10 +91,22 @@ If set to null or if the image isn't found in the atlas manager, an [auto genera
 ## Menu Process
 *TODO*
 
+## Unlock Token
+Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.
+
+#### "token_type" : [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types)
+A number that represents the token type of this unlock, you can see a list of token types [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types) as well as their respective id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
+
+#### "creature_id" : string
+The name of this creature that this unlock token should check for, you don't want any creature killing the player to unlock this part of the description, so you set the creature id to say which creature specifically, same rules with the creature ID apply with the [entry's unlock ID](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock_id--string).
+
+#### "value" : byte
+A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.
 
 
 ## Unlock Token Types
 
+#### Automatic
 Automatic unlock tokens are tokens that are automatically tracked and added by the mod. Here is a list of all automatic token types:
 * Killed = 8 : When the player gets killed by a creature
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
@@ -95,6 +115,7 @@ Automatic unlock tokens are tokens that are automatically tracked and added by t
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 
 
+#### Manual
 Manual tokens are tokens that the mod does not track by itself, and must be tracked by your mod. These are usually manual because they are specific to one creature, or one type of creature, so it cannot be tracked for all creatures without explicit implementation. Here is a list of all manual token types:
 * Tamed = 1 : For when the player tames the creature
 * Evaded = 2 : For when the player evades the creature

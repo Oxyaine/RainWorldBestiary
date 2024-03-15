@@ -1171,7 +1171,7 @@ namespace RainWorldBestiary
     public class DescriptionModule
     {
         /// <summary>
-        /// The ID of this description component, used to determine whether this part of the dictionary is visible or not
+        /// The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
         /// </summary>
         [JsonProperty("unlock_id")]
         public UnlockToken UnlockID = null;
