@@ -10,8 +10,23 @@
             On.Player.Die += Player_Die;
             On.Player.Grabbed += Player_Grabbed;
 
+            //On.Creature.Stun += Creature_Stun;
+
+            //On.Rock.HitSomething += Rock_HitSomething;
+
             //On.Player.SlugcatGrab += Player_SlugcatGrab;
         }
+
+        //private static bool Rock_HitSomething(On.Rock.orig_HitSomething orig, Rock self, SharedPhysics.CollisionResult result, bool eu)
+        //{
+        //    return orig(self, result, eu);
+        //}
+
+        //private static void Creature_Stun(On.Creature.orig_Stun orig, Creature self, int st)
+        //{
+        //    orig(self, st);
+
+        //}
 
         //private static void Player_SlugcatGrab(On.Player.orig_SlugcatGrab orig, Player self, PhysicalObject obj, int graspUsed)
         //{
@@ -28,8 +43,15 @@
         {
             orig(self, result, eu);
 
-            if (result.obj is Creature cr)
-                Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(cr), AutoTokenType.Impaled));
+            if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
+            {
+                Main.Logger.LogDebug("Thrown By Cat");
+                if (result.obj is Creature cr)
+                {
+                    Main.Logger.LogDebug("Hit Creature");
+                    Bestiary.AddOrIncreaseModuleUnlock(new AutoModuleUnlockToken(Bestiary.GetCreatureUnlockName(cr), AutoTokenType.Impaled));
+                }
+            }
         }
         private static void Creature_Die(On.Creature.orig_Die orig, Creature self)
         {
