@@ -34,6 +34,7 @@
 #*.modelproj merge=binary
 #*.sqlproj   merge=binary
 #*.wwaproj   merge=binary
+#*.dll       merge=binary
 
 ###############################################################################
 # behavior for image files
@@ -61,3 +62,4 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+#*.xml   diff=astextplain
