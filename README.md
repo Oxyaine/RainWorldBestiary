@@ -16,9 +16,12 @@ Entries can be added to the bestiary without making the mod a dependency! This c
 ## Tabs
 
 Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
-When adding entries, you can add your own tab, or use the `Modded` tab if your mod only adds a few entries, that don't really warrant an entire new tab to be added.
+When adding entries, you can add your own tab, or you can use the `Modded` tab if your mod only adds a few entries.
 To add entries to the `Modded` tab, just call your tab folder `Modded` or set the name in your [tab's JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#structure---tabs) to `Modded` (*case sensitive*)
 If your mod adds a tab with the same name as an existing tab, the tabs will be "merged", meaning your entries will be added to the existing tab. If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used. Same logic applies to [tab_menu_process_id](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tab_menu_process_id--string).
+If your not using the tab's JSON file, the name of your folder will become the name of the tab, but with the JSON file, the name doesn't matter, as the resource manager will use the name set in the JSON file.
+Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your folders with numbers to change the order they appear, this wont matter if your merging with another tab (as it'll use whatever position the existing tab is in).
+Entries don't care what folder they are in, as the resource manager looks for all files in the tab folder, including entries in sub-directories.
 
 
 ## Structure - Tabs
@@ -165,4 +168,5 @@ I plan to continue keeping this mod up to date for a while, as well as bug fixes
 * Improved title sprite generator. The [issue with them](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue--auto-generated-title) is annoying me.
 * Ability to make custom unlock logic, without making the bestiary a dependency.
 * Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
-* I want to try to make as many unlock tokens automated as possible.
+* Try to convert as many unlock tokens to be automated as possible.
+* Make entries not just organized but categorized in the tabs

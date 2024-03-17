@@ -14,7 +14,9 @@ namespace RainWorldBestiary
 
         static string ModDirectory = null;
 
-        private static readonly List<string> LoadedMods = new List<string>();
+        public const string BestiaryModID = "oxyaine.bestiary";
+
+        private static readonly List<string> LoadedMods = new List<string>() { BestiaryModID };
 
         internal static readonly List<Font> CustomFonts = new List<Font>();
         internal static bool GetCustomFontByName(string fontName, out Font result)
@@ -70,6 +72,8 @@ namespace RainWorldBestiary
                         CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
                     }
                 }
+
+                CheckFolder(Path.Combine(ModDirectory, EntriesLocalPath), BestiaryModID);
 
                 CheckForUnregisteredEntries();
             }
