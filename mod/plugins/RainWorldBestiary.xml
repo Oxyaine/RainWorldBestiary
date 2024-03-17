@@ -24,7 +24,7 @@
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
             <remarks>
-            If you'd like to add your own token, I'd recommended using <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)"/> as it will increase the token if it exists, otherwise adds it, (which just means you don't need to write, essentially the same code, yourself)
+            If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)"/>, as it will increase the token if it exists, otherwise adds it
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)">
