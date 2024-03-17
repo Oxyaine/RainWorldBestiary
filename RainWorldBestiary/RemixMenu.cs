@@ -15,6 +15,8 @@ namespace RainWorldBestiary
             BestiarySettings._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
             BestiarySettings.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
 
+            BestiarySettings.ShowEntryUnlockPercent = config.Bind("oxyaine_bestiary_show_entry_unlock_percent", false);
+
             BestiarySettings.UnlockAllEntries = config.Bind("oxyaine_bestiary_unlock_all_entries", false);
         }
 
@@ -36,6 +38,7 @@ namespace RainWorldBestiary
             ResetElementPositions();
 
             // Experimental Tab
+            AddElements(ref items, "Show Entry Unlock Percent", BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor);
             experimental.AddItems(items.ToArray());
 
             items.Clear();
@@ -54,28 +57,21 @@ namespace RainWorldBestiary
             currentLabelX = 20f;
             currentY = 550f;
         }
-        float currentElementX = 140f, currentLabelX = 20f, currentY = 550f;
-        private void AddElements(ref List<UIelement> items, string name, UIelement element, Color? color = null, string description = null)
-        {
-            items.Add(new OpLabel(currentLabelX, currentY + 2.5f, name, false) { color = color ?? Color.white, description = description });
-            items.Add(element);
-
-            currentY -= 30f;
-        }
+        float currentLabelX = 20f, currentY = 550f;
         private void AddElements(ref List<UIelement> items, string name, Configurable<int> element, bool asSlider = false, Color? color = null, string description = null)
         {
             items.Add(new OpLabel(currentLabelX, currentY + 2.5f, name, false) { color = color ?? Color.white });
             if (asSlider)
-                items.Add(new OpSlider(element, new Vector2(currentElementX, currentY), 200) { colorEdge = color ?? Color.white, description = description, max = 10 });
+                items.Add(new OpSlider(element, new Vector2(currentLabelX + name.Length * 7f, currentY), 200) { colorEdge = color ?? Color.white, description = description, max = 10 });
             else
-                items.Add(new OpDragger(element, currentElementX, currentY) { colorEdge = color ?? Color.white, description = description });
+                items.Add(new OpDragger(element, currentLabelX + name.Length * 7f, currentY) { colorEdge = color ?? Color.white, description = description });
 
             currentY -= 30f;
         }
         private void AddElements(ref List<UIelement> items, string name, Configurable<bool> element, Color? color = null, string description = null)
         {
             items.Add(new OpLabel(currentLabelX, currentY + 2.5f, name, false) { color = color ?? Color.white });
-            items.Add(new OpCheckBox(element, new Vector2(currentElementX, currentY)) { colorEdge = color ?? Color.white, description = description });
+            items.Add(new OpCheckBox(element, new Vector2(currentLabelX + name.Length * 7f, currentY)) { colorEdge = color ?? Color.white, description = description });
 
             currentY -= 30f;
         }
@@ -96,6 +92,8 @@ namespace RainWorldBestiary
         /// </summary>
         public static Configurable<bool> ShowModuleLockPips;
 
+
+        public static Configurable<bool> ShowEntryUnlockPercent;
 
 
         /// <summary>

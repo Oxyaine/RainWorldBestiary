@@ -14,6 +14,8 @@ namespace RainWorldBestiary
 
         public BestiaryMenu(ProcessManager manager) : base(manager)
         {
+            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.subBackground);
             pages[0].subObjects.Add(scene);
 
@@ -34,16 +36,13 @@ namespace RainWorldBestiary
             {
                 color = new Color(162f, 157f, 170f),
                 scale = 0.6f,
-                x = Screen.width / 2,
-                y = Screen.height - 100
+                x = screenSize.x / 2,
+                y = screenSize.y - 100
             };
             pages[0].Container.AddChild(bestiaryTitle);
 
-            Main.Logger.LogDebug(Screen.width);
-            Main.Logger.LogDebug(Screen.height);
-
-            int X = Screen.width / 2 - ButtonSizeX / 2;
-            int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing - 200;
+            int X = (int)screenSize.x / 2 - ButtonSizeX / 2;
+            int currentButtonY = (int)screenSize.y - ButtonSizeY - ButtonSpacing - 200;
             foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
                 if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
@@ -65,13 +64,6 @@ namespace RainWorldBestiary
             backButton.nextSelectable[2] = backButton;
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-
-            foreach (MenuObject t in pages[0].subObjects)
-            {
-                Main.Logger.LogError(t.ToString());
-                if (t is SimpleButton button)
-                    Main.Logger.LogError(button.pos);
-            }
         }
 
         void AddButton(EntriesTab tab, in int x, in int y)
