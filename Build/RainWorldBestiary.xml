@@ -19,7 +19,7 @@
             All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Bestiary.ModuleUnlocks">
+        <member name="P:RainWorldBestiary.Bestiary.ModuleUnlocks">
             <summary>
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
@@ -29,11 +29,12 @@
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)">
             <summary>
-            Checks if <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains a <see cref="T:RainWorldBestiary.UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+            Checks if <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains an <see cref="T:RainWorldBestiary.UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
             </summary>
             <param name="creatureID">The ID of the creature this unlock token will target</param>
             <param name="tokenType">The type of token</param>
-            <param name="unlockCreature">Whether to add this creatureID to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> if it's not already in there</param>
+            <param name="unlockCreature">Whether to add this creatureID to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> if it's not already in there.<code></code>
+            <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>' summary for more details</param>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
             <summary>
@@ -41,11 +42,6 @@
             </summary>
             <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
             Does not take into account if <see cref="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
-        </member>
-        <member name="M:RainWorldBestiary.Bestiary.PerformUnlockTokensCleanup">
-            <summary>
-            With loads of module unlocks, this can take up to 20 seconds to run (wont freeze the game, runs in background) changes are only applied to <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> when this is finished
-            </summary>
         </member>
         <member name="F:RainWorldBestiary.Bestiary.EntriesTabs">
             <summary>
@@ -670,7 +666,7 @@
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.DescriptionModule)">
             <summary>
-            Checks if <see cref="F:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
+            Checks if <see cref="F:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
             </summary>
         </member>
         <member name="P:RainWorldBestiary.DescriptionModule.ModuleUnlocked">

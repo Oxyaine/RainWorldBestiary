@@ -2,7 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting;
 
 namespace RainWorldBestiary
 {
@@ -23,46 +25,50 @@ namespace RainWorldBestiary
 
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
 
+
         /// <summary>
         /// All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
         /// </summary>
         public readonly static List<string> CreatureUnlockIDs = new List<string>();
 
 
+        private static readonly Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
         /// <remarks>
-        /// If you'd like to add your own token, I'd recommended using <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/> as it will increase the token if it exists, otherwise adds it, (which just means you don't need to write, essentially the same code, yourself)
+        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>, as it will increase the token if it exists, otherwise adds it
         /// </remarks>
-        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
+        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
+
         /// <summary>
-        /// Checks if <see cref="ModuleUnlocks"/> contains a <see cref="UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+        /// Checks if <see cref="ModuleUnlocks"/> contains an <see cref="UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
         /// </summary>
         /// <param name="creatureID">The ID of the creature this unlock token will target</param>
         /// <param name="tokenType">The type of token</param>
-        /// <param name="unlockCreature">Whether to add this creatureID to <see cref="CreatureUnlockIDs"/> if it's not already in there</param>
+        /// <param name="unlockCreature">Whether to add this creatureID to <see cref="CreatureUnlockIDs"/> if it's not already in there.<code></code>
+        /// <see cref="CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="CreatureUnlockIDs"/>' summary for more details</param>
         public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool unlockCreature = true)
         {
-            if (ModuleUnlocks.ContainsKey(creatureID))
+            if (_ModuleUnlocks.ContainsKey(creatureID))
             {
-                int cache = ModuleUnlocks[creatureID].Count;
+                int cache = _ModuleUnlocks[creatureID].Count;
                 for (int i = 0; i < cache; i++)
                 {
-                    if (ModuleUnlocks[creatureID][i].TokenType == tokenType)
+                    if (_ModuleUnlocks[creatureID][i].TokenType == tokenType)
                     {
-                        if (ModuleUnlocks[creatureID][i].Count < 255)
-                            ++ModuleUnlocks[creatureID][i].Count;
+                        if (_ModuleUnlocks[creatureID][i].Count < 255)
+                            ++_ModuleUnlocks[creatureID][i].Count;
 
                         return;
                     }
                 }
 
-                ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
+                _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
             }
             else
             {
-                ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) });
+                _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) });
             }
 
             if (unlockCreature)
@@ -77,7 +83,7 @@ namespace RainWorldBestiary
         /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
+            if (_ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
             {
                 ushort v = 0;
                 foreach (UnlockToken token in value)
@@ -92,47 +98,13 @@ namespace RainWorldBestiary
         }
 
 
-
-        /// <summary>
-        /// With loads of module unlocks, this can take up to 20 seconds to run (wont freeze the game, runs in background) changes are only applied to <see cref="ModuleUnlocks"/> when this is finished
-        /// </summary>
-        internal static IEnumerator PerformUnlockTokensCleanup()
+        internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
+        internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary";
+        internal static void SaveUnlockTokens()
         {
-            Dictionary<string, List<UnlockToken>> cache = new Dictionary<string, List<UnlockToken>>(ModuleUnlocks);
-            foreach (string creature in cache.Keys)
-            {
-                Dictionary<UnlockToken, int> result = new Dictionary<UnlockToken, int>();
-                foreach (UnlockToken token in cache[creature])
-                {
-                    if (result.ContainsKey(token))
-                    {
-                        if ((result[token] += token.Count) > 255)
-                            result[token] = 255;
-                    }
-                    else
-                        result.Add(token, token.Count);
-
-                    yield return null;
-                }
-
-                List<UnlockToken> compressed = new List<UnlockToken>();
-                foreach (var v in result)
-                {
-                    UnlockToken token = v.Key;
-                    token.Count = (byte)v.Value;
-                    compressed.Add(token);
-
-                    yield return null;
-                }
-
-                cache[creature] = compressed;
-
-                yield return null;
-            }
-
-            ModuleUnlocks = cache;
+            if (Directory.Exists(SaveFolder))
+                File.WriteAllText(SaveFile, JsonConvert.SerializeObject(_ModuleUnlocks.ToArray()));
         }
-
 
 
         /// <summary>
