@@ -130,7 +130,7 @@ Here is a full list of all unlock tokens, further down you can see a list of [wh
 * Observe Fear = 5 : For when the player sees the creature fear something
 * Observe Food = 6 : For when the player sees the creature want to eat something or eating something
 * Observe Hunting = 7 : For when the player gets hunted / chased by the creature
-* Killed = 8 : When the player gets killed by a creature
+* Killed = 8 : When the creature gets killed by the player
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
 * Stunned = 10 : When the creature gets stunned, by the player
 * Killed Player = 11 : When the player is killed by the creature
@@ -145,9 +145,8 @@ Automatic unlock tokens are tokens that are automatically tracked and added by t
 ***Please keep in mind, that most if not all of these tokens are only tracked for creatures that inherit from base game types, such as the `Creature` class , `AbstractCreature` class, and so on.***
 
 Here is a list of all automatic token types:
-* Killed = 8 : When the player gets killed by a creature
+* Killed = 8 : When the creature gets killed by the player
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
-* Stunned = 10 : When the creature gets stunned, by the player
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 
