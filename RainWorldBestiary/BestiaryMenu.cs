@@ -32,7 +32,6 @@ namespace RainWorldBestiary
             };
             pages[0].Container.AddChild(darkSprite);
 
-
             FSprite bestiaryTitle = new FSprite(ResourceManager.BestiaryTitle)
             {
                 color = new Color(162f, 157f, 170f),
