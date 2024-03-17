@@ -1,5 +1,4 @@
-﻿using Mono.Cecil;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,11 +32,17 @@ namespace RainWorldBestiary
         /// <summary>
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
+        /// <remarks>
+        /// If you'd like to add your own token, I'd recommended using <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/> as it will increase the token if it exists, otherwise adds it, (which just means you don't need to write, essentially the same code, yourself)
+        /// </remarks>
         public static Dictionary<string, List<UnlockToken>> ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
         /// Checks if <see cref="ModuleUnlocks"/> contains a <see cref="UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
         /// </summary>
-        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType)
+        /// <param name="creatureID">The ID of the creature this unlock token will target</param>
+        /// <param name="tokenType">The type of token</param>
+        /// <param name="unlockCreature">Whether to add this creatureID to <see cref="CreatureUnlockIDs"/> if it's not already in there</param>
+        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool unlockCreature = true)
         {
             if (ModuleUnlocks.ContainsKey(creatureID))
             {
@@ -54,43 +59,79 @@ namespace RainWorldBestiary
                 }
 
                 ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
-
-                if (!CreatureUnlockIDs.Contains(creatureID))
-                    CreatureUnlockIDs.Add(creatureID);
             }
             else
             {
                 ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) });
+            }
 
+            if (unlockCreature)
                 if (!CreatureUnlockIDs.Contains(creatureID))
                     CreatureUnlockIDs.Add(creatureID);
-            }
         }
 
-
-
-        internal static IEnumerator PerformUnlockTokensCleanup()
+        /// <summary>
+        /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
+        /// </summary>
+        /// <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
+        /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
+        public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            throw new NotImplementedException();
+            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
+            {
+                ushort v = 0;
+                foreach (UnlockToken token in value)
+                    if (unlockToken.Equals(token))
+                    {
+                        if ((v += token.Count) > unlockToken.Count)
+                            return true;
+                    }
+            }
+
+            return false;
         }
 
 
 
         /// <summary>
-        /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
+        /// With loads of module unlocks, this can take up to 20 seconds to run (wont freeze the game, runs in background) changes are only applied to <see cref="ModuleUnlocks"/> when this is finished
         /// </summary>
-        /// <remarks>Returns true if value is equal to OR greater than the value in the registered token<code></code>
-        /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
-        public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
+        internal static IEnumerator PerformUnlockTokensCleanup()
         {
-            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> val))
-                foreach (UnlockToken token in val)
-                    if (unlockToken.Equals(token))
-                        return true;
+            Dictionary<string, List<UnlockToken>> cache = new Dictionary<string, List<UnlockToken>>(ModuleUnlocks);
+            foreach (string creature in cache.Keys)
+            {
+                Dictionary<UnlockToken, int> result = new Dictionary<UnlockToken, int>();
+                foreach (UnlockToken token in cache[creature])
+                {
+                    if (result.ContainsKey(token))
+                    {
+                        if ((result[token] += token.Count) > 255)
+                            result[token] = 255;
+                    }
+                    else
+                        result.Add(token, token.Count);
 
-            return false;
+                    yield return null;
+                }
+
+                List<UnlockToken> compressed = new List<UnlockToken>();
+                foreach (var v in result)
+                {
+                    UnlockToken token = v.Key;
+                    token.Count = (byte)v.Value;
+                    compressed.Add(token);
+
+                    yield return null;
+                }
+
+                cache[creature] = compressed;
+
+                yield return null;
+            }
+
+            ModuleUnlocks = cache;
         }
-
 
 
 
@@ -220,9 +261,9 @@ namespace RainWorldBestiary
         public override bool Equals(object obj) => obj is UnlockToken token && Equals(token);
 
         /// <remarks>
-        /// Checks if the token type matches, and if the given count is greater than or equal to this count
+        /// Checks if the token type matches, ignores <see cref="Count"/>
         /// </remarks>
-        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType) && Count < other.Count;
+        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType);
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
@@ -265,9 +306,9 @@ namespace RainWorldBestiary
         }
 
         /// <remarks>
-        /// Checks if the creature ID matches, then if the token type matches, and if the given count is greater than or equal to this count
+        /// Checks if the creature ID matches, then if the token type matches, ignores <see cref="UnlockToken.Count"/>
         /// </remarks>
-        public bool Equals(CreatureUnlockToken other) => CreatureID.Equals(other.CreatureID) && TokenType.Equals(other.TokenType) && Count < other.Count;
+        public bool Equals(CreatureUnlockToken other) => CreatureID.Equals(other.CreatureID) && TokenType.Equals(other.TokenType);
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
@@ -275,7 +316,7 @@ namespace RainWorldBestiary
         /// <returns>Creature ID + Token Type + Value</returns>
         public override string ToString()
         {
-            return CreatureID + " " + TokenType + " " + Count;
+            return string.Join(" ", CreatureID, TokenType, Count);
         }
     }
 
@@ -1034,7 +1075,8 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="UnlockToken.Equals(UnlockToken)"/>
         /// </summary>
-        public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
+        public static bool DefaultModuleUnlockedCondition(DescriptionModule info)
+            => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
         /// <summary>
         /// Returns true if the module is unlocked, else false

@@ -23,18 +23,29 @@
             <summary>
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
+            <remarks>
+            If you'd like to add your own token, I'd recommended using <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)"/> as it will increase the token if it exists, otherwise adds it, (which just means you don't need to write, essentially the same code, yourself)
+            </remarks>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType)">
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)">
             <summary>
             Checks if <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains a <see cref="T:RainWorldBestiary.UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
             </summary>
+            <param name="creatureID">The ID of the creature this unlock token will target</param>
+            <param name="tokenType">The type of token</param>
+            <param name="unlockCreature">Whether to add this creatureID to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> if it's not already in there</param>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
             <summary>
             Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
             </summary>
-            <remarks>Returns true if value is equal to OR greater than the value in the registered token<code></code>
+            <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
             Does not take into account if <see cref="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.PerformUnlockTokensCleanup">
+            <summary>
+            With loads of module unlocks, this can take up to 20 seconds to run (wont freeze the game, runs in background) changes are only applied to <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> when this is finished
+            </summary>
         </member>
         <member name="F:RainWorldBestiary.Bestiary.EntriesTabs">
             <summary>
@@ -166,7 +177,7 @@
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)">
             <remarks>
-            Checks if the token type matches, and if the given count is greater than or equal to this count
+            Checks if the token type matches, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.GetHashCode">
@@ -198,7 +209,7 @@
         </member>
         <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken)">
             <remarks>
-            Checks if the creature ID matches, then if the token type matches, and if the given count is greater than or equal to this count
+            Checks if the creature ID matches, then if the token type matches, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.CreatureUnlockToken.GetHashCode">
