@@ -39,6 +39,9 @@ namespace RainWorldBestiary
             };
             pages[0].Container.AddChild(bestiaryTitle);
 
+            Main.Logger.LogDebug(Screen.width);
+            Main.Logger.LogDebug(Screen.height);
+
             int X = Screen.width / 2 - ButtonSizeX / 2;
             int currentButtonY = Screen.height - ButtonSizeY - ButtonSpacing - 200;
             foreach (EntriesTab tab in Bestiary.EntriesTabs)
@@ -65,7 +68,6 @@ namespace RainWorldBestiary
 
             foreach (MenuObject t in pages[0].subObjects)
             {
-                Main.Logger.LogError("");
                 Main.Logger.LogError(t.ToString());
                 if (t is SimpleButton button)
                     Main.Logger.LogError(button.pos);
