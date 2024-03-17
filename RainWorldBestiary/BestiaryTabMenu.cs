@@ -10,6 +10,8 @@ namespace RainWorldBestiary
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
+            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
@@ -34,43 +36,37 @@ namespace RainWorldBestiary
             backButton.nextSelectable[0] = backButton;
             backButton.nextSelectable[2] = backButton;
 
-            CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab);
-            GetTabTitle(Bestiary.CurrentSelectedTab);
+            CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize);
+            GetTabTitle(Bestiary.CurrentSelectedTab, in screenSize);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
 
-            TipLabel = new MenuLabel(this, pages[0], "", new Vector2(Screen.width / 2f, 25), Vector2.one, false);
+            TipLabel = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, 25f), Vector2.one, false);
             pages[0].subObjects.Add(TipLabel);
         }
 
-        public void GetTabTitle(EntriesTab tab)
+        public void GetTabTitle(EntriesTab tab, in Vector2 screenSize)
         {
             if (tab.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleSprite.ElementName))
             {
                 FSprite sprite = new FSprite(tab.TitleSprite.ElementName)
                 {
                     scale = 0.3f * tab.TitleSprite.Scale,
-                    x = Screen.width / 2 + tab.TitleSprite.XOffset,
-                    y = Screen.height - 50 - tab.TitleSprite.YOffset
+                    x = screenSize.x / 2f + tab.TitleSprite.XOffset,
+                    y = screenSize.y - 50f - tab.TitleSprite.YOffset
                 };
                 pages[0].Container.AddChild(sprite);
             }
-            else //if (!BestiarySettings.PerformanceMode.Value)
+            else
             {
                 GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(tab.Name);
-                fontText.X = (Screen.width / 2f) - (fontText.TotalWidth / 2f);
-                fontText.Y = Screen.height - 50;
+                fontText.X = (screenSize.x / 2f) - (fontText.TotalWidth / 2f);
+                fontText.Y = screenSize.y - 50f;
 
                 FSprite[] sprites = fontText.Finalize();
                 for (int i = 0; i < sprites.Length; i++)
                     pages[0].Container.AddChild(sprites[i]);
             }
-            //else
-            //{
-            //    MenuLabel label = new MenuLabel(this, pages[0], tab.Name, new Vector2(Screen.width / 2f, Screen.height - 50), Vector2.one, false);
-            //    label.label.scale = 5;
-            //    pages[0].subObjects.Add(label);
-            //}
         }
 
         private readonly int ButtonSizeX = 155;
@@ -80,10 +76,10 @@ namespace RainWorldBestiary
 
         private readonly HSLColor LockedColor = new HSLColor(0f, 0.55f, 0.85f);
 
-        public void CreateEntryButtonsFromTab(EntriesTab tab)
+        public void CreateEntryButtonsFromTab(EntriesTab tab, in Vector2 screenSize)
         {
-            int currentX = ButtonSpacing;
-            int currentY = Screen.height - 100;
+            float currentX = ButtonSpacing;
+            float currentY = screenSize.y - 100f;
 
             Vector2 buttonSize = new Vector2(ButtonSizeX, ButtonSizeY);
 
@@ -111,11 +107,49 @@ namespace RainWorldBestiary
                         FSprite icon = new FSprite(tab[i].Info.EntryIcons[j])
                         {
                             color = entryLocked ? Color.black : Color.white,
-                            x = currentX + 5 + iconOffset,
-                            y = currentY + (ButtonSizeY / 2)
+                            x = currentX + 5f + iconOffset,
+                            y = currentY + (ButtonSizeY / 2f)
                         };
                         iconOffset += icon.width;
                         pages[0].Container.AddChild(icon);
+                    }
+                }
+
+                if (BestiarySettings.ShowEntryUnlockPercent.Value)
+                {
+                    float f = tab[i].Info.Description.GetUnlockedPercentage() * 5f;
+                    int c = Mathf.RoundToInt(f);
+                    string iconName;
+                    switch (c)
+                    {
+                        case 0:
+                        case 1:
+                            iconName = "illustrations\\bestiary\\icons\\Karma_1";
+                            break;
+                        case 2:
+                            iconName = "illustrations\\bestiary\\icons\\Karma_2";
+                            break;
+                        case 3:
+                            iconName = "illustrations\\bestiary\\icons\\Karma_3";
+                            break;
+                        case 4:
+                            iconName = "illustrations\\bestiary\\icons\\Karma_4";
+                            break;
+                        case 5:
+                            iconName = "illustrations\\bestiary\\icons\\Karma_5";
+                            break;
+                        default: iconName = null; break;
+                    }
+
+                    if (iconName != null)
+                    {
+                        FSprite ic = new FSprite(iconName)
+                        {
+                            x = currentX + ButtonSizeX - 10f,
+                            y = currentY + (ButtonSizeY / 2f),
+                            scale = 0.5f
+                        };
+                        pages[0].Container.AddChild(ic);
                     }
                 }
 

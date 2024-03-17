@@ -975,6 +975,7 @@ namespace RainWorldBestiary
         /// Checks if any modules of this description are visible
         /// </summary>
         /// <returns>True if atleast one module is visible, otherwise false</returns>
+        [Obsolete]
         public bool IsAnythingVisible()
         {
             foreach (DescriptionModule module in _values)
@@ -991,6 +992,17 @@ namespace RainWorldBestiary
             return false;
         }
 
+        public float GetUnlockedPercentage()
+        {
+            int c = 0;
+            foreach (var v in _values)
+            {
+                if (v.ModuleUnlocked)
+                    c++;
+            }
+
+            return c / _values.Count;
+        }
 
         /// <summary>
         /// Returns this description as a string where only the parts of the entry that are visible are added
