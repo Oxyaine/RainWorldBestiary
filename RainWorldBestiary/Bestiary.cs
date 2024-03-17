@@ -35,7 +35,7 @@ namespace RainWorldBestiary
         /// </summary>
         public static Dictionary<string, List<UnlockToken>> ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
-        /// Checks if <see cref="ModuleUnlocks"/> contains a <see cref="TokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+        /// Checks if <see cref="ModuleUnlocks"/> contains a <see cref="UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
         /// </summary>
         public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType)
         {
@@ -1032,7 +1032,7 @@ namespace RainWorldBestiary
         public Func<DescriptionModule, bool> ModuleUnlockedCondition = DefaultModuleUnlockedCondition;
 
         /// <summary>
-        /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="CreatureUnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="CreatureUnlockToken.Equals(ModuleUnlockToken)"/>
+        /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="UnlockToken.Equals(UnlockToken)"/>
         /// </summary>
         public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
@@ -1045,7 +1045,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Whether this module contributes to making the entry visible
         /// </summary>
-        /// <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="TokenType.None"/> for more info</remarks>
+        /// <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="UnlockTokenType.None"/> for more info</remarks>
         [JsonIgnore]
         public bool ContributesToEntryUnlock => UnlockID == null || UnlockID.TokenType != UnlockTokenType.None;
 

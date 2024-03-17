@@ -26,7 +26,7 @@
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType)">
             <summary>
-            Checks if <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains a <see cref="T:Mono.Cecil.TokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+            Checks if <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains a <see cref="T:RainWorldBestiary.UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
@@ -659,7 +659,7 @@
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.DescriptionModule)">
             <summary>
-            Checks if <see cref="F:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="!:Bestiary.AutoModuleUnlocks"/> or <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> using <see cref="!:CreatureUnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="!:CreatureUnlockToken.Equals(ModuleUnlockToken)"/>
+            Checks if <see cref="F:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="F:RainWorldBestiary.Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
             </summary>
         </member>
         <member name="P:RainWorldBestiary.DescriptionModule.ModuleUnlocked">
@@ -671,7 +671,7 @@
             <summary>
             Whether this module contributes to making the entry visible
             </summary>
-            <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="!:TokenType.None"/> for more info</remarks>
+            <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="F:RainWorldBestiary.UnlockTokenType.None"/> for more info</remarks>
         </member>
         <member name="F:RainWorldBestiary.DescriptionModule.Body">
             <summary>
