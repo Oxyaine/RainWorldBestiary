@@ -115,23 +115,15 @@ A number that represents the token type of this unlock, you can see a list of to
 #### "creature_id" : string
 The name of this creature that this unlock token should check for, you don't want any creature killing the player to unlock this part of the description, so you set the creature id to say which creature specifically, same rules with the creature ID apply with the [entry's unlock ID](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock_id--string).
 
-#### "value" : byte
+#### "count" : byte
 A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.
 
 
 ## Unlock Token Types
 
-#### Automatic
-Automatic unlock tokens are tokens that are automatically tracked and added by the mod. Here is a list of all automatic token types:
-* Killed = 8 : When the player gets killed by a creature
-* Impaled = 9 : When the creature gets impaled with a spear, by the player
-* Stunned = 10 : When the creature gets stunned, by the player
-* Killed Player = 11 : When the player is killed by the creature
-* Grabbed Player = 12 : When the player gets grabbed by the creature
+#### Unlock Tokens
+Here is a full list of all unlock tokens, further down you can see a list of [which tokens are automatically tracked](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#automatic), although despite them being automatically tracked, you can also just add them manually, if you'd like.
 
-
-#### Manual
-Manual tokens are tokens that the mod does not track by itself, and must be tracked by your mod. These are usually manual because they are specific to one creature, or one type of creature, so it cannot be tracked for all creatures without explicit implementation. Here is a list of all manual token types:
 * Tamed = 1 : For when the player tames the creature
 * Evaded = 2 : For when the player evades the creature
 * Snuck Past = 3 : For when the player sneaks past the creature
@@ -139,15 +131,33 @@ Manual tokens are tokens that the mod does not track by itself, and must be trac
 * Observe Fear = 5 : For when the player sees the creature fear something
 * Observe Food = 6 : For when the player sees the creature want to eat something or eating something
 * Observe Hunting = 7 : For when the player gets hunted / chased by the creature
+* Killed = 8 : When the player gets killed by a creature
+* Impaled = 9 : When the creature gets impaled with a spear, by the player
+* Stunned = 10 : When the creature gets stunned, by the player
+* Killed Player = 11 : When the player is killed by the creature
+* Grabbed Player = 12 : When the player gets grabbed by the creature
 * Eaten = 13 : For when the player eats the creature
-* Observe Attraction = 14 : For when the player observes a creature being attracted to something
+* Observe Attraction = 14 : For when the player observes a creature being attracted to something, like batflies to batnip, etc
 
 
-# Known Issues
+#### Automatic
+Automatic unlock tokens are tokens that are automatically tracked and added by the mod.
+
+***Please keep in mind, that most if not all of these tokens are only tracked for creatures that inherit from base game types, such as the `Creature` class , `AbstractCreature` class, and so on.***
+
+Here is a list of all automatic token types:
+* Killed = 8 : When the player gets killed by a creature
+* Impaled = 9 : When the creature gets impaled with a spear, by the player
+* Stunned = 10 : When the creature gets stunned, by the player
+* Killed Player = 11 : When the player is killed by the creature
+* Grabbed Player = 12 : When the player gets grabbed by the creature
+
+
+#
+#
 
 ## Issue - Auto Generated Title
-The auto generated titles look a little off, The spacing between the letters is weird and inconsistent, I'm not sure why this happens, I've tested my code other places and it seems to work, just something about the way the game draws sprites throws off some of the spacing and makes the characters wonky. I've countered this a bit with some extra code, so it's harder to notice the offsets, but it's not perfect.
-
+The auto generated titles look a little off, The spacing between the letters is weird and inconsistent, I'm not sure why this happens, I've tested my code other places and it seems to work, just something about the way the game draws sprites throws off some of the spacing and makes the characters wonky. I've countered this a bit with some extra code, so it's harder to notice the offsets, but it's still not perfect. I will continue working on solutions, but currently, this is an issue.
 
 
 # Future Plans

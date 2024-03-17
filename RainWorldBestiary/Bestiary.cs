@@ -30,45 +30,14 @@ namespace RainWorldBestiary
         public readonly static List<string> CreatureUnlockIDs = new List<string>();
 
 
-
-        internal static Dictionary<string, List<AutoModuleUnlockToken>> _AutoModuleUnlocks = new Dictionary<string, List<AutoModuleUnlockToken>>();
-        /// <summary>
-        /// All the auto module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
-        /// </summary>
-        public static Dictionary<string, List<AutoModuleUnlockToken>> AutoModuleUnlocks => _AutoModuleUnlocks;
-        /// <summary>
-        /// Checks if <see cref="AutoModuleUnlocks"/> contains a <see cref="AutoTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
-        /// </summary>
-        internal static void AddOrIncreaseModuleUnlock(string creatureID, AutoTokenType tokenType)
-        {
-            if (_AutoModuleUnlocks.ContainsKey(creatureID))
-            {
-                int cache = _AutoModuleUnlocks[creatureID].Count;
-                for (int i = 0; i < cache; i++)
-                {
-                    if (_AutoModuleUnlocks[creatureID][i].TokenType == tokenType)
-                    {
-                        ++_AutoModuleUnlocks[creatureID][i].Value;
-                        return;
-                    }
-                }
-
-                _AutoModuleUnlocks[creatureID].Add(new AutoModuleUnlockToken(tokenType));
-            }
-            else
-            {
-                _AutoModuleUnlocks.Add(creatureID, new List<AutoModuleUnlockToken> { new AutoModuleUnlockToken(tokenType) });
-            }
-        }
-
         /// <summary>
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
-        public static Dictionary<string, List<ModuleUnlockToken>> ModuleUnlocks = new Dictionary<string, List<ModuleUnlockToken>>();
+        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
         /// Checks if <see cref="ModuleUnlocks"/> contains a <see cref="TokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
         /// </summary>
-        public static void AddOrIncreaseModuleUnlock(string creatureID, TokenType tokenType)
+        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType)
         {
             if (ModuleUnlocks.ContainsKey(creatureID))
             {
@@ -77,36 +46,45 @@ namespace RainWorldBestiary
                 {
                     if (ModuleUnlocks[creatureID][i].TokenType == tokenType)
                     {
-                        ++ModuleUnlocks[creatureID][i].Value;
+                        if (ModuleUnlocks[creatureID][i].Count < 255)
+                            ++ModuleUnlocks[creatureID][i].Count;
+
                         return;
                     }
                 }
 
-                ModuleUnlocks[creatureID].Add(new ModuleUnlockToken(tokenType));
+                ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
+
+                if (!CreatureUnlockIDs.Contains(creatureID))
+                    CreatureUnlockIDs.Add(creatureID);
             }
             else
             {
-                ModuleUnlocks.Add(creatureID, new List<ModuleUnlockToken> { new ModuleUnlockToken(tokenType) });
+                ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) });
+
+                if (!CreatureUnlockIDs.Contains(creatureID))
+                    CreatureUnlockIDs.Add(creatureID);
             }
         }
 
 
 
-        
+        internal static IEnumerator PerformUnlockTokensCleanup()
+        {
+            throw new NotImplementedException();
+        }
+
+
+
         /// <summary>
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
         /// </summary>
         /// <remarks>Returns true if value is equal to OR greater than the value in the registered token<code></code>
         /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
-        public static bool IsUnlockTokenValid(UnlockToken unlockToken)
+        public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            if (_AutoModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<AutoModuleUnlockToken> value))
-                foreach (AutoModuleUnlockToken token in value)
-                    if (unlockToken.Equals(token))
-                        return true;
-
-            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<ModuleUnlockToken> val))
-                foreach (ModuleUnlockToken token in val)
+            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> val))
+                foreach (UnlockToken token in val)
                     if (unlockToken.Equals(token))
                         return true;
 
@@ -137,139 +115,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Gets the creatures name through <see cref="AbstractCreature.creatureTemplate"/> and removes all white space characters
         /// </summary>
-        public static string GetCreatureUnlockName(AbstractCreature creature)
-        {
-            return creature.creatureTemplate.name.Trim().Replace(" ", "");
-        }
-    }
-
-    /// <summary>
-    /// The type of unlock token
-    /// </summary>
-    public enum TokenType : byte
-    {
-        ///
-        None = 0,
-        /// <inheritdoc cref="UnlockTokenType.Tamed"/>
-        Tamed = 1,
-        /// <inheritdoc cref="UnlockTokenType.Evaded"/>
-        Evaded = 2,
-        /// <inheritdoc cref="UnlockTokenType.SnuckPast"/>
-        SnuckPast = 3,
-        /// <inheritdoc cref="UnlockTokenType.Observed"/>
-        Observed = 4,
-        /// <inheritdoc cref="UnlockTokenType.ObserveFear"/>
-        ObserveFear = 5,
-        /// <inheritdoc cref="UnlockTokenType.ObserveFood"/>
-        ObserveFood = 6,
-        /// <inheritdoc cref="UnlockTokenType.ObserveHunting"/>
-        ObserveHunting = 7,
-        /// <inheritdoc cref="UnlockTokenType.Eaten"/>
-        Eaten = 13,
-        /// <inheritdoc cref="UnlockTokenType.ObserveAttraction"/>
-        ObserveAttraction = 14
-    }
-    /// <summary>
-    /// A class that represents an unlock token for a description module, this class represents a manual unlock token
-    /// </summary>
-    public class ModuleUnlockToken : IEquatable<ModuleUnlockToken>
-    {
-        /// <summary>
-        /// The type of token this module unlock targets
-        /// </summary>
-        public readonly TokenType TokenType = TokenType.None;
-
-        /// <summary>
-        /// The amount of times the unlock token was registered, caps at 255
-        /// </summary>
-        public byte Value { get; set; }
-
-        ///
-        public ModuleUnlockToken(TokenType tokenType, byte startingValue = 1)
-        {
-            TokenType = tokenType;
-            Value = startingValue;
-        }
-
-        /// <summary>
-        /// Increments Value by one
-        /// </summary>
-        public static ModuleUnlockToken operator ++(ModuleUnlockToken module)
-        {
-            module.Value++;
-            return module;
-        }
-        /// <summary>
-        /// Decrements Value by one
-        /// </summary>
-        public static ModuleUnlockToken operator --(ModuleUnlockToken module)
-        {
-            module.Value--;
-            return module;
-        }
-
-        /// <summary>
-        /// Checks if both objects are <see cref="ModuleUnlockToken"/>, then compares them using <see cref="Equals(ModuleUnlockToken)"/>
-        /// </summary>
-        /// <remarks><see cref="Equals(ModuleUnlockToken)"/> <inheritdoc cref="Equals(ModuleUnlockToken)"/></remarks>
-        public override bool Equals(object obj) => obj is ModuleUnlockToken other && Equals(other);
-        /// <remarks>Checks if the token type matches, and if the given values count is greater than or equal to this values' count</remarks>
-        public bool Equals(ModuleUnlockToken other) => TokenType.Equals(other.TokenType) && Value < other.Value;
-
-        /// <inheritdoc/>
-        public override int GetHashCode() => base.GetHashCode();
-    }
-
-    /// <summary>
-    /// The type of automated unlock token
-    /// </summary>
-    public enum AutoTokenType : byte
-    {
-        ///
-        None = 0,
-        /// <inheritdoc cref="UnlockTokenType.Killed"/>
-        Killed = 8,
-        /// <inheritdoc cref="UnlockTokenType.Impaled"/>
-        Impaled = 9,
-        /// <inheritdoc cref="UnlockTokenType.Stunned"/>
-        Stunned = 10,
-        /// <inheritdoc cref="UnlockTokenType.KilledPlayer"/>
-        KilledPlayer = 11,
-        /// <inheritdoc cref="UnlockTokenType.GrabbedPlayer"/>
-        GrabbedPlayer = 12,
-    }
-    /// <summary>
-    /// A class that represents an unlock token for a description module, this class represents an automated unlock token
-    /// </summary>
-    public class AutoModuleUnlockToken : IEquatable<AutoModuleUnlockToken>
-    {
-        /// <summary>
-        /// The type of token this module unlock is for
-        /// </summary>
-        public readonly AutoTokenType TokenType = AutoTokenType.None;
-
-        /// <summary>
-        /// The amount of times this unlock token was registered, caps at 255
-        /// </summary>
-        public byte Value { get; internal set; }
-
-        ///
-        public AutoModuleUnlockToken(AutoTokenType tokenType, byte startingValue = 1)
-        {
-            TokenType = tokenType;
-            Value = startingValue;
-        }
-
-        /// <summary>
-        /// Checks if both objects are <see cref="AutoModuleUnlockToken"/>, then compares them using <see cref="Equals(AutoModuleUnlockToken)"/>
-        /// </summary>
-        /// <remarks><see cref="Equals(AutoModuleUnlockToken)"/> <inheritdoc cref="Equals(AutoModuleUnlockToken)"/></remarks>
-        public override bool Equals(object obj) => obj is AutoModuleUnlockToken other && Equals(other);
-        /// <remarks>Checks if the token type matches, and if the given values count is greater than or equal to this values' count</remarks>
-        public bool Equals(AutoModuleUnlockToken other) => TokenType.Equals(other.TokenType) && Value < other.Value;
-
-        /// <inheritdoc/>
-        public override int GetHashCode() => base.GetHashCode();
+        public static string GetCreatureUnlockName(AbstractCreature creature) => creature.creatureTemplate.name.Trim().Replace(" ", "");
     }
 
     /// <summary>
@@ -338,17 +184,12 @@ namespace RainWorldBestiary
         /// </summary>
         ObserveAttraction = 14
     }
-    /// <summary>
-    /// An unlock token, that can be used to detect whether this module is unlocked
-    /// </summary>
-    public class UnlockToken : IEquatable<UnlockToken>, IEquatable<AutoModuleUnlockToken>, IEquatable<ModuleUnlockToken>
-    {
-        /// <summary>
-        /// The ID of the creature this unlock token applies to
-        /// </summary>
-        [JsonProperty("creature_id")]
-        public readonly string CreatureID = string.Empty;
 
+    /// <summary>
+    /// The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="CreatureUnlockToken"/> which is used in <see cref="DescriptionModule"/> as the unlock ID
+    /// </summary>
+    public class UnlockToken : IEquatable<UnlockToken>
+    {
         /// <summary>
         /// The type of token this module unlock targets
         /// </summary>
@@ -356,56 +197,88 @@ namespace RainWorldBestiary
         public readonly UnlockTokenType TokenType = UnlockTokenType.None;
 
         /// <summary>
-        /// The amount of times the token specified through <see cref="CreatureID"/> and <see cref="TokenType"/> should be registered before this token is valid
+        /// The amount of times this token has been registered, or needs to be registered
         /// </summary>
-        [JsonProperty("value")]
-        public byte Value { get; }
+        [JsonProperty("count")]
+        public byte Count;
 
-        /// <param name="creatureID">The ID of the creature that to look for</param>
+        [JsonProperty("value")]
+        private byte Value { set => Count = value; }
+
         /// <param name="tokenType">The type of token to look for</param>
         /// <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
-        public UnlockToken(string creatureID, UnlockTokenType tokenType, byte value = 1)
+        public UnlockToken(UnlockTokenType tokenType, byte value = 1)
         {
-            CreatureID = creatureID;
             TokenType = tokenType;
-            Value = value;
+            Count = value;
         }
 
         /// <summary>
         /// Checks if both objects are <see cref="UnlockToken"/>, then compares them using <see cref="Equals(UnlockToken)"/>
         /// </summary>
         /// <remarks><see cref="Equals(UnlockToken)"/> <inheritdoc cref="Equals(UnlockToken)"/></remarks>
-        public override bool Equals(object obj)
-        {
-            switch (obj)
-            {
-                case UnlockToken token:
-                    return Equals(token);
-                case AutoModuleUnlockToken autoToken:
-                    return Equals(autoToken);
-                case ModuleUnlockToken moduleToken:
-                    return Equals(moduleToken);
-                default:
-                    return false;
-            }
-        }
+        public override bool Equals(object obj) => obj is UnlockToken token && Equals(token);
 
         /// <remarks>
-        /// Checks if the token type matches, and if the given values count is greater than or equal to this values' count
+        /// Checks if the token type matches, and if the given count is greater than or equal to this count
         /// </remarks>
-        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType) && Value < other.Value;
+        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType) && Count < other.Count;
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
-        /// <summary>
-        /// Checks whether this UnlockToken matches the provided unlock token, by checking if the token type matches, then checking whether <paramref name="other"/>'s value is greater than or equal to this value 
-        /// </summary>
-        public bool Equals(AutoModuleUnlockToken other) => ((byte)TokenType).Equals((byte)other.TokenType) && Value < other.Value;
-
-        /// <inheritdoc cref="Equals(AutoModuleUnlockToken)"/>
-        public bool Equals(ModuleUnlockToken other) => ((byte)TokenType).Equals((byte)other.TokenType) && Value < other.Value;
+        /// <returns>Token Type + Value</returns>
+        public override string ToString()
+        {
+            return TokenType + " " + Count;
+        }
     }
+    /// <summary>
+    /// An unlock token, that can be used to detect whether a <see cref="DescriptionModule"/> is unlocked, similar to <see cref="UnlockToken"/> but has a CreatureID string
+    /// </summary>
+    public class CreatureUnlockToken : UnlockToken, IEquatable<CreatureUnlockToken>, IEquatable<UnlockToken>
+    {
+        /// <summary>
+        /// The ID of the creature this unlock token applies to
+        /// </summary>
+        [JsonProperty("creature_id")]
+        public readonly string CreatureID = string.Empty;
+
+        /// <param name="creatureID">The ID of the creature that to look for</param>
+        /// <param name="tokenType">The type of token to look for</param>
+        /// <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        public CreatureUnlockToken(string creatureID, UnlockTokenType tokenType, byte value = 1)
+            : base(tokenType, value) => CreatureID = creatureID;
+
+        /// <summary>
+        /// Checks if both objects are <see cref="CreatureUnlockToken"/>, then compares them using <see cref="Equals(CreatureUnlockToken)"/>
+        /// </summary>
+        /// <remarks><see cref="Equals(CreatureUnlockToken)"/> <inheritdoc cref="Equals(CreatureUnlockToken)"/></remarks>
+        public override bool Equals(object obj)
+        {
+            switch (obj)
+            {
+                case CreatureUnlockToken cToken: return Equals(cToken);
+                case UnlockToken token: return Equals(token);
+                default: return false;
+            }
+        }
+
+        /// <remarks>
+        /// Checks if the creature ID matches, then if the token type matches, and if the given count is greater than or equal to this count
+        /// </remarks>
+        public bool Equals(CreatureUnlockToken other) => CreatureID.Equals(other.CreatureID) && TokenType.Equals(other.TokenType) && Count < other.Count;
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => base.GetHashCode();
+
+        /// <returns>Creature ID + Token Type + Value</returns>
+        public override string ToString()
+        {
+            return CreatureID + " " + TokenType + " " + Count;
+        }
+    }
+
 
 
     /// <summary>
@@ -685,12 +558,12 @@ namespace RainWorldBestiary
             if (TabMenuProcessID == Main.BestiaryTabMenu && tab.TabMenuProcessID != Main.BestiaryTabMenu)
                 TabMenuProcessID = tab.TabMenuProcessID;
         }
-        
+
         /// <summary>
         /// Clears this tab of all its entries
         /// </summary>
         public void Clear() => _entries.Clear();
-        
+
         /// <summary>
         /// Checks if this tab contains the given entry
         /// </summary>
@@ -709,10 +582,10 @@ namespace RainWorldBestiary
 
             return false;
         }
-        
+
         /// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
         public void CopyTo(Entry[] array, int arrayIndex) => _entries.CopyTo(array, arrayIndex);
-        
+
         /// <summary>
         /// Removes the given entry from this tab
         /// </summary>
@@ -777,7 +650,7 @@ namespace RainWorldBestiary
         {
         }
         ///<param name="name"></param>
-        /// <param name="owningModID">The ID of the mod (id that is set in `modinfo.json` file), that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled</param>
+        /// <param name="owningModID">The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled</param>
         public Entry(string name, string owningModID = null) : this()
         {
             Name = name;
@@ -852,7 +725,7 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public Func<EntryInfo, bool> EntryUnlockedCondition = DefaultEntryUnlockedCondition;
         /// <summary>
-        /// Checks whether any unlock tokens in <see cref="Bestiary"/> have the <see cref="UnlockTokenType"/> for <see cref="UnlockToken.CreatureID"/> with a value that is equal to or lower than the required value
+        /// Checks whether any unlock tokens in <see cref="Bestiary"/> have the <see cref="UnlockTokenType"/> for <see cref="CreatureUnlockToken.CreatureID"/> with a value that is equal to or lower than the required value
         /// </summary>
         /// <returns>True if the entry should be locked, otherwise false</returns>
         public static bool DefaultEntryUnlockedCondition(EntryInfo info)
@@ -1149,7 +1022,7 @@ namespace RainWorldBestiary
         /// The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
         /// </summary>
         [JsonProperty("unlock_id")]
-        public UnlockToken UnlockID = null;
+        public CreatureUnlockToken UnlockID = null;
 
         /// <summary>
         /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
@@ -1159,7 +1032,7 @@ namespace RainWorldBestiary
         public Func<DescriptionModule, bool> ModuleUnlockedCondition = DefaultModuleUnlockedCondition;
 
         /// <summary>
-        /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="UnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="UnlockToken.Equals(ModuleUnlockToken)"/>
+        /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.AutoModuleUnlocks"/> or <see cref="Bestiary.ModuleUnlocks"/> using <see cref="CreatureUnlockToken.Equals(AutoModuleUnlockToken)"/> and <see cref="CreatureUnlockToken.Equals(ModuleUnlockToken)"/>
         /// </summary>
         public static bool DefaultModuleUnlockedCondition(DescriptionModule info) => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
 
