@@ -59,22 +59,6 @@
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_BATNIP"
-    },
-    {
-      "unlock_id": {
-        "token_type": 8,
-        "value": 1,
-        "creature_id": "Fly"
-      },
-      "text": "HEHEHEHA YOU HAVE KILLED A BATFLY"
-    },
-    {
-      "unlock_id": {
-        "token_type": 8,
-        "value": 2,
-        "creature_id": "Fly"
-      },
-      "text": "HEHEHEHA YOU HAVE KILLED ANOTHER BATFLY"
     }
   ]
 }
