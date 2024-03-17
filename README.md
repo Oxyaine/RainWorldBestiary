@@ -1,6 +1,5 @@
 # Rain World Bestiary
-An in game bestiary that unlocks as you encounter creatures!
-
+]
 This file is here to hopefully help developers get started understanding how they can make their own entries in the bestiary.
 
 ## First Things First
