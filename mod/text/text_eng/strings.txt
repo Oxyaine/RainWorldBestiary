@@ -5,6 +5,7 @@ Experimental|Experimental
 Cheats|Cheats
 
 HUNTING|HUNTING
+UTILITY|UTILITY
 
 This entry is locked.|This entry is locked.
 
@@ -24,3 +25,8 @@ BESTIARY_BATFLY_HUNTING_1|Batflies can be caught and eaten to fill 1 food pip.
 BESTIARY_BATFLY_HUNTING_2|Batflies are wary of Slugcats, but are usually slow in their evasion. They can be caught easily by jumping towards fast enough and catching them.
 BESTIARY_BATFLY_HUNTING_3|Catching Batflies may be easier from above, as they often stop and hover in place. Rocks and Spears can also be used to kill Batflies from afar. 
 BESTIARY_BATFLY_BATNIP|Batnip attracts Batflies, which makes them easier to catch. Unlike other food sources, Batflies do not persist in shelters, and are either auto-consumed or deleted.
+BESTIARY_BATFLY_UTILITY_UTILITY_1|Batflies can be used to distract certain creatures
+BESTIARY_BATFLY_UTILITY_POLE_MIMIC|, such as Pole Mimics
+BESTIARY_BATFLY_UTILITY_KELP|, Monster Kelp, etc
+BESTIARY_BATFLY_UTILITY_UTILITY_2|. When thrown in range, these creatures may prioritize the Batfly over Slugcat, retreating into their dens to consume them.
+BESTIARY_BATFLY_UTILITY_CICADA|Batflies can also be used to raise reputation with Squidaca.

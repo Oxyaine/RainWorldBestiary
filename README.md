@@ -1,6 +1,8 @@
 # Rain World Bestiary
-]
+
 This file is here to hopefully help developers get started understanding how they can make their own entries in the bestiary.
+
+You can [report any bugs or issues you encounter here](https://github.com/Oxyaine/RainWorldBestiary/issues), ***with performance issues, try to give as many details you can on where and when you where experiencing the bad performance.***
 
 ## First Things First
 Everything in the mod (to do with managing and working with entries), is stored in the `Bestiary` class, all settings, including remix menu settings are in the `BestiarySettings` class. Most things should be accessible from these classes, however if something is missing or you'd like something added, leave a issue request and I'll see what I can do.
@@ -31,9 +33,11 @@ Tabs can be given a JSON file to specify some additional details about the tab, 
 The name of the tab.
 
 #### "title_image" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite)
+`Default = null`
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
 
 #### "tab_menu_process_id" : string
+`Default = The default menu for the bestiary`
 The value of the ProcessID that will be transmitted when the tab is pressed to open, this is part of how the game switches menu processes, you can read a few more details [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#menu-process).
 
 
@@ -65,6 +69,7 @@ The multiple icons of your entry, use this if your entry has multiple icons. Thi
 Whether to show the entry's icon(s) next to the [entry's title](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) while reading the entry.
 
 #### "title_sprite" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite)
+`Default = null`
 The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
 
 
@@ -76,10 +81,15 @@ The description of the entry, uses a custom class that can be found [here](https
 An entry's description is an array of description modules, each module can be given custom unlock behaviour using [unlock tokens](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)
 
 #### "unlock_id" : [UnlockToken](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)
+`Default = null`
 The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
 
 #### "text" : string
 The text of this module, this gets run through the in game translator, and so you can make the description something like "ENTRY__BATFLY_APPEARANCE", then define a translation into whatever language using the short strings dictionary in `text\text_eng\strings.txt`
+
+#### "new_line" : bool
+`Default = false`
+Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.
 
 
 
@@ -93,6 +103,7 @@ This is the name of your title element in the atlas manager, make sure to load y
 You can do this in code using: `Futile.atlasManager.LoadImage()`
 
 #### "scale" : float
+`Default = 1`
 The scale multiplier for your image, this will affect the size of your image on screen.
 
 #### "x_offset" : int
@@ -109,12 +120,14 @@ Same logic with the X offset, you might need some extra distance from the top of
 Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.
 
 #### "token_type" : [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types)
+`Default = null`
 A number that represents the token type of this unlock, you can see a list of token types [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types) as well as their respective id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
 
 #### "creature_id" : string
 The name of this creature that this unlock token should check for, you don't want any creature killing the player to unlock this part of the description, so you set the creature id to say which creature specifically, same rules with the creature ID apply with the [entry's unlock ID](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock_id--string).
 
 #### "count" : byte
+`Default = 1`
 A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.
 
 
@@ -137,6 +150,7 @@ Here is a full list of all unlock tokens, further down you can see a list of [wh
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 * Eaten = 13 : For when the player eats the creature
 * Observe Attraction = 14 : For when the player observes a creature being attracted to something, like batflies to batnip, etc
+* Used As Lure = 15 : For when the player uses the creature to lure / distract something else
 
 
 #### Automatic

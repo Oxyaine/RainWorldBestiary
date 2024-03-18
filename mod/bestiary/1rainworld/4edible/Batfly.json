@@ -26,7 +26,8 @@
         "value": 1,
         "creature_id": "Fly"
       },
-      "text": "HUNTING"
+      "text": "HUNTING",
+      "new_line": true
     },
     {
       "unlock_id": {
@@ -34,7 +35,8 @@
         "value": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_HUNTING_1"
+      "text": "BESTIARY_BATFLY_HUNTING_1",
+      "new_line": true
     },
     {
       "unlock_id": {
@@ -59,6 +61,56 @@
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_BATNIP"
+    },
+    {
+      "unlock_id": {
+        "token_type": 0,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "UTILITY",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
+        "token_type": 15,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_UTILITY_UTILITY_1",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
+        "token_type": 6,
+        "value": 1,
+        "creature_id": "PoleMimic"
+      },
+      "text": "BESTIARY_BATFLY_UTILITY_POLE_MIMIC"
+    },
+    {
+      "unlock_id": {
+        "token_type": 6,
+        "value": 1,
+        "creature_id": "TentaclePlant"
+      },
+      "text": "BESTIARY_BATFLY_UTILITY_KELP"
+    },
+    {
+      "unlock_id": {
+        "token_type": 15,
+        "value": 1,
+        "creature_id": "Fly"
+      },
+      "text": "BESTIARY_BATFLY_UTILITY_UTILITY_2"
+    },
+    {
+      "unlock_id": {
+        "token_type": 6,
+        "value": 4,
+        "creature_id": "Cicada"
+      },
+      "text": "BESTIARY_BATFLY_UTILITY_CICADA"
     }
   ]
 }
