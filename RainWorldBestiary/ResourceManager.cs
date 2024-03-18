@@ -113,7 +113,7 @@ namespace RainWorldBestiary
             {
                 if (!LoadedMods.Contains(mod.id))
                 {
-                    string path= Path.Combine(mod.path, EntriesLocalPath);
+                    string path = Path.Combine(mod.path, EntriesLocalPath);
                     if (Directory.Exists(path))
                     {
                         CheckFolder(path, mod.id);
@@ -186,7 +186,7 @@ namespace RainWorldBestiary
                 catch (Exception ex)
                 {
                     Entry er = Entry.Error;
-                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(file) + "\n" + ex.Message) { ModuleUnlockedCondition = e => false});
+                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(file) + "\n" + ex.Message) { ModuleUnlockedCondition = e => false });
                     entries[i] = er;
                     Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(file) + " at " + file);
                     Main.Logger.LogError(ex);
@@ -202,8 +202,12 @@ namespace RainWorldBestiary
         {
             foreach (Entry entry in entries)
             {
-                if (entry.Info.Description.IsAnythingVisible())
-                    Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
+                foreach (DescriptionModule v in entry.Info.Description)
+                    if (v.UnlockID == null)
+                    {
+                        Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
+                        break;
+                    }
 
                 yield return null;
             }
