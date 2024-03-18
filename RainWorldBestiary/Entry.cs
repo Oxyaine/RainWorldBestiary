@@ -23,6 +23,9 @@ namespace RainWorldBestiary
         /// </summary>
         public ProcessManager.ProcessID EntryReadingMenu = Main.EntryReadingMenu;
 
+        /// <summary>
+        /// The mod that owns this entry, also known as the mod this entry belongs to, is used for unloading the mod automatically when the owning mod gets disabled
+        /// </summary>
         internal readonly string OwningModID = null;
 
         ///
@@ -175,15 +178,7 @@ namespace RainWorldBestiary
         [JsonProperty("color")]
         private string JSON_Color
         {
-            //get
-            //{
-            //    UnityEngine.Color rgb = EntryColor.rgb;
-            //    rgb.r.ToString("X2");
-
-            //    return (UnityEngine.Mathf.RoundToInt(rgb.r * 255f)).ToString("X2") +
-            //        (UnityEngine.Mathf.RoundToInt(rgb.g * 255f)).ToString("X2") +
-            //        (UnityEngine.Mathf.RoundToInt(rgb.b * 255f)).ToString("X2");
-            //}
+            get => string.Empty;
             set
             {
                 if (string.IsNullOrWhiteSpace(value))

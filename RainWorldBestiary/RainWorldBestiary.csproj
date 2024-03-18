@@ -367,6 +367,7 @@
     <Compile Include="Entry.cs" />
     <Compile Include="EntryReadingMenu.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Font.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

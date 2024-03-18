@@ -95,7 +95,7 @@ namespace RainWorldBestiary
         [JsonProperty("count")]
         public byte Count = 1;
 
-        [JsonProperty("value")]
+        [JsonProperty("value"), Obsolete("Use UnlockToken.Count instead")]
         private byte Value { set => Count = value; }
 
         /// <param name="tokenType">The type of token to look for</param>

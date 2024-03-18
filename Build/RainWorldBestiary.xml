@@ -223,6 +223,11 @@
             The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.EntriesTab.ContributingMods">
+            <summary>
+            All the mods that are contributing to this tab, doesn't say which entries they contribute, just if they contribute
+            </summary>
+        </member>
         <member name="M:RainWorldBestiary.EntriesTab.#ctor">
             <summary>
             Creates an empty <see cref="T:RainWorldBestiary.EntriesTab"/>
@@ -331,7 +336,7 @@
             
         </member>
         <member name="M:RainWorldBestiary.EntriesTabList.#ctor(RainWorldBestiary.EntriesTab[])">
-            
+            <param name="tabs">The default tabs to add to this tab list</param>
         </member>
         <member name="P:RainWorldBestiary.EntriesTabList.Count">
             <inheritdoc/>
@@ -401,6 +406,11 @@
         <member name="F:RainWorldBestiary.Entry.EntryReadingMenu">
             <summary>
             The process ID that gets called when an entry button gets pressed, you can leave this as the default menu, or make a custom menu to display the entry's information.
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Entry.OwningModID">
+            <summary>
+            The mod that owns this entry, also known as the mod this entry belongs to, is used for unloading the mod automatically when the owning mod gets disabled
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Entry.#ctor">

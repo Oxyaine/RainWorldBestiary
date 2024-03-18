@@ -24,9 +24,6 @@
 
 
 
-
-
-
             // Batflies attracted to batnip log here somehow
         }
 

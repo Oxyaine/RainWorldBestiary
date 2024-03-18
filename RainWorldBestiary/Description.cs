@@ -65,7 +65,6 @@ namespace RainWorldBestiary
         /// </summary>
         public DescriptionModule this[int index] { get => _values[index]; set => _values[index] = value; }
 
-
         /// <inheritdoc/>
         public IEnumerator<DescriptionModule> GetEnumerator() => _values.AsEnumerable().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
@@ -73,17 +72,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Gets how much of the entry is locked (range 0 - 1)
         /// </summary>
-        public float GetUnlockedPercentage()
-        {
-            int c = 0;
-            foreach (var v in _values)
-            {
-                if (v.ModuleUnlocked)
-                    c++;
-            }
-
-            return c / _values.Count;
-        }
+        public float GetUnlockedPercentage() => UnlockedCount / (float)Count;
 
         /// <summary>
         /// Returns this description as a string where only the parts of the entry that are visible are added

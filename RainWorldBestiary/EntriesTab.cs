@@ -45,8 +45,11 @@ namespace RainWorldBestiary
         }
 
         [JsonIgnore]
-        readonly List<Entry> _entries = new List<Entry>();
+        private readonly List<Entry> _entries = new List<Entry>();
 
+        /// <summary>
+        /// All the mods that are contributing to this tab, doesn't say which entries they contribute, just if they contribute
+        /// </summary>
         [JsonIgnore]
         internal List<string> ContributingMods = new List<string>();
 
@@ -230,13 +233,13 @@ namespace RainWorldBestiary
     {
         ///
         public EntriesTabList() { }
-        ///
+        /// <param name="tabs">The default tabs to add to this tab list</param>
         public EntriesTabList(params EntriesTab[] tabs)
         {
             _tabs = tabs.ToList();
         }
 
-        readonly List<EntriesTab> _tabs = new List<EntriesTab>();
+        private readonly List<EntriesTab> _tabs = new List<EntriesTab>();
 
         /// <inheritdoc/>
         public int Count => _tabs.Count;
