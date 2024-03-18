@@ -91,7 +91,9 @@ namespace RainWorldBestiary
         /// </summary>
         public static Configurable<bool> ShowModuleLockPips;
 
-
+        /// <summary>
+        /// EXPERIMENTAL
+        /// </summary>
         public static Configurable<bool> ShowEntryUnlockPercent;
 
 

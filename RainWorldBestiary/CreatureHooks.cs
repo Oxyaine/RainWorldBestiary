@@ -10,11 +10,24 @@
             On.Player.Die += Player_Die;
             On.Player.Grabbed += Player_Grabbed;
 
+            //On.Weapon.
+
             //On.Creature.Stun += Creature_Stun;
 
             //On.Rock.HitSomething += Rock_HitSomething;
 
             //On.Player.SlugcatGrab += Player_SlugcatGrab;
+
+            //On.Player.eat
+
+
+
+
+
+
+
+
+            // Batflies attracted to batnip log here somehow
         }
 
         //private static bool Rock_HitSomething(On.Rock.orig_HitSomething orig, Rock self, SharedPhysics.CollisionResult result, bool eu)
@@ -37,23 +50,35 @@
         {
             original(self, grasp);
 
-            Bestiary.AddOrIncreaseModuleUnlock(Bestiary.GetCreatureUnlockName(grasp.grabber), UnlockTokenType.GrabbedPlayer);
+
+            string creatureID = Bestiary.GetCreatureUnlockName(grasp.grabber);
+            if (!Bestiary.AutoTrackIgnoredIDs.Contains(creatureID))
+                Bestiary.AddOrIncreaseModuleUnlock(creatureID, UnlockTokenType.GrabbedPlayer);
         }
         private static void Spear_LodgeInCreature(On.Spear.orig_LodgeInCreature original, Spear self, SharedPhysics.CollisionResult result, bool eu)
         {
             original(self, result, eu);
-            
+
             if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
                 if (result.obj is Creature cr)
-                    Bestiary.AddOrIncreaseModuleUnlock(Bestiary.GetCreatureUnlockName(cr), UnlockTokenType.Impaled);
+                {
+                    string creatureID = Bestiary.GetCreatureUnlockName(cr);
+
+                    if (!Bestiary.AutoTrackIgnoredIDs.Contains(creatureID))
+                        Bestiary.AddOrIncreaseModuleUnlock(creatureID, UnlockTokenType.Impaled);
+                }
         }
         private static void Creature_Die(On.Creature.orig_Die original, Creature self)
         {
             original(self);
-            
+
             if (self.killTag != null)
                 if (Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
-                    Bestiary.AddOrIncreaseModuleUnlock(Bestiary.GetCreatureUnlockName(self), UnlockTokenType.Killed);
+                {
+                    string creatureID = Bestiary.GetCreatureUnlockName(self);
+                    if (!Bestiary.AutoTrackIgnoredIDs.Contains(creatureID))
+                        Bestiary.AddOrIncreaseModuleUnlock(creatureID, UnlockTokenType.Killed);
+                }
         }
         private static void Player_Die(On.Player.orig_Die original, Player self)
         {
@@ -61,7 +86,11 @@
 
             if (self.killTag != null)
                 if (!Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
-                    Bestiary.AddOrIncreaseModuleUnlock(Bestiary.GetCreatureUnlockName(self.killTag), UnlockTokenType.KilledPlayer);
+                {
+                    string creatureID = Bestiary.GetCreatureUnlockName(self.killTag);
+                    if (!Bestiary.AutoTrackIgnoredIDs.Contains(creatureID))
+                        Bestiary.AddOrIncreaseModuleUnlock(creatureID, UnlockTokenType.KilledPlayer);
+                }
         }
     }
 }

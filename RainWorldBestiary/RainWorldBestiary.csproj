@@ -362,6 +362,9 @@
     <Compile Include="BestiaryMenu.cs" />
     <Compile Include="BestiaryTabMenu.cs" />
     <Compile Include="CreatureHooks.cs" />
+    <Compile Include="Description.cs" />
+    <Compile Include="EntriesTab.cs" />
+    <Compile Include="Entry.cs" />
     <Compile Include="EntryReadingMenu.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Main.cs" />
@@ -369,6 +372,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemixMenu.cs" />
     <Compile Include="ResourceManager.cs" />
+    <Compile Include="TitleSprite.cs" />
+    <Compile Include="UnlockTokens.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
