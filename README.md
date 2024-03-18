@@ -177,7 +177,7 @@ The auto generated titles look a little off, The spacing between the letters is 
 I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows. There's a couple things I still plan to add, here's a somewhat complete list of what I'm planning on changing / adding.
 
 * Built in sprite loader, so you don't need to write any code to make bestiary entries.
-* Improved title sprite generator. The [issue with them](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue--auto-generated-title) is annoying me.
+* Improved title sprite generator. The [issue with them](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue---auto-generated-title) is annoying me.
 * Ability to make custom unlock logic, without making the bestiary a dependency.
 * Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
 * Try to convert as many unlock tokens to be automated as possible.
