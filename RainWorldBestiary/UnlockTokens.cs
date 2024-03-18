@@ -98,6 +98,9 @@ namespace RainWorldBestiary
         [JsonProperty("value"), Obsolete("Use UnlockToken.Count instead")]
         private byte Value { set => Count = value; }
 
+        ///
+        [JsonConstructor]
+        protected UnlockToken() { }
         /// <param name="tokenType">The type of token to look for</param>
         /// <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
         public UnlockToken(UnlockTokenType tokenType, byte value = 1)
@@ -137,6 +140,8 @@ namespace RainWorldBestiary
         [JsonProperty("creature_id")]
         public readonly string CreatureID = string.Empty;
 
+        [JsonConstructor]
+        private CreatureUnlockToken() { }
         /// <param name="creatureID">The ID of the creature that to look for</param>
         /// <param name="tokenType">The type of token to look for</param>
         /// <param name="value">The amount of times this token should be registered before this is considered unlocked</param>

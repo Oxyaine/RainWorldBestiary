@@ -39,6 +39,22 @@ namespace RainWorldBestiary
 
         public const string BestiaryTitle = "illustrations\\bestiary\\titles\\Bestiary_Title";
 
+        public static IReadOnlyList<string> Characters = new List<string>()
+        {
+            "illustrations\\bestiary\\icons\\Char_1",
+            "illustrations\\bestiary\\icons\\Char_2",
+            "illustrations\\bestiary\\icons\\Char_3",
+            "illustrations\\bestiary\\icons\\Char_4",
+            "illustrations\\bestiary\\icons\\Char_5",
+            "illustrations\\bestiary\\icons\\Char_6",
+            "illustrations\\bestiary\\icons\\Char_7",
+            "illustrations\\bestiary\\icons\\Char_8",
+            "illustrations\\bestiary\\icons\\Char_9",
+            "illustrations\\bestiary\\icons\\Char_10",
+            "illustrations\\bestiary\\icons\\Char_11",
+            "illustrations\\bestiary\\icons\\Char_12",
+        };
+
         internal static void Initialize()
         {
             if (!Initialized)

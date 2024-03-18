@@ -29,6 +29,7 @@ namespace RainWorldBestiary
         internal readonly string OwningModID = null;
 
         ///
+        [JsonConstructor]
         public Entry()
         {
         }
@@ -233,6 +234,7 @@ namespace RainWorldBestiary
         public Description Description = new Description();
 
         ///
+        [JsonConstructor]
         public EntryInfo()
         {
         }

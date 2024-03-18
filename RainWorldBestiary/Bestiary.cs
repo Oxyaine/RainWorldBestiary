@@ -18,9 +18,13 @@ namespace RainWorldBestiary
         /// </summary>
         public static bool IncludeDownpourEntries => IncludeDownpour;
 
+        /// <summary>
+        /// The name of the downpour tab, used for unlocking it if downpour is enabled
+        /// </summary>
         internal const string DownpourTabName = "Downpour";
 
 
+        // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
 
 
@@ -30,7 +34,7 @@ namespace RainWorldBestiary
         public readonly static List<string> CreatureUnlockIDs = new List<string>();
 
 
-        private static readonly Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
+        private static Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
@@ -98,12 +102,21 @@ namespace RainWorldBestiary
 
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
         internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary";
-        internal static void SaveUnlockTokens()
+        internal static void Save()
         {
             if (Directory.Exists(SaveFolder))
                 File.WriteAllText(SaveFile, JsonConvert.SerializeObject(_ModuleUnlocks.ToArray()));
         }
 
+
+        internal static void Load()
+        {
+            if (File.Exists(SaveFile))
+            {
+                KeyValuePair<string, List<UnlockToken>>[] unlocks = JsonConvert.DeserializeObject<KeyValuePair<string, List<UnlockToken>>[]>(File.ReadAllText(SaveFile));
+                _ModuleUnlocks = unlocks.ToDictionary((v) => v.Key, (v) => v.Value);
+            }
+        }
 
         /// <summary>
         /// All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab

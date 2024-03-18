@@ -56,6 +56,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Creates an empty <see cref="EntriesTab"/>
         /// </summary>
+        [JsonConstructor]
         public EntriesTab()
         {
             Name = string.Empty;
@@ -201,10 +202,10 @@ namespace RainWorldBestiary
         /// Gets or sets an entry at the given index
         /// </summary>
         public Entry this[int index] { get => _entries[index]; set => _entries[index] = value; }
-
         /// <summary>
         /// Gets an entry with the given name
         /// </summary>
+        /// <exception cref="KeyNotFoundException"></exception>
         public Entry this[string entryName]
         {
             get
@@ -297,8 +298,6 @@ namespace RainWorldBestiary
             Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleSprite = titleSprite }, merge);
         }
 
-
-
         /// <inheritdoc/>
         public void Clear() => _tabs.Clear();
         /// <inheritdoc/>
@@ -316,5 +315,24 @@ namespace RainWorldBestiary
         /// Gets the <see cref="EntriesTab"/> at the given index
         /// </summary>
         public EntriesTab this[int index] => _tabs[index];
+        /// <summary>
+        /// Gets a tab using its name
+        /// </summary>
+        /// <exception cref="KeyNotFoundException"></exception>
+        public EntriesTab this[string tabName]
+        {
+            get
+            {
+                foreach (EntriesTab tab in _tabs)
+                {
+                    if (tab.Name.Equals(tabName))
+                    {
+                        return tab;
+                    }
+                }
+
+                throw new KeyNotFoundException("The entry with the name " + tabName + " was not found in the list.");
+            }
+        }
     }
 }

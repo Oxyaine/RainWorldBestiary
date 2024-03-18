@@ -87,5 +87,28 @@ namespace RainWorldBestiary
 
             return false;
         }
+
+
+        /// <summary>
+        /// Gets a random item in the collection
+        /// </summary>
+        public static T GetRandom<T>(this IEnumerable<T> values) => values.ElementAt(Random.Range(0, values.Count()));
+        /// <summary>
+        /// Gets a number of random items from the collection
+        /// </summary>
+        public static T[] GetRandom<T>(this IEnumerable<T> values, int amountToGet)
+        {
+            T[] result = new T[amountToGet];
+
+            int max = values.Count();
+            System.Random rand = new System.Random();
+
+            for (int i = 0; i < amountToGet; i++)
+            {
+                result[i] = values.ElementAt(rand.Next(max));
+            }
+
+            return result;
+        }
     }
 }

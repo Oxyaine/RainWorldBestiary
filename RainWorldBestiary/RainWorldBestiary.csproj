@@ -376,11 +376,9 @@
     <Compile Include="TitleSprite.cs" />
     <Compile Include="UnlockTokens.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "$(SolutionDir)mod\plugins\$(TargetName).dll"
-copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)mod\plugins\$(TargetName).xml"
 copy /Y "$(TargetPath)" "$(SolutionDir)Build\$(TargetName).dll"
 copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)Build\$(TargetName).xml"
 xcopy /Y /E "$(SolutionDir)mod" "D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\"</PostBuildEvent>

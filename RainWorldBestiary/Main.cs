@@ -47,6 +47,7 @@ namespace RainWorldBestiary
         }
 
         public static Func<IEnumerator, Coroutine> StartCoroutinePtr; 
+        public static Action<Coroutine> StopCoroutinePtr;
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
             original(self);
@@ -55,6 +56,7 @@ namespace RainWorldBestiary
                 MachineConnector.SetRegisteredOI("oxyaine.bestiary", Options = new RemixMenu());
 
                 StartCoroutinePtr = StartCoroutine;
+                StopCoroutinePtr = StopCoroutine;
 
                 if (!Initialized)
                 {

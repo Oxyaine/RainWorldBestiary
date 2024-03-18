@@ -28,6 +28,8 @@ namespace RainWorldBestiary
         [JsonProperty("y_offset")]
         public int YOffset = 0;
 
+        [JsonConstructor]
+        private TitleSprite() { }
         /// <inheritdoc cref="TitleSprite(string, float, int, int)"/>
         public TitleSprite(string elementName)
         {
@@ -44,5 +46,4 @@ namespace RainWorldBestiary
             YOffset = yOffset;
         }
     }
-
 }

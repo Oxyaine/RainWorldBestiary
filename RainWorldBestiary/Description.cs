@@ -14,6 +14,7 @@ namespace RainWorldBestiary
         readonly List<DescriptionModule> _values = new List<DescriptionModule>();
 
         ///
+        [JsonConstructor]
         public Description() { }
         ///
         public Description(IEnumerable<DescriptionModule> modules)
@@ -64,6 +65,8 @@ namespace RainWorldBestiary
         /// Gets or sets a module at the given index
         /// </summary>
         public DescriptionModule this[int index] { get => _values[index]; set => _values[index] = value; }
+
+
 
         /// <inheritdoc/>
         public IEnumerator<DescriptionModule> GetEnumerator() => _values.AsEnumerable().GetEnumerator();
@@ -161,12 +164,22 @@ namespace RainWorldBestiary
         //[JsonProperty("prefix_unless_previous")]
         //public string PrefixUnlessPrevious = string.Empty;
 
-        ///
+
+        /// <inheritdoc cref="DescriptionModule(string, bool)"/>
+        [JsonConstructor]
         public DescriptionModule() { }
-        ///
-        public DescriptionModule(string body)
+        /// <inheritdoc cref="DescriptionModule(string, CreatureUnlockToken, bool)"/>
+        public DescriptionModule(string body, bool newLine = false)
         {
             Body = body;
+            NewLine = newLine;
+        }
+        /// <param name="body">The text of this part of the entries description</param>
+        /// <param name="unlockToken">The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description</param>
+        /// <param name="newLine">Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.</param>
+        public DescriptionModule(string body, CreatureUnlockToken unlockToken, bool newLine = false) : this(body, newLine)
+        {
+            UnlockID = unlockToken;
         }
 
         /// <inheritdoc/>

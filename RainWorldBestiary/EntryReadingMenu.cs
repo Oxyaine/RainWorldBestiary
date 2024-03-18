@@ -1,4 +1,5 @@
 ﻿using Menu;
+using System.Collections;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -39,12 +40,99 @@ namespace RainWorldBestiary
             DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
         }
 
+        public override void ShutDownProcess()
+        {
+            base.ShutDownProcess();
+
+            if (routine != null)
+                Main.StopCoroutinePtr(routine);
+        }
+
+        Coroutine routine = null;
+        IEnumerator PerformTextAnimation(string text, Vector2 screenSize)
+        {
+            int characters = text.Length / 100;
+
+            string[] elements = ResourceManager.Characters.GetRandom(characters);
+            FSprite[] sprites = new FSprite[characters];
+
+#warning figure out symbol positions
+            float currentX = 100f, currentY = 200f;
+            for (int i = 0; i < elements.Length; i++)
+            {
+                sprites[i] = new FSprite(elements[i])
+                {
+                    x = currentX,
+                    y = currentY,
+                    scale = 3f
+                };
+
+                pages[0].Container.AddChild(sprites[i]);
+
+                currentX += sprites[i].width;
+
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            elements = null;
+
+            for (int i = 0; i < 2; i++)
+            {
+                yield return new WaitForSeconds(0.3f);
+                for (int j = 0; j < sprites.Length; j++)
+                    sprites[j].RemoveFromContainer();
+
+                yield return new WaitForSeconds(0.2f);
+                for (int j = 0; j < sprites.Length; j++)
+                    pages[0].Container.AddChild(sprites[j]);
+            }
+
+            MenuLabel label = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+            pages[0].subObjects.Add(label);
+
+            const int IncreaseAmount = 20;
+            int cache = text.Length,
+                countBeforeIconRemoval = cache / IncreaseAmount,
+                currentSpriteIndex = 0,
+                baseCountBeforeRemoval = countBeforeIconRemoval;
+            for (int i = 0; i < cache; i += IncreaseAmount)
+            {
+                label.text += text.Substring(i, IncreaseAmount);
+                yield return new WaitForFixedUpdate();
+
+                if (i > countBeforeIconRemoval)
+                {
+                    countBeforeIconRemoval += baseCountBeforeRemoval;
+                    Main.StartCoroutinePtr(FadeIconAnimation(sprites[currentSpriteIndex]));
+                    ++currentSpriteIndex;
+                }
+            }
+        }
+        IEnumerator FadeIconAnimation(FSprite sprite)
+        {
+            PlaySound(SoundID.HUD_Food_Meter_Deplete_Plop_A);
+
+            while (sprite.alpha > 0)
+            {
+                sprite.alpha -= Time.deltaTime / sprite.alpha;
+
+                sprite.scale += 0.025f;
+
+                yield return null;
+            }
+
+            sprite.RemoveFromContainer();
+        }
+
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
 
-            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
-            pages[0].subObjects.Add(label);
+            routine = Main.StartCoroutinePtr(PerformTextAnimation(entry.Info.Description.ToString().WrapText(WrapCount), screenSize));
+
+            // KEEP THIS HERE
+            //MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+            //pages[0].subObjects.Add(label);
 
             if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
             {

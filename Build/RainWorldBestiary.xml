@@ -14,6 +14,11 @@
             Whether downpour entries are shown or not, true if more slug cats is enabled, otherwise false
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.Bestiary.DownpourTabName">
+            <summary>
+            The name of the downpour tab, used for unlocking it if downpour is enabled
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs">
             <summary>
             All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
@@ -194,10 +199,15 @@
             </summary>
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.#ctor">
-            
+            <inheritdoc cref="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(System.String)">
-            
+        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,System.Boolean)">
+            <inheritdoc cref="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,RainWorldBestiary.CreatureUnlockToken,System.Boolean)"/>
+        </member>
+        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,RainWorldBestiary.CreatureUnlockToken,System.Boolean)">
+            <param name="body">The text of this part of the entries description</param>
+            <param name="unlockToken">The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description</param>
+            <param name="newLine">Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.</param>
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.ToString">
             <inheritdoc/>
@@ -322,6 +332,7 @@
             <summary>
             Gets an entry with the given name
             </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
         </member>
         <member name="M:RainWorldBestiary.EntriesTab.GetEnumerator">
             <inheritdoc/>
@@ -387,6 +398,12 @@
             <summary>
             Gets the <see cref="T:RainWorldBestiary.EntriesTab"/> at the given index
             </summary>
+        </member>
+        <member name="P:RainWorldBestiary.EntriesTabList.Item(System.String)">
+            <summary>
+            Gets a tab using its name
+            </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
         </member>
         <member name="T:RainWorldBestiary.Entry">
             <summary>
@@ -564,6 +581,16 @@
             Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Gets a random item in the collection
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Gets a number of random items from the collection
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.BestiarySettings">
             <summary>
             The main class for all the bestiary mods' settings, including remix menu options
@@ -726,6 +753,9 @@
             <summary>
             The amount of times this token has been registered, or needs to be registered
             </summary>
+        </member>
+        <member name="M:RainWorldBestiary.UnlockToken.#ctor">
+            
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.UnlockTokenType,System.Byte)">
             <param name="tokenType">The type of token to look for</param>
