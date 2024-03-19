@@ -159,12 +159,6 @@ namespace RainWorldBestiary
         [JsonProperty("new_line")]
         public bool NewLine = false;
 
-
-#warning Go somewhere with this, its a promissing idea
-        //[JsonProperty("prefix_unless_previous")]
-        //public string PrefixUnlessPrevious = string.Empty;
-
-
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>
         [JsonConstructor]
         public DescriptionModule() { }
