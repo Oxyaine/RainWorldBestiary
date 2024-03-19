@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>D:\Program Files %28x86%29\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\plugins\RainWorldBestiary.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\RainWorldBestiary.xml</DocumentationFile>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

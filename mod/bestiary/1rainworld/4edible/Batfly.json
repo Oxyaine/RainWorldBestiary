@@ -14,11 +14,19 @@
     },
     {
       "unlock_id": {
+        "token_type": 0
+      },
+      "text": "APPEARANCE",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
         "token_type": 4,
         "count": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_APPEARANCE"
+      "text": "BESTIARY_BATFLY_APPEARANCE",
+      "new_line": true
     },
     {
       "unlock_id": {
@@ -49,7 +57,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "value": 8,
+        "count": 8,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_HUNTING_3"

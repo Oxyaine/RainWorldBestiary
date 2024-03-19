@@ -115,6 +115,11 @@ namespace RainWorldBestiary
     /// </summary>
     public class DescriptionModule
     {
+#if DEBUG
+        [JsonProperty("id")]
+        public string ModuleID = null;
+#endif
+
         /// <summary>
         /// The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
         /// </summary>
@@ -161,6 +166,12 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("new_line")]
         public bool NewLine = false;
+
+#if DEBUG
+        [JsonProperty("extra_unlock_conditions")]
+        public string[] ExtraUnlockConditions = new string[0];
+#endif
+
 
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>
         [JsonConstructor]
