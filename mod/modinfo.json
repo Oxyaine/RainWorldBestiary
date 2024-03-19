@@ -2,6 +2,7 @@
 	"id": "oxyaine.bestiary",
 	"name": "Bestiary",
 	"version": "0.0.1",
+	"target_game_version": "v1.9.14",
 	"authors": "Oxyaine",
 	"description": "An in game Bestiary that unlocks as you interact with creatures.",
 	"requirements": [],
