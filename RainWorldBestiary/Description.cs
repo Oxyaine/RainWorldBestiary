@@ -147,10 +147,13 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public bool ContributesToEntryUnlock => UnlockID == null || UnlockID.TokenType != UnlockTokenType.None;
 
+        [JsonProperty("text"), Obsolete("Use DescriptionModule.Body Instead")]
+        private string Text { set => Body = value; }
+
         /// <summary>
         /// The text of this part of the entries description
         /// </summary>
-        [JsonProperty("text")]
+        [JsonProperty("body")]
         public string Body = string.Empty;
 
         /// <summary>
