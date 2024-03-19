@@ -15,7 +15,7 @@
     {
       "unlock_id": {
         "token_type": 4,
-        "value": 1,
+        "count": 1,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_APPEARANCE"
@@ -23,7 +23,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "value": 1,
+        "count": 1,
         "creature_id": "Fly"
       },
       "text": "HUNTING",
@@ -32,7 +32,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "value": 1,
+        "count": 1,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_HUNTING_1",
@@ -41,7 +41,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "value": 4,
+        "count": 4,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_HUNTING_2"
@@ -57,16 +57,14 @@
     {
       "unlock_id": {
         "token_type": 14,
-        "value": 1,
+        "count": 1,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_BATNIP"
     },
     {
       "unlock_id": {
-        "token_type": 0,
-        "value": 1,
-        "creature_id": "Fly"
+        "token_type": 0
       },
       "text": "UTILITY",
       "new_line": true
@@ -74,7 +72,7 @@
     {
       "unlock_id": {
         "token_type": 15,
-        "value": 1,
+        "count": 1,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_UTILITY_UTILITY_1",
@@ -83,7 +81,7 @@
     {
       "unlock_id": {
         "token_type": 6,
-        "value": 1,
+        "count": 1,
         "creature_id": "PoleMimic"
       },
       "text": "BESTIARY_BATFLY_UTILITY_POLE_MIMIC"
@@ -91,7 +89,7 @@
     {
       "unlock_id": {
         "token_type": 6,
-        "value": 1,
+        "count": 1,
         "creature_id": "TentaclePlant"
       },
       "text": "BESTIARY_BATFLY_UTILITY_KELP"
@@ -99,7 +97,7 @@
     {
       "unlock_id": {
         "token_type": 15,
-        "value": 1,
+        "count": 1,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_UTILITY_UTILITY_2"
@@ -107,7 +105,7 @@
     {
       "unlock_id": {
         "token_type": 6,
-        "value": 4,
+        "count": 4,
         "creature_id": "Cicada"
       },
       "text": "BESTIARY_BATFLY_UTILITY_CICADA"
