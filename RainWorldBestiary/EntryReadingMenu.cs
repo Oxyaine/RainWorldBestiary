@@ -109,9 +109,22 @@ namespace RainWorldBestiary
                 }
             }
         }
+        IEnumerator FadeIconAnimation(FSprite sprite)
+        {
+            PlaySound(SoundID.HUD_Food_Meter_Deplete_Plop_A);
+
+            while (sprite.alpha > 0)
+            {
+                sprite.alpha -= Time.deltaTime / sprite.alpha;
+
+                sprite.scale += 0.025f;
+
+                yield return null;
+            }
 
             sprite.RemoveFromContainer();
         }
+
 
 #endif
 
