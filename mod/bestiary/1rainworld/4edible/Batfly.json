@@ -124,19 +124,7 @@
         "count": 1,
         "creature_id": "TentaclePlant"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_KELP",
-      "extra_text_conditions": [
-        {
-          "condition_type_int": 2,
-          "indexes": [10],
-          "text_if_true": "BESTIARY_BATLFY_UTILITY_KELP_ADDITIONS"
-        },
-        {
-          "condition_type_int":0,
-          "indexes":[10],
-          "text_if_true": "BESTIARY_BATLFY_UTILITY_KELP_ADDITIONS_POLEMIMIC_VISIBLE"
-        }
-      ]
+      "text": "BESTIARY_BATFLY_UTILITY_KELP"
     },
     {
       "unlock_id": {
