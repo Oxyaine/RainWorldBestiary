@@ -43,11 +43,12 @@ namespace RainWorldBestiary
         public override void ShutDownProcess()
         {
             base.ShutDownProcess();
-
+#if DEBUG
             if (routine != null)
                 Main.StopCoroutinePtr(routine);
+#endif
         }
-
+#if DEBUG
         Coroutine routine = null;
         IEnumerator PerformTextAnimation(string text, Vector2 screenSize)
         {
@@ -124,16 +125,19 @@ namespace RainWorldBestiary
             sprite.RemoveFromContainer();
         }
 
+#endif
+
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
-
+#if DEBUG
             routine = Main.StartCoroutinePtr(PerformTextAnimation(entry.Info.Description.ToString().WrapText(WrapCount), screenSize));
 
-            // KEEP THIS HERE
-            //MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
-            //pages[0].subObjects.Add(label);
-
+#else
+            // KEEP THIS HERE FOREVER
+            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+            pages[0].subObjects.Add(label);
+#endif
             if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
             {
                 FSprite sprite = new FSprite(entry.Info.TitleSprite.ElementName)

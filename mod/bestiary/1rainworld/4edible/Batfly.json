@@ -14,11 +14,25 @@
     },
     {
       "unlock_id": {
+        "token_type": 0
+      },
+      "text": "APPEARANCE",
+      "new_line": true,
+      "extra_unlock_conditions": [
+        {
+          "condition_type_int": 1,
+          "indexes": [2]
+        }
+      ]
+    },
+    {
+      "unlock_id": {
         "token_type": 4,
         "count": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_APPEARANCE"
+      "text": "BESTIARY_BATFLY_APPEARANCE",
+      "new_line": true
     },
     {
       "unlock_id": {
@@ -27,7 +41,13 @@
         "creature_id": "Fly"
       },
       "text": "HUNTING",
-      "new_line": true
+      "new_line": true,
+      "extra_unlock_conditions": [
+        {
+          "condition_type_int": 1,
+          "indexes": [4, 5, 6, 7]
+        }
+      ]
     },
     {
       "unlock_id": {
@@ -49,7 +69,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "value": 8,
+        "count": 8,
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_HUNTING_3"
@@ -67,7 +87,13 @@
         "token_type": 0
       },
       "text": "UTILITY",
-      "new_line": true
+      "new_line": true,
+      "extra_unlock_conditions": [
+        {
+          "condition_type_int": 1,
+          "indexes": [9, 10, 11, 12, 13]
+        }
+      ]
     },
     {
       "unlock_id": {
@@ -76,7 +102,13 @@
         "creature_id": "Fly"
       },
       "text": "BESTIARY_BATFLY_UTILITY_UTILITY_1",
-      "new_line": true
+      "new_line": true,
+      "extra_unlock_conditions": [
+        {
+          "condition_type_int": 0,
+          "indexes": [10]
+        }
+      ]
     },
     {
       "unlock_id": {
@@ -92,7 +124,19 @@
         "count": 1,
         "creature_id": "TentaclePlant"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_KELP"
+      "text": "BESTIARY_BATFLY_UTILITY_KELP",
+      "extra_text_conditions": [
+        {
+          "condition_type_int": 2,
+          "indexes": [10],
+          "text_if_true": "BESTIARY_BATLFY_UTILITY_KELP_ADDITIONS"
+        },
+        {
+          "condition_type_int":0,
+          "indexes":[10],
+          "text_if_true": "BESTIARY_BATLFY_UTILITY_KELP_ADDITIONS_POLEMIMIC_VISIBLE"
+        }
+      ]
     },
     {
       "unlock_id": {

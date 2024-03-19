@@ -160,9 +160,13 @@ namespace RainWorldBestiary
         public bool NewLine = false;
 
 
-#warning Go somewhere with this, its a promissing idea
-        //[JsonProperty("prefix_unless_previous")]
-        //public string PrefixUnlessPrevious = string.Empty;
+#if DEBUG
+        [JsonProperty("extra_unlock_conditions")]
+        public OtherConditionBase[] ExtraUnlockConditions = new OtherConditionBase[0];
+
+        [JsonProperty("extra_text_conditions")]
+        public ExtraTextCondition[] ExtraTextConditions = new ExtraTextCondition[0];
+#endif
 
 
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>
@@ -185,4 +189,50 @@ namespace RainWorldBestiary
         /// <inheritdoc/>
         public override string ToString() => Body;
     }
+
+#if DEBUG
+    public class OtherConditionBase
+    {
+        [JsonProperty("condition_type_int")]
+        public UnlockConditionType ConditionType = UnlockConditionType.All;
+
+        [JsonProperty("condition_type")]
+        public string ConditionTypeString
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    ConditionType = (UnlockConditionType)Enum.Parse(typeof(UnlockConditionType), value, true);
+                }
+            }
+        }
+
+        [JsonProperty("indexes")]
+        public int[] indexes = new int[0];
+
+        public enum UnlockConditionType
+        {
+            All,
+            Any,
+            None
+        }
+    }
+
+    public class ExtraTextCondition : OtherConditionBase
+    {
+        [JsonProperty("text_if_true")]
+        public string TextIfTrue = "";
+
+        [JsonProperty("text_location")]
+        public TextType TextLocation = TextType.Prefix;
+
+        public enum TextType
+        {
+            Prefix,
+            Suffix
+        }
+    }
+
+#endif
 }
