@@ -88,7 +88,7 @@ namespace RainWorldBestiary
                         CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
                     }
                 }
-
+                //AssetManager.ResolveDirectory()
                 CheckFolder(Path.Combine(ModDirectory, EntriesLocalPath), BestiaryModID);
 
                 CheckForUnregisteredEntries();
