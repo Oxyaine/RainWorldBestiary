@@ -6,7 +6,7 @@
         public static void Initialize()
         {
             On.Creature.Die += Creature_Die;
-            On.Spear.LodgeInCreature += Spear_LodgeInCreature;
+            On.Spear.LodgeInCreature_CollisionResult_bool += Spear_LodgeInCreature_CollisionResult_bool;
             On.Player.Die += Player_Die;
             On.Player.Grabbed += Player_Grabbed;
 
@@ -19,9 +19,6 @@
             //On.Player.SlugcatGrab += Player_SlugcatGrab;
 
             //On.Player.eat
-
-
-
 
 
             // Batflies attracted to batnip log here somehow
@@ -52,7 +49,7 @@
             if (!Bestiary.AutoTrackIgnoredIDs.Contains(creatureID))
                 Bestiary.AddOrIncreaseModuleUnlock(creatureID, UnlockTokenType.GrabbedPlayer);
         }
-        private static void Spear_LodgeInCreature(On.Spear.orig_LodgeInCreature original, Spear self, SharedPhysics.CollisionResult result, bool eu)
+        private static void Spear_LodgeInCreature_CollisionResult_bool(On.Spear.orig_LodgeInCreature_CollisionResult_bool original, Spear self, SharedPhysics.CollisionResult result, bool eu)
         {
             original(self, result, eu);
 
