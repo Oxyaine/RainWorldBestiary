@@ -117,7 +117,7 @@ namespace RainWorldBestiary
     {
 #if DEBUG
         [JsonProperty("id")]
-        public string ModuleID = string.Empty;
+        public string ModuleID = null;
 #endif
 
         /// <summary>
@@ -163,6 +163,11 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("new_line")]
         public bool NewLine = false;
+
+#if DEBUG
+        [JsonProperty("extra_unlock_conditions")]
+        public string[] ExtraUnlockConditions = new string[0];
+#endif
 
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>
         [JsonConstructor]
