@@ -1,1 +1,2 @@
-{}
+An empty file, so that github will save the `3modded` folder, since it refuses to do so if the folder is empty, however the resource manager wont load the tab if the folder doesn't exist.
+This file is ignored by the resource manager, since its in the location of where entries should be, yet its an .txt file, resource manager only looks for .json files :)
