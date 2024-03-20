@@ -61,7 +61,13 @@ namespace RainWorldBestiary
             "illustrations\\bestiary\\icons\\Char_18",
             "illustrations\\bestiary\\icons\\Char_19",
             "illustrations\\bestiary\\icons\\Char_20",
-            "illustrations\\bestiary\\icons\\Char_21"
+            "illustrations\\bestiary\\icons\\Char_21",
+            "illustrations\\bestiary\\icons\\Char_22",
+            "illustrations\\bestiary\\icons\\Char_23",
+            "illustrations\\bestiary\\icons\\Char_24",
+            "illustrations\\bestiary\\icons\\Char_25",
+            "illustrations\\bestiary\\icons\\Char_26",
+            "illustrations\\bestiary\\icons\\Char_27"
         };
 
         internal static void Initialize()
