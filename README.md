@@ -80,8 +80,8 @@ An entry's description is an array of description modules, each module can be gi
 `Default = null`
 The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
 
-#### "text" : string
-The text of this module, this gets run through the in game translator, and so you can make the description something like "ENTRY__BATFLY_APPEARANCE", then define a translation into whatever language using the short strings dictionary in `text\text_eng\strings.txt`
+#### "body" : string
+The text of this module, this gets run through the in game translator, so you can make the description something like "ENTRY_BATFLY_APPEARANCE", then define a translation into whatever language using the short strings dictionary in `text\text_eng\strings.txt`
 
 #### "new_line" : bool
 `Default = false`
@@ -183,3 +183,4 @@ I plan to continue keeping this mod up to date for a while, as well as bug fixes
 * Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
 * Try to convert as many unlock tokens to be automated as possible.
 * Make entries not just organized but categorized in the tabs
+* Make the resource manager create tabs based on the JSON files and not the directories
