@@ -195,7 +195,7 @@ namespace RainWorldBestiary
                     tab = new EntriesTab(Path.GetFileName(folder));
                 }
 
-                string[] files = Directory.GetFiles(folder, "*", SearchOption.AllDirectories);
+                string[] files = Directory.GetFiles(folder, "*.json", SearchOption.AllDirectories);
                 Entry[] entries = GetFilesAsEntries(files, modID);
                 tab.AddRange(entries);
 
