@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System;
 
 namespace RainWorldBestiary
@@ -95,9 +96,9 @@ namespace RainWorldBestiary
             get => TokenType.ToString();
             set
             {
-                if (Enum.TryParse<UnlockTokenType>(value, true, out UnlockTokenType val))
+                if (Enum.TryParse(value, true, out UnlockTokenType val))
                     TokenType = val;
-                else if (Enum.TryParse<UnlockTokenType>(value.Replace(" ", ""), true, out val))
+                else if (Enum.TryParse(value.Replace(" ", ""), true, out val))
                     TokenType = val;
             }
         }
@@ -116,7 +117,7 @@ namespace RainWorldBestiary
         /// Extra data that is tied to this token
         /// </summary>
         [JsonProperty("extra_data")]
-        public string[] ExtraData = new string[0];
+        public List<string> ExtraData = new List<string>();
 #endif
 
         ///
@@ -181,8 +182,6 @@ namespace RainWorldBestiary
         /// <code>1 - 1 = 0</code>
         /// </summary>
         XOr = 2,
-        /// <inheritdoc cref="XOr"/>
-        ExclusiveOr = 2,
         /// <summary>
         /// True if either value is false
         /// <code>0 - 0 = 1</code>
@@ -191,8 +190,6 @@ namespace RainWorldBestiary
         /// <code>1 - 1 = 0</code>
         /// </summary>
         NAnd = 3,
-        /// <inheritdoc cref="NAnd"/>
-        NotAnd = 3,
         /// <summary>
         /// True if neither value is true
         /// <code>0 - 0 = 1</code>
@@ -201,8 +198,6 @@ namespace RainWorldBestiary
         /// <code>1 - 1 = 0</code>
         /// </summary>
         NOr = 4,
-        /// <inheritdoc cref="NOr"/>
-        NotOr = 4,
         /// <summary>
         /// True if both values are the same
         /// <code>0 - 0 = 1</code>
@@ -210,9 +205,7 @@ namespace RainWorldBestiary
         /// <code>0 - 1 = 0</code>
         /// <code>1 - 1 = 1</code>
         /// </summary>
-        XAnd = 5,
-        /// <inheritdoc cref="XAnd"/>
-        EitherAnd = 5
+        XAnd = 5
     }
 
 #endif
@@ -225,7 +218,7 @@ namespace RainWorldBestiary
         /// The ID of the creature this unlock token applies to
         /// </summary>
         [JsonProperty("creature_id")]
-        public readonly string CreatureID = string.Empty;
+        public string CreatureID = string.Empty;
 
 #if DEBUG
 

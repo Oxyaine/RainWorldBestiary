@@ -1,49 +1,49 @@
 {
   "unlock_id": "Fly",
   "locked_text": "BESTIARY_BATFLY_LOCKTEXT",
-  "icons_next_to_title": true,
   "entry_icon": "illustrations\\bestiary\\entry_icons\\Batfly_icon",
-  "title_sprite": null,
-  "color": null,
   "description": [
     {
-      "unlock_id": {
-        "token_type": 0
-      },
-      "text": "BESTIARY_BATFLY_BASIC_INTRODUCTION"
+      "unlock_id": {},
+      "body": "BESTIARY_BATFLY_BASIC_INTRODUCTION"
     },
     {
       "unlock_id": {
-        "token_type": 0
+        "token_type": 4,
+        "creature_id": "Fly"
       },
-      "text": "APPEARANCE",
+      "body": "APPEARANCE",
       "new_line": true
     },
     {
       "unlock_id": {
         "token_type": 4,
-        "count": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_APPEARANCE",
+      "body": "BESTIARY_BATFLY_APPEARANCE",
+      "new_line": true
+    },
+    {
+      "unlock_ids": [
+        {
+          "token_type": 13,
+          "creature_id": "Fly"
+        },
+        {
+          "operation_against_value": "or",
+          "token_type": 14,
+          "creature_id": "Fly"
+        }
+      ],
+      "body": "HUNTING",
       "new_line": true
     },
     {
       "unlock_id": {
         "token_type": 13,
-        "count": 1,
         "creature_id": "Fly"
       },
-      "text": "HUNTING",
-      "new_line": true
-    },
-    {
-      "unlock_id": {
-        "token_type": 13,
-        "count": 1,
-        "creature_id": "Fly"
-      },
-      "text": "BESTIARY_BATFLY_HUNTING_1",
+      "body": "BESTIARY_BATFLY_HUNTING_1",
       "new_line": true
     },
     {
@@ -52,7 +52,7 @@
         "count": 4,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_HUNTING_2"
+      "body": "BESTIARY_BATFLY_HUNTING_2"
     },
     {
       "unlock_id": {
@@ -60,63 +60,75 @@
         "count": 8,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_HUNTING_3"
+      "body": "BESTIARY_BATFLY_HUNTING_3"
     },
     {
       "unlock_id": {
         "token_type": 14,
-        "count": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_BATNIP"
+      "body": "BESTIARY_BATFLY_BATNIP"
     },
     {
-      "unlock_id": {
-        "token_type": 0
-      },
-      "text": "UTILITY",
+      "unlock_ids": [
+        {
+          "token_type": 15,
+          "creature_id": "Fly"
+        },
+        {
+          "operation_against_value": "or",
+          "token_type": 6,
+          "creature_id": "PoleMimic"
+        },
+        {
+          "operation_against_value": "or",
+          "token_type": 6,
+          "creature_id": "TentaclePlant"
+        },
+        {
+          "operation_against_value": "or",
+          "token_type": 6,
+          "creature_id": "Cicada"
+        }
+      ],
+      "body": "UTILITY",
       "new_line": true
     },
     {
       "unlock_id": {
         "token_type": 15,
-        "count": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_UTILITY_1",
+      "body": "BESTIARY_BATFLY_UTILITY_UTILITY_1",
       "new_line": true
     },
     {
       "unlock_id": {
         "token_type": 6,
-        "count": 1,
         "creature_id": "PoleMimic"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_POLE_MIMIC"
+      "body": "BESTIARY_BATFLY_UTILITY_POLE_MIMIC"
     },
     {
       "unlock_id": {
         "token_type": 6,
-        "count": 1,
         "creature_id": "TentaclePlant"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_KELP"
+      "body": "BESTIARY_BATFLY_UTILITY_KELP"
     },
     {
       "unlock_id": {
         "token_type": 15,
-        "count": 1,
         "creature_id": "Fly"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_UTILITY_2"
+      "body": "BESTIARY_BATFLY_UTILITY_UTILITY_2"
     },
     {
       "unlock_id": {
         "token_type": 6,
-        "count": 4,
         "creature_id": "Cicada"
       },
-      "text": "BESTIARY_BATFLY_UTILITY_CICADA"
+      "body": "BESTIARY_BATFLY_UTILITY_CICADA"
     }
   ]
 }

@@ -146,6 +146,7 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public Func<DescriptionModule, bool> ModuleUnlockedCondition = DefaultModuleUnlockedCondition;
 
+#warning CHANGE SUMMARY AFTER DEBUG IS DISABLED
         /// <summary>
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="UnlockToken.Equals(UnlockToken)"/>
         /// </summary>
@@ -155,30 +156,36 @@ namespace RainWorldBestiary
             if (BestiarySettings.UnlockAllEntries.Value)
                 return true;
 
+            Dictionary<CreatureUnlockToken, bool> tokensCache = new Dictionary<CreatureUnlockToken, bool>();
+
             bool unlocked = true;
             foreach (CreatureUnlockToken unlock in info.UnlockIDs)
             {
+                if (!tokensCache.TryGetValue(unlock, out bool thisValue))
+                {
+                    thisValue = CheckIfUnlockTokenUnlocked(unlock);
+                    tokensCache.Add(unlock, thisValue);
+                }
+
                 switch (unlock.OperationAgainstCurrentValue)
                 {
                     case OperationType.And:
-                        unlocked = unlocked && CheckIfUnlockTokenUnlocked(unlock);
+                        unlocked = unlocked && thisValue;
                         break;
                     case OperationType.Or:
-                        unlocked = unlocked || CheckIfUnlockTokenUnlocked(unlock);
+                        unlocked = unlocked || thisValue;
                         break;
                     case OperationType.XOr:
-                        bool token = CheckIfUnlockTokenUnlocked(unlock);
-                        unlocked = (unlocked && !token) || (!unlocked && token);
+                        unlocked = (unlocked && !thisValue) || (!unlocked && thisValue);
                         break;
                     case OperationType.NAnd:
-                        unlocked = !(unlocked && CheckIfUnlockTokenUnlocked(unlock));
+                        unlocked = !(unlocked && thisValue);
                         break;
                     case OperationType.NOr:
-                        unlocked = !unlocked && !CheckIfUnlockTokenUnlocked(unlock);
+                        unlocked = !unlocked && !thisValue;
                         break;
                     case OperationType.XAnd:
-                        bool token2 = CheckIfUnlockTokenUnlocked(unlock);
-                        unlocked = (unlocked && token2) || (!unlocked && !token2);
+                        unlocked = (unlocked && thisValue) || (!unlocked && !thisValue);
                         break;
                 }
             }
@@ -200,10 +207,6 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonIgnore]
         public bool ModuleUnlocked => ModuleUnlockedCondition == null || ModuleUnlockedCondition(this);
-
-
-
-
 
         [JsonProperty("text"), Obsolete("Use DescriptionModule.Body Instead")]
         private string Text { set => Body = value; }
