@@ -36,7 +36,7 @@ namespace RainWorldBestiary
                         x = currentX
                     };
 
-                    if (BestiarySettings.UseCharacterSpacingForNames.Value)
+                    if (BestiarySettings.MinimizeTitleSpacing.Value)
                         currentX += sprites[i].width + ((1f - (sprites[i].width / 40f)) * 20f);
                     else
                         currentX += 65f;

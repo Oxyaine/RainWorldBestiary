@@ -38,17 +38,18 @@ namespace RainWorldBestiary
             backButton.nextSelectable[2] = backButton;
 
             DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
+
+            mySoundLoopID = SoundID.MENU_Sleep_Screen_LOOP;
         }
 
         public override void ShutDownProcess()
         {
             base.ShutDownProcess();
-#if DEBUG
+
             if (routine != null)
                 Main.StopCoroutinePtr(routine);
-#endif
         }
-#if DEBUG
+
         Coroutine routine = null;
         IEnumerator PerformTextAnimation(string text, Vector2 screenSize)
         {
@@ -57,8 +58,9 @@ namespace RainWorldBestiary
             string[] elements = ResourceManager.Characters.GetRandom(characters);
             FSprite[] sprites = new FSprite[characters];
 
-#warning figure out symbol positions
-            float currentX = 100f, currentY = 200f;
+            int position = characters * 16 * 3;
+
+            float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
             for (int i = 0; i < elements.Length; i++)
             {
                 sprites[i] = new FSprite(elements[i])
@@ -91,22 +93,24 @@ namespace RainWorldBestiary
             MenuLabel label = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
             pages[0].subObjects.Add(label);
 
-            const int IncreaseAmount = 20;
+            const int IncreaseAmount = 10;
             int cache = text.Length,
-                countBeforeIconRemoval = cache / IncreaseAmount,
-                currentSpriteIndex = 0,
-                baseCountBeforeRemoval = countBeforeIconRemoval;
+                countBeforeIconRemoval = cache / characters,
+                currentSpriteIndex = 0;
             for (int i = 0; i < cache; i += IncreaseAmount)
             {
-                label.text += text.Substring(i, IncreaseAmount);
-                yield return new WaitForFixedUpdate();
+                if (i + IncreaseAmount >= cache)
+                    label.text += text.Substring(i);
+                else
+                    label.text += text.Substring(i, IncreaseAmount);
 
-                if (i > countBeforeIconRemoval)
+                if (i >= (countBeforeIconRemoval * currentSpriteIndex))
                 {
-                    countBeforeIconRemoval += baseCountBeforeRemoval;
                     Main.StartCoroutinePtr(FadeIconAnimation(sprites[currentSpriteIndex]));
                     ++currentSpriteIndex;
                 }
+
+                yield return new WaitForFixedUpdate();
             }
         }
         IEnumerator FadeIconAnimation(FSprite sprite)
@@ -115,9 +119,8 @@ namespace RainWorldBestiary
 
             while (sprite.alpha > 0)
             {
-                sprite.alpha -= Time.deltaTime / sprite.alpha;
-
-                sprite.scale += 0.025f;
+                sprite.alpha -= Time.deltaTime * 2 / sprite.alpha;
+                sprite.scale += 0.05f;
 
                 yield return null;
             }
@@ -125,20 +128,20 @@ namespace RainWorldBestiary
             sprite.RemoveFromContainer();
         }
 
-
-#endif
-
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
-#if DEBUG
-            routine = Main.StartCoroutinePtr(PerformTextAnimation(entry.Info.Description.ToString().WrapText(WrapCount), screenSize));
 
-#else
-            // KEEP THIS HERE FOREVER
-            MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
-            pages[0].subObjects.Add(label);
-#endif
+            if (BestiarySettings.PerformTextAnimations.Value)
+            {
+                routine = Main.StartCoroutinePtr(PerformTextAnimation(entry.Info.Description.ToString().WrapText(WrapCount), screenSize));
+            }
+            else
+            {
+                MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+                pages[0].subObjects.Add(label);
+            }
+
             if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
             {
                 FSprite sprite = new FSprite(entry.Info.TitleSprite.ElementName)

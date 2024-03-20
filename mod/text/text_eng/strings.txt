@@ -14,10 +14,14 @@ Menu Fade Time|Menu Fade Time
 Show Unlock Pips|Show Unlock Pips
 Performance Mode|Performance Mode
 Unlock All Entries|Unlock All Entries
+Minimize Title Character Spacing|Minimize Title Character Spacing
+Perform Text Reveal Animation|Perform Text Reveal Animation
 
 MENU_FADE_TIME_DESCRIPTION|The time the bestiary's sub-menus will take to fade from one menu to the other.
 SHOW_UNLOCK_PIPS_DESCRIPTION|Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.
 UNLOCK_ALL_ENTRIES_DESCRIPTION|Unlocks all entries and their full descriptions.
+USE_CHARACTER_SPACING_DESCRIPTION|Makes the generated title in the menus use smaller spacing between each character
+SHOW_TEXT_ANIMATIONS_DESCRIPTION|Whether to make entires perform a little animation before the text is revealed
 
 BESTIARY_BATFLY_LOCKTEXT|A passive, flying, insectoid creature, that serve as a good source of food. 
 BESTIARY_BATFLY_BASIC_INTRODUCTION|Batflies are passive, flying, insectoid creatures that act as one of Slugcat's primary food sources. They are one of the most common creatures in the game, appearing in almost every region.
@@ -30,4 +34,4 @@ BESTIARY_BATFLY_UTILITY_UTILITY_1|Batflies can be used to distract certain creat
 BESTIARY_BATFLY_UTILITY_POLE_MIMIC|, such as Pole Mimics
 BESTIARY_BATFLY_UTILITY_KELP|, Monster Kelp, etc
 BESTIARY_BATFLY_UTILITY_UTILITY_2|. When thrown in range, these creatures may prioritize the Batfly over Slugcat, retreating into their dens to consume them.
-BESTIARY_BATFLY_UTILITY_CICADA|Batflies can also be used to raise reputation with Squidaca.
+BESTIARY_BATFLY_UTILITY_CICADA|Batflies can also be used to raise reputation with Squidcada.

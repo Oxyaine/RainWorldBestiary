@@ -83,6 +83,7 @@ namespace RainWorldBestiary
         public override string ToString()
         {
             string result = string.Empty;
+
             foreach (DescriptionModule module in _values)
             {
                 if (module.ModuleUnlocked)
@@ -90,6 +91,7 @@ namespace RainWorldBestiary
                     result += (module.NewLine ? "\n" : " ") + OptionInterface.Translate(module.ToString());
                 }
             }
+
             return result;
         }
 
@@ -115,16 +117,27 @@ namespace RainWorldBestiary
     /// </summary>
     public class DescriptionModule
     {
-#if DEBUG
-        [JsonProperty("id")]
-        public string ModuleID = null;
-#endif
 
         /// <summary>
         /// The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
         /// </summary>
         [JsonProperty("unlock_id")]
-        public CreatureUnlockToken UnlockID = null;
+        public CreatureUnlockToken UnlockID
+#if DEBUG
+        {
+            set
+            {
+                UnlockIDs = UnlockIDs.Append(value).ToArray();
+            }
+        }
+#else
+            = null;
+#endif
+
+#if DEBUG
+        [JsonProperty("unlock_ids")]
+        public CreatureUnlockToken[] UnlockIDs = new CreatureUnlockToken[0];
+#endif
 
         /// <summary>
         /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
@@ -137,8 +150,51 @@ namespace RainWorldBestiary
         /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="UnlockToken.Equals(UnlockToken)"/>
         /// </summary>
         public static bool DefaultModuleUnlockedCondition(DescriptionModule info)
-            => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
+#if DEBUG
+        {
+            if (BestiarySettings.UnlockAllEntries.Value)
+                return true;
 
+            bool unlocked = true;
+            foreach (CreatureUnlockToken unlock in info.UnlockIDs)
+            {
+                switch (unlock.OperationAgainstCurrentValue)
+                {
+                    case OperationType.And:
+                        unlocked = unlocked && CheckIfUnlockTokenUnlocked(unlock);
+                        break;
+                    case OperationType.Or:
+                        unlocked = unlocked || CheckIfUnlockTokenUnlocked(unlock);
+                        break;
+                    case OperationType.XOr:
+                        bool token = CheckIfUnlockTokenUnlocked(unlock);
+                        unlocked = (unlocked && !token) || (!unlocked && token);
+                        break;
+                    case OperationType.NAnd:
+                        unlocked = !(unlocked && CheckIfUnlockTokenUnlocked(unlock));
+                        break;
+                    case OperationType.NOr:
+                        unlocked = !unlocked && !CheckIfUnlockTokenUnlocked(unlock);
+                        break;
+                    case OperationType.XAnd:
+                        bool token2 = CheckIfUnlockTokenUnlocked(unlock);
+                        unlocked = (unlocked && token2) || (!unlocked && !token2);
+                        break;
+                }
+            }
+
+            return unlocked;
+        }
+
+        /// <summary>
+        /// Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="Bestiary.IsUnlockTokenValid(CreatureUnlockToken)"/>.
+        /// </summary>
+        /// <returns>True if either of the conditions above is met</returns>
+        public static bool CheckIfUnlockTokenUnlocked(CreatureUnlockToken unlockToken)
+            => unlockToken == null || unlockToken.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(unlockToken);
+#else
+            => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
+#endif
         /// <summary>
         /// Returns true if the module is unlocked, else false
         /// </summary>
@@ -166,11 +222,6 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("new_line")]
         public bool NewLine = false;
-
-#if DEBUG
-        [JsonProperty("extra_unlock_conditions")]
-        public string[] ExtraUnlockConditions = new string[0];
-#endif
 
 
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>

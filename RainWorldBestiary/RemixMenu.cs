@@ -14,9 +14,10 @@ namespace RainWorldBestiary
         {
             BestiarySettings._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
             BestiarySettings.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
+            BestiarySettings.PerformTextAnimations = config.Bind("oxyaine_bestiary_perform_text_animation", true);
 
             BestiarySettings.ShowEntryUnlockPercent = config.Bind("oxyaine_bestiary_show_entry_unlock_percent_EXP", false);
-            BestiarySettings.UseCharacterSpacingForNames = config.Bind("oxyaine_bestiary_use_characters_spacing_for_names_EXP", false);
+            BestiarySettings.MinimizeTitleSpacing = config.Bind("oxyaine_bestiary_use_characters_spacing_for_names_EXP", false);
 
             BestiarySettings.UnlockAllEntries = config.Bind("oxyaine_bestiary_unlock_all_entries", false);
         }
@@ -33,6 +34,7 @@ namespace RainWorldBestiary
             //Default Tab
             AddElements(ref items, Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translate("MENU_FADE_TIME_DESCRIPTION"));
             AddElements(ref items, Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
+            AddElements(ref items, Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translate("SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
@@ -40,7 +42,7 @@ namespace RainWorldBestiary
 
             // Experimental Tab
             AddElements(ref items, "Show Entry Unlock Percent", BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor);
-            AddElements(ref items, "Use Character Spacing For Names", BestiarySettings.UseCharacterSpacingForNames, ExperimentalColor);
+            AddElements(ref items, Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translate("USE_CHARACTER_SPACING_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
             items.Clear();
@@ -95,11 +97,19 @@ namespace RainWorldBestiary
 
 
         /// <summary>
+        /// Whether to perform an animation when going to read an entry
+        /// </summary>
+        public static Configurable<bool> PerformTextAnimations;
+
+
+        /// <summary>
         /// EXPERIMENTAL
         /// </summary>
         public static Configurable<bool> ShowEntryUnlockPercent;
-#warning RENAME LATER
-        public static Configurable<bool> UseCharacterSpacingForNames;
+        /// <summary>
+        /// EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
+        /// </summary>
+        public static Configurable<bool> MinimizeTitleSpacing;
 
 
         /// <summary>

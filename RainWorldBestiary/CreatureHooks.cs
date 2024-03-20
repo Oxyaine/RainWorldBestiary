@@ -44,7 +44,6 @@
         {
             original(self, grasp);
 
-
             string creatureID = Bestiary.GetCreatureUnlockName(grasp.grabber);
             if (!Bestiary.AutoTrackIgnoredIDs.Contains(creatureID))
                 Bestiary.AddOrIncreaseModuleUnlock(creatureID, UnlockTokenType.GrabbedPlayer);

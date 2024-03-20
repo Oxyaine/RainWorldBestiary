@@ -75,7 +75,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// For whenever the player uses the creature to lure something else
         /// </summary>
-        UsedAsLure = 15
+        UsedAsLure = 15,
     }
 
     /// <summary>
@@ -97,6 +97,14 @@ namespace RainWorldBestiary
 
         [JsonProperty("value"), Obsolete("Use UnlockToken.Count instead")]
         private byte Value { set => Count = value; }
+
+#if DEBUG
+        /// <summary>
+        /// Extra data that is tied to this token
+        /// </summary>
+        [JsonProperty("extra_data")]
+        public string[] ExtraData = new string[0];
+#endif
 
         ///
         [JsonConstructor]
@@ -129,6 +137,72 @@ namespace RainWorldBestiary
             return TokenType + " " + Count;
         }
     }
+#if DEBUG
+
+    /// <summary>
+    /// A type of operation gate that can be applied to bools
+    /// </summary>
+    public enum OperationType
+    {
+        /// <summary>
+        /// True if both the values are true
+        /// <code>0 - 0 = 0</code>
+        /// <code>1 - 0 = 0</code>
+        /// <code>0 - 1 = 0</code>
+        /// <code>1 - 1 = 1</code>
+        /// </summary>
+        And = 0,
+        /// <summary>
+        /// True if either of the inputs are true
+        /// <code>0 - 0 = 0</code>
+        /// <code>1 - 0 = 1</code>
+        /// <code>0 - 1 = 1</code>
+        /// <code>1 - 1 = 1</code>
+        /// </summary>
+        Or = 1,
+        /// <summary>
+        /// True if either of the inputs are true, but not when both inputs are true
+        /// <code>0 - 0 = 0</code>
+        /// <code>1 - 0 = 1</code>
+        /// <code>0 - 1 = 1</code>
+        /// <code>1 - 1 = 0</code>
+        /// </summary>
+        XOr = 2,
+        /// <inheritdoc cref="XOr"/>
+        ExclusiveOr = 2,
+        /// <summary>
+        /// True if either value is false
+        /// <code>0 - 0 = 1</code>
+        /// <code>1 - 0 = 1</code>
+        /// <code>0 - 1 = 1</code>
+        /// <code>1 - 1 = 0</code>
+        /// </summary>
+        NAnd = 3,
+        /// <inheritdoc cref="NAnd"/>
+        NotAnd = 3,
+        /// <summary>
+        /// True if neither value is true
+        /// <code>0 - 0 = 1</code>
+        /// <code>1 - 0 = 0</code>
+        /// <code>0 - 1 = 0</code>
+        /// <code>1 - 1 = 0</code>
+        /// </summary>
+        NOr = 4,
+        /// <inheritdoc cref="NOr"/>
+        NotOr = 4,
+        /// <summary>
+        /// True if both values are the same
+        /// <code>0 - 0 = 1</code>
+        /// <code>1 - 0 = 0</code>
+        /// <code>0 - 1 = 0</code>
+        /// <code>1 - 1 = 1</code>
+        /// </summary>
+        XAnd = 5,
+        /// <inheritdoc cref="XAnd"/>
+        EitherAnd = 5
+    }
+
+#endif
     /// <summary>
     /// An unlock token, that can be used to detect whether a <see cref="DescriptionModule"/> is unlocked, similar to <see cref="UnlockToken"/> but has a CreatureID string
     /// </summary>
@@ -139,6 +213,16 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("creature_id")]
         public readonly string CreatureID = string.Empty;
+
+#if DEBUG
+
+        /// <summary>
+        /// The operation this unlock token will perform against the current unlock value of the token
+        /// </summary>
+        [JsonProperty("operation_against_value")]
+        public OperationType OperationAgainstCurrentValue = OperationType.And;
+
+#endif
 
         [JsonConstructor]
         private CreatureUnlockToken() { }

@@ -606,9 +606,19 @@
             Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.PerformTextAnimations">
+            <summary>
+            Whether to perform an animation when going to read an entry
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.BestiarySettings.ShowEntryUnlockPercent">
             <summary>
             EXPERIMENTAL
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.MinimizeTitleSpacing">
+            <summary>
+            EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
             </summary>
         </member>
         <member name="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries">
