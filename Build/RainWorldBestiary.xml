@@ -661,7 +661,7 @@
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.None">
             <summary>
-            This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token, this wont make the entry visible
+            This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
             </summary>
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.Tamed">
@@ -748,7 +748,7 @@
             The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RainWorldBestiary.CreatureUnlockToken"/> which is used in <see cref="T:RainWorldBestiary.DescriptionModule"/> as the unlock ID
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.UnlockToken.TokenType">
+        <member name="F:RainWorldBestiary.UnlockToken.TokenType">
             <summary>
             The type of token this module unlock targets
             </summary>
