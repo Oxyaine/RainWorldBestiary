@@ -29,21 +29,6 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryTabMenu;
 
-        [JsonProperty("tab_menu_process_id")]
-        private string MenuProcessID
-        {
-            set
-            {
-                if (!string.IsNullOrWhiteSpace(value))
-                {
-                    if (!Main.BestiaryTabMenu.value.Equals(value))
-                    {
-                        TabMenuProcessID = new ProcessManager.ProcessID(value, true);
-                    }
-                }
-            }
-        }
-
         [JsonIgnore]
         private readonly List<Entry> _entries = new List<Entry>();
 

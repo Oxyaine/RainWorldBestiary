@@ -9,7 +9,7 @@ namespace RainWorldBestiary
     public enum UnlockTokenType : byte
     {
         /// <summary>
-        /// This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token, this wont make the entry visible
+        /// This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
         /// </summary>
         None = 0,
         /// <summary>
@@ -86,8 +86,21 @@ namespace RainWorldBestiary
         /// <summary>
         /// The type of token this module unlock targets
         /// </summary>
+        [JsonIgnore]
+        public UnlockTokenType TokenType = UnlockTokenType.None;
+
         [JsonProperty("token_type")]
-        public readonly UnlockTokenType TokenType = UnlockTokenType.None;
+        private string UnlockTokenType_JSON_STR
+        {
+            get => TokenType.ToString();
+            set
+            {
+                if (Enum.TryParse<UnlockTokenType>(value, true, out UnlockTokenType val))
+                    TokenType = val;
+                else if (Enum.TryParse<UnlockTokenType>(value.Replace(" ", ""), true, out val))
+                    TokenType = val;
+            }
+        }
 
         /// <summary>
         /// The amount of times this token has been registered, or needs to be registered

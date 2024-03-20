@@ -36,11 +36,6 @@ The name of the tab.
 `Default = null`
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
 
-#### "tab_menu_process_id" : string
-`Default = The default menu for the bestiary`
-The value of the ProcessID that will be transmitted when the tab is pressed to open, this is part of how the game switches menu processes, you can read a few more details [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#menu-process).
-
-
 ## Structure - Entries
 
 Entries' content is also loaded from JSON files. The name of the file determines the name of the entry, and the content of the file determines the rest of the entry's data. Like with tabs, most features should be accessible using the JSON format, however some behaviours are once again, only accessible through code, I will list everything to do with coding further down, but first, a list of entry's JSON elements:
@@ -59,10 +54,8 @@ This is the name of the icon in the atlas manager, make sure to load all your cu
 You can do this in code using:
 `Futile.atlasManager.LoadImage()`
 
-
 #### "entry_icons" : string[]
 The multiple icons of your entry, use this if your entry has multiple icons. This is an array of the names of your icons in the atlas manager, once again, make sure to load all your custom icons into the atlas manager, or nothing will happen.
-
 
 #### "icons_next_to_title" : bool
 `Default = true`
@@ -72,6 +65,9 @@ Whether to show the entry's icon(s) next to the [entry's title](https://github.c
 `Default = null`
 The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
 
+#### "color" : string*
+`Default = dff5d6`
+The hex string for a color, (*uses the last six characters of the string as the hex value*) that determines the color of the entry's button when its unlocked.
 
 #### "description" : Description
 The description of the entry, uses a custom class that can be found [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description).
@@ -121,7 +117,8 @@ Unlock tokens are the way the bestiary determines what parts of descriptions can
 
 #### "token_type" : [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types)
 `Default = null`
-A number that represents the token type of this unlock, you can see a list of token types [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types) as well as their respective id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
+A TokenType that represents the token type of this unlock, you can see a list of token types [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types) as well as their respective names and id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
+***To specify a specific token type you can either enter its name or its id, as either a string or an int.***
 
 #### "creature_id" : string
 The name of this creature that this unlock token should check for, you don't want any creature killing the player to unlock this part of the description, so you set the creature id to say which creature specifically, same rules with the creature ID apply with the [entry's unlock ID](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock_id--string).
@@ -135,7 +132,9 @@ A number (max 255) that represents how many times the unlock token, defined by t
 
 #### Unlock Tokens
 Here is a full list of all unlock tokens, further down you can see a list of [which tokens are automatically tracked](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#automatic), although despite them being automatically tracked, you can also just add them manually, if you'd like.
+***To specify a specific token type in a JSON file, you can either enter its name or its id, as either a string or an int.***
 
+* None = 0 : This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
 * Tamed = 1 : For when the player tames the creature
 * Evaded = 2 : For when the player evades the creature
 * Snuck Past = 3 : For when the player sneaks past the creature

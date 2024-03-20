@@ -161,7 +161,7 @@
             A piece of a description, can be given a lock ID to lock this part of an entries description
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.DescriptionModule.UnlockID">
+        <member name="F:RainWorldBestiary.DescriptionModule.UnlockID">
             <summary>
             The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
             </summary>
@@ -174,14 +174,8 @@
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.DescriptionModule)">
             <summary>
-            Checks if <see cref="P:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
+            Checks if <see cref="F:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
             </summary>
-        </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.CheckIfUnlockTokenUnlocked(RainWorldBestiary.CreatureUnlockToken)">
-            <summary>
-            Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/>.
-            </summary>
-            <returns>True if either of the conditions above is met</returns>
         </member>
         <member name="P:RainWorldBestiary.DescriptionModule.ModuleUnlocked">
             <summary>
@@ -754,7 +748,7 @@
             The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RainWorldBestiary.CreatureUnlockToken"/> which is used in <see cref="T:RainWorldBestiary.DescriptionModule"/> as the unlock ID
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.UnlockToken.TokenType">
+        <member name="P:RainWorldBestiary.UnlockToken.TokenType">
             <summary>
             The type of token this module unlock targets
             </summary>
@@ -762,11 +756,6 @@
         <member name="F:RainWorldBestiary.UnlockToken.Count">
             <summary>
             The amount of times this token has been registered, or needs to be registered
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockToken.ExtraData">
-            <summary>
-            Extra data that is tied to this token
             </summary>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.#ctor">
@@ -793,77 +782,6 @@
         <member name="M:RainWorldBestiary.UnlockToken.ToString">
             <returns>Token Type + Value</returns>
         </member>
-        <member name="T:RainWorldBestiary.OperationType">
-            <summary>
-            A type of operation gate that can be applied to bools
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.And">
-            <summary>
-            True if both the values are true
-            <code>0 - 0 = 0</code>
-            <code>1 - 0 = 0</code>
-            <code>0 - 1 = 0</code>
-            <code>1 - 1 = 1</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.Or">
-            <summary>
-            True if either of the inputs are true
-            <code>0 - 0 = 0</code>
-            <code>1 - 0 = 1</code>
-            <code>0 - 1 = 1</code>
-            <code>1 - 1 = 1</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.XOr">
-            <summary>
-            True if either of the inputs are true, but not when both inputs are true
-            <code>0 - 0 = 0</code>
-            <code>1 - 0 = 1</code>
-            <code>0 - 1 = 1</code>
-            <code>1 - 1 = 0</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.ExclusiveOr">
-            <inheritdoc cref="F:RainWorldBestiary.OperationType.XOr"/>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.NAnd">
-            <summary>
-            True if either value is false
-            <code>0 - 0 = 1</code>
-            <code>1 - 0 = 1</code>
-            <code>0 - 1 = 1</code>
-            <code>1 - 1 = 0</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.NotAnd">
-            <inheritdoc cref="F:RainWorldBestiary.OperationType.NAnd"/>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.NOr">
-            <summary>
-            True if neither value is true
-            <code>0 - 0 = 1</code>
-            <code>1 - 0 = 0</code>
-            <code>0 - 1 = 0</code>
-            <code>1 - 1 = 0</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.NotOr">
-            <inheritdoc cref="F:RainWorldBestiary.OperationType.NOr"/>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.XAnd">
-            <summary>
-            True if both values are the same
-            <code>0 - 0 = 1</code>
-            <code>1 - 0 = 0</code>
-            <code>0 - 1 = 0</code>
-            <code>1 - 1 = 1</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.EitherAnd">
-            <inheritdoc cref="F:RainWorldBestiary.OperationType.XAnd"/>
-        </member>
         <member name="T:RainWorldBestiary.CreatureUnlockToken">
             <summary>
             An unlock token, that can be used to detect whether a <see cref="T:RainWorldBestiary.DescriptionModule"/> is unlocked, similar to <see cref="T:RainWorldBestiary.UnlockToken"/> but has a CreatureID string
@@ -872,11 +790,6 @@
         <member name="F:RainWorldBestiary.CreatureUnlockToken.CreatureID">
             <summary>
             The ID of the creature this unlock token applies to
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.CreatureUnlockToken.OperationAgainstCurrentValue">
-            <summary>
-            The operation this unlock token will perform against the current unlock value of the token
             </summary>
         </member>
         <member name="M:RainWorldBestiary.CreatureUnlockToken.#ctor(System.String,RainWorldBestiary.UnlockTokenType,System.Byte)">
