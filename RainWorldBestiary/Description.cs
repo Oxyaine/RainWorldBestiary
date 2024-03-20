@@ -206,7 +206,14 @@ namespace RainWorldBestiary
         /// </summary>
         /// <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="UnlockTokenType.None"/> for more info</remarks>
         [JsonIgnore]
-        public bool ContributesToEntryUnlock => UnlockID == null || UnlockID.TokenType != UnlockTokenType.None;
+        public bool ContributesToEntryUnlock
+#if DEBUG
+            => UnlockIDs.Length == 0;
+#else
+            => UnlockID == null || UnlockID.TokenType != UnlockTokenType.None;
+#endif
+
+
 
         [JsonProperty("text"), Obsolete("Use DescriptionModule.Body Instead")]
         private string Text { set => Body = value; }
