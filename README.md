@@ -89,7 +89,7 @@ The text of this module, this gets run through the in game translator, and so yo
 
 #### "new_line" : bool
 `Default = false`
-Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.
+Whether this module and the previous module should be separated by a new line '\n'. Otherwise just separates with a space.
 
 
 
