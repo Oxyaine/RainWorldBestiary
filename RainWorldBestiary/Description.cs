@@ -201,17 +201,7 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public bool ModuleUnlocked => ModuleUnlockedCondition == null || ModuleUnlockedCondition(this);
 
-        /// <summary>
-        /// Whether this module contributes to making the entry visible
-        /// </summary>
-        /// <remarks>Checks if the unlock id TokenType is none, if it is, this returns false, meaning this module doesn't contribute to unlocking the entire entry, see <see cref="UnlockTokenType.None"/> for more info</remarks>
-        [JsonIgnore]
-        public bool ContributesToEntryUnlock
-#if DEBUG
-            => UnlockIDs.Length == 0;
-#else
-            => UnlockID == null || UnlockID.TokenType != UnlockTokenType.None;
-#endif
+
 
 
 
