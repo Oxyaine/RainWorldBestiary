@@ -1,5 +1,9 @@
 ﻿BESTIARY|BESTIARY
 
+Rain World|Rain World
+Downpour|Downpour
+Modded|Modded
+
 Default|Default
 Experimental|Experimental
 Cheats|Cheats

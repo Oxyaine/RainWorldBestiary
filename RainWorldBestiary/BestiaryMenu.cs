@@ -68,7 +68,7 @@ namespace RainWorldBestiary
 
         void AddButton(EntriesTab tab, in int x, in int y)
         {
-            SimpleButton button = new SimpleButton(this, pages[0], tab.Name, string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
+            SimpleButton button = new SimpleButton(this, pages[0], OptionInterface.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
             pages[0].subObjects.Add(button);
         }
 
