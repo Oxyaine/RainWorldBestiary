@@ -79,7 +79,7 @@ namespace RainWorldBestiary
         /// </summary>
         UsedAsLure = 15,
         /// <summary>
-        /// For whenever the player notices a creature hiding or diguising itself in any way
+        /// For whenever the player notices a creature hiding or disguising itself in any way
         /// </summary>
         ObserveHiding = 16,
         /// <summary>
