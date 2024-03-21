@@ -122,7 +122,8 @@ namespace RainWorldBestiary
         {
             set
             {
-                UnlockIDs = UnlockIDs.Append(value).ToArray();
+                if (value != null)
+                    UnlockIDs = UnlockIDs.Append(value).ToArray();
             }
         }
 

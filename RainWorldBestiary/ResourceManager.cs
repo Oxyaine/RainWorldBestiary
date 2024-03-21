@@ -234,14 +234,25 @@ namespace RainWorldBestiary
             foreach (Entry entry in entries)
             {
                 foreach (DescriptionModule v in entry.Info.Description)
-#if DEBUG
                     if (v.UnlockIDs.Length == 0)
-#else
-                    if (v.UnlockID == null)
-#endif
                     {
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
                         break;
+                    }
+                    else
+                    {
+                        bool add = true;
+                        for (int i = 0; i < v.UnlockIDs.Length; i++)
+                            if (v.UnlockIDs[i] == null)
+                            {
+                                add = false;
+                                break;
+                            }
+                        if (add)
+                        {
+                            Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
+                            break;
+                        }
                     }
 
                 yield return null;
