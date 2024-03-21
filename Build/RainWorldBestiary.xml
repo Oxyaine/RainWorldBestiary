@@ -749,6 +749,16 @@
             For whenever the player uses the creature to lure something else
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveHiding">
+            <summary>
+            For whenever the player notices a creature hiding or diguising itself in any way
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveBehaviour">
+            <summary>
+            For whenever the player observes miscellaneous behaviour
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.UnlockToken">
             <summary>
             The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RainWorldBestiary.CreatureUnlockToken"/> which is used in <see cref="T:RainWorldBestiary.DescriptionModule"/> as the unlock ID

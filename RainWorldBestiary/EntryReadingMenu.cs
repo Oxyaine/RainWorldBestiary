@@ -39,7 +39,10 @@ namespace RainWorldBestiary
 
             DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
 
-            mySoundLoopID = SoundID.MENU_Sleep_Screen_LOOP;
+            if (BestiarySettings.PlayRainSoundsWhileReading.Value)
+                mySoundLoopID = SoundID.MENU_Sleep_Screen_LOOP;
+            else
+                mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         public override void ShutDownProcess()

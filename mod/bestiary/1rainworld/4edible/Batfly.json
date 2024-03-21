@@ -135,6 +135,76 @@
         "special_data": [ "Fly" ]
       },
       "body": "BESTIARY_BATFLY_UTILITY_CICADA"
+    },
+    {
+      "unlock_ids":[
+        {
+          "token_type": 16,
+          "count": 4,
+          "creature_id": "Fly"
+        },
+        {
+          "token_type": 17,
+          "count": 2,
+          "creature_id": "Fly",
+          "special_data": [ "Migration" ]
+        },
+        {
+          "token_type": 17,
+          "count": 2,
+          "creature_id": "Fly",
+          "special_data": [ "Stacking" ]
+        }
+    ],
+      "body": "BEHAVIOUR",
+      "new_line": true
+    },
+    {
+      "unlock_id":{
+        "token_type": 17,
+        "count": 2,
+        "creature_id": "Fly",
+        "special_data": [ "Migration" ]
+      },
+      "body": "BESTIARY_BATFLY_MIGRATING_1",
+      "new_line": true
+    },
+    {
+      "unlock_id":{
+        "token_type": 17,
+        "count": 4,
+        "creature_id": "Fly",
+        "special_data": [ "Migration" ]
+      },
+      "body": "BESTIARY_BATFLY_MIGRATING_2"
+    },
+    {
+      "unlock_id":{
+        "token_type": 16,
+        "count": 4,
+        "creature_id": "Fly"
+      },
+      "body": "BESTIARY_BATFLY_HIDING_1",
+      "new_line": true
+    },
+    {
+      "unlock_id":{
+        "token_type": 17,
+        "count": 2,
+        "creature_id": "Fly",
+        "special_data": [ "Stacking" ]
+      },
+      "body": "BESTIARY_BATFLY_STACKING_1",
+      "new_line": true
+    },
+    {
+      "unlock_id":{
+        "token_type": 17,
+        "count": 4,
+        "creature_id": "Fly",
+        "special_data": [ "Stacking" ]
+      },
+      "body": "BESTIARY_BATFLY_STACKING_2"
     }
   ]
 }
