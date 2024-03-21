@@ -611,6 +611,11 @@
             Whether to perform an animation when going to read an entry
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.PlayRainSoundsWhileReading">
+            <summary>
+            Whether to play the rain audio, that is present while sleeping, while reading an entry.
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.BestiarySettings.ShowEntryUnlockPercent">
             <summary>
             EXPERIMENTAL
@@ -751,7 +756,7 @@
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveHiding">
             <summary>
-            For whenever the player notices a creature hiding or diguising itself in any way
+            For whenever the player notices a creature hiding or disguising itself in any way
             </summary>
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveBehaviour">
