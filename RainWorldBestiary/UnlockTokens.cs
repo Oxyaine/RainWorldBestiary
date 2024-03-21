@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RainWorldBestiary
 {
@@ -112,13 +113,11 @@ namespace RainWorldBestiary
         [JsonProperty("value"), Obsolete("Use UnlockToken.Count instead")]
         private byte Value { set => Count = value; }
 
-#if DEBUG
         /// <summary>
-        /// Extra data that is tied to this token
+        /// Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
         /// </summary>
-        [JsonProperty("extra_data")]
-        public List<string> ExtraData = new List<string>();
-#endif
+        [JsonProperty("special_data")]
+        public List<string> SpecialData = new List<string>();
 
         ///
         [JsonConstructor]
@@ -138,20 +137,34 @@ namespace RainWorldBestiary
         public override bool Equals(object obj) => obj is UnlockToken token && Equals(token);
 
         /// <remarks>
-        /// Checks if the token type matches, ignores <see cref="Count"/>
+        /// Checks if the token type matches and if <paramref name="other"/>s <see cref="SpecialData"/> is found in this <see cref="SpecialData"/>, ignores <see cref="Count"/>
         /// </remarks>
-        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType);
+        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType) && ContainsSpecialData(other.SpecialData);
+
+        /// <remarks>
+        /// Checks if the token type matches and if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>s <see cref="SpecialData"/> is found in this <see cref="SpecialData"/>, ignores <see cref="Count"/>
+        /// </remarks>
+        public bool Equals(UnlockToken other, bool checkSpecialData) => TokenType.Equals(other.TokenType) && (!checkSpecialData || ContainsSpecialData(other.SpecialData));
+
+        /// <summary>
+        /// Checks if <see cref="SpecialData"/> contains all the provided special data
+        /// </summary>
+        public bool ContainsSpecialData(IEnumerable<string> specialData)
+        {
+            foreach (string specData in specialData)
+                if (!SpecialData.Contains(specData))
+                    return false;
+
+            return true;
+        }
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
         /// <returns>Token Type + Value</returns>
-        public override string ToString()
-        {
-            return TokenType + " " + Count;
-        }
+        public override string ToString() => TokenType + " " + Count;
     }
-#if DEBUG
+
 
     /// <summary>
     /// A type of operation gate that can be applied to bools
@@ -208,7 +221,7 @@ namespace RainWorldBestiary
         XAnd = 5
     }
 
-#endif
+
     /// <summary>
     /// An unlock token, that can be used to detect whether a <see cref="DescriptionModule"/> is unlocked, similar to <see cref="UnlockToken"/> but has a CreatureID string
     /// </summary>
@@ -220,15 +233,11 @@ namespace RainWorldBestiary
         [JsonProperty("creature_id")]
         public string CreatureID = string.Empty;
 
-#if DEBUG
-
         /// <summary>
         /// The operation this unlock token will perform against the current unlock value of the token
         /// </summary>
         [JsonProperty("operation_against_value")]
         public OperationType OperationAgainstCurrentValue = OperationType.And;
-
-#endif
 
         [JsonConstructor]
         private CreatureUnlockToken() { }
@@ -255,15 +264,12 @@ namespace RainWorldBestiary
         /// <remarks>
         /// Checks if the creature ID matches, then if the token type matches, ignores <see cref="UnlockToken.Count"/>
         /// </remarks>
-        public bool Equals(CreatureUnlockToken other) => CreatureID.Equals(other.CreatureID) && TokenType.Equals(other.TokenType);
+        public bool Equals(CreatureUnlockToken other) => CreatureID.Equals(other.CreatureID) && base.Equals(other);
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
         /// <returns>Creature ID + Token Type + Value</returns>
-        public override string ToString()
-        {
-            return string.Join(" ", CreatureID, TokenType, Count);
-        }
+        public override string ToString() => string.Join(" ", CreatureID, TokenType, Count);
     }
 }

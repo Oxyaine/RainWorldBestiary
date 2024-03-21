@@ -41,7 +41,7 @@ namespace RainWorldBestiary
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, "Show Entry Unlock Percent", BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor);
+            AddElements(ref items, Translate("Show Entry Unlock Percent"), BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor, description: Translate("SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION"));
             AddElements(ref items, Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translate("USE_CHARACTER_SPACING_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 

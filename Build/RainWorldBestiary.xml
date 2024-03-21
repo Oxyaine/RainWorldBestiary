@@ -161,9 +161,9 @@
             A piece of a description, can be given a lock ID to lock this part of an entries description
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.DescriptionModule.UnlockID">
+        <member name="F:RainWorldBestiary.DescriptionModule.UnlockIDs">
             <summary>
-            The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
+            All the unlock tokens of this description module, used to determine what requirements need to be met to unlock this part of the description
             </summary>
         </member>
         <member name="F:RainWorldBestiary.DescriptionModule.ModuleUnlockedCondition">
@@ -174,7 +174,7 @@
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.DescriptionModule)">
             <summary>
-            Checks if <see cref="P:RainWorldBestiary.DescriptionModule.UnlockID"/> is found in <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
+            Checks all the UnlockIDs to determine if this module is visible or not
             </summary>
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.CheckIfUnlockTokenUnlocked(RainWorldBestiary.CreatureUnlockToken)">
@@ -764,9 +764,9 @@
             The amount of times this token has been registered, or needs to be registered
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.UnlockToken.ExtraData">
+        <member name="F:RainWorldBestiary.UnlockToken.SpecialData">
             <summary>
-            Extra data that is tied to this token
+            Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
             </summary>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.#ctor">
@@ -784,8 +784,18 @@
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)">
             <remarks>
-            Checks if the token type matches, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
+            Checks if the token type matches and if <paramref name="other"/>s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
             </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken,System.Boolean)">
+            <remarks>
+            Checks if the token type matches and if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.UnlockToken.ContainsSpecialData(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Checks if <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> contains all the provided special data
+            </summary>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.GetHashCode">
             <inheritdoc/>

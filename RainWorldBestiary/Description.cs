@@ -49,7 +49,7 @@ namespace RainWorldBestiary
                 int count = 0;
                 foreach (DescriptionModule module in _values)
                 {
-                    if (!module.ModuleUnlocked)
+                    if (module.ModuleUnlocked)
                         count++;
                 }
                 return count;
@@ -117,27 +117,20 @@ namespace RainWorldBestiary
     /// </summary>
     public class DescriptionModule
     {
-
-        /// <summary>
-        /// The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
-        /// </summary>
         [JsonProperty("unlock_id")]
-        public CreatureUnlockToken UnlockID
-#if DEBUG
+        private CreatureUnlockToken UnlockID
         {
             set
             {
                 UnlockIDs = UnlockIDs.Append(value).ToArray();
             }
         }
-#else
-            = null;
-#endif
 
-#if DEBUG
+        /// <summary>
+        /// All the unlock tokens of this description module, used to determine what requirements need to be met to unlock this part of the description
+        /// </summary>
         [JsonProperty("unlock_ids")]
         public CreatureUnlockToken[] UnlockIDs = new CreatureUnlockToken[0];
-#endif
 
         /// <summary>
         /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
@@ -146,12 +139,10 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public Func<DescriptionModule, bool> ModuleUnlockedCondition = DefaultModuleUnlockedCondition;
 
-#warning CHANGE SUMMARY AFTER DEBUG IS DISABLED
         /// <summary>
-        /// Checks if <see cref="UnlockID"/> is found in <see cref="Bestiary.ModuleUnlocks"/> by checking for the creature id and using <see cref="UnlockToken.Equals(UnlockToken)"/>
+        /// Checks all the UnlockIDs to determine if this module is visible or not
         /// </summary>
         public static bool DefaultModuleUnlockedCondition(DescriptionModule info)
-#if DEBUG
         {
             if (BestiarySettings.UnlockAllEntries.Value)
                 return true;
@@ -199,9 +190,7 @@ namespace RainWorldBestiary
         /// <returns>True if either of the conditions above is met</returns>
         public static bool CheckIfUnlockTokenUnlocked(CreatureUnlockToken unlockToken)
             => unlockToken == null || unlockToken.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(unlockToken);
-#else
-            => BestiarySettings.UnlockAllEntries.Value || info.UnlockID == null || info.UnlockID.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(info.UnlockID);
-#endif
+
         /// <summary>
         /// Returns true if the module is unlocked, else false
         /// </summary>

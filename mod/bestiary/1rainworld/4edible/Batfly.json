@@ -78,17 +78,20 @@
         {
           "operation_against_value": "or",
           "token_type": 6,
-          "creature_id": "PoleMimic"
+          "creature_id": "PoleMimic",
+          "special_data": ["Fly"]
         },
         {
           "operation_against_value": "or",
           "token_type": 6,
-          "creature_id": "TentaclePlant"
+          "creature_id": "TentaclePlant",
+          "special_data": [ "Fly" ]
         },
         {
           "operation_against_value": "or",
           "token_type": 6,
-          "creature_id": "Cicada"
+          "creature_id": "Cicada",
+          "special_data": [ "Fly" ]
         }
       ],
       "body": "UTILITY",
@@ -105,14 +108,16 @@
     {
       "unlock_id": {
         "token_type": 6,
-        "creature_id": "PoleMimic"
+        "creature_id": "PoleMimic",
+        "special_data": [ "Fly" ]
       },
       "body": "BESTIARY_BATFLY_UTILITY_POLE_MIMIC"
     },
     {
       "unlock_id": {
         "token_type": 6,
-        "creature_id": "TentaclePlant"
+        "creature_id": "TentaclePlant",
+        "special_data": [ "Fly" ]
       },
       "body": "BESTIARY_BATFLY_UTILITY_KELP"
     },
@@ -126,7 +131,8 @@
     {
       "unlock_id": {
         "token_type": 6,
-        "creature_id": "Cicada"
+        "creature_id": "Cicada",
+        "special_data": [ "Fly" ]
       },
       "body": "BESTIARY_BATFLY_UTILITY_CICADA"
     }

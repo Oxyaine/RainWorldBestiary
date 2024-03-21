@@ -16,12 +16,14 @@ Performance Mode|Performance Mode
 Unlock All Entries|Unlock All Entries
 Minimize Title Character Spacing|Minimize Title Character Spacing
 Perform Text Reveal Animation|Perform Text Reveal Animation
+Show Entry Unlock Percent|Show Entry Unlock Percent
 
 MENU_FADE_TIME_DESCRIPTION|The time the bestiary's sub-menus will take to fade from one menu to the other.
 SHOW_UNLOCK_PIPS_DESCRIPTION|Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.
 UNLOCK_ALL_ENTRIES_DESCRIPTION|Unlocks all entries and their full descriptions.
 USE_CHARACTER_SPACING_DESCRIPTION|Makes the generated title in the menus use smaller spacing between each character
 SHOW_TEXT_ANIMATIONS_DESCRIPTION|Whether to make entires perform a little animation before the text is revealed
+SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION|Whether to show a karma symbol next to each entry displaying the unlock percentage
 
 BESTIARY_BATFLY_LOCKTEXT|A passive, flying, insectoid creature, that serve as a good source of food. 
 BESTIARY_BATFLY_BASIC_INTRODUCTION|Batflies are passive, flying, insectoid creatures that act as one of Slugcat's primary food sources. They are one of the most common creatures in the game, appearing in almost every region.
