@@ -147,9 +147,12 @@ Here is a full list of all unlock tokens, further down you can see a list of [wh
 * Stunned = 10 : When the creature gets stunned, by the player
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
-* Eaten = 13 : For when the player eats the creature
+* Eaten = 13 : When the player eats the creature
 * Observe Attraction = 14 : For when the player observes a creature being attracted to something, like batflies to batnip, etc
 * Used As Lure = 15 : For when the player uses the creature to lure / distract something else
+* Observe Hiding = 16 : For when the player observes a creature hiding
+* Observe Behaviour = 17 : For when the player observes a creature doing a behaviour
+* Observe Hearing = 18 : For when the creature hears the player
 
 
 #### Automatic
@@ -162,6 +165,8 @@ Here is a list of all current automatic token types:
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
+* Eaten = 13 : When the player eats the creature
+* Observe Hearing = 18 : For when the creature hears the player
 
 
 #

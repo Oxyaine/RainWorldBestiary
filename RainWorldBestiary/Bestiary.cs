@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -43,39 +44,96 @@ namespace RainWorldBestiary
         /// </remarks>
         public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
 
+
         /// <summary>
         /// Checks if <see cref="ModuleUnlocks"/> contains an <see cref="UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
         /// </summary>
         /// <param name="creatureID">The ID of the creature this unlock token will target</param>
         /// <param name="tokenType">The type of token</param>
-        /// <param name="unlockCreature">Whether to add this creatureID to <see cref="CreatureUnlockIDs"/> if it's not already in there.<code></code>
+        /// <param name="checkIfThisUnlocksCreature">Whether to check if this module unlocks the creature or not, if it does, the creatures ID will be added to <see cref="CreatureUnlockIDs"/>.<code></code>
         /// <see cref="CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="CreatureUnlockIDs"/>' summary for more details</param>
-        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool unlockCreature = true)
+        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
         {
             if (_ModuleUnlocks.ContainsKey(creatureID))
             {
                 int cache = _ModuleUnlocks[creatureID].Count;
+                bool tokenExists = false;
                 for (int i = 0; i < cache; i++)
                 {
-                    if (_ModuleUnlocks[creatureID][i].TokenType == tokenType)
+                    UnlockToken token = _ModuleUnlocks[creatureID][i];
+                    if (token.TokenType == tokenType)
                     {
-                        if (_ModuleUnlocks[creatureID][i].Count < 255)
+                        if (token.Count < 255)
                             ++_ModuleUnlocks[creatureID][i].Count;
 
-                        return;
+                        tokenExists = true;
                     }
                 }
 
-                _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
+                if (!tokenExists)
+                    _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
             }
             else
-            {
                 _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) });
-            }
 
-            if (unlockCreature)
-                if (!CreatureUnlockIDs.Contains(creatureID))
-                    CreatureUnlockIDs.Add(creatureID);
+            BestiaryEvents.Trigger_UnlockTokenAdded(creatureID, tokenType, checkIfThisUnlocksCreature);
+
+            if (checkIfThisUnlocksCreature)
+                Main.StartCoroutinePtr(CheckIfTokenUnlocksCreature(creatureID, tokenType));
+        }
+        /// <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="GetCreatureUnlockName(Creature, bool)"/> with default parameters</param>
+        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>
+        /// /// <param name="tokenType"></param>
+        /// <param name="checkIfThisUnlocksCreature"></param>
+        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature);
+        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool)"/>
+        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature);
+
+#warning EXTREMELY BAD CODE AND PERFORMANCE, I'm Making This A Problem For Later
+        private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)
+        {
+            bool BREAK = false;
+            
+            foreach (EntriesTab tab in EntriesTabs)
+            {
+                foreach (Entry entry in tab)
+                {
+                    if (entry.Info.UnlockID.Equals(creatureID))
+                    {
+                        foreach (DescriptionModule module in entry.Info.Description)
+                        {
+                            foreach (CreatureUnlockToken token in module.UnlockIDs)
+                            {
+                                if (token.CreatureID == creatureID && token.TokenType == tokenType)
+                                {
+                                    if (!CreatureUnlockIDs.Contains(creatureID))
+                                    {
+                                        CreatureUnlockIDs.Add(creatureID);
+                                    }
+
+                                    BREAK = true;
+                                    break;
+                                }
+                            }
+
+                            if (BREAK)
+                                break;
+
+                            yield return null;
+                        }
+                    }
+
+                    if (BREAK)
+                        break;
+
+                    yield return null;
+                }
+
+                if (BREAK)
+                    break;
+            }
         }
 
         /// <summary>
@@ -152,11 +210,6 @@ namespace RainWorldBestiary
 
             return id;
         }
-
-        /// <summary>
-        /// A list of creature ids that wont be automatically tracked, any ID's found in here, will not be added to the <see cref="ModuleUnlocks"/> automatically
-        /// </summary>
-        public static List<string> AutoTrackIgnoredIDs = new List<string>();
 
         /// <summary>
         /// Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`

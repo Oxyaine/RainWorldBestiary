@@ -37,6 +37,11 @@ namespace RainWorldBestiary
             //MultiplayerUnlocks.CreatureUnlockList.
         }
 
+        internal void Update()
+        {
+            CreatureHooks.Update();
+        }
+
         const string MoreSlugCatsID = "moreslugcats";
 
         private void RainWorld_OnModsDisabled(On.RainWorld.orig_OnModsDisabled original, RainWorld self, ModManager.Mod[] newlyDisabledMods)

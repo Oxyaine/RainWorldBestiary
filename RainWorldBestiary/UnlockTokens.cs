@@ -86,6 +86,10 @@ namespace RainWorldBestiary
         /// For whenever the player observes miscellaneous behaviour
         /// </summary>
         ObserveBehaviour = 17,
+        /// <summary>
+        /// For when the creature hears the player
+        /// </summary>
+        ObserveHearing = 18,
     }
 
     /// <summary>
