@@ -205,8 +205,8 @@ namespace RainWorldBestiary
                 {
                     FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? ResourceManager.UnlockPipUnlocked : ResourceManager.UnlockPip)
                     {
-                        x = screenSize.x - 20,
-                        y = screenSize.y - (i * 20) - 20,
+                        x = screenSize.x - 20f,
+                        y = screenSize.y - (i * 10) - 20f,
                         scale = 1f
                     };
                     pages[0].Container.AddChild(pip);
