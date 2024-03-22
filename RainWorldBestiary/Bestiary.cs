@@ -32,7 +32,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
         /// </summary>
-        public readonly static List<string> CreatureUnlockIDs = new List<string>();
+        public static List<string> CreatureUnlockIDs = new List<string>();
 
 
         private static Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
@@ -91,7 +91,7 @@ namespace RainWorldBestiary
         public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
             => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature);
 
-#warning EXTREMELY BAD CODE AND PERFORMANCE, I'm Making This A Problem For Later
+#warning EXTREMELY BAD CODE AND BAD PRACTICE, I'm Marking This As A Problem For Later
         private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)
         {
             bool BREAK = false;
@@ -156,23 +156,26 @@ namespace RainWorldBestiary
 
             return false;
         }
-
+        
 
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
         internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary";
         internal static void Save()
         {
             if (Directory.Exists(SaveFolder))
-                File.WriteAllText(SaveFile, JsonConvert.SerializeObject(_ModuleUnlocks.ToArray()));
+            {
+                BestiarySaveData saveData = new BestiarySaveData(_ModuleUnlocks, CreatureUnlockIDs);
+                File.WriteAllText(SaveFile, JsonConvert.SerializeObject(saveData));
+            }
         }
-
 
         internal static void Load()
         {
             if (File.Exists(SaveFile))
             {
-                KeyValuePair<string, List<UnlockToken>>[] unlocks = JsonConvert.DeserializeObject<KeyValuePair<string, List<UnlockToken>>[]>(File.ReadAllText(SaveFile));
-                _ModuleUnlocks = unlocks.ToDictionary((v) => v.Key, (v) => v.Value);
+                BestiarySaveData saveData = JsonConvert.DeserializeObject<BestiarySaveData>(File.ReadAllText(SaveFile));
+                _ModuleUnlocks = saveData.ModuleUnlocks.ToDictionary(v => v.Key, v => v.Value);
+                CreatureUnlockIDs = saveData.CreatureUnlockIDs;
             }
         }
 
