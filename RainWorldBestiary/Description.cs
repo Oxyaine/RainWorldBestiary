@@ -40,7 +40,7 @@ namespace RainWorldBestiary
         /// </summary>
         public Description(Description other)
         {
-            other._values.CopyTo(_values, 0);
+            _values = new List<DescriptionModule>(other._values);
         }
 
         /// <summary>
