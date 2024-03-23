@@ -252,8 +252,23 @@ namespace RainWorldBestiary
         /// <summary>
         /// The operation this unlock token will perform against the current unlock value of the token
         /// </summary>
-        [JsonProperty("operation_against_value")]
+        /// <remarks>For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked.
+        /// Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value</remarks>
+        [JsonIgnore]
         public OperationType OperationAgainstCurrentValue = OperationType.And;
+
+        [JsonProperty("operation_against_value")]
+        private string OperationAgainstCurrentValue_JSON_STR
+        {
+            get => OperationAgainstCurrentValue.ToString();
+            set
+            {
+                if (Enum.TryParse(value, true, out OperationType val))
+                    OperationAgainstCurrentValue = val;
+                else if (Enum.TryParse(value.Replace(" ", ""), true, out val))
+                    OperationAgainstCurrentValue = val;
+            }
+        }
 
         [JsonConstructor]
         private CreatureUnlockToken() { }
