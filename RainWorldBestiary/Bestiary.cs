@@ -52,7 +52,8 @@ namespace RainWorldBestiary
         /// <param name="tokenType">The type of token</param>
         /// <param name="checkIfThisUnlocksCreature">Whether to check if this module unlocks the creature or not, if it does, the creatures ID will be added to <see cref="CreatureUnlockIDs"/>.<code></code>
         /// <see cref="CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="CreatureUnlockIDs"/>' summary for more details</param>
-        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
+        /// <param name="SpecialData">All the extra data to add to the object</param>
+        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] SpecialData)
         {
             if (_ModuleUnlocks.ContainsKey(creatureID))
             {
@@ -66,15 +67,20 @@ namespace RainWorldBestiary
                         if (token.Count < 255)
                             ++_ModuleUnlocks[creatureID][i].Count;
 
+
+                        foreach (string data in SpecialData)
+                            if (!token.SpecialData.Contains(data))
+                                _ModuleUnlocks[creatureID][i].SpecialData.Add(data);
+
                         tokenExists = true;
                     }
                 }
 
                 if (!tokenExists)
-                    _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType));
+                    _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType) { SpecialData = SpecialData.ToList()});
             }
             else
-                _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) });
+                _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() } });
 
             BestiaryEvents.Trigger_UnlockTokenAdded(creatureID, tokenType, checkIfThisUnlocksCreature);
 
@@ -82,14 +88,15 @@ namespace RainWorldBestiary
                 Main.StartCoroutinePtr(CheckIfTokenUnlocksCreature(creatureID, tokenType));
         }
         /// <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="GetCreatureUnlockName(Creature, bool)"/> with default parameters</param>
-        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>
-        /// /// <param name="tokenType"></param>
+        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
+        /// <param name="tokenType"></param>
         /// <param name="checkIfThisUnlocksCreature"></param>
-        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature);
-        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool)"/>
-        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature);
+        /// <param name="AdditionalData"
+        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] AdditionalData)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
+        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool, string[])"/>
+        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] AdditionalData)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
 
 #warning EXTREMELY BAD CODE AND BAD PRACTICE, I'm Marking This As A Problem For Later
         private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)

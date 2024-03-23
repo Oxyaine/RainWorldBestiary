@@ -15,7 +15,7 @@ Entries can be added to the bestiary without making the mod a dependency! This c
 
 
 ## Tabs
-
+s
 Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
 When adding entries, you can add your own tab, or you can use the `Modded` tab if your mod only adds a few entries.
 To add entries to the `Modded` tab, just call your tab folder `Modded` or set the name in your [tab's JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#structure---tabs) to `Modded` (*case sensitive*)
@@ -131,7 +131,7 @@ A number (max 255) that represents how many times the unlock token, defined by t
 ## Unlock Token Types
 
 #### Unlock Tokens
-Here is a full list of all unlock tokens, further down you can see a list of [which tokens are automatically tracked](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#automatic), although despite them being automatically tracked, you can also just add them manually, if you'd like.
+Here is a full list of all unlock tokens, further down you can see a list of [which tokens are automatically tracked](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#automatic), although despite them being automatically tracked, you can also just track them manually, if you'd like.
 ***To specify a specific token type in a JSON file, you can either enter its name or its id, as either a string or an int.***
 
 * None = 0 : This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
@@ -152,7 +152,8 @@ Here is a full list of all unlock tokens, further down you can see a list of [wh
 * Used As Lure = 15 : For when the player uses the creature to lure / distract something else
 * Observe Hiding = 16 : For when the player observes a creature hiding
 * Observe Behaviour = 17 : For when the player observes a creature doing a behaviour
-* Observe Hearing = 18 : For when the creature hears the player
+* Observe Hearing = 18 : When a creature hears the player
+* Player Grabbed = 19 : When the player grabs a creature
 
 
 #### Automatic
@@ -166,14 +167,23 @@ Here is a list of all current automatic token types:
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 * Eaten = 13 : When the player eats the creature
-* Observe Hearing = 18 : For when the creature hears the player
+* Observe Hearing = 18 : When the creature hears the player
+* Player Grabbed = 19 : When the player grabs a creature
+
+#
+## Special Data
+Special data is data that can be added to unlock tokens to give some specifics to which interactions the player has had, and allows you to set more defined unlock logic for your modules. Below you can see a list of which data is automatically tracked and for which tokens.
+
+* Player Grabbed: When the player grabs a creature
+	- Adds "Dead" or "Alive" depending on the status of the creature when its grabbed.
+
 
 
 #
 #
 
 ## Issue - Auto Generated Title
-***The issue is only present when the toggle *TOGGLE NAME HERE*, in experimental tab of the remix menu, is enabled.***
+***The issue is only present when the toggle *Minimize Title Character Spacing*, in experimental tab of the remix menu, is enabled.***
 
 The auto generated titles look a little off, The spacing between the letters is weird and inconsistent, I'm not sure why this happens, I've tested my code other places and it seems to work, just something about the way the game draws sprites throws off some of the spacing and makes the characters wonky. I've countered this a bit with some extra code, so it's harder to notice the offsets, but it's still not perfect. I will continue working on solutions, but currently, this is an issue.
 

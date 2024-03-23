@@ -90,6 +90,10 @@ namespace RainWorldBestiary
         /// For when the creature hears the player
         /// </summary>
         ObserveHearing = 18,
+        /// <summary>
+        /// When the player grabs the creature or creatures corpse
+        /// </summary>
+        PlayerGrabbed = 19,
     }
 
     /// <summary>

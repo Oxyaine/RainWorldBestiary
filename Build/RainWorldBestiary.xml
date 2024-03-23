@@ -29,10 +29,10 @@
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
             <remarks>
-            If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)"/>, as it will increase the token if it exists, otherwise adds it
+            If you'd like to add your own token, Use <see cref="!:AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>, as it will increase the token if it exists, otherwise adds it
             </remarks>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)">
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
             <summary>
             Checks if <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains an <see cref="T:RainWorldBestiary.UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
             </summary>
@@ -40,15 +40,11 @@
             <param name="tokenType">The type of token</param>
             <param name="checkIfThisUnlocksCreature">Whether to check if this module unlocks the creature or not, if it does, the creatures ID will be added to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>.<code></code>
             <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>' summary for more details</param>
+            <param name="SpecialData">All the extra data to add to the object</param>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean)">
-            <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)"/> with default parameters</param>
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)"/>
-            /// <param name="tokenType"></param>
-            <param name="checkIfThisUnlocksCreature"></param>
-        </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean)">
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean)"/>
+        <!-- Badly formed XML comment ignored for member "M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])" -->
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
             <summary>
@@ -111,7 +107,7 @@
             <summary>
             A delegate type representing the function that gets called when an unlock token gets added to the bestiary
             </summary>
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean)"/>
+            <inheritdoc cref="!:Bestiary.AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>
         </member>
         <member name="T:RainWorldBestiary.Description">
             <summary>
@@ -792,6 +788,11 @@
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveHearing">
             <summary>
             For when the creature hears the player
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.UnlockTokenType.PlayerGrabbed">
+            <summary>
+            When the player grabs the creature or creatures corpse
             </summary>
         </member>
         <member name="T:RainWorldBestiary.UnlockToken">

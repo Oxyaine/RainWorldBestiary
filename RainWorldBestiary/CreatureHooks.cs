@@ -116,16 +116,16 @@ namespace RainWorldBestiary
             // Batflies attracted to batnip log here somehow
         }
 
-        private static void Player_SlugcatGrab(On.Player.orig_SlugcatGrab orig, Player self, PhysicalObject obj, int graspUsed)
+        private static void Player_SlugcatGrab(On.Player.orig_SlugcatGrab original, Player self, PhysicalObject obj, int graspUsed)
         {
-            orig(self, obj, graspUsed);
+            original(self, obj, graspUsed);
 
             if (obj is Creature cr)
             {
-                Main.Logger.LogDebug(Bestiary.GetCreatureUnlockName(cr));
+                string tag = cr.dead ? "Dead" : "Alive";
+                Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.PlayerGrabbed, checkIfThisUnlocksCreature: true, AdditionalData: tag);
             }
         }
-
         private static void Creature_HeardNoise(On.Creature.orig_HeardNoise original, Creature self, Noise.InGameNoise noise)
         {
             original(self, noise);
