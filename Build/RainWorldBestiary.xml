@@ -26,7 +26,7 @@
             <remarks>
             If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>, as it will increase the token if it exists, otherwise adds it
             <code></code>
-            You should also use <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/> for checking if the unlock token is valid, as accessing this directly could cause some issues
+            You should also check out <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/> for checking if the unlock token is valid
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">

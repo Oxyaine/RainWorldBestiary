@@ -135,17 +135,6 @@ namespace RainWorldBestiary
             // Batflies attracted to batnip log here somehow
         }
 
-        private static bool Rock_HitSomething(On.Rock.orig_HitSomething original, Rock self, SharedPhysics.CollisionResult result, bool eu)
-        {
-            bool b = original(self, result, eu);
-
-            if (result.obj is Creature cr)
-                if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
-                    Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.Stunned);
-
-            return b;
-        }
-
 #if DEBUG
 
         private static void RoomCamera_ApplyPositionChange(On.RoomCamera.orig_ApplyPositionChange original, RoomCamera self)
@@ -176,6 +165,16 @@ namespace RainWorldBestiary
         }
 #endif
 
+        private static bool Rock_HitSomething(On.Rock.orig_HitSomething original, Rock self, SharedPhysics.CollisionResult result, bool eu)
+        {
+            bool b = original(self, result, eu);
+
+            if (result.obj is Creature cr)
+                if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
+                    Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.Stunned);
+
+            return b;
+        }
         private static void Player_SlugcatGrab(On.Player.orig_SlugcatGrab original, Player self, PhysicalObject obj, int graspUsed)
         {
             original(self, obj, graspUsed);

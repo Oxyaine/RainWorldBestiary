@@ -41,7 +41,7 @@ namespace RainWorldBestiary
         /// <remarks>
         /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>, as it will increase the token if it exists, otherwise adds it
         /// <code></code>
-        /// You should also use <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid, as accessing this directly could cause some issues
+        /// You should also check out <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid
         /// </remarks>
         public static Dictionary<string, List<UnlockToken>> ModuleUnlocks
         {
