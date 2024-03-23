@@ -69,7 +69,7 @@ The title image that gets displayed at the top of the screen while reading the e
 `Default = dff5d6`
 The hex string for a color, (*uses the last six characters of the string as the hex value*) that determines the color of the entry's button when its unlocked.
 
-#### "description" : Description
+#### "description" : [Description](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description)
 The description of the entry, uses a custom class that can be found [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description).
 
 
@@ -78,7 +78,11 @@ An entry's description is an array of description modules, each module can be gi
 
 #### "unlock_id" : [UnlockToken](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)
 `Default = null`
-The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description
+The unlock token of this description module, use this if your module only has 1 condition, otherwise use ["unlock_ids"](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock__ids---unlocktoken), used to determine what requirements need to be met to unlock this part of the description
+
+#### "unlock_ids" : [UnlockToken](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)[]
+`Default = []`
+The unlock tokens of this description modules, use ["operation_against_value"](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation_against_value) to determine which operation each module will use against the current value (defaults to and, meaning both this token and the previous token needs to be true for this entry to unlock). This is used to determine what requirements need to be met to unlock this part of the description
 
 #### "body" : string
 The text of this module, this gets run through the in game translator, so you can make the description something like "ENTRY_BATFLY_APPEARANCE", then define a translation into whatever language using the short strings dictionary in `text\text_eng\strings.txt`
@@ -115,6 +119,9 @@ Same logic with the X offset, you might need some extra distance from the top of
 ## Unlock Token
 Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.
 
+#### "operation_against_value" : [OperationType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation-type)
+The operation this unlock token will perform against the current unlock value of the token. For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked; Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value. You can see all the operations [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation-type).
+
 #### "token_type" : [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types)
 `Default = null`
 A TokenType that represents the token type of this unlock, you can see a list of token types [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types) as well as their respective names and id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
@@ -126,6 +133,47 @@ The name of this creature that this unlock token should check for, you don't wan
 #### "count" : byte
 `Default = 1`
 A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.
+
+#### "special_data" : string[]
+Special data is data that can be added to unlock tokens to give some specifics about which interactions the player should've had before this unlock token is valid, if all the strings in here are found in the registered unlock token, this will be considered valid. You can see more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#special-data).
+
+
+## Operation Type
+The operation this unlock token will perform against the current unlock value of the token. See more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation__against__value---operationtype).
+Here is a list of all operations, like with [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types), you can set it as either the name or the id in the JSON file.
+
+***0 = false, 1 = true***
+
+* And = 0 : True if both the values are true
+	- 0 : 0 = 0
+	- 1 : 0 = 0
+	- 0 : 1 = 0
+	- 1 : 1 = 1
+* OR = 1 : True if either of the inputs are true
+	- 0 : 0 = 0
+	- 1 : 0 = 1
+	- 0 : 1 = 1
+	- 1 : 1 = 1
+* XOr = 2 : True if either of the inputs are true, but not when both inputs are true
+	- 0 : 0 = 0
+	- 1 : 0 = 1
+	- 0 : 1 = 1
+	- 1 : 1 = 0
+* NAnd = 3 : True if either value is false
+	- 0 : 0 = 1
+	- 1 : 0 = 1
+	- 0 : 1 = 1
+	- 1 : 1 = 0
+* Nor = 4 : True if neither value is true
+	- 0 : 0 = 1
+	- 1 : 0 = 0
+	- 0 : 1 = 0
+	- 1 : 1 = 0
+* XAnd = 4 : True if both values are the same
+	- 0 : 0 = 1
+	- 1 : 0 = 0
+	- 0 : 1 = 0
+	- 1 : 1 = 1
 
 
 ## Unlock Token Types
