@@ -139,7 +139,7 @@ Special data is data that can be added to unlock tokens to give some specifics a
 
 
 ## Operation Type
-The operation this unlock token will perform against the current unlock value of the token. See more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation__against__value---operationtype).
+The operation this unlock token will perform against the current unlock value of the token. See more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation_against_value---operationtype).
 Here is a list of all operations, like with [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types), you can set it as either the name or the id in the JSON file.
 
 ***0 = false, 1 = true***
