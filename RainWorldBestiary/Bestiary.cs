@@ -76,7 +76,7 @@ namespace RainWorldBestiary
                 }
 
                 if (!tokenExists)
-                    _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType) { SpecialData = SpecialData.ToList()});
+                    _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() });
             }
             else
                 _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() } });
@@ -101,45 +101,28 @@ namespace RainWorldBestiary
         // Checks if this token is a token that would unlock this creature, by checking if the creature has a module with an unlock token that matches this token
         private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)
         {
-            bool BREAK = false;
-            
+
             foreach (EntriesTab tab in EntriesTabs)
             {
                 foreach (Entry entry in tab)
                 {
                     if (entry.Info.UnlockID.Equals(creatureID))
                     {
-                        foreach (DescriptionModule module in entry.Info.Description)
+                        IEnumerator<CreatureUnlockToken> enumerator = entry.Info.Description.GetAllUniqueUnlockTokens();
+
+                        do
                         {
-                            foreach (CreatureUnlockToken token in module.UnlockIDs)
+                            if (enumerator.Current.TokenType == tokenType && enumerator.Current.CreatureID.Equals(creatureID))
                             {
-                                if (token.CreatureID == creatureID && token.TokenType == tokenType)
-                                {
-                                    if (!CreatureUnlockIDs.Contains(creatureID))
-                                    {
-                                        CreatureUnlockIDs.Add(creatureID);
-                                    }
-
-                                    BREAK = true;
-                                    break;
-                                }
+                                CreatureUnlockIDs.Add(creatureID);
+                                yield break;
                             }
-
-                            if (BREAK)
-                                break;
 
                             yield return null;
                         }
+                        while (enumerator.MoveNext());
                     }
-
-                    if (BREAK)
-                        break;
-
-                    yield return null;
                 }
-
-                if (BREAK)
-                    break;
             }
         }
 
@@ -163,7 +146,7 @@ namespace RainWorldBestiary
 
             return false;
         }
-        
+
 
         // The folder the save file is in
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
