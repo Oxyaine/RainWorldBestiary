@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace RainWorldBestiary
 {
+    // A class to hold the save data for the bestiary
     internal class BestiarySaveData
     {
         [JsonProperty("module_unlocks")]

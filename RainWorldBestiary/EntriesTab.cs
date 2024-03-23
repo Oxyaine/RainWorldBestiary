@@ -225,6 +225,7 @@ namespace RainWorldBestiary
             _tabs = tabs.ToList();
         }
 
+        // All the tabs of this entries tabs list
         private readonly List<EntriesTab> _tabs = new List<EntriesTab>();
 
         /// <inheritdoc/>

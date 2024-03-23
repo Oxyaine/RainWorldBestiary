@@ -11,6 +11,7 @@ namespace RainWorldBestiary
     /// </summary>
     public class Description : IEnumerable<DescriptionModule>, ICollection<DescriptionModule>
     {
+        // The values of this description, all of the description modules
         readonly List<DescriptionModule> _values = new List<DescriptionModule>();
 
         ///
@@ -117,6 +118,7 @@ namespace RainWorldBestiary
     /// </summary>
     public class DescriptionModule
     {
+        // A set only property so you can just say unlock_id in the json file and specify one creature unlock token
         [JsonProperty("unlock_id")]
         private CreatureUnlockToken UnlockID
         {

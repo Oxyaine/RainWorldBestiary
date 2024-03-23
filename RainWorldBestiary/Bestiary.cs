@@ -12,6 +12,7 @@ namespace RainWorldBestiary
     /// </summary>
     public static class Bestiary
     {
+        // The bool determining if the downpour tab should be included
         internal static bool IncludeDownpour = false;
 
         /// <summary>
@@ -19,9 +20,7 @@ namespace RainWorldBestiary
         /// </summary>
         public static bool IncludeDownpourEntries => IncludeDownpour;
 
-        /// <summary>
-        /// The name of the downpour tab, used for unlocking it if downpour is enabled
-        /// </summary>
+        // The name of the downpour tab, used in BestiaryMenu to check if the tab is the one that should be locked if downpour is disabled
         internal const string DownpourTabName = "Downpour";
 
 
@@ -34,7 +33,7 @@ namespace RainWorldBestiary
         /// </summary>
         public static List<string> CreatureUnlockIDs = new List<string>();
 
-
+        // The module unlocks dictionary, is accessed publicly through ModuleUnlocks, since we want people to use add or increase module unlock
         private static Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
@@ -99,6 +98,7 @@ namespace RainWorldBestiary
             => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
 
 #warning EXTREMELY BAD CODE AND BAD PRACTICE, I'm Marking This As A Problem For Later
+        // Checks if this token is a token that would unlock this creature, by checking if the creature has a module with an unlock token that matches this token
         private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)
         {
             bool BREAK = false;
@@ -165,8 +165,11 @@ namespace RainWorldBestiary
         }
         
 
+        // The folder the save file is in
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
+        // The save file to save to (yes, this file intentionally has no extension)
         internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary";
+        // Saves all module unlocks and creature unlocks
         internal static void Save()
         {
             if (Directory.Exists(SaveFolder))
@@ -176,6 +179,7 @@ namespace RainWorldBestiary
             }
         }
 
+        // Loads all saved data into the bestiary, such as module unlock tokens and creature unlock ids
         internal static void Load()
         {
             if (File.Exists(SaveFile))
@@ -230,6 +234,13 @@ namespace RainWorldBestiary
             { "CicadaB", CicadaSpecialIDLogic }
         };
 
+        // Removes the A or B at the end of CicadaA or CicadaB
         private static string CicadaSpecialIDLogic(string id) => id.Substring(0, id.Length - 1);
+
+
+        static IEnumerator PerformCleanupOperations()
+        {
+            yield return null;
+        }
     }
 }
