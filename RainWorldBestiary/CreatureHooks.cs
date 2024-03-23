@@ -56,18 +56,62 @@ namespace RainWorldBestiary
 
         public static void Initialize()
         {
-            On.Creature.Die += Creature_Die;
-            On.Spear.LodgeInCreature_CollisionResult_bool += Spear_LodgeInCreature_CollisionResult_bool;
-            On.Player.Die += Player_Die;
-            On.Player.Grabbed += Player_Grabbed;
-            On.Player.CanEatMeat += Player_CanEatMeat;
-            On.Creature.HeardNoise += Creature_HeardNoise;
-
-            On.Player.SlugcatGrab += Player_SlugcatGrab;
-
-            //On.Weapon.
-
-            //On.Player.SlugcatGrab += Player_SlugcatGrab;
+            try
+            {
+                On.Creature.Die += Creature_Die;
+            }
+            catch
+            {
+                ErrorManager.AddError("Players Killing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Spear.LodgeInCreature_CollisionResult_bool += Spear_LodgeInCreature_CollisionResult_bool;
+            }
+            catch
+            {
+                ErrorManager.AddError("Players Impaling Creatures With Spears", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Player.Die += Player_Die;
+            }
+            catch
+            {
+                ErrorManager.AddError("Players Dying To Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Player.Grabbed += Player_Grabbed;
+            }
+            catch
+            {
+                ErrorManager.AddError("Players Getting Grabbed By Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Player.CanEatMeat += Player_CanEatMeat;
+            }
+            catch
+            {
+                ErrorManager.AddError("Players Eating Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Creature.HeardNoise += Creature_HeardNoise;
+            }
+            catch
+            {
+                ErrorManager.AddError("Creatures Hearing Players Noises", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Player.SlugcatGrab += Player_SlugcatGrab;
+            }
+            catch
+            {
+                ErrorManager.AddError("Slugcat Grabbing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
 
             // Batflies attracted to batnip log here somehow
         }
@@ -81,6 +125,7 @@ namespace RainWorldBestiary
                 Main.Logger.LogDebug(Bestiary.GetCreatureUnlockName(cr));
             }
         }
+
         private static void Creature_HeardNoise(On.Creature.orig_HeardNoise original, Creature self, Noise.InGameNoise noise)
         {
             original(self, noise);

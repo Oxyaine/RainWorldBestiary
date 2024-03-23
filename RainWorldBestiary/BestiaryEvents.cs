@@ -12,30 +12,21 @@ namespace RainWorldBestiary
         /// </summary>
         public static event Action BeforeEntriesLoaded;
         internal static void Trigger_BeforeEntriesLoaded()
-        {
-            if (BeforeEntriesLoaded != null)
-                BeforeEntriesLoaded.Invoke();
-        }
+            => BeforeEntriesLoaded?.Invoke();
 
         /// <summary>
         /// Triggers once after all entries from all active mods have been loaded
         /// </summary>
         public static event Action AfterEntriesLoaded;
         internal static void Trigger_AfterEntriesLoaded()
-        {
-            if (AfterEntriesLoaded != null)
-                AfterEntriesLoaded.Invoke();
-        }
+            => AfterEntriesLoaded?.Invoke();
 
         /// <summary>
         /// Triggers whenever a new unlock token gets added to the bestiary
         /// </summary>
         public static event UnlockTokenAdded UnlockTokenAdded;
         internal static void Trigger_UnlockTokenAdded(string creatureId, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature)
-        {
-            if (UnlockTokenAdded != null)
-                UnlockTokenAdded.Invoke(creatureId, tokenType, checkIfThisUnlocksCreature);
-        }
+            => UnlockTokenAdded?.Invoke(creatureId, tokenType, checkIfThisUnlocksCreature);
     }
 
     /// <summary>

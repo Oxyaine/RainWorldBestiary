@@ -13,6 +13,18 @@ namespace RainWorldBestiary
             On.Menu.MainMenu.ctor += MainMenu_ctor;
             IL.Menu.MainMenu.AddMainMenuButton += MainMenu_AddMainMenuButton;
             IL.ProcessManager.PostSwitchMainProcess += ProcessManager_PostSwitchMainProcess;
+
+            On.Menu.MainMenu.Singal += MainMenu_Singal;
+        }
+
+        private static void MainMenu_Singal(On.Menu.MainMenu.orig_Singal orig, MainMenu self, MenuObject sender, string message)
+        {
+            orig(self, sender, message);
+
+            if (message.Equals("SHOW_ERRORS"))
+            {
+                self.manager.RequestMainProcessSwitch(ErrorManager.ErrorMenu);
+            }
         }
 
         private static void ProcessManager_PostSwitchMainProcess(ILContext il)
@@ -51,9 +63,12 @@ namespace RainWorldBestiary
                 {
                     self.currentMainLoop = new EntryReadingMenu(self);
                 }
+                else if (ID == ErrorManager.ErrorMenu)
+                {
+                    self.currentMainLoop = new ErrorManager(self);
+                }
             });
         }
-
         private static void MainMenu_AddMainMenuButton(ILContext il)
         {
             ILCursor iLCursor = new ILCursor(il);
@@ -75,10 +90,12 @@ namespace RainWorldBestiary
                 throw;
             }
         }
-
-        private static void MainMenu_ctor(On.Menu.MainMenu.orig_ctor original, Menu.MainMenu self, ProcessManager manager, bool showRegionSpecificBkg)
+        private static void MainMenu_ctor(On.Menu.MainMenu.orig_ctor original, MainMenu self, ProcessManager manager, bool showRegionSpecificBkg)
         {
             original(self, manager, showRegionSpecificBkg);
+
+            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+
             float buttonWidth = 110f;
             Vector2 pos = new Vector2(683f - buttonWidth / 2f, 0f);
             Vector2 size = new Vector2(buttonWidth, 30f);
@@ -87,6 +104,12 @@ namespace RainWorldBestiary
                 manager.RequestMainProcessSwitch(Main.BestiaryMenu);
                 self.PlaySound(SoundID.MENU_Switch_Page_In);
             }, 2);
+
+            if (ErrorManager.HasErrors())
+            {
+                SymbolButton button = new SymbolButton(self, self.pages[0], ErrorManager.GetSpriteName(ErrorManager.GetHighestErrorLevel()), "SHOW_ERRORS", new Vector2(screenSize.x - 40, screenSize.y - 40));
+                self.pages[0].subObjects.Add(button);
+            }
         }
     }
 }
