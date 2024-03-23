@@ -158,16 +158,10 @@ namespace RainWorldBestiary
             if (BestiarySettings.UnlockAllEntries.Value)
                 return true;
 
-            Dictionary<CreatureUnlockToken, bool> tokensCache = new Dictionary<CreatureUnlockToken, bool>();
-
             bool unlocked = true;
             foreach (CreatureUnlockToken unlock in info.UnlockIDs)
             {
-                if (!tokensCache.TryGetValue(unlock, out bool thisValue))
-                {
-                    thisValue = CheckIfUnlockTokenUnlocked(unlock);
-                    tokensCache.Add(unlock, thisValue);
-                }
+                bool thisValue = CheckIfUnlockTokenUnlocked(unlock);
 
                 switch (unlock.OperationAgainstCurrentValue)
                 {
