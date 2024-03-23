@@ -106,12 +106,8 @@ namespace RainWorldBestiary
 
                 //AssetManager.ResolveDirectory()
 
-                BestiaryEvents.Trigger_BeforeEntriesLoaded();
-
                 CheckFolder(Path.Combine(ModDirectory, EntriesLocalPath), BestiaryModID);
                 CheckForUnregisteredEntries();
-
-                BestiaryEvents.Trigger_AfterEntriesLoaded();
             }
         }
 
@@ -206,7 +202,7 @@ namespace RainWorldBestiary
 
                 Bestiary.EntriesTabs.Add(tab, true);
 
-                Main.StartCoroutinePtr(CheckEntryUnlocks(entries));
+                Main.StartCoroutinePtr(ScanEntriesAndCacheTokens(entries));
             }
         }
         private static Entry[] GetFilesAsEntries(string[] files, string owningModID)
@@ -234,7 +230,7 @@ namespace RainWorldBestiary
             return entries;
         }
 
-        static IEnumerator CheckEntryUnlocks(Entry[] entries)
+        static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
         {
             foreach (Entry entry in entries)
             {

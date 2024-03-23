@@ -49,66 +49,76 @@ namespace RainWorldBestiary
         /// </summary>
         /// <param name="creatureID">The ID of the creature this unlock token will target</param>
         /// <param name="tokenType">The type of token</param>
-        /// <param name="checkIfThisUnlocksCreature">Whether to check if this module unlocks the creature or not, if it does, the creatures ID will be added to <see cref="CreatureUnlockIDs"/>.<code></code>
+        /// <param name="checkIfCreatureShouldBeUnlocked">Whether to check that after adding this module, a module in the creature will be available to read, if there is, the creatures ID will be added to <see cref="CreatureUnlockIDs"/>.<code></code>
         /// <see cref="CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="CreatureUnlockIDs"/>' summary for more details</param>
         /// <param name="SpecialData">All the extra data to add to the object</param>
-        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] SpecialData)
+        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
         {
+            UnlockToken token = null;
+
             if (_ModuleUnlocks.ContainsKey(creatureID))
             {
                 int cache = _ModuleUnlocks[creatureID].Count;
                 bool tokenExists = false;
                 for (int i = 0; i < cache; i++)
                 {
-                    UnlockToken token = _ModuleUnlocks[creatureID][i];
+                    token = _ModuleUnlocks[creatureID][i];
                     if (token.TokenType == tokenType)
                     {
                         if (token.Count < 255)
                             ++_ModuleUnlocks[creatureID][i].Count;
-
 
                         foreach (string data in SpecialData)
                             if (!token.SpecialData.Contains(data))
                                 _ModuleUnlocks[creatureID][i].SpecialData.Add(data);
 
                         tokenExists = true;
+                        token = _ModuleUnlocks[creatureID][i];
                     }
                 }
 
                 if (!tokenExists)
-                    _ModuleUnlocks[creatureID].Add(new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() });
+                {
+                    token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
+                    _ModuleUnlocks[creatureID].Add(token);
+                }
             }
             else
-                _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() } });
+            {
+                token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
+                _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { token });
+            }
 
-            BestiaryEvents.Trigger_UnlockTokenAdded(creatureID, tokenType, checkIfThisUnlocksCreature);
-
-            if (checkIfThisUnlocksCreature)
-                Main.StartCoroutinePtr(CheckIfTokenUnlocksCreature(creatureID, tokenType));
+            if (checkIfCreatureShouldBeUnlocked)
+                Main.StartCoroutinePtr(CheckIfTokenUnlocksCreature(creatureID, token));
         }
         /// <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="GetCreatureUnlockName(Creature, bool)"/> with default parameters</param>
         /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
         /// <param name="tokenType"></param>
-        /// <param name="checkIfThisUnlocksCreature"></param>
+        /// <param name="checkIfCreatureShouldBeUnlocked"></param>
         /// <param name="AdditionalData"></param>
-        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] AdditionalData)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
+        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] AdditionalData)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, AdditionalData);
         /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool, string[])"/>
-        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] AdditionalData)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
+        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] AdditionalData)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, AdditionalData);
 
 
 
         // Pre cached in the resource manager while it checks if an entry should be unlocked
+        // The string is the creatures unlock id, and the list is all unique unlocks tokens for that entry
         internal static readonly Dictionary<string, List<UnlockToken>> _allUniqueUnlockTokens = new Dictionary<string, List<UnlockToken>>();
-        // Checks if this token is a token that would unlock this creature, by checking if the creature has a module with an unlock token that matches this token
-        private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)
+        // Checks if this token is a token that would unlock a module for the creature, if it is, it unlocks the creature by adding its id to CreatureUnlockIDs
+        private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockToken unlockToken)
         {
+            if (CreatureUnlockIDs.Contains(creatureID))
+                yield break;
+
             if (_allUniqueUnlockTokens.TryGetValue(creatureID, out List<UnlockToken> tokens))
             {
                 foreach (UnlockToken token in tokens)
                 {
-                    if (token.TokenType == tokenType)
+                    if (token.TokenType == unlockToken.TokenType && unlockToken.Count >= token.Count && unlockToken.ContainsSpecialData(token.SpecialData))
                     {
                         CreatureUnlockIDs.Add(creatureID);
                         yield break;

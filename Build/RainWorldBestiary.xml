@@ -33,7 +33,7 @@
             </summary>
             <param name="creatureID">The ID of the creature this unlock token will target</param>
             <param name="tokenType">The type of token</param>
-            <param name="checkIfThisUnlocksCreature">Whether to check if this module unlocks the creature or not, if it does, the creatures ID will be added to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>.<code></code>
+            <param name="checkIfCreatureShouldBeUnlocked">Whether to check that after adding this module, a module in the creature will be available to read, if there is, the creatures ID will be added to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>.<code></code>
             <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>' summary for more details</param>
             <param name="SpecialData">All the extra data to add to the object</param>
         </member>
@@ -41,7 +41,7 @@
             <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)"/> with default parameters</param>
             <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
             <param name="tokenType"></param>
-            <param name="checkIfThisUnlocksCreature"></param>
+            <param name="checkIfCreatureShouldBeUnlocked"></param>
             <param name="AdditionalData"></param>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
@@ -88,27 +88,6 @@
             <summary>
             A bunch of events from the bestiary you can hook onto to make your own logic
             </summary>
-        </member>
-        <member name="E:RainWorldBestiary.BestiaryEvents.BeforeEntriesLoaded">
-            <summary>
-            Triggers once before any entries or tabs are loaded
-            </summary>
-        </member>
-        <member name="E:RainWorldBestiary.BestiaryEvents.AfterEntriesLoaded">
-            <summary>
-            Triggers once after all entries from all active mods have been loaded
-            </summary>
-        </member>
-        <member name="E:RainWorldBestiary.BestiaryEvents.UnlockTokenAdded">
-            <summary>
-            Triggers whenever a new unlock token gets added to the bestiary
-            </summary>
-        </member>
-        <member name="T:RainWorldBestiary.UnlockTokenAdded">
-            <summary>
-            A delegate type representing the function that gets called when an unlock token gets added to the bestiary
-            </summary>
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
         </member>
         <member name="T:RainWorldBestiary.Description">
             <summary>

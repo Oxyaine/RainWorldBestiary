@@ -183,7 +183,7 @@ namespace RainWorldBestiary
             if (obj is Creature cr)
             {
                 string tag = cr.dead ? "Dead" : "Alive";
-                Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.PlayerGrabbed, checkIfThisUnlocksCreature: true, AdditionalData: tag);
+                Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.PlayerGrabbed, checkIfCreatureShouldBeUnlocked: true, AdditionalData: tag);
             }
         }
         private static void Creature_HeardNoise(On.Creature.orig_HeardNoise original, Creature self, Noise.InGameNoise noise)
