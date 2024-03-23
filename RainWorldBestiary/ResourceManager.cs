@@ -238,27 +238,34 @@ namespace RainWorldBestiary
         {
             foreach (Entry entry in entries)
             {
+                List<UnlockToken> tokens = new List<UnlockToken>();
+                bool added = false;
+
                 foreach (DescriptionModule v in entry.Info.Description)
+                {
                     if (v.UnlockIDs.Length == 0)
                     {
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
-                        break;
+                        continue;
                     }
-                    else
+
+                    bool add = false;
+                    for (int i = 0; i < v.UnlockIDs.Length; i++)
                     {
-                        bool add = true;
-                        for (int i = 0; i < v.UnlockIDs.Length; i++)
-                            if (v.UnlockIDs[i] == null)
-                            {
-                                add = false;
-                                break;
-                            }
-                        if (add)
-                        {
-                            Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
-                            break;
-                        }
+                        if (!added && v.UnlockIDs[i] == null)
+                            add = true;
+                        else if (!tokens.Contains(v.UnlockIDs[i]))
+                            tokens.Add(v.UnlockIDs[i]);
                     }
+
+                    if (added = add)
+                        Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
+
+                    yield return null;
+                }
+
+                if (!Bestiary._allUniqueUnlockTokens.ContainsKey(entry.Info.UnlockID))
+                    Bestiary._allUniqueUnlockTokens.Add(entry.Info.UnlockID, tokens);
 
                 yield return null;
             }

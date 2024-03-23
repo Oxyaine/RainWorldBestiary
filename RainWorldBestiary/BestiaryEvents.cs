@@ -32,6 +32,6 @@ namespace RainWorldBestiary
     /// <summary>
     /// A delegate type representing the function that gets called when an unlock token gets added to the bestiary
     /// </summary>
-    /// <inheritdoc cref="Bestiary.AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>
+    /// <inheritdoc cref="Bestiary.AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
     public delegate void UnlockTokenAdded(string creatureId, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true);
 }

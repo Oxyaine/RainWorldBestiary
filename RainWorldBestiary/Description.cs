@@ -111,24 +111,6 @@ namespace RainWorldBestiary
         public static implicit operator Description(DescriptionModule[] modules) => new Description(modules);
         ///
         public static implicit operator Description(List<DescriptionModule> modules) => new Description(modules);
-
-        // Iteratively returns all unique unlock tokens for all modules in this description
-        internal IEnumerator<CreatureUnlockToken> GetAllUniqueUnlockTokens()
-        {
-            List<CreatureUnlockToken> currentTokens = new List<CreatureUnlockToken>();
-
-            foreach (DescriptionModule module in _values)
-            {
-                foreach (CreatureUnlockToken unlockToken in module.UnlockIDs)
-                {
-                    if (!currentTokens.Contains(unlockToken))
-                    {
-                        currentTokens.Add(unlockToken);
-                        yield return unlockToken;
-                    }
-                }
-            }
-        }
     }
 
     /// <summary>

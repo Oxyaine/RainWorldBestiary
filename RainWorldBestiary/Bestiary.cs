@@ -39,7 +39,7 @@ namespace RainWorldBestiary
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
         /// <remarks>
-        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool)"/>, as it will increase the token if it exists, otherwise adds it
+        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>, as it will increase the token if it exists, otherwise adds it
         /// </remarks>
         public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
 
@@ -90,41 +90,36 @@ namespace RainWorldBestiary
         /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
         /// <param name="tokenType"></param>
         /// <param name="checkIfThisUnlocksCreature"></param>
-        /// <param name="AdditionalData"
+        /// <param name="AdditionalData"></param>
         public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] AdditionalData)
             => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
         /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool, string[])"/>
         public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfThisUnlocksCreature = true, params string[] AdditionalData)
             => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfThisUnlocksCreature, AdditionalData);
 
-#warning EXTREMELY BAD CODE AND BAD PRACTICE, I'm Marking This As A Problem For Later
+
+
+        // Pre cached in the resource manager while it checks if an entry should be unlocked
+        internal static readonly Dictionary<string, List<UnlockToken>> _allUniqueUnlockTokens = new Dictionary<string, List<UnlockToken>>();
         // Checks if this token is a token that would unlock this creature, by checking if the creature has a module with an unlock token that matches this token
         private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockTokenType tokenType)
         {
-
-            foreach (EntriesTab tab in EntriesTabs)
+            if (_allUniqueUnlockTokens.TryGetValue(creatureID, out List<UnlockToken> tokens))
             {
-                foreach (Entry entry in tab)
+                foreach (UnlockToken token in tokens)
                 {
-                    if (entry.Info.UnlockID.Equals(creatureID))
+                    if (token.TokenType == tokenType)
                     {
-                        IEnumerator<CreatureUnlockToken> enumerator = entry.Info.Description.GetAllUniqueUnlockTokens();
-
-                        do
-                        {
-                            if (enumerator.Current.TokenType == tokenType && enumerator.Current.CreatureID.Equals(creatureID))
-                            {
-                                CreatureUnlockIDs.Add(creatureID);
-                                yield break;
-                            }
-
-                            yield return null;
-                        }
-                        while (enumerator.MoveNext());
+                        CreatureUnlockIDs.Add(creatureID);
+                        yield break;
                     }
+                    yield return null;
                 }
             }
         }
+
+
+
 
         /// <summary>
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
@@ -163,7 +158,7 @@ namespace RainWorldBestiary
         }
 
         // Cleans up things using PerformCleanupOperations
-        // saveBeforehand = whether to save before running cleanup incase the game exits before cleanup is done (which would cause nothing to save)
+        // saveBeforehand = whether to save before running cleanup incase the game exits before cleanup is done (which would cause lost data)
         internal static IEnumerator CleanupAndSave(bool saveBeforehand)
         {
             if (saveBeforehand)
@@ -242,6 +237,13 @@ namespace RainWorldBestiary
         static IEnumerator PerformCleanupOperations()
         {
             yield break;
+        }
+
+        [Obsolete("Force runs cleanup, which could freeze the game for a while, use PerformCleanupOperations instead unless you know what your doing.")]
+        internal static void ForceRunCleanup()
+        {
+            IEnumerator cleanup = PerformCleanupOperations();
+            while (cleanup.MoveNext()) { }
         }
     }
 }
