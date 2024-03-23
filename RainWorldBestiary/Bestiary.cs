@@ -162,6 +162,24 @@ namespace RainWorldBestiary
             }
         }
 
+        // Cleans up things using PerformCleanupOperations
+        // saveBeforehand = whether to save before running cleanup incase the game exits before cleanup is done (which would cause nothing to save)
+        internal static IEnumerator CleanupAndSave(bool saveBeforehand)
+        {
+            if (saveBeforehand)
+                Save();
+
+            IEnumerator enumerator = PerformCleanupOperations();
+            yield return null;
+
+            while (enumerator.MoveNext())
+            {
+                yield return null;
+            }
+
+            Save();
+        }
+
         // Loads all saved data into the bestiary, such as module unlock tokens and creature unlock ids
         internal static void Load()
         {
