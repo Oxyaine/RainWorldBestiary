@@ -25,6 +25,8 @@
             </summary>
             <remarks>
             If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>, as it will increase the token if it exists, otherwise adds it
+            <code></code>
+            You should also use <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/> for checking if the unlock token is valid, as accessing this directly could cause some issues
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
@@ -106,6 +108,11 @@
         <member name="M:RainWorldBestiary.Description.#ctor(System.String)">
             <summary>
             Creates a new description with one module that defaults to unlocked
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Description.#ctor(RainWorldBestiary.Description)">
+            <summary>
+            Copy Operator
             </summary>
         </member>
         <member name="P:RainWorldBestiary.Description.Count">
@@ -214,6 +221,11 @@
             <param name="body">The text of this part of the entries description</param>
             <param name="unlockToken">The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description</param>
             <param name="newLine">Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.</param>
+        </member>
+        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(RainWorldBestiary.DescriptionModule)">
+            <summary>
+            Copy Operator
+            </summary>
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.ToString">
             <inheritdoc/>

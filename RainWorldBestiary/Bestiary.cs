@@ -256,8 +256,8 @@ namespace RainWorldBestiary
         private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
 
 
-        static bool PerformingCleanup = false;
-        static Dictionary<string, List<UnlockToken>> _cleanupCache = new Dictionary<string, List<UnlockToken>>();
+        private static bool PerformingCleanup = false;
+        private static Dictionary<string, List<UnlockToken>> _cleanupCache = new Dictionary<string, List<UnlockToken>>();
         static IEnumerator PerformCleanupOperations()
         {
             yield break;
