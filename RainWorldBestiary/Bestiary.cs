@@ -43,16 +43,7 @@ namespace RainWorldBestiary
         /// <code></code>
         /// You should also check out <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid
         /// </remarks>
-        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks
-        {
-            get
-            {
-                if (PerformingCleanup)
-                    return _cleanupCache.Concat(_ModuleUnlocks).ToDictionary(v => v.Key, v => v.Value);
-                else
-                    return new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
-            }
-        }
+        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
 
 
         /// <summary>
@@ -65,7 +56,7 @@ namespace RainWorldBestiary
         /// <param name="SpecialData">All the extra data to add to the object</param>
         public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
         {
-            CachedCheckedTokens.Clear();
+            _cachedCheckedTokens.Clear();
 
             UnlockToken token = null;
 
@@ -142,7 +133,7 @@ namespace RainWorldBestiary
         }
 
 
-        internal static Dictionary<CreatureUnlockToken, (int count, bool value)> CachedCheckedTokens = new Dictionary<CreatureUnlockToken, (int count, bool value)>();
+        internal static Dictionary<CreatureUnlockToken, (int count, bool value)> _cachedCheckedTokens = new Dictionary<CreatureUnlockToken, (int count, bool value)>();
         /// <summary>
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
         /// </summary>
@@ -150,11 +141,11 @@ namespace RainWorldBestiary
         /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            if (CachedCheckedTokens.TryGetValue(unlockToken, out (int count, bool value) val))
+            if (_cachedCheckedTokens.TryGetValue(unlockToken, out (int count, bool value) val))
                 if (val.count <= unlockToken.Count)
                     return val.value;
 
-            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
+            if (_ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
             {
                 ushort v = 0;
                 foreach (UnlockToken token in value)
@@ -162,13 +153,13 @@ namespace RainWorldBestiary
                     {
                         if ((v += token.Count) > unlockToken.Count)
                         {
-                            CachedCheckedTokens.Add(unlockToken, (v, true));
+                            _cachedCheckedTokens.Add(unlockToken, (v, true));
                             return true;
                         }
                     }
             }
 
-            CachedCheckedTokens.Add(unlockToken, (0, true));
+            _cachedCheckedTokens.Add(unlockToken, (0, true));
             return false;
         }
 
@@ -182,7 +173,7 @@ namespace RainWorldBestiary
         {
             if (Directory.Exists(SaveFolder))
             {
-                BestiarySaveData saveData = new BestiarySaveData(ModuleUnlocks, CreatureUnlockIDs);
+                BestiarySaveData saveData = new BestiarySaveData(_ModuleUnlocks, CreatureUnlockIDs);
                 File.WriteAllText(SaveFile, JsonConvert.SerializeObject(saveData));
             }
         }
@@ -264,8 +255,6 @@ namespace RainWorldBestiary
         private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
 
 
-        private static bool PerformingCleanup = false;
-        private static Dictionary<string, List<UnlockToken>> _cleanupCache = new Dictionary<string, List<UnlockToken>>();
         static IEnumerator PerformCleanupOperations()
         {
             yield break;

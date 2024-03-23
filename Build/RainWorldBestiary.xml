@@ -190,7 +190,7 @@
             Checks all the UnlockIDs to determine if this module is visible or not
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.CheckIfUnlockTokenUnlocked(RainWorldBestiary.CreatureUnlockToken)">
+        <member name="M:RainWorldBestiary.DescriptionModule.CheckIfUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
             <summary>
             Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/>.
             </summary>
