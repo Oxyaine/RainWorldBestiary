@@ -14,7 +14,6 @@ namespace RainWorldBestiary
             BestiarySettings._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
             BestiarySettings.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
             BestiarySettings.PerformTextAnimations = config.Bind("oxyaine_bestiary_perform_text_animation", true);
-            BestiarySettings.PlayRainSoundsWhileReading = config.Bind("oxyaine_bestiary_play_rain_sounds_while_reading", true);
 
             BestiarySettings.ShowEntryUnlockPercent = config.Bind("oxyaine_bestiary_show_entry_unlock_percent_EXP", false);
             BestiarySettings.MinimizeTitleSpacing = config.Bind("oxyaine_bestiary_use_characters_spacing_for_names_EXP", false);
@@ -35,7 +34,6 @@ namespace RainWorldBestiary
             AddElements(ref items, Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translate("MENU_FADE_TIME_DESCRIPTION"));
             AddElements(ref items, Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
             AddElements(ref items, Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translate("SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
-            AddElements(ref items, Translate("Play Rain Sounds While Reading"), BestiarySettings.PlayRainSoundsWhileReading, description: Translate("PLAY_RAIN_SOUNDS_WHILE_READING_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
@@ -99,10 +97,6 @@ namespace RainWorldBestiary
         /// Whether to perform an animation when going to read an entry
         /// </summary>
         public static Configurable<bool> PerformTextAnimations;
-        /// <summary>
-        /// Whether to play the rain audio, that is present while sleeping, while reading an entry.
-        /// </summary>
-        public static Configurable<bool> PlayRainSoundsWhileReading;
 
 
         /// <summary>
