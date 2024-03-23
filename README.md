@@ -248,3 +248,4 @@ I plan to continue keeping this mod up to date for a while, as well as bug fixes
 * Make entries not just organized but categorized in the tabs
 * Make the resource manager create tabs based on the JSON files and not the directories
 * Different bestiary save per save slot
+* Clearer docs (maybe a GitHub pages site) on how to add your own entries through JSON files and through code
