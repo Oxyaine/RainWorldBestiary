@@ -36,6 +36,14 @@ namespace RainWorldBestiary
         }
 
         /// <summary>
+        /// Copy Operator
+        /// </summary>
+        public Description(Description other)
+        {
+            other._values.CopyTo(_values, 0);
+        }
+
+        /// <summary>
         /// Gets the amount of description modules in this description
         /// </summary>
         public int Count => _values.Count;
@@ -231,6 +239,17 @@ namespace RainWorldBestiary
         public DescriptionModule(string body, CreatureUnlockToken unlockToken, bool newLine = false) : this(body, newLine)
         {
             UnlockID = unlockToken;
+        }
+
+        /// <summary>
+        /// Copy Operator
+        /// </summary>
+        public DescriptionModule(DescriptionModule other)
+        {
+            other.UnlockIDs.CopyTo(UnlockIDs, 0);
+            ModuleUnlockedCondition = other.ModuleUnlockedCondition;
+            Body = new string(other.Body.ToCharArray());
+            NewLine = other.NewLine;
         }
 
         /// <inheritdoc/>

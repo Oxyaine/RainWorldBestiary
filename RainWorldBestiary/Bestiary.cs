@@ -40,8 +40,19 @@ namespace RainWorldBestiary
         /// </summary>
         /// <remarks>
         /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>, as it will increase the token if it exists, otherwise adds it
+        /// <code></code>
+        /// You should also use <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid, as accessing this directly could cause some issues
         /// </remarks>
-        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
+        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks
+        {
+            get
+            {
+                if (PerformingCleanup)
+                    return _cleanupCache.Concat(_ModuleUnlocks).ToDictionary(v => v.Key, v => v.Value);
+                else
+                    return new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
+            }
+        }
 
 
         /// <summary>
@@ -138,7 +149,7 @@ namespace RainWorldBestiary
         /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            if (_ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
+            if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
             {
                 ushort v = 0;
                 foreach (UnlockToken token in value)
@@ -153,6 +164,7 @@ namespace RainWorldBestiary
         }
 
 
+
         // The folder the save file is in
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
         // The save file to save to (yes, this file intentionally has no extension)
@@ -162,7 +174,7 @@ namespace RainWorldBestiary
         {
             if (Directory.Exists(SaveFolder))
             {
-                BestiarySaveData saveData = new BestiarySaveData(_ModuleUnlocks, CreatureUnlockIDs);
+                BestiarySaveData saveData = new BestiarySaveData(ModuleUnlocks, CreatureUnlockIDs);
                 File.WriteAllText(SaveFile, JsonConvert.SerializeObject(saveData));
             }
         }
@@ -244,6 +256,8 @@ namespace RainWorldBestiary
         private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
 
 
+        static bool PerformingCleanup = false;
+        static Dictionary<string, List<UnlockToken>> _cleanupCache = new Dictionary<string, List<UnlockToken>>();
         static IEnumerator PerformCleanupOperations()
         {
             yield break;
