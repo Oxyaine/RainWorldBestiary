@@ -65,6 +65,8 @@ namespace RainWorldBestiary
         /// <param name="SpecialData">All the extra data to add to the object</param>
         public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
         {
+            CachedCheckedTokens.Clear();
+
             UnlockToken token = null;
 
             if (_ModuleUnlocks.ContainsKey(creatureID))
@@ -140,8 +142,7 @@ namespace RainWorldBestiary
         }
 
 
-
-
+        internal static Dictionary<CreatureUnlockToken, (int count, bool value)> CachedCheckedTokens = new Dictionary<CreatureUnlockToken, (int count, bool value)>();
         /// <summary>
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
         /// </summary>
@@ -149,6 +150,10 @@ namespace RainWorldBestiary
         /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
+            if (CachedCheckedTokens.TryGetValue(unlockToken, out (int count, bool value) val))
+                if (val.count <= unlockToken.Count)
+                    return val.value;
+
             if (ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
             {
                 ushort v = 0;
@@ -156,13 +161,16 @@ namespace RainWorldBestiary
                     if (unlockToken.Equals(token))
                     {
                         if ((v += token.Count) > unlockToken.Count)
+                        {
+                            CachedCheckedTokens.Add(unlockToken, (v, true));
                             return true;
+                        }
                     }
             }
 
+            CachedCheckedTokens.Add(unlockToken, (0, true));
             return false;
         }
-
 
 
         // The folder the save file is in

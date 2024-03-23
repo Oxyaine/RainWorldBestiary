@@ -161,7 +161,7 @@ namespace RainWorldBestiary
             bool unlocked = true;
             foreach (CreatureUnlockToken unlock in info.UnlockIDs)
             {
-                bool thisValue = CheckIfUnlockTokenUnlocked(unlock);
+                bool thisValue = CheckIfUnlockTokenValid(unlock);
 
                 switch (unlock.OperationAgainstCurrentValue)
                 {
@@ -193,7 +193,7 @@ namespace RainWorldBestiary
         /// Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="Bestiary.IsUnlockTokenValid(CreatureUnlockToken)"/>.
         /// </summary>
         /// <returns>True if either of the conditions above is met</returns>
-        public static bool CheckIfUnlockTokenUnlocked(CreatureUnlockToken unlockToken)
+        public static bool CheckIfUnlockTokenValid(CreatureUnlockToken unlockToken)
             => unlockToken == null || unlockToken.TokenType == UnlockTokenType.None || Bestiary.IsUnlockTokenValid(unlockToken);
 
         /// <summary>
