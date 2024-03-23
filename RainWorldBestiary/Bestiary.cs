@@ -218,7 +218,7 @@ namespace RainWorldBestiary
         };
 
         // Removes the A or B at the end of CicadaA or CicadaB
-        private static string CicadaSpecialIDLogic(string id) => id.Substring(0, id.Length - 1);
+        private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
 
 
         static IEnumerator PerformCleanupOperations()
