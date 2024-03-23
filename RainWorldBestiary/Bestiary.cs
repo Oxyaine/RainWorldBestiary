@@ -39,7 +39,7 @@ namespace RainWorldBestiary
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
         /// <remarks>
-        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>, as it will increase the token if it exists, otherwise adds it
+        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
         /// <code></code>
         /// You should also check out <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid
         /// </remarks>
