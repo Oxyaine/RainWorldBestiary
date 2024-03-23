@@ -617,6 +617,11 @@
             Gets a number of random items from the collection
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Extensions.ToVector2(RWCustom.IntVector2)">
+            <summary>
+            Converts this <see cref="T:RWCustom.IntVector2"/> into a <see cref="T:UnityEngine.Vector2"/>
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.BestiarySettings">
             <summary>
             The main class for all the bestiary mods' settings, including remix menu options
@@ -747,6 +752,7 @@
             <summary>
             When the creature is stunned, by the player
             </summary>
+            <remarks>Automatically Tracked (for items inheriting from <see cref="T:Rock"/>)</remarks>
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.KilledPlayer">
             <summary>
@@ -764,6 +770,7 @@
             <summary>
             Whenever the creature gets eaten by the player
             </summary>
+            <remarks>Automatically Tracked</remarks>
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveAttraction">
             <summary>
@@ -785,15 +792,17 @@
             For whenever the player observes miscellaneous behaviour
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveHearing">
+        <member name="F:RainWorldBestiary.UnlockTokenType.HeardPlayer">
             <summary>
             For when the creature hears the player
             </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.PlayerGrabbed">
             <summary>
             When the player grabs the creature or creatures corpse
             </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>
         <member name="T:RainWorldBestiary.UnlockToken">
             <summary>

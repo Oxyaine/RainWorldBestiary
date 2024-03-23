@@ -55,6 +55,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// When the creature is stunned, by the player
         /// </summary>
+        /// <remarks>Automatically Tracked (for items inheriting from <see cref="Rock"/>)</remarks>
         Stunned = 10,
         /// <summary>
         /// When the player is killed by the creature
@@ -69,6 +70,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Whenever the creature gets eaten by the player
         /// </summary>
+        /// <remarks>Automatically Tracked</remarks>
         Eaten = 13,
         /// <summary>
         /// For whenever the player observes a creature being attracted to something, such as batflies to batnip
@@ -89,10 +91,12 @@ namespace RainWorldBestiary
         /// <summary>
         /// For when the creature hears the player
         /// </summary>
-        ObserveHearing = 18,
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
+        HeardPlayer = 18,
         /// <summary>
         /// When the player grabs the creature or creatures corpse
         /// </summary>
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         PlayerGrabbed = 19,
     }
 

@@ -192,7 +192,7 @@ Here is a full list of all unlock tokens, further down you can see a list of [wh
 * Observe Hunting = 7 : For when the player gets hunted / chased by the creature
 * Killed = 8 : When the creature gets killed by the player
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
-* Stunned = 10 : When the creature gets stunned, by the player
+* Stunned = 10 : When the creature gets stunned with a rock, by the player
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 * Eaten = 13 : When the player eats the creature
@@ -200,8 +200,8 @@ Here is a full list of all unlock tokens, further down you can see a list of [wh
 * Used As Lure = 15 : For when the player uses the creature to lure / distract something else
 * Observe Hiding = 16 : For when the player observes a creature hiding
 * Observe Behaviour = 17 : For when the player observes a creature doing a behaviour
-* Observe Hearing = 18 : When a creature hears the player
-* Player Grabbed = 19 : When the player grabs a creature
+* Heard Player = 18 : When a creature hears the player
+* Player Grabbed = 19 : When the player grabs the creature
 
 
 #### Automatic
@@ -212,11 +212,12 @@ Automatic unlock tokens are tokens that are automatically tracked and added by t
 Here is a list of all current automatic token types:
 * Killed = 8 : When the creature gets killed by the player
 * Impaled = 9 : When the creature gets impaled with a spear, by the player
+* Stunned = 10 : When the creature gets stunned with a rock, by the player
 * Killed Player = 11 : When the player is killed by the creature
 * Grabbed Player = 12 : When the player gets grabbed by the creature
 * Eaten = 13 : When the player eats the creature
-* Observe Hearing = 18 : When the creature hears the player
-* Player Grabbed = 19 : When the player grabs a creature
+* Heard Player = 18 : When the creature hears the player
+* Player Grabbed = 19 : When the player grabs the creature
 
 #
 ## Special Data

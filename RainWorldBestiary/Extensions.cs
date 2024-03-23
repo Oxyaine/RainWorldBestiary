@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RWCustom;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -110,5 +111,10 @@ namespace RainWorldBestiary
 
             return result;
         }
+
+        /// <summary>
+        /// Converts this <see cref="IntVector2"/> into a <see cref="Vector2"/>
+        /// </summary>
+        public static Vector2 ToVector2(this IntVector2 intVector) => new Vector2(intVector.x, intVector.y);
     }
 }

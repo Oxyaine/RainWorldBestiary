@@ -5,6 +5,9 @@ namespace RainWorldBestiary
 {
     internal class CreatureHooks
     {
+        internal static Room CurrentPlayerRoom = null;
+        internal static Vector2 CurrentCameraPosition = Vector2.zero;
+
         class IgnoreIDTimer
         {
             public int ID;
@@ -112,9 +115,66 @@ namespace RainWorldBestiary
             {
                 ErrorManager.AddError("Slugcat Grabbing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
             }
+            try
+            {
+                On.Rock.HitSomething += Rock_HitSomething;
+            }
+            catch
+            {
+                ErrorManager.AddError("Slugcat Stunning Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+
+#if DEBUG
+
+            On.Player.SpitOutOfShortCut += Player_SpitOutOfShortCut;
+            On.Creature.SpitOutOfShortCut += Creature_SpitOutOfShortCut;
+
+            On.RoomCamera.ApplyPositionChange += RoomCamera_ApplyPositionChange;
+#endif
 
             // Batflies attracted to batnip log here somehow
         }
+
+        private static bool Rock_HitSomething(On.Rock.orig_HitSomething original, Rock self, SharedPhysics.CollisionResult result, bool eu)
+        {
+            bool b = original(self, result, eu);
+
+            if (result.obj is Creature cr)
+                if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
+                    Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.Stunned);
+
+            return b;
+        }
+
+#if DEBUG
+
+        private static void RoomCamera_ApplyPositionChange(On.RoomCamera.orig_ApplyPositionChange original, RoomCamera self)
+        {
+            CurrentCameraPosition = self.pos;
+            original(self);
+
+            //Main.Logger.LogDebug(CurrentCameraPosition);
+        }
+
+        private static void Player_SpitOutOfShortCut(On.Player.orig_SpitOutOfShortCut original, Player self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
+        {
+            CurrentPlayerRoom = newRoom;
+            original(self, pos, newRoom, spitOutAllSticks);
+        }
+
+        private static void Creature_SpitOutOfShortCut(On.Creature.orig_SpitOutOfShortCut original, Creature self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
+        {
+            original(self, pos, newRoom, spitOutAllSticks);
+
+
+            // add logic so stuff is only saved when creature is on camera
+            //if (CurrentPlayerRoom != null)
+            //    if (!Bestiary.GetCreatureUnlockName(self).Equals(SlugcatUnlockName))
+            //        if (CurrentPlayerRoom.Equals(newRoom))
+            //        {
+            //        }
+        }
+#endif
 
         private static void Player_SlugcatGrab(On.Player.orig_SlugcatGrab original, Player self, PhysicalObject obj, int graspUsed)
         {
@@ -131,7 +191,7 @@ namespace RainWorldBestiary
             original(self, noise);
 
             if (noise.sourceObject is Player)
-                Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveHearing);
+                Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.HeardPlayer);
         }
         private static bool Player_CanEatMeat(On.Player.orig_CanEatMeat original, Player self, Creature critter)
         {
