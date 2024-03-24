@@ -74,7 +74,6 @@ namespace RainWorldBestiary
 
             return false;
         }
-
         /// <summary>
         /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
         /// </summary>
@@ -116,5 +115,14 @@ namespace RainWorldBestiary
         /// Converts this <see cref="IntVector2"/> into a <see cref="Vector2"/>
         /// </summary>
         public static Vector2 ToVector2(this IntVector2 intVector) => new Vector2(intVector.x, intVector.y);
+        /// <summary>
+        /// Gets the x and y of this <see cref="WorldCoordinate"/> and returns it as a Vector2
+        /// </summary>
+        public static Vector2 ToVector2(this WorldCoordinate coordinate) => new Vector2(coordinate.x, coordinate.y);
+
+        /// <inheritdoc cref="Bestiary.GetCreatureUnlockName(Creature, bool)"/>
+        public static string GetCreatureUnlockName(this Creature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
+        /// <inheritdoc cref="Bestiary.GetCreatureUnlockName(AbstractCreature, bool)"/>
+        public static string GetCreatureUnlockName(this AbstractCreature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
     }
 }
