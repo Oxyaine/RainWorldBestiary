@@ -23,6 +23,8 @@ namespace RainWorldBestiary
         {
             int removeLength = ModDirectory.Length + 1;
 
+            List<Font> customFonts = new List<Font>();
+
             string[] fonts = Directory.GetDirectories(Path.Combine(ModDirectory, "fonts"), "*", SearchOption.TopDirectoryOnly);
             foreach (string font in fonts)
             {
@@ -36,11 +38,13 @@ namespace RainWorldBestiary
                         Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
                     }
 
-                    CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
+                    customFonts.Add(new Font(Path.GetFileName(font), configFile));
                 }
             }
+
+            CustomFonts = customFonts.ToArray();
         }
-        private static readonly List<Font> CustomFonts = new List<Font>();
+        private static Font[] CustomFonts = new Font[0];
         internal static Font GetCustomFontByName(string fontName)
         {
             foreach (Font font in CustomFonts)
