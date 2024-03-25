@@ -1,4 +1,5 @@
 ﻿using Menu;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,35 +12,42 @@ namespace RainWorldBestiary
         readonly string BackButtonMessage = "BACK";
         public EntryReadingMenu(ProcessManager manager) : base(manager)
         {
-            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
-
-            float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
-
-            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
-            pages[0].subObjects.Add(scene);
-
-            darkSprite = new FSprite("pixel")
+            try
             {
-                color = new Color(0f, 0f, 0f),
-                anchorX = 0f,
-                anchorY = 0f,
-                scaleX = 1368f,
-                scaleY = 770f,
-                x = -1f,
-                y = -1f,
-                alpha = 0.90f
-            };
-            pages[0].Container.AddChild(darkSprite);
+                Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-            pages[0].subObjects.Add(backButton);
-            backObject = backButton;
-            backButton.nextSelectable[0] = backButton;
-            backButton.nextSelectable[2] = backButton;
+                float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
-            DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
+                scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
+                pages[0].subObjects.Add(scene);
 
-            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+                darkSprite = new FSprite("pixel")
+                {
+                    color = new Color(0f, 0f, 0f),
+                    anchorX = 0f,
+                    anchorY = 0f,
+                    scaleX = 1368f,
+                    scaleY = 770f,
+                    x = -1f,
+                    y = -1f,
+                    alpha = 0.90f
+                };
+                pages[0].Container.AddChild(darkSprite);
+
+                SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                pages[0].subObjects.Add(backButton);
+                backObject = backButton;
+                backButton.nextSelectable[0] = backButton;
+                backButton.nextSelectable[2] = backButton;
+
+                DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
+
+                mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+            }
+            catch (Exception ex)
+            {
+                Main.Logger.LogError(ex);
+            }
         }
 
         public override void ShutDownProcess()

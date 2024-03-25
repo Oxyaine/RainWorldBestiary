@@ -5,7 +5,6 @@ namespace RainWorldBestiary
 {
     internal class CreatureHooks
     {
-        internal static Room CurrentPlayerRoom = null;
         private static RainWorldGame game;
 
         private class IgnoreIDTimer
@@ -130,25 +129,30 @@ namespace RainWorldBestiary
             On.Creature.Violence += Creature_Violence;
             On.Player.SpitOutOfShortCut += Player_SpitOutOfShortCut;
             On.Creature.SpitOutOfShortCut += Creature_SpitOutOfShortCut;
-#endif
+
+            On.ArtificialIntelligence.CreatureSpotted += ArtificialIntelligence_CreatureSpotted;
         }
-        
-#if DEBUG
+
+        private static void ArtificialIntelligence_CreatureSpotted(On.ArtificialIntelligence.orig_CreatureSpotted original, ArtificialIntelligence self, bool firstSpot, Tracker.CreatureRepresentation otherCreature)
+        {
+            original(self, firstSpot, otherCreature);
+        }
 
         private static void Creature_Violence(On.Creature.orig_Violence original, Creature self, BodyChunk source, Vector2? directionAndMomentum, BodyChunk hitChunk, PhysicalObject.Appendage.Pos hitAppendage, Creature.DamageType type, float damage, float stunBonus)
         {
             original(self, source, directionAndMomentum, hitChunk, hitAppendage, type, damage, stunBonus);
         }
 
+
         private static void Player_SpitOutOfShortCut(On.Player.orig_SpitOutOfShortCut original, Player self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
         {
-            CurrentPlayerRoom = newRoom;
             original(self, pos, newRoom, spitOutAllSticks);
         }
-
         private static void Creature_SpitOutOfShortCut(On.Creature.orig_SpitOutOfShortCut original, Creature self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
         {
             original(self, pos, newRoom, spitOutAllSticks);
+        }
+#else
         }
 #endif
 

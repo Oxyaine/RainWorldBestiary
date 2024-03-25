@@ -359,7 +359,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bestiary.cs" />
-    <Compile Include="BestiaryEvents.cs" />
     <Compile Include="ErrorManager.cs" />
     <Compile Include="BestiaryMenu.cs" />
     <Compile Include="BestiarySaveData.cs" />

@@ -86,11 +86,6 @@
             Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
             </summary>
         </member>
-        <member name="T:RainWorldBestiary.BestiaryEvents">
-            <summary>
-            A bunch of events from the bestiary you can hook onto to make your own logic
-            </summary>
-        </member>
         <member name="T:RainWorldBestiary.Description">
             <summary>
             A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
