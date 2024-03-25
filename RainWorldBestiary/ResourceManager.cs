@@ -18,21 +18,53 @@ namespace RainWorldBestiary
 
         private static readonly List<string> LoadedMods = new List<string>() { BestiaryModID };
 
-        internal static readonly List<Font> CustomFonts = new List<Font>();
-        internal static bool GetCustomFontByName(string fontName, out Font result)
+
+        private static void GetAllFonts()
+        {
+            int removeLength = ModDirectory.Length + 1;
+
+            string[] fonts = Directory.GetDirectories(Path.Combine(ModDirectory, "fonts"), "*", SearchOption.TopDirectoryOnly);
+            foreach (string font in fonts)
+            {
+                string configFile = font + ".txt";
+                if (File.Exists(configFile))
+                {
+                    IEnumerable<string> files = Directory.GetFiles(font, "*", SearchOption.AllDirectories);
+                    foreach (string file in files)
+                    {
+                        string tmp = file.Substring(removeLength);
+                        Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
+                    }
+
+                    CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
+                }
+            }
+        }
+        private static readonly List<Font> CustomFonts = new List<Font>();
+        internal static Font GetCustomFontByName(string fontName)
         {
             foreach (Font font in CustomFonts)
             {
-                if (font.FontName.Equals(fontName))
+                if (font.Name.Equals(fontName))
                 {
-                    result = font;
-                    return true;
+                    return font;
                 }
             }
 
-            result = null;
-            return false;
+            return null;
         }
+        internal static bool GetCustomFontByName(string fontName, out Font result)
+        {
+            Font f = GetCustomFontByName(fontName);
+            result = f;
+
+            if (f == null)
+                return false;
+
+            return true;
+        }
+
+
 
         public const string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
         public const string UnlockPip = "illustrations\\bestiary\\icons\\unlock_pip";
@@ -77,37 +109,27 @@ namespace RainWorldBestiary
                 Initialized = true;
 
                 ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                int removeLength = ModDirectory.Length + 1;
 
-                string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
-                string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
-                foreach (string image in images)
-                {
-                    string tmp = image.Substring(removeLength);
-                    Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
-                }
-
-                IEnumerable<string> fonts = Directory.GetDirectories(Path.Combine(ModDirectory, "fonts"), "*", SearchOption.TopDirectoryOnly);
-                foreach (string font in fonts)
-                {
-                    string configFile = font + ".txt";
-                    if (File.Exists(configFile))
-                    {
-                        IEnumerable<string> files = Directory.GetFiles(font, "*", SearchOption.AllDirectories);
-                        foreach (string file in files)
-                        {
-                            string tmp = file.Substring(removeLength);
-                            Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
-                        }
-
-                        CustomFonts.Add(new Font(Path.GetFileName(font), configFile));
-                    }
-                }
+                GetAllSprites();
+                GetAllFonts();
 
                 //AssetManager.ResolveDirectory()
 
                 CheckFolder(Path.Combine(ModDirectory, EntriesLocalPath), BestiaryModID);
                 CheckForUnregisteredEntries();
+            }
+        }
+
+        private static void GetAllSprites()
+        {
+            int removeLength = ModDirectory.Length + 1;
+
+            string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
+            string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
+            foreach (string image in images)
+            {
+                string tmp = image.Substring(removeLength);
+                Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
             }
         }
 

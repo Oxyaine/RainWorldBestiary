@@ -5,11 +5,13 @@ namespace RainWorldBestiary
 {
     internal class Font
     {
-        public readonly string FontName;
+        public readonly string Name;
+
+        private readonly float MinCharacterSize = 65f;
 
         public Font(string fontName, string fontConfigPath)
         {
-            FontName = fontName;
+            Name = fontName;
 
             string[] lines = File.ReadAllLines(fontConfigPath);
             foreach (string line in lines)
@@ -39,7 +41,7 @@ namespace RainWorldBestiary
                     if (BestiarySettings.MinimizeTitleSpacing.Value)
                         currentX += sprites[i].width + ((1f - (sprites[i].width / 40f)) * 20f);
                     else
-                        currentX += 65f;
+                        currentX += MinCharacterSize;
                 }
                 else
                 {

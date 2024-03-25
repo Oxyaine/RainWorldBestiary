@@ -164,7 +164,7 @@ namespace RainWorldBestiary
             }
             else
             {
-                GeneratedFontText fontText = ResourceManager.CustomFonts[0].Generate(entry.Name);
+                GeneratedFontText fontText = ResourceManager.GetCustomFontByName("rodondo").Generate(entry.Name);
 
                 fontText.X = (screenSize.x / 2f) - (fontText.TotalWidth / 2f);
                 fontText.Y = screenSize.y - 50f;
