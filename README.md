@@ -249,22 +249,23 @@ Special data is data that can be added to unlock tokens to give some specifics t
 #
 #
 
-## Issue - Auto Generated Title
-***The issue is only present when the toggle *Minimize Title Character Spacing*, in experimental tab of the remix menu, is enabled.***
-
-The auto generated titles look a little off, The spacing between the letters is weird and inconsistent, I'm not sure why this happens, I've tested my code other places and it seems to work, just something about the way the game draws sprites throws off some of the spacing and makes the characters wonky. I've countered this a bit with some extra code, so it's harder to notice the offsets, but it's still not perfect. I will continue working on solutions, but currently, this is an issue.
-
-
 # Future Plans
 
-I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows. There's a couple things I still plan to add, here's a somewhat complete list of what I'm planning on changing / adding.
+I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows.
+There's a couple things I still plan to add, here's a somewhat complete list of what I'm planning on changing / adding, vaguely in the order I want to add them:
 
-* Built in sprite loader, so you don't need to write any code to make bestiary entries.
-* Improved title sprite generator. The [issue with them](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue---auto-generated-title) is annoying me.
+* Entry description formatting
+	- Colored Text (Including different colours per module)
+	- Referencing Text (text that works like a quick link, it'll take you to another entry or page)
+* Built in sprite loader
+* Improved title sprite generator.
+* Different bestiary save per save slot
 * Ability to make custom unlock logic, without making the bestiary a dependency.
 * Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
 * Try to convert as many unlock tokens to be automated as possible.
 * Make entries not just organized but categorized in the tabs
 * Make the resource manager create tabs based on the JSON files and not the directories
-* Different bestiary save per save slot
 * Clearer docs (maybe a GitHub pages site) on how to add your own entries through JSON files and through code
+
+I will also try to ensure to always prioritize bugs and performance improvements, these are just additions I want to work on in the meantime.
+You can check out known bugs here.

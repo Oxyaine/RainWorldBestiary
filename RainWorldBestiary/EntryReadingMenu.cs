@@ -218,6 +218,11 @@ namespace RainWorldBestiary
             }
         }
 
+        public void FormatAndDisplayTest(string text)
+        {
+
+        }
+
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
