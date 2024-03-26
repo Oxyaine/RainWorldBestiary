@@ -239,7 +239,12 @@ namespace RainWorldBestiary
             {
                 try
                 {
-                    entries[i] = new Entry(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file)), owningModID);
+                    EntryInfo info = JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file));
+
+                    if (string.IsNullOrEmpty(info.Name))
+                        entries[i] = new Entry(Path.GetFileNameWithoutExtension(file), info, owningModID);
+                    else
+                        entries[i] = new Entry(info.Name, info, owningModID);
                 }
                 catch (Exception ex)
                 {

@@ -33,7 +33,6 @@ z=fonts\rodondo\Z
 )=fonts\rodondo\Right-Bracket
 ,=fonts\rodondo\Comma
 .=fonts\rodondo\Period
- =fonts\rodondo\Space
 '=fonts\rodondo\Quote
 ;=fonts\rodondo\Semi-Colon
 @=fonts\rodondo\At-Sign

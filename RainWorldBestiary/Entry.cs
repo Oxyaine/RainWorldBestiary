@@ -12,7 +12,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// The name of this entry
         /// </summary>
-        public string Name = string.Empty;
+        public readonly string Name = string.Empty;
         /// <summary>
         /// The information of this entry, such as its unlock id, icon, scene to show while reading, and description
         /// </summary>
@@ -95,6 +95,12 @@ namespace RainWorldBestiary
         /// A constant defining the default text that is shown when attempting to read a locked entry
         /// </summary>
         public const string BaseLockedText = "This entry is locked.";
+
+        /// <summary>
+        /// The name of this entry
+        /// </summary>
+        [JsonProperty("name")]
+        internal readonly string Name = null;
 
         /// <summary>
         /// The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible

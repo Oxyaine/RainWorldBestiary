@@ -496,6 +496,11 @@
             A constant defining the default text that is shown when attempting to read a locked entry
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.EntryInfo.Name">
+            <summary>
+            The name of this entry
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.EntryInfo.UnlockID">
             <summary>
             The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
