@@ -37,6 +37,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// For when the player sees the creature eating or hunting another creature
         /// </summary>
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         ObserveFood = 6,
         /// <summary>
         /// For when the player is getting chased by a creature
@@ -101,10 +102,12 @@ namespace RainWorldBestiary
         /// <summary>
         /// When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
         /// </summary>
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         ObserveRivals = 20,
         /// <summary>
         /// When the player observes the creature attacking another creature
         /// </summary>
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         ObserveAttacking = 21,
     }
 
