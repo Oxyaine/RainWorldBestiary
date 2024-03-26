@@ -131,8 +131,7 @@
                 }
             ],
             "body": "If the creature has killed the player, or, they have both been grabbed by the player and grabbed the player, this text will be visible."
-        }
-        ,
+        },
         {
             "unlock_ids":[
                 {
@@ -143,6 +142,28 @@
                 }
             ],
             "body": "This text is only visible if the creature has been seen eating both batflies and snails!"
+        },
+        {
+            "unlock_ids":[
+                {
+                    "token_type": "ObserveFood",
+                    "value": 1,
+                    "creature_id": "GreenLizard",
+                    "special_data": [ "EntryOne" ]
+                }
+            ],
+            "body": "This text is only visible if the creature has been seen getting eaten by a green lizard!"
+        },
+        {
+            "unlock_ids":[
+                {
+                    "token_type": "ObserveFood",
+                    "value": 5,
+                    "creature_id": "GreenLizard",
+                    "special_data": [ "EntryOne" ]
+                }
+            ],
+            "body": "This text is only visible if a green lizard has been seen eating 5 times, where atleast one instance was this creature!"
         }
     ]
 }
