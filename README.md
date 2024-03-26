@@ -268,10 +268,8 @@ There's a couple things I still plan to add, here's a somewhat complete list of 
 	    - Text that works like a quick link, it'll take you to another entry or page
 * Built in sprite loader.
 * Ability to make custom unlock logic, without accessing the bestiaries code.
-	- I want to avoid having the bestiary a dependant for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code, which would make the bestiary a dependency.
+	- I want to avoid having the bestiary a dependency for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
 * Different bestiary save per save slot
-* Ability to make custom unlock logic, without making the bestiary a dependency.
-* Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
 * Make entries not just categorized in tabs, but also sub categories (don't worry I wont be adding extra menus)
 * Clearer docs (maybe a GitHub pages site) on how to add your own entries through JSON files and through code
 
