@@ -284,18 +284,18 @@ Special data is data that can be added to unlock tokens to give some specifics t
 # Future Plans
 
 I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows.
-There's a couple things I still plan to add, here's a somewhat complete list of what I'm planning on changing / adding, vaguely in the order I want to add them:
+There's a couple things I still plan to add, here's a somewhat complete list of what I want to add, vaguely in the order I want to add them:
 
 * Entry description formatting
 	- Colored Text (Including different colours per module)
 	- Referencing Text
 	    - Text that works like a quick link, it'll take you to another entry or page
-* Built in sprite loader.
-* Ability to make custom unlock logic, without accessing the bestiaries code.
+* Built in sprite loader
+* Ability to make custom unlock logic, without accessing the bestiaries code
 	- I want to avoid having the bestiary a dependency for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
 * Different bestiary save per save slot
 * Make entries not just categorized in tabs, but also sub categories (don't worry I wont be adding extra menus)
-* Clearer docs (maybe a GitHub pages site) on how to add your own entries through JSON files and through code
+* Clearer documentation on how to add your own entries through JSON files
 
 I will also try to always prioritize bugs and performance improvements, these are just additions I want to work on in the meantime.
 You can check out known bugs [here](https://github.com/Oxyaine/RainWorldBestiary/blob/master/Known%20Issues.md).
