@@ -4,6 +4,8 @@ This file is here to hopefully help developers get started understanding how the
 
 You can [report any bugs or issues you encounter here](https://github.com/Oxyaine/RainWorldBestiary/issues), ***with performance issues, try to give as many details you can on where and when you where experiencing the bad performance.***
 
+### If you'd like something added, ask help with something, or anything really, feel free to ask me through the [issues page on GitHub](https://github.com/Oxyaine/RainWorldBestiary/issues)
+
 #
 
 ## First Things First
@@ -14,9 +16,6 @@ You make entries by creating JSON files in a specific folder within your mod, th
 
 ### *To make things easier to understand, you should download the template folder above as an example to help you get a hang of things:*
 This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
-
-
-### If you'd like something added, help with something, or anything really, feel free to ask me through the [issues page on GitHub](https://github.com/Oxyaine/RainWorldBestiary/issues)
 
 #
 #
