@@ -24,6 +24,7 @@ w=fonts\rodondo\W
 x=fonts\rodondo\X
 y=fonts\rodondo\Y
 z=fonts\rodondo\Z
+ =fonts\rodondo\Space
 !=fonts\rodondo\Exclamation-Mark
 #=fonts\rodondo\Hash
 %=fonts\rodondo\Percentage-Sign
