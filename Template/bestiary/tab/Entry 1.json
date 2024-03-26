@@ -55,7 +55,7 @@
                     "creature_id": "EntryOne"
                 }
             ],
-            "body": "This text will appear if the player grabs the creature while its alive OR the creature has grabbed the player"
+            "body": "This text will appear if the player grabs the creature while its ALIVE OR the creature has grabbed the player"
         },
         {
             "unlock_ids":[
@@ -63,7 +63,7 @@
                     "token_type": "PlayerGrabbed",
                     "value": 1,
                     "creature_id": "EntryOne",
-                    "special_data": ["Alive"]
+                    "special_data": ["Dead"]
                 },
                 {
                     "operation_against_value": "and",
@@ -73,7 +73,7 @@
                 }
             ],
             "new_line": true,
-            "body": "This text will appear on a new line from the previous modules, and only if the player grabs the creature while its alive AND the creature has grabbed the player"
+            "body": "This text will appear on a new line from the previous modules, and only if the player grabs the creature while its DEAD AND the creature has grabbed the player"
         },
         {
             "unlock_id": null,
@@ -131,6 +131,18 @@
                 }
             ],
             "body": "If the creature has killed the player, or, they have both been grabbed by the player and grabbed the player, this text will be visible."
+        }
+        ,
+        {
+            "unlock_ids":[
+                {
+                    "token_type": "ObserveFood",
+                    "value": 1,
+                    "creature_id": "EntryOne",
+                    "special_data": [ "Fly", "Snail" ]
+                }
+            ],
+            "body": "This text is only visible if the creature has been seen eating both batflies and snails!"
         }
     ]
 }
