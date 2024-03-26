@@ -206,6 +206,11 @@
             Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.DescriptionModule.Translate">
+            <summary>
+            Whether this modules text will get run through the in game translator, if no translation is found, then the text will be placed
+            </summary>
+        </member>
         <member name="M:RainWorldBestiary.DescriptionModule.#ctor">
             <inheritdoc cref="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,System.Boolean)"/>
         </member>
@@ -223,7 +228,10 @@
             </summary>
         </member>
         <member name="M:RainWorldBestiary.DescriptionModule.ToString">
-            <inheritdoc/>
+            <summary>
+            Returns <see cref="F:RainWorldBestiary.DescriptionModule.Body"/>, if <see cref="F:RainWorldBestiary.DescriptionModule.Translate"/> is true, <see cref="F:RainWorldBestiary.DescriptionModule.Body"/> will get run through the in game translator first
+            </summary>
+            <returns><see cref="F:RainWorldBestiary.DescriptionModule.Body"/>, translated if <see cref="F:RainWorldBestiary.DescriptionModule.Translate"/> is true</returns>
         </member>
         <member name="T:RainWorldBestiary.EntriesTab">
             <summary>

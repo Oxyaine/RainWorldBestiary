@@ -91,6 +91,10 @@ The text of this module, this gets run through the in game translator, so you ca
 `Default = false`
 Whether this module and the previous module should be separated by a new line '\n'. Otherwise just separates with a space.
 
+#### "translate" : bool
+`Default = true`
+Whether to run the body of this module through the in-game translator, if no translation is found, then nothing will happen
+
 
 
 ## Title Sprite

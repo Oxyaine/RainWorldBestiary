@@ -97,7 +97,7 @@ namespace RainWorldBestiary
             {
                 if (module.ModuleUnlocked)
                 {
-                    result += (module.NewLine ? "\n" : " ") + OptionInterface.Translate(module.ToString());
+                    result += string.Concat(module.NewLine ? "\n" : " ", module.ToString());
                 }
             }
 
@@ -217,6 +217,11 @@ namespace RainWorldBestiary
         [JsonProperty("new_line")]
         public bool NewLine = false;
 
+        /// <summary>
+        /// Whether this modules text will get run through the in game translator, if no translation is found, then the text will be placed
+        /// </summary>
+        [JsonProperty("translate")]
+        public bool Translate = true;
 
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>
         [JsonConstructor]
@@ -246,7 +251,10 @@ namespace RainWorldBestiary
             NewLine = other.NewLine;
         }
 
-        /// <inheritdoc/>
-        public override string ToString() => Body;
+        /// <summary>
+        /// Returns <see cref="Body"/>, if <see cref="Translate"/> is true, <see cref="Body"/> will get run through the in game translator first
+        /// </summary>
+        /// <returns><see cref="Body"/>, translated if <see cref="Translate"/> is true</returns>
+        public override string ToString() => Translate ? OptionInterface.Translate(Body) : Body;
     }
 }
