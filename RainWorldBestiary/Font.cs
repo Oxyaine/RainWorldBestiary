@@ -20,18 +20,11 @@ namespace RainWorldBestiary
                     continue;
 
                 string[] splitLine = line.Split('=');
-                if (splitLine[0].Equals("default"))
-                    Default = splitLine[1];
-                else if (splitLine[0].Equals("ignorecase"))
-                    IgnoreCase = true;
-                else
-                    FontCharacters.Add(splitLine[0][0], splitLine[1]);
+                FontCharacters.Add(splitLine[0][0], splitLine[1]);
             }
         }
 
         readonly Dictionary<char, string> FontCharacters = new Dictionary<char, string>();
-        readonly string Default = "";
-        readonly bool IgnoreCase = false;
 
         public GeneratedFontText Generate(string text)
         {
