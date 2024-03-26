@@ -30,7 +30,7 @@ namespace RainWorldBestiary
             };
             pages[0].Container.AddChild(darkSprite);
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
 
             backObject = backButton;
@@ -99,7 +99,7 @@ namespace RainWorldBestiary
 
                 bool entryLocked = !tab[i].Info.EntryUnlocked;
 
-                SimpleButton button = new SimpleButton(this, pages[0], entryLocked ? "???" : OptionInterface.Translate(tab[i].Name), string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
+                SimpleButton button = new SimpleButton(this, pages[0], entryLocked ? "???" : Translator.Translate(tab[i].Name), string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
                 {
                     rectColor = entryLocked ? LockedColor : tab[i].Info.EntryColor
                 };
@@ -204,7 +204,7 @@ namespace RainWorldBestiary
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
-                    TipLabel.text = OptionInterface.Translate(Bestiary.CurrentSelectedEntry.Info.LockedText);
+                    TipLabel.text = Translator.Translate(Bestiary.CurrentSelectedEntry.Info.LockedText);
                     TipLabelAlpha = Mathf.Clamp(TipLabel.text.Length * 0.04f, 1.5f, 5f);
                 }
             }

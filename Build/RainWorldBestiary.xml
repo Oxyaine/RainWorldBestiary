@@ -638,6 +638,16 @@
         <member name="M:RainWorldBestiary.Extensions.GetCreatureUnlockName(AbstractCreature,System.Boolean)">
             <inheritdoc cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)"/>
         </member>
+        <member name="T:RainWorldBestiary.Translator">
+            <summary>
+            A class for custom translation behaviour
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Translator.Translate(System.String)">
+            <summary>
+            Translates this text using the short strings dictionary
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.BestiarySettings">
             <summary>
             The main class for all the bestiary mods' settings, including remix menu options

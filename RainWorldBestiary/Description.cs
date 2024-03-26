@@ -255,6 +255,6 @@ namespace RainWorldBestiary
         /// Returns <see cref="Body"/>, if <see cref="Translate"/> is true, <see cref="Body"/> will get run through the in game translator first
         /// </summary>
         /// <returns><see cref="Body"/>, translated if <see cref="Translate"/> is true</returns>
-        public override string ToString() => Translate ? OptionInterface.Translate(Body) : Body;
+        public override string ToString() => Translate ? Translator.Translate(Body) : Body;
     }
 }

@@ -51,7 +51,7 @@ namespace RainWorldBestiary
 
                 if (tab.Count > 0)
                 {
-                    SimpleButton button = new SimpleButton(this, pages[0], OptionInterface.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
+                    SimpleButton button = new SimpleButton(this, pages[0], Translator.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
                     pages[0].subObjects.Add(button);
 
                     if (firstTabButton == null)
@@ -61,7 +61,7 @@ namespace RainWorldBestiary
                 }
             }
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
+            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
             pages[0].subObjects.Add(backButton);
 
             backObject = backButton;
