@@ -1,10 +1,9 @@
 {
     "name": "Tab",
     "title_image":{
-        "element_name": "",
+        "element_name": "illustrations\\Tab_title",
         "scale": 1,
         "x_offset": 0,
         "y_offset": 0
-    },
-    "tab_menu_process_id": null
+    }
 }
