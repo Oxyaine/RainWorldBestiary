@@ -1,1 +1,5 @@
-﻿
+﻿All text is by default translated, what you're reading right now isn't visible in game. You can see another example in the next module|This text isn't in the JSON file, how strange...
+BESTIARY_ENTRY-ONE_TRANSLATION_EXAMPLE|This text was translated from an ID!
+If no translation is found, this text will appear, however this text is different from in the JSON file, so it doesn't count as a translation|Isn't that nifty?
+You can guess what this does|It won't translate, that's what!
+Tab titles also get translated!|Tab

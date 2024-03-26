@@ -26,7 +26,7 @@
                 "value": 1,
                 "creature_id": "EntryOne"
             },
-            "text": "Because there is no module with a null \"unlock id\", this entry will not be visible until one of the tokens found in one of the modules is unlocked!"
+            "text": "Because there is no module with a null \"unlock id\", this entry will not be visible until one of the modules is unlocked!"
         }
     ]
 }

@@ -24,6 +24,23 @@
             "body": "This text is always visible and will make the entry visible! This will appear second"
         },
         {
+            "unlock_id": null,
+            "body": "All text is by default translated, what you're reading right now isn't visible in game. You can see another example in the next module"
+        },
+        {
+            "unlock_id": null,
+            "body": "BESTIARY_ENTRY-ONE_TRANSLATION_EXAMPLE"
+        },
+        {
+            "unlock_id": null,
+            "body": "If no translation is found, this text will appear"
+        },
+        {
+            "unlock_id": null,
+            "translate": false,
+            "body": "You can guess what this does"
+        },
+        {
             "unlock_ids":[
                 {
                     "token_type": "PlayerGrabbed",
