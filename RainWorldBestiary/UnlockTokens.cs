@@ -98,6 +98,14 @@ namespace RainWorldBestiary
         /// </summary>
         /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         PlayerGrabbed = 19,
+        /// <summary>
+        /// When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
+        /// </summary>
+        ObserveRivals = 20,
+        /// <summary>
+        /// When the player observes the creature attacking another creature
+        /// </summary>
+        ObserveAttacking = 21,
     }
 
     /// <summary>

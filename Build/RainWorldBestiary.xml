@@ -802,6 +802,16 @@
             </summary>
             <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>
+        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveRivals">
+            <summary>
+            When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveAttacking">
+            <summary>
+            When the player observes the creature attacking another creature
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.UnlockToken">
             <summary>
             The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RainWorldBestiary.CreatureUnlockToken"/> which is used in <see cref="T:RainWorldBestiary.DescriptionModule"/> as the unlock ID

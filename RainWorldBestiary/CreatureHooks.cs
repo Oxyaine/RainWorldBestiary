@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -123,39 +124,59 @@ namespace RainWorldBestiary
                 ErrorManager.AddError("Slugcat Stunning Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
             }
 
-            On.RainWorldGame.ctor += RainWorldGame_ctor;
+            try
+            {
+                On.RainWorldGame.ctor += RainWorldGame_ctor;
 
-#if DEBUG
-            On.Creature.Violence += Creature_Violence;
-            On.Player.SpitOutOfShortCut += Player_SpitOutOfShortCut;
-            On.Creature.SpitOutOfShortCut += Creature_SpitOutOfShortCut;
+                try
+                {
+                    On.Creature.Grab += Creature_Grab;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Observing creatures fighting, attacking, and eating", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+            }
+            catch
+            {
+                ErrorManager.AddError("Anything to do with observing creatures, such as them fighting, attacking, eating, etc", ErrorCategory.CreatureHookFailed, ErrorLevel.High);
+            }
 
-            On.ArtificialIntelligence.CreatureSpotted += ArtificialIntelligence_CreatureSpotted;
+
         }
 
-        private static void ArtificialIntelligence_CreatureSpotted(On.ArtificialIntelligence.orig_CreatureSpotted original, ArtificialIntelligence self, bool firstSpot, Tracker.CreatureRepresentation otherCreature)
+
+        private static bool Creature_Grab(On.Creature.orig_Grab original, Creature self, PhysicalObject obj, int graspUsed, int chunkGrabbed, Creature.Grasp.Shareability shareable, float dominance, bool overrideEquallyDominant, bool pacifying)
         {
-            original(self, firstSpot, otherCreature);
-        }
+            bool grabbed = original(self, obj, graspUsed, chunkGrabbed, shareable, dominance, overrideEquallyDominant, pacifying);
 
-        private static void Creature_Violence(On.Creature.orig_Violence original, Creature self, BodyChunk source, Vector2? directionAndMomentum, BodyChunk hitChunk, PhysicalObject.Appendage.Pos hitAppendage, Creature.DamageType type, float damage, float stunBonus)
-        {
-            original(self, source, directionAndMomentum, hitChunk, hitAppendage, type, damage, stunBonus);
-        }
+            if (grabbed && obj is Creature grabbedCreature && !Bestiary.GetCreatureUnlockName(grabbedCreature).Equals(SlugcatUnlockName))
+            {
+                if (IsCreatureOnCamera(self))
+                {
+                    CreatureTemplate.Relationship.Type relation = self.abstractCreature.creatureTemplate.CreatureRelationship(grabbedCreature).type;
 
+                    if (relation.Equals(CreatureTemplate.Relationship.Type.Eats))
+                    {
+                        Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveFood, true, Bestiary.GetCreatureUnlockName(grabbedCreature));
+                    }
+                    else if (relation.Equals(CreatureTemplate.Relationship.Type.Attacks))
+                    {
+                        Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveAttacking, true, Bestiary.GetCreatureUnlockName(grabbedCreature));
+                    }
+                    else if (relation.Equals(CreatureTemplate.Relationship.Type.AgressiveRival))
+                    {
+                        Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveRivals, true, Bestiary.GetCreatureUnlockName(grabbedCreature));
+                    }
+                    else
+                    {
+                        Main.Logger.LogWarning("Creature Relation Not Tracked: " + relation.value);
+                    }
+                }
+            }
 
-        private static void Player_SpitOutOfShortCut(On.Player.orig_SpitOutOfShortCut original, Player self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
-        {
-            original(self, pos, newRoom, spitOutAllSticks);
+            return grabbed;
         }
-        private static void Creature_SpitOutOfShortCut(On.Creature.orig_SpitOutOfShortCut original, Creature self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
-        {
-            original(self, pos, newRoom, spitOutAllSticks);
-        }
-#else
-        }
-#endif
-
         private static void RainWorldGame_ctor(On.RainWorldGame.orig_ctor original, RainWorldGame self, ProcessManager manager)
         {
             original(self, manager);
@@ -229,7 +250,6 @@ namespace RainWorldBestiary
                 if (!Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
                     Bestiary.AddOrIncreaseModuleUnlock(self.killTag, UnlockTokenType.KilledPlayer);
         }
-
 
 
 
