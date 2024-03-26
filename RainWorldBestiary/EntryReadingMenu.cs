@@ -218,9 +218,9 @@ namespace RainWorldBestiary
             }
         }
 
-        public void FormatAndDisplayTest(string text)
+        public void FormatAndDisplayText_EXPERIMENTAL(string text)
         {
-
+            // Clearly very experimental as you can see
         }
 
         public override void Singal(MenuObject sender, string message)
