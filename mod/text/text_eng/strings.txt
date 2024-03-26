@@ -1,8 +1,18 @@
 ﻿BESTIARY|BESTIARY
 
-Rain World|Rain World
 Downpour|Downpour
 Modded|Modded
+
+Worm Grass|Worm Grass
+Youth Centipede|Youth Centipede
+Infant Centipede|Infant Centipede
+Echoes|Echoes
+Neuron Fly|Neuron Fly
+Void Worm|Void Worm
+Infant Centiwing|Infant Centiwing
+Hunter Long Legs|Hunter Long Legs
+Sliver of Straw|Sliver of Straw
+Train Lizard|Train Lizard
 
 Default|Default
 Experimental|Experimental

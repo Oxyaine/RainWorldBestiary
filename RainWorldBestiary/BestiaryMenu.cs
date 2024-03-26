@@ -86,6 +86,7 @@ namespace RainWorldBestiary
         {
             if (message.Equals(BackButtonMessage))
             {
+                Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 manager.RequestMainProcessSwitch(ProcessManager.ProcessID.MainMenu);
                 return;

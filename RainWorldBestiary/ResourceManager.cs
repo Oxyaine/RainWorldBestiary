@@ -75,6 +75,8 @@ namespace RainWorldBestiary
 
         public const string BestiaryTitle = "illustrations\\bestiary\\titles\\Bestiary_Title";
 
+        public const string UnknownFontCharacter = "illustrations\\bestiary\\icons\\Unknown_Character";
+
         public static IReadOnlyList<string> Characters = new List<string>()
         {
             "illustrations\\bestiary\\icons\\Char_1",

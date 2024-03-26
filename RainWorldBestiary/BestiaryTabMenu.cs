@@ -32,6 +32,7 @@ namespace RainWorldBestiary
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
+
             backObject = backButton;
 
             CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize, out MenuObject firstEntryButton);
@@ -42,10 +43,10 @@ namespace RainWorldBestiary
             else
                 backObject.nextSelectable[0] = backButton;
 
-            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-
             TipLabel = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, 25f), Vector2.one, false);
             pages[0].subObjects.Add(TipLabel);
+
+            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         public void GetTabTitle(EntriesTab tab, in Vector2 screenSize)
@@ -98,14 +99,14 @@ namespace RainWorldBestiary
 
                 bool entryLocked = !tab[i].Info.EntryUnlocked;
 
-                SimpleButton textButton = new SimpleButton(this, pages[0], entryLocked ? "???" : tab[i].Name, string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
+                SimpleButton button = new SimpleButton(this, pages[0], entryLocked ? "???" : OptionInterface.Translate(tab[i].Name), string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
                 {
                     rectColor = entryLocked ? LockedColor : tab[i].Info.EntryColor
                 };
-                pages[0].subObjects.Add(textButton);
+                pages[0].subObjects.Add(button);
 
                 if (i == 0)
-                    firstEntryButton = textButton;
+                    firstEntryButton = button;
 
                 float iconOffset = 0;
                 for (int j = 0; j < tab[i].Info.EntryIcons.Length; j++)
