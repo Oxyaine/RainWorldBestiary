@@ -4,13 +4,21 @@ This file is here to hopefully help developers get started understanding how the
 
 You can [report any bugs or issues you encounter here](https://github.com/Oxyaine/RainWorldBestiary/issues), ***with performance issues, try to give as many details you can on where and when you where experiencing the bad performance.***
 
-## First Things First
-Everything in the mod (to do with managing and working with entries), is stored in the `Bestiary` class, all settings, including remix menu settings are in the `BestiarySettings` class. Most things should be accessible from these classes, however if something is missing or you'd like something added, leave a issue request and I'll see what I can do.
+#
 
+# First Things First
+### *While it is possible to add entries through code, I would advise to avoid doing that:*
+Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So, ***I am trying to make everything accessible outside of accessing the code, meaning your entry will exist, but only appear if users have the bestiary installed.***
+
+All this is done through JSON files and directories, you can continue reading to find out how to work with this system, but (using big text to make it obvious this is important):
+### *To make things easier to understand, you should download the template folder above as an example to help you get a hang of things:*
+This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
+
+#
+#
+#
 
 ## Structure
-***To get an example of the structure of things, or to have something to look at to help you follow along, you can download / look at the template in the files above.***
-
 Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a [Tab](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tabs), and any files in the tab will be considered entries, with the name of the file being the name of the entry.
 
 
@@ -101,7 +109,7 @@ Whether to run the body of this module through the in-game translator, if no tra
 
 
 ## Title Sprite
-The title that appears at the top of a tab or entry while reading it. This usually shows the name of an entry, but really can be set to anything you want. If set to null or if the image isn't found in the atlas manager, an [auto generated title](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#issue---auto-generated-title) will be placed instead.
+The title that appears at the top of a tab or entry while reading it. This usually shows the name of an entry, but really can be set to anything you want. If set to null or if the image isn't found in the atlas manager, an [auto generated title](https://github.com/Oxyaine/RainWorldBestiary/blob/master/Known%20Issues.md#issue---auto-generated-title) will be placed instead.
 
 JSON Elements:
 
@@ -256,16 +264,16 @@ There's a couple things I still plan to add, here's a somewhat complete list of 
 
 * Entry description formatting
 	- Colored Text (Including different colours per module)
-	- Referencing Text (text that works like a quick link, it'll take you to another entry or page)
-* Built in sprite loader
-* Improved title sprite generator.
+	- Referencing Text
+	    - Text that works like a quick link, it'll take you to another entry or page
+* Built in sprite loader.
+* Ability to make custom unlock logic, without accessing the bestiaries code.
+	- I want to avoid having the bestiary a dependant for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code, which would make the bestiary a dependency.
 * Different bestiary save per save slot
 * Ability to make custom unlock logic, without making the bestiary a dependency.
 * Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
-* Try to convert as many unlock tokens to be automated as possible.
-* Make entries not just organized but categorized in the tabs
-* Make the resource manager create tabs based on the JSON files and not the directories
+* Make entries not just categorized in tabs, but also sub categories (don't worry I wont be adding extra menus)
 * Clearer docs (maybe a GitHub pages site) on how to add your own entries through JSON files and through code
 
-I will also try to ensure to always prioritize bugs and performance improvements, these are just additions I want to work on in the meantime.
-You can check out known bugs here.
+I will also try to always prioritize bugs and performance improvements, these are just additions I want to work on in the meantime.
+You can check out known bugs [here](https://github.com/Oxyaine/RainWorldBestiary/blob/master/Known%20Issues.md).
