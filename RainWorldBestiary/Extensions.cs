@@ -38,7 +38,7 @@ namespace RainWorldBestiary
         }
 
         /// <summary>
-        /// Splits the string into groups the size of <paramref name="groupCount"/>, if the string cannot be split evenly, the last group may contain an unexcpected amount of characters
+        /// Splits the string into groups the size of <paramref name="groupCount"/>, if the string cannot be split evenly, the last group may contain an unexpected amount of characters
         /// </summary>
         public static string[] SplitIntoGroups(this string text, int groupCount)
         {

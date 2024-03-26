@@ -599,7 +599,7 @@
         </member>
         <member name="M:RainWorldBestiary.Extensions.SplitIntoGroups(System.String,System.Int32)">
             <summary>
-            Splits the string into groups the size of <paramref name="groupCount"/>, if the string cannot be split evenly, the last group may contain an unexcpected amount of characters
+            Splits the string into groups the size of <paramref name="groupCount"/>, if the string cannot be split evenly, the last group may contain an unexpected amount of characters
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Extensions.ContainsAny(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
