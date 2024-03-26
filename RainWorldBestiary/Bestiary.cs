@@ -204,6 +204,10 @@ namespace RainWorldBestiary
         /// </summary>
         public static Entry CurrentSelectedEntry { get; internal set; }
 
+        /// <summary>
+        /// Whether the menu being loaded is from going into the menu, otherwise its from exiting out a submenu
+        /// </summary>
+        internal static bool EnteringMenu = false;
 
         /// <inheritdoc cref="GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(Creature creature, bool useSpecialIdLogic = true) => GetCreatureUnlockName(creature.abstractCreature, useSpecialIdLogic);

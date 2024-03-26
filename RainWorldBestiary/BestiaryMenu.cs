@@ -43,6 +43,7 @@ namespace RainWorldBestiary
 
             int X = (int)screenSize.x / 2 - ButtonSizeX / 2;
             int currentButtonY = (int)screenSize.y - ButtonSizeY - ButtonSpacing - 200;
+            MenuObject firstTabButton = null;
             foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
                 if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
@@ -50,7 +51,11 @@ namespace RainWorldBestiary
 
                 if (tab.Count > 0)
                 {
-                    AddButton(tab, X, currentButtonY);
+                    SimpleButton button = new SimpleButton(this, pages[0], OptionInterface.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
+                    pages[0].subObjects.Add(button);
+
+                    if (firstTabButton == null)
+                        firstTabButton = button;
 
                     currentButtonY -= ButtonSizeY + ButtonSpacing;
                 }
@@ -60,16 +65,13 @@ namespace RainWorldBestiary
             pages[0].subObjects.Add(backButton);
 
             backObject = backButton;
-            backButton.nextSelectable[0] = backButton;
-            backButton.nextSelectable[2] = backButton;
+
+            if (Bestiary.EnteringMenu)
+                selectedObject = firstTabButton;
+            else
+                backObject.nextSelectable[0] = backButton;
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-        }
-
-        void AddButton(EntriesTab tab, in int x, in int y)
-        {
-            SimpleButton button = new SimpleButton(this, pages[0], OptionInterface.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(x, y), new Vector2(ButtonSizeX, ButtonSizeY));
-            pages[0].subObjects.Add(button);
         }
 
         public override void Update()
@@ -91,6 +93,8 @@ namespace RainWorldBestiary
 
             if (message.StartsWith(BUTTON_ID))
             {
+                Bestiary.EnteringMenu = true;
+
                 string msg = message.Substring(BUTTON_ID.Length);
 
                 foreach (EntriesTab tab in Bestiary.EntriesTabs)

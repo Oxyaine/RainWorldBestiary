@@ -33,11 +33,14 @@ namespace RainWorldBestiary
             SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
             backObject = backButton;
-            backButton.nextSelectable[0] = backButton;
-            backButton.nextSelectable[2] = backButton;
 
-            CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize);
+            CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize, out MenuObject firstEntryButton);
             GetTabTitle(Bestiary.CurrentSelectedTab, in screenSize);
+
+            if (Bestiary.EnteringMenu)
+                selectedObject = firstEntryButton;
+            else
+                backObject.nextSelectable[0] = backButton;
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
 
@@ -76,12 +79,14 @@ namespace RainWorldBestiary
 
         private readonly HSLColor LockedColor = new HSLColor(0f, 0.55f, 0.85f);
 
-        public void CreateEntryButtonsFromTab(EntriesTab tab, in Vector2 screenSize)
+        public void CreateEntryButtonsFromTab(EntriesTab tab, in Vector2 screenSize, out MenuObject firstEntryButton)
         {
             float currentX = ButtonSpacing;
             float currentY = screenSize.y - 100f;
 
             Vector2 buttonSize = new Vector2(ButtonSizeX, ButtonSizeY);
+
+            firstEntryButton = null;
 
             for (int i = 0; i < tab.Count; i++)
             {
@@ -98,6 +103,9 @@ namespace RainWorldBestiary
                     rectColor = entryLocked ? LockedColor : tab[i].Info.EntryColor
                 };
                 pages[0].subObjects.Add(textButton);
+
+                if (i == 0)
+                    firstEntryButton = textButton;
 
                 float iconOffset = 0;
                 for (int j = 0; j < tab[i].Info.EntryIcons.Length; j++)
@@ -164,6 +172,8 @@ namespace RainWorldBestiary
         {
             if (message.Equals(BackButtonMessage))
             {
+                Bestiary.EnteringMenu = false;
+
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 manager.RequestMainProcessSwitch(Main.BestiaryMenu, BestiarySettings.MenuFadeTimeSeconds);
                 return;
@@ -171,6 +181,8 @@ namespace RainWorldBestiary
 
             if (message.StartsWith(EntryPressedID))
             {
+                Bestiary.EnteringMenu = true;
+
                 string msg = message.Substring(EntryPressedID.Length);
 
                 foreach (Entry entry in Bestiary.CurrentSelectedTab)

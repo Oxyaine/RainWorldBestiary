@@ -38,7 +38,6 @@ namespace RainWorldBestiary
                 pages[0].subObjects.Add(backButton);
                 backObject = backButton;
                 backButton.nextSelectable[0] = backButton;
-                backButton.nextSelectable[2] = backButton;
 
                 DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
 
@@ -223,6 +222,8 @@ namespace RainWorldBestiary
         {
             if (message.Equals(BackButtonMessage))
             {
+                Bestiary.EnteringMenu = false;
+
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
             }

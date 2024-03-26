@@ -71,6 +71,11 @@
             The entry that is currently selected
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.Bestiary.EnteringMenu">
+            <summary>
+            Whether the menu being loaded is from going into the menu, otherwise its from exiting out a submenu
+            </summary>
+        </member>
         <member name="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)">
             <inheritdoc cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)"/>
         </member>
