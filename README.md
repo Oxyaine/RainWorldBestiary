@@ -6,7 +6,7 @@ You can [report any bugs or issues you encounter here](https://github.com/Oxyain
 
 #
 
-# First Things First
+## First Things First
 ### *While it is possible to add entries through code, I would advise to avoid doing that:*
 Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So, ***I am trying to make everything accessible outside of accessing the code, meaning your entry will exist, but only appear if users have the bestiary installed.***
 
