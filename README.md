@@ -40,6 +40,9 @@ The image that is displayed at the top of the tab while viewing it, this is the 
 
 Entries' content is also loaded from JSON files. The name of the file determines the name of the entry, and the content of the file determines the rest of the entry's data. Like with tabs, most features should be accessible using the JSON format, however some behaviours are once again, only accessible through code, I will list everything to do with coding further down, but first, a list of entry's JSON elements:
 
+#### "name" : string
+While by default the name of the file is the name of the entry, you can override the name with this property, and instead, this value you set will become the name of entry.
+
 #### "unlock_id" : string
 The id of the creature that will be used to unlock this entry. You can see the ID by using `Bestiary.GetCreatureUnlockName()`, or by going to `AbstractCreature.creatureTemplate.name` of an instance of your creature, and removing the spaces.
 
