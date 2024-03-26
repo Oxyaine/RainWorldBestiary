@@ -21,6 +21,9 @@ This README.md file is just here to tell you everything that is in the mod, such
 ## Structure
 Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a [Tab](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tabs), and any files in the tab will be considered entries, with the name of the file being the name of the entry.
 
+#
+#
+#
 
 ## Tabs
 
@@ -33,6 +36,10 @@ Tabs and entries are also organized the way they are loaded from the files (alph
 Entries don't care what folder they are in, as the resource manager looks for all files in the tab folder, including entries in sub-directories.
 
 
+#
+#
+#
+
 ## Structure - Tabs
 
 Tabs can be given a JSON file to specify some additional details about the tab, or to separate the folder name and the tabs name. Most features should be accessible using the JSON format, however some behaviours, such as a custom tab menu have to be coded, which would make the bestiary a dependency. The JSON file can contain the following elements:
@@ -43,6 +50,10 @@ The name of the tab.
 #### "title_image" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite)
 `Default = null`
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
+
+#
+#
+#
 
 ## Structure - Entries
 
@@ -83,6 +94,9 @@ The hex string for a color, (*uses the last six characters of the string as the 
 #### "description" : [Description](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description)
 The description of the entry, uses a custom class that can be found [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description).
 
+#
+#
+#
 
 ## Description
 An entry's description is an array of description modules, each module can be given custom unlock behaviour using [unlock tokens](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token)
@@ -106,12 +120,12 @@ Whether this module and the previous module should be separated by a new line '\
 `Default = true`
 Whether to run the body of this module through the in-game translator, if no translation is found, then nothing will happen
 
-
+#
+#
+#
 
 ## Title Sprite
 The title that appears at the top of a tab or entry while reading it. This usually shows the name of an entry, but really can be set to anything you want. If set to null or if the image isn't found in the atlas manager, an [auto generated title](https://github.com/Oxyaine/RainWorldBestiary/blob/master/Known%20Issues.md#issue---auto-generated-title) will be placed instead.
-
-JSON Elements:
 
 #### "element_name" : string
 This is the name of your title element in the atlas manager, make sure to load your title into the atlas manager, or nothing will happen.
@@ -127,9 +141,9 @@ While the sprite is automatically centered, the image might be just a little bit
 #### "y_offset" : int
 Same logic with the X offset, you might need some extra distance from the top of the screen, or maybe less, so positive brings the image down, while negative lifts your sprite up.
 
-
-## Menu Process
-*TODO*
+#
+#
+#
 
 ## Unlock Token
 Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.
@@ -152,6 +166,9 @@ A number (max 255) that represents how many times the unlock token, defined by t
 #### "special_data" : string[]
 Special data is data that can be added to unlock tokens to give some specifics about which interactions the player should've had before this unlock token is valid, if all the strings in here are found in the registered unlock token, this will be considered valid. You can see more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#special-data).
 
+#
+#
+#
 
 ## Operation Type
 The operation this unlock token will perform against the current unlock value of the token. See more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation_against_value--operationtype).
@@ -190,6 +207,9 @@ Here is a list of all operations, like with [TokenType](https://github.com/Oxyai
 	- 0 : 1 = 0
 	- 1 : 1 = 1
 
+#
+#
+#
 
 ## Unlock Token Types
 
@@ -240,6 +260,9 @@ Here is a list of all current automatic token types:
 * Observe Attacking = 21 : When the player observes the creature attacking another creature, excluding food
 
 #
+#
+#
+
 ## Special Data
 Special data is data that can be added to unlock tokens to give some specifics to which interactions the player has had, and allows you to set more defined unlock logic for your modules. Below you can see a list of which data is automatically tracked and for which tokens.
 
@@ -256,6 +279,7 @@ Special data is data that can be added to unlock tokens to give some specifics t
 
 #
 #
+#
 
 # Future Plans
 
@@ -268,10 +292,8 @@ There's a couple things I still plan to add, here's a somewhat complete list of 
 	    - Text that works like a quick link, it'll take you to another entry or page
 * Built in sprite loader.
 * Ability to make custom unlock logic, without accessing the bestiaries code.
-	- I want to avoid having the bestiary a dependant for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code, which would make the bestiary a dependency.
+	- I want to avoid having the bestiary a dependency for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
 * Different bestiary save per save slot
-* Ability to make custom unlock logic, without making the bestiary a dependency.
-* Custom unlock tokens, so your not tied to the boundaries of what tokens I've added.
 * Make entries not just categorized in tabs, but also sub categories (don't worry I wont be adding extra menus)
 * Clearer docs (maybe a GitHub pages site) on how to add your own entries through JSON files and through code
 
