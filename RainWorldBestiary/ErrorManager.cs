@@ -79,7 +79,7 @@ namespace RainWorldBestiary
                 }
             }
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(screenSize.x - 235f, 25f), new Vector2(220f, 30f));
+            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(screenSize.x - 235f, 25f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
             backObject = backButton;
             backButton.nextSelectable[0] = backButton;

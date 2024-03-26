@@ -23,32 +23,32 @@ namespace RainWorldBestiary
 
         public override void Initialize()
         {
-            OpTab def = new OpTab(this, Translate("Default"));
-            OpTab experimental = new OpTab(this, Translate("Experimental")) { colorButton = ExperimentalColor };
-            OpTab cheats = new OpTab(this, Translate("Cheats")) { colorButton = CheatColor };
+            OpTab def = new OpTab(this, Translator.Translate("Default"));
+            OpTab experimental = new OpTab(this, Translator.Translate("Experimental")) { colorButton = ExperimentalColor };
+            OpTab cheats = new OpTab(this, Translator.Translate("Cheats")) { colorButton = CheatColor };
             Tabs = new[] { def, experimental, cheats };
 
             List<UIelement> items = new List<UIelement>();
 
             //Default Tab
-            AddElements(ref items, Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translate("MENU_FADE_TIME_DESCRIPTION"));
-            AddElements(ref items, Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
-            AddElements(ref items, Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translate("SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translator.Translate("MENU_FADE_TIME_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, Translate("Show Entry Unlock Percent"), BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor, description: Translate("SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION"));
-            AddElements(ref items, Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translate("USE_CHARACTER_SPACING_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Entry Unlock Percent"), BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor, description: Translator.Translate("SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translator.Translate("USE_CHARACTER_SPACING_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Cheats Tab
-            AddElements(ref items, Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
             cheats.AddItems(items.ToArray());
         }
 

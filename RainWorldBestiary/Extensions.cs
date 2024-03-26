@@ -125,4 +125,18 @@ namespace RainWorldBestiary
         /// <inheritdoc cref="Bestiary.GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(this AbstractCreature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
     }
+
+    /// <summary>
+    /// A class for custom translation behaviour
+    /// </summary>
+    public static class Translator
+    {
+        /// <summary>
+        /// Translates this text using the short strings dictionary
+        /// </summary>
+        public static string Translate(string text)
+        {
+            return OptionInterface.Translate(text);
+        }
+    }
 }

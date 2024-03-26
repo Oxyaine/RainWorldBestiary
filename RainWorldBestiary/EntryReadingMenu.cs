@@ -34,7 +34,7 @@ namespace RainWorldBestiary
                 };
                 pages[0].Container.AddChild(darkSprite);
 
-                SimpleButton backButton = new SimpleButton(this, pages[0], Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
                 pages[0].subObjects.Add(backButton);
                 backObject = backButton;
                 backButton.nextSelectable[0] = backButton;
@@ -163,7 +163,7 @@ namespace RainWorldBestiary
             }
             else
             {
-                GeneratedFontText fontText = ResourceManager.GetCustomFontByName("rodondo").Generate(OptionInterface.Translate(entry.Name));
+                GeneratedFontText fontText = ResourceManager.GetCustomFontByName("rodondo").Generate(Translator.Translate(entry.Name));
 
                 fontText.X = (screenSize.x / 2f) - (fontText.TotalWidth / 2f);
                 fontText.Y = screenSize.y - 50f;

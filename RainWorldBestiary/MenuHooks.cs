@@ -99,7 +99,7 @@ namespace RainWorldBestiary
             float buttonWidth = 110f;
             Vector2 pos = new Vector2(683f - buttonWidth / 2f, 0f);
             Vector2 size = new Vector2(buttonWidth, 30f);
-            self.AddMainMenuButton(new SimpleButton(self, self.pages[0], OptionInterface.Translate("BESTIARY"), "BESTIARY", pos, size), delegate
+            self.AddMainMenuButton(new SimpleButton(self, self.pages[0], Translator.Translate("BESTIARY"), "BESTIARY", pos, size), delegate
             {
                 manager.RequestMainProcessSwitch(Main.BestiaryMenu);
                 self.PlaySound(SoundID.MENU_Switch_Page_In);
