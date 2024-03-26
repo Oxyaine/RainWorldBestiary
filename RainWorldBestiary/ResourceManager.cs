@@ -134,8 +134,8 @@ namespace RainWorldBestiary
             string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
             foreach (string image in images)
             {
-                string tmp = image.Substring(removeLength);
-                Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
+                string imagePath = image.Substring(removeLength);
+                Futile.atlasManager.LoadImage(imagePath.Substring(0, imagePath.Length - 4));
             }
         }
 
