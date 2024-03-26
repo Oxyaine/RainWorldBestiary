@@ -8,11 +8,15 @@ You can [report any bugs or issues you encounter here](https://github.com/Oxyain
 
 ## First Things First
 ### *While it is possible to add entries through code, I would advise to avoid doing that:*
-Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So, ***I am trying to make everything accessible outside of accessing the code, meaning your entry will exist, but only appear if users have the bestiary installed.***
+Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So try to use the method described below and in this entire README file.
 
-All this is done through JSON files and directories, you can continue reading to find out how to work with this system, but (using big text to make it obvious this is important):
+You make entries by creating JSON files in a specific folder within your mod, the resource manager will automatically load these entries if your mod is available, it will also automatically unload your entries once your mod is disabled.
+
 ### *To make things easier to understand, you should download the template folder above as an example to help you get a hang of things:*
 This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
+
+
+### If you'd like something added, help with something, or anything really, feel free to ask me through the [issues page on GitHub](https://github.com/Oxyaine/RainWorldBestiary/issues)
 
 #
 #
@@ -292,7 +296,7 @@ There's a couple things I still plan to add, here's a somewhat complete list of 
 	    - Text that works like a quick link, it'll take you to another entry or page
 * Built in sprite loader
 * Ability to make custom unlock logic, without accessing the bestiaries code
-	- I want to avoid having the bestiary a dependency for all mods, so this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
+	- Since I want to avoid having the bestiary a dependency, this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
 * Different bestiary save per save slot
 * Make entries not just categorized in tabs, but also sub categories (don't worry I wont be adding extra menus)
 * Clearer documentation on how to add your own entries through JSON files
