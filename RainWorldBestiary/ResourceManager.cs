@@ -31,13 +31,6 @@ namespace RainWorldBestiary
                 string configFile = font + ".txt";
                 if (File.Exists(configFile))
                 {
-                    IEnumerable<string> files = Directory.GetFiles(font, "*", SearchOption.AllDirectories);
-                    foreach (string file in files)
-                    {
-                        string tmp = file.Substring(removeLength);
-                        Futile.atlasManager.LoadImage(tmp.Substring(0, tmp.Length - 4));
-                    }
-
                     customFonts.Add(new Font(Path.GetFileName(font), configFile));
                 }
             }
