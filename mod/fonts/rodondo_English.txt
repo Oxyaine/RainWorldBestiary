@@ -1,5 +1,5 @@
 inherit=fonts\rodondo_EngSym.txt
-inherit=fonts\rodondo_EngNum.txt
+inherit=fonts\rodondo_ArabicNum.txt
 a=fonts\rodondo\A
 b=fonts\rodondo\B
 c=fonts\rodondo\C
