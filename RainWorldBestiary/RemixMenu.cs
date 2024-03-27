@@ -42,8 +42,8 @@ namespace RainWorldBestiary
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, Translator.Translate("Show Entry Unlock Percent"), BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor, description: Translator.Translate("SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translator.Translate("USE_CHARACTER_SPACING_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Entry Unlock Percent"), BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
             items.Clear();
