@@ -167,7 +167,7 @@ namespace RainWorldBestiary
         // The folder the save file is in
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
         // The save file to save to (yes, this file intentionally has no extension)
-        internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary";
+        internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary" + Main.CurrentSaveSlot;
         // Saves all module unlocks and creature unlocks
         internal static void Save()
         {
@@ -176,6 +176,20 @@ namespace RainWorldBestiary
                 BestiarySaveData saveData = new BestiarySaveData(_ModuleUnlocks, CreatureUnlockIDs);
                 File.WriteAllText(SaveFile, JsonConvert.SerializeObject(saveData));
             }
+        }
+
+        // Clears all the currently loaded save data, such as Module unlocks and creature unlock ids
+        internal static void ClearLoadedSaveData()
+        {
+            _ModuleUnlocks.Clear();
+            CreatureUnlockIDs.Clear();
+        }
+
+        // Deletes all the save data in the current slot
+        internal static void DELETESaveDataInSlot()
+        {
+            ClearLoadedSaveData();
+            Save();
         }
 
         // Loads all saved data into the bestiary, such as module unlock tokens and creature unlock ids

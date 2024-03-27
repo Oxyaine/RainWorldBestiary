@@ -8,6 +8,7 @@ namespace RainWorldBestiary
     {
         private Color CheatColor = new Color(1f, 0.5f, 0.5f);
         private Color ExperimentalColor = new Color(0.5f, 0.8f, 0.7f);
+        private Color DangerColor = new Color(1f, 0.2f, 0.2f);
 
         public RemixMenu()
         {
@@ -26,7 +27,8 @@ namespace RainWorldBestiary
             OpTab def = new OpTab(this, Translator.Translate("Default"));
             OpTab experimental = new OpTab(this, Translator.Translate("Experimental")) { colorButton = ExperimentalColor };
             OpTab cheats = new OpTab(this, Translator.Translate("Cheats")) { colorButton = CheatColor };
-            Tabs = new[] { def, experimental, cheats };
+            OpTab danger = new OpTab(this, Translator.Translate("Danger Zone")) { colorButton = DangerColor };
+            Tabs = new[] { def, experimental, cheats, danger };
 
             List<UIelement> items = new List<UIelement>();
 
@@ -50,9 +52,32 @@ namespace RainWorldBestiary
             // Cheats Tab
             AddElements(ref items, Translator.Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
             cheats.AddItems(items.ToArray());
+
+            items.Clear();
+            ResetElementPositions();
+
+            OpHoldButton DeleteSavedDataButton = new OpHoldButton(new Vector2(40f, 400f), 75, Translator.Translate("Delete Unlock Data"), 500) { colorFill = DangerColor, colorEdge = DangerColor, description = Translator.Translate("BESTIARY_DELETE_UNLOCK_DATA_DESCRIPTION") };
+            DeleteSavedDataButton.OnHeld += DeleteSavedDataButton_OnHeld;
+            DeleteSavedDataButton.OnPressDone += DeleteSavedDataButton_OnPressDone;
+            OpLabel label = new OpLabel(20f, 570f, Translator.Translate("Current Save Slot:") + " " + (Main.CurrentSaveSlot + 1), false);
+            WarningLabel = new OpLabel(20f, 350f, Translator.Translate("BESTIARY_DELETE_UNLOCK_DATA_WARNING").WrapText(80), false) { color = DangerColor, alpha = 0f };
+            danger.AddItems(DeleteSavedDataButton, label, WarningLabel);
         }
 
-        
+        private void DeleteSavedDataButton_OnHeld(bool held)
+        {
+            if (held)
+            {
+                fadeOutWarningLabel = false;
+                WarningLabel.alpha = 1f;
+            }
+            else
+                fadeOutWarningLabel = true;
+        }
+
+        OpLabel WarningLabel = null;
+
+        private void DeleteSavedDataButton_OnPressDone(UIfocusable trigger) => Bestiary.DELETESaveDataInSlot();
 
         private void ResetElementPositions()
         {
@@ -76,6 +101,20 @@ namespace RainWorldBestiary
             items.Add(new OpCheckBox(element, new Vector2(currentLabelX + name.Length * 7f, currentY)) { colorEdge = color ?? Color.white, description = description });
 
             currentY -= 30f;
+        }
+
+        bool fadeOutWarningLabel = false;
+        public override void Update()
+        {
+            base.Update();
+
+            if (fadeOutWarningLabel)
+            {
+                WarningLabel.alpha -= Time.deltaTime;
+
+                if (WarningLabel.alpha <= 0)
+                    fadeOutWarningLabel = false;
+            }
         }
     }
 

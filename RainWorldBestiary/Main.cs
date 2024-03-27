@@ -20,6 +20,7 @@ namespace RainWorldBestiary
         internal static ProcessManager.ProcessID EntryReadingMenu => new ProcessManager.ProcessID("EntryReadingTab", register: true);
 
         internal static InGameTranslator.LanguageID CurrentLanguage = null;
+        internal static int CurrentSaveSlot = 0;
 
         internal void Awake()
         {
@@ -68,6 +69,9 @@ namespace RainWorldBestiary
                     Initialized = true;
 
                     CurrentLanguage = self.options.language;
+                    CurrentSaveSlot = self.options.saveSlot;
+
+                    Bestiary.Load();
 
                     ResourceManager.Initialize();
                     CreatureHooks.Initialize();

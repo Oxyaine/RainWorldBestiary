@@ -26,8 +26,14 @@ namespace RainWorldBestiary
             switch (series)
             {
                 case "Language":
-                        Main.CurrentLanguage = self.manager.rainWorld.options.language;
-                        ResourceManager.ReloadFonts();
+                    Main.CurrentLanguage = self.manager.rainWorld.options.language;
+                    ResourceManager.ReloadFonts();
+                    break;
+                case "SaveSlot":
+                    Bestiary.Save();
+                    Main.CurrentSaveSlot = self.manager.rainWorld.options.saveSlot;
+                    Bestiary.ClearLoadedSaveData();
+                    Bestiary.Load();
                     break;
             }
         }

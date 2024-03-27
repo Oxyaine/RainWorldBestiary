@@ -33,6 +33,11 @@ Minimize Title Character Spacing|Minimize Title Character Spacing
 Perform Text Reveal Animation|Perform Text Reveal Animation
 Show Entry Unlock Percent|Show Entry Unlock Percent
 
+Delete Unlock Data|Delete Unlock Data
+Current Save Slot:|Current Save Slot:
+BESTIARY_DELETE_UNLOCK_DATA_DESCRIPTION|This will delete all unlock data for all bestiary entries in the current save slot!
+BESTIARY_DELETE_UNLOCK_DATA_WARNING|WARNING: This will reset all progress for the bestiary in the selected save slot, all entries will once again be locked until the neccesary interactions are taken. THIS ONLY DELETES BESTIARY UNLOCK DATA!
+
 MENU_FADE_TIME_DESCRIPTION|The time the bestiary's sub-menus will take to fade from one menu to the other.
 SHOW_UNLOCK_PIPS_DESCRIPTION|Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.
 UNLOCK_ALL_ENTRIES_DESCRIPTION|Unlocks all entries and their full descriptions.

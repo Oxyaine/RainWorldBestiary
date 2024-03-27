@@ -12,6 +12,8 @@ namespace RainWorldBestiary
         [JsonProperty("creature_unlock_ids")]
         public List<string> CreatureUnlockIDs = new List<string>();
 
+        [JsonConstructor]
+        private BestiarySaveData() { }
         public BestiarySaveData(KeyValuePair<string, List<UnlockToken>>[] moduleUnlocks, List<string> creatureUnlockIDs)
         {
             ModuleUnlocks = moduleUnlocks;
