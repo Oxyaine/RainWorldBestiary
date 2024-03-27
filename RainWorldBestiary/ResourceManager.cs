@@ -26,7 +26,7 @@ namespace RainWorldBestiary
             string[] fonts = Directory.GetDirectories(Path.Combine(ModDirectory, "fonts"), "*", SearchOption.TopDirectoryOnly);
             foreach (string font in fonts)
             {
-                string configFile = font + "_" + Main.CurrentLangauge.value + ".txt";
+                string configFile = font + "_" + Main.CurrentLanguage.value + ".txt";
 
                 if (File.Exists(configFile))
                     customFonts.Add(new Font(Path.GetFileName(font), configFile));

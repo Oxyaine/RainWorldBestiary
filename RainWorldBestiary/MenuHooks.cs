@@ -26,7 +26,7 @@ namespace RainWorldBestiary
             switch (series)
             {
                 case "Language":
-                        Main.CurrentLangauge = self.manager.rainWorld.options.language;
+                        Main.CurrentLanguage = self.manager.rainWorld.options.language;
                         ResourceManager.ReloadFonts();
                     break;
             }
