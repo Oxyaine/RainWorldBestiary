@@ -33,9 +33,9 @@ namespace RainWorldBestiary
             List<UIelement> items = new List<UIelement>();
 
             //Default Tab
-            AddElements(ref items, Translator.Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translator.Translate("MENU_FADE_TIME_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("SHOW_UNLOCK_PIPS_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translator.Translate("OXY.BESTIARY.MENU_FADE_TIME_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
@@ -50,17 +50,18 @@ namespace RainWorldBestiary
             ResetElementPositions();
 
             // Cheats Tab
-            AddElements(ref items, Translator.Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("UNLOCK_ALL_ENTRIES_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("OXY.BESTIARY.UNLOCK_ALL_ENTRIES_DESCRIPTION"));
             cheats.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
-            OpHoldButton DeleteSavedDataButton = new OpHoldButton(new Vector2(40f, 400f), 75, Translator.Translate("Delete Unlock Data"), 500) { colorFill = DangerColor, colorEdge = DangerColor, description = Translator.Translate("BESTIARY_DELETE_UNLOCK_DATA_DESCRIPTION") };
+            // Danger Zone Tab
+            OpHoldButton DeleteSavedDataButton = new OpHoldButton(new Vector2(40f, 400f), 75, Translator.Translate("Delete Unlock Data"), 500) { colorFill = DangerColor, colorEdge = DangerColor, description = Translator.Translate("OXY.BESTIARY.DELETE_UNLOCK_DATA_DESCRIPTION") };
             DeleteSavedDataButton.OnHeld += DeleteSavedDataButton_OnHeld;
             DeleteSavedDataButton.OnPressDone += DeleteSavedDataButton_OnPressDone;
             OpLabel label = new OpLabel(20f, 570f, Translator.Translate("Current Save Slot:") + " " + (Main.CurrentSaveSlot + 1), false);
-            WarningLabel = new OpLabel(20f, 350f, Translator.Translate("BESTIARY_DELETE_UNLOCK_DATA_WARNING").WrapText(80), false) { color = DangerColor, alpha = 0f };
+            WarningLabel = new OpLabel(20f, 350f, Translator.Translate("OXY.BESTIARY.DELETE_UNLOCK_DATA_WARNING").WrapText(80), false) { color = DangerColor, alpha = 0f };
             danger.AddItems(DeleteSavedDataButton, label, WarningLabel);
         }
 

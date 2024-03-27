@@ -17,6 +17,7 @@ Train Lizard|Train Lizard
 Default|Default
 Experimental|Experimental
 Cheats|Cheats
+Danger Zone|Danger Zone
 
 HUNTING|HUNTING
 UTILITY|UTILITY
@@ -35,15 +36,15 @@ Show Entry Unlock Percent|Show Entry Unlock Percent
 
 Delete Unlock Data|Delete Unlock Data
 Current Save Slot:|Current Save Slot:
-BESTIARY_DELETE_UNLOCK_DATA_DESCRIPTION|This will delete all unlock data for all bestiary entries in the current save slot!
-BESTIARY_DELETE_UNLOCK_DATA_WARNING|WARNING: This will reset all progress for the bestiary in the selected save slot, all entries will once again be locked until the neccesary interactions are taken. THIS ONLY DELETES BESTIARY UNLOCK DATA!
+OXY.BESTIARY.DELETE_UNLOCK_DATA_DESCRIPTION|This will delete all unlock data for all bestiary entries in the current save slot!
+OXY.BESTIARY.DELETE_UNLOCK_DATA_WARNING|WARNING: This will reset all progress for the bestiary in the selected save slot, all entries will once again be locked until the neccesary interactions are taken. THIS ONLY DELETES BESTIARY UNLOCK DATA!
 
-MENU_FADE_TIME_DESCRIPTION|The time the bestiary's sub-menus will take to fade from one menu to the other.
-SHOW_UNLOCK_PIPS_DESCRIPTION|Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.
-UNLOCK_ALL_ENTRIES_DESCRIPTION|Unlocks all entries and their full descriptions.
-USE_CHARACTER_SPACING_DESCRIPTION|Makes the generated title in the menus use smaller spacing between each character
-SHOW_TEXT_ANIMATIONS_DESCRIPTION|Whether to make entires perform a little animation before the text is revealed
-SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION|Whether to show a karma symbol next to each entry displaying the unlock percentage
+OXY.BESTIARY.MENU_FADE_TIME_DESCRIPTION|The time the bestiary's sub-menus will take to fade from one menu to the other.
+OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION|Whether to, while reading an entry, show pips in the top right, displaying which parts of the description you have unlocked.
+OXY.BESTIARY.UNLOCK_ALL_ENTRIES_DESCRIPTION|Unlocks all entries and their full descriptions.
+OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION|Makes the generated title in the menus use smaller spacing between each character
+OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION|Whether to make entires perform a little animation before the text is revealed
+OXY.BESTIARY.SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION|Whether to show a karma symbol next to each entry displaying the unlock percentage
 
 BESTIARY_BATFLY_LOCKTEXT|A passive, flying, insectoid creature, that serve as a good source of food. 
 BESTIARY_BATFLY_BASIC_INTRODUCTION|Batflies are passive, flying, insectoid creatures that act as one of Slugcat's primary food sources. They are one of the most common creatures in the game, appearing in almost every region.
