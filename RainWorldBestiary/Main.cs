@@ -35,8 +35,6 @@ namespace RainWorldBestiary
             {
                 Logger.LogError(data);
             }
-
-            //MultiplayerUnlocks.CreatureUnlockList.
         }
 
         internal void Update()
