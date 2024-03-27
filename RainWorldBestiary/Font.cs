@@ -20,7 +20,8 @@ namespace RainWorldBestiary
                     continue;
 
                 string[] splitLine = line.Split('=');
-                FontCharacters.Add(splitLine[0][0], splitLine[1]);
+                if (Futile.atlasManager.DoesContainElementWithName(splitLine[1]))
+                    FontCharacters.Add(splitLine[0][0], splitLine[1]);
             }
         }
 
