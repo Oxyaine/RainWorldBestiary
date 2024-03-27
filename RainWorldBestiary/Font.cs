@@ -9,20 +9,45 @@ namespace RainWorldBestiary
 
         private readonly float MinCharacterSize = 65f;
 
+        public Font(string fontName)
+        {
+            Name = fontName;
+        }
         public Font(string fontName, string fontConfigPath)
         {
             Name = fontName;
+            ReadFontFileLines(fontConfigPath);
+        }
 
-            string[] lines = File.ReadAllLines(fontConfigPath);
+        public void Dispose()
+        {
+            foreach (string image in FontCharacters.Values)
+            {
+                Futile.atlasManager.UnloadImage(image);
+            }
+        }
+
+        private void ReadFontFileLines(string filePath)
+        {
+            string[] lines = File.ReadAllLines(filePath);
             foreach (string line in lines)
             {
                 if (string.IsNullOrEmpty(line))
                     continue;
 
                 string[] splitLine = line.Split('=');
-                Futile.atlasManager.LoadImage(splitLine[1]);
-                if (Futile.atlasManager.DoesContainElementWithName(splitLine[1]))
+
+                if (splitLine[0].Equals("inherit"))
+                {
+                    string inheritingFile = Path.Combine(ResourceManager.ModDirectory, splitLine[1]);
+                    if (File.Exists(inheritingFile))
+                        ReadFontFileLines(inheritingFile);
+                }
+                else
+                {
+                    Futile.atlasManager.LoadImage(splitLine[1]);
                     FontCharacters.Add(splitLine[0][0], splitLine[1]);
+                }
             }
         }
 

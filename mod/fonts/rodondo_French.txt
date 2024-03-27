@@ -1,0 +1,17 @@
+inherit=fonts\rodondo_English.txt
+à=fonts\rodondo\A_CF
+â=fonts\rodondo\A_CT
+æ=fonts\rodondo\AE
+ç=fonts\rodondo\C_BWP
+è=fonts\rodondo\E_CF
+é=fonts\rodondo\E_CFR
+ê=fonts\rodondo\E_CT
+ë=fonts\rodondo\E_DD
+î=fonts\rodondo\I_CT
+ï=fonts\rodondo\I_DD
+ô=fonts\rodondo\O_CT
+œ=fonts\rodondo\OE
+ù=fonts\rodondo\U_CF
+û=fonts\rodondo\U_CT
+ü=fonts\rodondo\U_DD
+ÿ=fonts\rodondo\Y_DD

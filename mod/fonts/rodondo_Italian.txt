@@ -1,0 +1,11 @@
+inherit=rodondo_English.txt
+à=fonts\rodondo\A_CF
+è=fonts\rodondo\E_CF
+é=fonts\rodondo\E_CFR
+ì=fonts\rodondo\I_CF
+í=fonts\rodondo\I_CFR
+î=fonts\rodondo\I_CT
+ò=fonts\rodondo\O_CF
+ó=fonts\rodondo\O_CFR
+ù=fonts\rodondo\U_CF
+ú=fonts\rodondo\U_CFR

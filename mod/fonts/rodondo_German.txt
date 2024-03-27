@@ -1,0 +1,5 @@
+inherit=fonts\rodondo_English.txt
+ü=fonts\rodondo\U_DD
+ö=fonts\rodondo\O_DD
+ä=fonts\rodondo\A_DD
+ß=fonts\rodondo\WB

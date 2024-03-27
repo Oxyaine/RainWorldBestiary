@@ -12,7 +12,7 @@ namespace RainWorldBestiary
     {
         private static bool Initialized = false;
 
-        static string ModDirectory = null;
+        internal static string ModDirectory = null;
 
         public const string BestiaryModID = "oxyaine.bestiary";
 
@@ -21,21 +21,28 @@ namespace RainWorldBestiary
 
         private static void GetAllFonts()
         {
-            int removeLength = ModDirectory.Length + 1;
-
             List<Font> customFonts = new List<Font>();
 
             string[] fonts = Directory.GetDirectories(Path.Combine(ModDirectory, "fonts"), "*", SearchOption.TopDirectoryOnly);
             foreach (string font in fonts)
             {
-                string configFile = font + ".txt";
+                string configFile = font + "_" + Main.CurrentLangauge.value + ".txt";
+
                 if (File.Exists(configFile))
-                {
                     customFonts.Add(new Font(Path.GetFileName(font), configFile));
-                }
+                else
+                    customFonts.Add(new Font(Path.GetFileName(font)));
             }
 
             CustomFonts = customFonts.ToArray();
+        }
+        internal static void ReloadFonts()
+        {
+            foreach (Font font in CustomFonts)
+                font.Dispose();
+            CustomFonts = new Font[0];
+
+            GetAllFonts();
         }
         private static Font[] CustomFonts = new Font[0];
         internal static Font GetCustomFontByName(string fontName)
@@ -60,7 +67,6 @@ namespace RainWorldBestiary
 
             return true;
         }
-
 
 
         public const string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
@@ -111,8 +117,6 @@ namespace RainWorldBestiary
 
                 GetAllSprites();
                 GetAllFonts();
-
-                //AssetManager.ResolveDirectory()
 
                 CheckFolder(Path.Combine(ModDirectory, EntriesLocalPath), BestiaryModID);
                 CheckForUnregisteredEntries();

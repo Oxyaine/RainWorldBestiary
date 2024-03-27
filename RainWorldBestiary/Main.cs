@@ -19,6 +19,8 @@ namespace RainWorldBestiary
         internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
         internal static ProcessManager.ProcessID EntryReadingMenu => new ProcessManager.ProcessID("EntryReadingTab", register: true);
 
+        internal static InGameTranslator.LanguageID CurrentLangauge = null;
+
         internal void Awake()
         {
             try
@@ -66,6 +68,8 @@ namespace RainWorldBestiary
                 if (!Initialized)
                 {
                     Initialized = true;
+
+                    CurrentLangauge = self.options.language;
 
                     ResourceManager.Initialize();
                     CreatureHooks.Initialize();

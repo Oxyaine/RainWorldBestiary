@@ -15,11 +15,26 @@ namespace RainWorldBestiary
             IL.ProcessManager.PostSwitchMainProcess += ProcessManager_PostSwitchMainProcess;
 
             On.Menu.MainMenu.Singal += MainMenu_Singal;
+
+            On.Menu.OptionsMenu.SetCurrentlySelectedOfSeries += OptionsMenu_SetCurrentlySelectedOfSeries;
         }
 
-        private static void MainMenu_Singal(On.Menu.MainMenu.orig_Singal orig, MainMenu self, MenuObject sender, string message)
+        private static void OptionsMenu_SetCurrentlySelectedOfSeries(On.Menu.OptionsMenu.orig_SetCurrentlySelectedOfSeries original, OptionsMenu self, string series, int to)
         {
-            orig(self, sender, message);
+            original(self, series, to);
+
+            switch (series)
+            {
+                case "Language":
+                        Main.CurrentLangauge = self.manager.rainWorld.options.language;
+                        ResourceManager.ReloadFonts();
+                    break;
+            }
+        }
+
+        private static void MainMenu_Singal(On.Menu.MainMenu.orig_Singal original, MainMenu self, MenuObject sender, string message)
+        {
+            original(self, sender, message);
 
             if (message.Equals("SHOW_ERRORS"))
             {
