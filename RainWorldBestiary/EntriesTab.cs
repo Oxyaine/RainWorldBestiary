@@ -147,6 +147,25 @@ namespace RainWorldBestiary
         }
 
         /// <summary>
+        /// Tries to get the entry with the given name
+        /// </summary>
+        /// <returns>True if the entry was found, otherwise false</returns>
+        public bool TryGet(string entryName, out Entry entry)
+        {
+            foreach (Entry ent in _entries)
+            {
+                if (ent.Name.Equals(entryName))
+                {
+                    entry = ent;
+                    return true;
+                }
+            }
+
+            entry = null;
+            return false;
+        }
+
+        /// <summary>
         /// Clears this tab of all its entries
         /// </summary>
         public void Clear() => _entries.Clear();
@@ -292,6 +311,25 @@ namespace RainWorldBestiary
         public void CopyTo(EntriesTab[] array, int arrayIndex) => _tabs.CopyTo(array, arrayIndex);
         /// <inheritdoc/>
         public bool Remove(EntriesTab item) => _tabs.Remove(item);
+
+        /// <summary>
+        /// Tries to get the tab using its name
+        /// </summary>
+        /// <returns>True if the tab was found, otherwise false</returns>
+        public bool TryGet(string tabName, out EntriesTab tab)
+        {
+            foreach (EntriesTab t in _tabs)
+            {
+                if (t.Name.Equals(tabName))
+                {
+                    tab = t;
+                    return true;
+                }
+            }
+
+            tab = null;
+            return false;
+        }
 
         /// <inheritdoc/>
         public IEnumerator<EntriesTab> GetEnumerator() => _tabs.GetEnumerator();

@@ -2,12 +2,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RainWorldBestiary
 {
     internal class EntryReadingMenu : Dialog
     {
+#if DEBUG
+        internal const string ENTRY_REFERENCE_ID = "Referenced_To;";
+        readonly string ReturnButtonMessage = "RETURN";
+#endif
+
         readonly int WrapCount = 180;
 
         readonly string BackButtonMessage = "BACK";
@@ -35,10 +41,30 @@ namespace RainWorldBestiary
                 };
                 pages[0].Container.AddChild(darkSprite);
 
+#if DEBUG
+                if (Bestiary.PreviousEntriesChain.Count > 0)
+                {
+                    SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK TO PREVIOUS"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                    pages[0].subObjects.Add(backButton);
+                    backObject = backButton;
+                    backButton.nextSelectable[0] = backButton;
+
+                    SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, 25f), new Vector2(220f, 30f));
+                    pages[0].subObjects.Add(returnButton);
+                }
+                else
+                {
+                    SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                    pages[0].subObjects.Add(backButton);
+                    backObject = backButton;
+                    backButton.nextSelectable[0] = backButton;
+                }
+#else
                 SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
                 pages[0].subObjects.Add(backButton);
                 backObject = backButton;
                 backButton.nextSelectable[0] = backButton;
+#endif
 
                 DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
 
@@ -141,7 +167,14 @@ namespace RainWorldBestiary
             float widthOffset, leftSpriteOffset = 60;
 
 #if DEBUG
-            EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+            try
+            {
+                EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+            }
+            catch (Exception ex)
+            {
+                Main.Logger.LogError(ex.ToString());
+            }
 #else
 
             if (BestiarySettings.PerformTextAnimations.Value)
@@ -229,10 +262,57 @@ namespace RainWorldBestiary
             if (message.Equals(BackButtonMessage))
             {
                 Bestiary.EnteringMenu = false;
-
                 PlaySound(SoundID.MENU_Switch_Page_Out);
+
+#if DEBUG
+                if (Bestiary.PreviousEntriesChain.Count > 0)
+                {
+                    Bestiary.CurrentSelectedEntry = Bestiary.PreviousEntriesChain[0];
+                    Bestiary.PreviousEntriesChain.RemoveAt(0);
+
+                    manager.RequestMainProcessSwitch(Main.EntryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                }
+                else
+                    manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
+#else
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
+#endif
+            }
+
+#if DEBUG
+            if (message.Equals(ReturnButtonMessage))
+            {
+                Bestiary.EnteringMenu = false;
+                PlaySound(SoundID.MENU_Switch_Page_Out);
+
+                Bestiary.PreviousEntriesChain.Clear();
+
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
             }
+
+            if (message.StartsWith(ENTRY_REFERENCE_ID))
+            {
+                Bestiary.EnteringMenu = true;
+                PlaySound(SoundID.MENU_Switch_Page_In);
+
+                try
+                {
+                    string referenceID = message.Substring(message.IndexOf(';') + 1);
+                    Entry entry = Bestiary.GetEntryByReferenceID(referenceID);
+
+                    if (entry != null)
+                    {
+                        Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
+                        Bestiary.CurrentSelectedEntry = entry;
+                        manager.RequestMainProcessSwitch(Main.EntryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Main.Logger.LogDebug(ex);
+                }
+            }
+#endif
         }
 
         public override void Update()
@@ -246,8 +326,7 @@ namespace RainWorldBestiary
 #if DEBUG
     internal class EntryTextDisplay
     {
-        readonly int LineSpacing = 15;
-
+        readonly int LineSpacing = 20;
         readonly List<MenuObject> _Objects = new List<MenuObject>();
 
         public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
@@ -257,11 +336,101 @@ namespace RainWorldBestiary
 
             foreach (string line in split)
             {
-                MenuLabel label = new MenuLabel(menu, owner, line, new Vector2(screenSize.x / 2, currentY), Vector2.one, false);
-                _Objects.Add(label);
+                //MenuLabel label = new MenuLabel(menu, owner, line, new Vector2(screenSize.x / 2, currentY), Vector2.one, false);
+                //_Objects.Add(label);
+                _Objects.AddRange(FormatHorizontalText(line, screenSize, currentY, menu, owner));
 
                 currentY -= LineSpacing;
             }
+        }
+
+        enum StructureType
+        {
+            PlainText,
+            Reference
+        }
+        private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
+        {
+            // Current Valid Structures
+            // References: <ref="World!"Rain World/Batfly>
+
+            (StructureType type, string message, string otherData) DecipherStructure(int startingPosition, out int lastPosition)
+            {
+                StructureType type;
+
+                int currentEndPosition = text.IndexOf('=', startingPosition);
+
+                switch (text.Substring(startingPosition, currentEndPosition - startingPosition))
+                {
+                    case "ref":
+                        type = StructureType.Reference;
+                        break;
+                    default:
+                        type = StructureType.PlainText;
+                        break;
+                }
+
+                int currentPosition = text.IndexOf('\"', currentEndPosition) + 1;
+                currentEndPosition = text.IndexOf('\"', currentPosition);
+
+                string message = text.Substring(currentPosition, currentEndPosition - currentPosition);
+
+                currentPosition = currentEndPosition + 1;
+                currentEndPosition = text.IndexOf('>', currentPosition);
+                string otherData = text.Substring(currentPosition, currentEndPosition - currentPosition);
+
+                lastPosition = currentEndPosition + 1;
+                return (type, message, otherData);
+            }
+
+            List<float> sizes = new List<float>();
+
+            int currentLookPosition = 0;
+            int LessThanIndex;
+            List<(StructureType type, string message, string otherData)> structures = new List<(StructureType type, string message, string otherData)>();
+            while ((LessThanIndex = text.IndexOf('<', currentLookPosition)) != -1)
+            {
+                (StructureType type, string message, string otherData) structure = (StructureType.PlainText, text.Substring(currentLookPosition, LessThanIndex - currentLookPosition), string.Empty);
+                sizes.Add(structure.message.Length);
+                structures.Add(structure);
+
+                structure = DecipherStructure(LessThanIndex + 1, out currentLookPosition);
+                sizes.Add(structure.message.Length);
+                structures.Add(structure);
+            }
+
+            string remainder = text.Substring(currentLookPosition);
+            structures.Add((StructureType.PlainText, remainder, string.Empty));
+            sizes.Add(remainder.Length);
+
+            List<MenuObject> result = new List<MenuObject>();
+
+            float currentX = (screenSize.x - (sizes.Sum() * 5.3f)) / 2f;
+            int currentSizeIndex = 0;
+            foreach ((StructureType type, string message, string otherData) in structures)
+            {
+                if (type == StructureType.Reference)
+                {
+                    float xSize = sizes[currentSizeIndex] * 1.5f;
+                    SimpleButton button = new SimpleButton(menu, owner, message, EntryReadingMenu.ENTRY_REFERENCE_ID + otherData, new Vector2(currentX - xSize + (currentSizeIndex * 10f), Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                    {
+                        rectColor = new HSLColor(0f, 0f, 0f),
+                        labelColor = new HSLColor(0f, 1f, 1f)
+                    };
+                    result.Add(button);
+                }
+                else
+                {
+                    MenuLabel label = new MenuLabel(menu, owner, message, new Vector2(currentX + (currentSizeIndex * 10f), Y), Vector2.one, false);
+                    label.label.alignment = FLabelAlignment.Left;
+                    result.Add(label);
+                }
+
+                currentX += sizes[currentSizeIndex] * 5.3f;
+                currentSizeIndex++;
+            }
+
+            return result;
         }
 
         private int GetStartingYPosition(int lines, int screenSizeY)

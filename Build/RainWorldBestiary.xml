@@ -61,6 +61,21 @@
             All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Bestiary.GetEntryByReferenceID(System.String)">
+            <summary>
+            Gets an entry using a reference id, <code></code>
+            Reference IDs contain the name of the tab to look in (case sensitive), plus the name of the entry to look for (also case sensitive, this is the name given to the entry, not the translated result), separated by either a forward or backward slash.
+            Valid IDs include:
+            <code>Rain World/creaturetype_Fly</code>
+            <code>Rain World\creaturetype_CicadaA</code>
+            <code>Downpour/The Gourmand</code>
+            Invalid IDs include
+            <code>rain world/creaturetype_Fly</code>
+            <code>RainWorld/creaturetype_Fly</code>
+            <code>/Rain World/creaturetype_Fly</code>
+            </summary>
+            <returns>The entry that was found, if no entry was found, null is returned</returns>
+        </member>
         <member name="P:RainWorldBestiary.Bestiary.CurrentSelectedTab">
             <summary>
             The tab that is currently selected
@@ -320,6 +335,12 @@
             </summary>
             <param name="tab"></param>
         </member>
+        <member name="M:RainWorldBestiary.EntriesTab.TryGet(System.String,RainWorldBestiary.Entry@)">
+            <summary>
+            Tries to get the entry with the given name
+            </summary>
+            <returns>True if the entry was found, otherwise false</returns>
+        </member>
         <member name="M:RainWorldBestiary.EntriesTab.Clear">
             <summary>
             Clears this tab of all its entries
@@ -416,6 +437,12 @@
         </member>
         <member name="M:RainWorldBestiary.EntriesTabList.Remove(RainWorldBestiary.EntriesTab)">
             <inheritdoc/>
+        </member>
+        <member name="M:RainWorldBestiary.EntriesTabList.TryGet(System.String,RainWorldBestiary.EntriesTab@)">
+            <summary>
+            Tries to get the tab using its name
+            </summary>
+            <returns>True if the tab was found, otherwise false</returns>
         </member>
         <member name="M:RainWorldBestiary.EntriesTabList.GetEnumerator">
             <inheritdoc/>

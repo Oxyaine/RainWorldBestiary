@@ -208,6 +208,33 @@ namespace RainWorldBestiary
         /// </summary>
         public readonly static EntriesTabList EntriesTabs = new EntriesTabList();
 
+        /// <summary>
+        /// Gets an entry using a reference id, <code></code>
+        /// Reference IDs contain the name of the tab to look in (case sensitive), plus the name of the entry to look for (also case sensitive, this is the name given to the entry, not the translated result), separated by either a forward or backward slash.
+        /// Valid IDs include:
+        /// <code>Rain World/creaturetype_Fly</code>
+        /// <code>Rain World\creaturetype_CicadaA</code>
+        /// <code>Downpour/The Gourmand</code>
+        /// Invalid IDs include
+        /// <code>rain world/creaturetype_Fly</code>
+        /// <code>RainWorld/creaturetype_Fly</code>
+        /// <code>/Rain World/creaturetype_Fly</code>
+        /// </summary>
+        /// <returns>The entry that was found, if no entry was found, null is returned</returns>
+        public static Entry GetEntryByReferenceID(string refID)
+        {
+            string[] split = refID.Split('\\', '/');
+
+            if (EntriesTabs.TryGet(split[0], out EntriesTab tab))
+            {
+                if (tab.TryGet(split[1], out Entry entry))
+                {
+                    return entry;
+                }
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// The tab that is currently selected
@@ -217,6 +244,8 @@ namespace RainWorldBestiary
         /// The entry that is currently selected
         /// </summary>
         public static Entry CurrentSelectedEntry { get; internal set; }
+
+        internal static List<Entry> PreviousEntriesChain = new List<Entry>();
 
         /// <summary>
         /// Whether the menu being loaded is from going into the menu, otherwise its from exiting out a submenu
