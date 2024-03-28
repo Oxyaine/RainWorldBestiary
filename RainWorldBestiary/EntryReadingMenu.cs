@@ -344,46 +344,63 @@ namespace RainWorldBestiary
             }
         }
 
-        enum StructureType
+        public enum StructureType
         {
             PlainText,
             Reference
         }
+        public class StructureData
+        {
+            public StructureType Type;
+            public string Message;
+            public string OtherData = string.Empty;
+
+            public StructureData(StructureType type, string message)
+            {
+                Type = type;
+                Message = message;
+            }
+            public StructureData(StructureType type, string message, string otherData)
+                : this(type, message)
+            {
+                OtherData = otherData;
+            }
+        }
 
         // Current Valid Structures
-        // References: <ref=World!=Rain World/Batfly>
+        // References: <ref="World!"=Rain World/Batfly>
         private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
         {
             List<float> sizes = new List<float>();
 
             int currentLookPosition = 0;
             int LessThanIndex;
-            List<(StructureType type, string message, string otherData)> structures = new List<(StructureType type, string message, string otherData)>();
+            List<StructureData> structures = new List<StructureData>();
             while ((LessThanIndex = text.IndexOf('<', currentLookPosition)) != -1)
             {
-                (StructureType type, string message, string otherData) structure = (StructureType.PlainText, text.Substring(currentLookPosition, LessThanIndex - currentLookPosition), string.Empty);
-                sizes.Add(structure.message.Length);
+                StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentLookPosition, LessThanIndex - currentLookPosition), string.Empty);
+                sizes.Add(structure.Message.Length);
                 structures.Add(structure);
 
                 structure = DecipherStructure(in text, LessThanIndex + 1, out currentLookPosition);
-                sizes.Add(structure.message.Length);
+                sizes.Add(structure.Message.Length);
                 structures.Add(structure);
             }
 
             string remainder = text.Substring(currentLookPosition);
-            structures.Add((StructureType.PlainText, remainder, string.Empty));
+            structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
             sizes.Add(remainder.Length);
 
             List<MenuObject> result = new List<MenuObject>();
 
             float currentX = (screenSize.x - (sizes.Sum() * 5.3f)) / 2f;
             int currentSizeIndex = 0;
-            foreach ((StructureType type, string message, string otherData) in structures)
+            foreach (StructureData structure in structures)
             {
-                if (type == StructureType.Reference)
+                if (structure.Type == StructureType.Reference)
                 {
                     float xSize = sizes[currentSizeIndex] * 1.5f;
-                    SimpleButton button = new SimpleButton(menu, owner, message, EntryReadingMenu.ENTRY_REFERENCE_ID + otherData, new Vector2(currentX - xSize + (currentSizeIndex * 10f), Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                    SimpleButton button = new SimpleButton(menu, owner, structure.Message, EntryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData, new Vector2(currentX - xSize + (currentSizeIndex * 10f), Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                     {
                         rectColor = new HSLColor(0f, 0f, 0f),
                         labelColor = new HSLColor(0f, 1f, 1f)
@@ -392,7 +409,7 @@ namespace RainWorldBestiary
                 }
                 else
                 {
-                    MenuLabel label = new MenuLabel(menu, owner, message, new Vector2(currentX + (currentSizeIndex * 10f), Y), Vector2.one, false);
+                    MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + (currentSizeIndex * 10f), Y), Vector2.one, false);
                     label.label.alignment = FLabelAlignment.Left;
                     result.Add(label);
                 }
@@ -403,7 +420,7 @@ namespace RainWorldBestiary
 
             return result;
         }
-        private static (StructureType type, string message, string otherData) DecipherStructure(in string text, int startingPosition, out int lastPosition)
+        private static StructureData DecipherStructure(in string text, int startingPosition, out int lastPosition)
         {
             lastPosition = text.IndexOf('>', startingPosition);
             string t = text.Substring(startingPosition, lastPosition - startingPosition);
@@ -427,7 +444,7 @@ namespace RainWorldBestiary
                 otherData = split[2];
 
             ++lastPosition;
-            return (type, message, otherData);
+            return new StructureData(type, message, otherData);
         }
 
         private int GetStartingYPosition(int lines, int screenSizeY)
