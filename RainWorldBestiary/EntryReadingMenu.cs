@@ -369,6 +369,7 @@ namespace RainWorldBestiary
 
         // Current Valid Structures
         // References: <ref="World!"=Rain World/Batfly>
+
         private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
         {
             List<float> sizes = new List<float>();
