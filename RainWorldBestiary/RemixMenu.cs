@@ -70,7 +70,7 @@ namespace RainWorldBestiary
             if (held)
             {
                 fadeOutWarningLabel = false;
-                WarningLabel.alpha = 1f;
+                WarningLabel.alpha = 1.5f;
             }
             else
                 fadeOutWarningLabel = true;
@@ -111,7 +111,7 @@ namespace RainWorldBestiary
 
             if (fadeOutWarningLabel)
             {
-                WarningLabel.alpha -= Time.deltaTime;
+                WarningLabel.alpha -= Time.deltaTime / WarningLabel.alpha;
 
                 if (WarningLabel.alpha <= 0)
                     fadeOutWarningLabel = false;

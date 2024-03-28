@@ -43,7 +43,7 @@ namespace RainWorldBestiary
             CreatureHooks.Update();
         }
 
-        const string MoreSlugCatsID = "moreslugcats";
+        static readonly string MoreSlugCatsID = MoreSlugcats.MoreSlugcats.MOD_ID;
 
         private void RainWorld_OnModsDisabled(On.RainWorld.orig_OnModsDisabled original, RainWorld self, ModManager.Mod[] newlyDisabledMods)
         {
