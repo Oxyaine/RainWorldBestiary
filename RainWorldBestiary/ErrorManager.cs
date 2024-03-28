@@ -162,8 +162,8 @@ namespace RainWorldBestiary
                     return "illustrations\\bestiary\\icons\\warning-high";
                 case ErrorLevel.Fatal:
                     return "illustrations\\bestiary\\icons\\error";
-                default:
                 case ErrorLevel.Unknown:
+                default:
                     return "illustrations\\bestiary\\icons\\warning-unknown";
             }
         }

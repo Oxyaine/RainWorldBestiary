@@ -1,6 +1,7 @@
 ﻿using Menu;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -139,6 +140,10 @@ namespace RainWorldBestiary
         {
             float widthOffset, leftSpriteOffset = 60;
 
+#if DEBUG
+            EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+#else
+
             if (BestiarySettings.PerformTextAnimations.Value)
             {
                 routine = Main.StartCoroutinePtr(PerformTextAnimation(entry.Info.Description.ToString().WrapText(WrapCount), screenSize));
@@ -148,6 +153,7 @@ namespace RainWorldBestiary
                 MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
                 pages[0].subObjects.Add(label);
             }
+#endif
 
             if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
             {
@@ -218,11 +224,6 @@ namespace RainWorldBestiary
             }
         }
 
-        public void FormatAndDisplayText_EXPERIMENTAL(string text)
-        {
-            // Clearly very experimental as you can see
-        }
-
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -242,4 +243,39 @@ namespace RainWorldBestiary
             base.Update();
         }
     }
+#if DEBUG
+    internal class EntryTextDisplay
+    {
+        readonly int LineSpacing = 15;
+
+        readonly List<MenuObject> _Objects = new List<MenuObject>();
+
+        public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
+        {
+            string[] split = wrappedText.Split('\n');
+            int currentY = GetStartingYPosition(split.Length, (int)screenSize.y);
+
+            foreach (string line in split)
+            {
+                MenuLabel label = new MenuLabel(menu, owner, line, new Vector2(screenSize.x / 2, currentY), Vector2.one, false);
+                _Objects.Add(label);
+
+                currentY -= LineSpacing;
+            }
+        }
+
+        private int GetStartingYPosition(int lines, int screenSizeY)
+        {
+            int totalHeight = lines * LineSpacing;
+            int leftoverScreen = screenSizeY - totalHeight;
+            return screenSizeY - (leftoverScreen / 2);
+        }
+
+        public void AddToPage(ref MenuObject page)
+            => page.subObjects.AddRange(_Objects);
+
+        public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
+            => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
+    }
+#endif
 }

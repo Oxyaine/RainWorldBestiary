@@ -13,7 +13,7 @@ namespace RainWorldBestiary
         private bool Initialized;
 
         internal static new ManualLogSource Logger;
-        public static RemixMenu Options;
+        private static RemixMenu Options;
 
         internal static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
         internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
