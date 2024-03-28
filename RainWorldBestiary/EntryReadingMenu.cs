@@ -349,38 +349,11 @@ namespace RainWorldBestiary
             PlainText,
             Reference
         }
+
+        // Current Valid Structures
+        // References: <ref=World!=Rain World/Batfly>
         private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
         {
-            // Current Valid Structures
-            // References: <ref=World!=Rain World/Batfly>
-
-            (StructureType type, string message, string otherData) DecipherStructure(int startingPosition, out int lastPosition)
-            {
-                lastPosition = text.IndexOf('>', startingPosition);
-                string t = text.Substring(startingPosition, lastPosition - startingPosition);
-
-                string[] split = t.Split('=');
-
-                StructureType type;
-                string message = split[1].Trim('\"');
-                string otherData = string.Empty;
-                switch (split[0])
-                {
-                    case "ref":
-                        type = StructureType.Reference;
-                        break;
-                    default:
-                        type = StructureType.PlainText;
-                        break;
-                }
-
-                if (split.Length > 2)
-                    otherData = split[2];
-
-                ++lastPosition;
-                return (type, message, otherData);
-            }
-
             List<float> sizes = new List<float>();
 
             int currentLookPosition = 0;
@@ -392,7 +365,7 @@ namespace RainWorldBestiary
                 sizes.Add(structure.message.Length);
                 structures.Add(structure);
 
-                structure = DecipherStructure(LessThanIndex + 1, out currentLookPosition);
+                structure = DecipherStructure(in text, LessThanIndex + 1, out currentLookPosition);
                 sizes.Add(structure.message.Length);
                 structures.Add(structure);
             }
@@ -429,6 +402,32 @@ namespace RainWorldBestiary
             }
 
             return result;
+        }
+        private static (StructureType type, string message, string otherData) DecipherStructure(in string text, int startingPosition, out int lastPosition)
+        {
+            lastPosition = text.IndexOf('>', startingPosition);
+            string t = text.Substring(startingPosition, lastPosition - startingPosition);
+
+            string[] split = t.Split('=');
+
+            StructureType type;
+            string message = split[1].Trim('\"');
+            string otherData = string.Empty;
+            switch (split[0])
+            {
+                case "ref":
+                    type = StructureType.Reference;
+                    break;
+                default:
+                    type = StructureType.PlainText;
+                    break;
+            }
+
+            if (split.Length > 2)
+                otherData = split[2];
+
+            ++lastPosition;
+            return (type, message, otherData);
         }
 
         private int GetStartingYPosition(int lines, int screenSizeY)
