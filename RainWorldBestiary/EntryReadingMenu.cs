@@ -352,15 +352,19 @@ namespace RainWorldBestiary
         private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
         {
             // Current Valid Structures
-            // References: <ref="World!"Rain World/Batfly>
+            // References: <ref=World!=Rain World/Batfly>
 
             (StructureType type, string message, string otherData) DecipherStructure(int startingPosition, out int lastPosition)
             {
+                lastPosition = text.IndexOf('>', startingPosition);
+                string t = text.Substring(startingPosition, lastPosition - startingPosition);
+
+                string[] split = t.Split('=');
+
                 StructureType type;
-
-                int currentEndPosition = text.IndexOf('=', startingPosition);
-
-                switch (text.Substring(startingPosition, currentEndPosition - startingPosition))
+                string message = split[1].Trim('\"');
+                string otherData = string.Empty;
+                switch (split[0])
                 {
                     case "ref":
                         type = StructureType.Reference;
@@ -370,16 +374,10 @@ namespace RainWorldBestiary
                         break;
                 }
 
-                int currentPosition = text.IndexOf('\"', currentEndPosition) + 1;
-                currentEndPosition = text.IndexOf('\"', currentPosition);
+                if (split.Length > 2)
+                    otherData = split[2];
 
-                string message = text.Substring(currentPosition, currentEndPosition - currentPosition);
-
-                currentPosition = currentEndPosition + 1;
-                currentEndPosition = text.IndexOf('>', currentPosition);
-                string otherData = text.Substring(currentPosition, currentEndPosition - currentPosition);
-
-                lastPosition = currentEndPosition + 1;
+                ++lastPosition;
                 return (type, message, otherData);
             }
 
