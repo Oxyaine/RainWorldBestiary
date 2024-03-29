@@ -3,5 +3,6 @@
     "title_image": {
         "element_name": "illustrations\\bestiary\\titles\\Downpour_Title"
     },
-    "path": "bestiary\\2 Downpour_Tab"
+    "path": "bestiary\\2Downpour_Tab",
+    "required_mods": [ "moreslugcats" ]
 }

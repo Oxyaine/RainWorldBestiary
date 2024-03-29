@@ -18,7 +18,6 @@ namespace RainWorldBestiary
 
         private static readonly List<string> LoadedMods = new List<string>() { BestiaryModID };
 
-
         private static void GetAllFonts()
         {
             List<Font> customFonts = new List<Font>();

@@ -19,7 +19,13 @@ namespace RainWorldBestiary
 
         // The local path to the entries for this tab, used by resource manager
         [JsonProperty("path")]
-        internal string Path = string.Empty;
+        internal string Path = null;
+
+        /// <summary>
+        /// The mods (by ids), that are required to be active for this tab to be visible
+        /// </summary>
+        [JsonProperty("required_mods")]
+        public string[] RequiredMods = new string[0];
 
         /// <summary>
         /// The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead

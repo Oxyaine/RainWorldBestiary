@@ -90,6 +90,43 @@ namespace RainWorldBestiary
             return false;
         }
 
+        /// <summary>
+        /// Checks if this list contains all the values in <paramref name="values"/>
+        /// </summary>
+        /// <returns>True if all items in <paramref name="values"/> are found in this list</returns>
+        public static bool ContainsAll<T>(this List<T> list, T[] values)
+        {
+            bool result = true;
+            foreach (T value in values)
+            {
+                if (!list.Contains(value))
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Checks if this list contains all the values in <paramref name="values"/>
+        /// </summary>
+        /// <returns>True if all items in <paramref name="values"/> are found in this list</returns>
+        public static bool ContainsAll<T>(this IEnumerable<T> list, IEnumerable<T> values)
+        {
+            bool result = true;
+            foreach (T value in values)
+            {
+                if (!list.Contains(value))
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// Gets a random item in the collection

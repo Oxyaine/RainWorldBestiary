@@ -46,10 +46,7 @@ namespace RainWorldBestiary
             MenuObject firstTabButton = null;
             foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
-                if (tab.Name.Equals(Bestiary.DownpourTabName) && !Bestiary.IncludeDownpour)
-                    continue;
-
-                if (tab.Count > 0)
+                if (tab.Count > 0 && Main.ActiveMods.ContainsAll(tab.RequiredMods))
                 {
                     SimpleButton button = new SimpleButton(this, pages[0], Translator.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
                     pages[0].subObjects.Add(button);

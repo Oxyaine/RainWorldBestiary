@@ -47,6 +47,7 @@ Entries don't care what sub directory they are in, as the resource manager looks
 Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:
 
 #### "name" : string
+`Default = (The name of the file)`
 The name of the tab.
 
 #### "title_image" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite)
@@ -54,7 +55,12 @@ The name of the tab.
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
 
 #### "path" : string
+`Default = null`
 The local path to the folder that contains your entries, this is a local path from your mods folder, so if your tabs are in the folder `\*mod directory*\bestiary\mytab`, you would set this to `bestiary\mytab`, as your mods folder path is prepended.
+
+#### "required_mods" : string[]
+`Default = []`
+All the mods (by their IDs) that have to be active for this tab to be visible, if one of the ids specified is not an active mod, the tab wont be visible.
 
 #
 #
@@ -65,9 +71,11 @@ The local path to the folder that contains your entries, this is a local path fr
 Entries' content is also loaded from JSON files. The name of the file determines the name of the entry (however this can be overridden with "name"), and the content of the file determines the rest of the entry's data. Here are all the valid JSON elements for entries:
 
 #### "name" : string
+`Default = (The name of the file)`
 While by default the name of the file is the name of the entry, you can override the name with this property, and instead, this value you set will become the name of entry.
 
 #### "unlock_id" : string
+`Default = ""`
 The id of the creature that will be used to unlock this entry. You can see the ID by using `Bestiary.GetCreatureUnlockName()`, or by going to `AbstractCreature.creatureTemplate.name` of an instance of your creature, and removing the spaces.
 
 #### "locked_text" : string

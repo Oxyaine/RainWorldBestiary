@@ -3,5 +3,6 @@
     "title_image": {
         "element_name": "illustrations\\bestiary\\titles\\The_Watcher_Title"
     },
-    "path": "bestiary\\3 TheWatcher_Tab"
+    "path": "bestiary\\3TheWatcher_Tab",
+    "required_mods": []
 }

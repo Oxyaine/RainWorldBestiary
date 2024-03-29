@@ -2,6 +2,8 @@
 using BepInEx.Logging;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -43,12 +45,15 @@ namespace RainWorldBestiary
             CreatureHooks.Update();
         }
 
-        static readonly string MoreSlugCatsID = MoreSlugcats.MoreSlugcats.MOD_ID;
+        internal static List<string> ActiveMods = new List<string>();
 
         private void RainWorld_OnModsDisabled(On.RainWorld.orig_OnModsDisabled original, RainWorld self, ModManager.Mod[] newlyDisabledMods)
         {
             original(self, newlyDisabledMods);
-            CheckBestiaryDependencies();
+
+            foreach (ModManager.Mod mod in newlyDisabledMods)
+                ActiveMods.Remove(mod.id);
+
             StartCoroutine(ResourceManager.UnloadMods(newlyDisabledMods));
         }
 
@@ -68,6 +73,9 @@ namespace RainWorldBestiary
                 {
                     Initialized = true;
 
+                    foreach (ModManager.Mod mod in ModManager.ActiveMods)
+                        ActiveMods.Add(mod.id);
+
                     CurrentLanguage = self.options.language;
                     CurrentSaveSlot = self.options.saveSlot;
 
@@ -77,7 +85,6 @@ namespace RainWorldBestiary
                     CreatureHooks.Initialize();
 
                     MenuHooks.Initialize();
-                    CheckBestiaryDependencies();
                 }
             }
             catch (Exception exception)
@@ -86,26 +93,13 @@ namespace RainWorldBestiary
             }
         }
 
-        private static void CheckBestiaryDependencies()
-        {
-            Bestiary.IncludeDownpour = false;
-            foreach (ModManager.Mod mod in ModManager.ActiveMods)
-            {
-                if (mod == null)
-                    continue;
-
-                if (mod.id.Equals(MoreSlugCatsID))
-                {
-                    Bestiary.IncludeDownpour = true;
-                    break;
-                }
-            }
-        }
-
         private void RainWorld_OnModsEnabled(On.RainWorld.orig_OnModsEnabled original, RainWorld self, ModManager.Mod[] newlyEnabledMods)
         {
             original(self, newlyEnabledMods);
-            CheckBestiaryDependencies();
+
+            foreach (ModManager.Mod mod in newlyEnabledMods)
+                ActiveMods.Remove(mod.id);
+
             StartCoroutine(ResourceManager.LoadMods(newlyEnabledMods));
         }
     }

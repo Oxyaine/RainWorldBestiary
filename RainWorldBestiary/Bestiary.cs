@@ -12,26 +12,14 @@ namespace RainWorldBestiary
     /// </summary>
     public static class Bestiary
     {
-        // The bool determining if the downpour tab should be included
-        internal static bool IncludeDownpour = false;
-
-        /// <summary>
-        /// Whether downpour entries are shown or not, true if more slug cats is enabled, otherwise false
-        /// </summary>
-        public static bool IncludeDownpourEntries => IncludeDownpour;
-
-        // The name of the downpour tab, used in BestiaryMenu to check if the tab is the one that should be locked if downpour is disabled
-        internal const string DownpourTabName = "Downpour";
-
-
         // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
-
 
         /// <summary>
         /// All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
         /// </summary>
         public static List<string> CreatureUnlockIDs = new List<string>();
+
 
         // The module unlocks dictionary, is accessed publicly through ModuleUnlocks, since we want people to use add or increase module unlock
         private static Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
