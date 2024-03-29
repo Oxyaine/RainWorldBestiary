@@ -3,7 +3,6 @@ using BepInEx.Logging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -57,7 +56,7 @@ namespace RainWorldBestiary
             StartCoroutine(ResourceManager.UnloadMods(newlyDisabledMods));
         }
 
-        public static Func<IEnumerator, Coroutine> StartCoroutinePtr; 
+        public static Func<IEnumerator, Coroutine> StartCoroutinePtr;
         public static Action<Coroutine> StopCoroutinePtr;
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
@@ -98,7 +97,7 @@ namespace RainWorldBestiary
             original(self, newlyEnabledMods);
 
             foreach (ModManager.Mod mod in newlyEnabledMods)
-                ActiveMods.Remove(mod.id);
+                ActiveMods.Add(mod.id);
 
             StartCoroutine(ResourceManager.LoadMods(newlyEnabledMods));
         }

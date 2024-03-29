@@ -249,6 +249,8 @@ namespace RainWorldBestiary
             ModuleUnlockedCondition = other.ModuleUnlockedCondition;
             Body = new string(other.Body.ToCharArray());
             NewLine = other.NewLine;
+            Translate = other.Translate;
+
         }
 
         /// <summary>

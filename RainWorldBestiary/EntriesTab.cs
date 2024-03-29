@@ -78,6 +78,19 @@ namespace RainWorldBestiary
             Name = tabName;
             _entries = entries.ToList();
         }
+        /// <summary>
+        /// Copy Operator
+        /// </summary>
+        public EntriesTab(EntriesTab other)
+        {
+            Name = other.Name;
+            Path = other.Path;
+            RequiredMods = other.RequiredMods;
+            TitleSprite = other.TitleSprite;
+            TabMenuProcessID = other.TabMenuProcessID;
+            _entries = other._entries;
+            ContributingMods = other.ContributingMods;
+        }
 
         /// <summary>
         /// Gets the amount of entries in this tab
@@ -147,14 +160,11 @@ namespace RainWorldBestiary
             _entries.AddRange(tab._entries);
 
             foreach (string contributor in tab.ContributingMods)
-                if (ContributingMods.Contains(contributor))
+                if (!ContributingMods.Contains(contributor))
                     ContributingMods.Add(contributor);
 
             if (TitleSprite == null)
                 TitleSprite = tab.TitleSprite;
-
-            if (TabMenuProcessID == Main.BestiaryTabMenu && tab.TabMenuProcessID != Main.BestiaryTabMenu)
-                TabMenuProcessID = tab.TabMenuProcessID;
         }
 
         /// <summary>

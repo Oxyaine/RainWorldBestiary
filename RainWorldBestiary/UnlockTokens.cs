@@ -160,6 +160,15 @@ namespace RainWorldBestiary
             TokenType = tokenType;
             Count = value;
         }
+        /// <summary>
+        /// Copy Operator
+        /// </summary>
+        public UnlockToken(UnlockToken other)
+        {
+            TokenType = other.TokenType;
+            Count = other.Count;
+            SpecialData = other.SpecialData;
+        }
 
         /// <summary>
         /// Checks if both objects are <see cref="UnlockToken"/>, then compares them using <see cref="Equals(UnlockToken)"/>
@@ -292,6 +301,14 @@ namespace RainWorldBestiary
         /// <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
         public CreatureUnlockToken(string creatureID, UnlockTokenType tokenType, byte value = 1)
             : base(tokenType, value) => CreatureID = creatureID;
+        /// <summary>
+        /// Copy Operator
+        /// </summary>
+        public CreatureUnlockToken(CreatureUnlockToken other) : base(other)
+        {
+            CreatureID = other.CreatureID;
+            OperationAgainstCurrentValue = other.OperationAgainstCurrentValue;
+        }
 
         /// <summary>
         /// Checks if both objects are <see cref="CreatureUnlockToken"/>, then compares them using <see cref="Equals(CreatureUnlockToken)"/>

@@ -295,6 +295,11 @@
         <member name="M:RainWorldBestiary.EntriesTab.#ctor(System.String,RainWorldBestiary.Entry[])">
             <inheritdoc cref="M:RainWorldBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})"/>
         </member>
+        <member name="M:RainWorldBestiary.EntriesTab.#ctor(RainWorldBestiary.EntriesTab)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
         <member name="P:RainWorldBestiary.EntriesTab.Count">
             <summary>
             Gets the amount of entries in this tab
@@ -919,6 +924,11 @@
             <param name="tokenType">The type of token to look for</param>
             <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
         </member>
+        <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.UnlockToken)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(System.Object)">
             <summary>
             Checks if both objects are <see cref="T:RainWorldBestiary.UnlockToken"/>, then compares them using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
@@ -1026,6 +1036,11 @@
             <param name="creatureID">The ID of the creature that to look for</param>
             <param name="tokenType">The type of token to look for</param>
             <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        </member>
+        <member name="M:RainWorldBestiary.CreatureUnlockToken.#ctor(RainWorldBestiary.CreatureUnlockToken)">
+            <summary>
+            Copy Operator
+            </summary>
         </member>
         <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(System.Object)">
             <summary>
