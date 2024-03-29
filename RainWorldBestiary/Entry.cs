@@ -183,51 +183,8 @@ namespace RainWorldBestiary
         [JsonProperty("color")]
         private string JSON_Color
         {
-            get => string.Empty;
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    return;
-
-                string def;
-                if (value.Length > 6)
-                    def = value.Substring(value.Length - 6);
-                else
-                    def = "DFF5D6".Substring(0, value.Length) + value;
-                string[] values = def.SplitIntoGroups(2);
-
-                float R = Convert.ToByte(values[1], 16) / 255f;
-                float G = Convert.ToByte(values[2], 16) / 255f;
-                float B = Convert.ToByte(values[3], 16) / 255f;
-
-                float max = Math.Max(R, Math.Max(G, B));
-                float min = Math.Min(R, Math.Min(G, B));
-                float delta = max - min;
-
-                float Hue;
-                if (delta == 0f)
-                {
-                    Hue = 0f;
-                }
-                else
-                {
-                    if (max.Equals(R))
-                        Hue = 60f * ((G - B) / delta % 6f);
-                    else if (max.Equals(G))
-                        Hue = 60f * ((B - R) / delta + 2f);
-                    else
-                        Hue = 60f * ((R - G) / delta + 4f);
-                }
-
-                float Lightness = (max + min) / 2f;
-                float Saturation = delta == 0 ? 0 : delta / (1 - Math.Abs(2 * Lightness - 1));
-
-                if (Hue < 0)
-                    Hue += 360f;
-                Hue /= 360f;
-
-                EntryColor = new HSLColor(Hue, Lightness, Saturation);
-            }
+            get => "DFF5D6";
+            set => EntryColor = value.HexToColor().ToHSL();
         }
 
 

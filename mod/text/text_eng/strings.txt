@@ -46,12 +46,12 @@ OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION|Makes the generated title in the 
 OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION|Whether to make entires perform a little animation before the text is revealed
 OXY.BESTIARY.SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION|Whether to show a karma symbol next to each entry displaying the unlock percentage
 
-BESTIARY_BATFLY_LOCKTEXT|A passive, flying, insectoid creature, that serve as a good source of food. 
+BESTIARY_BATFLY_LOCKTEXT|A passive, flying, insectoid creature, that serve as a good source of food.
 BESTIARY_BATFLY_BASIC_INTRODUCTION|Batflies are passive, flying, insectoid creatures that act as one of Slugcat's primary food sources. They are one of the most common creatures in the game, appearing in almost every region.
 BESTIARY_BATFLY_APPEARANCE|Batflies are small black insects with two wings, antennae, and white eyes. They have no variation.
 BESTIARY_BATFLY_HUNTING_1|Batflies can be caught and eaten to fill 1 food pip.
-BESTIARY_BATFLY_HUNTING_2|Batflies are wary of <ref="Slugcats"=Rain World\The Survivsor>, but are usually slow in their evasion. They can be caught easily by jumping towards fast enough and catching them.
-BESTIARY_BATFLY_HUNTING_3|Catching Batflies may be easier from above, as they often stop and hover in place. Rocks and Spears can also be used to kill Batflies from afar. 
+BESTIARY_BATFLY_HUNTING_2|Batflies are wary of <ref="Slugcats"=Rain World\The Survivor>, but are usually slow in their evasion. They can be caught easily by jumping towards fast enough and catching them.
+BESTIARY_BATFLY_HUNTING_3|Catching <color=Batflies=FF0000> may be easier from above, as they often stop and hover in place. Rocks and Spears can also be used to kill Batflies from afar. 
 BESTIARY_BATFLY_BATNIP|Batnip attracts Batflies, which makes them easier to catch. Unlike other food sources, Batflies do not persist in shelters, and are either auto-consumed or deleted.
 BESTIARY_BATFLY_UTILITY_UTILITY_1|Batflies can be used to distract certain creatures
 BESTIARY_BATFLY_UTILITY_POLE_MIMIC|, such as <ref="Pole Mimics"=Rain World\creaturetype-PoleMimic>
