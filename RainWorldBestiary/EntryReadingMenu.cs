@@ -269,10 +269,10 @@ namespace RainWorldBestiary
                     Bestiary.CurrentSelectedEntry = Bestiary.PreviousEntriesChain[0];
                     Bestiary.PreviousEntriesChain.RemoveAt(0);
 
-                    manager.RequestMainProcessSwitch(Main.EntryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                    manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
                 }
                 else
-                    manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
+                    manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
 #else
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
 #endif
@@ -286,7 +286,7 @@ namespace RainWorldBestiary
 
                 Bestiary.PreviousEntriesChain.Clear();
 
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
+                manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
             }
 
             if (message.StartsWith(ENTRY_REFERENCE_ID))
@@ -304,7 +304,7 @@ namespace RainWorldBestiary
 
                         Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
                         Bestiary.CurrentSelectedEntry = entry;
-                        manager.RequestMainProcessSwitch(Main.EntryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                        manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
                     }
                 }
                 catch (Exception ex)

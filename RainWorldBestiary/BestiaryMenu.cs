@@ -13,8 +13,8 @@ namespace RainWorldBestiary
         readonly string BackButtonMessage = "BACK";
 
 #if DEBUG
-        readonly string ManualButtonMessage = "MANUAL";
-        public static ProcessManager.ProcessID ManualMenu = new ProcessManager.ProcessID("Bestiary_Manual_Menu", true);
+        readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
+        public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("BestiaryInstructionManualMenu", true);
 #endif
 
         public BestiaryMenu(ProcessManager manager) : base(manager)
@@ -64,8 +64,8 @@ namespace RainWorldBestiary
             }
 
 #if DEBUG
-            SimpleButton manualButton = new SimpleButton(this, pages[0], "MANUAL", ManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
-            pages[0].subObjects.Add(manualButton);
+            SimpleButton instructionManualButton = new SimpleButton(this, pages[0], "MANUAL", InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
+            pages[0].subObjects.Add(instructionManualButton);
 #endif
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
@@ -118,10 +118,10 @@ namespace RainWorldBestiary
                 manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, BestiarySettings.MenuFadeTimeSeconds);
             }
 #if DEBUG
-            else if (message.StartsWith(ManualButtonMessage))
+            else if (message.StartsWith(InstructionManualButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.RequestMainProcessSwitch(ManualMenu, BestiarySettings.MenuFadeTimeSeconds);
+                manager.RequestMainProcessSwitch(InstructionManualMenu, BestiarySettings.MenuFadeTimeSeconds);
             }
 #endif
         }

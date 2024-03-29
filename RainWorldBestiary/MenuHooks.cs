@@ -44,7 +44,7 @@ namespace RainWorldBestiary
 
             if (message.Equals("SHOW_ERRORS"))
             {
-                self.manager.RequestMainProcessSwitch(ErrorManager.ErrorMenu);
+                self.manager.RequestMainProcessSwitch(ErrorManager.BestiaryErrorMenu);
             }
         }
 
@@ -72,24 +72,24 @@ namespace RainWorldBestiary
 
             iLCursor.EmitDelegate<Action<ProcessManager, ProcessManager.ProcessID>>(delegate (ProcessManager self, ProcessManager.ProcessID ID)
             {
-                if (ID == Main.BestiaryMenu)
+                if (ID == Main.BestiaryTabMenu)
                 {
                     self.currentMainLoop = new BestiaryMenu(self);
                 }
-                else if (ID == Main.BestiaryTabMenu)
+                else if (ID == Main.BestiaryEntryMenu)
                 {
                     self.currentMainLoop = new BestiaryTabMenu(self);
                 }
-                else if (ID == Main.EntryReadingMenu)
+                else if (ID == Main.BestiaryReadingMenu)
                 {
                     self.currentMainLoop = new EntryReadingMenu(self);
                 }
-                else if (ID == ErrorManager.ErrorMenu)
+                else if (ID == ErrorManager.BestiaryErrorMenu)
                 {
                     self.currentMainLoop = new ErrorManager(self);
                 }
 #if DEBUG
-                else if (ID == BestiaryMenu.ManualMenu)
+                else if (ID == BestiaryMenu.InstructionManualMenu)
                 {
                     self.currentMainLoop = new InstructionManualMenu(self);
                 }
@@ -128,7 +128,7 @@ namespace RainWorldBestiary
             Vector2 size = new Vector2(buttonWidth, 30f);
             self.AddMainMenuButton(new SimpleButton(self, self.pages[0], Translator.Translate("BESTIARY"), "BESTIARY", pos, size), delegate
             {
-                manager.RequestMainProcessSwitch(Main.BestiaryMenu);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu);
                 self.PlaySound(SoundID.MENU_Switch_Page_In);
                 Bestiary.EnteringMenu = true;
             }, 2);

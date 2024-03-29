@@ -16,9 +16,9 @@ namespace RainWorldBestiary
         internal static new ManualLogSource Logger;
         private static RemixMenu Options;
 
-        internal static ProcessManager.ProcessID BestiaryMenu => new ProcessManager.ProcessID("Bestiary", register: true);
-        internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTab", register: true);
-        internal static ProcessManager.ProcessID EntryReadingMenu => new ProcessManager.ProcessID("EntryReadingTab", register: true);
+        internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("BestiaryTabMenu", register: true);
+        internal static ProcessManager.ProcessID BestiaryEntryMenu => new ProcessManager.ProcessID("BestiaryEntryMenu", register: true);
+        internal static ProcessManager.ProcessID BestiaryReadingMenu => new ProcessManager.ProcessID("BestiaryReadingMenu", register: true);
 
         internal static InGameTranslator.LanguageID CurrentLanguage = null;
         internal static int CurrentSaveSlot = 0;

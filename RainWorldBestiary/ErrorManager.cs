@@ -9,7 +9,7 @@ namespace RainWorldBestiary
     {
         private readonly string BackButtonMessage = "BACK";
 
-        internal static ProcessManager.ProcessID ErrorMenu => new ProcessManager.ProcessID("ErrorMenu", register: true);
+        internal static ProcessManager.ProcessID BestiaryErrorMenu => new ProcessManager.ProcessID("BestiaryErrorMenu", register: true);
 
         private static readonly List<ErrorCategory> ErrorCategories = new List<ErrorCategory>()
         {

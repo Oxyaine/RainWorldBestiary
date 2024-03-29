@@ -21,7 +21,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// The process ID that gets called when an entry button gets pressed, you can leave this as the default menu, or make a custom menu to display the entry's information.
         /// </summary>
-        public ProcessManager.ProcessID EntryReadingMenu = Main.EntryReadingMenu;
+        public ProcessManager.ProcessID EntryReadingMenu = Main.BestiaryReadingMenu;
 
         /// <summary>
         /// The mod that owns this entry, also known as the mod this entry belongs to, is used for unloading the mod automatically when the owning mod gets disabled

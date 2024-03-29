@@ -38,7 +38,7 @@ namespace RainWorldBestiary
         /// The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
         /// </summary>
         [JsonIgnore]
-        public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryTabMenu;
+        public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryEntryMenu;
 
         [JsonIgnore]
         private readonly List<Entry> _entries = new List<Entry>();

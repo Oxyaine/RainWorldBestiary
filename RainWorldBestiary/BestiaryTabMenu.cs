@@ -176,7 +176,7 @@ namespace RainWorldBestiary
                 Bestiary.EnteringMenu = false;
 
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryMenu, BestiarySettings.MenuFadeTimeSeconds);
+                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
                 return;
             }
 
