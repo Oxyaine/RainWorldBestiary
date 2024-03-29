@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace RainWorldBestiary
 {
@@ -222,6 +223,59 @@ namespace RainWorldBestiary
         /// </summary>
         [JsonProperty("translate")]
         public bool Translate = true;
+
+        /// <summary>
+        /// The Color of the Unlock Pip for this Module
+        /// </summary>
+        [JsonIgnore]
+        public Color UnlockPipColor = Color.white;
+
+        enum PredefinedColors
+        {
+            None,
+            Combat,
+            Appearance,
+            Hunting,
+            Utility,
+            Hiding,
+            Behaviour,
+        }
+
+        [JsonProperty("unlock_pip_color")]
+        private string UnlockPipColor_JSON
+        {
+            get => UnlockPipColor.RGBToHexString();
+            set
+            {
+                if (Enum.TryParse(value, true, out PredefinedColors result))
+                {
+                    switch (result)
+                    {
+                        case PredefinedColors.Combat:
+                            UnlockPipColor = new Color(1f, 0.5f, 0.5f);
+                            break;
+                        case PredefinedColors.Appearance:
+                            UnlockPipColor = new Color(0.5f, 1f, 1f);
+                            break;
+                        case PredefinedColors.Hunting:
+                            UnlockPipColor = new Color(0.5f, 1f, 0.5f);
+                            break;
+                        case PredefinedColors.Utility:
+                            UnlockPipColor = new Color(1f, 0.5f, 1f);
+                            break;
+                        case PredefinedColors.Hiding:
+                            UnlockPipColor = new Color(0.5f, 0.5f, 1f);
+                            break;
+                        case PredefinedColors.Behaviour:
+                            UnlockPipColor = new Color(0.5f, 0.5f, 1f);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else UnlockPipColor = value.HexToColor();
+            }
+        }
 
         /// <inheritdoc cref="DescriptionModule(string, bool)"/>
         [JsonConstructor]

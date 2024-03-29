@@ -226,6 +226,11 @@
             Whether this modules text will get run through the in game translator, if no translation is found, then the text will be placed
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.DescriptionModule.UnlockPipColor">
+            <summary>
+            The Color of the Unlock Pip for this Module
+            </summary>
+        </member>
         <member name="M:RainWorldBestiary.DescriptionModule.#ctor">
             <inheritdoc cref="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,System.Boolean)"/>
         </member>
@@ -690,6 +695,16 @@
         <member name="M:RainWorldBestiary.Extensions.HexToColor(System.String)">
             <summary>
             Converts this hex color string into a Color
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Extensions.RGBToHexString(UnityEngine.Color)">
+            <summary>
+            Converts this Color into a hex color string, with 6 characters in the string, representing RGB
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Extensions.ARGBToHexString(UnityEngine.Color)">
+            <summary>
+            Converts this Color into a hex color string, with 8 characters in the string, representing ARGB
             </summary>
         </member>
         <member name="T:RainWorldBestiary.Translator">

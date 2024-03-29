@@ -42,23 +42,21 @@ namespace RainWorldBestiary
                 pages[0].Container.AddChild(darkSprite);
 
 #if DEBUG
+
+                string backButtonText = "BACK";
                 if (Bestiary.PreviousEntriesChain.Count > 0)
                 {
-                    SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK TO PREVIOUS"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-                    pages[0].subObjects.Add(backButton);
-                    backObject = backButton;
-                    backButton.nextSelectable[0] = backButton;
-
                     SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, 25f), new Vector2(220f, 30f));
                     pages[0].subObjects.Add(returnButton);
+
+                    backButtonText = "BACK TO PREVIOUS";
                 }
-                else
-                {
-                    SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-                    pages[0].subObjects.Add(backButton);
-                    backObject = backButton;
-                    backButton.nextSelectable[0] = backButton;
-                }
+
+                SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate(backButtonText), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                pages[0].subObjects.Add(backButton);
+                backObject = backButton;
+                backButton.nextSelectable[0] = backButton;
+
 #else
                 SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
                 pages[0].subObjects.Add(backButton);
@@ -250,7 +248,8 @@ namespace RainWorldBestiary
                     {
                         x = screenSize.x - 20f,
                         y = screenSize.y - (i * 10) - 20f,
-                        scale = 1f
+                        scale = 1f,
+                        color = entry.Info.Description[i].UnlockPipColor
                     };
                     pages[0].Container.AddChild(pip);
                 }
@@ -337,8 +336,6 @@ namespace RainWorldBestiary
 
             foreach (string line in split)
             {
-                //MenuLabel label = new MenuLabel(menu, owner, line, new Vector2(screenSize.x / 2, currentY), Vector2.one, false);
-                //_Objects.Add(label);
                 _Objects.AddRange(FormatHorizontalText(line, screenSize, currentY, menu, owner));
 
                 currentY -= LineSpacing;
@@ -349,7 +346,7 @@ namespace RainWorldBestiary
         {
             PlainText = 0, Plain = 0, Text = 0, Txt = 0,
             Reference = 1, Ref = 1, Refer = 1,
-            Color = 2, Clr = 2, Colour = 2, Rgb = 2,
+            Color = 2, Clr = 2, Colour = 2, Rgb = 2
         }
         public class StructureData
         {
@@ -401,35 +398,47 @@ namespace RainWorldBestiary
             float currentSizeValue = 0;
             foreach (StructureData structure in structures)
             {
-                if (structure.Type == StructureType.Reference)
+                switch (structure.Type)
                 {
-                    float xSize = sizes[currentSizeIndex] * 1.5f;
-                    SimpleButton button = new SimpleButton(menu, owner, structure.Message, EntryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData, 
-                        new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
-                    {
-                        rectColor = new HSLColor(0f, 0f, 0f),
-                        labelColor = new HSLColor(0f, 1f, 1f)
-                    };
-                    result.Add(button);
+                    case StructureType.Reference:
+                        {
+                            float xSize = sizes[currentSizeIndex] * 1.5f;
 
-                    currentSizeValue += 10f;
-                }
-                else if (structure.Type == StructureType.Colour)
-                {
-                    MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
-                    label.label.color = structure.OtherData.HexToColor();
-                    label.label.alignment = FLabelAlignment.Left;
-                    result.Add(label);
+                            SimpleButton button = new SimpleButton(menu, owner, structure.Message, EntryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
+                                new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                            {
+                                rectColor = new HSLColor(0f, 0f, 0f),
+                                labelColor = new HSLColor(0f, 1f, 1f)
+                            };
 
-                    currentSizeValue += 20f;
-                }
-                else
-                {
-                    MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
-                    label.label.alignment = FLabelAlignment.Left;
-                    result.Add(label);
+                            result.Add(button);
 
-                    currentSizeValue += 10f;
+                            currentSizeValue += 10f;
+                        }
+                        break;
+                    case StructureType.Colour:
+                        {
+                            MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
+
+                            label.label.color = structure.OtherData.HexToColor();
+                            label.label.alignment = FLabelAlignment.Left;
+
+                            result.Add(label);
+
+                            currentSizeValue += 20f;
+                        }
+                        break;
+                    default:
+                        {
+                            MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
+
+                            label.label.alignment = FLabelAlignment.Left;
+
+                            result.Add(label);
+
+                            currentSizeValue += 10f;
+                        }
+                        break;
                 }
 
                 currentX += sizes[currentSizeIndex] * 5.3f;
