@@ -306,6 +306,19 @@ namespace RainWorldBestiary
 
         static IEnumerator PerformCleanupOperations()
         {
+            //for (int i = 0; i < _ModuleUnlocks.Count; i++)
+            //{
+            //    yield return null;
+
+            //    KeyValuePair<string, List<UnlockToken>> kvp = _ModuleUnlocks.ElementAt(i);
+
+            //    if (!_allUniqueUnlockTokens.TryGetValue(kvp.Key, out List<UnlockToken> tokens))
+            //    {
+            //        _ModuleUnlocks.Remove(kvp.Key);
+            //        continue;
+            //    }
+            //}
+
             yield break;
         }
 

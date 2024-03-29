@@ -293,7 +293,6 @@ namespace RainWorldBestiary
             if (message.StartsWith(ENTRY_REFERENCE_ID))
             {
                 Bestiary.EnteringMenu = true;
-                PlaySound(SoundID.MENU_Switch_Page_In);
 
                 try
                 {
@@ -302,6 +301,8 @@ namespace RainWorldBestiary
 
                     if (entry != null)
                     {
+                        PlaySound(SoundID.MENU_Switch_Page_In);
+
                         Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
                         Bestiary.CurrentSelectedEntry = entry;
                         manager.RequestMainProcessSwitch(Main.EntryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
@@ -346,8 +347,9 @@ namespace RainWorldBestiary
 
         public enum StructureType
         {
-            PlainText,
-            Reference
+            PlainText = 0, Plain = 0, Text = 0, Txt = 0,
+            Reference = 1, Ref = 1, Refer = 1,
+            Color = 2, Clr = 2, Colour = 2, Rgb = 2,
         }
         public class StructureData
         {
@@ -396,23 +398,38 @@ namespace RainWorldBestiary
 
             float currentX = (screenSize.x - (sizes.Sum() * 5.3f)) / 2f;
             int currentSizeIndex = 0;
+            float currentSizeValue = 0;
             foreach (StructureData structure in structures)
             {
                 if (structure.Type == StructureType.Reference)
                 {
                     float xSize = sizes[currentSizeIndex] * 1.5f;
-                    SimpleButton button = new SimpleButton(menu, owner, structure.Message, EntryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData, new Vector2(currentX - xSize + (currentSizeIndex * 10f), Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                    SimpleButton button = new SimpleButton(menu, owner, structure.Message, EntryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData, 
+                        new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                     {
                         rectColor = new HSLColor(0f, 0f, 0f),
                         labelColor = new HSLColor(0f, 1f, 1f)
                     };
                     result.Add(button);
+
+                    currentSizeValue += 10f;
+                }
+                else if (structure.Type == StructureType.Colour)
+                {
+                    MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
+                    label.label.color = structure.OtherData.HexToColor();
+                    label.label.alignment = FLabelAlignment.Left;
+                    result.Add(label);
+
+                    currentSizeValue += 20f;
                 }
                 else
                 {
-                    MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + (currentSizeIndex * 10f), Y), Vector2.one, false);
+                    MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
                     label.label.alignment = FLabelAlignment.Left;
                     result.Add(label);
+
+                    currentSizeValue += 10f;
                 }
 
                 currentX += sizes[currentSizeIndex] * 5.3f;
@@ -424,25 +441,13 @@ namespace RainWorldBestiary
         private static StructureData DecipherStructure(in string text, int startingPosition, out int lastPosition)
         {
             lastPosition = text.IndexOf('>', startingPosition);
-            string t = text.Substring(startingPosition, lastPosition - startingPosition);
 
+            string t = text.Substring(startingPosition, lastPosition - startingPosition);
             string[] split = t.Split('=');
 
-            StructureType type;
-            string message = split[1].Trim('\"');
-            string otherData = string.Empty;
-            switch (split[0])
-            {
-                case "ref":
-                    type = StructureType.Reference;
-                    break;
-                default:
-                    type = StructureType.PlainText;
-                    break;
-            }
-
-            if (split.Length > 2)
-                otherData = split[2];
+            Enum.TryParse(split[0], true, out StructureType type);
+            string message = type != StructureType.PlainText ? split[1].Trim('\"') : t;
+            string otherData = split.Length > 2 ? split[2] : string.Empty; ;
 
             ++lastPosition;
             return new StructureData(type, message, otherData);

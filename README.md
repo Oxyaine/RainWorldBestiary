@@ -32,11 +32,10 @@ Entries can be added to the bestiary without making the mod a dependency! This c
 
 Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
 When adding entries, you can add your own tab, or you can use the `Modded` tab if your mod only adds a few entries.
-To add entries to the `Modded` tab, just call your tab folder `Modded` or set the name in your [tab's JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#structure---tabs) to `Modded` (*case sensitive*)
+To add entries to the `Modded` tab, just call your [tabs JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#structure---tabs) `Modded` or set the name in your tab's JSON file to `Modded` (*case sensitive*)
 If your mod adds a tab with the same name as an existing tab, the tabs will be "merged", meaning your entries will be added to the existing tab. If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used. Same logic applies to [tab_menu_process_id](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tab_menu_process_id--string).
-If your not using the tab's JSON file, the name of your folder will become the name of the tab, but with the JSON file, the name doesn't matter, as the resource manager will use the name set in the JSON file.
 Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your folders with numbers to change the order they appear, this wont matter if your merging with another tab (as it'll use whatever position the existing tab is in).
-Entries don't care what folder they are in, as the resource manager looks for all files in the tab folder, including entries in sub-directories.
+Entries don't care what sub directory they are in, as the resource manager looks for all files in the tab folder, including entries in sub-directories.
 
 
 #
@@ -45,7 +44,7 @@ Entries don't care what folder they are in, as the resource manager looks for al
 
 ## Structure - Tabs
 
-Tabs can be given a JSON file to specify some additional details about the tab, or to separate the folder name and the tabs name. Most features should be accessible using the JSON format, however some behaviours, such as a custom tab menu have to be coded, which would make the bestiary a dependency. The JSON file can contain the following elements:
+Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:
 
 #### "name" : string
 The name of the tab.
@@ -54,13 +53,16 @@ The name of the tab.
 `Default = null`
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
 
+#### "path" : string
+The local path to the folder that contains your entries, this is a local path from your mods folder, so if your tabs are in the folder `\*mod directory*\bestiary\mytab`, you would set this to `bestiary\mytab`, as your mods folder path is prepended.
+
 #
 #
 #
 
 ## Structure - Entries
 
-Entries' content is also loaded from JSON files. The name of the file determines the name of the entry, and the content of the file determines the rest of the entry's data. Like with tabs, most features should be accessible using the JSON format, however some behaviours are once again, only accessible through code, I will list everything to do with coding further down, but first, a list of entry's JSON elements:
+Entries' content is also loaded from JSON files. The name of the file determines the name of the entry (however this can be overridden with "name"), and the content of the file determines the rest of the entry's data. Here are all the valid JSON elements for entries:
 
 #### "name" : string
 While by default the name of the file is the name of the entry, you can override the name with this property, and instead, this value you set will become the name of entry.

@@ -1,4 +1,6 @@
-﻿using RWCustom;
+﻿using Newtonsoft.Json.Linq;
+using RWCustom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -92,7 +94,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Gets a random item in the collection
         /// </summary>
-        public static T GetRandom<T>(this IEnumerable<T> values) => values.ElementAt(Random.Range(0, values.Count()));
+        public static T GetRandom<T>(this IEnumerable<T> values) => values.ElementAt(UnityEngine.Random.Range(0, values.Count()));
         /// <summary>
         /// Gets a number of random items from the collection
         /// </summary>
@@ -124,6 +126,63 @@ namespace RainWorldBestiary
         public static string GetCreatureUnlockName(this Creature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
         /// <inheritdoc cref="Bestiary.GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(this AbstractCreature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
+
+        /// <summary>
+        /// Converts this RGB color to a HSL color
+        /// </summary>
+        public static HSLColor ToHSL(this Color color)
+        {
+            float max = Math.Max(color.r, Math.Max(color.g, color.b));
+            float min = Math.Min(color.r, Math.Min(color.g, color.b));
+            float delta = max - min;
+
+            float Hue;
+            if (delta == 0f)
+            {
+                Hue = 0f;
+            }
+            else
+            {
+                if (max.Equals(color.r))
+                    Hue = 60f * ((color.g - color.b) / delta % 6f);
+                else if (max.Equals(color.g))
+                    Hue = 60f * ((color.b - color.r) / delta + 2f);
+                else
+                    Hue = 60f * ((color.r - color.g) / delta + 4f);
+            }
+
+            float Lightness = (max + min) / 2f;
+            float Saturation = delta == 0 ? 0 : delta / (1 - Math.Abs(2 * Lightness - 1));
+
+            if (Hue < 0)
+                Hue += 360f;
+            Hue /= 360f;
+
+            return new HSLColor(Hue, Lightness, Saturation);
+        }
+
+        /// <summary>
+        /// Converts this hex color string into a Color
+        /// </summary>
+        public static Color HexToColor(this string hex)
+        {
+            if (string.IsNullOrWhiteSpace(hex))
+                return Color.white;
+
+            string def;
+            if (hex.Length > 6)
+                def = hex.Substring(hex.Length - 6);
+            else
+                def = "FFFFFF".Substring(hex.Length) + hex;
+
+            string[] values = def.SplitIntoGroups(2);
+
+            float R = Convert.ToByte(values[0], 16) / 255f;
+            float G = Convert.ToByte(values[1], 16) / 255f;
+            float B = Convert.ToByte(values[2], 16) / 255f;
+
+            return new Color(R, G, B, 1f);
+        }
     }
 
     /// <summary>
@@ -134,9 +193,6 @@ namespace RainWorldBestiary
         /// <summary>
         /// Translates this text using the short strings dictionary
         /// </summary>
-        public static string Translate(string text)
-        {
-            return OptionInterface.Translate(text);
-        }
+        public static string Translate(string text) => OptionInterface.Translate(text);
     }
 }

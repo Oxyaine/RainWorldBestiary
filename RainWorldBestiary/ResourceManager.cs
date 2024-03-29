@@ -118,7 +118,7 @@ namespace RainWorldBestiary
                 GetAllSprites();
                 GetAllFonts();
 
-                CheckFolder(Path.Combine(ModDirectory, EntriesLocalPath), BestiaryModID);
+                CheckFolder(ModDirectory, BestiaryModID);
                 CheckForUnregisteredEntries();
             }
         }
@@ -170,10 +170,9 @@ namespace RainWorldBestiary
             {
                 if (!LoadedMods.Contains(mod.id))
                 {
-                    string path = Path.Combine(mod.path, EntriesLocalPath);
-                    if (Directory.Exists(path))
+                    if (Directory.Exists(mod.path))
                     {
-                        CheckFolder(path, mod.id);
+                        CheckFolder(mod.path, mod.id);
                         yield return null;
                     }
                     LoadedMods.Add(mod.id);
@@ -187,47 +186,48 @@ namespace RainWorldBestiary
             {
                 if (mod.enabled && !LoadedMods.Contains(mod.id))
                 {
-                    string path = Path.Combine(mod.path, EntriesLocalPath);
-                    if (Directory.Exists(path))
+                    if (Directory.Exists(mod.path))
                     {
-                        CheckFolder(path, mod.id);
+                        CheckFolder(mod.path, mod.id);
                     }
                     LoadedMods.Add(mod.id);
                 }
             }
         }
-        private static void CheckFolder(string path, string modID)
+        private static void CheckFolder(string modPath, string modID)
         {
-            string[] folders = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
-            foreach (string folder in folders)
+            string[] tabs = Directory.GetFiles(Path.Combine(modPath, EntriesLocalPath), "*.json", SearchOption.TopDirectoryOnly);
+            foreach (string tab in tabs)
             {
-                EntriesTab tab;
-
-                if (File.Exists(folder + ".json"))
+                EntriesTab entryTab;
+                try
                 {
-                    try
-                    {
-                        tab = JsonConvert.DeserializeObject<EntriesTab>(File.ReadAllText(folder + ".json"));
-                    }
-                    catch (Exception ex)
-                    {
-                        tab = new EntriesTab(Path.GetFileName(folder));
-                        Main.Logger.LogWarning("Something went wrong trying to parse " + folder + ".json, creating the tab as a default tab using the folders name.");
-                        Main.Logger.LogError(ex.Message);
-                    }
+                    entryTab = JsonConvert.DeserializeObject<EntriesTab>(File.ReadAllText(tab));
                 }
-                else
+                catch (Exception ex)
                 {
-                    tab = new EntriesTab(Path.GetFileName(folder));
+                    entryTab = new EntriesTab(Path.GetFileNameWithoutExtension(tab));
+                    Main.Logger.LogWarning("Something went wrong trying to parse " + tab + ".json, creating the tab as a default tab using the folders name.");
+                    Main.Logger.LogError(ex.Message);
                 }
 
-                string[] files = Directory.GetFiles(folder, "*.json", SearchOption.AllDirectories);
-                Entry[] entries = GetFilesAsEntries(files, modID);
-                tab.AddRange(entries);
+                if (string.IsNullOrEmpty(entryTab.Name))
+                    entryTab.Name = Path.GetFileNameWithoutExtension(tab);
 
-                Bestiary.EntriesTabs.Add(tab, true);
+                if (!string.IsNullOrEmpty(entryTab.Path))
+                {
+                    string entriesPath = Path.Combine(modPath, entryTab.Path);
+                    if (Directory.Exists(entriesPath))
+                    {
+                        string[] files = Directory.GetFiles(entriesPath, "*.json", SearchOption.AllDirectories);
+                        Entry[] entries = GetFilesAsEntries(files, modID);
+                        entryTab.AddRange(entries);
 
-                Main.StartCoroutinePtr(ScanEntriesAndCacheTokens(entries));
+                        Main.StartCoroutinePtr(ScanEntriesAndCacheTokens(entries));
+                    }
+                }
+
+                Bestiary.EntriesTabs.Add(entryTab, true);
             }
         }
         private static Entry[] GetFilesAsEntries(string[] files, string owningModID)
