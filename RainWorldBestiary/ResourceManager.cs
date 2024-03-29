@@ -136,7 +136,7 @@ namespace RainWorldBestiary
             }
         }
 
-        const string EntriesLocalPath = "bestiary";
+        const string TabsLocalPath = "bestiary";
 
         internal static IEnumerator UnloadMods(ModManager.Mod[] disabledMods)
         {
@@ -170,11 +170,8 @@ namespace RainWorldBestiary
             {
                 if (!LoadedMods.Contains(mod.id))
                 {
-                    if (Directory.Exists(mod.path))
-                    {
-                        CheckFolder(mod.path, mod.id);
-                        yield return null;
-                    }
+                    CheckFolder(mod.path, mod.id);
+                    yield return null;
                     LoadedMods.Add(mod.id);
                 }
             }
@@ -186,17 +183,18 @@ namespace RainWorldBestiary
             {
                 if (mod.enabled && !LoadedMods.Contains(mod.id))
                 {
-                    if (Directory.Exists(mod.path))
-                    {
-                        CheckFolder(mod.path, mod.id);
-                    }
+                    CheckFolder(mod.path, mod.id);
                     LoadedMods.Add(mod.id);
                 }
             }
         }
         private static void CheckFolder(string modPath, string modID)
         {
-            string[] tabs = Directory.GetFiles(Path.Combine(modPath, EntriesLocalPath), "*.json", SearchOption.TopDirectoryOnly);
+            string tabsPath = Path.Combine(modPath, TabsLocalPath);
+            if (!Directory.Exists(tabsPath))
+                return;
+
+            string[] tabs = Directory.GetFiles(tabsPath, "*.json", SearchOption.TopDirectoryOnly);
             foreach (string tab in tabs)
             {
                 EntriesTab entryTab;
