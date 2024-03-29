@@ -9,11 +9,6 @@
             The main class for the bestiary, everything should be accessible from this class
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.Bestiary.IncludeDownpourEntries">
-            <summary>
-            Whether downpour entries are shown or not, true if more slug cats is enabled, otherwise false
-            </summary>
-        </member>
         <member name="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs">
             <summary>
             All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
@@ -261,6 +256,11 @@
         <member name="F:RainWorldBestiary.EntriesTab.Name">
             <summary>
             The name of this tab
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.EntriesTab.RequiredMods">
+            <summary>
+            The mods (by ids), that are required to be active for this tab to be visible
             </summary>
         </member>
         <member name="F:RainWorldBestiary.EntriesTab.TitleSprite">
@@ -631,13 +631,25 @@
         </member>
         <member name="M:RainWorldBestiary.Extensions.ContainsAny(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
             <summary>
-            Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
+            Checks if <paramref name="source"/> contains any of the strings in <paramref name="values"/>
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
+            Checks if <paramref name="source"/> contains any of the strings in <paramref name="values"/>
             </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.List{``0},``0[])">
+            <summary>
+            Checks if this list contains all the values in <paramref name="values"/>
+            </summary>
+            <returns>True if all items in <paramref name="values"/> are found in this list</returns>
+        </member>
+        <member name="M:RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Checks if this list contains all the values in <paramref name="values"/>
+            </summary>
+            <returns>True if all items in <paramref name="values"/> are found in this list</returns>
         </member>
         <member name="M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
