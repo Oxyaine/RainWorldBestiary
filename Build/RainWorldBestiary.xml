@@ -263,6 +263,11 @@
             The name of this tab
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.EntriesTab.Path">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.EntriesTab.TitleSprite">
             <summary>
             The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
