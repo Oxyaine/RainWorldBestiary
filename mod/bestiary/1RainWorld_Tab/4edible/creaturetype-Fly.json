@@ -5,7 +5,8 @@
   "description": [
     {
       "unlock_id": {},
-      "body": "BESTIARY_BATFLY_BASIC_INTRODUCTION"
+      "body": "BESTIARY_BATFLY_BASIC_INTRODUCTION",
+      "unlock_pip_color": "AlwaysAvailable"
     },
     {
       "unlock_id": {

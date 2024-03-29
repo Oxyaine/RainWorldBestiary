@@ -233,11 +233,11 @@ namespace RainWorldBestiary
         enum PredefinedColors
         {
             None,
+            AlwaysAvailable,
             Combat,
             Appearance,
             Hunting,
             Utility,
-            Hiding,
             Behaviour,
         }
 
@@ -251,20 +251,20 @@ namespace RainWorldBestiary
                 {
                     switch (result)
                     {
+                        case PredefinedColors.AlwaysAvailable:
+                            UnlockPipColor = new Color(0.25f, 1f, 0.25f);
+                            break;
                         case PredefinedColors.Combat:
-                            UnlockPipColor = new Color(1f, 0.5f, 0.5f);
+                            UnlockPipColor = new Color(1f, 0.6f, 0.5f);
                             break;
                         case PredefinedColors.Appearance:
-                            UnlockPipColor = new Color(0.5f, 1f, 1f);
+                            UnlockPipColor = new Color(0.6f, 1f, 0.9f);
                             break;
                         case PredefinedColors.Hunting:
-                            UnlockPipColor = new Color(0.5f, 1f, 0.5f);
+                            UnlockPipColor = new Color(0.6f, 1f, 0.6f);
                             break;
                         case PredefinedColors.Utility:
-                            UnlockPipColor = new Color(1f, 0.5f, 1f);
-                            break;
-                        case PredefinedColors.Hiding:
-                            UnlockPipColor = new Color(0.5f, 0.5f, 1f);
+                            UnlockPipColor = new Color(1f, 0.6f, 1f);
                             break;
                         case PredefinedColors.Behaviour:
                             UnlockPipColor = new Color(0.5f, 0.5f, 1f);
