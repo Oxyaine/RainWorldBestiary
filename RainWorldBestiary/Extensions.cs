@@ -64,11 +64,14 @@ namespace RainWorldBestiary
 
 
         /// <summary>
-        /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
+        /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="values"/>
         /// </summary>
-        public static bool ContainsAny(this List<string> source, List<string> target)
+        public static bool ContainsAny(this List<string> source, List<string> values)
         {
-            foreach (string t in target)
+            if (values.Count == 0)
+                return false;
+
+            foreach (string t in values)
             {
                 if (source.Contains(t))
                     return true;
@@ -77,11 +80,14 @@ namespace RainWorldBestiary
             return false;
         }
         /// <summary>
-        /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="target"/>
+        /// Checks if <paramref name="source"/> contains any of the strings in <paramref name="values"/>
         /// </summary>
-        public static bool ContainsAny<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        public static bool ContainsAny<T>(this IEnumerable<T> source, IEnumerable<T> values)
         {
-            foreach (T t in target)
+            if (!values.Any())
+                return false;
+
+            foreach (T t in values)
             {
                 if (source.Contains(t))
                     return true;
@@ -96,17 +102,16 @@ namespace RainWorldBestiary
         /// <returns>True if all items in <paramref name="values"/> are found in this list</returns>
         public static bool ContainsAll<T>(this List<T> list, T[] values)
         {
-            bool result = true;
+            if (values.Length == 0)
+                return true;
+
             foreach (T value in values)
             {
                 if (!list.Contains(value))
-                {
-                    result = false;
-                    break;
-                }
+                    return false;
             }
 
-            return result;
+            return true;
         }
         /// <summary>
         /// Checks if this list contains all the values in <paramref name="values"/>
@@ -114,17 +119,16 @@ namespace RainWorldBestiary
         /// <returns>True if all items in <paramref name="values"/> are found in this list</returns>
         public static bool ContainsAll<T>(this IEnumerable<T> list, IEnumerable<T> values)
         {
-            bool result = true;
+            if (!values.Any())
+                return true;
+
             foreach (T value in values)
             {
                 if (!list.Contains(value))
-                {
-                    result = false;
-                    break;
-                }
+                    return false;
             }
 
-            return result;
+            return true;
         }
 
 
