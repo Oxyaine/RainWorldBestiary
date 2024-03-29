@@ -371,6 +371,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="InstructionManualMenu.cs" />
     <Compile Include="MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemixMenu.cs" />

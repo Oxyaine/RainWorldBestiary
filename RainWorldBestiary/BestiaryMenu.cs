@@ -12,6 +12,11 @@ namespace RainWorldBestiary
         readonly string BUTTON_ID = "Tab_Pressed";
         readonly string BackButtonMessage = "BACK";
 
+#if DEBUG
+        readonly string ManualButtonMessage = "MANUAL";
+        public static ProcessManager.ProcessID ManualMenu = new ProcessManager.ProcessID("Bestiary_Manual_Menu", true);
+#endif
+
         public BestiaryMenu(ProcessManager manager) : base(manager)
         {
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
@@ -57,6 +62,11 @@ namespace RainWorldBestiary
                     currentButtonY -= ButtonSizeY + ButtonSpacing;
                 }
             }
+
+#if DEBUG
+            SimpleButton manualButton = new SimpleButton(this, pages[0], "MANUAL", ManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
+            pages[0].subObjects.Add(manualButton);
+#endif
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
             pages[0].subObjects.Add(backButton);
@@ -107,6 +117,13 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Switch_Page_In);
                 manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, BestiarySettings.MenuFadeTimeSeconds);
             }
+#if DEBUG
+            else if (message.StartsWith(ManualButtonMessage))
+            {
+                PlaySound(SoundID.MENU_Switch_Page_In);
+                manager.RequestMainProcessSwitch(ManualMenu, BestiarySettings.MenuFadeTimeSeconds);
+            }
+#endif
         }
     }
 }
