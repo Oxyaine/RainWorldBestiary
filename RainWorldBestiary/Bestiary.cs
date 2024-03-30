@@ -44,8 +44,6 @@ namespace RainWorldBestiary
         /// <param name="SpecialData">All the extra data to add to the object</param>
         public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
         {
-            _cachedCheckedTokens.Clear();
-
             UnlockToken token = null;
 
             if (_ModuleUnlocks.ContainsKey(creatureID))
@@ -121,7 +119,6 @@ namespace RainWorldBestiary
         }
 
 
-        internal static Dictionary<CreatureUnlockToken, (int count, bool value)> _cachedCheckedTokens = new Dictionary<CreatureUnlockToken, (int count, bool value)>();
         /// <summary>
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
         /// </summary>
@@ -129,25 +126,18 @@ namespace RainWorldBestiary
         /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            if (_cachedCheckedTokens.TryGetValue(unlockToken, out (int count, bool value) val))
-                if (val.count <= unlockToken.Count)
-                    return val.value;
-
             if (_ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
             {
-                ushort v = 0;
                 foreach (UnlockToken token in value)
-                    if (unlockToken.Equals(token))
+                    if (unlockToken.Equals(token) && token.ContainsSpecialData(unlockToken.SpecialData))
                     {
-                        if ((v += token.Count) > unlockToken.Count)
+                        if (token.Count > unlockToken.Count)
                         {
-                            _cachedCheckedTokens.Add(unlockToken, (v, true));
                             return true;
                         }
                     }
             }
 
-            _cachedCheckedTokens.Add(unlockToken, (0, true));
             return false;
         }
 
@@ -292,7 +282,10 @@ namespace RainWorldBestiary
             Save();
         }
 
-        static IEnumerator PerformCleanupOperations()
+        /// <summary>
+        /// Removes all unlock tokens that do not, and will not, contribute to an entry's module unlocking
+        /// </summary>
+        internal static IEnumerator PerformCleanupOperations()
         {
             //for (int i = 0; i < _ModuleUnlocks.Count; i++)
             //{

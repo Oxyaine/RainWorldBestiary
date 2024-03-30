@@ -177,9 +177,9 @@ namespace RainWorldBestiary
         public override bool Equals(object obj) => obj is UnlockToken token && Equals(token);
 
         /// <remarks>
-        /// Checks if the token type matches and if <paramref name="other"/>s <see cref="SpecialData"/> is found in this <see cref="SpecialData"/>, ignores <see cref="Count"/>
+        /// Checks if the token type matches
         /// </remarks>
-        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType) && ContainsSpecialData(other.SpecialData);
+        public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType);
 
         /// <remarks>
         /// Checks if the token type matches and if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>s <see cref="SpecialData"/> is found in this <see cref="SpecialData"/>, ignores <see cref="Count"/>
@@ -189,14 +189,7 @@ namespace RainWorldBestiary
         /// <summary>
         /// Checks if <see cref="SpecialData"/> contains all the provided special data
         /// </summary>
-        public bool ContainsSpecialData(IEnumerable<string> specialData)
-        {
-            foreach (string specData in specialData)
-                if (!SpecialData.Contains(specData))
-                    return false;
-
-            return true;
-        }
+        public bool ContainsSpecialData(List<string> specialData) => SpecialData.ContainsAll(specialData);
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();

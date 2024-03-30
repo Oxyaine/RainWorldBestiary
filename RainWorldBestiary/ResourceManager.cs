@@ -287,10 +287,27 @@ namespace RainWorldBestiary
                     yield return null;
                 }
 
-                if (!Bestiary._allUniqueUnlockTokens.ContainsKey(entry.Info.UnlockID))
-                    Bestiary._allUniqueUnlockTokens.Add(entry.Info.UnlockID, tokens);
+                Main.StartCoroutinePtr(CacheTokens(entry.Info.Description));
 
                 yield return null;
+            }
+        }
+
+        static IEnumerator CacheTokens(IEnumerable<DescriptionModule> modules)
+        {
+            foreach (DescriptionModule module in modules)
+            {
+                foreach (CreatureUnlockToken token in module.UnlockIDs)
+                {
+                    if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
+                    {
+                        if (!tokens.Contains(token))
+                            tokens.Add(token);
+                    }
+                    else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { token });
+
+                    yield return null;
+                }
             }
         }
     }
