@@ -281,7 +281,7 @@ namespace RainWorldBestiary
                 else
                     manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
 #else
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
+                manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
 #endif
             }
 

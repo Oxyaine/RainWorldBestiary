@@ -71,6 +71,9 @@ namespace RainWorldBestiary
         public const string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
         public const string UnlockPip = "illustrations\\bestiary\\icons\\unlock_pip";
 
+        public const string UnlockPipUnlockedName = "unlock_pip_full";
+        public const string UnlockPipName = "unlock_pip";
+
         public const string BestiaryTitle = "illustrations\\bestiary\\titles\\Bestiary_Title";
 
         public const string UnknownFontCharacter = "illustrations\\bestiary\\icons\\Unknown_Character";

@@ -39,7 +39,7 @@ namespace RainWorldBestiary
 
 #endif
 
-public BestiaryTabMenu(ProcessManager manager) : base(manager)
+        public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 

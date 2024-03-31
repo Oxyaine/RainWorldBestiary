@@ -198,14 +198,14 @@ namespace RainWorldBestiary
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-                Singal(backObject, BackButtonMessage);
-
             if (TipLabelAlpha > 0)
             {
                 TipLabelAlpha -= Time.deltaTime / Mathf.Clamp(TipLabelAlpha, 0f, 1f);
                 TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Singal(backObject, BackButtonMessage);
 
             base.Update();
         }

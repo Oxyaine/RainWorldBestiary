@@ -230,7 +230,8 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public Color UnlockPipColor = Color.white;
 
-        enum PredefinedColors
+
+        internal enum PredefinedColors
         {
             None,
             AlwaysAvailable,
@@ -240,6 +241,27 @@ namespace RainWorldBestiary
             Utility,
             Behaviour,
         }
+        internal static Color GetColorFromPredefined(PredefinedColors color)
+        {
+            switch (color)
+            {
+                case PredefinedColors.AlwaysAvailable:
+                    return new Color(0.25f, 1f, 0.25f);
+                case PredefinedColors.Combat:
+                    return new Color(1f, 0.6f, 0.5f);
+                case PredefinedColors.Appearance:
+                    return new Color(0.6f, 1f, 0.9f);
+                case PredefinedColors.Hunting:
+                    return new Color(0.6f, 1f, 0.6f);
+                case PredefinedColors.Utility:
+                    return new Color(1f, 0.6f, 1f);
+                case PredefinedColors.Behaviour:
+                    return new Color(0.5f, 0.5f, 1f);
+                default:
+                    return Color.white;
+            }
+        }
+
 
         [JsonProperty("unlock_pip_color")]
         private string UnlockPipColor_JSON
@@ -248,32 +270,9 @@ namespace RainWorldBestiary
             set
             {
                 if (Enum.TryParse(value, true, out PredefinedColors result))
-                {
-                    switch (result)
-                    {
-                        case PredefinedColors.AlwaysAvailable:
-                            UnlockPipColor = new Color(0.25f, 1f, 0.25f);
-                            break;
-                        case PredefinedColors.Combat:
-                            UnlockPipColor = new Color(1f, 0.6f, 0.5f);
-                            break;
-                        case PredefinedColors.Appearance:
-                            UnlockPipColor = new Color(0.6f, 1f, 0.9f);
-                            break;
-                        case PredefinedColors.Hunting:
-                            UnlockPipColor = new Color(0.6f, 1f, 0.6f);
-                            break;
-                        case PredefinedColors.Utility:
-                            UnlockPipColor = new Color(1f, 0.6f, 1f);
-                            break;
-                        case PredefinedColors.Behaviour:
-                            UnlockPipColor = new Color(0.5f, 0.5f, 1f);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else UnlockPipColor = value.HexToColor();
+                    UnlockPipColor = GetColorFromPredefined(result);
+                else
+                    UnlockPipColor = value.HexToColor();
             }
         }
 

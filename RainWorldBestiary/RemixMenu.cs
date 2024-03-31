@@ -12,14 +12,14 @@ namespace RainWorldBestiary
 
         public RemixMenu()
         {
-            BestiarySettings._MenuFadeTime = config.Bind("oxyaine_bestiary_menu_fade_time", 4);
-            BestiarySettings.ShowModuleLockPips = config.Bind("oxyaine_bestiary_show_module_lock_pips", true);
-            BestiarySettings.PerformTextAnimations = config.Bind("oxyaine_bestiary_perform_text_animation", true);
+            BestiarySettings._MenuFadeTime = config.Bind("bestiary_menu_fade_time", 4);
+            BestiarySettings.ShowModuleLockPips = config.Bind("bestiary_show_module_lock_pips", true);
+            BestiarySettings.PerformTextAnimations = config.Bind("bestiary_perform_text_animation", true);
 
-            BestiarySettings.ShowEntryUnlockPercent = config.Bind("oxyaine_bestiary_show_entry_unlock_percent_EXP", false);
-            BestiarySettings.MinimizeTitleSpacing = config.Bind("oxyaine_bestiary_use_characters_spacing_for_names_EXP", false);
+            BestiarySettings.ShowEntryUnlockPercent = config.Bind("bestiary_show_entry_unlock_percent_EXP", false);
+            BestiarySettings.MinimizeTitleSpacing = config.Bind("bestiary_use_characters_spacing_for_names_EXP", false);
 
-            BestiarySettings.UnlockAllEntries = config.Bind("oxyaine_bestiary_unlock_all_entries", false);
+            BestiarySettings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
         }
 
         public override void Initialize()
