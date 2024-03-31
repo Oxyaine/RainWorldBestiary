@@ -108,11 +108,12 @@ namespace RainWorldBestiary
             {
                 foreach (UnlockToken token in tokens)
                 {
-                    if (token.TokenType == unlockToken.TokenType && unlockToken.Count >= token.Count && unlockToken.ContainsSpecialData(token.SpecialData))
+                    if (token.Equals(unlockToken, true) && unlockToken.Count >= token.Count)
                     {
                         CreatureUnlockIDs.Add(creatureID);
                         yield break;
                     }
+
                     yield return null;
                 }
             }

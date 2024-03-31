@@ -101,6 +101,11 @@
             Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Bestiary.PerformCleanupOperations">
+            <summary>
+            Removes all unlock tokens that do not, and will not, contribute to an entry's module unlocking
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.Description">
             <summary>
             A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
@@ -707,6 +712,13 @@
             Converts this Color into a hex color string, with 8 characters in the string, representing ARGB
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Extensions.IndexOf(System.String,System.Char,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:System.String.IndexOf(System.Char,System.Int32)"/>
+            <param name="text"></param>
+            <param name="value"></param>
+            <param name="startIndex"></param>
+            <param name="ignoreWithinQuotes">Whether to ignore if the character is found within double quotes</param>
+        </member>
         <member name="T:RainWorldBestiary.Translator">
             <summary>
             A class for custom translation behaviour
@@ -952,7 +964,7 @@
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)">
             <remarks>
-            Checks if the token type matches and if <paramref name="other"/>s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
+            Checks if the token type matches
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken,System.Boolean)">
@@ -960,7 +972,7 @@
             Checks if the token type matches and if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
             </remarks>
         </member>
-        <member name="M:RainWorldBestiary.UnlockToken.ContainsSpecialData(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:RainWorldBestiary.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})">
             <summary>
             Checks if <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> contains all the provided special data
             </summary>

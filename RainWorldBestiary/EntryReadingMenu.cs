@@ -160,6 +160,23 @@ namespace RainWorldBestiary
             sprite.RemoveFromContainer();
         }
 
+#if !DEBUG
+        private static string RemoveStructures(string text)
+        {
+            string result = text;
+            int currentPosition = 0;
+            while ((currentPosition = result.IndexOf('<', currentPosition)) != -1)
+            {
+                int lastPosition = result.IndexOf('>', currentPosition);
+                int eqp = result.IndexOf('=', currentPosition);
+                int lEqp = result.LastIndexOf('=', lastPosition);
+                result = result.Replace(result.Substring(currentPosition, lastPosition + 1 - currentPosition), result.Substring(eqp + 1, lEqp - eqp - 1).Trim('\"'));
+                currentPosition = lastPosition + 1;
+            }
+            return result;
+        }
+#endif
+
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
@@ -177,11 +194,11 @@ namespace RainWorldBestiary
 
             if (BestiarySettings.PerformTextAnimations.Value)
             {
-                routine = Main.StartCoroutinePtr(PerformTextAnimation(entry.Info.Description.ToString().WrapText(WrapCount), screenSize));
+                routine = Main.StartCoroutinePtr(PerformTextAnimation(RemoveStructures(entry.Info.Description.ToString()).WrapText(WrapCount), screenSize));
             }
             else
             {
-                MenuLabel label = new MenuLabel(this, pages[0], entry.Info.Description.ToString().WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+                MenuLabel label = new MenuLabel(this, pages[0], RemoveStructures(entry.Info.Description.ToString()).WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
                 pages[0].subObjects.Add(label);
             }
 #endif
@@ -367,7 +384,8 @@ namespace RainWorldBestiary
         }
 
         // Current Valid Structures
-        // References: <ref="World!"=Rain World/Batfly>
+        // References:  <ref="Hello!"=Rain World/creaturetype-Fly>
+        // Colors:      <color="Hello!"=FFFFFF>
 
         private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
         {
@@ -449,10 +467,10 @@ namespace RainWorldBestiary
         }
         private static StructureData DecipherStructure(in string text, int startingPosition, out int lastPosition)
         {
-            lastPosition = text.IndexOf('>', startingPosition);
+            lastPosition = text.IndexOf('>', startingPosition, true);
 
             string t = text.Substring(startingPosition, lastPosition - startingPosition);
-            string[] split = t.Split('=');
+            string[] split = SplitStructure(t);
 
             Enum.TryParse(split[0], true, out StructureType type);
             string message = type != StructureType.PlainText ? split[1].Trim('\"') : t;
@@ -460,6 +478,11 @@ namespace RainWorldBestiary
 
             ++lastPosition;
             return new StructureData(type, message, otherData);
+        }
+        private static string[] SplitStructure(string text)
+        {
+            int firstEquals = text.IndexOf('='), lastEquals = text.LastIndexOf('=');
+            return new string[3] { text.Substring(0, firstEquals), text.Substring(firstEquals + 1, lastEquals), text.Substring(lastEquals) };
         }
 
         private int GetStartingYPosition(int lines, int screenSizeY)

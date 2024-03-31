@@ -238,6 +238,30 @@ namespace RainWorldBestiary
         {
             return $"{color.a:X2}{color.r:X2}{color.g:X2}{color.b:X2}";
         }
+
+        /// <inheritdoc cref="string.IndexOf(char, int)"/>
+        /// <param name="text"></param>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="ignoreWithinQuotes">Whether to ignore if the character is found within double quotes</param>
+        public static int IndexOf(this string text, char value, int startIndex, bool ignoreWithinQuotes)
+        {
+            if (!ignoreWithinQuotes)
+                return text.IndexOf(value, startIndex);
+
+            bool inQuotes = false;
+
+            int length = text.Length;
+            for (int i = startIndex; i < length; ++i)
+            {
+                if (!inQuotes && text[i].Equals(value))
+                    return i;
+                else if (text[i].Equals('\"'))
+                    inQuotes = !inQuotes;
+            }
+
+            return -1;
+        }
     }
 
     /// <summary>
