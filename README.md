@@ -297,4 +297,4 @@ Special data is data that can be added to unlock tokens to give some specifics t
 # Future Plans
 
 I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows.
-There's a couple things I still plan to add, you can see some stuff I may be working on [here](https://github.com/Oxyaine/RainWorldBestiary/blob/master/ToAdd.md).
+There's a couple things I still plan to add, you can see some stuff I may be working on [here](https://github.com/Oxyaine/RainWorldBestiary/blob/master/Ideas.md).
