@@ -488,7 +488,7 @@ namespace RainWorldBestiary
         private static string[] SplitStructure(string text)
         {
             int firstEquals = text.IndexOf('='), lastEquals = text.LastIndexOf('=');
-            return new string[3] { text.Substring(0, firstEquals), text.Substring(firstEquals + 1, lastEquals), text.Substring(lastEquals) };
+            return new string[3] { text.Substring(0, firstEquals), text.Substring(firstEquals + 1, lastEquals - firstEquals - 1), text.Substring(lastEquals + 1) };
         }
 
         private int GetStartingYPosition(int lines, int screenSizeY)
