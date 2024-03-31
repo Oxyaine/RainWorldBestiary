@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary
 {
-    internal class EntryReadingMenu : Dialog
+    internal class BestiaryReadingMenu : Dialog
     {
 #if DEBUG
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
@@ -20,7 +20,7 @@ namespace RainWorldBestiary
         readonly int WrapCount = 180;
 
         readonly string BackButtonMessage = "BACK";
-        public EntryReadingMenu(ProcessManager manager) : base(manager)
+        public BestiaryReadingMenu(ProcessManager manager) : base(manager)
         {
             try
             {
@@ -428,7 +428,7 @@ namespace RainWorldBestiary
                         {
                             float xSize = sizes[currentSizeIndex] * 1.5f;
 
-                            SimpleButton button = new SimpleButton(menu, owner, structure.Message, EntryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
+                            SimpleButton button = new SimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
                                 new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                             {
                                 rectColor = new HSLColor(0f, 0f, 0f),

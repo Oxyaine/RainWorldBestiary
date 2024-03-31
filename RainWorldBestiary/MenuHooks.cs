@@ -74,15 +74,15 @@ namespace RainWorldBestiary
             {
                 if (ID == Main.BestiaryTabMenu)
                 {
-                    self.currentMainLoop = new BestiaryMenu(self);
+                    self.currentMainLoop = new BestiaryTabMenu(self);
                 }
                 else if (ID == Main.BestiaryEntryMenu)
                 {
-                    self.currentMainLoop = new BestiaryTabMenu(self);
+                    self.currentMainLoop = new BestiaryEntryMenu(self);
                 }
                 else if (ID == Main.BestiaryReadingMenu)
                 {
-                    self.currentMainLoop = new EntryReadingMenu(self);
+                    self.currentMainLoop = new BestiaryReadingMenu(self);
                 }
                 else if (ID == ErrorManager.BestiaryErrorMenu)
                 {

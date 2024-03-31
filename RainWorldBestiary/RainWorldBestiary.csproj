@@ -361,14 +361,14 @@
   <ItemGroup>
     <Compile Include="Bestiary.cs" />
     <Compile Include="ErrorManager.cs" />
-    <Compile Include="BestiaryMenu.cs" />
-    <Compile Include="BestiarySaveData.cs" />
     <Compile Include="BestiaryTabMenu.cs" />
+    <Compile Include="BestiarySaveData.cs" />
+    <Compile Include="BestiaryEntryMenu.cs" />
     <Compile Include="CreatureHooks.cs" />
     <Compile Include="Description.cs" />
     <Compile Include="EntriesTab.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="EntryReadingMenu.cs" />
+    <Compile Include="BestiaryReadingMenu.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="InstructionManualPage.cs" />

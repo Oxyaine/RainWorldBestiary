@@ -30,8 +30,10 @@ namespace RainWorldBestiary
         public InstructionManualPage(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            topicName = menu.Translate((menu as InstructionManualDialog).TopicName((menu as InstructionManualDialog).currentTopic));
-            MenuLabel item = new MenuLabel(menu, owner, topicName, new Vector2(15f + (menu as InstructionManualDialog).contentOffX, 475f), default, bigText: true)
+            InstructionManualDialog instructionMenu = menu as InstructionManualDialog;
+
+            topicName = menu.Translate(instructionMenu.TopicName(instructionMenu.currentTopic));
+            MenuLabel item = new MenuLabel(menu, owner, topicName, new Vector2(15f + instructionMenu.contentOffX, 475f), Vector2.one, bigText: true)
             {
                 label =
             {
@@ -46,10 +48,10 @@ namespace RainWorldBestiary
                 color = new Color(0.7f, 0.7f, 0.7f)
             };
             Container.AddChild(headingSeparator);
-            belowHeaderPos = new Vector2(-2f + (menu as InstructionManualDialog).contentOffX, 448f);
-            belowHeaderPosCentered = new Vector2(rectWidth / 2f + (menu as InstructionManualDialog).contentOffX, 448f);
+            belowHeaderPos = new Vector2(-2f + instructionMenu.contentOffX, 448f);
+            belowHeaderPosCentered = new Vector2(rectWidth / 2f + instructionMenu.contentOffX, 448f);
             textWidth = rectWidth * 0.92f;
-            textLeftMargin = (rectWidth - textWidth) / 2f + (menu as InstructionManualDialog).contentOffX;
+            textLeftMargin = (rectWidth - textWidth) / 2f + instructionMenu.contentOffX;
             spaceBuffer = 40f;
             if (menu.CurrLang == InGameTranslator.LanguageID.Spanish)
             {
