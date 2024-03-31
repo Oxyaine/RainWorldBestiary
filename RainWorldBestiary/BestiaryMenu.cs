@@ -1,4 +1,5 @@
 ﻿using Menu;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -14,10 +15,30 @@ namespace RainWorldBestiary
 
 #if DEBUG
         readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
-        public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("BestiaryInstructionManualMenu", true);
+        public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
+        internal readonly Dictionary<InstructionManualPages, int>  ManualTopics = new Dictionary<InstructionManualPages, int>
+        {
+            {
+                InstructionManualPages.Introduction,
+                1
+            },
+            {
+                InstructionManualPages.Tabs,
+                1
+            },
+            {
+                InstructionManualPages.Entries,
+                1
+            },
+            {
+                InstructionManualPages.Unlocking,
+                1
+            }
+        };
+
 #endif
 
-        public BestiaryMenu(ProcessManager manager) : base(manager)
+public BestiaryMenu(ProcessManager manager) : base(manager)
         {
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
@@ -121,7 +142,10 @@ namespace RainWorldBestiary
             else if (message.StartsWith(InstructionManualButtonMessage))
             {
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.RequestMainProcessSwitch(InstructionManualMenu, BestiarySettings.MenuFadeTimeSeconds);
+
+                InstructionManualDialog dialog = new InstructionManualDialog(manager, ManualTopics);
+                PlaySound(SoundID.MENU_Player_Join_Game);
+                manager.ShowDialog(dialog);
             }
 #endif
         }

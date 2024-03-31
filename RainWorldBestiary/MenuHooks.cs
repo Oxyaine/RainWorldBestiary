@@ -88,12 +88,6 @@ namespace RainWorldBestiary
                 {
                     self.currentMainLoop = new ErrorManager(self);
                 }
-#if DEBUG
-                else if (ID == BestiaryMenu.InstructionManualMenu)
-                {
-                    self.currentMainLoop = new InstructionManualMenu(self);
-                }
-#endif
             });
         }
         private static void MainMenu_AddMainMenuButton(ILContext il)
