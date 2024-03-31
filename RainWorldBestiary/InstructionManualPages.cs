@@ -76,7 +76,7 @@ namespace RainWorldBestiary
             AddPips(menu, 5, DescriptionModule.GetColorFromPredefined(DescriptionModule.PredefinedColors.Behaviour), true);
 
             float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_TITLE"), belowHeaderPos.y - 50 - spaceBuffer * 2f);
-            AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_1"), startY - 70, bigText: false, centered: false, rectWidth * 0.8f);
+            AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_1"), startY - 50, bigText: false, centered: false, rectWidth * 0.8f);
         }
 
         private void AddPips(Menu.Menu menu, int count, Color color, bool includeTitlePip = false)
