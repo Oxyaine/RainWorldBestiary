@@ -36,7 +36,11 @@ namespace RainWorldBestiary
             backObject = backButton;
 
             CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize, out MenuObject firstEntryButton);
-            GetTabTitle(Bestiary.CurrentSelectedTab, in screenSize);
+
+            FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(Bestiary.CurrentSelectedTab, in screenSize);
+            foreach (FSprite sprite in titleSprites)
+                pages[0].Container.AddChild(sprite);
+
 
             if (Bestiary.EnteringMenu)
                 selectedObject = firstEntryButton;
@@ -47,30 +51,6 @@ namespace RainWorldBestiary
             pages[0].subObjects.Add(TipLabel);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-        }
-
-        public void GetTabTitle(EntriesTab tab, in Vector2 screenSize)
-        {
-            if (tab.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(tab.TitleSprite.ElementName))
-            {
-                FSprite sprite = new FSprite(tab.TitleSprite.ElementName)
-                {
-                    scale = 0.3f * tab.TitleSprite.Scale,
-                    x = screenSize.x / 2f + tab.TitleSprite.XOffset,
-                    y = screenSize.y - 50f - tab.TitleSprite.YOffset
-                };
-                pages[0].Container.AddChild(sprite);
-            }
-            else
-            {
-                GeneratedFontText fontText = ResourceManager.GetCustomFontByName("rodondo").Generate(tab.Name);
-                fontText.X = (screenSize.x / 2f) - (fontText.TotalWidth / 2f);
-                fontText.Y = screenSize.y - 50f;
-
-                FSprite[] sprites = fontText.Finalize();
-                for (int i = 0; i < sprites.Length; i++)
-                    pages[0].Container.AddChild(sprites[i]);
-            }
         }
 
         private readonly int ButtonSizeX = 155;

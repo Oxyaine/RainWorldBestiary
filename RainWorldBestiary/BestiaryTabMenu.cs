@@ -14,6 +14,7 @@ namespace RainWorldBestiary
         readonly string BackButtonMessage = "BACK";
 
 #if DEBUG
+
         readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
         public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
         internal readonly Dictionary<InstructionManualPages, int>  ManualTopics = new Dictionary<InstructionManualPages, int>
@@ -58,14 +59,15 @@ public BestiaryTabMenu(ProcessManager manager) : base(manager)
             };
             pages[0].Container.AddChild(darkSprite);
 
-            FSprite bestiaryTitle = new FSprite(ResourceManager.BestiaryTitle)
+            MenuIllustration menuIllustration = new MenuIllustration(this, pages[0], "illustrations\\bestiary\\titles", "Bestiary_Title", new Vector2(screenSize.x / 2, screenSize.y - 100), false, true)
             {
                 color = new Color(162f, 157f, 170f),
-                scale = 0.6f,
-                x = screenSize.x / 2,
-                y = screenSize.y - 100
+                sprite =
+                {
+                    scale = 0.6f
+                }
             };
-            pages[0].Container.AddChild(bestiaryTitle);
+            pages[0].subObjects.Add(menuIllustration);
 
             int X = (int)screenSize.x / 2 - ButtonSizeX / 2;
             int currentButtonY = (int)screenSize.y - ButtonSizeY - ButtonSpacing - 200;

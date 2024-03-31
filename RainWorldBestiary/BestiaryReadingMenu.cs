@@ -209,31 +209,13 @@ namespace RainWorldBestiary
             }
 #endif
 
-            if (entry.Info.TitleSprite != null && Futile.atlasManager.DoesContainElementWithName(entry.Info.TitleSprite.ElementName))
-            {
-                FSprite sprite = new FSprite(entry.Info.TitleSprite.ElementName)
-                {
-                    scale = 0.3f * entry.Info.TitleSprite.Scale,
-                    x = screenSize.x / 2f + entry.Info.TitleSprite.XOffset,
-                    y = screenSize.y - 50f - entry.Info.TitleSprite.YOffset
-                };
+
+            FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(entry, in screenSize, out float spriteWidth);
+            foreach (FSprite sprite in titleSprites)
                 pages[0].Container.AddChild(sprite);
 
-                widthOffset = sprite.width / 2f;
-            }
-            else
-            {
-                GeneratedFontText fontText = ResourceManager.GetCustomFontByName("rodondo").Generate(Translator.Translate(entry.Name));
+            widthOffset = spriteWidth / 2f;
 
-                fontText.X = (screenSize.x / 2f) - (fontText.TotalWidth / 2f);
-                fontText.Y = screenSize.y - 50f;
-
-                FSprite[] sprites = fontText.Finalize();
-                for (int i = 0; i < sprites.Length; i++)
-                    pages[0].Container.AddChild(sprites[i]);
-
-                widthOffset = fontText.TotalWidth / 2f;
-            }
 
             if (entry.Info.IconsNextToTitle)
             {
@@ -262,6 +244,8 @@ namespace RainWorldBestiary
                     }
                 }
             }
+
+
 
             if (BestiarySettings.ShowModuleLockPips.Value)
             {

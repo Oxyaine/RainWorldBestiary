@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Menu;
 
 namespace RainWorldBestiary
 {
@@ -86,6 +87,32 @@ namespace RainWorldBestiary
 
             return new GeneratedFontText(sprites, currentX);
         }
+
+        public GeneratedFontTextIllustrations GenerateIllustrations(ref Menu.Menu menu, ref MenuObject owner, string text)
+        {
+            int textLength = text.Length;
+            MenuIllustration[] sprites = new MenuIllustration[textLength];
+
+            float currentX = 0;
+            for (int i = 0; i < textLength; i++)
+            {
+                if (FontCharacters.TryGetValue(char.ToLower(text[i]), out string atlasName))
+                {
+                    sprites[i] = new MenuIllustration(menu, owner, Path.GetDirectoryName(atlasName), Path.GetFileName(atlasName), new UnityEngine.Vector2(currentX, 0), false, true);
+
+                    if (BestiarySettings.MinimizeTitleSpacing.Value)
+                        currentX += sprites[i].sprite.width;
+                    else
+                        currentX += MinCharacterSize;
+                }
+                else
+                {
+
+                }
+            }
+
+            return new GeneratedFontTextIllustrations(sprites, currentX);
+        }
     }
     internal class GeneratedFontText
     {
@@ -108,6 +135,33 @@ namespace RainWorldBestiary
                 Sprites[i].x += X;
                 Sprites[i].y += Y;
                 Sprites[i].scale *= Scale;
+            }
+
+            return Sprites;
+        }
+    }
+
+    internal class GeneratedFontTextIllustrations
+    {
+        public float X = 0, Y = 0;
+        public float Scale = 1;
+
+        public readonly float TotalWidth;
+        readonly MenuIllustration[] Sprites;
+
+        public GeneratedFontTextIllustrations(MenuIllustration[] sprites, float totalWidth)
+        {
+            Sprites = sprites;
+            TotalWidth = totalWidth;
+        }
+
+        public MenuIllustration[] Finalize()
+        {
+            for (int i = 0; i < Sprites.Length; i++)
+            {
+                Sprites[i].pos.x += X;
+                Sprites[i].pos.y += Y;
+                Sprites[i].sprite.scale *= Scale;
             }
 
             return Sprites;

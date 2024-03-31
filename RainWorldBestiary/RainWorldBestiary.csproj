@@ -379,6 +379,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemixMenu.cs" />
     <Compile Include="ResourceManager.cs" />
+    <Compile Include="SharedMenuUtilities.cs" />
     <Compile Include="TitleSprite.cs" />
     <Compile Include="UnlockTokens.cs" />
   </ItemGroup>
