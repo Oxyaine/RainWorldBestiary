@@ -130,6 +130,8 @@ namespace RainWorldBestiary
             MenuLabel label = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
             pages[0].subObjects.Add(label);
 
+
+
             const int IncreaseAmount = 10;
             int cache = text.Length,
                 countBeforeIconRemoval = cache / characters,
