@@ -1,8 +1,11 @@
 ﻿using Menu;
 using System;
-using System.Collections;
+#if DEBUG
 using System.Collections.Generic;
 using System.Linq;
+#else
+using System.Collections;
+#endif
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -10,7 +13,7 @@ namespace RainWorldBestiary
     internal class EntryReadingMenu : Dialog
     {
 #if DEBUG
-        internal const string ENTRY_REFERENCE_ID = "Referenced_To;";
+        internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
 #endif
 
@@ -78,10 +81,12 @@ namespace RainWorldBestiary
         {
             base.ShutDownProcess();
 
+#if !DEBUG
             if (routine != null)
                 Main.StopCoroutinePtr(routine);
+#endif
         }
-
+#if !DEBUG
         Coroutine routine = null;
         IEnumerator PerformTextAnimation(string text, Vector2 screenSize)
         {
@@ -160,7 +165,6 @@ namespace RainWorldBestiary
             sprite.RemoveFromContainer();
         }
 
-#if !DEBUG
         private static string RemoveStructures(string text)
         {
             string result = text;
