@@ -8,6 +8,8 @@ namespace RainWorldBestiary
         readonly string BackButtonMessage = "BACK";
         readonly string EntryPressedID = "Read_Entry_";
 
+        private bool Closing = false;
+
         public BestiaryEntryMenu(ProcessManager manager) : base(manager)
         {
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
@@ -153,6 +155,8 @@ namespace RainWorldBestiary
         {
             if (message.Equals(BackButtonMessage))
             {
+                Closing = true;
+
                 Bestiary.EnteringMenu = false;
 
                 PlaySound(SoundID.MENU_Switch_Page_Out);
@@ -204,7 +208,7 @@ namespace RainWorldBestiary
                 TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !Closing)
                 Singal(backObject, BackButtonMessage);
 
             base.Update();

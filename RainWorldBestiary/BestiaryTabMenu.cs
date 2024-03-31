@@ -13,6 +13,8 @@ namespace RainWorldBestiary
         readonly string BUTTON_ID = "Tab_Pressed";
         readonly string BackButtonMessage = "BACK";
 
+        private bool Closing = false;
+
 #if DEBUG
 
         readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
@@ -106,16 +108,19 @@ namespace RainWorldBestiary
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !ManualOpen && !Closing)
                 Singal(backObject, BackButtonMessage);
 
             base.Update();
         }
 
+        private bool ManualOpen = false;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
             {
+                Closing = true;
+
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 manager.RequestMainProcessSwitch(ProcessManager.ProcessID.MainMenu);
@@ -143,8 +148,7 @@ namespace RainWorldBestiary
 #if DEBUG
             else if (message.StartsWith(InstructionManualButtonMessage))
             {
-                PlaySound(SoundID.MENU_Switch_Page_In);
-
+                ManualOpen = true;
                 InstructionManualDialog dialog = new InstructionManualDialog(manager, ManualTopics);
                 PlaySound(SoundID.MENU_Player_Join_Game);
                 manager.ShowDialog(dialog);

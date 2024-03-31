@@ -17,6 +17,8 @@ namespace RainWorldBestiary
         readonly string ReturnButtonMessage = "RETURN";
 #endif
 
+        private bool Closing = false;
+
         readonly int WrapCount = 180;
 
         readonly string BackButtonMessage = "BACK";
@@ -267,6 +269,8 @@ namespace RainWorldBestiary
         {
             if (message.Equals(BackButtonMessage))
             {
+                Closing = true;
+
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
@@ -324,7 +328,7 @@ namespace RainWorldBestiary
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !Closing)
                 Singal(backObject, BackButtonMessage);
 
             base.Update();

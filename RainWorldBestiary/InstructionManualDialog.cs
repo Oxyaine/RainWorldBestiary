@@ -3,6 +3,7 @@
 using Menu;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace RainWorldBestiary
 {
@@ -23,6 +24,21 @@ namespace RainWorldBestiary
             catch
             {
             }
+        }
+        public override void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && !closing)
+                Singal(backObject, "CLOSE");
+
+            base.Update();
+        }
+
+        public override void Singal(MenuObject sender, string message)
+        {
+            if (message.Equals("CLOSE"))
+                PlaySound(SoundID.MENU_Player_Unjoin_Game);
+
+            base.Singal(sender, message);
         }
 
         public override void GetManualPage(string topicString, int pageNumber)
