@@ -46,10 +46,8 @@ BESTIARY_MANUAL_ENTRIES_1|E
 BESTIARY_MANUAL_ENTRIES_2|E
 BESTIARY_MANUAL_ENTRIES_3|E
 
-BESTIARY_MANUAL_UNLOCKING_TITLE|UNLOCKING
-BESTIARY_MANUAL_UNLOCKING_1|E
-BESTIARY_MANUAL_UNLOCKING_2|E
-BESTIARY_MANUAL_UNLOCKING_3|E
+BESTIARY_MANUAL_UNLOCKING_TITLE|Unlocking entries happens as you play; By interacting with different creatures, observing their behaviours, and discovering new things about them, entries will slowly unlock to unravel the truths about the creature and what techniques they use to hunt, as well as what you could do to avoid them.
+BESTIARY_MANUAL_UNLOCKING_1|Each entry will show unlock pips while you are viewing them, these pips indicate how many parts of the description you have unlocked, and can also tell you which parts you are missing.
 
 Menu Fade Time|Menu Fade Time
 Show Unlock Pips|Show Unlock Pips

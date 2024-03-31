@@ -36,7 +36,10 @@ namespace RainWorldBestiary
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals("CLOSE"))
+            {
                 PlaySound(SoundID.MENU_Player_Unjoin_Game);
+                BestiaryTabMenu.ManualOpen = false;
+            }
 
             base.Singal(sender, message);
         }
@@ -67,17 +70,18 @@ namespace RainWorldBestiary
 
             if (jollyManualPages == InstructionManualPages.Unlocking)
             {
-                //switch (pageNumber)
-                //{
-                //    case 0:
-                //        currentTopicPage = new CameraFirst(this, pages[1]);
-                //        break;
-                //    case 1:
-                //        currentTopicPage = new CameraSecond(this, pages[1]);
-                //        break;
-                //}
-
-                currentTopicPage = new UnlockingPage(this, pages[1]);
+                switch (pageNumber)
+                {
+                    case 0:
+                        currentTopicPage = new UnlockingPageFirst(this, pages[1]);
+                        break;
+                    case 1:
+                        currentTopicPage = new UnlockingPageSecond(this, pages[1]);
+                        break;
+                    case 2:
+                        currentTopicPage = new UnlockingPageThird(this, pages[1]);
+                        break;
+                }
             }
 
             pages[1].subObjects.Add(currentTopicPage);

@@ -35,7 +35,7 @@ namespace RainWorldBestiary
             },
             {
                 InstructionManualPages.Unlocking,
-                1
+                3
             }
         };
 
@@ -109,12 +109,12 @@ namespace RainWorldBestiary
         public override void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !ManualOpen && !Closing)
-                Singal(backObject, BackButtonMessage);
+                    Singal(backObject, BackButtonMessage);
 
             base.Update();
         }
 
-        private bool ManualOpen = false;
+        internal static bool ManualOpen = false;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))

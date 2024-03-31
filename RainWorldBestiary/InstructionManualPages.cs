@@ -58,26 +58,25 @@ namespace RainWorldBestiary
             AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.6f);
         }
     }
-    internal class UnlockingPage : InstructionManualPage
+    internal class UnlockingPageFirst : InstructionManualPage
     {
-        float currentPipY;
-        float pipX;
+        float PipY;
+        float PipX;
         readonly System.Random random = new System.Random();
 
-        public UnlockingPage(Menu.Menu menu, MenuObject owner)
+        public UnlockingPageFirst(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            currentPipY = belowHeaderPosCentered.y - 50;
-            pipX = belowHeaderPosCentered.x - 270;
+            PipY = belowHeaderPosCentered.y - 45;
+            PipX = belowHeaderPosCentered.x - 180;
 
             AddPips(menu, 1, DescriptionModule.GetColorFromPredefined(DescriptionModule.PredefinedColors.Appearance), true);
             AddPips(menu, 4, DescriptionModule.GetColorFromPredefined(DescriptionModule.PredefinedColors.Hunting), true);
             AddPips(menu, 5, DescriptionModule.GetColorFromPredefined(DescriptionModule.PredefinedColors.Utility), true);
             AddPips(menu, 5, DescriptionModule.GetColorFromPredefined(DescriptionModule.PredefinedColors.Behaviour), true);
 
-            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
-            string text = menu.Translate("BESTIARY_MANUAL_UNLOCKING_1") + "\n" + menu.Translate("BESTIARY_MANUAL_UNLOCKING_2") + "\n" + menu.Translate("BESTIARY_MANUAL_UNLOCKING_3");
-            AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.6f);
+            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_TITLE"), belowHeaderPos.y - 50 - spaceBuffer * 2f);
+            AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_1"), startY - 70, bigText: false, centered: false, rectWidth * 0.8f);
         }
 
         private void AddPips(Menu.Menu menu, int count, Color color, bool includeTitlePip = false)
@@ -85,14 +84,76 @@ namespace RainWorldBestiary
             if (includeTitlePip)
             {
                 AddPip(menu, Color.white);
-                currentPipY -= 20;
+                PipX += 20;
             }
 
             for (int i = 0; i < count; i++)
             {
                 AddPip(menu, color);
-                currentPipY -= 20;
+                PipX += 20;
             }
+        }
+
+        private void AddPip(Menu.Menu menu, Color color)
+        {
+            MenuIllustration pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", random.NextDouble() >= 0.5 ? ResourceManager.UnlockPipUnlockedName : ResourceManager.UnlockPipName,new Vector2(PipX, PipY), true, true)
+            {
+                color = color,
+                sprite =
+                    {
+                        scale = 2f
+                    }
+            };
+            subObjects.Add(pip);
+        }
+    }
+
+    internal class UnlockingPageSecond : InstructionManualPage
+    {
+        float currentPipY;
+        float pipX;
+        readonly System.Random random = new System.Random();
+
+        public UnlockingPageSecond(Menu.Menu menu, MenuObject owner)
+            : base(menu, owner)
+        {
+            currentPipY = belowHeaderPosCentered.y - 50;
+            pipX = belowHeaderPosCentered.x - 270;
+
+            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
+            string text = menu.Translate("BESTIARY_MANUAL_UNLOCKING_1") + "\n" + menu.Translate("BESTIARY_MANUAL_UNLOCKING_2") + "\n" + menu.Translate("BESTIARY_MANUAL_UNLOCKING_3");
+            AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.8f);
+        }
+
+
+        private void AddPip(Menu.Menu menu, Color color)
+        {
+            MenuIllustration pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", random.NextDouble() >= 0.5 ? ResourceManager.UnlockPipUnlockedName : ResourceManager.UnlockPipName,
+                                new Vector2(pipX, currentPipY), true, true)
+            {
+                color = color,
+                sprite =
+                    {
+                        scale = 2f
+                    }
+            };
+            subObjects.Add(pip);
+        }
+    }
+    internal class UnlockingPageThird : InstructionManualPage
+    {
+        float currentPipY;
+        float pipX;
+        readonly System.Random random = new System.Random();
+
+        public UnlockingPageThird(Menu.Menu menu, MenuObject owner)
+            : base(menu, owner)
+        {
+            currentPipY = belowHeaderPosCentered.y - 50;
+            pipX = belowHeaderPosCentered.x - 270;
+
+            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
+            AddManualText(menu.Translate("BESTIARY_MANUAL_UNLOCKING_1"), startY - 100, bigText: false, centered: false, rectWidth * 0.8f);
         }
 
         private void AddPip(Menu.Menu menu, Color color)
