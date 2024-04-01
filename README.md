@@ -10,9 +10,9 @@ You can [report any bugs or issues you encounter here](https://github.com/Oxyain
 
 ## First Things First
 ### *While it is possible to add entries through code, I would advise to avoid doing that:*
-Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So try to use the method described below and in this entire README file.
+Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So instead, try to use the method described below and in this entire README file.
 
-You make entries by creating JSON files in a specific folder within your mod, the resource manager will automatically load these entries if your mod is available, it will also automatically unload your entries once your mod is disabled.
+You can make entries by creating JSON files in a specific folder within your mod, and the resource manager will automatically load these entries if your mod is active, it will also automatically unload your entries once your mod is disabled.
 
 ### *To make things easier to understand, you should download the template folder above as an example to help you get a hang of things:*
 This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
@@ -287,14 +287,3 @@ Special data is data that can be added to unlock tokens to give some specifics t
 	- Adds the unlock name of the creature that was attacked
 * Observe Rivals: When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
 	- Adds the unlock name of the creature that this creature was competing with
-
-
-
-#
-#
-#
-
-# Future Plans
-
-I plan to continue keeping this mod up to date for a while, as well as bug fixes all around. I'll try to make it clear when I've stopped working on this project, and maybe someone else will take over the project and continue working on it, who knows.
-There's a couple things I still plan to add, you can see some stuff I may be working on [here](https://github.com/Oxyaine/RainWorldBestiary/blob/master/Ideas.md).
