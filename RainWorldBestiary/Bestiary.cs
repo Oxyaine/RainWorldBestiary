@@ -12,6 +12,8 @@ namespace RainWorldBestiary
     /// </summary>
     public static class Bestiary
     {
+        internal static MenuResources MenuResources = null;
+
         // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
 

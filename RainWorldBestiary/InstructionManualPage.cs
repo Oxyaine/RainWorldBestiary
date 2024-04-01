@@ -1,6 +1,4 @@
-﻿#if DEBUG
-
-using Menu;
+﻿using Menu;
 using Menu.Remix.MixedUI;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -104,5 +102,3 @@ namespace RainWorldBestiary
         }
     }
 }
-
-#endif

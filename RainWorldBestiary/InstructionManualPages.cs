@@ -1,5 +1,4 @@
-﻿#if DEBUG
-using Menu;
+﻿using Menu;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -30,10 +29,6 @@ namespace RainWorldBestiary
         public TabsPage(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            //MenuIllustration menuIllustration = new MenuIllustration(menu, owner, "", "", belowHeaderPosCentered - verticalBuffer, crispPixels: true, anchorCenter: true);
-            //menuIllustration.sprite.SetAnchor(0.5f, 1f);
-            //subObjects.Add(menuIllustration);
-
             float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_TABS_TITLE"), belowHeaderPos.y /*- menuIllustration.sprite.height*/ - spaceBuffer * 2f);
             string text = menu.Translate("BESTIARY_MANUAL_TABS_1") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_2") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_3");
             AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.6f);
@@ -44,7 +39,7 @@ namespace RainWorldBestiary
         public EntriesPage(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            MenuIllustration menuIllustration = new MenuIllustration(menu, owner, "illustrations\\bestiary\\titles", "The_Survivor_Title", belowHeaderPosCentered - verticalBuffer, crispPixels: false, anchorCenter: true)
+            MenuIllustration menuIllustration = new MenuIllustration(menu, owner, Bestiary.MenuResources.IllustrationsTitlesPath, "The_Survivor_Title", belowHeaderPosCentered - verticalBuffer, crispPixels: false, anchorCenter: true)
             {
                 sprite =
                 {
@@ -53,9 +48,18 @@ namespace RainWorldBestiary
             };
             menuIllustration.sprite.SetAnchor(0.5f, 1f);
             subObjects.Add(menuIllustration);
-            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_ENTIRES_TITLE"), belowHeaderPos.y - menuIllustration.sprite.height - spaceBuffer * 2f);
-            string text = menu.Translate("BESTIARY_MANUAL_ENTRIES_1") + "\n" + menu.Translate("BESTIARY_MANUAL_ENTRIES_2") + "\n" + menu.Translate("BESTIARY_MANUAL_ENTRIES_3");
-            AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.6f);
+
+            AddManualText(menu.Translate("BESTIARY_MANUAL_ENTIRES_TITLE"), belowHeaderPos.y - menuIllustration.sprite.height - spaceBuffer * 2f);
+
+            menuIllustration = new MenuIllustration(menu, owner, Bestiary.MenuResources.IllustrationsEntryIconsPath, "Survivor_head", belowHeaderPosCentered - verticalBuffer - new Vector2(0, 275), crispPixels: true, anchorCenter: true)
+            {
+                sprite =
+                {
+                    scale = 4f
+                }
+            };
+            menuIllustration.sprite.SetAnchor(0.5f, 1f);
+            subObjects.Add(menuIllustration);
         }
     }
 
@@ -96,7 +100,7 @@ namespace RainWorldBestiary
 
             if (includeTitlePip)
             {
-                MenuIllustration pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", unl ? ResourceManager.UnlockPipUnlockedName : ResourceManager.UnlockPipName, new Vector2(PX, PipY), true, true)
+                MenuIllustration pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, unl ? Bestiary.MenuResources.UnlockPipUnlockedName : Bestiary.MenuResources.UnlockPipName, new Vector2(PX, PipY), true, true)
                 {
                     sprite =
                     {
@@ -110,7 +114,7 @@ namespace RainWorldBestiary
         private void AddRandomPip(Menu.Menu menu, Color color, out bool unlocked)
         {
             unlocked = random.NextDouble() >= 0.5;
-            MenuIllustration pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", unlocked ? ResourceManager.UnlockPipUnlockedName : ResourceManager.UnlockPipName, new Vector2(PipX, PipY), true, true)
+            MenuIllustration pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, unlocked ? Bestiary.MenuResources.UnlockPipUnlockedName : Bestiary.MenuResources.UnlockPipName, new Vector2(PipX, PipY), true, true)
             {
                 color = color,
                 sprite =
@@ -131,7 +135,7 @@ namespace RainWorldBestiary
             const float PipDistanceX = 300;
             const float PipDistanceY = 70;
 
-            MenuIllustration pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", ResourceManager.UnlockPipName, new Vector2(currentPipX, currentPipY - 10), true, true)
+            MenuIllustration pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, Bestiary.MenuResources.UnlockPipName, new Vector2(currentPipX, currentPipY - 10), true, true)
             {
                 sprite = { scale = 3f }
             };
@@ -139,7 +143,7 @@ namespace RainWorldBestiary
 
             currentPipX += PipDistanceX;
 
-            pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", ResourceManager.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY - 10), true, true)
+            pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, Bestiary.MenuResources.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY - 10), true, true)
             {
                 sprite = { scale = 3f }
             };
@@ -174,7 +178,7 @@ namespace RainWorldBestiary
             foreach ((DescriptionModule.PredefinedColors color, string title) color in predefinedColors)
             {
                 Color c = DescriptionModule.GetColorFromPredefined(color.color);
-                pip = new MenuIllustration(menu, this, "illustrations\\bestiary\\icons", ResourceManager.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY), true, true)
+                pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, Bestiary.MenuResources.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY), true, true)
                 {
                     sprite = { scale = 3f },
                     color = c
@@ -197,5 +201,3 @@ namespace RainWorldBestiary
         }
     }
 }
-
-#endif

@@ -10,14 +10,16 @@ namespace RainWorldBestiary
 
         private readonly float MinCharacterSize = 65f;
 
+        public const string UnknownFontCharacter = "illustrations\\bestiary\\icons\\Unknown_Character";
+
         public Font(string fontName)
         {
             Name = fontName;
         }
-        public Font(string fontName, string fontConfigPath)
+        public Font(string fontName, string fontConfigPath, string owningModDirectory)
         {
             Name = fontName;
-            ReadFontFileLines(fontConfigPath);
+            ReadFontFileLines(fontConfigPath, owningModDirectory);
         }
 
         public void Dispose()
@@ -28,7 +30,7 @@ namespace RainWorldBestiary
             }
         }
 
-        private void ReadFontFileLines(string filePath)
+        private void ReadFontFileLines(string filePath, string owningModDirectory)
         {
             string[] lines = File.ReadAllLines(filePath);
             foreach (string line in lines)
@@ -40,9 +42,9 @@ namespace RainWorldBestiary
 
                 if (splitLine[0].Equals("inherit"))
                 {
-                    string inheritingFile = Path.Combine(ResourceManager.ModDirectory, splitLine[1]);
+                    string inheritingFile = Path.Combine(owningModDirectory, splitLine[1]);
                     if (File.Exists(inheritingFile))
-                        ReadFontFileLines(inheritingFile);
+                        ReadFontFileLines(inheritingFile, owningModDirectory);
                 }
                 else
                 {
@@ -76,7 +78,7 @@ namespace RainWorldBestiary
                 }
                 else
                 {
-                    sprites[i] = new FSprite(ResourceManager.UnknownFontCharacter)
+                    sprites[i] = new FSprite(UnknownFontCharacter)
                     {
                         x = currentX
                     };

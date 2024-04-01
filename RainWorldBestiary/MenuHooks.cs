@@ -88,6 +88,10 @@ namespace RainWorldBestiary
                 {
                     self.currentMainLoop = new ErrorManager(self);
                 }
+                else if (ID == ProcessManager.ProcessID.MainMenu)
+                {
+                    Bestiary.MenuResources = null;
+                }
             });
         }
         private static void MainMenu_AddMainMenuButton(ILContext il)

@@ -1,6 +1,4 @@
-﻿#if DEBUG
-
-using Menu;
+﻿using Menu;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -90,5 +88,3 @@ namespace RainWorldBestiary
         }
     }
 }
-
-#endif

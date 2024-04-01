@@ -12,13 +12,9 @@ namespace RainWorldBestiary
     {
         private static bool Initialized = false;
 
-        internal static string ModDirectory = null;
+        private static readonly List<string> LoadedMods = new List<string>() { Main.MODID };
 
-        public const string BestiaryModID = "oxyaine.bestiary";
-
-        private static readonly List<string> LoadedMods = new List<string>() { BestiaryModID };
-
-        private static void GetAllFonts()
+        private static void GetAllFonts(string ModDirectory)
         {
             List<Font> customFonts = new List<Font>();
 
@@ -28,7 +24,7 @@ namespace RainWorldBestiary
                 string configFile = font + "_" + Main.CurrentLanguage.value + ".txt";
 
                 if (File.Exists(configFile))
-                    customFonts.Add(new Font(Path.GetFileName(font), configFile));
+                    customFonts.Add(new Font(Path.GetFileName(font), configFile, ModDirectory));
                 else
                     customFonts.Add(new Font(Path.GetFileName(font)));
             }
@@ -41,7 +37,7 @@ namespace RainWorldBestiary
                 font.Dispose();
             CustomFonts = new Font[0];
 
-            GetAllFonts();
+            GetAllFonts(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
         }
         private static Font[] CustomFonts = new Font[0];
         internal static Font GetCustomFontByName(string fontName)
@@ -67,65 +63,23 @@ namespace RainWorldBestiary
             return true;
         }
 
-
-        public const string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
-        public const string UnlockPip = "illustrations\\bestiary\\icons\\unlock_pip";
-
-        public const string UnlockPipUnlockedName = "unlock_pip_full";
-        public const string UnlockPipName = "unlock_pip";
-
-        public const string BestiaryTitle = "illustrations\\bestiary\\titles\\Bestiary_Title";
-
-        public const string UnknownFontCharacter = "illustrations\\bestiary\\icons\\Unknown_Character";
-
-        public static IReadOnlyList<string> Characters = new List<string>()
-        {
-            "illustrations\\bestiary\\icons\\Char_1",
-            "illustrations\\bestiary\\icons\\Char_2",
-            "illustrations\\bestiary\\icons\\Char_3",
-            "illustrations\\bestiary\\icons\\Char_4",
-            "illustrations\\bestiary\\icons\\Char_5",
-            "illustrations\\bestiary\\icons\\Char_6",
-            "illustrations\\bestiary\\icons\\Char_7",
-            "illustrations\\bestiary\\icons\\Char_8",
-            "illustrations\\bestiary\\icons\\Char_9",
-            "illustrations\\bestiary\\icons\\Char_10",
-            "illustrations\\bestiary\\icons\\Char_11",
-            "illustrations\\bestiary\\icons\\Char_12",
-            "illustrations\\bestiary\\icons\\Char_13",
-            "illustrations\\bestiary\\icons\\Char_14",
-            "illustrations\\bestiary\\icons\\Char_15",
-            "illustrations\\bestiary\\icons\\Char_16",
-            "illustrations\\bestiary\\icons\\Char_17",
-            "illustrations\\bestiary\\icons\\Char_18",
-            "illustrations\\bestiary\\icons\\Char_19",
-            "illustrations\\bestiary\\icons\\Char_20",
-            "illustrations\\bestiary\\icons\\Char_21",
-            "illustrations\\bestiary\\icons\\Char_22",
-            "illustrations\\bestiary\\icons\\Char_23",
-            "illustrations\\bestiary\\icons\\Char_24",
-            "illustrations\\bestiary\\icons\\Char_25",
-            "illustrations\\bestiary\\icons\\Char_26",
-            "illustrations\\bestiary\\icons\\Char_27"
-        };
-
         internal static void Initialize()
         {
             if (!Initialized)
             {
                 Initialized = true;
 
-                ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                string ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
-                GetAllSprites();
-                GetAllFonts();
+                GetAllSprites(ModDirectory);
+                GetAllFonts(ModDirectory);
 
-                CheckFolder(ModDirectory, BestiaryModID);
+                CheckFolder(ModDirectory, Main.MODID);
                 CheckForUnregisteredEntries();
             }
         }
 
-        private static void GetAllSprites()
+        private static void GetAllSprites(string ModDirectory)
         {
             int removeLength = ModDirectory.Length + 1;
 
@@ -137,8 +91,6 @@ namespace RainWorldBestiary
                 Futile.atlasManager.LoadImage(imagePath.Substring(0, imagePath.Length - 4));
             }
         }
-
-        const string TabsLocalPath = "bestiary";
 
         internal static IEnumerator UnloadMods(ModManager.Mod[] disabledMods)
         {
@@ -192,7 +144,7 @@ namespace RainWorldBestiary
         }
         private static void CheckFolder(string modPath, string modID)
         {
-            string tabsPath = Path.Combine(modPath, TabsLocalPath);
+            string tabsPath = Path.Combine(modPath, "bestiary");
             if (!Directory.Exists(tabsPath))
                 return;
 

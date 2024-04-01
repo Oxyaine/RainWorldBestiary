@@ -94,7 +94,7 @@ namespace RainWorldBestiary
         {
             int characters = text.Length / 100;
 
-            string[] elements = ResourceManager.Characters.GetRandom(characters);
+            string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
             FSprite[] sprites = new FSprite[characters];
 
             int position = characters * 16 * 3;
@@ -253,7 +253,7 @@ namespace RainWorldBestiary
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {
-                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? ResourceManager.UnlockPipUnlocked : ResourceManager.UnlockPip)
+                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? Bestiary.MenuResources.UnlockPipUnlocked : Bestiary.MenuResources.UnlockPip)
                     {
                         x = screenSize.x - 20f,
                         y = screenSize.y - (i * 10) - 20f,

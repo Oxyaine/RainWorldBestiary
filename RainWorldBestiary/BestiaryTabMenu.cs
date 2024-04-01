@@ -15,7 +15,6 @@ namespace RainWorldBestiary
 
         private bool Closing = false;
 
-#if DEBUG
 
         readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
         public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
@@ -39,10 +38,12 @@ namespace RainWorldBestiary
             }
         };
 
-#endif
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
+            if (Bestiary.EnteringMenu && Bestiary.MenuResources == null)
+                Bestiary.MenuResources = new MenuResources();
+
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.subBackground);
@@ -88,10 +89,8 @@ namespace RainWorldBestiary
                 }
             }
 
-#if DEBUG
             SimpleButton instructionManualButton = new SimpleButton(this, pages[0], "MANUAL", InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
             pages[0].subObjects.Add(instructionManualButton);
-#endif
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
             pages[0].subObjects.Add(backButton);
@@ -145,7 +144,6 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Switch_Page_In);
                 manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, BestiarySettings.MenuFadeTimeSeconds);
             }
-#if DEBUG
             else if (message.StartsWith(InstructionManualButtonMessage))
             {
                 ManualOpen = true;
@@ -153,7 +151,6 @@ namespace RainWorldBestiary
                 PlaySound(SoundID.MENU_Player_Join_Game);
                 manager.ShowDialog(dialog);
             }
-#endif
         }
     }
 }

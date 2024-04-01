@@ -7,10 +7,10 @@ using UnityEngine;
 
 namespace RainWorldBestiary
 {
-    [BepInPlugin(GUID, "Bestiary", "0.0.1")]
+    [BepInPlugin(MODID, "Bestiary", "0.0.1")]
     internal class Main : BaseUnityPlugin
     {
-        internal const string GUID = "oxyaine.bestiary";
+        internal const string MODID = "oxyaine.bestiary";
         private bool Initialized;
 
         internal static new ManualLogSource Logger;
