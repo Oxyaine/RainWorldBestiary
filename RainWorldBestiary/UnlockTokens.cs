@@ -168,15 +168,6 @@ namespace RainWorldBestiary
             Count = other.Count;
             SpecialData = other.SpecialData;
         }
-        /// <summary>
-        /// Copy Operator, makes sure its an unlock token type and that all creature unlock token specific data is removed
-        /// </summary>
-        public UnlockToken(CreatureUnlockToken token)
-        {
-            TokenType = token.TokenType;
-            Count = token.Count;
-            SpecialData = token.SpecialData;
-        }
 
         /// <summary>
         /// Checks if both objects are <see cref="UnlockToken"/>, then compares them using <see cref="Equals(UnlockToken)"/>

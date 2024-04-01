@@ -956,11 +956,6 @@
             Copy Operator
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.CreatureUnlockToken)">
-            <summary>
-            Copy Operator, makes sure its an unlock token type and that all creature unlock token specific data is removed
-            </summary>
-        </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(System.Object)">
             <summary>
             Checks if both objects are <see cref="T:RainWorldBestiary.UnlockToken"/>, then compares them using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
