@@ -190,7 +190,7 @@ namespace RainWorldBestiary
         public bool Equals(UnlockToken other) => TokenType.Equals(other.TokenType);
 
         /// <remarks>
-        /// Checks if the token type matches and if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>s <see cref="SpecialData"/> is found in this <see cref="SpecialData"/>, ignores <see cref="Count"/>
+        /// Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="SpecialData"/> is found in this <see cref="SpecialData"/>, ignores <see cref="Count"/>
         /// </remarks>
         public bool Equals(UnlockToken other, bool checkSpecialData) => TokenType.Equals(other.TokenType) && (!checkSpecialData || ContainsSpecialData(other.SpecialData));
 
@@ -329,6 +329,10 @@ namespace RainWorldBestiary
         /// Checks if the creature ID matches, then if the token type matches, ignores <see cref="UnlockToken.Count"/>
         /// </remarks>
         public bool Equals(CreatureUnlockToken other) => CreatureID.Equals(other.CreatureID) && base.Equals(other);
+        /// <remarks>
+        /// Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="UnlockToken.SpecialData"/> is found in this <see cref="UnlockToken.SpecialData"/>, ignores <see cref="UnlockToken.Count"/>
+        /// </remarks>
+        public bool Equals(CreatureUnlockToken other, bool checkSpecialData) => CreatureID.Equals(other.CreatureID) && base.Equals(other, checkSpecialData);
 
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();

@@ -274,4 +274,9 @@ namespace RainWorldBestiary
         /// </summary>
         public static string Translate(string text) => OptionInterface.Translate(text);
     }
+
+    //class Ref<T>
+    //{
+
+    //}
 }

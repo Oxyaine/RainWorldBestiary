@@ -256,9 +256,9 @@ namespace RainWorldBestiary
                 if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
                 {
                     if (!tokens.Contains(token))
-                        tokens.Add(new UnlockToken(token));
+                        tokens.Add(token);
                 }
-                else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { new UnlockToken(token) });
+                else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { token });
 
                 yield return null;
             }

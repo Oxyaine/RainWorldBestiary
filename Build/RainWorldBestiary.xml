@@ -974,7 +974,7 @@
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken,System.Boolean)">
             <remarks>
-            Checks if the token type matches and if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
+            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})">
@@ -1083,6 +1083,11 @@
         <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken)">
             <remarks>
             Checks if the creature ID matches, then if the token type matches, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken,System.Boolean)">
+            <remarks>
+            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
             </remarks>
         </member>
         <member name="M:RainWorldBestiary.CreatureUnlockToken.GetHashCode">
