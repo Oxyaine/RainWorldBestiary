@@ -35,7 +35,7 @@ namespace RainWorldBestiary
             },
             {
                 InstructionManualPages.Unlocking,
-                3
+                2
             }
         };
 

@@ -48,6 +48,18 @@ BESTIARY_MANUAL_ENTRIES_3|E
 
 BESTIARY_MANUAL_UNLOCKING_TITLE|Unlocking entries happens as you play; By interacting with different creatures, observing their behaviours, and discovering new things about them, entries will slowly unlock to unravel the truths about the creature and what techniques they use to hunt, as well as what you could do to avoid them.
 BESTIARY_MANUAL_UNLOCKING_1|Each entry will show unlock pips while you are viewing them, these pips indicate how many parts of the description you have unlocked, and can also tell you which parts you are missing.
+BESTIARY_MANUAL_UNLOCKING_TITLE_P2|Unlock pips have different types and states.
+BESTIARY_MANUAL_TWO_PIP_TYPES|There are two states, locked and unlocked, locked means the piece of the description this pip is for isn't visible, and unlocked means it is.
+BESTIARY_MANUAL_UNLOCK_PIP_TYPES|The different colors can also hint at which type of token this pip is for, and can often hint at what actions are required to unlock that part of the description.
+A Locked Pip|A Locked Pip
+An Unlocked Pip|An Unlocked Pip
+BSTRY_PREDEFINED_COLOR_NONE|Titles
+BSTRY_PREDEFINED_COLOR_ALWAYSAVAILABLE|Unlocks That Are Always Available
+BSTRY_PREDEFINED_COLOR_COMBAT|Unlocks for Combatting the Creature
+BSTRY_PREDEFINED_COLOR_APPEARANCE|Unlocks for Appearance
+BSTRY_PREDEFINED_COLOR_HUNTING|Unlocks for Hunting the Creature
+BSTRY_PREDEFINED_COLOR_UTILITY|Unlocks for the Utility of the Creature
+BSTRY_PREDEFINED_COLOR_BEHAVIOUR|Unlocks for the Creatures Behaviours
 
 Menu Fade Time|Menu Fade Time
 Show Unlock Pips|Show Unlock Pips

@@ -78,9 +78,6 @@ namespace RainWorldBestiary
                     case 1:
                         currentTopicPage = new UnlockingPageSecond(this, pages[1]);
                         break;
-                    case 2:
-                        currentTopicPage = new UnlockingPageThird(this, pages[1]);
-                        break;
                 }
             }
 
