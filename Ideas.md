@@ -12,6 +12,7 @@ A list of things I'm working on, mainly for myself to keep track of ideas and su
 	- Since I want to avoid having the bestiary a dependency, this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
 * Make entries not just categorized in tabs, but also sub categories with headers that the entries are below
 * Clearer Documentation
+* Manual
 
 #
 
