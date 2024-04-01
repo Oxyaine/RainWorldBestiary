@@ -16,7 +16,3 @@ A list of things I'm working on, mainly for myself to keep track of ideas and su
 #
 
 * Resource manager should creatures tabs based on JSON files, not folders, the JSON files could also specify the folder to use for entries, that will allow other resource folders to be added without being considered tabs
-
-#
-
-* Fix bug where referencing text allows users to see entries before they are unlocked.

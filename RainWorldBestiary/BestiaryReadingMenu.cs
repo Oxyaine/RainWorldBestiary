@@ -416,11 +416,17 @@ namespace RainWorldBestiary
                         {
                             float xSize = sizes[currentSizeIndex] * 1.5f;
 
+                            bool entryAvailable = true;
+                            Entry ent = Bestiary.GetEntryByReferenceID(structure.OtherData);
+                            if (ent == null || !ent.Info.EntryUnlocked)
+                                entryAvailable = false;
+
                             SimpleButton button = new SimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
                                 new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                             {
                                 rectColor = new HSLColor(0f, 0f, 0f),
-                                labelColor = new HSLColor(0f, 1f, 1f)
+                                labelColor = new HSLColor(0f, 1f, 1f),
+                                inactive = !entryAvailable
                             };
 
                             result.Add(button);
