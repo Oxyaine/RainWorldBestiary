@@ -39,7 +39,7 @@
             <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
             <param name="tokenType"></param>
             <param name="checkIfCreatureShouldBeUnlocked"></param>
-            <param name="AdditionalData"></param>
+            <param name="SpecialData"></param>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
             <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
@@ -954,6 +954,11 @@
         <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.UnlockToken)">
             <summary>
             Copy Operator
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.CreatureUnlockToken)">
+            <summary>
+            Copy Operator, makes sure its an unlock token type and that all creature unlock token specific data is removed
             </summary>
         </member>
         <member name="M:RainWorldBestiary.UnlockToken.Equals(System.Object)">

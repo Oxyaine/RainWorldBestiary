@@ -88,12 +88,12 @@ namespace RainWorldBestiary
         /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
         /// <param name="tokenType"></param>
         /// <param name="checkIfCreatureShouldBeUnlocked"></param>
-        /// <param name="AdditionalData"></param>
-        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] AdditionalData)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, AdditionalData);
+        /// <param name="SpecialData"></param>
+        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, SpecialData);
         /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool, string[])"/>
-        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] AdditionalData)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, AdditionalData);
+        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
+            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, SpecialData);
 
 
 

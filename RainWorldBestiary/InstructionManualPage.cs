@@ -9,9 +9,9 @@ namespace RainWorldBestiary
     {
         public FSprite headingSeparator;
 
-        public static readonly int rectHeight = 550;
+        public readonly int rectHeight = 550;
 
-        public static readonly int rectWidth = 600;
+        public readonly int rectWidth = 600;
 
         public Vector2 belowHeaderPos;
 

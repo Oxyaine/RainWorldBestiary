@@ -142,7 +142,6 @@ namespace RainWorldBestiary
             return Sprites;
         }
     }
-
     internal class GeneratedFontTextIllustrations
     {
         public float X = 0, Y = 0;

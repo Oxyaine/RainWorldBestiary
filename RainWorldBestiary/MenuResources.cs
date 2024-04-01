@@ -44,5 +44,11 @@ namespace RainWorldBestiary
             "illustrations\\bestiary\\icons\\Char_26",
             "illustrations\\bestiary\\icons\\Char_27"
         };
+
+        public MenuResources()
+        {
+
+        }
+        ~MenuResources() { }
     }
 }

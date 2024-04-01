@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RainWorldBestiary
 {
@@ -168,6 +167,15 @@ namespace RainWorldBestiary
             TokenType = other.TokenType;
             Count = other.Count;
             SpecialData = other.SpecialData;
+        }
+        /// <summary>
+        /// Copy Operator, makes sure its an unlock token type and that all creature unlock token specific data is removed
+        /// </summary>
+        public UnlockToken(CreatureUnlockToken token)
+        {
+            TokenType = token.TokenType;
+            Count = token.Count;
+            SpecialData = token.SpecialData;
         }
 
         /// <summary>

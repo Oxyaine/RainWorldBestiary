@@ -239,30 +239,28 @@ namespace RainWorldBestiary
                     if (added = add)
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
 
+                    Main.StartCoroutinePtr(CacheTokens(v));
+
                     yield return null;
                 }
-
-                Main.StartCoroutinePtr(CacheTokens(entry.Info.Description));
 
                 yield return null;
             }
         }
 
-        static IEnumerator CacheTokens(IEnumerable<DescriptionModule> modules)
+        static IEnumerator CacheTokens(DescriptionModule module)
         {
-            foreach (DescriptionModule module in modules)
+            yield return null;
+            foreach (CreatureUnlockToken token in module.UnlockIDs)
             {
-                foreach (CreatureUnlockToken token in module.UnlockIDs)
+                if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
                 {
-                    if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
-                    {
-                        if (!tokens.Contains(token))
-                            tokens.Add(token);
-                    }
-                    else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { token });
-
-                    yield return null;
+                    if (!tokens.Contains(token))
+                        tokens.Add(new UnlockToken(token));
                 }
+                else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { new UnlockToken(token) });
+
+                yield return null;
             }
         }
     }

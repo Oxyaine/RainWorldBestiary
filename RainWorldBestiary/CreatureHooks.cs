@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary
 {
-    internal class CreatureHooks
+    internal static class CreatureHooks
     {
         private static RainWorldGame game;
 
@@ -198,7 +198,7 @@ namespace RainWorldBestiary
             if (obj is Creature cr)
             {
                 string tag = cr.dead ? "Dead" : "Alive";
-                Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.PlayerGrabbed, checkIfCreatureShouldBeUnlocked: true, AdditionalData: tag);
+                Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.PlayerGrabbed, checkIfCreatureShouldBeUnlocked: true, SpecialData: tag);
             }
         }
         private static void Creature_HeardNoise(On.Creature.orig_HeardNoise original, Creature self, Noise.InGameNoise noise)
