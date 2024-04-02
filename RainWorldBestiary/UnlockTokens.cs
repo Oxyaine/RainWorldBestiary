@@ -140,9 +140,6 @@ namespace RainWorldBestiary
         [JsonProperty("count")]
         public byte Count = 1;
 
-        [JsonProperty("value"), Obsolete("Use UnlockToken.Count instead")]
-        private byte Value { set => Count = value; }
-
         /// <summary>
         /// Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
         /// </summary>

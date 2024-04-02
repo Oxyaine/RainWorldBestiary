@@ -179,9 +179,6 @@ namespace RainWorldBestiary
         [JsonIgnore]
         public bool ModuleUnlocked => ModuleUnlockedCondition == null || ModuleUnlockedCondition(this);
 
-        [JsonProperty("text"), Obsolete("Use DescriptionModule.Body Instead")]
-        private string Text { set => Body = value; }
-
         /// <summary>
         /// The text of this part of the entries description
         /// </summary>

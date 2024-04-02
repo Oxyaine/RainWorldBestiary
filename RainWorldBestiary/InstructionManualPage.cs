@@ -84,17 +84,6 @@ namespace RainWorldBestiary
             headingSeparator.y = page.pos.y + 450f;
         }
 
-        public string TranslateManual(string oldString)
-        {
-            //string text = menu.Translate(oldString);
-            //string buttonName_Map = OptionalText.GetButtonName_Map();
-            //string text2 = text.Replace("<MAP>", "[" + buttonName_Map + "]");
-            //string buttonName_PickUp = OptionalText.GetButtonName_PickUp();
-            //return text2.Replace("<PICK UP>", "[" + buttonName_PickUp + "]");
-
-            return oldString;
-        }
-
         public override void RemoveSprites()
         {
             base.RemoveSprites();
