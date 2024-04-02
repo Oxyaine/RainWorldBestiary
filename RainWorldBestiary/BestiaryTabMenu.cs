@@ -1,8 +1,5 @@
 ﻿using Menu;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -21,7 +18,7 @@ namespace RainWorldBestiary
 
         readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
         public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
-        internal readonly Dictionary<InstructionManualPages, int>  ManualTopics = new Dictionary<InstructionManualPages, int>
+        internal readonly Dictionary<InstructionManualPages, int> ManualTopics = new Dictionary<InstructionManualPages, int>
         {
             {
                 InstructionManualPages.Introduction,
@@ -114,7 +111,7 @@ namespace RainWorldBestiary
         public override void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !ManualOpen && !Closing)
-                    Singal(backObject, BackButtonMessage);
+                Singal(backObject, BackButtonMessage);
 
             base.Update();
         }
