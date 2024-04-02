@@ -157,15 +157,15 @@ namespace RainWorldBestiary
 
                     if (relation.Equals(CreatureTemplate.Relationship.Type.Eats))
                     {
-                        Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveFood, true, Bestiary.GetCreatureUnlockName(grabbedCreature));
+                        Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveFood, alwaysAddToken: false, Bestiary.GetCreatureUnlockName(grabbedCreature));
                     }
                     else if (relation.Equals(CreatureTemplate.Relationship.Type.Attacks))
                     {
-                        Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveAttacking, true, Bestiary.GetCreatureUnlockName(grabbedCreature));
+                        Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveAttacking, alwaysAddToken: false, Bestiary.GetCreatureUnlockName(grabbedCreature));
                     }
                     else if (relation.Equals(CreatureTemplate.Relationship.Type.AgressiveRival))
                     {
-                        Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.ObserveRivals, true, Bestiary.GetCreatureUnlockName(grabbedCreature));
+                        Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveRivals, alwaysAddToken: false, Bestiary.GetCreatureUnlockName(grabbedCreature));
                     }
                     else
                     {
@@ -187,7 +187,7 @@ namespace RainWorldBestiary
 
             if (result.obj is Creature cr)
                 if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
-                    Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.Stunned);
+                    Bestiary.AddOrIncreaseToken(cr, UnlockTokenType.Stunned);
 
             return b;
         }
@@ -198,7 +198,7 @@ namespace RainWorldBestiary
             if (obj is Creature cr)
             {
                 string tag = cr.dead ? "Dead" : "Alive";
-                Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.PlayerGrabbed, checkIfCreatureShouldBeUnlocked: true, SpecialData: tag);
+                Bestiary.AddOrIncreaseToken(cr, UnlockTokenType.PlayerGrabbed, alwaysAddToken: false, tag);
             }
         }
         private static void Creature_HeardNoise(On.Creature.orig_HeardNoise original, Creature self, Noise.InGameNoise noise)
@@ -206,7 +206,7 @@ namespace RainWorldBestiary
             original(self, noise);
 
             if (noise.sourceObject is Player)
-                Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.HeardPlayer);
+                Bestiary.AddOrIncreaseToken(self, UnlockTokenType.HeardPlayer);
         }
         private static bool Player_CanEatMeat(On.Player.orig_CanEatMeat original, Player self, Creature critter)
         {
@@ -214,7 +214,7 @@ namespace RainWorldBestiary
             if (!DoWeIgnoreID(val))
             {
                 IgnoreID(val, 300);
-                Bestiary.AddOrIncreaseModuleUnlock(Bestiary.GetCreatureUnlockName(critter), UnlockTokenType.Eaten);
+                Bestiary.AddOrIncreaseToken(Bestiary.GetCreatureUnlockName(critter), UnlockTokenType.Eaten);
             }
 
             return original(self, critter);
@@ -223,7 +223,7 @@ namespace RainWorldBestiary
         {
             original(self, grasp);
 
-            Bestiary.AddOrIncreaseModuleUnlock(grasp.grabber, UnlockTokenType.GrabbedPlayer);
+            Bestiary.AddOrIncreaseToken(grasp.grabber, UnlockTokenType.GrabbedPlayer);
         }
         private static void Spear_LodgeInCreature_CollisionResult_bool(On.Spear.orig_LodgeInCreature_CollisionResult_bool original, Spear self, SharedPhysics.CollisionResult result, bool eu)
         {
@@ -231,7 +231,7 @@ namespace RainWorldBestiary
 
             if (Bestiary.GetCreatureUnlockName(self.thrownBy).Equals(SlugcatUnlockName))
                 if (result.obj is Creature cr)
-                    Bestiary.AddOrIncreaseModuleUnlock(cr, UnlockTokenType.Impaled);
+                    Bestiary.AddOrIncreaseToken(cr, UnlockTokenType.Impaled);
         }
         private static void Creature_Die(On.Creature.orig_Die original, Creature self)
         {
@@ -239,7 +239,7 @@ namespace RainWorldBestiary
 
             if (self.killTag != null)
                 if (Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
-                    Bestiary.AddOrIncreaseModuleUnlock(self, UnlockTokenType.Killed);
+                    Bestiary.AddOrIncreaseToken(self, UnlockTokenType.Killed);
         }
         private static void Player_Die(On.Player.orig_Die original, Player self)
         {
@@ -247,7 +247,7 @@ namespace RainWorldBestiary
 
             if (self.killTag != null)
                 if (!Bestiary.GetCreatureUnlockName(self.killTag).Equals(SlugcatUnlockName))
-                    Bestiary.AddOrIncreaseModuleUnlock(self.killTag, UnlockTokenType.KilledPlayer);
+                    Bestiary.AddOrIncreaseToken(self.killTag, UnlockTokenType.KilledPlayer);
         }
 
 

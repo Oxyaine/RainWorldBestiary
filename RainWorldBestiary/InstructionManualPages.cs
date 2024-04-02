@@ -39,19 +39,7 @@ namespace RainWorldBestiary
         public EntriesPage(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            MenuIllustration menuIllustration = new MenuIllustration(menu, owner, Bestiary.MenuResources.IllustrationsTitlesPath, "The_Survivor_Title", belowHeaderPosCentered - verticalBuffer, crispPixels: false, anchorCenter: true)
-            {
-                sprite =
-                {
-                    scale = 0.5f
-                }
-            };
-            menuIllustration.sprite.SetAnchor(0.5f, 1f);
-            subObjects.Add(menuIllustration);
-
-            AddManualText(menu.Translate("BESTIARY_MANUAL_ENTIRES_TITLE"), belowHeaderPos.y - menuIllustration.sprite.height - spaceBuffer * 2f);
-
-            menuIllustration = new MenuIllustration(menu, owner, Bestiary.MenuResources.IllustrationsEntryIconsPath, "Survivor_head", belowHeaderPosCentered - verticalBuffer - new Vector2(0, 275), crispPixels: true, anchorCenter: true)
+            MenuIllustration menuIllustration = new MenuIllustration(menu, owner, Bestiary.MenuResources.IllustrationsEntryIconsPath, "Survivor_head", belowHeaderPosCentered - verticalBuffer, crispPixels: true, anchorCenter: true)
             {
                 sprite =
                 {
@@ -60,6 +48,8 @@ namespace RainWorldBestiary
             };
             menuIllustration.sprite.SetAnchor(0.5f, 1f);
             subObjects.Add(menuIllustration);
+
+            AddManualText(menu.Translate("BESTIARY_MANUAL_ENTIRES_TITLE"), belowHeaderPos.y - menuIllustration.sprite.height - spaceBuffer * 2f);
         }
     }
 

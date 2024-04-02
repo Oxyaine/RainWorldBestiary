@@ -212,6 +212,7 @@ namespace RainWorldBestiary
             return entries;
         }
 
+
         static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
         {
             foreach (Entry entry in entries)
@@ -247,7 +248,6 @@ namespace RainWorldBestiary
                 yield return null;
             }
         }
-
         static IEnumerator CacheTokens(DescriptionModule module)
         {
             yield return null;
@@ -255,8 +255,25 @@ namespace RainWorldBestiary
             {
                 if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
                 {
-                    if (!tokens.Contains(token))
+                    bool tokenExists = false;
+                    int existingTokenIndex = 0;
+                    for (int i = 0; i < tokens.Count; ++i)
+                    {
+                        if (tokens[i].Equals(token))
+                        {
+                            tokenExists = true;
+                            existingTokenIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (!tokenExists)
                         tokens.Add(token);
+                    else
+                    {
+                        if (tokens[existingTokenIndex].Count < token.Count)
+                            tokens[existingTokenIndex] = token;
+                    }
                 }
                 else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { token });
 

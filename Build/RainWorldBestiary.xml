@@ -19,30 +19,28 @@
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
             <remarks>
-            If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+            If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
             <code></code>
             You should also check out <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/> for checking if the unlock token is valid
             </remarks>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
             <summary>
-            Checks if <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains an <see cref="T:RainWorldBestiary.UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
+            Checks if <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains the <see cref="T:RainWorldBestiary.UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
             </summary>
-            <param name="creatureID">The ID of the creature this unlock token will target</param>
+            <remarks>
+            The token will only get added, if the token takes part in unlocking a description module, so if the token will never unlock a module, it wont get added. You can override this by setting <paramref name="alwaysAddToken"/> to true.
+            </remarks>
+            <param name="creatureID">The ID of the creature this token is for</param>
             <param name="tokenType">The type of token</param>
-            <param name="checkIfCreatureShouldBeUnlocked">Whether to check that after adding this module, a module in the creature will be available to read, if there is, the creatures ID will be added to <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>.<code></code>
-            <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs"/>' summary for more details</param>
-            <param name="SpecialData">All the extra data to add to the object</param>
+            <param name="alwaysAddToken">Whether to always add this token, regardless of whether this token will be used</param>
+            <param name="SpecialData">The special data to add onto the token</param>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
-            <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)"/> with default parameters</param>
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
-            <param name="tokenType"></param>
-            <param name="checkIfCreatureShouldBeUnlocked"></param>
-            <param name="SpecialData"></param>
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseModuleUnlock(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
             <summary>
@@ -99,11 +97,6 @@
         <member name="F:RainWorldBestiary.Bestiary.SpecialIDsLogic">
             <summary>
             Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.Bestiary.PerformCleanupOperations">
-            <summary>
-            Removes all unlock tokens that do not, and will not, contribute to an entry's module unlocking
             </summary>
         </member>
         <member name="T:RainWorldBestiary.Description">

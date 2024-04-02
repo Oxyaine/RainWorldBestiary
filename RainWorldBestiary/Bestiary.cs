@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,97 +28,91 @@ namespace RainWorldBestiary
         /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
         /// </summary>
         /// <remarks>
-        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
+        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
         /// <code></code>
         /// You should also check out <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid
         /// </remarks>
         public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
 
 
-        /// <summary>
-        /// Checks if <see cref="ModuleUnlocks"/> contains an <see cref="UnlockTokenType"/> that belongs to the given creature, if it does, the module unlock token gets increased by 1, otherwise its added as a new element
-        /// </summary>
-        /// <param name="creatureID">The ID of the creature this unlock token will target</param>
-        /// <param name="tokenType">The type of token</param>
-        /// <param name="checkIfCreatureShouldBeUnlocked">Whether to check that after adding this module, a module in the creature will be available to read, if there is, the creatures ID will be added to <see cref="CreatureUnlockIDs"/>.<code></code>
-        /// <see cref="CreatureUnlockIDs"/> is the list that determines whether an entry is unlocked or not, read <see cref="CreatureUnlockIDs"/>' summary for more details</param>
-        /// <param name="SpecialData">All the extra data to add to the object</param>
-        public static void AddOrIncreaseModuleUnlock(string creatureID, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
-        {
-            UnlockToken token = null;
-
-            if (_ModuleUnlocks.ContainsKey(creatureID))
-            {
-                int cache = _ModuleUnlocks[creatureID].Count;
-                bool tokenExists = false;
-                for (int i = 0; i < cache; i++)
-                {
-                    token = _ModuleUnlocks[creatureID][i];
-                    if (token.TokenType == tokenType)
-                    {
-                        if (token.Count < 255)
-                            ++_ModuleUnlocks[creatureID][i].Count;
-
-                        foreach (string data in SpecialData)
-                            if (!token.SpecialData.Contains(data))
-                                _ModuleUnlocks[creatureID][i].SpecialData.Add(data);
-
-                        tokenExists = true;
-                        token = _ModuleUnlocks[creatureID][i];
-                    }
-                }
-
-                if (!tokenExists)
-                {
-                    token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
-                    _ModuleUnlocks[creatureID].Add(token);
-                }
-            }
-            else
-            {
-                token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
-                _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { token });
-            }
-
-            if (checkIfCreatureShouldBeUnlocked)
-                Main.StartCoroutinePtr(CheckIfTokenUnlocksCreature(creatureID, token));
-        }
-        /// <param name="creature">The creature to unlock this token for, this will automatically get run through <see cref="GetCreatureUnlockName(Creature, bool)"/> with default parameters</param>
-        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(string, UnlockTokenType, bool, string[])"/>
-        /// <param name="tokenType"></param>
-        /// <param name="checkIfCreatureShouldBeUnlocked"></param>
-        /// <param name="SpecialData"></param>
-        public static void AddOrIncreaseModuleUnlock(Creature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, SpecialData);
-        /// <inheritdoc cref="AddOrIncreaseModuleUnlock(Creature, UnlockTokenType, bool, string[])"/>
-        public static void AddOrIncreaseModuleUnlock(AbstractCreature creature, UnlockTokenType tokenType, bool checkIfCreatureShouldBeUnlocked = true, params string[] SpecialData)
-            => AddOrIncreaseModuleUnlock(GetCreatureUnlockName(creature), tokenType, checkIfCreatureShouldBeUnlocked, SpecialData);
-
-
-
         // Pre cached in the resource manager while it checks if an entry should be unlocked
         // The string is the creatures unlock id, and the list is all unique unlocks tokens for that entry
         internal static readonly Dictionary<string, List<UnlockToken>> _allUniqueUnlockTokens = new Dictionary<string, List<UnlockToken>>();
-        // Checks if this token is a token that would unlock a module for the creature, if it is, it unlocks the creature by adding its id to CreatureUnlockIDs
-        private static IEnumerator CheckIfTokenUnlocksCreature(string creatureID, UnlockToken unlockToken)
+        /// <summary>
+        /// Checks if <see cref="ModuleUnlocks"/> contains the <see cref="UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
+        /// </summary>
+        /// <remarks>
+        /// The token will only get added, if the token takes part in unlocking a description module, so if the token will never unlock a module, it wont get added. You can override this by setting <paramref name="alwaysAddToken"/> to true.
+        /// </remarks>
+        /// <param name="creatureID">The ID of the creature this token is for</param>
+        /// <param name="tokenType">The type of token</param>
+        /// <param name="alwaysAddToken">Whether to always add this token, regardless of whether this token will be used</param>
+        /// <param name="SpecialData">The special data to add onto the token</param>
+        public static void AddOrIncreaseToken(string creatureID, UnlockTokenType tokenType, bool alwaysAddToken = false, params string[] SpecialData)
         {
-            if (CreatureUnlockIDs.Contains(creatureID))
-                yield break;
-
-            if (_allUniqueUnlockTokens.TryGetValue(creatureID, out List<UnlockToken> tokens))
+            bool addToken = alwaysAddToken;
+            UnlockToken RequiredToken = null;
+            if (!addToken && _allUniqueUnlockTokens.TryGetValue(creatureID, out List<UnlockToken> creaturesTokens))
             {
-                foreach (UnlockToken token in tokens)
+                int tokensCount = creaturesTokens.Count;
+                for (int i = 0; i < tokensCount; ++i)
                 {
-                    if (token.Equals(unlockToken, true) && unlockToken.Count >= token.Count)
+                    if (creaturesTokens[i].TokenType == tokenType)
                     {
-                        CreatureUnlockIDs.Add(creatureID);
-                        yield break;
+                        addToken = true;
+                        RequiredToken = creaturesTokens[i];
                     }
-
-                    yield return null;
                 }
             }
+
+            if (addToken)
+            {
+                UnlockToken token = null;
+                if (_ModuleUnlocks.TryGetValue(creatureID, out List<UnlockToken> registeredTokens))
+                {
+                    bool tokenExists = false;
+                    for (int i = 0; i < registeredTokens.Count; ++i)
+                    {
+                        token = registeredTokens[i];
+                        if (token.TokenType == tokenType)
+                        {
+                            if (alwaysAddToken)
+                                if (token.Count < byte.MaxValue)
+                                    ++token.Count;
+                            else if (token.Count < RequiredToken.Count)
+                                ++token.Count;
+
+                            foreach (string data in SpecialData)
+                                if (!token.SpecialData.Contains(data))
+                                    token.SpecialData.Add(data);
+
+                            tokenExists = true;
+                            break;
+                        }
+                    }
+
+                    if (!tokenExists)
+                    {
+                        token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
+                        registeredTokens.Add(token);
+                    }
+                }
+                else
+                {
+                    token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
+                    _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { token });
+                }
+
+                if (!alwaysAddToken && token.Count >= RequiredToken.Count && token.ContainsSpecialData(RequiredToken.SpecialData))
+                    CreatureUnlockIDs.Add(creatureID);
+            }
         }
+        /// <inheritdoc cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
+        public static void AddOrIncreaseToken(Creature creature, UnlockTokenType tokenType, bool alwaysAddToken = false, params string[] SpecialData)
+            => AddOrIncreaseToken(GetCreatureUnlockName(creature), tokenType, alwaysAddToken, SpecialData);
+        /// <inheritdoc cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
+        public static void AddOrIncreaseToken(AbstractCreature creature, UnlockTokenType tokenType, bool alwaysAddToken = false, params string[] SpecialData)
+            => AddOrIncreaseToken(GetCreatureUnlockName(creature), tokenType, alwaysAddToken, SpecialData);
 
 
         /// <summary>
@@ -263,54 +256,5 @@ namespace RainWorldBestiary
 
         // Removes the A or B at the end of CicadaA or CicadaB
         private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
-
-
-
-
-        // Cleans up things using PerformCleanupOperations
-        // saveBeforehand = whether to save before running cleanup incase the game exits before cleanup is done (which would cause lost data)
-        internal static IEnumerator CleanupAndSave(bool saveBeforehand)
-        {
-            if (saveBeforehand)
-                Save();
-
-            IEnumerator enumerator = PerformCleanupOperations();
-            yield return null;
-
-            while (enumerator.MoveNext())
-            {
-                yield return null;
-            }
-
-            Save();
-        }
-
-        /// <summary>
-        /// Removes all unlock tokens that do not, and will not, contribute to an entry's module unlocking
-        /// </summary>
-        internal static IEnumerator PerformCleanupOperations()
-        {
-            //for (int i = 0; i < _ModuleUnlocks.Count; i++)
-            //{
-            //    yield return null;
-
-            //    KeyValuePair<string, List<UnlockToken>> kvp = _ModuleUnlocks.ElementAt(i);
-
-            //    if (!_allUniqueUnlockTokens.TryGetValue(kvp.Key, out List<UnlockToken> tokens))
-            //    {
-            //        _ModuleUnlocks.Remove(kvp.Key);
-            //        continue;
-            //    }
-            //}
-
-            yield break;
-        }
-
-        [Obsolete("Force runs cleanup, which could freeze the game for a while, use PerformCleanupOperations instead unless you know what your doing.")]
-        internal static void ForceRunCleanup()
-        {
-            IEnumerator cleanup = PerformCleanupOperations();
-            while (cleanup.MoveNext()) { }
-        }
     }
 }

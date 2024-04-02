@@ -275,8 +275,33 @@ namespace RainWorldBestiary
         public static string Translate(string text) => OptionInterface.Translate(text);
     }
 
-    //class Ref<T>
-    //{
+    internal class Ref<T> : IEquatable<T>, IEquatable<Ref<T>>
+    {
+        private readonly T Value;
 
-    //}
+        public Ref(T value)
+        {
+            Value = value;
+        }
+        public Ref(Ref<T> other)
+        {
+            Value = other.Value;
+        }
+
+        public bool Equals(T other) => Value.Equals(other);
+        public bool Equals(Ref<T> other) => Value.Equals(other.Value);
+
+        public static implicit operator Ref<T>(T value)  => new Ref<T>(value);
+        public static implicit operator T(Ref<T> value) => value.Value;
+
+        public override bool Equals(object obj)
+        {
+            if (obj is T o) return Equals(o);
+            else if (obj is Ref<T> ro) return Equals(ro);
+
+            return false;
+        }
+        public override int GetHashCode() => Value.GetHashCode();
+        public override string ToString() => Value.ToString();
+    }
 }
