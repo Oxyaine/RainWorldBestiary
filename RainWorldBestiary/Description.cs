@@ -50,23 +50,6 @@ namespace RainWorldBestiary
         public int Count => _values.Count;
 
         /// <summary>
-        /// Gets the amount of description modules that are visible to the player
-        /// </summary>
-        public int UnlockedCount
-        {
-            get
-            {
-                int count = 0;
-                foreach (DescriptionModule module in _values)
-                {
-                    if (module.ModuleUnlocked)
-                        count++;
-                }
-                return count;
-            }
-        }
-
-        /// <summary>
         /// This is unused in <see cref="Description"/>
         /// </summary>
         public bool IsReadOnly => ((ICollection<DescriptionModule>)_values).IsReadOnly;
@@ -76,16 +59,9 @@ namespace RainWorldBestiary
         /// </summary>
         public DescriptionModule this[int index] { get => _values[index]; set => _values[index] = value; }
 
-
-
         /// <inheritdoc/>
         public IEnumerator<DescriptionModule> GetEnumerator() => _values.AsEnumerable().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
-
-        /// <summary>
-        /// Gets how much of the entry is locked (range 0 - 1)
-        /// </summary>
-        public float GetUnlockedPercentage() => UnlockedCount / (float)Count;
 
         /// <summary>
         /// Returns this description as a string where only the parts of the entry that are visible are added

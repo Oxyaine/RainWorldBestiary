@@ -30,9 +30,7 @@ namespace RainWorldBestiary
 
         ///
         [JsonConstructor]
-        public Entry()
-        {
-        }
+        public Entry() { }
         ///<param name="name"></param>
         /// <param name="owningModID">The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled</param>
         public Entry(string name, string owningModID = null) : this()

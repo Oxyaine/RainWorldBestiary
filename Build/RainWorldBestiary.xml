@@ -128,11 +128,6 @@
             Gets the amount of description modules in this description
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.Description.UnlockedCount">
-            <summary>
-            Gets the amount of description modules that are visible to the player
-            </summary>
-        </member>
         <member name="P:RainWorldBestiary.Description.IsReadOnly">
             <summary>
             This is unused in <see cref="T:RainWorldBestiary.Description"/>
@@ -145,11 +140,6 @@
         </member>
         <member name="M:RainWorldBestiary.Description.GetEnumerator">
             <inheritdoc/>
-        </member>
-        <member name="M:RainWorldBestiary.Description.GetUnlockedPercentage">
-            <summary>
-            Gets how much of the entry is locked (range 0 - 1)
-            </summary>
         </member>
         <member name="M:RainWorldBestiary.Description.ToString">
             <summary>
@@ -742,9 +732,9 @@
             Whether to perform an animation when going to read an entry
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.ShowEntryUnlockPercent">
+        <member name="F:RainWorldBestiary.BestiarySettings.ShowManualButton">
             <summary>
-            EXPERIMENTAL
+            Whether to show the "Manual" button in the main bestiary menu
             </summary>
         </member>
         <member name="F:RainWorldBestiary.BestiarySettings.MinimizeTitleSpacing">

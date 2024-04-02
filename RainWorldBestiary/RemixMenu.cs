@@ -15,8 +15,8 @@ namespace RainWorldBestiary
             BestiarySettings._MenuFadeTime = config.Bind("bestiary_menu_fade_time", 4);
             BestiarySettings.ShowModuleLockPips = config.Bind("bestiary_show_module_lock_pips", true);
             BestiarySettings.PerformTextAnimations = config.Bind("bestiary_perform_text_animation", true);
+            BestiarySettings.ShowManualButton = config.Bind("bestiary_show_manual_button", true);
 
-            BestiarySettings.ShowEntryUnlockPercent = config.Bind("bestiary_show_entry_unlock_percent_EXP", false);
             BestiarySettings.MinimizeTitleSpacing = config.Bind("bestiary_use_characters_spacing_for_names_EXP", false);
 
             BestiarySettings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
@@ -36,13 +36,13 @@ namespace RainWorldBestiary
             AddElements(ref items, Translator.Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translator.Translate("OXY.BESTIARY.MENU_FADE_TIME_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Manual Button"), BestiarySettings.ShowManualButton, description: Translator.Translate("OXY.BESTIARY.SHOW_MANUAL_BUTTON_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, Translator.Translate("Show Entry Unlock Percent"), BestiarySettings.ShowEntryUnlockPercent, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.SHOW_ENTRY_UNLOCK_PERCENT_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
             experimental.AddItems(items.ToArray());
 
@@ -137,12 +137,11 @@ namespace RainWorldBestiary
         /// Whether to perform an animation when going to read an entry
         /// </summary>
         public static Configurable<bool> PerformTextAnimations;
-
-
         /// <summary>
-        /// EXPERIMENTAL
+        /// Whether to show the "Manual" button in the main bestiary menu
         /// </summary>
-        public static Configurable<bool> ShowEntryUnlockPercent;
+        public static Configurable<bool> ShowManualButton;
+
         /// <summary>
         /// EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
         /// </summary>

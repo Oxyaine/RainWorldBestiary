@@ -106,44 +106,6 @@ namespace RainWorldBestiary
                     }
                 }
 
-                if (BestiarySettings.ShowEntryUnlockPercent.Value)
-                {
-                    float f = tab[i].Info.Description.GetUnlockedPercentage() * 5f;
-                    int c = Mathf.RoundToInt(f);
-                    string iconName;
-                    switch (c)
-                    {
-                        case 0:
-                        case 1:
-                            iconName = "illustrations\\bestiary\\icons\\Karma_1";
-                            break;
-                        case 2:
-                            iconName = "illustrations\\bestiary\\icons\\Karma_2";
-                            break;
-                        case 3:
-                            iconName = "illustrations\\bestiary\\icons\\Karma_3";
-                            break;
-                        case 4:
-                            iconName = "illustrations\\bestiary\\icons\\Karma_4";
-                            break;
-                        case 5:
-                            iconName = "illustrations\\bestiary\\icons\\Karma_5";
-                            break;
-                        default: iconName = null; break;
-                    }
-
-                    if (iconName != null)
-                    {
-                        FSprite ic = new FSprite(iconName)
-                        {
-                            x = currentX + ButtonSizeX - 10f,
-                            y = currentY + (ButtonSizeY / 2f),
-                            scale = 0.5f
-                        };
-                        pages[0].Container.AddChild(ic);
-                    }
-                }
-
                 currentX += ButtonSizeX + ButtonSpacing;
             }
         }
