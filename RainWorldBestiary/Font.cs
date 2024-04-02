@@ -8,8 +8,6 @@ namespace RainWorldBestiary
     {
         public readonly string Name;
 
-        private readonly float MinCharacterSize = 65f;
-
         public const string UnknownFontCharacter = "illustrations\\bestiary\\icons\\Unknown_Character";
 
         public Font(string fontName)
@@ -74,7 +72,7 @@ namespace RainWorldBestiary
                     if (BestiarySettings.MinimizeTitleSpacing.Value)
                         currentX += sprites[i].width + ((1f - (sprites[i].width / 40f)) * 20f);
                     else
-                        currentX += MinCharacterSize;
+                        currentX += 65f;
                 }
                 else
                 {
@@ -105,7 +103,7 @@ namespace RainWorldBestiary
                     if (BestiarySettings.MinimizeTitleSpacing.Value)
                         currentX += sprites[i].sprite.width;
                     else
-                        currentX += MinCharacterSize;
+                        currentX += 65f;
                 }
                 else
                 {
