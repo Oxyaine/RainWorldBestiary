@@ -808,8 +808,9 @@
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.Observed">
             <summary>
-            For when the player sees the creature
+            When the player sees the creature
             </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveFear">
             <summary>
@@ -818,7 +819,7 @@
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveFood">
             <summary>
-            For when the player sees the creature eating or hunting another creature
+            When the player sees the creature eating or hunting another creature
             </summary>
             <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>
@@ -885,7 +886,7 @@
         </member>
         <member name="F:RainWorldBestiary.UnlockTokenType.HeardPlayer">
             <summary>
-            For when the creature hears the player
+            When the creature hears the player
             </summary>
             <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>

@@ -277,7 +277,7 @@ namespace RainWorldBestiary
 
     internal class Ref<T> : IEquatable<T>, IEquatable<Ref<T>>
     {
-        private readonly T Value;
+        public T Value;
 
         public Ref(T value)
         {

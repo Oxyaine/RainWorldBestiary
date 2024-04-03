@@ -14,7 +14,6 @@ namespace RainWorldBestiary
         private bool Initialized;
 
         internal static new ManualLogSource Logger;
-        private static RemixMenu Options;
 
         internal static ProcessManager.ProcessID BestiaryTabMenu => new ProcessManager.ProcessID("Bestiary_Tab_Menu", register: true);
         internal static ProcessManager.ProcessID BestiaryEntryMenu => new ProcessManager.ProcessID("Bestiary_Entry_Menu", register: true);
@@ -42,6 +41,7 @@ namespace RainWorldBestiary
         internal void Update()
         {
             CreatureHooks.Update();
+            ProgressEnumerators();
         }
 
         internal static List<string> ActiveMods = new List<string>();
@@ -53,17 +53,78 @@ namespace RainWorldBestiary
             foreach (ModManager.Mod mod in newlyDisabledMods)
                 ActiveMods.Remove(mod.id);
 
-            StartCoroutine(ResourceManager.UnloadMods(newlyDisabledMods));
+            ForceCompleteEnumerator(ResourceManager.UnloadingModsEnumerator);
+            ResourceManager.UnloadingModsEnumerator = StartEnumerator(ResourceManager.UnloadMods(newlyDisabledMods));
         }
 
-        public static Func<IEnumerator, Coroutine> StartCoroutinePtr;
-        public static Action<Coroutine> StopCoroutinePtr;
+
+        private static readonly Dictionary<int, IEnumerator> RunningEnumerators = new Dictionary<int, IEnumerator>();
+        internal static void ProgressEnumerators()
+        {
+            IEnumerable<int> keys = RunningEnumerators.Keys;
+            foreach (int value in keys)
+                if (!RunningEnumerators[value].MoveNext())
+                    RunningEnumerators.Remove(value);
+        }
+        internal static void ProgressEnumerators(params int[] ids)
+        {
+            for (int i = 0; i < ids.Length; i++)
+                ProgressEnumerator(ids[i]);
+        }
+        internal static void ProgressEnumerator(int id)
+        {
+            if (id.Equals(-1))
+                return;
+
+            if (RunningEnumerators.TryGetValue(id, out IEnumerator enumerator))
+                if (!enumerator.MoveNext())
+                    RunningEnumerators.Remove(id);
+        }
+        internal static void ForceCompleteEnumerator(int id)
+        {
+            if (id.Equals(-1))
+                return;
+
+            if (RunningEnumerators.TryGetValue(id, out IEnumerator enumerator))
+            {
+                while (enumerator.MoveNext()) { }
+                RunningEnumerators.Remove(id);
+            }
+        }
+        internal static void ForceCompleteEnumerators(params int[] ids)
+        {
+            for (int i = 0; i < ids.Length; i++)
+                ForceCompleteEnumerator(ids[i]);
+        }
+        internal static int StartEnumerator(IEnumerator enumerator)
+        {
+            int id = 0;
+            while (RunningEnumerators.ContainsKey(id))
+                ++id;
+
+            RunningEnumerators.Add(id, enumerator);
+            return id;
+        }
+        internal static void StopEnumerator(int id)
+        {
+            if (id.Equals(-1))
+                return;
+
+            RunningEnumerators.Remove(id);
+        }
+
+
+        [Obsolete]
+        internal static Func<IEnumerator, Coroutine> StartCoroutinePtr;
+        [Obsolete]
+        internal static Action<Coroutine> StopCoroutinePtr;
+
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
             original(self);
             try
             {
-                MachineConnector.SetRegisteredOI("oxyaine.bestiary", Options = new RemixMenu());
+                MachineConnector.SetRegisteredOI("oxyaine.bestiary", new RemixMenu());
 
                 StartCoroutinePtr = StartCoroutine;
                 StopCoroutinePtr = StopCoroutine;
@@ -99,7 +160,8 @@ namespace RainWorldBestiary
             foreach (ModManager.Mod mod in newlyEnabledMods)
                 ActiveMods.Add(mod.id);
 
-            StartCoroutine(ResourceManager.LoadMods(newlyEnabledMods));
+            ForceCompleteEnumerator(ResourceManager.LoadingModsEnumerator);
+            ResourceManager.LoadingModsEnumerator = StartEnumerator(ResourceManager.LoadMods(newlyEnabledMods));
         }
     }
 }

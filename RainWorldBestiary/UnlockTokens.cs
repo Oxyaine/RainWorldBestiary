@@ -26,15 +26,16 @@ namespace RainWorldBestiary
         /// </summary>
         SnuckPast = 3,
         /// <summary>
-        /// For when the player sees the creature
+        /// When the player sees the creature
         /// </summary>
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         Observed = 4,
         /// <summary>
         /// For when the player sees the creature run away in fear
         /// </summary>
         ObserveFear = 5,
         /// <summary>
-        /// For when the player sees the creature eating or hunting another creature
+        /// When the player sees the creature eating or hunting another creature
         /// </summary>
         /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         ObserveFood = 6,
@@ -89,7 +90,7 @@ namespace RainWorldBestiary
         /// </summary>
         ObserveBehaviour = 17,
         /// <summary>
-        /// For when the creature hears the player
+        /// When the creature hears the player
         /// </summary>
         /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         HeardPlayer = 18,

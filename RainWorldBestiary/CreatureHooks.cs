@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -6,50 +7,83 @@ namespace RainWorldBestiary
     internal static class CreatureHooks
     {
         private static RainWorldGame game;
+        private static AbstractRoom CurrentPlayerRoom;
 
-        private class IgnoreIDTimer
+        private class IgnoreIDTimer : IEquatable<IgnoreIDTimer>, IEquatable<int>
         {
             public int ID;
-            public float Time;
+            public float TimeSeconds;
 
-            public IgnoreIDTimer(int id, float time)
+            public IgnoreIDTimer(int id, float timeSeconds)
             {
                 ID = id;
-                Time = time;
+                TimeSeconds = timeSeconds;
             }
+
+            public bool Equals(int other) => ID.Equals(other);
+            public bool Equals(IgnoreIDTimer other) => ID.Equals(other.ID);
         }
 
         static readonly List<IgnoreIDTimer> IgnoredCreatureIDs = new List<IgnoreIDTimer>();
         private static bool DoWeIgnoreID(int id)
         {
             foreach (IgnoreIDTimer ignoredId in IgnoredCreatureIDs)
-                if (ignoredId.ID.Equals(id))
+                if (ignoredId.Equals(id))
                     return true;
 
             return false;
         }
-        private static void IgnoreID(int id, float time = -50)
+        private static void IgnoreID(int id, float timeSeconds = -50)
         {
             for (int i = 0; i < IgnoredCreatureIDs.Count; ++i)
                 if (IgnoredCreatureIDs[i].ID.Equals(id))
                 {
-                    IgnoredCreatureIDs[i].Time = time;
+                    IgnoredCreatureIDs[i].TimeSeconds = timeSeconds;
                     return;
                 }
 
-            IgnoredCreatureIDs.Add(new IgnoreIDTimer(id, time));
+            IgnoredCreatureIDs.Add(new IgnoreIDTimer(id, timeSeconds));
         }
-
-        internal static void Update()
+        private static void TickIgnoreTimers()
         {
             for (int i = 0; i < IgnoredCreatureIDs.Count; ++i)
             {
-                if (IgnoredCreatureIDs[i].Time > -45)
+                if (IgnoredCreatureIDs[i].TimeSeconds > -45f)
                 {
-                    IgnoredCreatureIDs[i].Time -= Time.deltaTime;
+                    IgnoredCreatureIDs[i].TimeSeconds -= CheckTimer;
 
-                    if (IgnoredCreatureIDs[i].Time <= 0)
+                    if (IgnoredCreatureIDs[i].TimeSeconds <= 0f)
                         IgnoredCreatureIDs.RemoveAt(i);
+                }
+            }
+        }
+
+        static float CheckTimer = 0;
+        internal static void Update()
+        {
+            CheckTimer += Time.deltaTime;
+
+            if (CheckTimer >= 1f)
+            {
+                TickIgnoreTimers();
+                ObserveCreatures();
+
+                CheckTimer = 0f;
+            }
+        }
+
+        private static readonly List<AbstractCreature> TrackCreaturesForObserved = new List<AbstractCreature>();
+        private static void ObserveCreatures()
+        {
+            for (int i = 0; i < TrackCreaturesForObserved.Count; i++)
+            {
+                if (IsCreatureOnCamera(TrackCreaturesForObserved[i]))
+                {
+                    if (!DoWeIgnoreID(TrackCreaturesForObserved[i].ID.number))
+                    {
+                        IgnoreID(TrackCreaturesForObserved[i].ID.number, 60);
+                        Bestiary.AddOrIncreaseToken(TrackCreaturesForObserved[i], UnlockTokenType.Observed);
+                    }
                 }
             }
         }
@@ -135,15 +169,45 @@ namespace RainWorldBestiary
                 {
                     ErrorManager.AddError("Observing creatures fighting, attacking, and eating", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
                 }
+                try
+                {
+                    On.Creature.SpitOutOfShortCut += Creature_SpitOutOfShortCut;
+                    On.Player.SpitOutOfShortCut += Player_SpitOutOfShortCut;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Observing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
             }
             catch
             {
-                ErrorManager.AddError("Anything to do with observing creatures, such as them fighting, attacking, eating, etc", ErrorCategory.CreatureHookFailed, ErrorLevel.High);
+                ErrorManager.AddError("Anything to do with observing creatures, such as seeing them, and watching them fighting, attacking, eating, etc", ErrorCategory.CreatureHookFailed, ErrorLevel.High);
             }
 
-
+#if DEBUG
+            On.AbstractCreatureAI.MigrateTo += AbstractCreatureAI_MigrateTo;
+#endif
         }
+#if DEBUG
+        private static void AbstractCreatureAI_MigrateTo(On.AbstractCreatureAI.orig_MigrateTo orig, AbstractCreatureAI self, WorldCoordinate newDest)
+        {
+            Main.Logger.LogDebug(self.RealAI.creature.GetCreatureUnlockName() + " Is migrating to another location");
+        }
+#endif
 
+        private static void Player_SpitOutOfShortCut(On.Player.orig_SpitOutOfShortCut original, Player self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
+        {
+            CurrentPlayerRoom = newRoom.abstractRoom;
+            TrackCreaturesForObserved.Clear();
+            TrackCreaturesForObserved.AddRange(newRoom.abstractRoom.creatures);
+        }
+        private static void Creature_SpitOutOfShortCut(On.Creature.orig_SpitOutOfShortCut original, Creature self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
+        {
+            if (CurrentPlayerRoom == newRoom.abstractRoom)
+                TrackCreaturesForObserved.Add(self.abstractCreature);
+            else
+                TrackCreaturesForObserved.Remove(self.abstractCreature);
+        }
 
         private static bool Creature_Grab(On.Creature.orig_Grab original, Creature self, PhysicalObject obj, int graspUsed, int chunkGrabbed, Creature.Grasp.Shareability shareable, float dominance, bool overrideEquallyDominant, bool pacifying)
         {

@@ -92,6 +92,7 @@ namespace RainWorldBestiary
             }
         }
 
+        internal static int UnloadingModsEnumerator = -1;
         internal static IEnumerator UnloadMods(ModManager.Mod[] disabledMods)
         {
             List<string> IDs = new List<string>();
@@ -118,6 +119,7 @@ namespace RainWorldBestiary
                 }
             }
         }
+        internal static int LoadingModsEnumerator = -1;
         internal static IEnumerator LoadMods(ModManager.Mod[] enabledMods)
         {
             foreach (ModManager.Mod mod in enabledMods)
@@ -125,8 +127,9 @@ namespace RainWorldBestiary
                 if (!LoadedMods.Contains(mod.id))
                 {
                     CheckFolder(mod.path, mod.id);
-                    yield return null;
                     LoadedMods.Add(mod.id);
+
+                    yield return null;
                 }
             }
         }
@@ -175,7 +178,7 @@ namespace RainWorldBestiary
                         Entry[] entries = GetFilesAsEntries(files, modID);
                         entryTab.AddRange(entries);
 
-                        Main.StartCoroutinePtr(ScanEntriesAndCacheTokens(entries));
+                        Main.StartEnumerator(ScanEntriesAndCacheTokens(entries));
                     }
                 }
 
@@ -212,7 +215,6 @@ namespace RainWorldBestiary
             return entries;
         }
 
-
         static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
         {
             foreach (Entry entry in entries)
@@ -240,7 +242,7 @@ namespace RainWorldBestiary
                     if (added = add)
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
 
-                    Main.StartCoroutinePtr(CacheTokens(v));
+                    Main.StartEnumerator(CacheTokens(v));
 
                     yield return null;
                 }
