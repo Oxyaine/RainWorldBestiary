@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RainWorldBestiary
@@ -74,6 +75,7 @@ namespace RainWorldBestiary
             {
                 if (ID == Main.BestiaryTabMenu)
                 {
+                    Main.ForceCompleteEnumerators(ResourceManager.LoadingModsEnumerator, ResourceManager.UnloadingModsEnumerator);
                     self.currentMainLoop = new BestiaryTabMenu(self);
                 }
                 else if (ID == Main.BestiaryEntryMenu)
