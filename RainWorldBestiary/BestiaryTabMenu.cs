@@ -114,47 +114,40 @@ namespace RainWorldBestiary
         }
         private static void BindButtons()
         {
-            try
+            for (int i = 0; i < TabButtons.Length; i++)
             {
-                for (int i = 0; i < TabButtons.Length; i++)
-                {
-                    TabButtons[i].nextSelectable[0] = TabButtons[i];
+                TabButtons[i].nextSelectable[0] = TabButtons[i];
 
-                    if (i == 0)
-                        TabButtons[i].nextSelectable[1] = BackButton;
-                    else
-                        TabButtons[i].nextSelectable[1] = TabButtons[i - 1];
-
-                    if (BestiarySettings.ShowManualButton.Value)
-                        TabButtons[i].nextSelectable[2] = InstructionManualButton;
-                    else
-                        TabButtons[i].nextSelectable[2] = TabButtons[i];
-
-                    if (i != TabButtons.Length - 1)
-                        TabButtons[i].nextSelectable[3] = TabButtons[i + 1];
-                    else
-                        TabButtons[i].nextSelectable[3] = BackButton;
-                }
-
-                BackButton.nextSelectable[0] = BackButton;
-                BackButton.nextSelectable[1] = TabButtons[TabButtons.Length - 1];
-                if (BestiarySettings.ShowManualButton.Value)
-                    BackButton.nextSelectable[2] = InstructionManualButton;
+                if (i == 0)
+                    TabButtons[i].nextSelectable[1] = BackButton;
                 else
-                    BackButton.nextSelectable[2] = BackButton;
-                BackButton.nextSelectable[3] = TabButtons[0];
+                    TabButtons[i].nextSelectable[1] = TabButtons[i - 1];
 
                 if (BestiarySettings.ShowManualButton.Value)
-                {
-                    InstructionManualButton.nextSelectable[0] = TabButtons[0];
-                    InstructionManualButton.nextSelectable[3] = TabButtons[0];
-                    InstructionManualButton.nextSelectable[1] = BackButton;
-                    InstructionManualButton.nextSelectable[2] = InstructionManualButton;
-                }
+                    TabButtons[i].nextSelectable[2] = InstructionManualButton;
+                else
+                    TabButtons[i].nextSelectable[2] = TabButtons[i];
+
+                if (i != TabButtons.Length - 1)
+                    TabButtons[i].nextSelectable[3] = TabButtons[i + 1];
+                else
+                    TabButtons[i].nextSelectable[3] = BackButton;
             }
-            catch (System.Exception ex)
+
+            BackButton.nextSelectable[0] = BackButton;
+            BackButton.nextSelectable[1] = TabButtons[TabButtons.Length - 1];
+            if (BestiarySettings.ShowManualButton.Value)
+                BackButton.nextSelectable[2] = InstructionManualButton;
+            else
+                BackButton.nextSelectable[2] = BackButton;
+            BackButton.nextSelectable[3] = TabButtons[0];
+
+            if (BestiarySettings.ShowManualButton.Value)
             {
-                Main.Logger.LogDebug(ex);
+                InstructionManualButton.nextSelectable[0] = TabButtons[0];
+                InstructionManualButton.nextSelectable[3] = TabButtons[0];
+                InstructionManualButton.nextSelectable[1] = BackButton;
+                InstructionManualButton.nextSelectable[2] = InstructionManualButton;
             }
         }
 
