@@ -15,7 +15,6 @@ namespace RainWorldBestiary
 
         private bool Closing = false;
 
-
         readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
         public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
         internal readonly Dictionary<InstructionManualPages, int> ManualTopics = new Dictionary<InstructionManualPages, int>
@@ -38,6 +37,9 @@ namespace RainWorldBestiary
             }
         };
 
+        public static MenuObject[] TabButtons;
+        public static MenuObject BackButton;
+        public static MenuObject InstructionManualButton;
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
@@ -74,41 +76,86 @@ namespace RainWorldBestiary
 
             int X = (int)screenSize.x / 2 - ButtonSizeX / 2;
             int currentButtonY = (int)screenSize.y - ButtonSizeY - ButtonSpacing - 200;
-            MenuObject firstTabButton = null;
-            foreach (EntriesTab tab in Bestiary.EntriesTabs)
             {
-                if (tab.Count > 0 && Main.ActiveMods.ContainsAll(tab.RequiredMods))
+                List<MenuObject> tabs = new List<MenuObject>();
+                for (int i = 0; i < Bestiary.EntriesTabs.Count; i++)
                 {
-                    SimpleButton button = new SimpleButton(this, pages[0], Translator.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
-                    pages[0].subObjects.Add(button);
+                    EntriesTab tab = Bestiary.EntriesTabs[i];
+                    if (tab.Count > 0 && Main.ActiveMods.ContainsAll(tab.RequiredMods))
+                    {
+                        tabs.Add(new SimpleButton(this, pages[0], Translator.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY)));
+                        pages[0].subObjects.Add(tabs[tabs.Count - 1]);
 
-                    if (firstTabButton == null)
-                        firstTabButton = button;
-
-                    currentButtonY -= ButtonSizeY + ButtonSpacing;
+                        currentButtonY -= ButtonSizeY + ButtonSpacing;
+                    }
                 }
+                TabButtons = tabs.ToArray();
             }
 
             if (BestiarySettings.ShowManualButton.Value)
             {
-                SimpleButton instructionManualButton = new SimpleButton(this, pages[0], "MANUAL", InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
-                pages[0].subObjects.Add(instructionManualButton);
-
-                instructionManualButton.nextSelectable[3] = firstTabButton;
-                firstTabButton.nextSelectable[2] = instructionManualButton;
+                InstructionManualButton = new SimpleButton(this, pages[0], "MANUAL", InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
+                pages[0].subObjects.Add(InstructionManualButton);
             }
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
-            pages[0].subObjects.Add(backButton);
+            BackButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY));
+            pages[0].subObjects.Add(BackButton);
 
-            backObject = backButton;
+            backObject = BackButton;
+
+            BindButtons();
 
             if (Bestiary.EnteringMenu)
-                selectedObject = firstTabButton;
+                selectedObject = TabButtons[0];
             else
-                backObject.nextSelectable[0] = backButton;
+                selectedObject = BackButton;
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+        }
+        private static void BindButtons()
+        {
+            try
+            {
+                for (int i = 0; i < TabButtons.Length; i++)
+                {
+                    TabButtons[i].nextSelectable[0] = TabButtons[i];
+
+                    if (i == 0)
+                        TabButtons[i].nextSelectable[1] = BackButton;
+                    else
+                        TabButtons[i].nextSelectable[1] = TabButtons[i - 1];
+
+                    if (BestiarySettings.ShowManualButton.Value)
+                        TabButtons[i].nextSelectable[2] = InstructionManualButton;
+                    else
+                        TabButtons[i].nextSelectable[2] = TabButtons[i];
+
+                    if (i != TabButtons.Length - 1)
+                        TabButtons[i].nextSelectable[3] = TabButtons[i + 1];
+                    else
+                        TabButtons[i].nextSelectable[3] = BackButton;
+                }
+
+                BackButton.nextSelectable[0] = BackButton;
+                BackButton.nextSelectable[1] = TabButtons[TabButtons.Length - 1];
+                if (BestiarySettings.ShowManualButton.Value)
+                    BackButton.nextSelectable[2] = InstructionManualButton;
+                else
+                    BackButton.nextSelectable[2] = BackButton;
+                BackButton.nextSelectable[3] = TabButtons[0];
+
+                if (BestiarySettings.ShowManualButton.Value)
+                {
+                    InstructionManualButton.nextSelectable[0] = TabButtons[0];
+                    InstructionManualButton.nextSelectable[3] = TabButtons[0];
+                    InstructionManualButton.nextSelectable[1] = BackButton;
+                    InstructionManualButton.nextSelectable[2] = InstructionManualButton;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Main.Logger.LogDebug(ex);
+            }
         }
 
         public override void Update()
