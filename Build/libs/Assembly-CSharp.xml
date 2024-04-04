@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+	<assembly>
+		<name>Assembly Assembly-CSharp</name>
+	</assembly>
+	<members>
+		<member name="F:Menu.MenuObject.nextSelectable">
+			<summary>
+				The next selectibles that are used for chosing which 
+				<see cref="T:Menu.MenuObject"/> 
+				to select next when navigating with controller or WASD
+			</summary>
+			<remarks>
+				The position of the object in the array affects which button will navigate to the set object
+				<code>0 = Left</code>
+				<code>1 = Up</code>
+				<code>2 = Right</code>
+				<code>3 = Down</code>
+			</remarks>
+		</member>
+	</members>
+</doc>

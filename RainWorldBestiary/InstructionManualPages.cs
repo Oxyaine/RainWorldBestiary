@@ -29,7 +29,7 @@ namespace RainWorldBestiary
         public TabsPage(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_TABS_TITLE"), belowHeaderPos.y /*- menuIllustration.sprite.height*/ - spaceBuffer * 2f);
+            float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_TABS_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
             string text = menu.Translate("BESTIARY_MANUAL_TABS_1") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_2") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_3");
             AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.8f);
         }
