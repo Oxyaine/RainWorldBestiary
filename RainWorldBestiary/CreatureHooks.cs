@@ -130,7 +130,15 @@ namespace RainWorldBestiary
             }
             catch
             {
-                ErrorManager.AddError("Players Eating Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                ErrorManager.AddError("Players Eating Corpses", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+            }
+            try
+            {
+                On.Player.ObjectEaten += Player_ObjectEaten;
+            }
+            catch
+            {
+                ErrorManager.AddError("Players Eating Creatures (Not Corpses)", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
             }
             try
             {
@@ -183,32 +191,32 @@ namespace RainWorldBestiary
             {
                 ErrorManager.AddError("Anything to do with observing creatures, such as seeing them, and watching them fighting, attacking, eating, etc", ErrorCategory.CreatureHookFailed, ErrorLevel.High);
             }
-
-#if DEBUG
-            On.AbstractCreatureAI.MigrateTo += AbstractCreatureAI_MigrateTo;
-#endif
         }
-#if DEBUG
-        private static void AbstractCreatureAI_MigrateTo(On.AbstractCreatureAI.orig_MigrateTo orig, AbstractCreatureAI self, WorldCoordinate newDest)
+
+        private static void Player_ObjectEaten(On.Player.orig_ObjectEaten original, Player self, IPlayerEdible edible)
         {
-            Main.Logger.LogDebug(self.RealAI.creature.GetCreatureUnlockName() + " Is migrating to another location");
-        }
-#endif
+            original(self, edible);
 
+            if (edible is Creature cr)
+                Bestiary.AddOrIncreaseToken(cr, UnlockTokenType.Eaten);
+        }
         private static void Player_SpitOutOfShortCut(On.Player.orig_SpitOutOfShortCut original, Player self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
         {
+            original(self, pos, newRoom, spitOutAllSticks);
+
             CurrentPlayerRoom = newRoom.abstractRoom;
             TrackCreaturesForObserved.Clear();
             TrackCreaturesForObserved.AddRange(newRoom.abstractRoom.creatures);
         }
         private static void Creature_SpitOutOfShortCut(On.Creature.orig_SpitOutOfShortCut original, Creature self, RWCustom.IntVector2 pos, Room newRoom, bool spitOutAllSticks)
         {
+            original(self, pos, newRoom, spitOutAllSticks);
+
             if (CurrentPlayerRoom == newRoom.abstractRoom)
                 TrackCreaturesForObserved.Add(self.abstractCreature);
             else
                 TrackCreaturesForObserved.Remove(self.abstractCreature);
         }
-
         private static bool Creature_Grab(On.Creature.orig_Grab original, Creature self, PhysicalObject obj, int graspUsed, int chunkGrabbed, Creature.Grasp.Shareability shareable, float dominance, bool overrideEquallyDominant, bool pacifying)
         {
             bool grabbed = original(self, obj, graspUsed, chunkGrabbed, shareable, dominance, overrideEquallyDominant, pacifying);

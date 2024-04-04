@@ -79,8 +79,8 @@ namespace RainWorldBestiary
                             if (alwaysAddToken)
                                 if (token.Count < byte.MaxValue)
                                     ++token.Count;
-                            else if (token.Count < RequiredToken.Count)
-                                ++token.Count;
+                                else if (token.Count < RequiredToken.Count)
+                                    ++token.Count;
 
                             foreach (string data in SpecialData)
                                 if (!token.SpecialData.Contains(data))
@@ -103,8 +103,10 @@ namespace RainWorldBestiary
                     _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { token });
                 }
 
-                if (!alwaysAddToken && token.Count >= RequiredToken.Count && token.ContainsSpecialData(RequiredToken.SpecialData))
-                    CreatureUnlockIDs.Add(creatureID);
+                if (!alwaysAddToken)
+                    if (!CreatureUnlockIDs.Contains(creatureID))
+                        if (token.Count >= RequiredToken.Count && token.ContainsSpecialData(RequiredToken.SpecialData))
+                            CreatureUnlockIDs.Add(creatureID);
             }
         }
         /// <inheritdoc cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
