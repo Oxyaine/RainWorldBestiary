@@ -271,11 +271,8 @@ namespace RainWorldBestiary
 
                     if (!tokenExists)
                         tokens.Add(token);
-                    else
-                    {
-                        if (tokens[existingTokenIndex].Count < token.Count)
-                            tokens[existingTokenIndex] = token;
-                    }
+                    else if (tokens[existingTokenIndex].Count < token.Count)
+                        tokens[existingTokenIndex] = token;
                 }
                 else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { token });
 

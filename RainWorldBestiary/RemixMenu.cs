@@ -142,6 +142,7 @@ namespace RainWorldBestiary
         /// </summary>
         public static Configurable<bool> ShowManualButton;
 
+
         /// <summary>
         /// EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
         /// </summary>
