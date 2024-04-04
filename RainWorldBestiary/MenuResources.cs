@@ -14,7 +14,7 @@ namespace RainWorldBestiary
         public readonly string UnlockPipUnlockedName = "unlock_pip_full";
         public readonly string UnlockPipName = "unlock_pip";
 
-        public readonly List<string> Characters = new List<string>()
+        public readonly string[] Characters = new string[]
         {
             "illustrations\\bestiary\\icons\\Char_1",
             "illustrations\\bestiary\\icons\\Char_2",
