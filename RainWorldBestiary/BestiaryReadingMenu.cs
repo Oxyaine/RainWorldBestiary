@@ -120,6 +120,7 @@ namespace RainWorldBestiary
             // Temporary So The Text Atleast Displays
             MenuObject page = pages[0];
             display.AddToPage(ref page);
+            
         }
 
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
@@ -419,7 +420,6 @@ namespace RainWorldBestiary
 
         public void AddToPage(ref MenuObject page)
             => page.subObjects.AddRange(_Objects);
-
         public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
             => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
     }
