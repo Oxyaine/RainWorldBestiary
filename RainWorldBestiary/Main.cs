@@ -41,7 +41,7 @@ namespace RainWorldBestiary
         internal void Update()
         {
             AutoCreatureHooks.Update();
-            ProgressEnumerators();
+            Enumerators.Update();
         }
 
         internal static List<string> ActiveMods = new List<string>();
@@ -53,65 +53,8 @@ namespace RainWorldBestiary
             foreach (ModManager.Mod mod in newlyDisabledMods)
                 ActiveMods.Remove(mod.id);
 
-            ForceCompleteEnumerator(ResourceManager.UnloadingModsEnumerator);
-            ResourceManager.UnloadingModsEnumerator = StartEnumerator(ResourceManager.UnloadMods(newlyDisabledMods));
-        }
-
-
-        private static readonly Dictionary<int, IEnumerator> RunningEnumerators = new Dictionary<int, IEnumerator>();
-        internal static void ProgressEnumerators()
-        {
-            int[] keys = new int[RunningEnumerators.Count];
-            RunningEnumerators.Keys.CopyTo(keys, 0);
-            foreach (int value in keys)
-                if (!RunningEnumerators[value].MoveNext())
-                    RunningEnumerators.Remove(value);
-        }
-        internal static void ProgressEnumerators(params int[] ids)
-        {
-            for (int i = 0; i < ids.Length; i++)
-                ProgressEnumerator(ids[i]);
-        }
-        internal static void ProgressEnumerator(int id)
-        {
-            if (id.Equals(-1))
-                return;
-
-            if (RunningEnumerators.TryGetValue(id, out IEnumerator enumerator))
-                if (!enumerator.MoveNext())
-                    RunningEnumerators.Remove(id);
-        }
-        internal static void ForceCompleteEnumerator(int id)
-        {
-            if (id.Equals(-1))
-                return;
-
-            if (RunningEnumerators.TryGetValue(id, out IEnumerator enumerator))
-            {
-                while (enumerator.MoveNext()) { }
-                RunningEnumerators.Remove(id);
-            }
-        }
-        internal static void ForceCompleteEnumerators(params int[] ids)
-        {
-            for (int i = 0; i < ids.Length; i++)
-                ForceCompleteEnumerator(ids[i]);
-        }
-        internal static int StartEnumerator(IEnumerator enumerator)
-        {
-            int id = 0;
-            while (RunningEnumerators.ContainsKey(id))
-                ++id;
-
-            RunningEnumerators.Add(id, enumerator);
-            return id;
-        }
-        internal static void StopEnumerator(int id)
-        {
-            if (id.Equals(-1))
-                return;
-
-            RunningEnumerators.Remove(id);
+            Enumerators.ForceCompleteEnumerator(ResourceManager.UnloadingModsEnumerator);
+            ResourceManager.UnloadingModsEnumerator = Enumerators.StartEnumerator(ResourceManager.UnloadMods(newlyDisabledMods));
         }
 
 #if !DEBUG
@@ -165,8 +108,8 @@ namespace RainWorldBestiary
             foreach (ModManager.Mod mod in newlyEnabledMods)
                 ActiveMods.Add(mod.id);
 
-            ForceCompleteEnumerator(ResourceManager.LoadingModsEnumerator);
-            ResourceManager.LoadingModsEnumerator = StartEnumerator(ResourceManager.LoadMods(newlyEnabledMods));
+            Enumerators.ForceCompleteEnumerator(ResourceManager.LoadingModsEnumerator);
+            ResourceManager.LoadingModsEnumerator = Enumerators.StartEnumerator(ResourceManager.LoadMods(newlyEnabledMods));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Menu;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -69,43 +70,51 @@ namespace RainWorldBestiary
             base.ShutDownProcess();
         }
 
-        //int characters = text.Length / 100;
+        private IEnumerator PerformTextAnimation(EntryTextDisplay display, Vector2 screenSize)
+        {
+            int characters = display.TotalLength / 100;
+            FSprite[] sprites = new FSprite[characters];
+            
+            // Local Scope For Variable Cleanup
+            {
+                string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
 
-        //string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
-        //FSprite[] sprites = new FSprite[characters];
+                int position = characters * 16 * 3;
 
-        //int position = characters * 16 * 3;
+                float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    sprites[i] = new FSprite(elements[i])
+                    {
+                        x = currentX,
+                        y = currentY,
+                        scale = 3f
+                    };
 
-        //float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
-        //for (int i = 0; i < elements.Length; i++)
-        //{
-        //    sprites[i] = new FSprite(elements[i])
-        //    {
-        //        x = currentX,
-        //        y = currentY,
-        //        scale = 3f
-        //    };
+                    pages[0].Container.AddChild(sprites[i]);
 
-        //    pages[0].Container.AddChild(sprites[i]);
+                    currentX += sprites[i].width;
 
-        //    currentX += sprites[i].width;
+                    PlaySound(SoundID.SS_AI_Text);
+                    yield return new WaitTime(0.05f);
+                }
+            }
 
-        //    yield return new WaitForSeconds(0.05f);
-        //}
+            for (int i = 0; i < 2; i++)
+            {
+                yield return new WaitTime(0.3f);
+                for (int j = 0; j < sprites.Length; j++)
+                    sprites[j].RemoveFromContainer();
 
-        //elements = null;
+                yield return new WaitTime(0.2f);
+                for (int j = 0; j < sprites.Length; j++)
+                    pages[0].Container.AddChild(sprites[j]);
+            }
 
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    yield return new WaitForSeconds(0.3f);
-        //    for (int j = 0; j < sprites.Length; j++)
-        //        sprites[j].RemoveFromContainer();
-
-        //    yield return new WaitForSeconds(0.2f);
-        //    for (int j = 0; j < sprites.Length; j++)
-        //        pages[0].Container.AddChild(sprites[j]);
-        //}
-
+            // Temporary So The Text Atleast Displays
+            MenuObject page = pages[0];
+            display.AddToPage(ref page);
+        }
 
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
@@ -113,7 +122,14 @@ namespace RainWorldBestiary
 
             try
             {
-                EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+                if (BestiarySettings.PerformTextAnimations.Value)
+                {
+                    Enumerators.StartEnumerator(PerformTextAnimation(new EntryTextDisplay(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]), screenSize));
+                }
+                else
+                {
+                    EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+                }
             }
             catch (Exception ex)
             {
@@ -236,8 +252,9 @@ namespace RainWorldBestiary
 
     internal class EntryTextDisplay
     {
-        readonly int LineSpacing = 20;
-        readonly List<MenuObject> _Objects = new List<MenuObject>();
+        public int TotalLength = 0;
+        private readonly int LineSpacing = 20;
+        private readonly List<MenuObject> _Objects = new List<MenuObject>();
 
         public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
         {
@@ -282,29 +299,32 @@ namespace RainWorldBestiary
 
         private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
         {
-            List<float> sizes = new List<float>();
-
-            int currentLookPosition = 0;
-            int LessThanIndex;
+            List<int> sizes = new List<int>();
             List<StructureData> structures = new List<StructureData>();
-            while ((LessThanIndex = text.IndexOf('<', currentLookPosition)) != -1)
+
+            int currentPosition = 0;
+            int LessThanIndex;
+            while ((LessThanIndex = text.IndexOf('<', currentPosition)) != -1)
             {
-                StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentLookPosition, LessThanIndex - currentLookPosition), string.Empty);
+                StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentPosition, LessThanIndex - currentPosition));
                 sizes.Add(structure.Message.Length);
                 structures.Add(structure);
 
-                structure = DecipherStructure(in text, LessThanIndex + 1, out currentLookPosition);
+                structure = DecipherStructure(in text, LessThanIndex + 1, out currentPosition);
                 sizes.Add(structure.Message.Length);
                 structures.Add(structure);
             }
 
-            string remainder = text.Substring(currentLookPosition);
+            string remainder = text.Substring(currentPosition);
             structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
             sizes.Add(remainder.Length);
 
             List<MenuObject> result = new List<MenuObject>();
 
-            float currentX = (screenSize.x - (sizes.Sum() * 5.3f)) / 2f;
+            int sum = sizes.Sum();
+            TotalLength += sum;
+
+            float currentX = (screenSize.x - (sum * 5.3f)) / 2f;
             int currentSizeIndex = 0;
             float currentSizeValue = 0;
             foreach (StructureData structure in structures)

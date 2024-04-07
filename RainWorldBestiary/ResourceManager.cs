@@ -178,7 +178,7 @@ namespace RainWorldBestiary
                         Entry[] entries = GetFilesAsEntries(files, modID);
                         entryTab.AddRange(entries);
 
-                        Main.StartEnumerator(ScanEntriesAndCacheTokens(entries));
+                        Enumerators.StartEnumerator(ScanEntriesAndCacheTokens(entries));
                     }
                 }
 
@@ -242,7 +242,7 @@ namespace RainWorldBestiary
                     if (added = add)
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
 
-                    Main.StartEnumerator(CacheTokens(v));
+                    Enumerators.StartEnumerator(CacheTokens(v));
 
                     yield return null;
                 }
