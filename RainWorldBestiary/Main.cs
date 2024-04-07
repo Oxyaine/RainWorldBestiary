@@ -114,11 +114,12 @@ namespace RainWorldBestiary
             RunningEnumerators.Remove(id);
         }
 
-
+#if !DEBUG
         [Obsolete]
         internal static Func<IEnumerator, Coroutine> StartCoroutinePtr;
         [Obsolete]
         internal static Action<Coroutine> StopCoroutinePtr;
+#endif
 
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
@@ -127,8 +128,10 @@ namespace RainWorldBestiary
             {
                 MachineConnector.SetRegisteredOI("oxyaine.bestiary", new RemixMenu());
 
+#if !DEBUG
                 StartCoroutinePtr = StartCoroutine;
                 StopCoroutinePtr = StopCoroutine;
+#endif
 
                 if (!Initialized)
                 {
