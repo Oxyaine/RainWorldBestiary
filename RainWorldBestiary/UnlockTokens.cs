@@ -109,6 +109,11 @@ namespace RainWorldBestiary
         /// </summary>
         /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
         ObserveAttacking = 21,
+        /// <summary>
+        /// When the player observes the creature grabbing something, for any reason. This is just a generic grab, for grabbing a creature in the case of attacking, rivals, or food, use <see cref="ObserveAttacking"/>, <see cref="ObserveRivals"/>, and <see cref="ObserveFood"/> respectively
+        /// </summary>
+        /// <remarks>Automatically Tracked (for creatures inheriting from <see cref="Creature"/>)</remarks>
+        ObserveGrabbing = 22,
     }
 
     /// <summary>

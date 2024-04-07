@@ -40,7 +40,7 @@ namespace RainWorldBestiary
 
         internal void Update()
         {
-            CreatureHooks.Update();
+            AutoCreatureHooks.Update();
             ProgressEnumerators();
         }
 
@@ -61,7 +61,8 @@ namespace RainWorldBestiary
         private static readonly Dictionary<int, IEnumerator> RunningEnumerators = new Dictionary<int, IEnumerator>();
         internal static void ProgressEnumerators()
         {
-            IEnumerable<int> keys = RunningEnumerators.Keys;
+            int[] keys = new int[RunningEnumerators.Count];
+            RunningEnumerators.Keys.CopyTo(keys, 0);
             foreach (int value in keys)
                 if (!RunningEnumerators[value].MoveNext())
                     RunningEnumerators.Remove(value);
@@ -142,7 +143,8 @@ namespace RainWorldBestiary
                     Bestiary.Load();
 
                     ResourceManager.Initialize();
-                    CreatureHooks.Initialize();
+                    AutoCreatureHooks.Initialize();
+                    ManualCreatureHooks.Initialize();
 
                     MenuHooks.Initialize();
                 }

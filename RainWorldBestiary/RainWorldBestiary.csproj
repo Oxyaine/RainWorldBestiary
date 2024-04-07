@@ -45,7 +45,7 @@
     <Compile Include="BestiaryTabMenu.cs" />
     <Compile Include="BestiarySaveData.cs" />
     <Compile Include="BestiaryEntryMenu.cs" />
-    <Compile Include="CreatureHooks.cs" />
+    <Compile Include="Auto_CreatureHooks.cs" />
     <Compile Include="Description.cs" />
     <Compile Include="EntriesTab.cs" />
     <Compile Include="Entry.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="InstructionManualPages.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="InstructionManualDialog.cs" />
+    <Compile Include="Manual_CreatureHooks.cs" />
     <Compile Include="MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemixMenu.cs" />

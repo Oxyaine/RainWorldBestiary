@@ -277,7 +277,7 @@ namespace RainWorldBestiary
                         Main.Logger.LogWarning("Creature Relation Not Tracked: " + relation.value);
                     }
 
-                    Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveGrabbing);
+                    Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveGrabbing, alwaysAddToken: false, Bestiary.GetCreatureUnlockName(grabbedCreature));
                 }
             }
 
