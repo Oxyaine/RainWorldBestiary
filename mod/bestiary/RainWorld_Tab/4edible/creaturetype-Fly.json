@@ -52,7 +52,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "count": 4,
+        "count": 5,
         "creature_id": "Fly"
       },
       "body": "BESTIARY_BATFLY_HUNTING_2",
@@ -61,7 +61,7 @@
     {
       "unlock_id": {
         "token_type": 13,
-        "count": 8,
+        "count": 20,
         "creature_id": "Fly"
       },
       "body": "BESTIARY_BATFLY_HUNTING_3",
@@ -153,13 +153,7 @@
           "token_type": 16,
           "count": 4,
           "creature_id": "Fly"
-        },
-        {
-          "token_type": 17,
-          "count": 2,
-          "creature_id": "Fly",
-          "special_data": [ "Migration" ]
-        },
+        }
         {
           "token_type": 17,
           "count": 2,
@@ -169,28 +163,7 @@
     ],
       "body": "BEHAVIOUR",
       "new_line": true
-    },
-    {
-      "unlock_id":{
-        "token_type": 17,
-        "count": 2,
-        "creature_id": "Fly",
-        "special_data": [ "Migration" ]
-      },
-      "body": "BESTIARY_BATFLY_MIGRATING_1",
-      "new_line": true,
-      "unlock_pip_color": "Behaviour"
-    },
-    {
-      "unlock_id":{
-        "token_type": 17,
-        "count": 4,
-        "creature_id": "Fly",
-        "special_data": [ "Migration" ]
-      },
-      "body": "BESTIARY_BATFLY_MIGRATING_2",
-      "unlock_pip_color": "Behaviour"
-    },
+    }
     {
       "unlock_id":{
         "token_type": 16,

@@ -90,8 +90,6 @@ BESTIARY_BATFLY_UTILITY_POLE_MIMIC|, such as <ref="Pole Mimics"=Rain World\creat
 BESTIARY_BATFLY_UTILITY_KELP|, <ref="Monster Kelp"=Rain World\creaturetype-TentaclePlant>, etc
 BESTIARY_BATFLY_UTILITY_UTILITY_2|. When thrown in range, these creatures may prioritize the Batfly over Slugcat, retreating into their dens to consume them.
 BESTIARY_BATFLY_UTILITY_CICADA|Batflies can also be used to raise reputation with <ref="Squidcada"=Rain World\creaturetype-CicadaA>.
-BESTIARY_BATFLY_MIGRATING_1|Batflies can be found in 'hives' around the world, These rooms feature black, white-tipped plants. Every cycle, Batflies attempt to migrate to a new swarm room.
-BESTIARY_BATFLY_MIGRATING_2| Depending on how many Batflies Slugcat has killed, multiple Batfly hives may be empty. When a hive is empty, the plants lose their white tips.
 BESTIARY_BATFLY_HIDING_1|The white-tipped plants that Batflies nest in also act as Batfly hiding spots. When a threat gets too close to a Batfly, they may dive and burrow into these plants.
 BESTIARY_BATFLY_STACKING_1|Batflies can hang upside down from ceilings, poles, and even each other, forming stacks. If a Batfly with others attached to it from below starts flying, the attached Batflies may not separate, and they can end up struggling to fly.
 BESTIARY_BATFLY_STACKING_2| If Slugcat grabs a Batfly attached to a chain, the entire chain is picked up until the other Batflies fly away. This can result in strange physics if the Batflies are still attached to the ceiling.
