@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary
 {
-    internal static class CreatureHooks
+    internal static class AutoCreatureHooks
     {
         private static RainWorldGame game;
         private static AbstractRoom CurrentPlayerRoom;
@@ -25,24 +25,26 @@ namespace RainWorldBestiary
         }
 
         static readonly List<IgnoreIDTimer> IgnoredCreatureIDs = new List<IgnoreIDTimer>();
-        private static bool DoWeIgnoreID(int id)
+        /// <summary>
+        /// Checks if the ID is ignored, if its not, it will be added
+        /// </summary>
+        /// <remarks>
+        /// <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
+        /// </remarks>
+        /// <returns>True if the creature should be ignored, otherwise false</returns>
+        internal static bool IgnoreID(int id, float timeSeconds = -50, bool addIfNotFound = true, bool overridePreviousTime = false)
         {
-            foreach (IgnoreIDTimer ignoredId in IgnoredCreatureIDs)
-                if (ignoredId.Equals(id))
-                    return true;
-
-            return false;
-        }
-        private static void IgnoreID(int id, float timeSeconds = -50)
-        {
-            for (int i = 0; i < IgnoredCreatureIDs.Count; ++i)
-                if (IgnoredCreatureIDs[i].ID.Equals(id))
+            foreach (IgnoreIDTimer ignoredID in IgnoredCreatureIDs)
+                if (ignoredID.Equals(id))
                 {
-                    IgnoredCreatureIDs[i].TimeSeconds = timeSeconds;
-                    return;
+                    if (overridePreviousTime)
+                        ignoredID.TimeSeconds = timeSeconds;
+                    return true;
                 }
 
-            IgnoredCreatureIDs.Add(new IgnoreIDTimer(id, timeSeconds));
+            if (addIfNotFound)
+                IgnoredCreatureIDs.Add(new IgnoreIDTimer(id, timeSeconds));
+            return false;
         }
         private static void TickIgnoreTimers()
         {
@@ -77,11 +79,17 @@ namespace RainWorldBestiary
         {
             for (int i = 0; i < TrackCreaturesForObserved.Count; i++)
             {
+                if (TrackCreaturesForObserved[i] == null)
+                {
+                    TrackCreaturesForObserved.RemoveAt(i);
+                    --i;
+                    continue;
+                }
+
                 if (IsCreatureOnCamera(TrackCreaturesForObserved[i]))
                 {
-                    if (!DoWeIgnoreID(TrackCreaturesForObserved[i].ID.number))
+                    if (!IgnoreID(TrackCreaturesForObserved[i].ID.number, 60))
                     {
-                        IgnoreID(TrackCreaturesForObserved[i].ID.number, 60);
                         Bestiary.AddOrIncreaseToken(TrackCreaturesForObserved[i], UnlockTokenType.Observed);
                     }
                 }
@@ -186,6 +194,16 @@ namespace RainWorldBestiary
                 {
                     ErrorManager.AddError("Observing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
                 }
+                try
+                {
+
+                    On.Creature.FlyIntoRoom += Creature_FlyIntoRoom;
+                    On.Creature.FlyAwayFromRoom += Creature_FlyAwayFromRoom;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Observing Flying Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
             }
             catch
             {
@@ -193,6 +211,21 @@ namespace RainWorldBestiary
             }
         }
 
+        private static void Creature_FlyAwayFromRoom(On.Creature.orig_FlyAwayFromRoom original, Creature self, bool carriedByOther)
+        {
+            original(self, carriedByOther);
+
+            TrackCreaturesForObserved.Remove(self.abstractCreature);
+        }
+        private static void Creature_FlyIntoRoom(On.Creature.orig_FlyIntoRoom original, Creature self, WorldCoordinate entrancePos, Room newRoom)
+        {
+            original(self, entrancePos, newRoom);
+
+            if (CurrentPlayerRoom == newRoom.abstractRoom)
+                TrackCreaturesForObserved.Add(self.abstractCreature);
+            else
+                TrackCreaturesForObserved.Remove(self.abstractCreature);
+        }
         private static void Player_ObjectEaten(On.Player.orig_ObjectEaten original, Player self, IPlayerEdible edible)
         {
             original(self, edible);
@@ -243,6 +276,8 @@ namespace RainWorldBestiary
                     {
                         Main.Logger.LogWarning("Creature Relation Not Tracked: " + relation.value);
                     }
+
+                    Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveGrabbing);
                 }
             }
 
@@ -283,9 +318,8 @@ namespace RainWorldBestiary
         private static bool Player_CanEatMeat(On.Player.orig_CanEatMeat original, Player self, Creature critter)
         {
             int val = critter.abstractCreature.ID.number;
-            if (!DoWeIgnoreID(val))
+            if (!IgnoreID(val, 300))
             {
-                IgnoreID(val, 300);
                 Bestiary.AddOrIncreaseToken(Bestiary.GetCreatureUnlockName(critter), UnlockTokenType.Eaten);
             }
 
@@ -325,19 +359,26 @@ namespace RainWorldBestiary
 
 
         internal static bool IsCreatureOnCamera(Creature creature)
-            => IsCreatureOnCamera(creature.abstractCreature);
+            => creature != null && IsCreatureOnCamera(creature.abstractCreature);
         internal static bool IsCreatureOnCamera(AbstractCreature creature)
+        {
+            if (game == null || creature == null)
+                return false;
+
+            foreach (RoomCamera camera in game.cameras)
+                if (camera != null && camera.PositionCurrentlyVisible(creature.pos.ToVector2(), 1f, false))
+                    return true;
+
+            return false;
+        }
+        internal static bool IsPositionOnCamera(Vector2 position)
         {
             if (game == null)
                 return false;
 
             foreach (RoomCamera camera in game.cameras)
-            {
-                if (camera.PositionCurrentlyVisible(creature.pos.ToVector2(), 1f, false))
-                {
+                if (camera != null && camera.PositionCurrentlyVisible(position, 1f, false))
                     return true;
-                }
-            }
 
             return false;
         }
