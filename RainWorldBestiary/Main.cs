@@ -64,11 +64,6 @@ namespace RainWorldBestiary
             {
                 MachineConnector.SetRegisteredOI("oxyaine.bestiary", new RemixMenu());
 
-#if !DEBUG
-                StartCoroutinePtr = StartCoroutine;
-                StopCoroutinePtr = StopCoroutine;
-#endif
-
                 if (!Initialized)
                 {
                     Initialized = true;
