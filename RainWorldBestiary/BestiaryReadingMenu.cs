@@ -19,50 +19,43 @@ namespace RainWorldBestiary
         readonly string BackButtonMessage = "BACK";
         public BestiaryReadingMenu(ProcessManager manager) : base(manager)
         {
-            try
+            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+
+            float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
+
+            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
+            pages[0].subObjects.Add(scene);
+
+            darkSprite = new FSprite("pixel")
             {
-                Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+                color = new Color(0f, 0f, 0f),
+                anchorX = 0f,
+                anchorY = 0f,
+                scaleX = 1368f,
+                scaleY = 770f,
+                x = -1f,
+                y = -1f,
+                alpha = 0.90f
+            };
+            pages[0].Container.AddChild(darkSprite);
 
-                float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
-
-                scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
-                pages[0].subObjects.Add(scene);
-
-                darkSprite = new FSprite("pixel")
-                {
-                    color = new Color(0f, 0f, 0f),
-                    anchorX = 0f,
-                    anchorY = 0f,
-                    scaleX = 1368f,
-                    scaleY = 770f,
-                    x = -1f,
-                    y = -1f,
-                    alpha = 0.90f
-                };
-                pages[0].Container.AddChild(darkSprite);
-
-                string backButtonText = "BACK";
-                if (Bestiary.PreviousEntriesChain.Count > 0)
-                {
-                    SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, 25f), new Vector2(220f, 30f));
-                    pages[0].subObjects.Add(returnButton);
-
-                    backButtonText = "BACK TO PREVIOUS";
-                }
-
-                SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate(backButtonText), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-                pages[0].subObjects.Add(backButton);
-                backObject = backButton;
-                backButton.nextSelectable[0] = backButton;
-
-                DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
-
-                mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-            }
-            catch (Exception ex)
+            string backButtonText = "BACK";
+            if (Bestiary.PreviousEntriesChain.Count > 0)
             {
-                Main.Logger.LogError(ex);
+                SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, 25f), new Vector2(220f, 30f));
+                pages[0].subObjects.Add(returnButton);
+
+                backButtonText = "BACK TO PREVIOUS";
             }
+
+            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate(backButtonText), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+            pages[0].subObjects.Add(backButton);
+            backObject = backButton;
+            backButton.nextSelectable[0] = backButton;
+
+            DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
+
+            mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
 
         public override void ShutDownProcess()
@@ -73,8 +66,12 @@ namespace RainWorldBestiary
         private IEnumerator PerformTextAnimation(EntryTextDisplay display, Vector2 screenSize)
         {
             int characters = display.TotalLength / 100;
+
+            if (characters == 0 && display.TotalLength > 0)
+                characters = 1;
+
             FSprite[] sprites = new FSprite[characters];
-            
+
             // Local Scope For Variable Cleanup
             {
                 string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
@@ -117,10 +114,7 @@ namespace RainWorldBestiary
                 yield return new WaitTime(0.2f);
             }
 
-            // Temporary So The Text Atleast Displays
-            MenuObject page = pages[0];
-            display.AddToPage(ref page);
-            
+            Enumerators.StartEnumerator(display.Animate(pages[0], sprites));
         }
 
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
@@ -263,6 +257,115 @@ namespace RainWorldBestiary
         private readonly int LineSpacing = 20;
         private readonly List<MenuObject> _Objects = new List<MenuObject>();
 
+        private enum MenuObjectType : byte
+        {
+            Unknown,
+            Label,
+            SimpleButton
+        }
+        public IEnumerator Animate(MenuObject owner, FSprite[] characterSprites)
+        {
+            if (_Objects.Count == 0)
+                yield break;
+            int currentObjectIndex = 0, currentTextPosition = 0, CurrentLength = 0, AmountRevealed = 0, CurrentSpriteIndex = 0;
+            int spriteGapBeforeFade = TotalLength / characterSprites.Length;
+            int currentSpriteCapBeforeFade = spriteGapBeforeFade;
+            const int RevealSpeed = 10;
+            bool newLabel = true;
+            string text = string.Empty;
+
+            while (currentObjectIndex < _Objects.Count)
+            {
+                MenuObjectType type = GetMenuObjectType(_Objects[currentObjectIndex], out MovingSimpleButton button, out MenuLabel label);
+
+                if (type == MenuObjectType.SimpleButton)
+                {
+                    owner.subObjects.Add(button.ToSimpleButton());
+                    AmountRevealed += button.menuLabel.text.Length;
+                }
+                else if (type == MenuObjectType.Label)
+                {
+                    if (newLabel)
+                    {
+                        text = label.text;
+                        CurrentLength = text.Length;
+
+                        label.text = string.Empty;
+                        owner.subObjects.Add(label);
+                    }
+
+                    while (currentTextPosition + RevealSpeed < CurrentLength)
+                    {
+                        label.text += text.Substring(currentTextPosition, RevealSpeed);
+                        currentTextPosition += RevealSpeed;
+                        AmountRevealed += RevealSpeed;
+
+                        if (AmountRevealed >= currentSpriteCapBeforeFade)
+                        {
+                            currentSpriteCapBeforeFade += spriteGapBeforeFade;
+                            Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
+                            ++CurrentSpriteIndex;
+                        }
+
+                        yield return new WaitTime(0.01f);
+                    }
+
+                    label.text += text.Substring(currentTextPosition);
+                    AmountRevealed += CurrentLength - currentTextPosition;
+                    currentTextPosition = 0;
+                    newLabel = true;
+                }
+                else
+                {
+                    Main.Logger.LogError(_Objects[currentObjectIndex].GetType().Name + " has no animation behaviour for text revealing.");
+                }
+
+                ++currentObjectIndex;
+
+                if (AmountRevealed >= currentSpriteCapBeforeFade)
+                {
+                    currentSpriteCapBeforeFade += spriteGapBeforeFade;
+                    Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
+                    ++CurrentSpriteIndex;
+                }
+
+                yield return new WaitTime(0.01f);
+            }
+        }
+        private IEnumerator FadeIconAnimation(FSprite sprite)
+        {
+            //PlaySound(SoundID.HUD_Food_Meter_Deplete_Plop_A);
+
+            while (sprite.alpha > 0)
+            {
+                sprite.alpha -= Time.deltaTime * 2 / sprite.alpha;
+                sprite.scale += 0.05f;
+
+                yield return null;
+            }
+
+            sprite.RemoveFromContainer();
+        }
+        private static MenuObjectType GetMenuObjectType(MenuObject @object, out MovingSimpleButton simpleButton, out MenuLabel label)
+        {
+            switch (@object)
+            {
+                case MovingSimpleButton movingSimpleButton:
+                    simpleButton = movingSimpleButton;
+                    label = null;
+                    return MenuObjectType.SimpleButton;
+                case MenuLabel menuLabel:
+                    label = menuLabel;
+                    simpleButton = null;
+                    return MenuObjectType.Label;
+
+                default:
+                    label = null;
+                    simpleButton = null;
+                    return MenuObjectType.Unknown;
+            }
+        }
+
         public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
         {
             string[] split = wrappedText.Split('\n');
@@ -347,8 +450,8 @@ namespace RainWorldBestiary
                             if (ent == null || !ent.Info.EntryUnlocked)
                                 entryAvailable = false;
 
-                            SimpleButton button = new SimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
-                                new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                            MovingSimpleButton button = new MovingSimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
+                                new Vector2(-100f, -100f), new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                             {
                                 rectColor = new HSLColor(0f, 0f, 0f),
                                 labelColor = new HSLColor(0f, 1f, 1f),
@@ -422,5 +525,20 @@ namespace RainWorldBestiary
             => page.subObjects.AddRange(_Objects);
         public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
             => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
+    }
+
+    internal class MovingSimpleButton : SimpleButton
+    {
+        public Vector2 IntendedPosition = Vector2.zero;
+
+        public MovingSimpleButton(Menu.Menu menu, MenuObject owner, string displayText, string singalText, Vector2 currentPosition, Vector2 intendedPosition, Vector2 size) : base(menu, owner, displayText, singalText, currentPosition, size)
+        {
+            IntendedPosition = intendedPosition;
+        }
+        public SimpleButton ToSimpleButton()
+        {
+            pos = IntendedPosition;
+            return this;
+        }
     }
 }
