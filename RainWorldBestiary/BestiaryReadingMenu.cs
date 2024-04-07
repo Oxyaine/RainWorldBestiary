@@ -56,10 +56,8 @@ namespace RainWorldBestiary
         {
             base.ShutDownProcess();
 
-
             if (routine != null)
                 Main.StopCoroutinePtr(routine);
-
         }
 
         Coroutine routine = null;
@@ -104,7 +102,6 @@ namespace RainWorldBestiary
 
             MenuLabel label = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
             pages[0].subObjects.Add(label);
-
 
 
             const int IncreaseAmount = 10;
@@ -178,7 +175,6 @@ namespace RainWorldBestiary
 
             widthOffset = spriteWidth / 2f;
 
-
             if (entry.Info.IconsNextToTitle)
             {
                 float iconOffset = 0;
@@ -206,8 +202,6 @@ namespace RainWorldBestiary
                     }
                 }
             }
-
-
 
             if (BestiarySettings.ShowModuleLockPips.Value)
             {

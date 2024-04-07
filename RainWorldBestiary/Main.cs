@@ -114,11 +114,8 @@ namespace RainWorldBestiary
             RunningEnumerators.Remove(id);
         }
 
-        [Obsolete]
         internal static Func<IEnumerator, Coroutine> StartCoroutinePtr;
-        [Obsolete]
         internal static Action<Coroutine> StopCoroutinePtr;
-
 
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
