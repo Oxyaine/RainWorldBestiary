@@ -2,7 +2,6 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RainWorldBestiary
