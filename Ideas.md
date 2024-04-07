@@ -9,11 +9,4 @@ A list of things I'm working on, mainly for myself to keep track of ideas and su
 * Built in sprite loader
 	- Convert all FSprites to menu illustrations, so no loading is required
 * Ability to make custom unlock logic, without accessing the bestiaries code
-	- Since I want to avoid having the bestiary a dependency, this is to hopefully allow users to use unlock logic outside of the automated ones, and allow them to make fully custom logic, without accessing the bestiaries code.
-* Make entries not just categorized in tabs, but also sub categories with headers that the entries are below
 * Clearer Documentation
-* Manual
-
-#
-
-* Resource manager should creatures tabs based on JSON files, not folders, the JSON files could also specify the folder to use for entries, that will allow other resource folders to be added without being considered tabs
