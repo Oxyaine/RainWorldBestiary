@@ -54,6 +54,7 @@
     <Compile Include="Font.cs" />
     <Compile Include="InstructionManualPage.cs" />
     <Compile Include="InstructionManualPages.cs" />
+    <Compile Include="Enumerators.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="InstructionManualDialog.cs" />
     <Compile Include="Manual_CreatureHooks.cs" />

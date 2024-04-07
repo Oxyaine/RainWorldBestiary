@@ -74,7 +74,7 @@ namespace RainWorldBestiary
             {
                 if (ID == Main.BestiaryTabMenu)
                 {
-                    Main.ForceCompleteEnumerators(ResourceManager.LoadingModsEnumerator, ResourceManager.UnloadingModsEnumerator);
+                    Enumerators.ForceCompleteEnumerators(ResourceManager.LoadingModsEnumerator, ResourceManager.UnloadingModsEnumerator);
                     self.currentMainLoop = new BestiaryTabMenu(self);
                 }
                 else if (ID == Main.BestiaryEntryMenu)
