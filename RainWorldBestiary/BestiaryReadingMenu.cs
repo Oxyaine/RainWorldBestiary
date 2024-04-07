@@ -1,12 +1,21 @@
 ﻿using Menu;
 using System;
+#if DEBUG
+using System.Collections.Generic;
+using System.Linq;
+#else
 using System.Collections;
+#endif
 using UnityEngine;
 
 namespace RainWorldBestiary
 {
     internal class BestiaryReadingMenu : Dialog
     {
+#if DEBUG
+        internal const string ENTRY_REFERENCE_ID = "Reference_To;";
+        readonly string ReturnButtonMessage = "RETURN";
+#endif
 
         private bool Closing = false;
 
@@ -37,10 +46,28 @@ namespace RainWorldBestiary
                 };
                 pages[0].Container.AddChild(darkSprite);
 
+#if DEBUG
+
+                string backButtonText = "BACK";
+                if (Bestiary.PreviousEntriesChain.Count > 0)
+                {
+                    SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, 25f), new Vector2(220f, 30f));
+                    pages[0].subObjects.Add(returnButton);
+
+                    backButtonText = "BACK TO PREVIOUS";
+                }
+
+                SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate(backButtonText), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                pages[0].subObjects.Add(backButton);
+                backObject = backButton;
+                backButton.nextSelectable[0] = backButton;
+
+#else
                 SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
                 pages[0].subObjects.Add(backButton);
                 backObject = backButton;
                 backButton.nextSelectable[0] = backButton;
+#endif
 
                 DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
 
@@ -56,10 +83,12 @@ namespace RainWorldBestiary
         {
             base.ShutDownProcess();
 
+#if !DEBUG
             if (routine != null)
                 Main.StopCoroutinePtr(routine);
+#endif
         }
-
+#if !DEBUG
         Coroutine routine = null;
         IEnumerator PerformTextAnimation(string text, Vector2 screenSize)
         {
@@ -102,6 +131,7 @@ namespace RainWorldBestiary
 
             MenuLabel label = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
             pages[0].subObjects.Add(label);
+
 
 
             const int IncreaseAmount = 10;
@@ -153,11 +183,22 @@ namespace RainWorldBestiary
             }
             return result;
         }
-
+#endif
 
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
+
+#if DEBUG
+            try
+            {
+                EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+            }
+            catch (Exception ex)
+            {
+                Main.Logger.LogError(ex.ToString());
+            }
+#else
 
             if (BestiarySettings.PerformTextAnimations.Value)
             {
@@ -168,12 +209,15 @@ namespace RainWorldBestiary
                 MenuLabel label = new MenuLabel(this, pages[0], RemoveStructures(entry.Info.Description.ToString()).WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
                 pages[0].subObjects.Add(label);
             }
+#endif
+
 
             FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(entry, in screenSize, out float spriteWidth);
             foreach (FSprite sprite in titleSprites)
                 pages[0].Container.AddChild(sprite);
 
             widthOffset = spriteWidth / 2f;
+
 
             if (entry.Info.IconsNextToTitle)
             {
@@ -203,6 +247,8 @@ namespace RainWorldBestiary
                 }
             }
 
+
+
             if (BestiarySettings.ShowModuleLockPips.Value)
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
@@ -228,8 +274,56 @@ namespace RainWorldBestiary
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
+#if DEBUG
+                if (Bestiary.PreviousEntriesChain.Count > 0)
+                {
+                    Bestiary.CurrentSelectedEntry = Bestiary.PreviousEntriesChain[0];
+                    Bestiary.PreviousEntriesChain.RemoveAt(0);
+
+                    manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                }
+                else
+                    manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
+#else
+                manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
+#endif
+            }
+
+#if DEBUG
+            if (message.Equals(ReturnButtonMessage))
+            {
+                Bestiary.EnteringMenu = false;
+                PlaySound(SoundID.MENU_Switch_Page_Out);
+
+                Bestiary.PreviousEntriesChain.Clear();
+
                 manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
             }
+
+            if (message.StartsWith(ENTRY_REFERENCE_ID))
+            {
+                Bestiary.EnteringMenu = true;
+
+                try
+                {
+                    string referenceID = message.Substring(message.IndexOf(';') + 1);
+                    Entry entry = Bestiary.GetEntryByReferenceID(referenceID);
+
+                    if (entry != null)
+                    {
+                        PlaySound(SoundID.MENU_Switch_Page_In);
+
+                        Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
+                        Bestiary.CurrentSelectedEntry = entry;
+                        manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Main.Logger.LogDebug(ex);
+                }
+            }
+#endif
         }
 
         public override void Update()
@@ -240,4 +334,169 @@ namespace RainWorldBestiary
             base.Update();
         }
     }
+#if DEBUG
+    internal class EntryTextDisplay
+    {
+        readonly int LineSpacing = 20;
+        readonly List<MenuObject> _Objects = new List<MenuObject>();
+
+        public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
+        {
+            string[] split = wrappedText.Split('\n');
+            int currentY = GetStartingYPosition(split.Length, (int)screenSize.y);
+
+            foreach (string line in split)
+            {
+                _Objects.AddRange(FormatHorizontalText(line, screenSize, currentY, menu, owner));
+
+                currentY -= LineSpacing;
+            }
+        }
+
+        public enum StructureType
+        {
+            PlainText = 0, Plain = 0, Text = 0, Txt = 0,
+            Reference = 1, Ref = 1, Refer = 1,
+            Color = 2, Clr = 2, Colour = 2, Rgb = 2
+        }
+        public class StructureData
+        {
+            public StructureType Type;
+            public string Message;
+            public string OtherData = string.Empty;
+
+            public StructureData(StructureType type, string message)
+            {
+                Type = type;
+                Message = message;
+            }
+            public StructureData(StructureType type, string message, string otherData)
+                : this(type, message)
+            {
+                OtherData = otherData;
+            }
+        }
+
+        // Current Valid Structures
+        // References:  <ref="Hello!"=Rain World/creaturetype-Fly>
+        // Colors:      <color="Hello!"=FFFFFF>
+
+        private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
+        {
+            List<float> sizes = new List<float>();
+
+            int currentLookPosition = 0;
+            int LessThanIndex;
+            List<StructureData> structures = new List<StructureData>();
+            while ((LessThanIndex = text.IndexOf('<', currentLookPosition)) != -1)
+            {
+                StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentLookPosition, LessThanIndex - currentLookPosition), string.Empty);
+                sizes.Add(structure.Message.Length);
+                structures.Add(structure);
+
+                structure = DecipherStructure(in text, LessThanIndex + 1, out currentLookPosition);
+                sizes.Add(structure.Message.Length);
+                structures.Add(structure);
+            }
+
+            string remainder = text.Substring(currentLookPosition);
+            structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
+            sizes.Add(remainder.Length);
+
+            List<MenuObject> result = new List<MenuObject>();
+
+            float currentX = (screenSize.x - (sizes.Sum() * 5.3f)) / 2f;
+            int currentSizeIndex = 0;
+            float currentSizeValue = 0;
+            foreach (StructureData structure in structures)
+            {
+                switch (structure.Type)
+                {
+                    case StructureType.Reference:
+                        {
+                            float xSize = sizes[currentSizeIndex] * 1.5f;
+
+                            bool entryAvailable = true;
+                            Entry ent = Bestiary.GetEntryByReferenceID(structure.OtherData);
+                            if (ent == null || !ent.Info.EntryUnlocked)
+                                entryAvailable = false;
+
+                            SimpleButton button = new SimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
+                                new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                            {
+                                rectColor = new HSLColor(0f, 0f, 0f),
+                                labelColor = new HSLColor(0f, 1f, 1f),
+                                inactive = !entryAvailable
+                            };
+
+                            result.Add(button);
+
+                            currentSizeValue += 10f;
+                        }
+                        break;
+                    case StructureType.Colour:
+                        {
+                            MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
+
+                            label.label.color = structure.OtherData.HexToColor();
+                            label.label.alignment = FLabelAlignment.Left;
+
+                            result.Add(label);
+
+                            currentSizeValue += 20f;
+                        }
+                        break;
+                    default:
+                        {
+                            MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
+
+                            label.label.alignment = FLabelAlignment.Left;
+
+                            result.Add(label);
+
+                            currentSizeValue += 10f;
+                        }
+                        break;
+                }
+
+                currentX += sizes[currentSizeIndex] * 5.3f;
+                currentSizeIndex++;
+            }
+
+            return result;
+        }
+        private static StructureData DecipherStructure(in string text, int startingPosition, out int lastPosition)
+        {
+            lastPosition = text.IndexOf('>', startingPosition, true);
+
+            string t = text.Substring(startingPosition, lastPosition - startingPosition);
+            string[] split = SplitStructure(t);
+
+            Enum.TryParse(split[0], true, out StructureType type);
+            string message = type != StructureType.PlainText ? split[1].Trim('\"') : t;
+            string otherData = split.Length > 2 ? split[2] : string.Empty; ;
+
+            ++lastPosition;
+            return new StructureData(type, message, otherData);
+        }
+        private static string[] SplitStructure(string text)
+        {
+            int firstEquals = text.IndexOf('='), lastEquals = text.LastIndexOf('=');
+            return new string[3] { text.Substring(0, firstEquals), text.Substring(firstEquals + 1, lastEquals - firstEquals - 1), text.Substring(lastEquals + 1) };
+        }
+
+        private int GetStartingYPosition(int lines, int screenSizeY)
+        {
+            int totalHeight = lines * LineSpacing;
+            int leftoverScreen = screenSizeY - totalHeight;
+            return screenSizeY - (leftoverScreen / 2);
+        }
+
+        public void AddToPage(ref MenuObject page)
+            => page.subObjects.AddRange(_Objects);
+
+        public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
+            => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
+    }
+#endif
 }
