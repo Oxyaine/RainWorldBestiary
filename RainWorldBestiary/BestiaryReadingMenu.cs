@@ -95,22 +95,26 @@ namespace RainWorldBestiary
 
                     currentX += sprites[i].width;
 
-                    PlaySound(SoundID.SS_AI_Text);
+                    PlaySound(SoundID.SS_AI_Text, 0f, 1.75f, 1f);
                     yield return new WaitTime(0.05f);
                 }
             }
 
+            yield return new WaitTime(0.3f);
+
             for (int i = 0; i < 2; i++)
             {
-                yield return new WaitTime(0.3f);
                 for (int j = 0; j < sprites.Length; j++)
                     sprites[j].RemoveFromContainer();
 
-                yield return new WaitTime(0.2f);
+                yield return new WaitTime(0.3f);
+
+
                 for (int j = 0; j < sprites.Length; j++)
                     pages[0].Container.AddChild(sprites[j]);
+                PlaySound(SoundID.SS_AI_Text_Blink, 0f, 1.75f, 1f);
 
-                PlaySound(SoundID.SS_AI_Text_Blink);
+                yield return new WaitTime(0.2f);
             }
 
             // Temporary So The Text Atleast Displays
