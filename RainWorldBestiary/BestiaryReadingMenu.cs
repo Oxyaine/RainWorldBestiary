@@ -1,15 +1,21 @@
 ﻿using Menu;
 using System;
+#if DEBUG
 using System.Collections.Generic;
 using System.Linq;
+#else
+using System.Collections;
+#endif
 using UnityEngine;
 
 namespace RainWorldBestiary
 {
     internal class BestiaryReadingMenu : Dialog
     {
+#if DEBUG
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
+#endif
 
         private bool Closing = false;
 
@@ -40,6 +46,8 @@ namespace RainWorldBestiary
                 };
                 pages[0].Container.AddChild(darkSprite);
 
+#if DEBUG
+
                 string backButtonText = "BACK";
                 if (Bestiary.PreviousEntriesChain.Count > 0)
                 {
@@ -54,6 +62,13 @@ namespace RainWorldBestiary
                 backObject = backButton;
                 backButton.nextSelectable[0] = backButton;
 
+#else
+                SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+                pages[0].subObjects.Add(backButton);
+                backObject = backButton;
+                backButton.nextSelectable[0] = backButton;
+#endif
+
                 DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
 
                 mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
@@ -67,49 +82,114 @@ namespace RainWorldBestiary
         public override void ShutDownProcess()
         {
             base.ShutDownProcess();
+
+#if !DEBUG
+            if (routine != null)
+                Main.StopCoroutinePtr(routine);
+#endif
         }
-            //int characters = text.Length / 100;
+#if !DEBUG
+        Coroutine routine = null;
+        IEnumerator PerformTextAnimation(string text, Vector2 screenSize)
+        {
+            int characters = text.Length / 100;
 
-            //string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
-            //FSprite[] sprites = new FSprite[characters];
+            string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
+            FSprite[] sprites = new FSprite[characters];
 
-            //int position = characters * 16 * 3;
+            int position = characters * 16 * 3;
 
-            //float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
-            //for (int i = 0; i < elements.Length; i++)
-            //{
-            //    sprites[i] = new FSprite(elements[i])
-            //    {
-            //        x = currentX,
-            //        y = currentY,
-            //        scale = 3f
-            //    };
+            float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
+            for (int i = 0; i < elements.Length; i++)
+            {
+                sprites[i] = new FSprite(elements[i])
+                {
+                    x = currentX,
+                    y = currentY,
+                    scale = 3f
+                };
 
-            //    pages[0].Container.AddChild(sprites[i]);
+                pages[0].Container.AddChild(sprites[i]);
 
-            //    currentX += sprites[i].width;
+                currentX += sprites[i].width;
 
-            //    yield return new WaitForSeconds(0.05f);
-            //}
+                yield return new WaitForSeconds(0.05f);
+            }
 
-            //elements = null;
+            elements = null;
 
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    yield return new WaitForSeconds(0.3f);
-            //    for (int j = 0; j < sprites.Length; j++)
-            //        sprites[j].RemoveFromContainer();
+            for (int i = 0; i < 2; i++)
+            {
+                yield return new WaitForSeconds(0.3f);
+                for (int j = 0; j < sprites.Length; j++)
+                    sprites[j].RemoveFromContainer();
 
-            //    yield return new WaitForSeconds(0.2f);
-            //    for (int j = 0; j < sprites.Length; j++)
-            //        pages[0].Container.AddChild(sprites[j]);
-            //}
+                yield return new WaitForSeconds(0.2f);
+                for (int j = 0; j < sprites.Length; j++)
+                    pages[0].Container.AddChild(sprites[j]);
+            }
 
+            MenuLabel label = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+            pages[0].subObjects.Add(label);
+
+
+
+            const int IncreaseAmount = 10;
+            int cache = text.Length,
+                countBeforeIconRemoval = cache / characters,
+                currentSpriteIndex = 0;
+            for (int i = 0; i < cache; i += IncreaseAmount)
+            {
+                if (i + IncreaseAmount >= cache)
+                    label.text += text.Substring(i);
+                else
+                    label.text += text.Substring(i, IncreaseAmount);
+
+                if (i >= (countBeforeIconRemoval * currentSpriteIndex))
+                {
+                    Main.StartCoroutinePtr(FadeIconAnimation(sprites[currentSpriteIndex]));
+                    ++currentSpriteIndex;
+                }
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        IEnumerator FadeIconAnimation(FSprite sprite)
+        {
+            PlaySound(SoundID.HUD_Food_Meter_Deplete_Plop_A);
+
+            while (sprite.alpha > 0)
+            {
+                sprite.alpha -= Time.deltaTime * 2 / sprite.alpha;
+                sprite.scale += 0.05f;
+
+                yield return null;
+            }
+
+            sprite.RemoveFromContainer();
+        }
+
+        private static string RemoveStructures(string text)
+        {
+            string result = text;
+            int currentPosition = 0;
+            while ((currentPosition = result.IndexOf('<', currentPosition)) != -1)
+            {
+                int lastPosition = result.IndexOf('>', currentPosition);
+                int eqp = result.IndexOf('=', currentPosition);
+                int lEqp = result.LastIndexOf('=', lastPosition);
+                result = result.Replace(result.Substring(currentPosition, lastPosition + 1 - currentPosition), result.Substring(eqp + 1, lEqp - eqp - 1).Trim('\"'));
+                currentPosition = lastPosition + 1;
+            }
+            return result;
+        }
+#endif
 
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
 
+#if DEBUG
             try
             {
                 EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
@@ -118,12 +198,26 @@ namespace RainWorldBestiary
             {
                 Main.Logger.LogError(ex.ToString());
             }
+#else
+
+            if (BestiarySettings.PerformTextAnimations.Value)
+            {
+                routine = Main.StartCoroutinePtr(PerformTextAnimation(RemoveStructures(entry.Info.Description.ToString()).WrapText(WrapCount), screenSize));
+            }
+            else
+            {
+                MenuLabel label = new MenuLabel(this, pages[0], RemoveStructures(entry.Info.Description.ToString()).WrapText(WrapCount), new Vector2(screenSize.x / 2f, screenSize.y / 2f), Vector2.one, false);
+                pages[0].subObjects.Add(label);
+            }
+#endif
+
 
             FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(entry, in screenSize, out float spriteWidth);
             foreach (FSprite sprite in titleSprites)
                 pages[0].Container.AddChild(sprite);
 
             widthOffset = spriteWidth / 2f;
+
 
             if (entry.Info.IconsNextToTitle)
             {
@@ -180,6 +274,7 @@ namespace RainWorldBestiary
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
+#if DEBUG
                 if (Bestiary.PreviousEntriesChain.Count > 0)
                 {
                     Bestiary.CurrentSelectedEntry = Bestiary.PreviousEntriesChain[0];
@@ -189,8 +284,12 @@ namespace RainWorldBestiary
                 }
                 else
                     manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
+#else
+                manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
+#endif
             }
 
+#if DEBUG
             if (message.Equals(ReturnButtonMessage))
             {
                 Bestiary.EnteringMenu = false;
@@ -224,6 +323,7 @@ namespace RainWorldBestiary
                     Main.Logger.LogDebug(ex);
                 }
             }
+#endif
         }
 
         public override void Update()
@@ -234,7 +334,7 @@ namespace RainWorldBestiary
             base.Update();
         }
     }
-
+#if DEBUG
     internal class EntryTextDisplay
     {
         readonly int LineSpacing = 20;
@@ -398,4 +498,5 @@ namespace RainWorldBestiary
         public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
             => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
     }
+#endif
 }
