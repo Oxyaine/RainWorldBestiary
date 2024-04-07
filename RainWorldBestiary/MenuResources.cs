@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RainWorldBestiary
+﻿namespace RainWorldBestiary
 {
     internal class MenuResources
     {
@@ -14,7 +12,6 @@ namespace RainWorldBestiary
         public readonly string UnlockPipUnlockedName = "unlock_pip_full";
         public readonly string UnlockPipName = "unlock_pip";
 
-#if !DEBUG
         public readonly string[] Characters = new string[]
         {
             "illustrations\\bestiary\\icons\\Char_1",
@@ -45,7 +42,6 @@ namespace RainWorldBestiary
             "illustrations\\bestiary\\icons\\Char_26",
             "illustrations\\bestiary\\icons\\Char_27"
         };
-#endif
 
         public MenuResources() { }
         ~MenuResources() { }
