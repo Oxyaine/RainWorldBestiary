@@ -225,7 +225,7 @@ namespace RainWorldBestiary
                 case PredefinedColors.Appearance:
                     return new Color(0.6f, 1f, 0.9f);
                 case PredefinedColors.Hunting:
-                    return new Color(0.6f, 1f, 0.6f);
+                    return new Color(0.9f, 1f, 0.6f);
                 case PredefinedColors.Utility:
                     return new Color(1f, 0.6f, 1f);
                 case PredefinedColors.Behaviour:
