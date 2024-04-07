@@ -109,6 +109,8 @@ namespace RainWorldBestiary
                 yield return new WaitTime(0.2f);
                 for (int j = 0; j < sprites.Length; j++)
                     pages[0].Container.AddChild(sprites[j]);
+
+                PlaySound(SoundID.SS_AI_Text_Blink);
             }
 
             // Temporary So The Text Atleast Displays
