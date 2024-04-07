@@ -99,6 +99,15 @@
             Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.AutoCreatureHooks.IgnoreID(System.Int32,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Checks if the ID is ignored, if its not, it will be added
+            </summary>
+            <remarks>
+            <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
+            </remarks>
+            <returns>True if the creature should be ignored, otherwise false</returns>
+        </member>
         <member name="T:RainWorldBestiary.Description">
             <summary>
             A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
@@ -905,6 +914,12 @@
         <member name="F:RainWorldBestiary.UnlockTokenType.ObserveAttacking">
             <summary>
             When the player observes the creature attacking another creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveGrabbing">
+            <summary>
+            When the player observes the creature grabbing something, for any reason. This is just a generic grab, for grabbing a creature in the case of attacking, rivals, or food, use <see cref="F:RainWorldBestiary.UnlockTokenType.ObserveAttacking"/>, <see cref="F:RainWorldBestiary.UnlockTokenType.ObserveRivals"/>, and <see cref="F:RainWorldBestiary.UnlockTokenType.ObserveFood"/> respectively
             </summary>
             <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
         </member>
