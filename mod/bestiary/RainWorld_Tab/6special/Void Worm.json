@@ -1,13 +1,28 @@
 {
+  "name": null,
   "unlock_id": "",
   "locked_text": "This entry is locked.",
   "icons_next_to_title": true,
-  "entry_icon": "illustrations\\bestiary\\entry_icons\\Void_Worm_icon",
+  "entry_icons": [
+    "illustrations\\bestiary\\entry_icons\\Void_Worm_icon"
+  ],
   "title_sprite": null,
   "description": [
     {
-      "unlock_id": "",
-      "text": ""
+      "unlock_ids": [
+        {
+          "creature_id": "FLY",
+          "count": 1,
+          "special_data": [],
+          "operation_against_value": "And",
+          "token_type": "Tamed"
+        }
+      ],
+      "body": "TEXT",
+      "new_line": true,
+      "translate": true,
+      "unlock_pip_color": "FFFFFF"
     }
-  ]
+  ],
+  "color": "DFF5D6"
 }

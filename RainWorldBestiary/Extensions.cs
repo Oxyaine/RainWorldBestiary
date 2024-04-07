@@ -227,17 +227,13 @@ namespace RainWorldBestiary
         /// <summary>
         /// Converts this Color into a hex color string, with 6 characters in the string, representing RGB
         /// </summary>
-        public static string RGBToHexString(this Color color)
-        {
-            return $"{color.r:X2}{color.g:X2}{color.b:X2}";
-        }
+        public static string RGBToHexString(this Color color) 
+            => $"{(byte)(color.r * byte.MaxValue):X2}{(byte)(color.g * byte.MaxValue):X2}{(byte)(color.b * byte.MaxValue):X2}";
         /// <summary>
         /// Converts this Color into a hex color string, with 8 characters in the string, representing ARGB
         /// </summary>
-        public static string ARGBToHexString(this Color color)
-        {
-            return $"{color.a:X2}{color.r:X2}{color.g:X2}{color.b:X2}";
-        }
+        public static string ARGBToHexString(this Color color) 
+            => $"{(byte)(color.a * 255):X2}{(byte)(color.r * byte.MaxValue):X2}{(byte)(color.g * byte.MaxValue):X2}{(byte)(color.b * byte.MaxValue):X2}";
 
         /// <inheritdoc cref="string.IndexOf(char, int)"/>
         /// <param name="text"></param>

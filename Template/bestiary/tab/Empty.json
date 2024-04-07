@@ -4,21 +4,21 @@
   "locked_text": "This entry is locked.",
   "icons_next_to_title": true,
   "entry_icons": [
-    "illustrations\\bestiary\\entry_icons\\Aquapede_icon"
+    ""
   ],
   "title_sprite": null,
   "description": [
     {
       "unlock_ids": [
         {
-          "creature_id": "FLY",
+          "creature_id": "",
           "count": 1,
           "special_data": [],
-          "operation_against_value": "And",
-          "token_type": "Tamed"
+          "operation_against_value": "",
+          "token_type": ""
         }
       ],
-      "body": "TEXT",
+      "body": "",
       "new_line": true,
       "translate": true,
       "unlock_pip_color": "FFFFFF"
