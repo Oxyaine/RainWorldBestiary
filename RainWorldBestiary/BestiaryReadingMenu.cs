@@ -171,8 +171,6 @@ namespace RainWorldBestiary
                 }
             }
 
-
-
             if (BestiarySettings.ShowModuleLockPips.Value)
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
