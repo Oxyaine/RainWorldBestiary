@@ -68,42 +68,43 @@ namespace RainWorldBestiary
         {
             base.ShutDownProcess();
         }
-            //int characters = text.Length / 100;
 
-            //string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
-            //FSprite[] sprites = new FSprite[characters];
+        //int characters = text.Length / 100;
 
-            //int position = characters * 16 * 3;
+        //string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
+        //FSprite[] sprites = new FSprite[characters];
 
-            //float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
-            //for (int i = 0; i < elements.Length; i++)
-            //{
-            //    sprites[i] = new FSprite(elements[i])
-            //    {
-            //        x = currentX,
-            //        y = currentY,
-            //        scale = 3f
-            //    };
+        //int position = characters * 16 * 3;
 
-            //    pages[0].Container.AddChild(sprites[i]);
+        //float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
+        //for (int i = 0; i < elements.Length; i++)
+        //{
+        //    sprites[i] = new FSprite(elements[i])
+        //    {
+        //        x = currentX,
+        //        y = currentY,
+        //        scale = 3f
+        //    };
 
-            //    currentX += sprites[i].width;
+        //    pages[0].Container.AddChild(sprites[i]);
 
-            //    yield return new WaitForSeconds(0.05f);
-            //}
+        //    currentX += sprites[i].width;
 
-            //elements = null;
+        //    yield return new WaitForSeconds(0.05f);
+        //}
 
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    yield return new WaitForSeconds(0.3f);
-            //    for (int j = 0; j < sprites.Length; j++)
-            //        sprites[j].RemoveFromContainer();
+        //elements = null;
 
-            //    yield return new WaitForSeconds(0.2f);
-            //    for (int j = 0; j < sprites.Length; j++)
-            //        pages[0].Container.AddChild(sprites[j]);
-            //}
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    yield return new WaitForSeconds(0.3f);
+        //    for (int j = 0; j < sprites.Length; j++)
+        //        sprites[j].RemoveFromContainer();
+
+        //    yield return new WaitForSeconds(0.2f);
+        //    for (int j = 0; j < sprites.Length; j++)
+        //        pages[0].Container.AddChild(sprites[j]);
+        //}
 
 
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
@@ -190,8 +191,7 @@ namespace RainWorldBestiary
                 else
                     manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
             }
-
-            if (message.Equals(ReturnButtonMessage))
+            else if (message.Equals(ReturnButtonMessage))
             {
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
@@ -200,8 +200,7 @@ namespace RainWorldBestiary
 
                 manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
             }
-
-            if (message.StartsWith(ENTRY_REFERENCE_ID))
+            else if (message.StartsWith(ENTRY_REFERENCE_ID))
             {
                 Bestiary.EnteringMenu = true;
 
