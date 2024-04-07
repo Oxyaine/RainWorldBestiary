@@ -57,13 +57,6 @@ namespace RainWorldBestiary
             ResourceManager.UnloadingModsEnumerator = Enumerators.StartEnumerator(ResourceManager.UnloadMods(newlyDisabledMods));
         }
 
-#if !DEBUG
-        [Obsolete]
-        internal static Func<IEnumerator, Coroutine> StartCoroutinePtr;
-        [Obsolete]
-        internal static Action<Coroutine> StopCoroutinePtr;
-#endif
-
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
             original(self);
