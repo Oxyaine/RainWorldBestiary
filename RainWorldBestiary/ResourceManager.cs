@@ -192,12 +192,10 @@ namespace RainWorldBestiary
             {
                 try
                 {
-                    string file = AssetManager.ResolveFilePath(files[i]);
-
-                    EntryInfo info = JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file));
+                    EntryInfo info = JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(files[i]));
 
                     if (string.IsNullOrEmpty(info.Name))
-                        entries[i] = new Entry(Path.GetFileNameWithoutExtension(file), info, owningModID);
+                        entries[i] = new Entry(Path.GetFileNameWithoutExtension(files[i]), info, owningModID);
                     else
                         entries[i] = new Entry(info.Name, info, owningModID);
                 }
