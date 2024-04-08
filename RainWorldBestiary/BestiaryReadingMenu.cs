@@ -217,23 +217,16 @@ namespace RainWorldBestiary
             {
                 Bestiary.EnteringMenu = true;
 
-                try
-                {
-                    string referenceID = message.Substring(message.IndexOf(';') + 1);
-                    Entry entry = Bestiary.GetEntryByReferenceID(referenceID);
+                string referenceID = message.Substring(message.IndexOf(';') + 1);
+                Entry entry = Bestiary.GetEntryByReferenceID(referenceID);
 
-                    if (entry != null)
-                    {
-                        PlaySound(SoundID.MENU_Switch_Page_In);
-
-                        Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
-                        Bestiary.CurrentSelectedEntry = entry;
-                        manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
-                    }
-                }
-                catch (Exception ex)
+                if (entry != null)
                 {
-                    Main.Logger.LogDebug(ex);
+                    PlaySound(SoundID.MENU_Switch_Page_In);
+
+                    Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
+                    Bestiary.CurrentSelectedEntry = entry;
+                    manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
                 }
             }
         }
