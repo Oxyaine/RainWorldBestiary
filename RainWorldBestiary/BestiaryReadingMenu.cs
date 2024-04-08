@@ -112,9 +112,11 @@ namespace RainWorldBestiary
                 yield return new WaitTime(0.2f);
             }
 
+            Enumerators.ForceCompleteEnumerators(PopulateDisplayID);
             Enumerators.StartEnumerator(display.Animate(pages[0], sprites));
         }
 
+        private int PopulateDisplayID = -1;
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
@@ -123,7 +125,9 @@ namespace RainWorldBestiary
             {
                 if (BestiarySettings.PerformTextAnimations.Value)
                 {
-                    Enumerators.StartEnumerator(PerformTextAnimation(new EntryTextDisplay(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]), screenSize));
+                    EntryTextDisplay display = new EntryTextDisplay();
+                    PopulateDisplayID = Enumerators.StartEnumerator(display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
+                    Enumerators.StartEnumerator(PerformTextAnimation(display, screenSize));
                 }
                 else
                 {

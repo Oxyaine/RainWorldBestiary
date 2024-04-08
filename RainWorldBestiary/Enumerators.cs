@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace RainWorldBestiary
 {
-    internal class Enumerators
+    internal static class Enumerators
     {
         private static readonly Dictionary<int, Iterator> RunningEnumerators = new Dictionary<int, Iterator>();
+        private static int CurrentFreshID = 0;
         internal static void Update()
         {
             int[] keys = new int[RunningEnumerators.Count];
@@ -58,14 +59,17 @@ namespace RainWorldBestiary
                 ForceCompleteEnumerator(ids[i]);
         }
 
+        internal static void CompleteEnumerator(IEnumerator enumerator)
+        {
+            while (enumerator.MoveNext()) ;
+        }
+
         internal static int StartEnumerator(IEnumerator enumerator)
         {
-            int id = 0;
-            while (RunningEnumerators.ContainsKey(id))
-                ++id;
+            ++CurrentFreshID;
 
-            RunningEnumerators.Add(id, new Iterator(enumerator));
-            return id;
+            RunningEnumerators.Add(CurrentFreshID, new Iterator(enumerator));
+            return CurrentFreshID;
         }
         internal static void StopEnumerator(int id)
         {

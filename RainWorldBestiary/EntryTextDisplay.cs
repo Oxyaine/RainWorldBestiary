@@ -122,6 +122,7 @@ namespace RainWorldBestiary
             }
         }
 
+        public EntryTextDisplay() { }
         public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
         {
             string[] split = wrappedText.Split('\n');
@@ -129,7 +130,22 @@ namespace RainWorldBestiary
 
             foreach (string line in split)
             {
-                _Objects.AddRange(FormatHorizontalText(line, screenSize, currentY, menu, owner));
+                Enumerators.CompleteEnumerator(FormatHorizontalText(line, screenSize, currentY, menu, owner));
+                currentY -= LineSpacing;
+            }
+        }
+
+        public IEnumerator Populate(string wrappedText, Vector2 screenSize, Menu.Menu menu, MenuObject owner)
+        {
+            string[] split = wrappedText.Split('\n');
+            int currentY = GetStartingYPosition(split.Length, (int)screenSize.y);
+
+            foreach (string line in split)
+            {
+                IEnumerator enumerator = FormatHorizontalText(line, screenSize, currentY, menu, owner);
+
+                while (enumerator.MoveNext())
+                    yield return null;
 
                 currentY -= LineSpacing;
             }
@@ -163,29 +179,34 @@ namespace RainWorldBestiary
         // References:  <ref="Hello!"=Rain World/creaturetype-Fly>
         // Colors:      <color="Hello!"=FFFFFF>
 
-        private List<MenuObject> FormatHorizontalText(string text, in Vector2 screenSize, in int Y, in Menu.Menu menu, in MenuObject owner)
+        private IEnumerator FormatHorizontalText(string text, Vector2 screenSize, int Y, Menu.Menu menu, MenuObject owner)
         {
             List<int> sizes = new List<int>();
             List<StructureData> structures = new List<StructureData>();
 
-            int currentPosition = 0;
-            int LessThanIndex;
-            while ((LessThanIndex = text.IndexOf('<', currentPosition)) != -1)
+            // Scope 1
             {
-                StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentPosition, LessThanIndex - currentPosition));
-                sizes.Add(structure.Message.Length);
-                structures.Add(structure);
+                int currentPosition = 0;
+                int LessThanIndex;
+                while ((LessThanIndex = text.IndexOf('<', currentPosition)) != -1)
+                {
+                    StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentPosition, LessThanIndex - currentPosition));
+                    sizes.Add(structure.Message.Length);
+                    structures.Add(structure);
 
-                structure = DecipherStructure(in text, LessThanIndex + 1, out currentPosition);
-                sizes.Add(structure.Message.Length);
-                structures.Add(structure);
+                    structure = DecipherStructure(in text, LessThanIndex + 1, out currentPosition);
+                    sizes.Add(structure.Message.Length);
+                    structures.Add(structure);
+
+                    yield return null;
+                }
+                // Scope 2
+                {
+                    string remainder = text.Substring(currentPosition);
+                    structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
+                    sizes.Add(remainder.Length);
+                }
             }
-
-            string remainder = text.Substring(currentPosition);
-            structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
-            sizes.Add(remainder.Length);
-
-            List<MenuObject> result = new List<MenuObject>();
 
             int sum = sizes.Sum();
             TotalLength += sum;
@@ -214,7 +235,7 @@ namespace RainWorldBestiary
                                 inactive = !entryAvailable
                             };
 
-                            result.Add(button);
+                            _Objects.Add(button);
 
                             currentSizeValue += 10f;
                         }
@@ -226,7 +247,7 @@ namespace RainWorldBestiary
                             label.label.color = structure.OtherData.HexToColor();
                             label.label.alignment = FLabelAlignment.Left;
 
-                            result.Add(label);
+                            _Objects.Add(label);
 
                             currentSizeValue += 20f;
                         }
@@ -237,7 +258,7 @@ namespace RainWorldBestiary
 
                             label.label.alignment = FLabelAlignment.Left;
 
-                            result.Add(label);
+                            _Objects.Add(label);
 
                             currentSizeValue += 10f;
                         }
@@ -246,9 +267,8 @@ namespace RainWorldBestiary
 
                 currentX += sizes[currentSizeIndex] * 5.3f;
                 currentSizeIndex++;
+                yield return null;
             }
-
-            return result;
         }
         private static StructureData DecipherStructure(in string text, int startingPosition, out int lastPosition)
         {
@@ -258,8 +278,8 @@ namespace RainWorldBestiary
             string[] split = SplitStructure(t);
 
             Enum.TryParse(split[0], true, out StructureType type);
-            string message = type != StructureType.PlainText ? split[1].Trim('\"') : t;
-            string otherData = split.Length > 2 ? split[2] : string.Empty; ;
+            string message = split.Length > 1 ? (type != StructureType.PlainText ? split[1].Trim('\"') : t) : string.Empty;
+            string otherData = split.Length > 2 ? split[2] : string.Empty;
 
             ++lastPosition;
             return new StructureData(type, message, otherData);
@@ -267,7 +287,13 @@ namespace RainWorldBestiary
         private static string[] SplitStructure(string text)
         {
             int firstEquals = text.IndexOf('='), lastEquals = text.LastIndexOf('=');
-            return new string[3] { text.Substring(0, firstEquals), text.Substring(firstEquals + 1, lastEquals - firstEquals - 1), text.Substring(lastEquals + 1) };
+
+            if (firstEquals == -1)
+                return new string[1] { text };
+            else if (lastEquals == firstEquals)
+                return new string[2] { text.Substring(0, firstEquals), text.Substring(firstEquals) };
+            else
+                return new string[3] { text.Substring(0, firstEquals), text.Substring(firstEquals + 1, lastEquals - firstEquals - 1), text.Substring(lastEquals + 1) };
         }
 
         private int GetStartingYPosition(int lines, int screenSizeY)
