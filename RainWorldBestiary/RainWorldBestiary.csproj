@@ -41,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bestiary.cs" />
+    <Compile Include="EntryTextDisplay.cs" />
     <Compile Include="ErrorManager.cs" />
     <Compile Include="BestiaryTabMenu.cs" />
     <Compile Include="BestiarySaveData.cs" />
