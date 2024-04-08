@@ -187,12 +187,13 @@ namespace RainWorldBestiary
         }
         private static Entry[] GetFilesAsEntries(string[] files, string owningModID)
         {
-            Entry[] entries = new Entry[files.Count()];
-            int i = 0;
-            foreach (string file in files)
+            Entry[] entries = new Entry[files.Length];
+            for (int i = 0; i < files.Length; i++)
             {
                 try
                 {
+                    string file = AssetManager.ResolveFilePath(files[i]);
+
                     EntryInfo info = JsonConvert.DeserializeObject<EntryInfo>(File.ReadAllText(file));
 
                     if (string.IsNullOrEmpty(info.Name))
@@ -203,15 +204,12 @@ namespace RainWorldBestiary
                 catch (Exception ex)
                 {
                     Entry er = Entry.Error;
-                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(file) + "\n" + ex.Message) { ModuleUnlockedCondition = e => false });
+                    er.Info.Description.Add(new DescriptionModule("Entry: " + Path.GetFileNameWithoutExtension(files[i]) + "\n" + ex.Message) { ModuleUnlockedCondition = e => false });
                     entries[i] = er;
-                    Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(file) + " at " + file);
+                    Main.Logger.LogWarning("Something went wrong trying to parse entry " + Path.GetFileNameWithoutExtension(files[i]) + " at " + files[i]);
                     Main.Logger.LogError(ex);
                 }
-
-                ++i;
             }
-
             return entries;
         }
 
