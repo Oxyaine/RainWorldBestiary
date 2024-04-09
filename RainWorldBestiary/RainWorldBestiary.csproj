@@ -71,47 +71,47 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\lib\dependants\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx, Version=5.4.17.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\BepInEx.dll</HintPath>
+      <HintPath>..\lib\dependants\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="HOOKS-Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\HOOKS-Assembly-CSharp.dll</HintPath>
+      <HintPath>..\lib\dependants\HOOKS-Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\Mono.Cecil.dll</HintPath>
+      <HintPath>..\lib\dependants\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.Utils, Version=21.11.1.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\MonoMod.Utils.dll</HintPath>
+      <HintPath>..\lib\dependants\MonoMod.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\lib\dependants\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\UnityEngine.dll</HintPath>
+      <HintPath>..\lib\dependants\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\lib\dependants\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\libs\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\lib\dependants\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "$(SolutionDir)mod\plugins\$(TargetName).dll"
-copy /Y "$(TargetPath)" "$(SolutionDir)Build\$(TargetName).dll"
-copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)Build\$(TargetName).xml"
+copy /Y "$(TargetPath)" "$(SolutionDir)lib\$(TargetName).dll"
+copy /Y "$(ProjectDir)$(OutDir)$(TargetName).xml" "$(SolutionDir)lib\$(TargetName).xml"
 xcopy /Y /E "$(SolutionDir)mod" "D:\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\StreamingAssets\mods\bestiary\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
