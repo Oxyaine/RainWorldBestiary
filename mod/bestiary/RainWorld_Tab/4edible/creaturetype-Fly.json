@@ -151,10 +151,11 @@
       "unlock_ids":[
         {
           "token_type": 16,
-          "count": 4,
+          "count": 2,
           "creature_id": "Fly"
         },
         {
+          "operation_against_value": "or",
           "token_type": 17,
           "count": 2,
           "creature_id": "Fly",
@@ -167,7 +168,7 @@
     {
       "unlock_id":{
         "token_type": 16,
-        "count": 4,
+        "count": 2,
         "creature_id": "Fly"
       },
       "body": "BESTIARY_BATFLY_HIDING_1",
