@@ -11,4 +11,4 @@ A list of things I'm working on, mainly for myself to keep track of ideas and su
 #
 
 A list of bugs n stuff, that don't warrant an issue request on GitHub.
-*:)*
+\:)
