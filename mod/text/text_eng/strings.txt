@@ -23,6 +23,8 @@ HUNTING|HUNTING
 UTILITY|UTILITY
 APPEARANCE|APPEARANCE
 BEHAVIOUR|BEHAVIOUR
+COMBAT|COMBAT
+STEALTH|STEALTH
 
 This entry is locked.|This entry is locked.
 
@@ -93,4 +95,13 @@ BESTIARY_BATFLY_UTILITY_CICADA|Batflies can also be used to raise reputation wit
 BESTIARY_BATFLY_HIDING_1|The white-tipped plants that Batflies nest in also act as Batfly hiding spots. When a threat gets too close to a Batfly, they may dive and burrow into these plants.
 BESTIARY_BATFLY_STACKING_1|Batflies can hang upside down from ceilings, poles, and even each other, forming stacks. If a Batfly with others attached to it from below starts flying, the attached Batflies may not separate, and they can end up struggling to fly.
 BESTIARY_BATFLY_STACKING_2| If Slugcat grabs a Batfly attached to a chain, the entire chain is picked up until the other Batflies fly away. This can result in strange physics if the Batflies are still attached to the ceiling.
+
+BESTIARY_GREENLIZARD_LOCKTEXT|A large, slow, chunky lizard that charges its prey and is unable to climb.
+BESTIARY_GREENLIZARD_BASIC_INTRODUCTION|Green Lizards are a common species of Lizard. They are one of the first Lizards the player may encounter and can be found throughout many regions.
+BESTIARY_GREENLIZARD_APPEARANCE_1|Green Lizards come in various shades of green, ranging from lime to mint. They have black bodies which usually feature short, stubby spikes or are otherwise plain.
+BESTIARY_GREENLIZARD_APPEARANCE_2|They are large and bulky and have a unique gait in which they drag themselves forward along the ground.
+BESTIARY_GREENLIZARD_APPEARANCE_3|Unique to their species are their rectangular heads with horns that curl downwards, as well as their curved teeth.
+BESTIARY_GREENLIZARD_KILLED|Fighting Green Lizards can be fairly easy on level ground, though their high health means they can take 5-10 Spear hits to kill.
+BESTIARY_GREENLIZARD_STUNNED|A hit to the face with a Rock can stun and flip them over, leaving their soft body vulnerable to Spears.
+BESTIARY_GREENLIZARD_IMPALED|After 3 Spear hits, they typically attempt to retreat to their den. They are slow, making it hard for them to flee and thus leaving them open to further attack.
 

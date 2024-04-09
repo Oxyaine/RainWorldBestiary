@@ -1,28 +1,102 @@
 {
-  "name": null,
-  "unlock_id": "",
-  "locked_text": "This entry is locked.",
-  "icons_next_to_title": true,
-  "entry_icons": [
-    "illustrations\\bestiary\\entry_icons\\Green_Lizard_icon"
-  ],
-  "title_sprite": null,
+  "unlock_id": "GreenLizard",
+  "locked_text": "BESTIARY_GREENLIZARD_LOCKTEXT",
+  "entry_icon": "illustrations\\bestiary\\entry_icons\\Green_Lizard_icon",
   "description": [
+    {
+      "unlock_id": {},
+      "body": "BESTIARY_GREENLIZARD_BASIC_INTRODUCTION",
+      "unlock_pip_color": "AlwaysAvailable"
+    },
+    {
+      "unlock_ids":[ {
+          "creature_id": "GreenLizard",
+          "token_type": "Observed"
+        }
+      ],
+      "body": "APPEARANCE",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
+          "creature_id": "GreenLizard",
+          "token_type": "Observed"
+        },
+      "body": "BESTIARY_GREENLIZARD_APPEARANCE_1",
+      "unlock_pip_color": "Appearance",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
+          "creature_id": "GreenLizard",
+          "count": 4,
+          "token_type": "Observed"
+        },
+      "body": "BESTIARY_GREENLIZARD_APPEARANCE_2",
+      "unlock_pip_color": "Appearance"
+    },
+    {
+      "unlock_id": {
+          "creature_id": "GreenLizard",
+          "count": 6,
+          "token_type": "Observed"
+        },
+      "body": "BESTIARY_GREENLIZARD_APPEARANCE_3",
+      "unlock_pip_color": "Appearance"
+    },
     {
       "unlock_ids": [
         {
-          "creature_id": "FLY",
-          "count": 1,
-          "special_data": [],
-          "operation_against_value": "And",
-          "token_type": "Tamed"
+          "creature_id": "GreenLizard",
+          "token_type": "Killed"
+        },
+        {
+          "creature_id": "GreenLizard",
+          "token_type": "Stunned",
+          "operation_against_value": "Or"
+        },
+        {
+          "creature_id": "GreenLizard",
+          "count": 6,
+          "token_type": "Impaled",
+          "operation_against_value": "Or"
         }
       ],
-      "body": "TEXT",
-      "new_line": true,
-      "translate": true,
-      "unlock_pip_color": "FFFFFF"
+      "body": "COMBAT",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
+          "creature_id": "GreenLizard",
+          "token_type": "Killed"
+      },
+      "body": "BESTIARY_GREENLIZARD_KILLED",
+      "unlock_pip_color": "Combat",
+      "new_line": true
+    },
+    {
+      "unlock_id": {
+          "creature_id": "GreenLizard",
+          "token_type": "Stunned"
+      },
+      "body": "BESTIARY_GREENLIZARD_STUNNED",
+      "unlock_pip_color": "Combat"
+    },
+    {
+      "unlock_id": {
+          "creature_id": "GreenLizard",
+          "count": 6,
+          "token_type": "Impaled"
+      },
+      "body": "BESTIARY_GREENLIZARD_IMPALED",
+      "unlock_pip_color": "Combat"
+    },
+    {
+      "unlock_ids": [
+        
+      ],
+      "body": "STEALTH",
+      "new_line": true
     }
-  ],
-  "color": "DFF5D6"
+  ]
 }
