@@ -66,10 +66,13 @@ namespace RainWorldBestiary
 
         internal static int StartEnumerator(IEnumerator enumerator)
         {
-            ++CurrentFreshID;
-
-            RunningEnumerators.Add(CurrentFreshID, new Iterator(enumerator));
-            return CurrentFreshID;
+            if (enumerator.MoveNext())
+            {
+                ++CurrentFreshID;
+                RunningEnumerators.Add(CurrentFreshID, new Iterator(enumerator));
+                return CurrentFreshID;
+            }
+            else return -1;
         }
         internal static void StopEnumerator(int id)
         {

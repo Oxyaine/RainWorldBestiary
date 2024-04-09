@@ -1,5 +1,4 @@
 ﻿using Menu;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -63,10 +62,7 @@ namespace RainWorldBestiary
 
         private IEnumerator PerformTextAnimation(EntryTextDisplay display, Vector2 screenSize)
         {
-            int characters = display.TotalLength / 100;
-
-            if (characters == 0 && display.TotalLength > 0)
-                characters = 1;
+            int characters = display.PredictedTextLength / 100;
 
             FSprite[] sprites = new FSprite[characters];
 
@@ -121,22 +117,15 @@ namespace RainWorldBestiary
         {
             float widthOffset, leftSpriteOffset = 60;
 
-            try
+            if (BestiarySettings.PerformTextAnimations.Value)
             {
-                if (BestiarySettings.PerformTextAnimations.Value)
-                {
-                    EntryTextDisplay display = new EntryTextDisplay();
-                    PopulateDisplayID = Enumerators.StartEnumerator(display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
-                    Enumerators.StartEnumerator(PerformTextAnimation(display, screenSize));
-                }
-                else
-                {
-                    EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
-                }
+                EntryTextDisplay display = new EntryTextDisplay();
+                PopulateDisplayID = Enumerators.StartEnumerator(display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
+                Enumerators.StartEnumerator(PerformTextAnimation(display, screenSize));
             }
-            catch (Exception ex)
+            else
             {
-                Main.Logger.LogError(ex.ToString());
+                EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
             }
 
             FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(entry, in screenSize, out float spriteWidth);

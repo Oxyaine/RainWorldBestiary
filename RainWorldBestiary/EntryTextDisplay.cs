@@ -10,6 +10,7 @@ namespace RainWorldBestiary
     internal class EntryTextDisplay
     {
         public int TotalLength = 0;
+        public int PredictedTextLength = 0;
         private readonly int LineSpacing = 20;
         private readonly List<MenuObject> _Objects = new List<MenuObject>();
 
@@ -23,6 +24,7 @@ namespace RainWorldBestiary
         {
             if (_Objects.Count == 0)
                 yield break;
+
             int currentObjectIndex = 0, currentTextPosition = 0, CurrentLength = 0, AmountRevealed = 0, CurrentSpriteIndex = 0;
             int spriteGapBeforeFade = TotalLength / characterSprites.Length;
             int currentSpriteCapBeforeFade = spriteGapBeforeFade;
@@ -125,6 +127,8 @@ namespace RainWorldBestiary
         public EntryTextDisplay() { }
         public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
         {
+            PredictedTextLength = wrappedText.Length;
+
             string[] split = wrappedText.Split('\n');
             int currentY = GetStartingYPosition(split.Length, (int)screenSize.y);
 
@@ -137,6 +141,8 @@ namespace RainWorldBestiary
 
         public IEnumerator Populate(string wrappedText, Vector2 screenSize, Menu.Menu menu, MenuObject owner)
         {
+            PredictedTextLength = wrappedText.Length;
+
             string[] split = wrappedText.Split('\n');
             int currentY = GetStartingYPosition(split.Length, (int)screenSize.y);
 
