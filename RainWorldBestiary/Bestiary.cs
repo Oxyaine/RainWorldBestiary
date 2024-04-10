@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using RainWorldBestiary.Menus;
+using RainWorldBestiary.Types;
 
 namespace RainWorldBestiary
 {

@@ -41,32 +41,33 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bestiary.cs" />
-    <Compile Include="EntryTextDisplay.cs" />
-    <Compile Include="ErrorManager.cs" />
-    <Compile Include="BestiaryTabMenu.cs" />
-    <Compile Include="BestiarySaveData.cs" />
-    <Compile Include="BestiaryEntryMenu.cs" />
-    <Compile Include="Auto_CreatureHooks.cs" />
-    <Compile Include="Description.cs" />
-    <Compile Include="EntriesTab.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="BestiaryReadingMenu.cs" />
+    <Compile Include="BestiarySettings.cs" />
+    <Compile Include="Menus\EntryTextDisplay.cs" />
+    <Compile Include="Managers\ErrorManager.cs" />
+    <Compile Include="Menus\BestiaryTabMenu.cs" />
+    <Compile Include="Types\BestiarySaveData.cs" />
+    <Compile Include="Menus\BestiaryEntryMenu.cs" />
+    <Compile Include="Hooks\Auto_CreatureHooks.cs" />
+    <Compile Include="Types\Description.cs" />
+    <Compile Include="Types\EntriesTab.cs" />
+    <Compile Include="Types\Entry.cs" />
+    <Compile Include="Menus\BestiaryReadingMenu.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Font.cs" />
-    <Compile Include="InstructionManualPage.cs" />
-    <Compile Include="InstructionManualPages.cs" />
+    <Compile Include="Types\Font.cs" />
+    <Compile Include="Menus\Manual\InstructionManualPage.cs" />
+    <Compile Include="Menus\Manual\InstructionManualPages.cs" />
     <Compile Include="Enumerators.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="InstructionManualDialog.cs" />
-    <Compile Include="Manual_CreatureHooks.cs" />
-    <Compile Include="MenuHooks.cs" />
+    <Compile Include="Menus\Manual\InstructionManualDialog.cs" />
+    <Compile Include="Hooks\Manual_CreatureHooks.cs" />
+    <Compile Include="Hooks\MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemixMenu.cs" />
-    <Compile Include="ResourceManager.cs" />
-    <Compile Include="MenuResources.cs" />
-    <Compile Include="SharedMenuUtilities.cs" />
-    <Compile Include="TitleSprite.cs" />
-    <Compile Include="UnlockTokens.cs" />
+    <Compile Include="Menus\RemixMenu.cs" />
+    <Compile Include="Managers\ResourceManager.cs" />
+    <Compile Include="Menus\MenuResources.cs" />
+    <Compile Include="Menus\SharedMenuUtilities.cs" />
+    <Compile Include="Types\TitleSprite.cs" />
+    <Compile Include="Types\UnlockTokens.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -107,6 +108,7 @@
       <HintPath>..\lib\dependants\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "$(SolutionDir)mod\plugins\$(TargetName).dll"

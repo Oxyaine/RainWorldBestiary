@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     /// <summary>
     /// The type of unlock this UnlockToken targets

@@ -19,14 +19,14 @@
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
             </summary>
             <remarks>
-            If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+            If you'd like to add your own token, Use <see cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])"/>
             <code></code>
-            You should also check out <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/> for checking if the unlock token is valid
+            You should also check out <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)"/> for checking if the unlock token is valid
             </remarks>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])">
             <summary>
-            Checks if <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains the <see cref="T:RainWorldBestiary.UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
+            Checks if <see cref="P:RainWorldBestiary.Bestiary.ModuleUnlocks"/> contains the <see cref="T:RainWorldBestiary.Types.UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
             </summary>
             <remarks>
             The token will only get added, if the token takes part in unlocking a description module, so if the token will never unlock a module, it wont get added. You can override this by setting <paramref name="alwaysAddToken"/> to true.
@@ -36,13 +36,13 @@
             <param name="alwaysAddToken">Whether to always add this token, regardless of whether this token will be used</param>
             <param name="SpecialData">The special data to add onto the token</param>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])"/>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])">
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+        <member name="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])"/>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
+        <member name="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)">
             <summary>
             Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
             </summary>
@@ -99,242 +99,268 @@
             Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.AutoCreatureHooks.IgnoreID(System.Int32,System.Single,System.Boolean,System.Boolean)">
+        <member name="T:RainWorldBestiary.BestiarySettings">
             <summary>
-            Checks if the ID is ignored, if its not, it will be added
+            The main class for all the bestiary mods' settings, including remix menu options
             </summary>
-            <remarks>
-            <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
-            </remarks>
-            <returns>True if the creature should be ignored, otherwise false</returns>
         </member>
-        <member name="T:RainWorldBestiary.Description">
+        <member name="P:RainWorldBestiary.BestiarySettings.MenuFadeTimeSeconds">
+            <summary>
+            The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.ShowModuleLockPips">
+            <summary>
+            Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.PerformTextAnimations">
+            <summary>
+            Whether to perform an animation when going to read an entry
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.ShowManualButton">
+            <summary>
+            Whether to show the "Manual" button in the main bestiary menu
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.MinimizeTitleSpacing">
+            <summary>
+            EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries">
+            <summary>
+            Whether all bestiary entries should be unlocked and completely readable
+            </summary>
+        </member>
+        <member name="T:RainWorldBestiary.Types.Description">
             <summary>
             A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Description.#ctor">
+        <member name="M:RainWorldBestiary.Types.Description.#ctor">
             
         </member>
-        <member name="M:RainWorldBestiary.Description.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.DescriptionModule})">
+        <member name="M:RainWorldBestiary.Types.Description.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.DescriptionModule})">
             
         </member>
-        <member name="M:RainWorldBestiary.Description.#ctor(RainWorldBestiary.DescriptionModule[])">
+        <member name="M:RainWorldBestiary.Types.Description.#ctor(RainWorldBestiary.Types.DescriptionModule[])">
             
         </member>
-        <member name="M:RainWorldBestiary.Description.#ctor(System.String)">
+        <member name="M:RainWorldBestiary.Types.Description.#ctor(System.String)">
             <summary>
             Creates a new description with one module that defaults to unlocked
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Description.#ctor(RainWorldBestiary.Description)">
+        <member name="M:RainWorldBestiary.Types.Description.#ctor(RainWorldBestiary.Types.Description)">
             <summary>
             Copy Operator
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.Description.Count">
+        <member name="P:RainWorldBestiary.Types.Description.Count">
             <summary>
             Gets the amount of description modules in this description
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.Description.IsReadOnly">
+        <member name="P:RainWorldBestiary.Types.Description.IsReadOnly">
             <summary>
-            This is unused in <see cref="T:RainWorldBestiary.Description"/>
+            This is unused in <see cref="T:RainWorldBestiary.Types.Description"/>
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.Description.Item(System.Int32)">
+        <member name="P:RainWorldBestiary.Types.Description.Item(System.Int32)">
             <summary>
             Gets or sets a module at the given index
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Description.GetEnumerator">
+        <member name="M:RainWorldBestiary.Types.Description.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.Description.ToString">
+        <member name="M:RainWorldBestiary.Types.Description.ToString">
             <summary>
             Returns this description as a string where only the parts of the entry that are visible are added
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Description.Add(RainWorldBestiary.DescriptionModule)">
+        <member name="M:RainWorldBestiary.Types.Description.Add(RainWorldBestiary.Types.DescriptionModule)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.Description.Clear">
+        <member name="M:RainWorldBestiary.Types.Description.Clear">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.Description.Contains(RainWorldBestiary.DescriptionModule)">
+        <member name="M:RainWorldBestiary.Types.Description.Contains(RainWorldBestiary.Types.DescriptionModule)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.Description.CopyTo(RainWorldBestiary.DescriptionModule[],System.Int32)">
+        <member name="M:RainWorldBestiary.Types.Description.CopyTo(RainWorldBestiary.Types.DescriptionModule[],System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.Description.Remove(RainWorldBestiary.DescriptionModule)">
+        <member name="M:RainWorldBestiary.Types.Description.Remove(RainWorldBestiary.Types.DescriptionModule)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.Description.op_Implicit(RainWorldBestiary.DescriptionModule[])~RainWorldBestiary.Description">
+        <member name="M:RainWorldBestiary.Types.Description.op_Implicit(RainWorldBestiary.Types.DescriptionModule[])~RainWorldBestiary.Types.Description">
             
         </member>
-        <member name="M:RainWorldBestiary.Description.op_Implicit(System.Collections.Generic.List{RainWorldBestiary.DescriptionModule})~RainWorldBestiary.Description">
+        <member name="M:RainWorldBestiary.Types.Description.op_Implicit(System.Collections.Generic.List{RainWorldBestiary.Types.DescriptionModule})~RainWorldBestiary.Types.Description">
             
         </member>
-        <member name="T:RainWorldBestiary.DescriptionModule">
+        <member name="T:RainWorldBestiary.Types.DescriptionModule">
             <summary>
             A piece of a description, can be given a lock ID to lock this part of an entries description
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.DescriptionModule.UnlockIDs">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.UnlockIDs">
             <summary>
             All the unlock tokens of this description module, used to determine what requirements need to be met to unlock this part of the description
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.DescriptionModule.ModuleUnlockedCondition">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.ModuleUnlockedCondition">
             <summary>
             The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
             </summary>
-            <remarks>Defaults to <see cref="M:RainWorldBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.DescriptionModule)"/></remarks>
+            <remarks>Defaults to <see cref="M:RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.Types.DescriptionModule)"/></remarks>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.DescriptionModule)">
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.Types.DescriptionModule)">
             <summary>
             Checks all the UnlockIDs to determine if this module is visible or not
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.CheckIfUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)">
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)">
             <summary>
-            Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.CreatureUnlockToken)"/>.
+            Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)"/>.
             </summary>
             <returns>True if either of the conditions above is met</returns>
         </member>
-        <member name="P:RainWorldBestiary.DescriptionModule.ModuleUnlocked">
+        <member name="P:RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked">
             <summary>
             Returns true if the module is unlocked, else false
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.DescriptionModule.Body">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.Body">
             <summary>
             The text of this part of the entries description
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.DescriptionModule.NewLine">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.NewLine">
             <summary>
             Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.DescriptionModule.Translate">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.Translate">
             <summary>
             Whether this modules text will get run through the in game translator, if no translation is found, then the text will be placed
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.DescriptionModule.UnlockPipColor">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.UnlockPipColor">
             <summary>
             The Color of the Unlock Pip for this Module
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.#ctor">
-            <inheritdoc cref="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.#ctor">
+            <inheritdoc cref="M:RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,System.Boolean)">
-            <inheritdoc cref="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,RainWorldBestiary.CreatureUnlockToken,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,System.Boolean)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(System.String,RainWorldBestiary.CreatureUnlockToken,System.Boolean)">
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)">
             <param name="body">The text of this part of the entries description</param>
             <param name="unlockToken">The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description</param>
             <param name="newLine">Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.</param>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.#ctor(RainWorldBestiary.DescriptionModule)">
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.#ctor(RainWorldBestiary.Types.DescriptionModule)">
             <summary>
             Copy Operator
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.DescriptionModule.ToString">
+        <member name="M:RainWorldBestiary.Types.DescriptionModule.ToString">
             <summary>
-            Returns <see cref="F:RainWorldBestiary.DescriptionModule.Body"/>, if <see cref="F:RainWorldBestiary.DescriptionModule.Translate"/> is true, <see cref="F:RainWorldBestiary.DescriptionModule.Body"/> will get run through the in game translator first
+            Returns <see cref="F:RainWorldBestiary.Types.DescriptionModule.Body"/>, if <see cref="F:RainWorldBestiary.Types.DescriptionModule.Translate"/> is true, <see cref="F:RainWorldBestiary.Types.DescriptionModule.Body"/> will get run through the in game translator first
             </summary>
-            <returns><see cref="F:RainWorldBestiary.DescriptionModule.Body"/>, translated if <see cref="F:RainWorldBestiary.DescriptionModule.Translate"/> is true</returns>
+            <returns><see cref="F:RainWorldBestiary.Types.DescriptionModule.Body"/>, translated if <see cref="F:RainWorldBestiary.Types.DescriptionModule.Translate"/> is true</returns>
         </member>
-        <member name="T:RainWorldBestiary.EntriesTab">
+        <member name="T:RainWorldBestiary.Types.EntriesTab">
             <summary>
             A class representing a tab full of entries in the bestiary
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntriesTab.Name">
+        <member name="F:RainWorldBestiary.Types.EntriesTab.Name">
             <summary>
             The name of this tab
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntriesTab.RequiredMods">
+        <member name="F:RainWorldBestiary.Types.EntriesTab.RequiredMods">
             <summary>
             The mods (by ids), that are required to be active for this tab to be visible
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntriesTab.TitleSprite">
+        <member name="F:RainWorldBestiary.Types.EntriesTab.TitleSprite">
             <summary>
             The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
             </summary>
             <remarks>By title, I mean the name of the tab that is visible at the top while viewing entries in the tab</remarks>
         </member>
-        <member name="F:RainWorldBestiary.EntriesTab.TabMenuProcessID">
+        <member name="F:RainWorldBestiary.Types.EntriesTab.TabMenuProcessID">
             <summary>
             The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntriesTab.ContributingMods">
+        <member name="F:RainWorldBestiary.Types.EntriesTab.ContributingMods">
             <summary>
             All the mods that are contributing to this tab, doesn't say which entries they contribute, just if they contribute
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.#ctor">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor">
             <summary>
-            Creates an empty <see cref="T:RainWorldBestiary.EntriesTab"/>
+            Creates an empty <see cref="T:RainWorldBestiary.Types.EntriesTab"/>
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})">
             <summary>
-            Creates an <see cref="T:RainWorldBestiary.EntriesTab"/> with all entries in <paramref name="entries"/> as the entries
+            Creates an <see cref="T:RainWorldBestiary.Types.EntriesTab"/> with all entries in <paramref name="entries"/> as the entries
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.#ctor(System.String,RainWorldBestiary.Entry[])">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor(System.String,RainWorldBestiary.Types.Entry[])">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.#ctor(RainWorldBestiary.EntriesTab)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)">
             <summary>
             Copy Operator
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTab.Count">
+        <member name="P:RainWorldBestiary.Types.EntriesTab.Count">
             <summary>
             Gets the amount of entries in this tab
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Add(RainWorldBestiary.Entry)">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Add(System.String,RainWorldBestiary.EntryInfo,System.String)">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Description,System.String)">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Adds a new entry to this tab
             </summary>
-            <param name="owningModID"><inheritdoc cref="M:RainWorldBestiary.Entry.#ctor(System.String,System.String)"/></param>
+            <param name="owningModID"><inheritdoc cref="M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String)"/></param>
             <param name="entryName"></param>
             <param name="unlockID"></param>
             <param name="iconAtlasName"></param>
             <param name="description"></param>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})">
             <summary>
             Adds all the entries from the collection into this tab
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Entry})">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry})"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.MergeWith(RainWorldBestiary.EntriesTab@)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)">
             <summary>
             Adds <paramref name="tab"/>'s entries to this this<code></code>
             If this TitleImage is null, it gets replaced with <paramref name="tab"/>'s TitleImage<code></code>
@@ -342,277 +368,277 @@
             </summary>
             <param name="tab"></param>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.TryGet(System.String,RainWorldBestiary.Entry@)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.TryGet(System.String,RainWorldBestiary.Types.Entry@)">
             <summary>
             Tries to get the entry with the given name
             </summary>
             <returns>True if the entry was found, otherwise false</returns>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Clear">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Clear">
             <summary>
             Clears this tab of all its entries
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Contains(RainWorldBestiary.Entry)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)">
             <summary>
             Checks if this tab contains the given entry
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Contains(System.String)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Contains(System.String)">
             <summary>
             Determines whether this tab contains an entry with the given name
             </summary>
             <param name="entryName">The name of the entry to check for</param>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.CopyTo(RainWorldBestiary.Entry[],System.Int32)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.Remove(RainWorldBestiary.Entry)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)">
             <summary>
             Removes the given entry from this tab
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.RemoveAt(System.Int32)">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.RemoveAt(System.Int32)">
             <summary>
             Removes an entry at the specified index
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTab.Item(System.Int32)">
+        <member name="P:RainWorldBestiary.Types.EntriesTab.Item(System.Int32)">
             <summary>
             Gets or sets an entry at the given index
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTab.Item(System.String)">
+        <member name="P:RainWorldBestiary.Types.EntriesTab.Item(System.String)">
             <summary>
             Gets an entry with the given name
             </summary>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTab.GetEnumerator">
+        <member name="M:RainWorldBestiary.Types.EntriesTab.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="T:RainWorldBestiary.EntriesTabList">
+        <member name="T:RainWorldBestiary.Types.EntriesTabList">
             <summary>
-            A class that represents a list of <see cref="T:RainWorldBestiary.EntriesTab"/>
+            A class that represents a list of <see cref="T:RainWorldBestiary.Types.EntriesTab"/>
             </summary>
-            <remarks>Not using regular list since this allows more control such as preventing two <see cref="T:RainWorldBestiary.EntriesTab"/> with the same name</remarks>
+            <remarks>Not using regular list since this allows more control such as preventing two <see cref="T:RainWorldBestiary.Types.EntriesTab"/> with the same name</remarks>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.#ctor">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.#ctor">
             
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.#ctor(RainWorldBestiary.EntriesTab[])">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.#ctor(RainWorldBestiary.Types.EntriesTab[])">
             <param name="tabs">The default tabs to add to this tab list</param>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTabList.Count">
+        <member name="P:RainWorldBestiary.Types.EntriesTabList.Count">
             <inheritdoc/>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTabList.IsReadOnly">
+        <member name="P:RainWorldBestiary.Types.EntriesTabList.IsReadOnly">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab,System.Boolean)">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)">
             <summary>
             Adds a new tab of entries to this collection
             </summary>
             <param name="item">The item to add</param>
             <param name="merge">
-            Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <see cref="M:RainWorldBestiary.EntriesTab.MergeWith(RainWorldBestiary.EntriesTab@)"/><code></code>
+            Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <see cref="M:RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)"/><code></code>
             </param>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab)">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Add(System.String,RainWorldBestiary.Entry[])">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,RainWorldBestiary.Types.Entry[])">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Entry[])">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry},RainWorldBestiary.TitleSprite,System.Boolean)">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Entry},ProcessManager.ProcessID,RainWorldBestiary.TitleSprite,System.Boolean)">
-            <inheritdoc cref="M:RainWorldBestiary.EntriesTabList.Add(RainWorldBestiary.EntriesTab,System.Boolean)"/>
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},ProcessManager.ProcessID,RainWorldBestiary.Types.TitleSprite,System.Boolean)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)"/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Clear">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Clear">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Contains(RainWorldBestiary.EntriesTab)">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.CopyTo(RainWorldBestiary.EntriesTab[],System.Int32)">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.Remove(RainWorldBestiary.EntriesTab)">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)">
             <inheritdoc/>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.TryGet(System.String,RainWorldBestiary.EntriesTab@)">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)">
             <summary>
             Tries to get the tab using its name
             </summary>
             <returns>True if the tab was found, otherwise false</returns>
         </member>
-        <member name="M:RainWorldBestiary.EntriesTabList.GetEnumerator">
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTabList.Item(System.Int32)">
+        <member name="P:RainWorldBestiary.Types.EntriesTabList.Item(System.Int32)">
             <summary>
-            Gets the <see cref="T:RainWorldBestiary.EntriesTab"/> at the given index
+            Gets the <see cref="T:RainWorldBestiary.Types.EntriesTab"/> at the given index
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.EntriesTabList.Item(System.String)">
+        <member name="P:RainWorldBestiary.Types.EntriesTabList.Item(System.String)">
             <summary>
             Gets a tab using its name
             </summary>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
         </member>
-        <member name="T:RainWorldBestiary.Entry">
+        <member name="T:RainWorldBestiary.Types.Entry">
             <summary>
             A class representing an entry
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Entry.Name">
+        <member name="F:RainWorldBestiary.Types.Entry.Name">
             <summary>
             The name of this entry
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Entry.Info">
+        <member name="F:RainWorldBestiary.Types.Entry.Info">
             <summary>
             The information of this entry, such as its unlock id, icon, scene to show while reading, and description
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Entry.EntryReadingMenu">
+        <member name="F:RainWorldBestiary.Types.Entry.EntryReadingMenu">
             <summary>
             The process ID that gets called when an entry button gets pressed, you can leave this as the default menu, or make a custom menu to display the entry's information.
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Entry.OwningModID">
+        <member name="F:RainWorldBestiary.Types.Entry.OwningModID">
             <summary>
             The mod that owns this entry, also known as the mod this entry belongs to, is used for unloading the mod automatically when the owning mod gets disabled
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Entry.#ctor">
+        <member name="M:RainWorldBestiary.Types.Entry.#ctor">
             
         </member>
-        <member name="M:RainWorldBestiary.Entry.#ctor(System.String,System.String)">
+        <member name="M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String)">
             <param name="name"></param>
              <param name="owningModID">The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled</param>
         </member>
-        <member name="M:RainWorldBestiary.Entry.#ctor(System.String,RainWorldBestiary.EntryInfo,System.String)">
+        <member name="M:RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.EntryInfo,System.String)">
             <param name="info">The entry's info</param>
-            <inheritdoc cref="M:RainWorldBestiary.Entry.#ctor(System.String,System.String)"/>
+            <inheritdoc cref="M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String)"/>
             <param name="name"></param>
             <param name="owningModID"></param>
         </member>
-        <member name="M:RainWorldBestiary.Entry.#ctor(System.String,RainWorldBestiary.Description,System.String,System.String,System.String,System.String)">
+        <member name="M:RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.Description,System.String,System.String,System.String,System.String)">
             <param name="name">The name of the entry</param>
             <param name="description">The main body of this entry</param>
             <param name="unlockID">The ID that will be used to determine whether this entry is unlocked or not</param>
             <param name="iconAtlasName">The name of the entry's icon in the atlas manager</param>
             <param name="lockedText">The text that is shown when pressing on the entry while its locked</param>
-            <inheritdoc cref="M:RainWorldBestiary.Entry.#ctor(System.String,System.String)"/>
+            <inheritdoc cref="M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String)"/>
             <param name="owningModID"></param>
         </member>
-        <member name="M:RainWorldBestiary.Entry.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
-            <inheritdoc cref="M:RainWorldBestiary.Entry.#ctor(System.String,RainWorldBestiary.Description,System.String,System.String,System.String,System.String)"/>
+        <member name="M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.Description,System.String,System.String,System.String,System.String)"/>
         </member>
-        <member name="P:RainWorldBestiary.Entry.Error">
+        <member name="P:RainWorldBestiary.Types.Entry.Error">
             <summary>
             A default entry that's just an error, is always unlocked, and serves as a placeholder that appears when another entry cant be loaded
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Entry.Equals(RainWorldBestiary.Entry)">
+        <member name="M:RainWorldBestiary.Types.Entry.Equals(RainWorldBestiary.Types.Entry)">
             <summary>
             Checks if this entry is the same as another entry
             </summary>
         </member>
-        <member name="T:RainWorldBestiary.EntryInfo">
+        <member name="T:RainWorldBestiary.Types.EntryInfo">
             <summary>
             The contents of the entry file
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.BaseLockedText">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.BaseLockedText">
             <summary>
             A constant defining the default text that is shown when attempting to read a locked entry
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.Name">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.Name">
             <summary>
             The name of this entry
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.UnlockID">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.UnlockID">
             <summary>
             The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.EntryUnlockedCondition">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition">
             <summary>
             The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
             </summary>
-            <remarks>Defaults to <see cref="M:RainWorldBestiary.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.EntryInfo)"/></remarks>
+            <remarks>Defaults to <see cref="M:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)"/></remarks>
         </member>
-        <member name="M:RainWorldBestiary.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.EntryInfo)">
+        <member name="M:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)">
             <summary>
-            Checks whether any unlock tokens in <see cref="T:RainWorldBestiary.Bestiary"/> have the <see cref="T:RainWorldBestiary.UnlockTokenType"/> for <see cref="F:RainWorldBestiary.CreatureUnlockToken.CreatureID"/> with a value that is equal to or lower than the required value
+            Checks whether any unlock tokens in <see cref="T:RainWorldBestiary.Bestiary"/> have the <see cref="T:RainWorldBestiary.Types.UnlockTokenType"/> for <see cref="F:RainWorldBestiary.Types.CreatureUnlockToken.CreatureID"/> with a value that is equal to or lower than the required value
             </summary>
             <returns>True if the entry should be locked, otherwise false</returns>
         </member>
-        <member name="M:RainWorldBestiary.EntryInfo.Equals(RainWorldBestiary.EntryInfo)">
+        <member name="M:RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)">
             <summary>
             Checks if this entry info's unlock id and icons match
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.EntryInfo.EntryUnlocked">
+        <member name="P:RainWorldBestiary.Types.EntryInfo.EntryUnlocked">
             <summary>
             Returns true if the entry is visible, else false
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.LockedText">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.LockedText">
             <summary>
             The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.IconsNextToTitle">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.IconsNextToTitle">
             <summary>
-            Whether the two icons specified by <see cref="P:RainWorldBestiary.EntryInfo.EntryIcon"/> will be displayed either side of the title
+            Whether the two icons specified by <see cref="P:RainWorldBestiary.Types.EntryInfo.EntryIcon"/> will be displayed either side of the title
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.EntryInfo.EntryIcon">
+        <member name="P:RainWorldBestiary.Types.EntryInfo.EntryIcon">
             <summary>
             The name of the sprite in the atlas manager that will be used as the entry icon
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.EntryIcons">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.EntryIcons">
             <summary>
             The name of the sprites in the atlas manager that will be used as the entry's icons
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.TitleSprite">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.TitleSprite">
             <summary>
             The title image that gets displayed at the top when of the screen while reading the entry, if set to null, or if the image isn't found, some generated text will be placed instead
             </summary>
             <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.EntryColor">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.EntryColor">
             <summary>
             The color of the entry's button and title image
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.EntryInfo.Description">
+        <member name="F:RainWorldBestiary.Types.EntryInfo.Description">
             <summary>
             The body of this entry, when converted to string, only returns the parts of the entry that are visible
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.EntryInfo.#ctor">
+        <member name="M:RainWorldBestiary.Types.EntryInfo.#ctor">
             
         </member>
-        <member name="M:RainWorldBestiary.EntryInfo.#ctor(RainWorldBestiary.Description,System.String,System.String,System.String)">
+        <member name="M:RainWorldBestiary.Types.EntryInfo.#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)">
             <param name="description">The body of this entry</param>
             <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
             <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
             <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
         </member>
-        <member name="M:RainWorldBestiary.EntryInfo.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="M:RainWorldBestiary.Types.EntryInfo.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
             Creates a new entry info with one description module that is by default visible
             </summary>
@@ -620,6 +646,349 @@
             <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
             <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
             <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
+        </member>
+        <member name="T:RainWorldBestiary.Types.TitleSprite">
+            <summary>
+            Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.TitleSprite.ElementName">
+            <summary>
+            The name of the element in the atlas manager
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.TitleSprite.Scale">
+            <summary>
+            The scale of the image when drawn to the screen
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.TitleSprite.XOffset">
+            <summary>
+            The offset on the X axis from the default position
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.TitleSprite.YOffset">
+            <summary>
+            THe offset on the Y axis from the default position
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Types.TitleSprite.#ctor(System.String)">
+            <inheritdoc cref="M:RainWorldBestiary.Types.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:RainWorldBestiary.Types.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)">
+            <param name="elementName">The name of the element in the atlas manager</param>
+            <param name="scale">The scale multiplier of this icon</param>
+            <param name="xOffset">The X Offset from the default position</param>
+            <param name="yOffset">The Y Offset from the default position </param>
+        </member>
+        <member name="T:RainWorldBestiary.Types.UnlockTokenType">
+            <summary>
+            The type of unlock this UnlockToken targets
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.None">
+            <summary>
+            This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Tamed">
+            <summary>
+            For when the player tames the creature
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Evaded">
+            <summary>
+            For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.SnuckPast">
+            <summary>
+            For when the player sneaks past a creature
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Observed">
+            <summary>
+            When the player sees the creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveFear">
+            <summary>
+            For when the player sees the creature run away in fear
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveFood">
+            <summary>
+            When the player sees the creature eating or hunting another creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveHunting">
+            <summary>
+            For when the player is getting chased by a creature
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Killed">
+            <summary>
+            When the creature is killed by the player
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Impaled">
+            <summary>
+            When the creature gets impaled with a spear, by the player
+            </summary>
+            <remarks>Automatically Tracked (for spears inheriting from <see cref="T:Spear"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Stunned">
+            <summary>
+            When the creature is stunned, by the player
+            </summary>
+            <remarks>Automatically Tracked (for items inheriting from <see cref="T:Rock"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.KilledPlayer">
+            <summary>
+            When the player is killed by the creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer">
+            <summary>
+            When the player is grabbed by the creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.Eaten">
+            <summary>
+            Whenever the creature gets eaten by the player
+            </summary>
+            <remarks>Automatically Tracked</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction">
+            <summary>
+            For whenever the player observes a creature being attracted to something, such as batflies to batnip
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.UsedAsLure">
+            <summary>
+            For whenever the player uses the creature to lure something else
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveHiding">
+            <summary>
+            For whenever the player notices a creature hiding or disguising itself in any way
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour">
+            <summary>
+            For whenever the player observes miscellaneous behaviour
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.HeardPlayer">
+            <summary>
+            When the creature hears the player
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed">
+            <summary>
+            When the player grabs the creature or creatures corpse
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveRivals">
+            <summary>
+            When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking">
+            <summary>
+            When the player observes the creature attacking another creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing">
+            <summary>
+            When the player observes the creature grabbing something, for any reason. This is just a generic grab, for grabbing a creature in the case of attacking, rivals, or food, use <see cref="F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking"/>, <see cref="F:RainWorldBestiary.Types.UnlockTokenType.ObserveRivals"/>, and <see cref="F:RainWorldBestiary.Types.UnlockTokenType.ObserveFood"/> respectively
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="T:RainWorldBestiary.Types.UnlockToken">
+            <summary>
+            The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RainWorldBestiary.Types.CreatureUnlockToken"/> which is used in <see cref="T:RainWorldBestiary.Types.DescriptionModule"/> as the unlock ID
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockToken.TokenType">
+            <summary>
+            The type of token this module unlock targets
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockToken.Count">
+            <summary>
+            The amount of times this token has been registered, or needs to be registered
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.UnlockToken.SpecialData">
+            <summary>
+            Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.#ctor">
+            
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)">
+            <param name="tokenType">The type of token to look for</param>
+            <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockToken)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.Equals(System.Object)">
+            <summary>
+            Checks if both objects are <see cref="T:RainWorldBestiary.Types.UnlockToken"/>, then compares them using <see cref="M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)"/>
+            </summary>
+            <remarks><see cref="M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)"/></remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)">
+            <remarks>
+            Checks if the token type matches
+            </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)">
+            <remarks>
+            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RainWorldBestiary.Types.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.Types.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.Types.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})">
+            <summary>
+            Checks if <see cref="F:RainWorldBestiary.Types.UnlockToken.SpecialData"/> contains all the provided special data
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:RainWorldBestiary.Types.UnlockToken.ToString">
+            <returns>Token Type + Value</returns>
+        </member>
+        <member name="T:RainWorldBestiary.Types.OperationType">
+            <summary>
+            A type of operation gate that can be applied to bools
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.OperationType.And">
+            <summary>
+            True if both the values are true
+            <code>0 - 0 = 0</code>
+            <code>1 - 0 = 0</code>
+            <code>0 - 1 = 0</code>
+            <code>1 - 1 = 1</code>
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.OperationType.Or">
+            <summary>
+            True if either of the inputs are true
+            <code>0 - 0 = 0</code>
+            <code>1 - 0 = 1</code>
+            <code>0 - 1 = 1</code>
+            <code>1 - 1 = 1</code>
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.OperationType.XOr">
+            <summary>
+            True if either of the inputs are true, but not when both inputs are true
+            <code>0 - 0 = 0</code>
+            <code>1 - 0 = 1</code>
+            <code>0 - 1 = 1</code>
+            <code>1 - 1 = 0</code>
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.OperationType.NAnd">
+            <summary>
+            True if either value is false
+            <code>0 - 0 = 1</code>
+            <code>1 - 0 = 1</code>
+            <code>0 - 1 = 1</code>
+            <code>1 - 1 = 0</code>
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.OperationType.NOr">
+            <summary>
+            True if neither value is true
+            <code>0 - 0 = 1</code>
+            <code>1 - 0 = 0</code>
+            <code>0 - 1 = 0</code>
+            <code>1 - 1 = 0</code>
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.OperationType.XAnd">
+            <summary>
+            True if both values are the same
+            <code>0 - 0 = 1</code>
+            <code>1 - 0 = 0</code>
+            <code>0 - 1 = 0</code>
+            <code>1 - 1 = 1</code>
+            </summary>
+        </member>
+        <member name="T:RainWorldBestiary.Types.CreatureUnlockToken">
+            <summary>
+            An unlock token, that can be used to detect whether a <see cref="T:RainWorldBestiary.Types.DescriptionModule"/> is unlocked, similar to <see cref="T:RainWorldBestiary.Types.UnlockToken"/> but has a CreatureID string
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.CreatureUnlockToken.CreatureID">
+            <summary>
+            The ID of the creature this unlock token applies to
+            </summary>
+        </member>
+        <member name="F:RainWorldBestiary.Types.CreatureUnlockToken.OperationAgainstCurrentValue">
+            <summary>
+            The operation this unlock token will perform against the current unlock value of the token
+            </summary>
+            <remarks>For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked.
+            Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value</remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.#ctor(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Byte)">
+            <param name="creatureID">The ID of the creature that to look for</param>
+            <param name="tokenType">The type of token to look for</param>
+            <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.#ctor(RainWorldBestiary.Types.CreatureUnlockToken)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(System.Object)">
+            <summary>
+            Checks if both objects are <see cref="T:RainWorldBestiary.Types.CreatureUnlockToken"/>, then compares them using <see cref="M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)"/>
+            </summary>
+            <remarks><see cref="M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)"/></remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)">
+            <remarks>
+            Checks if the creature ID matches, then if the token type matches, ignores <see cref="F:RainWorldBestiary.Types.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)">
+            <remarks>
+            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RainWorldBestiary.Types.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.Types.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.Types.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.ToString">
+            <returns>Creature ID + Token Type + Value</returns>
+        </member>
+        <member name="M:RainWorldBestiary.Hooks.AutoCreatureHooks.IgnoreID(System.Int32,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Checks if the ID is ignored, if its not, it will be added
+            </summary>
+            <remarks>
+            <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
+            </remarks>
+            <returns>True if the creature should be ignored, otherwise false</returns>
         </member>
         <member name="T:RainWorldBestiary.Extensions">
             <summary>
@@ -720,375 +1089,6 @@
             <summary>
             Translates this text using the short strings dictionary
             </summary>
-        </member>
-        <member name="T:RainWorldBestiary.BestiarySettings">
-            <summary>
-            The main class for all the bestiary mods' settings, including remix menu options
-            </summary>
-        </member>
-        <member name="P:RainWorldBestiary.BestiarySettings.MenuFadeTimeSeconds">
-            <summary>
-            The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.ShowModuleLockPips">
-            <summary>
-            Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.PerformTextAnimations">
-            <summary>
-            Whether to perform an animation when going to read an entry
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.ShowManualButton">
-            <summary>
-            Whether to show the "Manual" button in the main bestiary menu
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.MinimizeTitleSpacing">
-            <summary>
-            EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries">
-            <summary>
-            Whether all bestiary entries should be unlocked and completely readable
-            </summary>
-        </member>
-        <member name="T:RainWorldBestiary.TitleSprite">
-            <summary>
-            Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.TitleSprite.ElementName">
-            <summary>
-            The name of the element in the atlas manager
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.TitleSprite.Scale">
-            <summary>
-            The scale of the image when drawn to the screen
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.TitleSprite.XOffset">
-            <summary>
-            The offset on the X axis from the default position
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.TitleSprite.YOffset">
-            <summary>
-            THe offset on the Y axis from the default position
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.TitleSprite.#ctor(System.String)">
-            <inheritdoc cref="M:RainWorldBestiary.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:RainWorldBestiary.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)">
-            <param name="elementName">The name of the element in the atlas manager</param>
-            <param name="scale">The scale multiplier of this icon</param>
-            <param name="xOffset">The X Offset from the default position</param>
-            <param name="yOffset">The Y Offset from the default position </param>
-        </member>
-        <member name="T:RainWorldBestiary.UnlockTokenType">
-            <summary>
-            The type of unlock this UnlockToken targets
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.None">
-            <summary>
-            This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Tamed">
-            <summary>
-            For when the player tames the creature
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Evaded">
-            <summary>
-            For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.SnuckPast">
-            <summary>
-            For when the player sneaks past a creature
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Observed">
-            <summary>
-            When the player sees the creature
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveFear">
-            <summary>
-            For when the player sees the creature run away in fear
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveFood">
-            <summary>
-            When the player sees the creature eating or hunting another creature
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveHunting">
-            <summary>
-            For when the player is getting chased by a creature
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Killed">
-            <summary>
-            When the creature is killed by the player
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Impaled">
-            <summary>
-            When the creature gets impaled with a spear, by the player
-            </summary>
-            <remarks>Automatically Tracked (for spears inheriting from <see cref="T:Spear"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Stunned">
-            <summary>
-            When the creature is stunned, by the player
-            </summary>
-            <remarks>Automatically Tracked (for items inheriting from <see cref="T:Rock"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.KilledPlayer">
-            <summary>
-            When the player is killed by the creature
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.GrabbedPlayer">
-            <summary>
-            When the player is grabbed by the creature
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.Eaten">
-            <summary>
-            Whenever the creature gets eaten by the player
-            </summary>
-            <remarks>Automatically Tracked</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveAttraction">
-            <summary>
-            For whenever the player observes a creature being attracted to something, such as batflies to batnip
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.UsedAsLure">
-            <summary>
-            For whenever the player uses the creature to lure something else
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveHiding">
-            <summary>
-            For whenever the player notices a creature hiding or disguising itself in any way
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveBehaviour">
-            <summary>
-            For whenever the player observes miscellaneous behaviour
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.HeardPlayer">
-            <summary>
-            When the creature hears the player
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.PlayerGrabbed">
-            <summary>
-            When the player grabs the creature or creatures corpse
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveRivals">
-            <summary>
-            When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveAttacking">
-            <summary>
-            When the player observes the creature attacking another creature
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockTokenType.ObserveGrabbing">
-            <summary>
-            When the player observes the creature grabbing something, for any reason. This is just a generic grab, for grabbing a creature in the case of attacking, rivals, or food, use <see cref="F:RainWorldBestiary.UnlockTokenType.ObserveAttacking"/>, <see cref="F:RainWorldBestiary.UnlockTokenType.ObserveRivals"/>, and <see cref="F:RainWorldBestiary.UnlockTokenType.ObserveFood"/> respectively
-            </summary>
-            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
-        </member>
-        <member name="T:RainWorldBestiary.UnlockToken">
-            <summary>
-            The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RainWorldBestiary.CreatureUnlockToken"/> which is used in <see cref="T:RainWorldBestiary.DescriptionModule"/> as the unlock ID
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockToken.TokenType">
-            <summary>
-            The type of token this module unlock targets
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockToken.Count">
-            <summary>
-            The amount of times this token has been registered, or needs to be registered
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.UnlockToken.SpecialData">
-            <summary>
-            Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.#ctor">
-            
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.UnlockTokenType,System.Byte)">
-            <param name="tokenType">The type of token to look for</param>
-            <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.#ctor(RainWorldBestiary.UnlockToken)">
-            <summary>
-            Copy Operator
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.Equals(System.Object)">
-            <summary>
-            Checks if both objects are <see cref="T:RainWorldBestiary.UnlockToken"/>, then compares them using <see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/>
-            </summary>
-            <remarks><see cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)"/></remarks>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken)">
-            <remarks>
-            Checks if the token type matches
-            </remarks>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.Equals(RainWorldBestiary.UnlockToken,System.Boolean)">
-            <remarks>
-            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
-            </remarks>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})">
-            <summary>
-            Checks if <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> contains all the provided special data
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:RainWorldBestiary.UnlockToken.ToString">
-            <returns>Token Type + Value</returns>
-        </member>
-        <member name="T:RainWorldBestiary.OperationType">
-            <summary>
-            A type of operation gate that can be applied to bools
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.And">
-            <summary>
-            True if both the values are true
-            <code>0 - 0 = 0</code>
-            <code>1 - 0 = 0</code>
-            <code>0 - 1 = 0</code>
-            <code>1 - 1 = 1</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.Or">
-            <summary>
-            True if either of the inputs are true
-            <code>0 - 0 = 0</code>
-            <code>1 - 0 = 1</code>
-            <code>0 - 1 = 1</code>
-            <code>1 - 1 = 1</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.XOr">
-            <summary>
-            True if either of the inputs are true, but not when both inputs are true
-            <code>0 - 0 = 0</code>
-            <code>1 - 0 = 1</code>
-            <code>0 - 1 = 1</code>
-            <code>1 - 1 = 0</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.NAnd">
-            <summary>
-            True if either value is false
-            <code>0 - 0 = 1</code>
-            <code>1 - 0 = 1</code>
-            <code>0 - 1 = 1</code>
-            <code>1 - 1 = 0</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.NOr">
-            <summary>
-            True if neither value is true
-            <code>0 - 0 = 1</code>
-            <code>1 - 0 = 0</code>
-            <code>0 - 1 = 0</code>
-            <code>1 - 1 = 0</code>
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.OperationType.XAnd">
-            <summary>
-            True if both values are the same
-            <code>0 - 0 = 1</code>
-            <code>1 - 0 = 0</code>
-            <code>0 - 1 = 0</code>
-            <code>1 - 1 = 1</code>
-            </summary>
-        </member>
-        <member name="T:RainWorldBestiary.CreatureUnlockToken">
-            <summary>
-            An unlock token, that can be used to detect whether a <see cref="T:RainWorldBestiary.DescriptionModule"/> is unlocked, similar to <see cref="T:RainWorldBestiary.UnlockToken"/> but has a CreatureID string
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.CreatureUnlockToken.CreatureID">
-            <summary>
-            The ID of the creature this unlock token applies to
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.CreatureUnlockToken.OperationAgainstCurrentValue">
-            <summary>
-            The operation this unlock token will perform against the current unlock value of the token
-            </summary>
-            <remarks>For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked.
-            Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value</remarks>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.#ctor(System.String,RainWorldBestiary.UnlockTokenType,System.Byte)">
-            <param name="creatureID">The ID of the creature that to look for</param>
-            <param name="tokenType">The type of token to look for</param>
-            <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.#ctor(RainWorldBestiary.CreatureUnlockToken)">
-            <summary>
-            Copy Operator
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(System.Object)">
-            <summary>
-            Checks if both objects are <see cref="T:RainWorldBestiary.CreatureUnlockToken"/>, then compares them using <see cref="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken)"/>
-            </summary>
-            <remarks><see cref="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken)"/> <inheritdoc cref="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken)"/></remarks>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken)">
-            <remarks>
-            Checks if the creature ID matches, then if the token type matches, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
-            </remarks>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.Equals(RainWorldBestiary.CreatureUnlockToken,System.Boolean)">
-            <remarks>
-            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RainWorldBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RainWorldBestiary.UnlockToken.Count"/>
-            </remarks>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:RainWorldBestiary.CreatureUnlockToken.ToString">
-            <returns>Creature ID + Token Type + Value</returns>
         </member>
     </members>
 </doc>

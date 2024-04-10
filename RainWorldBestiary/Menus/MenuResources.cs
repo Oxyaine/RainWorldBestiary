@@ -1,4 +1,4 @@
-﻿namespace RainWorldBestiary
+﻿namespace RainWorldBestiary.Menus
 {
     internal class MenuResources
     {

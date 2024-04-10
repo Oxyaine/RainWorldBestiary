@@ -1,8 +1,10 @@
 ﻿using Menu;
 using System.Collections.Generic;
 using UnityEngine;
+using RainWorldBestiary.Menus.Manual;
+using RainWorldBestiary.Types;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Menus
 {
     internal class BestiaryTabMenu : Dialog
     {

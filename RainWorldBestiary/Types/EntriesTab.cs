@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     /// <summary>
     /// A class representing a tab full of entries in the bestiary

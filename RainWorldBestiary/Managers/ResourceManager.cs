@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using RainWorldBestiary.Types;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Managers
 {
     internal static class ResourceManager
     {

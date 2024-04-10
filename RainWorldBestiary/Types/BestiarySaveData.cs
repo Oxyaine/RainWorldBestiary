@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     // A class to hold the save data for the bestiary
     internal class BestiarySaveData

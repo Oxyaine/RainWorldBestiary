@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     /// <summary>
     /// A class representing an entry

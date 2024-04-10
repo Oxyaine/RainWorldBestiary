@@ -2,7 +2,7 @@
 using System.IO;
 using Menu;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     internal class Font
     {

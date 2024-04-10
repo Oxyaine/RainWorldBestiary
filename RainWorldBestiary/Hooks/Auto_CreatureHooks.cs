@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using RainWorldBestiary.Types;
+using RainWorldBestiary.Managers;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Hooks
 {
     internal static class AutoCreatureHooks
     {

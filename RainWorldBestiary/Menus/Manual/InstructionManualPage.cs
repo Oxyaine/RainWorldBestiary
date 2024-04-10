@@ -3,7 +3,7 @@ using Menu.Remix.MixedUI;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Menus.Manual
 {
     internal class InstructionManualPage : ManualPage
     {

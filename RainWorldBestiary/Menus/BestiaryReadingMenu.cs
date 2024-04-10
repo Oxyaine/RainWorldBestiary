@@ -1,8 +1,9 @@
 ﻿using Menu;
 using System.Collections;
 using UnityEngine;
+using RainWorldBestiary.Types;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Menus
 {
     internal class BestiaryReadingMenu : Dialog
     {

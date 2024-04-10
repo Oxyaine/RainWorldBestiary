@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Menus.Manual
 {
     internal class InstructionManualDialog : ManualDialog
     {

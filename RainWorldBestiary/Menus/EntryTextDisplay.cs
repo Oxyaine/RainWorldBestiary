@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using RainWorldBestiary.Types;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Menus
 {
     internal class EntryTextDisplay
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     /// <summary>
     /// Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values

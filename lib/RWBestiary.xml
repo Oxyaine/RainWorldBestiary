@@ -1,0 +1,1094 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RWBestiary</name>
+    </assembly>
+    <members>
+        <member name="T:RWBestiary.Bestiary">
+            <summary>
+            The main class for the bestiary, everything should be accessible from this class
+            </summary>
+        </member>
+        <member name="F:RWBestiary.Bestiary.CreatureUnlockIDs">
+            <summary>
+            All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
+            </summary>
+        </member>
+        <member name="P:RWBestiary.Bestiary.ModuleUnlocks">
+            <summary>
+            All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
+            </summary>
+            <remarks>
+            If you'd like to add your own token, Use <see cref="M:RWBestiary.Bestiary.AddOrIncreaseToken(System.String,RWBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+            <code></code>
+            You should also check out <see cref="M:RWBestiary.Bestiary.IsUnlockTokenValid(RWBestiary.CreatureUnlockToken)"/> for checking if the unlock token is valid
+            </remarks>
+        </member>
+        <member name="M:RWBestiary.Bestiary.AddOrIncreaseToken(System.String,RWBestiary.UnlockTokenType,System.Boolean,System.String[])">
+            <summary>
+            Checks if <see cref="P:RWBestiary.Bestiary.ModuleUnlocks"/> contains the <see cref="T:RWBestiary.UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
+            </summary>
+            <remarks>
+            The token will only get added, if the token takes part in unlocking a description module, so if the token will never unlock a module, it wont get added. You can override this by setting <paramref name="alwaysAddToken"/> to true.
+            </remarks>
+            <param name="creatureID">The ID of the creature this token is for</param>
+            <param name="tokenType">The type of token</param>
+            <param name="alwaysAddToken">Whether to always add this token, regardless of whether this token will be used</param>
+            <param name="SpecialData">The special data to add onto the token</param>
+        </member>
+        <member name="M:RWBestiary.Bestiary.AddOrIncreaseToken(Creature,RWBestiary.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RWBestiary.Bestiary.AddOrIncreaseToken(System.String,RWBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+        </member>
+        <member name="M:RWBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature,RWBestiary.UnlockTokenType,System.Boolean,System.String[])">
+            <inheritdoc cref="M:RWBestiary.Bestiary.AddOrIncreaseToken(System.String,RWBestiary.UnlockTokenType,System.Boolean,System.String[])"/>
+        </member>
+        <member name="M:RWBestiary.Bestiary.IsUnlockTokenValid(RWBestiary.CreatureUnlockToken)">
+            <summary>
+            Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
+            </summary>
+            <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
+            Does not take into account if <see cref="F:RWBestiary.BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
+        </member>
+        <member name="F:RWBestiary.Bestiary.EntriesTabs">
+            <summary>
+            All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Bestiary.GetEntryByReferenceID(System.String)">
+            <summary>
+            Gets an entry using a reference id, <code></code>
+            Reference IDs contain the name of the tab to look in (case sensitive), plus the name of the entry to look for (also case sensitive, this is the name given to the entry, not the translated result), separated by either a forward or backward slash.
+            Valid IDs include:
+            <code>Rain World/creaturetype_Fly</code>
+            <code>Rain World\creaturetype_CicadaA</code>
+            <code>Downpour/The Gourmand</code>
+            Invalid IDs include
+            <code>rain world/creaturetype_Fly</code>
+            <code>RainWorld/creaturetype_Fly</code>
+            <code>/Rain World/creaturetype_Fly</code>
+            </summary>
+            <returns>The entry that was found, if no entry was found, null is returned</returns>
+        </member>
+        <member name="P:RWBestiary.Bestiary.CurrentSelectedTab">
+            <summary>
+            The tab that is currently selected
+            </summary>
+        </member>
+        <member name="P:RWBestiary.Bestiary.CurrentSelectedEntry">
+            <summary>
+            The entry that is currently selected
+            </summary>
+        </member>
+        <member name="F:RWBestiary.Bestiary.EnteringMenu">
+            <summary>
+            Whether the menu being loaded is from going into the menu, otherwise its from exiting out a submenu
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)">
+            <inheritdoc cref="M:RWBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)">
+            <summary>
+            Gets the creatures name through <see cref="F:AbstractCreature.creatureTemplate"/> and removes all white space characters
+            </summary>
+            <param name="creature">The creature to get the ID of</param>
+            <param name="useSpecialIdLogic">Whether to check through <see cref="F:RWBestiary.Bestiary.SpecialIDsLogic"/> for any additional logic that should be applied</param>
+        </member>
+        <member name="F:RWBestiary.Bestiary.SpecialIDsLogic">
+            <summary>
+            Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
+            </summary>
+        </member>
+        <member name="T:RWBestiary.BestiarySettings">
+            <summary>
+            The main class for all the bestiary mods' settings, including remix menu options
+            </summary>
+        </member>
+        <member name="P:RWBestiary.BestiarySettings.MenuFadeTimeSeconds">
+            <summary>
+            The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
+            </summary>
+        </member>
+        <member name="F:RWBestiary.BestiarySettings.ShowModuleLockPips">
+            <summary>
+            Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
+            </summary>
+        </member>
+        <member name="F:RWBestiary.BestiarySettings.PerformTextAnimations">
+            <summary>
+            Whether to perform an animation when going to read an entry
+            </summary>
+        </member>
+        <member name="F:RWBestiary.BestiarySettings.ShowManualButton">
+            <summary>
+            Whether to show the "Manual" button in the main bestiary menu
+            </summary>
+        </member>
+        <member name="F:RWBestiary.BestiarySettings.MinimizeTitleSpacing">
+            <summary>
+            EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
+            </summary>
+        </member>
+        <member name="F:RWBestiary.BestiarySettings.UnlockAllEntries">
+            <summary>
+            Whether all bestiary entries should be unlocked and completely readable
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Hooks.AutoCreatureHooks.IgnoreID(System.Int32,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Checks if the ID is ignored, if its not, it will be added
+            </summary>
+            <remarks>
+            <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
+            </remarks>
+            <returns>True if the creature should be ignored, otherwise false</returns>
+        </member>
+        <member name="T:RWBestiary.Description">
+            <summary>
+            A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Description.#ctor">
+            
+        </member>
+        <member name="M:RWBestiary.Description.#ctor(System.Collections.Generic.IEnumerable{RWBestiary.DescriptionModule})">
+            
+        </member>
+        <member name="M:RWBestiary.Description.#ctor(RWBestiary.DescriptionModule[])">
+            
+        </member>
+        <member name="M:RWBestiary.Description.#ctor(System.String)">
+            <summary>
+            Creates a new description with one module that defaults to unlocked
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Description.#ctor(RWBestiary.Description)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="P:RWBestiary.Description.Count">
+            <summary>
+            Gets the amount of description modules in this description
+            </summary>
+        </member>
+        <member name="P:RWBestiary.Description.IsReadOnly">
+            <summary>
+            This is unused in <see cref="T:RWBestiary.Description"/>
+            </summary>
+        </member>
+        <member name="P:RWBestiary.Description.Item(System.Int32)">
+            <summary>
+            Gets or sets a module at the given index
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Description.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.Description.ToString">
+            <summary>
+            Returns this description as a string where only the parts of the entry that are visible are added
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Description.Add(RWBestiary.DescriptionModule)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.Description.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.Description.Contains(RWBestiary.DescriptionModule)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.Description.CopyTo(RWBestiary.DescriptionModule[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.Description.Remove(RWBestiary.DescriptionModule)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.Description.op_Implicit(RWBestiary.DescriptionModule[])~RWBestiary.Description">
+            
+        </member>
+        <member name="M:RWBestiary.Description.op_Implicit(System.Collections.Generic.List{RWBestiary.DescriptionModule})~RWBestiary.Description">
+            
+        </member>
+        <member name="T:RWBestiary.DescriptionModule">
+            <summary>
+            A piece of a description, can be given a lock ID to lock this part of an entries description
+            </summary>
+        </member>
+        <member name="F:RWBestiary.DescriptionModule.UnlockIDs">
+            <summary>
+            All the unlock tokens of this description module, used to determine what requirements need to be met to unlock this part of the description
+            </summary>
+        </member>
+        <member name="F:RWBestiary.DescriptionModule.ModuleUnlockedCondition">
+            <summary>
+            The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
+            </summary>
+            <remarks>Defaults to <see cref="M:RWBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RWBestiary.DescriptionModule)"/></remarks>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.DefaultModuleUnlockedCondition(RWBestiary.DescriptionModule)">
+            <summary>
+            Checks all the UnlockIDs to determine if this module is visible or not
+            </summary>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.CheckIfUnlockTokenValid(RWBestiary.CreatureUnlockToken)">
+            <summary>
+            Checks if this creature unlock token is null, the token type is none, or if it returns true when run through <see cref="M:RWBestiary.Bestiary.IsUnlockTokenValid(RWBestiary.CreatureUnlockToken)"/>.
+            </summary>
+            <returns>True if either of the conditions above is met</returns>
+        </member>
+        <member name="P:RWBestiary.DescriptionModule.ModuleUnlocked">
+            <summary>
+            Returns true if the module is unlocked, else false
+            </summary>
+        </member>
+        <member name="F:RWBestiary.DescriptionModule.Body">
+            <summary>
+            The text of this part of the entries description
+            </summary>
+        </member>
+        <member name="F:RWBestiary.DescriptionModule.NewLine">
+            <summary>
+            Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.
+            </summary>
+        </member>
+        <member name="F:RWBestiary.DescriptionModule.Translate">
+            <summary>
+            Whether this modules text will get run through the in game translator, if no translation is found, then the text will be placed
+            </summary>
+        </member>
+        <member name="F:RWBestiary.DescriptionModule.UnlockPipColor">
+            <summary>
+            The Color of the Unlock Pip for this Module
+            </summary>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.#ctor">
+            <inheritdoc cref="M:RWBestiary.DescriptionModule.#ctor(System.String,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.#ctor(System.String,System.Boolean)">
+            <inheritdoc cref="M:RWBestiary.DescriptionModule.#ctor(System.String,RWBestiary.CreatureUnlockToken,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.#ctor(System.String,RWBestiary.CreatureUnlockToken,System.Boolean)">
+            <param name="body">The text of this part of the entries description</param>
+            <param name="unlockToken">The unlock token of this description module, used to determine what requirements need to be met to unlock this part of the description</param>
+            <param name="newLine">Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.</param>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.#ctor(RWBestiary.DescriptionModule)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="M:RWBestiary.DescriptionModule.ToString">
+            <summary>
+            Returns <see cref="F:RWBestiary.DescriptionModule.Body"/>, if <see cref="F:RWBestiary.DescriptionModule.Translate"/> is true, <see cref="F:RWBestiary.DescriptionModule.Body"/> will get run through the in game translator first
+            </summary>
+            <returns><see cref="F:RWBestiary.DescriptionModule.Body"/>, translated if <see cref="F:RWBestiary.DescriptionModule.Translate"/> is true</returns>
+        </member>
+        <member name="T:RWBestiary.EntriesTab">
+            <summary>
+            A class representing a tab full of entries in the bestiary
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntriesTab.Name">
+            <summary>
+            The name of this tab
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntriesTab.RequiredMods">
+            <summary>
+            The mods (by ids), that are required to be active for this tab to be visible
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntriesTab.TitleSprite">
+            <summary>
+            The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
+            </summary>
+            <remarks>By title, I mean the name of the tab that is visible at the top while viewing entries in the tab</remarks>
+        </member>
+        <member name="F:RWBestiary.EntriesTab.TabMenuProcessID">
+            <summary>
+            The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntriesTab.ContributingMods">
+            <summary>
+            All the mods that are contributing to this tab, doesn't say which entries they contribute, just if they contribute
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.#ctor">
+            <summary>
+            Creates an empty <see cref="T:RWBestiary.EntriesTab"/>
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RWBestiary.Entry})">
+            <summary>
+            Creates an <see cref="T:RWBestiary.EntriesTab"/> with all entries in <paramref name="entries"/> as the entries
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RWBestiary.Entry})">
+            <inheritdoc cref="M:RWBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RWBestiary.Entry})"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.#ctor(System.String,RWBestiary.Entry[])">
+            <inheritdoc cref="M:RWBestiary.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RWBestiary.Entry})"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.#ctor(RWBestiary.EntriesTab)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="P:RWBestiary.EntriesTab.Count">
+            <summary>
+            Gets the amount of entries in this tab
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Add(RWBestiary.Entry)">
+            <inheritdoc cref="M:RWBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Add(System.String,RWBestiary.EntryInfo,System.String)">
+            <inheritdoc cref="M:RWBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Add(System.String,System.String,System.String,RWBestiary.Description,System.String)">
+            <inheritdoc cref="M:RWBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Adds a new entry to this tab
+            </summary>
+            <param name="owningModID"><inheritdoc cref="M:RWBestiary.Entry.#ctor(System.String,System.String)"/></param>
+            <param name="entryName"></param>
+            <param name="unlockID"></param>
+            <param name="iconAtlasName"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RWBestiary.Entry})">
+            <summary>
+            Adds all the entries from the collection into this tab
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RWBestiary.Entry})">
+            <inheritdoc cref="M:RWBestiary.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RWBestiary.Entry})"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.MergeWith(RWBestiary.EntriesTab@)">
+            <summary>
+            Adds <paramref name="tab"/>'s entries to this this<code></code>
+            If this TitleImage is null, it gets replaced with <paramref name="tab"/>'s TitleImage<code></code>
+            If this TabMenuProcessID is set to the default, it sets it to <paramref name="tab"/>'s TabMenuProcessID
+            </summary>
+            <param name="tab"></param>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.TryGet(System.String,RWBestiary.Entry@)">
+            <summary>
+            Tries to get the entry with the given name
+            </summary>
+            <returns>True if the entry was found, otherwise false</returns>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Clear">
+            <summary>
+            Clears this tab of all its entries
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Contains(RWBestiary.Entry)">
+            <summary>
+            Checks if this tab contains the given entry
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Contains(System.String)">
+            <summary>
+            Determines whether this tab contains an entry with the given name
+            </summary>
+            <param name="entryName">The name of the entry to check for</param>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.CopyTo(RWBestiary.Entry[],System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.Remove(RWBestiary.Entry)">
+            <summary>
+            Removes the given entry from this tab
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.RemoveAt(System.Int32)">
+            <summary>
+            Removes an entry at the specified index
+            </summary>
+        </member>
+        <member name="P:RWBestiary.EntriesTab.Item(System.Int32)">
+            <summary>
+            Gets or sets an entry at the given index
+            </summary>
+        </member>
+        <member name="P:RWBestiary.EntriesTab.Item(System.String)">
+            <summary>
+            Gets an entry with the given name
+            </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
+        </member>
+        <member name="M:RWBestiary.EntriesTab.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:RWBestiary.EntriesTabList">
+            <summary>
+            A class that represents a list of <see cref="T:RWBestiary.EntriesTab"/>
+            </summary>
+            <remarks>Not using regular list since this allows more control such as preventing two <see cref="T:RWBestiary.EntriesTab"/> with the same name</remarks>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.#ctor">
+            
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.#ctor(RWBestiary.EntriesTab[])">
+            <param name="tabs">The default tabs to add to this tab list</param>
+        </member>
+        <member name="P:RWBestiary.EntriesTabList.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:RWBestiary.EntriesTabList.IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab,System.Boolean)">
+            <summary>
+            Adds a new tab of entries to this collection
+            </summary>
+            <param name="item">The item to add</param>
+            <param name="merge">
+            Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <see cref="M:RWBestiary.EntriesTab.MergeWith(RWBestiary.EntriesTab@)"/><code></code>
+            </param>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab)">
+            <inheritdoc cref="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Add(System.String,RWBestiary.Entry[])">
+            <inheritdoc cref="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Add(System.String,System.Boolean,RWBestiary.Entry[])">
+            <inheritdoc cref="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RWBestiary.Entry},RWBestiary.TitleSprite,System.Boolean)">
+            <inheritdoc cref="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RWBestiary.Entry},ProcessManager.ProcessID,RWBestiary.TitleSprite,System.Boolean)">
+            <inheritdoc cref="M:RWBestiary.EntriesTabList.Add(RWBestiary.EntriesTab,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Contains(RWBestiary.EntriesTab)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.CopyTo(RWBestiary.EntriesTab[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.Remove(RWBestiary.EntriesTab)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.TryGet(System.String,RWBestiary.EntriesTab@)">
+            <summary>
+            Tries to get the tab using its name
+            </summary>
+            <returns>True if the tab was found, otherwise false</returns>
+        </member>
+        <member name="M:RWBestiary.EntriesTabList.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="P:RWBestiary.EntriesTabList.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:RWBestiary.EntriesTab"/> at the given index
+            </summary>
+        </member>
+        <member name="P:RWBestiary.EntriesTabList.Item(System.String)">
+            <summary>
+            Gets a tab using its name
+            </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
+        </member>
+        <member name="T:RWBestiary.Entry">
+            <summary>
+            A class representing an entry
+            </summary>
+        </member>
+        <member name="F:RWBestiary.Entry.Name">
+            <summary>
+            The name of this entry
+            </summary>
+        </member>
+        <member name="F:RWBestiary.Entry.Info">
+            <summary>
+            The information of this entry, such as its unlock id, icon, scene to show while reading, and description
+            </summary>
+        </member>
+        <member name="F:RWBestiary.Entry.EntryReadingMenu">
+            <summary>
+            The process ID that gets called when an entry button gets pressed, you can leave this as the default menu, or make a custom menu to display the entry's information.
+            </summary>
+        </member>
+        <member name="F:RWBestiary.Entry.OwningModID">
+            <summary>
+            The mod that owns this entry, also known as the mod this entry belongs to, is used for unloading the mod automatically when the owning mod gets disabled
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Entry.#ctor">
+            
+        </member>
+        <member name="M:RWBestiary.Entry.#ctor(System.String,System.String)">
+            <param name="name"></param>
+             <param name="owningModID">The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled</param>
+        </member>
+        <member name="M:RWBestiary.Entry.#ctor(System.String,RWBestiary.EntryInfo,System.String)">
+            <param name="info">The entry's info</param>
+            <inheritdoc cref="M:RWBestiary.Entry.#ctor(System.String,System.String)"/>
+            <param name="name"></param>
+            <param name="owningModID"></param>
+        </member>
+        <member name="M:RWBestiary.Entry.#ctor(System.String,RWBestiary.Description,System.String,System.String,System.String,System.String)">
+            <param name="name">The name of the entry</param>
+            <param name="description">The main body of this entry</param>
+            <param name="unlockID">The ID that will be used to determine whether this entry is unlocked or not</param>
+            <param name="iconAtlasName">The name of the entry's icon in the atlas manager</param>
+            <param name="lockedText">The text that is shown when pressing on the entry while its locked</param>
+            <inheritdoc cref="M:RWBestiary.Entry.#ctor(System.String,System.String)"/>
+            <param name="owningModID"></param>
+        </member>
+        <member name="M:RWBestiary.Entry.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <inheritdoc cref="M:RWBestiary.Entry.#ctor(System.String,RWBestiary.Description,System.String,System.String,System.String,System.String)"/>
+        </member>
+        <member name="P:RWBestiary.Entry.Error">
+            <summary>
+            A default entry that's just an error, is always unlocked, and serves as a placeholder that appears when another entry cant be loaded
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Entry.Equals(RWBestiary.Entry)">
+            <summary>
+            Checks if this entry is the same as another entry
+            </summary>
+        </member>
+        <member name="T:RWBestiary.EntryInfo">
+            <summary>
+            The contents of the entry file
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.BaseLockedText">
+            <summary>
+            A constant defining the default text that is shown when attempting to read a locked entry
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.Name">
+            <summary>
+            The name of this entry
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.UnlockID">
+            <summary>
+            The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.EntryUnlockedCondition">
+            <summary>
+            The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
+            </summary>
+            <remarks>Defaults to <see cref="M:RWBestiary.EntryInfo.DefaultEntryUnlockedCondition(RWBestiary.EntryInfo)"/></remarks>
+        </member>
+        <member name="M:RWBestiary.EntryInfo.DefaultEntryUnlockedCondition(RWBestiary.EntryInfo)">
+            <summary>
+            Checks whether any unlock tokens in <see cref="T:RWBestiary.Bestiary"/> have the <see cref="T:RWBestiary.UnlockTokenType"/> for <see cref="F:RWBestiary.CreatureUnlockToken.CreatureID"/> with a value that is equal to or lower than the required value
+            </summary>
+            <returns>True if the entry should be locked, otherwise false</returns>
+        </member>
+        <member name="M:RWBestiary.EntryInfo.Equals(RWBestiary.EntryInfo)">
+            <summary>
+            Checks if this entry info's unlock id and icons match
+            </summary>
+        </member>
+        <member name="P:RWBestiary.EntryInfo.EntryUnlocked">
+            <summary>
+            Returns true if the entry is visible, else false
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.LockedText">
+            <summary>
+            The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.IconsNextToTitle">
+            <summary>
+            Whether the two icons specified by <see cref="P:RWBestiary.EntryInfo.EntryIcon"/> will be displayed either side of the title
+            </summary>
+        </member>
+        <member name="P:RWBestiary.EntryInfo.EntryIcon">
+            <summary>
+            The name of the sprite in the atlas manager that will be used as the entry icon
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.EntryIcons">
+            <summary>
+            The name of the sprites in the atlas manager that will be used as the entry's icons
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.TitleSprite">
+            <summary>
+            The title image that gets displayed at the top when of the screen while reading the entry, if set to null, or if the image isn't found, some generated text will be placed instead
+            </summary>
+            <remarks>By title, I mean the name of the entry that is visible at the top while reading the entry</remarks>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.EntryColor">
+            <summary>
+            The color of the entry's button and title image
+            </summary>
+        </member>
+        <member name="F:RWBestiary.EntryInfo.Description">
+            <summary>
+            The body of this entry, when converted to string, only returns the parts of the entry that are visible
+            </summary>
+        </member>
+        <member name="M:RWBestiary.EntryInfo.#ctor">
+            
+        </member>
+        <member name="M:RWBestiary.EntryInfo.#ctor(RWBestiary.Description,System.String,System.String,System.String)">
+            <param name="description">The body of this entry</param>
+            <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
+            <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
+            <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
+        </member>
+        <member name="M:RWBestiary.EntryInfo.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a new entry info with one description module that is by default visible
+            </summary>
+            <param name="description">The body of this entry</param>
+            <param name="iD">The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible</param>
+            <param name="lockedText">The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.</param>
+            <param name="entryIcon">The name of the sprite in the atlas manager that will be used as the entry icon</param>
+        </member>
+        <member name="T:RWBestiary.Extensions">
+            <summary>
+            A class with some extensions to speed up certain tasks
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.WrapText(System.String,System.Int32)">
+            <summary>
+            Wrap the text to go along multiple lines (word wrap). If the current letter count exceeds <paramref name="wrapCount"/> it adds a new line (\n) to the string
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.SplitIntoGroups(System.String,System.Int32)">
+            <summary>
+            Splits the string into groups the size of <paramref name="groupCount"/>, if the string cannot be split evenly, the last group may contain an unexpected amount of characters
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.ContainsAny(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Checks if <paramref name="source"/> contains any of the strings in <paramref name="values"/>
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Checks if <paramref name="source"/> contains any of the strings in <paramref name="values"/>
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.ContainsAll``1(System.Collections.Generic.List{``0},``0[])">
+            <summary>
+            Checks if this list contains all the values in <paramref name="values"/>
+            </summary>
+            <returns>True if all items in <paramref name="values"/> are found in this list</returns>
+        </member>
+        <member name="M:RWBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Checks if this list contains all the values in <paramref name="values"/>
+            </summary>
+            <returns>True if all items in <paramref name="values"/> are found in this list</returns>
+        </member>
+        <member name="M:RWBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Gets a random item in the collection
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Gets a number of random items from the collection
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.ToVector2(RWCustom.IntVector2)">
+            <summary>
+            Converts this <see cref="T:RWCustom.IntVector2"/> into a <see cref="T:UnityEngine.Vector2"/>
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.ToVector2(WorldCoordinate)">
+            <summary>
+            Gets the x and y of this <see cref="T:WorldCoordinate"/> and returns it as a Vector2
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.GetCreatureUnlockName(Creature,System.Boolean)">
+            <inheritdoc cref="M:RWBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.Extensions.GetCreatureUnlockName(AbstractCreature,System.Boolean)">
+            <inheritdoc cref="M:RWBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)"/>
+        </member>
+        <member name="M:RWBestiary.Extensions.ToHSL(UnityEngine.Color)">
+            <summary>
+            Converts this RGB color to a HSL color
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.HexToColor(System.String)">
+            <summary>
+            Converts this hex color string into a Color
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.RGBToHexString(UnityEngine.Color)">
+            <summary>
+            Converts this Color into a hex color string, with 6 characters in the string, representing RGB
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.ARGBToHexString(UnityEngine.Color)">
+            <summary>
+            Converts this Color into a hex color string, with 8 characters in the string, representing ARGB
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Extensions.IndexOf(System.String,System.Char,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:System.String.IndexOf(System.Char,System.Int32)"/>
+            <param name="text"></param>
+            <param name="value"></param>
+            <param name="startIndex"></param>
+            <param name="ignoreWithinQuotes">Whether to ignore if the character is found within double quotes</param>
+        </member>
+        <member name="T:RWBestiary.Translator">
+            <summary>
+            A class for custom translation behaviour
+            </summary>
+        </member>
+        <member name="M:RWBestiary.Translator.Translate(System.String)">
+            <summary>
+            Translates this text using the short strings dictionary
+            </summary>
+        </member>
+        <member name="T:RWBestiary.TitleSprite">
+            <summary>
+            Represents an element in the atlas manager, but gives some more options to customize the scale and offset of the image from the default values
+            </summary>
+        </member>
+        <member name="F:RWBestiary.TitleSprite.ElementName">
+            <summary>
+            The name of the element in the atlas manager
+            </summary>
+        </member>
+        <member name="F:RWBestiary.TitleSprite.Scale">
+            <summary>
+            The scale of the image when drawn to the screen
+            </summary>
+        </member>
+        <member name="F:RWBestiary.TitleSprite.XOffset">
+            <summary>
+            The offset on the X axis from the default position
+            </summary>
+        </member>
+        <member name="F:RWBestiary.TitleSprite.YOffset">
+            <summary>
+            THe offset on the Y axis from the default position
+            </summary>
+        </member>
+        <member name="M:RWBestiary.TitleSprite.#ctor(System.String)">
+            <inheritdoc cref="M:RWBestiary.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:RWBestiary.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)">
+            <param name="elementName">The name of the element in the atlas manager</param>
+            <param name="scale">The scale multiplier of this icon</param>
+            <param name="xOffset">The X Offset from the default position</param>
+            <param name="yOffset">The Y Offset from the default position </param>
+        </member>
+        <member name="T:RWBestiary.UnlockTokenType">
+            <summary>
+            The type of unlock this UnlockToken targets
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.None">
+            <summary>
+            This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Tamed">
+            <summary>
+            For when the player tames the creature
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Evaded">
+            <summary>
+            For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.SnuckPast">
+            <summary>
+            For when the player sneaks past a creature
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Observed">
+            <summary>
+            When the player sees the creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveFear">
+            <summary>
+            For when the player sees the creature run away in fear
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveFood">
+            <summary>
+            When the player sees the creature eating or hunting another creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveHunting">
+            <summary>
+            For when the player is getting chased by a creature
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Killed">
+            <summary>
+            When the creature is killed by the player
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Impaled">
+            <summary>
+            When the creature gets impaled with a spear, by the player
+            </summary>
+            <remarks>Automatically Tracked (for spears inheriting from <see cref="T:Spear"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Stunned">
+            <summary>
+            When the creature is stunned, by the player
+            </summary>
+            <remarks>Automatically Tracked (for items inheriting from <see cref="T:Rock"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.KilledPlayer">
+            <summary>
+            When the player is killed by the creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.GrabbedPlayer">
+            <summary>
+            When the player is grabbed by the creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.Eaten">
+            <summary>
+            Whenever the creature gets eaten by the player
+            </summary>
+            <remarks>Automatically Tracked</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveAttraction">
+            <summary>
+            For whenever the player observes a creature being attracted to something, such as batflies to batnip
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.UsedAsLure">
+            <summary>
+            For whenever the player uses the creature to lure something else
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveHiding">
+            <summary>
+            For whenever the player notices a creature hiding or disguising itself in any way
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveBehaviour">
+            <summary>
+            For whenever the player observes miscellaneous behaviour
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.HeardPlayer">
+            <summary>
+            When the creature hears the player
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.PlayerGrabbed">
+            <summary>
+            When the player grabs the creature or creatures corpse
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveRivals">
+            <summary>
+            When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveAttacking">
+            <summary>
+            When the player observes the creature attacking another creature
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="F:RWBestiary.UnlockTokenType.ObserveGrabbing">
+            <summary>
+            When the player observes the creature grabbing something, for any reason. This is just a generic grab, for grabbing a creature in the case of attacking, rivals, or food, use <see cref="F:RWBestiary.UnlockTokenType.ObserveAttacking"/>, <see cref="F:RWBestiary.UnlockTokenType.ObserveRivals"/>, and <see cref="F:RWBestiary.UnlockTokenType.ObserveFood"/> respectively
+            </summary>
+            <remarks>Automatically Tracked (for creatures inheriting from <see cref="T:Creature"/>)</remarks>
+        </member>
+        <member name="T:RWBestiary.UnlockToken">
+            <summary>
+            The base unlock token, used to register tokens so modules can be unlocked, inherited by <see cref="T:RWBestiary.CreatureUnlockToken"/> which is used in <see cref="T:RWBestiary.DescriptionModule"/> as the unlock ID
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockToken.TokenType">
+            <summary>
+            The type of token this module unlock targets
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockToken.Count">
+            <summary>
+            The amount of times this token has been registered, or needs to be registered
+            </summary>
+        </member>
+        <member name="F:RWBestiary.UnlockToken.SpecialData">
+            <summary>
+            Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
+            </summary>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.#ctor">
+            
+        </member>
+        <member name="M:RWBestiary.UnlockToken.#ctor(RWBestiary.UnlockTokenType,System.Byte)">
+            <param name="tokenType">The type of token to look for</param>
+            <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.#ctor(RWBestiary.UnlockToken)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.Equals(System.Object)">
+            <summary>
+            Checks if both objects are <see cref="T:RWBestiary.UnlockToken"/>, then compares them using <see cref="M:RWBestiary.UnlockToken.Equals(RWBestiary.UnlockToken)"/>
+            </summary>
+            <remarks><see cref="M:RWBestiary.UnlockToken.Equals(RWBestiary.UnlockToken)"/> <inheritdoc cref="M:RWBestiary.UnlockToken.Equals(RWBestiary.UnlockToken)"/></remarks>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.Equals(RWBestiary.UnlockToken)">
+            <remarks>
+            Checks if the token type matches
+            </remarks>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.Equals(RWBestiary.UnlockToken,System.Boolean)">
+            <remarks>
+            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RWBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RWBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RWBestiary.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})">
+            <summary>
+            Checks if <see cref="F:RWBestiary.UnlockToken.SpecialData"/> contains all the provided special data
+            </summary>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.UnlockToken.ToString">
+            <returns>Token Type + Value</returns>
+        </member>
+        <member name="T:RWBestiary.OperationType">
+            <summary>
+            A type of operation gate that can be applied to bools
+            </summary>
+        </member>
+        <member name="F:RWBestiary.OperationType.And">
+            <summary>
+            True if both the values are true
+            <code>0 - 0 = 0</code>
+            <code>1 - 0 = 0</code>
+            <code>0 - 1 = 0</code>
+            <code>1 - 1 = 1</code>
+            </summary>
+        </member>
+        <member name="F:RWBestiary.OperationType.Or">
+            <summary>
+            True if either of the inputs are true
+            <code>0 - 0 = 0</code>
+            <code>1 - 0 = 1</code>
+            <code>0 - 1 = 1</code>
+            <code>1 - 1 = 1</code>
+            </summary>
+        </member>
+        <member name="F:RWBestiary.OperationType.XOr">
+            <summary>
+            True if either of the inputs are true, but not when both inputs are true
+            <code>0 - 0 = 0</code>
+            <code>1 - 0 = 1</code>
+            <code>0 - 1 = 1</code>
+            <code>1 - 1 = 0</code>
+            </summary>
+        </member>
+        <member name="F:RWBestiary.OperationType.NAnd">
+            <summary>
+            True if either value is false
+            <code>0 - 0 = 1</code>
+            <code>1 - 0 = 1</code>
+            <code>0 - 1 = 1</code>
+            <code>1 - 1 = 0</code>
+            </summary>
+        </member>
+        <member name="F:RWBestiary.OperationType.NOr">
+            <summary>
+            True if neither value is true
+            <code>0 - 0 = 1</code>
+            <code>1 - 0 = 0</code>
+            <code>0 - 1 = 0</code>
+            <code>1 - 1 = 0</code>
+            </summary>
+        </member>
+        <member name="F:RWBestiary.OperationType.XAnd">
+            <summary>
+            True if both values are the same
+            <code>0 - 0 = 1</code>
+            <code>1 - 0 = 0</code>
+            <code>0 - 1 = 0</code>
+            <code>1 - 1 = 1</code>
+            </summary>
+        </member>
+        <member name="T:RWBestiary.CreatureUnlockToken">
+            <summary>
+            An unlock token, that can be used to detect whether a <see cref="T:RWBestiary.DescriptionModule"/> is unlocked, similar to <see cref="T:RWBestiary.UnlockToken"/> but has a CreatureID string
+            </summary>
+        </member>
+        <member name="F:RWBestiary.CreatureUnlockToken.CreatureID">
+            <summary>
+            The ID of the creature this unlock token applies to
+            </summary>
+        </member>
+        <member name="F:RWBestiary.CreatureUnlockToken.OperationAgainstCurrentValue">
+            <summary>
+            The operation this unlock token will perform against the current unlock value of the token
+            </summary>
+            <remarks>For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked.
+            Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value</remarks>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.#ctor(System.String,RWBestiary.UnlockTokenType,System.Byte)">
+            <param name="creatureID">The ID of the creature that to look for</param>
+            <param name="tokenType">The type of token to look for</param>
+            <param name="value">The amount of times this token should be registered before this is considered unlocked</param>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.#ctor(RWBestiary.CreatureUnlockToken)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.Equals(System.Object)">
+            <summary>
+            Checks if both objects are <see cref="T:RWBestiary.CreatureUnlockToken"/>, then compares them using <see cref="M:RWBestiary.CreatureUnlockToken.Equals(RWBestiary.CreatureUnlockToken)"/>
+            </summary>
+            <remarks><see cref="M:RWBestiary.CreatureUnlockToken.Equals(RWBestiary.CreatureUnlockToken)"/> <inheritdoc cref="M:RWBestiary.CreatureUnlockToken.Equals(RWBestiary.CreatureUnlockToken)"/></remarks>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.Equals(RWBestiary.CreatureUnlockToken)">
+            <remarks>
+            Checks if the creature ID matches, then if the token type matches, ignores <see cref="F:RWBestiary.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.Equals(RWBestiary.CreatureUnlockToken,System.Boolean)">
+            <remarks>
+            Checks if the token type matches and, if <paramref name="checkSpecialData"/> is enabled, if <paramref name="other"/>'s <see cref="F:RWBestiary.UnlockToken.SpecialData"/> is found in this <see cref="F:RWBestiary.UnlockToken.SpecialData"/>, ignores <see cref="F:RWBestiary.UnlockToken.Count"/>
+            </remarks>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:RWBestiary.CreatureUnlockToken.ToString">
+            <returns>Creature ID + Token Type + Value</returns>
+        </member>
+    </members>
+</doc>

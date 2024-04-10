@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Types
 {
     /// <summary>
     /// A class representing an entries description, saved as a DescriptionModule array, but can be used as a string

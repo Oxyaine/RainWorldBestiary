@@ -1,4 +1,6 @@
-﻿namespace RainWorldBestiary
+﻿using RainWorldBestiary.Types;
+
+namespace RainWorldBestiary.Hooks
 {
     internal class ManualCreatureHooks
     {

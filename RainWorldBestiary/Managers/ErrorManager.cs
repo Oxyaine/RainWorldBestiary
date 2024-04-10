@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Managers
 {
     internal class ErrorManager : Dialog
     {

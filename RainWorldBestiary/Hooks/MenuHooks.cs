@@ -3,8 +3,10 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using UnityEngine;
+using RainWorldBestiary.Menus;
+using RainWorldBestiary.Managers;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Hooks
 {
     internal class MenuHooks
     {

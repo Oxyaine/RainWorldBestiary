@@ -2,8 +2,10 @@
 using System;
 using System.IO;
 using UnityEngine;
+using RainWorldBestiary.Types;
+using RainWorldBestiary.Managers;
 
-namespace RainWorldBestiary
+namespace RainWorldBestiary.Menus
 {
     internal class SharedMenuUtilities
     {
