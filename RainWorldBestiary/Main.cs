@@ -64,7 +64,7 @@ namespace RainWorldBestiary
             original(self);
             try
             {
-                MachineConnector.SetRegisteredOI("oxyaine.bestiary", new RemixMenu());
+                MachineConnector.SetRegisteredOI(MODID, new RemixMenu());
 
                 if (!Initialized)
                 {
