@@ -33,17 +33,17 @@ Tabs|Tabs
 Entries|Entries
 Unlocking|Unlocking
 
-BESTIARY_MANUAL_INTRODUCTION_TITLE|The Bestiary is an encyclopedia of creatures, where you can find out information about different creatures, and where you're able to read what discoveries you've made.
-BESTIARY_MANUAL_INTRODUCTION_1|The bestiary unlocks as you go, with different creatures unlocking as you collect parts of their description.
-BESTIARY_MANUAL_INTRODUCTION_2|Every menu can be customized a little bit within the remix menu, you can check out some other options there too.
-BESTIARY_MANUAL_INTRODUCTION_3|Each entry is stored in tabs, these tabs are like collections, or containers, of entries.
+BESTIARY_MANUAL_INTRODUCTION_TITLE|The Bestiary is an encyclopedia of creatures, where you can find out information about different creatures, and are able to read what discoveries you've made.
+BESTIARY_MANUAL_INTRODUCTION_1|Every menu can be customized a little bit within the remix menu, you can check out some other options there too, as well as wiping bestiary save data.
+BESTIARY_MANUAL_INTRODUCTION_2|E
+BESTIARY_MANUAL_INTRODUCTION_3|E
 
-BESTIARY_MANUAL_TABS_TITLE|TABS
-BESTIARY_MANUAL_TABS_1|E
+BESTIARY_MANUAL_TABS_TITLE|Tabs are like collections, containers, or categories of entries. These are the first set of buttons you see in the bestiary.
+BESTIARY_MANUAL_TABS_1|Some tabs may only be visible if certain requirements are met, such as: the 'Downpour' tab is only accessible if more slug cats is enabled, and the modded tab is only visible if there are modded entries.
 BESTIARY_MANUAL_TABS_2|E
 BESTIARY_MANUAL_TABS_3|E
 
-BESTIARY_MANUAL_ENTIRES_TITLE|Entries are individual documents that represent a different creature, these will show up as '???' while locked; Pressing a locked entry gives a little hint as to which creature this entry belongs to, and can help guide you towards what creature to look for.
+BESTIARY_MANUAL_ENTIRES_TITLE|Entries are individual documents that represent a different creature, these will show up as '???' while locked; Pressing a locked entry may give a little hint as to which creature this entry belongs to, which could help guide you towards what creature to look for.
 
 BESTIARY_MANUAL_UNLOCKING_TITLE|Unlocking entries happens as you play, by interacting with different creatures, observing their behaviours, and discovering new things, entries will slowly unlock and reveal the hidden descriptions.
 BESTIARY_MANUAL_UNLOCKING_1|Each entry will show unlock pips while you are viewing them, these pips indicate how many parts of the description you have unlocked, and tell you which parts you are missing.

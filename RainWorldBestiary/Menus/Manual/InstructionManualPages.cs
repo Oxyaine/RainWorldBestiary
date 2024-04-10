@@ -22,7 +22,7 @@ namespace RainWorldBestiary.Menus.Manual
         {
             float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_INTRODUCTION_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
             string text = menu.Translate("BESTIARY_MANUAL_INTRODUCTION_1") + "\n" + menu.Translate("BESTIARY_MANUAL_INTRODUCTION_2") + "\n" + menu.Translate("BESTIARY_MANUAL_INTRODUCTION_3");
-            AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.8f);
+            AddManualText(text, startY, bigText: false, centered: false);
         }
     }
     internal class TabsPage : InstructionManualPage
@@ -32,7 +32,7 @@ namespace RainWorldBestiary.Menus.Manual
         {
             float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_TABS_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
             string text = menu.Translate("BESTIARY_MANUAL_TABS_1") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_2") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_3");
-            AddManualText(text, startY, bigText: false, centered: false, rectWidth * 0.8f);
+            AddManualText(text, startY, bigText: false, centered: false);
         }
     }
     internal class EntriesPage : InstructionManualPage
