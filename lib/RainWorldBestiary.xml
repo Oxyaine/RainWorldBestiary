@@ -683,7 +683,7 @@
         </member>
         <member name="T:RainWorldBestiary.Types.UnlockTokenType">
             <summary>
-            The type of unlock this UnlockToken targets
+            The type of unlock
             </summary>
         </member>
         <member name="F:RainWorldBestiary.Types.UnlockTokenType.None">

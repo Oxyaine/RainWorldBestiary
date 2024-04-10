@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace RainWorldBestiary.Types
 {
     /// <summary>
-    /// The type of unlock this UnlockToken targets
+    /// The type of unlock
     /// </summary>
     public enum UnlockTokenType : byte
     {
