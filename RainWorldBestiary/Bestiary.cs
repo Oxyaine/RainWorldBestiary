@@ -13,6 +13,7 @@ namespace RainWorldBestiary
     /// </summary>
     public static class Bestiary
     {
+        // All the resources the menus need to properly operate, this is always null when not in the menus
         internal static MenuResources MenuResources = null;
 
 
