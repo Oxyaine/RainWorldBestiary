@@ -9,9 +9,27 @@
             The main class for the bestiary, everything should be accessible from this class
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Bestiary.CreatureUnlockIDs">
+        <member name="P:RainWorldBestiary.Bestiary.CreatureUnlockIDs">
             <summary>
             All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
+            </summary>
+            <remarks>To unlock your own creature, use <see cref="M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)"/></remarks>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)">
+            <summary>
+            Adds this creatureID to the <see cref="F:RainWorldBestiary.Bestiary._CreatureUnlockIDs"/> list if its not already added
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.UnlockCreature(Creature)">
+            <param name="creature">Automatically gets run through <see cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)"/></param>
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)"/>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.UnlockCreature(AbstractCreature)">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.UnlockCreature(Creature)"/>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(System.String)">
+            <summary>
+            Checks if this creature is found in either the <see cref="F:RainWorldBestiary.Bestiary._CreatureUnlockIDs"/> or <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDsOverride"/>
             </summary>
         </member>
         <member name="P:RainWorldBestiary.Bestiary.ModuleUnlocks">
