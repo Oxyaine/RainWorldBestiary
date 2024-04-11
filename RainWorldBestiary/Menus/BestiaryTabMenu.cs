@@ -17,7 +17,7 @@ namespace RainWorldBestiary.Menus
 
         private bool Closing = false;
 
-        readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
+        private readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
         public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
         internal readonly Dictionary<InstructionManualPages, int> ManualTopics = new Dictionary<InstructionManualPages, int>
         {
