@@ -1,10 +1,10 @@
 ﻿using Menu;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using RainWorldBestiary.Managers;
+using RainWorldBestiary.Menus;
 using System;
 using UnityEngine;
-using RainWorldBestiary.Menus;
-using RainWorldBestiary.Managers;
 
 namespace RainWorldBestiary.Hooks
 {

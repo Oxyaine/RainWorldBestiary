@@ -1,11 +1,10 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
-using System;
 using RainWorldBestiary.Hooks;
-using System.Collections.Generic;
-using UnityEngine;
-using RainWorldBestiary.Menus;
 using RainWorldBestiary.Managers;
+using RainWorldBestiary.Menus;
+using System;
+using System.Collections.Generic;
 
 namespace RainWorldBestiary
 {
@@ -87,7 +86,7 @@ namespace RainWorldBestiary
             }
             catch (Exception exception)
             {
-                Debug.LogException(exception);
+                Logger.LogError(exception);
             }
         }
 

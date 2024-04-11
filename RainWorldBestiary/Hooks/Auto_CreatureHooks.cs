@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RainWorldBestiary.Managers;
+using RainWorldBestiary.Types;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using RainWorldBestiary.Types;
-using RainWorldBestiary.Managers;
 
 namespace RainWorldBestiary.Hooks
 {

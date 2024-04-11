@@ -227,12 +227,12 @@ namespace RainWorldBestiary
         /// <summary>
         /// Converts this Color into a hex color string, with 6 characters in the string, representing RGB
         /// </summary>
-        public static string RGBToHexString(this Color color) 
+        public static string RGBToHexString(this Color color)
             => $"{(byte)(color.r * byte.MaxValue):X2}{(byte)(color.g * byte.MaxValue):X2}{(byte)(color.b * byte.MaxValue):X2}";
         /// <summary>
         /// Converts this Color into a hex color string, with 8 characters in the string, representing ARGB
         /// </summary>
-        public static string ARGBToHexString(this Color color) 
+        public static string ARGBToHexString(this Color color)
             => $"{(byte)(color.a * 255):X2}{(byte)(color.r * byte.MaxValue):X2}{(byte)(color.g * byte.MaxValue):X2}{(byte)(color.b * byte.MaxValue):X2}";
 
         /// <inheritdoc cref="string.IndexOf(char, int)"/>
@@ -287,7 +287,7 @@ namespace RainWorldBestiary
         public bool Equals(T other) => Value.Equals(other);
         public bool Equals(Ref<T> other) => Value.Equals(other.Value);
 
-        public static implicit operator Ref<T>(T value)  => new Ref<T>(value);
+        public static implicit operator Ref<T>(T value) => new Ref<T>(value);
         public static implicit operator T(Ref<T> value) => value.Value;
 
         public override bool Equals(object obj)

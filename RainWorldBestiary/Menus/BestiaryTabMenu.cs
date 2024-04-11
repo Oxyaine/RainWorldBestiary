@@ -1,8 +1,8 @@
 ﻿using Menu;
-using System.Collections.Generic;
-using UnityEngine;
 using RainWorldBestiary.Menus.Manual;
 using RainWorldBestiary.Types;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Menu;
+using System.Collections.Generic;
 using System.IO;
-using Menu;
 
 namespace RainWorldBestiary.Types
 {

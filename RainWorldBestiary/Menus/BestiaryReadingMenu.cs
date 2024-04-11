@@ -1,7 +1,7 @@
 ﻿using Menu;
+using RainWorldBestiary.Types;
 using System.Collections;
 using UnityEngine;
-using RainWorldBestiary.Types;
 
 namespace RainWorldBestiary.Menus
 {

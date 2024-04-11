@@ -1,6 +1,6 @@
 ﻿using Menu;
-using UnityEngine;
 using RainWorldBestiary.Types;
+using UnityEngine;
 
 namespace RainWorldBestiary.Menus.Manual
 {
@@ -179,12 +179,14 @@ namespace RainWorldBestiary.Menus.Manual
                 label = new MenuLabel(menu, this, menu.Translate(color.title).WrapText(50), new Vector2(currentPipX, currentPipY - 25), Vector2.one, false);
                 subObjects.Add(label);
 
-                if (affectY) {
+                if (affectY)
+                {
                     currentPipX -= PipDistanceX;
                     currentPipY -= PipDistanceY;
                     affectY = false;
                 }
-                else {
+                else
+                {
                     currentPipX += PipDistanceX;
                     affectY = true;
                 }

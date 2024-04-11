@@ -1,6 +1,6 @@
 ﻿using Menu;
-using UnityEngine;
 using RainWorldBestiary.Types;
+using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {

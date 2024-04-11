@@ -1,9 +1,9 @@
 ﻿using Menu;
+using RainWorldBestiary.Managers;
+using RainWorldBestiary.Types;
 using System;
 using System.IO;
 using UnityEngine;
-using RainWorldBestiary.Types;
-using RainWorldBestiary.Managers;
 
 namespace RainWorldBestiary.Menus
 {
