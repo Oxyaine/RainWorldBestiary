@@ -22,12 +22,12 @@
         /// Whether to show the "Manual" button in the main bestiary menu
         /// </summary>
         public static Configurable<bool> ShowManualButton;
-
-
         /// <summary>
-        /// EXPERIMENTAL: Makes the generated title in the menus use smaller spacing between each character, which brings them closer together and closer to real text (still a bit buggy so its in experimental
+        /// Makes the generated title in the menus use consistent spacing between each character, which brings them further apart, but makes the spacing more consistent.
         /// </summary>
-        public static Configurable<bool> MinimizeTitleSpacing;
+        public static Configurable<bool> ConsistentTitleSpacing;
+
+
 
 
         /// <summary>

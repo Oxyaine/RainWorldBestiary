@@ -16,8 +16,9 @@ namespace RainWorldBestiary.Menus
             BestiarySettings.ShowModuleLockPips = config.Bind("bestiary_show_module_lock_pips", true);
             BestiarySettings.PerformTextAnimations = config.Bind("bestiary_perform_text_animation", true);
             BestiarySettings.ShowManualButton = config.Bind("bestiary_show_manual_button", true);
+            BestiarySettings.ConsistentTitleSpacing = config.Bind("bestiary_use_character_spacing", false);
 
-            BestiarySettings.MinimizeTitleSpacing = config.Bind("bestiary_use_characters_spacing_for_names_EXP", false);
+            //
 
             BestiarySettings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
         }
@@ -25,10 +26,10 @@ namespace RainWorldBestiary.Menus
         public override void Initialize()
         {
             OpTab def = new OpTab(this, Translator.Translate("Default"));
-            OpTab experimental = new OpTab(this, Translator.Translate("Experimental")) { colorButton = ExperimentalColor };
+            //OpTab experimental = new OpTab(this, Translator.Translate("Experimental")) { colorButton = ExperimentalColor };
             OpTab cheats = new OpTab(this, Translator.Translate("Cheats")) { colorButton = CheatColor };
             OpTab danger = new OpTab(this, Translator.Translate("Danger Zone")) { colorButton = DangerColor };
-            Tabs = new[] { def, experimental, cheats, danger };
+            Tabs = new[] { def, /*experimental,*/ cheats, danger };
 
             List<UIelement> items = new List<UIelement>();
 
@@ -37,14 +38,15 @@ namespace RainWorldBestiary.Menus
             AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Show Manual Button"), BestiarySettings.ShowManualButton, description: Translator.Translate("OXY.BESTIARY.SHOW_MANUAL_BUTTON_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Use Consistent Title Character Spacing"), BestiarySettings.ConsistentTitleSpacing, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
 
             // Experimental Tab
-            AddElements(ref items, Translator.Translate("Minimize Title Character Spacing"), BestiarySettings.MinimizeTitleSpacing, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
-            experimental.AddItems(items.ToArray());
+
+            //experimental.AddItems(items.ToArray());
 
             items.Clear();
             ResetElementPositions();
