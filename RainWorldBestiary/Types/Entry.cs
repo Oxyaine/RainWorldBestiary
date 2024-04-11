@@ -182,7 +182,11 @@ namespace RainWorldBestiary.Types
         private string JSON_Color
         {
             get => "DFF5D6";
-            set => EntryColor = value.HexToColor().ToHSL();
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    EntryColor = value.HexToColor().ToHSL();
+            }
         }
 
 

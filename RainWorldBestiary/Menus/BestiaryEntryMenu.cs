@@ -1,5 +1,6 @@
 ﻿using Menu;
 using RainWorldBestiary.Types;
+using System.IO;
 using UnityEngine;
 
 namespace RainWorldBestiary.Menus
@@ -94,17 +95,14 @@ namespace RainWorldBestiary.Menus
                 float iconOffset = 0;
                 for (int j = 0; j < tab[i].Info.EntryIcons.Length; j++)
                 {
-                    if (Futile.atlasManager.DoesContainElementWithName(tab[i].Info.EntryIcons[j]))
+                    MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(tab[i].Info.EntryIcons[j]), Path.GetFileName(tab[i].Info.EntryIcons[j]),
+                        new Vector2(currentX + 5f + iconOffset, currentY + (ButtonSizeY / 2f)), true, true)
                     {
-                        FSprite icon = new FSprite(tab[i].Info.EntryIcons[j])
-                        {
-                            color = entryLocked ? Color.black : Color.white,
-                            x = currentX + 5f + iconOffset,
-                            y = currentY + (ButtonSizeY / 2f)
-                        };
-                        iconOffset += icon.width;
-                        pages[0].Container.AddChild(icon);
-                    }
+                        color = entryLocked ? Color.black : Color.white
+                    };
+
+                    pages[0].subObjects.Add(illustration);
+                    iconOffset += illustration.sprite.width;
                 }
 
                 currentX += ButtonSizeX + ButtonSpacing;

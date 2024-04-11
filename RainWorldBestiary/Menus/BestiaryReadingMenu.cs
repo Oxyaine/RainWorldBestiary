@@ -1,6 +1,7 @@
 ﻿using Menu;
 using RainWorldBestiary.Types;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 
 namespace RainWorldBestiary.Menus
@@ -142,23 +143,27 @@ namespace RainWorldBestiary.Menus
                 {
                     if (entry.Info.IconsNextToTitle && Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcons[i]))
                     {
-                        FSprite sprite = new FSprite(entry.Info.EntryIcons[i])
+                        MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]), 
+                            new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y - 50), true, true)
                         {
-                            y = screenSize.y - 50,
-                            x = screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset,
-                            scale = 2
+                            sprite =
+                            {
+                                scale = 2f
+                            }
                         };
-                        pages[0].Container.AddChild(sprite);
+                        pages[0].subObjects.Add(illustration);
 
-                        FSprite sprite2 = new FSprite(entry.Info.EntryIcons[i])
+                        illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
+                            new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y - 50), true, true)
                         {
-                            y = screenSize.y - 50,
-                            x = screenSize.x / 2f + (widthOffset + 10) + iconOffset,
-                            scale = 2
+                            sprite =
+                            {
+                                scale = 2f
+                            }
                         };
-                        pages[0].Container.AddChild(sprite2);
+                        pages[0].subObjects.Add(illustration);
 
-                        iconOffset += sprite.width;
+                        iconOffset += illustration.sprite.width;
                     }
                 }
             }
