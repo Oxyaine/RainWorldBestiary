@@ -135,7 +135,7 @@ namespace RainWorldBestiary.Menus
 
             foreach (string line in split)
             {
-                Enumerators.CompleteEnumerator(FormatHorizontalText(line, screenSize, currentY, menu, owner));
+                Enumerators.CompleteEnumerator(FormatHorizontalText(line, screenSize, currentY, menu, owner, false));
                 currentY -= LineSpacing;
             }
         }
@@ -149,7 +149,7 @@ namespace RainWorldBestiary.Menus
 
             foreach (string line in split)
             {
-                IEnumerator enumerator = FormatHorizontalText(line, screenSize, currentY, menu, owner);
+                IEnumerator enumerator = FormatHorizontalText(line, screenSize, currentY, menu, owner, true);
 
                 while (enumerator.MoveNext())
                     yield return null;
@@ -186,7 +186,7 @@ namespace RainWorldBestiary.Menus
         // References:  <ref="Hello!"=Rain World/creaturetype-Fly>
         // Colors:      <color="Hello!"=FFFFFF>
 
-        private IEnumerator FormatHorizontalText(string text, Vector2 screenSize, int Y, Menu.Menu menu, MenuObject owner)
+        private IEnumerator FormatHorizontalText(string text, Vector2 screenSize, int Y, Menu.Menu menu, MenuObject owner, bool buttonsOffScreen = true)
         {
             List<int> sizes = new List<int>();
             List<StructureData> structures = new List<StructureData>();
@@ -234,8 +234,9 @@ namespace RainWorldBestiary.Menus
                             if (ent == null || !ent.Info.EntryUnlocked)
                                 entryAvailable = false;
 
+                            Vector2 Position = new Vector2(currentX - xSize + currentSizeValue, Y - 10f);
                             MovingSimpleButton button = new MovingSimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
-                                new Vector2(-100f, -100f), new Vector2(currentX - xSize + currentSizeValue, Y - 10f), new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
+                                buttonsOffScreen ? new Vector2(-100f, -100f) : Position, Position, new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                             {
                                 rectColor = new HSLColor(0f, 0f, 0f),
                                 labelColor = new HSLColor(0f, 1f, 1f),
