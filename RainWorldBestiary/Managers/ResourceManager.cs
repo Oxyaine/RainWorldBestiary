@@ -84,9 +84,8 @@ namespace RainWorldBestiary.Managers
         {
             int removeLength = ModDirectory.Length + 1;
 
-            string illustrationsPath = Path.Combine(ModDirectory, "illustrations\\icons");
-            string illustrationsPath2 = Path.Combine(ModDirectory, "illustrations\\titles");
-            string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories).Concat(Directory.GetFiles(illustrationsPath2, "*.png", SearchOption.AllDirectories)).ToArray();
+            string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
+            string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
             foreach (string image in images)
             {
                 string imagePath = image.Substring(removeLength);
