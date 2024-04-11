@@ -81,6 +81,8 @@ namespace RainWorldBestiary.Hooks
                 }
                 else if (ID == Main.BestiaryEntryMenu)
                 {
+                    Enumerators.ForceCompleteEnumerators(ResourceManager.cachingOperations.ToArray());
+                    ResourceManager.cachingOperations.Clear();
                     self.currentMainLoop = new BestiaryEntryMenu(self);
                 }
                 else if (ID == Main.BestiaryReadingMenu)

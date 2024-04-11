@@ -88,7 +88,7 @@ namespace RainWorldBestiary.Menus
                     ++CurrentSpriteIndex;
                 }
 
-                yield return new WaitTime(0.01f);
+                yield return new WaitTime(0.005f);
             }
         }
         private IEnumerator FadeIconAnimation(FSprite sprite)

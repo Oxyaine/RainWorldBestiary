@@ -178,7 +178,7 @@ namespace RainWorldBestiary.Managers
                         Entry[] entries = GetFilesAsEntries(files, modID);
                         entryTab.AddRange(entries);
 
-                        Enumerators.StartEnumerator(ScanEntriesAndCacheTokens(entries));
+                        cachingOperations.Add(Enumerators.StartEnumerator(ScanEntriesAndCacheTokens(entries)));
                     }
                 }
 
@@ -211,6 +211,8 @@ namespace RainWorldBestiary.Managers
             return entries;
         }
 
+        internal static List<int> cachingOperations = new List<int>();
+
         static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
         {
             foreach (Entry entry in entries)
@@ -238,7 +240,7 @@ namespace RainWorldBestiary.Managers
                     if (added = add)
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
 
-                    Enumerators.StartEnumerator(CacheTokens(v));
+                    cachingOperations.Add(Enumerators.StartEnumerator(CacheTokens(v)));
 
                     yield return null;
                 }
