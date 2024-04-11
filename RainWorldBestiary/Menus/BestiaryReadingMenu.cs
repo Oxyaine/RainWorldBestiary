@@ -130,9 +130,7 @@ namespace RainWorldBestiary.Menus
                 EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
             }
 
-            FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(entry, in screenSize, out float spriteWidth);
-            foreach (FSprite sprite in titleSprites)
-                pages[0].Container.AddChild(sprite);
+            SharedMenuUtilities.AddMenuTitleIllustration(this, pages[0], entry, in screenSize, out float spriteWidth);
 
             widthOffset = spriteWidth / 2f;
 

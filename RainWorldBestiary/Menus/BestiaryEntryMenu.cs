@@ -41,10 +41,7 @@ namespace RainWorldBestiary.Menus
 
             CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize, out MenuObject firstEntryButton);
 
-            FSprite[] titleSprites = SharedMenuUtilities.GetMenuTitle(Bestiary.CurrentSelectedTab, in screenSize);
-            foreach (FSprite sprite in titleSprites)
-                pages[0].Container.AddChild(sprite);
-
+            SharedMenuUtilities.AddMenuTitleIllustration(this, pages[0], Bestiary.CurrentSelectedTab, in screenSize);
 
             if (Bestiary.EnteringMenu)
                 selectedObject = firstEntryButton;

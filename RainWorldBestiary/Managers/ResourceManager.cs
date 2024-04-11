@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace RainWorldBestiary.Managers
@@ -29,14 +30,11 @@ namespace RainWorldBestiary.Managers
                     customFonts.Add(new Font(Path.GetFileName(font)));
             }
 
-            CustomFonts = customFonts.ToArray();
+            CustomFonts = CustomFonts.Concat(customFonts).ToArray();
         }
         internal static void ReloadFonts()
         {
-            foreach (Font font in CustomFonts)
-                font.Dispose();
             CustomFonts = new Font[0];
-
             GetAllFonts(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
         }
         private static Font[] CustomFonts = new Font[0];
