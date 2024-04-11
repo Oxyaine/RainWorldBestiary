@@ -55,6 +55,7 @@ namespace RainWorldBestiary.Menus
             DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+            Bestiary.DoAnimation = true;
         }
 
         public override void ShutDownProcess()
@@ -119,7 +120,7 @@ namespace RainWorldBestiary.Menus
         {
             float widthOffset, leftSpriteOffset = 60;
 
-            if (BestiarySettings.PerformTextAnimations.Value)
+            if (BestiarySettings.PerformTextAnimations.Value && Bestiary.DoAnimation)
             {
                 EntryTextDisplay display = new EntryTextDisplay();
                 PopulateDisplayID = Enumerators.StartEnumerator(display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
@@ -196,6 +197,7 @@ namespace RainWorldBestiary.Menus
                     Bestiary.CurrentSelectedEntry = Bestiary.PreviousEntriesChain[0];
                     Bestiary.PreviousEntriesChain.RemoveAt(0);
 
+                    Bestiary.DoAnimation = false;
                     manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
                 }
                 else

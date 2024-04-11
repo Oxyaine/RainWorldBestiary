@@ -244,11 +244,6 @@ namespace RainWorldBestiary
 
         internal static List<Entry> PreviousEntriesChain = new List<Entry>();
 
-        /// <summary>
-        /// Whether the menu being loaded is from going into the menu, otherwise its from exiting out a submenu
-        /// </summary>
-        internal static bool EnteringMenu = false;
-
         /// <inheritdoc cref="GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(Creature creature, bool useSpecialIdLogic = true) => GetCreatureUnlockName(creature.abstractCreature, useSpecialIdLogic);
         /// <summary>
@@ -279,5 +274,12 @@ namespace RainWorldBestiary
 
         // Removes the A or B at the end of CicadaA or CicadaB
         private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
+
+
+
+        // Whether the menu being loaded is from going into the menu, otherwise its from exiting out a submenu
+        internal static bool EnteringMenu = false;
+        // Whether to do the entry animation for the entry we are currently entering to read
+        internal static bool DoAnimation = true;
     }
 }
