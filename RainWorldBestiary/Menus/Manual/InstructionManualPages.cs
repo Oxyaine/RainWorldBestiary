@@ -40,7 +40,7 @@ namespace RainWorldBestiary.Menus.Manual
         public EntriesPage(Menu.Menu menu, MenuObject owner)
             : base(menu, owner)
         {
-            MenuIllustration menuIllustration = new MenuIllustration(menu, owner, Bestiary.MenuResources.IllustrationsEntryIconsPath, "Survivor_head", belowHeaderPosCentered - verticalBuffer, crispPixels: true, anchorCenter: true)
+            MenuIllustration menuIllustration = new MenuIllustration(menu, owner, MenuResources.Instance.IllustrationsEntryIconsPath, "Survivor_head", belowHeaderPosCentered - verticalBuffer, crispPixels: true, anchorCenter: true)
             {
                 sprite =
                 {
@@ -91,7 +91,7 @@ namespace RainWorldBestiary.Menus.Manual
 
             if (includeTitlePip)
             {
-                MenuIllustration pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, unl ? Bestiary.MenuResources.UnlockPipUnlockedName : Bestiary.MenuResources.UnlockPipName, new Vector2(PX, PipY), true, true)
+                MenuIllustration pip = new MenuIllustration(menu, this, MenuResources.Instance.IllustrationsIconsPath, unl ? MenuResources.Instance.UnlockPipUnlockedName : MenuResources.Instance.UnlockPipName, new Vector2(PX, PipY), true, true)
                 {
                     sprite =
                     {
@@ -105,7 +105,7 @@ namespace RainWorldBestiary.Menus.Manual
         private void AddRandomPip(Menu.Menu menu, Color color, out bool unlocked)
         {
             unlocked = random.NextDouble() >= 0.5;
-            MenuIllustration pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, unlocked ? Bestiary.MenuResources.UnlockPipUnlockedName : Bestiary.MenuResources.UnlockPipName, new Vector2(PipX, PipY), true, true)
+            MenuIllustration pip = new MenuIllustration(menu, this, MenuResources.Instance.IllustrationsIconsPath, unlocked ? MenuResources.Instance.UnlockPipUnlockedName : MenuResources.Instance.UnlockPipName, new Vector2(PipX, PipY), true, true)
             {
                 color = color,
                 sprite =
@@ -126,7 +126,7 @@ namespace RainWorldBestiary.Menus.Manual
             const float PipDistanceX = 300;
             const float PipDistanceY = 70;
 
-            MenuIllustration pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, Bestiary.MenuResources.UnlockPipName, new Vector2(currentPipX, currentPipY - 10), true, true)
+            MenuIllustration pip = new MenuIllustration(menu, this, MenuResources.Instance.IllustrationsIconsPath, MenuResources.Instance.UnlockPipName, new Vector2(currentPipX, currentPipY - 10), true, true)
             {
                 sprite = { scale = 3f }
             };
@@ -134,7 +134,7 @@ namespace RainWorldBestiary.Menus.Manual
 
             currentPipX += PipDistanceX;
 
-            pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, Bestiary.MenuResources.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY - 10), true, true)
+            pip = new MenuIllustration(menu, this, MenuResources.Instance.IllustrationsIconsPath, MenuResources.Instance.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY - 10), true, true)
             {
                 sprite = { scale = 3f }
             };
@@ -169,7 +169,7 @@ namespace RainWorldBestiary.Menus.Manual
             foreach ((DescriptionModule.PredefinedColors color, string title) color in predefinedColors)
             {
                 Color c = DescriptionModule.GetColorFromPredefined(color.color);
-                pip = new MenuIllustration(menu, this, Bestiary.MenuResources.IllustrationsIconsPath, Bestiary.MenuResources.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY), true, true)
+                pip = new MenuIllustration(menu, this, MenuResources.Instance.IllustrationsIconsPath, MenuResources.Instance.UnlockPipUnlockedName, new Vector2(currentPipX, currentPipY), true, true)
                 {
                     sprite = { scale = 3f },
                     color = c

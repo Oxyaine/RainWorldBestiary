@@ -45,8 +45,8 @@ namespace RainWorldBestiary.Menus
 
         public BestiaryTabMenu(ProcessManager manager) : base(manager)
         {
-            if (Bestiary.EnteringMenu && Bestiary.MenuResources == null)
-                Bestiary.MenuResources = new MenuResources();
+            if (Bestiary.EnteringMenu && MenuResources.Instance == null)
+                MenuResources.Create();
 
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 

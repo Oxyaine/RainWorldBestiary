@@ -95,7 +95,7 @@ namespace RainWorldBestiary.Hooks
                 }
                 else if (ID == ProcessManager.ProcessID.MainMenu)
                 {
-                    Bestiary.MenuResources = null;
+                    MenuResources.Dispose();
                 }
             });
         }

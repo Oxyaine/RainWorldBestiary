@@ -80,13 +80,19 @@ namespace RainWorldBestiary.Managers
         private static void GetAllSprites(string ModDirectory)
         {
             int removeLength = ModDirectory.Length + 1;
-
-            string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
-            string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
-            foreach (string image in images)
+            try
             {
-                string imagePath = image.Substring(removeLength);
-                Futile.atlasManager.LoadImage(imagePath.Substring(0, imagePath.Length - 4));
+                string illustrationsPath = Path.Combine(ModDirectory, "illustrations");
+                string[] images = Directory.GetFiles(illustrationsPath, "*.png", SearchOption.AllDirectories);
+                foreach (string image in images)
+                {
+                    string imagePath = image.Substring(removeLength);
+                    Futile.atlasManager.LoadImage(imagePath.Substring(0, imagePath.Length - 4));
+                }
+            }
+            catch (Exception ex)
+            {
+                Main.Logger.LogError(ex);
             }
         }
 

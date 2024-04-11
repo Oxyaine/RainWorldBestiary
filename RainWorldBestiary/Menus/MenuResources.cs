@@ -2,6 +2,13 @@
 {
     internal class MenuResources
     {
+        // All the resources the menus need to properly operate, this is always null when not in the menus
+        public static MenuResources Instance { get; internal set; } = null;
+        public static void Create() => Instance = new MenuResources();
+        public static void Dispose() => Instance = null;
+        public MenuResources() { }
+        //~MenuResources() { }
+
         public readonly string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
         public readonly string UnlockPip = "illustrations\\bestiary\\icons\\unlock_pip";
 
@@ -42,8 +49,5 @@
             "illustrations\\bestiary\\icons\\Char_26",
             "illustrations\\bestiary\\icons\\Char_27"
         };
-
-        public MenuResources() { }
-        ~MenuResources() { }
     }
 }

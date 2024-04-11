@@ -70,7 +70,7 @@ namespace RainWorldBestiary.Menus
 
             // Local Scope For Variable Cleanup
             {
-                string[] elements = Bestiary.MenuResources.Characters.GetRandom(characters);
+                string[] elements = MenuResources.Instance.Characters.GetRandom(characters);
 
                 int position = characters * 16 * 3;
 
@@ -170,7 +170,7 @@ namespace RainWorldBestiary.Menus
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {
-                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? Bestiary.MenuResources.UnlockPipUnlocked : Bestiary.MenuResources.UnlockPip)
+                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? MenuResources.Instance.UnlockPipUnlocked : MenuResources.Instance.UnlockPip)
                     {
                         x = screenSize.x - 20f,
                         y = screenSize.y - (i * 10) - 20f,
