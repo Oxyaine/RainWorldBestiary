@@ -1,28 +1,22 @@
 # Rain World Bestiary
 
-This file is here to hopefully help developers get started understanding how they can make their own entries in the bestiary.
+The Bestiary is a mod that adds an encyclopedia of creatures to Rain World, this bestiary unlocks as you interact with creatures, carefully only displaying information the user could have figured out themselves.
 
-You can [report any bugs or issues you encounter here](https://github.com/Oxyaine/RainWorldBestiary/issues), ***with performance issues, try to give as many details you can on where and when you where experiencing the bad performance.***
+If you have a suggestion, want to report a bug or issue (including performance issues), or ask help with something, feel free to submit an issue request on GitHub, [here](https://github.com/Oxyaine/RainWorldBestiary/issues)
 
-### If you'd like something added, ask help with something, or anything really, feel free to ask me through the [issues page on GitHub](https://github.com/Oxyaine/RainWorldBestiary/issues)
+Some Terminology:
+* E
 
 #
 
 ## First Things First
-### *While it is possible to add entries through code, I would advise to avoid doing that:*
-Accessing the code would make the bestiary a dependency for your mod, and personally, I don't like that. So instead, try to use the method described below and in this entire README file.
-
-You can make entries by creating JSON files in a specific folder within your mod, and the resource manager will automatically load these entries if your mod is active, it will also automatically unload your entries once your mod is disabled.
-
-### *To make things easier to understand, you should download the template folder above as an example to help you get a hang of things:*
+### To get a grasp on the Structure of how to add your own entries, you should download the template from the files above.
+*This only applies if you are adding the entries through files*
 This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
 
-#
-#
-#
-
-## Structure
-Entries can be added to the bestiary without making the mod a dependency! This can be achieved using the built in entry loader, all you need to do is add a folder to your mod folder called `bestiary` (*case sensitive*). Any folders in the `bestiary` folder will be considered a [Tab](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tabs), and any files in the tab will be considered entries, with the name of the file being the name of the entry.
+Entries can be made in two ways, through code, and through JSON files placed in your mod.
+- Accessing the code allows you to completely customize your entry, setting a custom unlock condition, custom module unlock conditions, or making a custom menu for your entries reading page. However there are some drawbacks, accessing the code usually makes the Bestiary a hard dependency, meaning your mod wont run unless the bestiary is also installed. You also would have to manually load and unload your entries.
+- Using JSON Files gives you slightly less control, but gives the advantages of making the Bestiary completely optional, meaning if the Bestiary is installed, your entries will be visible and unlockable, otherwise if the Bestiary is not installed, they will remain hidden.
 
 #
 #
@@ -31,18 +25,16 @@ Entries can be added to the bestiary without making the mod a dependency! This c
 ## Tabs
 
 Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
-When adding entries, you can add your own tab, or you can use the `Modded` tab if your mod only adds a few entries.
-To add entries to the `Modded` tab, just call your [tabs JSON file](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#structure---tabs) `Modded` or set the name in your tab's JSON file to `Modded` (*case sensitive*)
-If your mod adds a tab with the same name as an existing tab, the tabs will be "merged", meaning your entries will be added to the existing tab. If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used. Same logic applies to [tab_menu_process_id](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tab_menu_process_id--string).
-Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your folders with numbers to change the order they appear, this wont matter if your merging with another tab (as it'll use whatever position the existing tab is in).
-Entries don't care what sub directory they are in, as the resource manager looks for all files in the tab folder, including entries in sub-directories.
+When adding entries, you can add your own tab, or you can use the `Modded` tab, for if your mod only adds a few entries.
+To add entries to the `Modded` tab, make sure your tabs name is also `Modded` (*case sensitive*), two tabs with the same name will be merged.
+
+Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your files with numbers to change the order they appear, this wont matter if your merging with another tab, as it'll use whatever position the existing tab is in.
+Entries don't care what sub directory they are in, as the entry loader looks for all files in the tab folder, including entries in sub-directories.
 
 
-#
-#
-#
+Merging tabs add all entries to the existing tab, If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used; Same logic applies to [tab_menu_process_id](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tab_menu_process_id--string).
 
-## Structure - Tabs
+### Tabs JSON Components
 
 Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:
 
@@ -68,7 +60,7 @@ All the mods (by their IDs) that have to be active for this tab to be visible, i
 
 ## Structure - Entries
 
-Entries' content is also loaded from JSON files. The name of the file determines the name of the entry (however this can be overridden with "name"), and the content of the file determines the rest of the entry's data. Here are all the valid JSON elements for entries:
+Entries' content is also loaded from JSON files. The name of the file determines the name of the entry (however this can be overridden with "name"), and the content of the file determines the rest of the entry's data.
 
 #### "name" : string
 `Default = (The name of the file)`
