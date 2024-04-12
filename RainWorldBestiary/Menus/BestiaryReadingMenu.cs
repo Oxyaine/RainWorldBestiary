@@ -25,18 +25,7 @@ namespace RainWorldBestiary.Menus
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
             pages[0].subObjects.Add(scene);
 
-            darkSprite = new FSprite("pixel")
-            {
-                color = new Color(0f, 0f, 0f),
-                anchorX = 0f,
-                anchorY = 0f,
-                scaleX = 1368f,
-                scaleY = 770f,
-                x = -1f,
-                y = -1f,
-                alpha = 0.90f
-            };
-            pages[0].Container.AddChild(darkSprite);
+            darkSprite.alpha = 0.9f;
 
             string backButtonText = "BACK";
             if (Bestiary.PreviousEntriesChain.Count > 0)

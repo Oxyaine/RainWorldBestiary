@@ -53,18 +53,7 @@ namespace RainWorldBestiary.Menus
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.subBackground);
             pages[0].subObjects.Add(scene);
 
-            darkSprite = new FSprite("pixel")
-            {
-                color = new Color(0f, 0f, 0f),
-                anchorX = 0f,
-                anchorY = 0f,
-                scaleX = 1368f,
-                scaleY = 770f,
-                x = -1f,
-                y = -1f,
-                alpha = 0.5f
-            };
-            pages[0].Container.AddChild(darkSprite);
+            darkSprite.alpha = 0.5f;
 
             MenuIllustration menuIllustration = new MenuIllustration(this, pages[0], "illustrations\\bestiary\\titles", "Bestiary_Title", new Vector2(screenSize.x / 2, screenSize.y - 100), false, true)
             {
@@ -199,6 +188,84 @@ namespace RainWorldBestiary.Menus
                 PlaySound(SoundID.MENU_Player_Join_Game);
                 manager.ShowDialog(dialog);
             }
+        }
+    }
+
+    internal class OverlappingMenu : Dialog
+    {
+        bool opening = false;
+        bool closing = false;
+
+        readonly MoveablePage moveablePage = null;
+
+        public OverlappingMenu(ProcessManager manager) : base(manager)
+        {
+            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+
+            moveablePage = new MoveablePage(this, pages[0], "", 0, new Vector2(0f, screenSize.y), Vector2.zero);
+            opening = true;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (opening)
+            {
+                moveablePage.Move(Time.deltaTime);
+
+                darkSprite.alpha = Mathf.Clamp(darkSprite.alpha + Time.deltaTime, 0, 0.8f);
+
+                if (moveablePage.CanMoveIn)
+                    opening = false;
+            }
+
+            if (closing)
+            {
+                moveablePage.Move(-Time.deltaTime);
+
+                darkSprite.alpha = Mathf.Clamp(darkSprite.alpha - Time.deltaTime, 0, 0.8f);
+
+                if (moveablePage.CanMoveOut)
+                    closing = false;
+            }
+        }
+    }
+
+    internal class MoveablePage : Page
+    {
+        public readonly Vector2 StartPosition, EndPosition, PositionDifference;
+        public float MovedPercentage = 0f;
+        public bool CanMoveIn = true, CanMoveOut = false;
+        public MoveablePage(Menu.Menu menu, MenuObject owner, string name, int index) : base(menu, owner, name, index) { }
+        public MoveablePage(Menu.Menu menu, MenuObject owner, string name, int index, Vector2 startingPos, Vector2 endingPos) : base(menu, owner, name, index)
+        {
+            StartPosition = startingPos;
+            EndPosition = endingPos;
+            PositionDifference = startingPos - endingPos;
+        }
+
+        public void Move(float percentage)
+        {
+            MovedPercentage += percentage;
+            if (MovedPercentage <= 0f)
+            {
+                CanMoveOut = false;
+                CanMoveIn = true;
+                MovedPercentage = 0f;
+            }
+            else if (MovedPercentage >= 1f)
+            {
+                CanMoveOut = true;
+                CanMoveIn = false;
+                MovedPercentage = 1f;
+            }
+            else
+            {
+                CanMoveIn = CanMoveOut = true;
+            }
+
+            pos = StartPosition + (PositionDifference * MovedPercentage);
         }
     }
 }
