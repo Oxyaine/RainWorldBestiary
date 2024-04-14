@@ -5,27 +5,29 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryEntryMenu : OverlappingMenu
+    internal class BestiaryEntryMenu : OverlappingMenu, ISubMenuOwner
     {
+        readonly SimpleButton backButton;
         readonly string BackButtonMessage = "BACK";
         readonly string EntryPressedID = "Read_Entry_";
 
         private bool Closing = false;
 
-        public BestiaryEntryMenu(ProcessManager manager) : base(manager)
+        public BestiaryEntryMenu(ProcessManager manager, ISubMenuOwner parentMenu) : base(manager, parentMenu)
         {
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-            pages[0].subObjects.Add(backButton);
-
+            backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, -30f), new Vector2(220f, 30f));
+            AddMovingObject(backButton, new Vector2(leftAnchor + 15f, 25f));
             backObject = backButton;
 
             CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize, out MenuObject firstEntryButton);
 
-            SharedMenuUtilities.AddMenuTitleIllustration(this, pages[0], Bestiary.CurrentSelectedTab, in screenSize);
+            MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], Bestiary.CurrentSelectedTab, in screenSize);
+            foreach (MenuIllustration illustration in illustrations)
+                AddMovingObject(illustration, new Vector2(illustration.pos.x, illustration.pos.y + screenSize.y), illustration.pos);
 
             if (Bestiary.EnteringMenu)
                 selectedObject = firstEntryButton;
@@ -64,11 +66,11 @@ namespace RainWorldBestiary.Menus
 
                 bool entryLocked = !tab[i].Info.EntryUnlocked;
 
-                SimpleButton button = new SimpleButton(this, pages[0], entryLocked ? "???" : Translator.Translate(tab[i].Name), string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY), buttonSize)
+                SimpleButton button = new SimpleButton(this, pages[0], entryLocked ? "???" : Translator.Translate(tab[i].Name), string.Concat(EntryPressedID, tab[i].Name), new Vector2(currentX, currentY + screenSize.y), buttonSize)
                 {
                     rectColor = entryLocked ? LockedColor : tab[i].Info.EntryColor
                 };
-                pages[0].subObjects.Add(button);
+                AddMovingObject(button, new Vector2(currentX, currentY));
 
                 if (i == 0)
                     firstEntryButton = button;
@@ -77,12 +79,13 @@ namespace RainWorldBestiary.Menus
                 for (int j = 0; j < tab[i].Info.EntryIcons.Length; j++)
                 {
                     MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(tab[i].Info.EntryIcons[j]), Path.GetFileName(tab[i].Info.EntryIcons[j]),
-                        new Vector2(currentX + 5f + iconOffset, currentY + (ButtonSizeY / 2f)), true, true)
+                        new Vector2(currentX + 5f + iconOffset, currentY + (ButtonSizeY / 2f) + screenSize.y), true, true)
                     {
                         color = entryLocked ? Color.black : Color.white
                     };
 
-                    pages[0].subObjects.Add(illustration);
+                    AddMovingObject(illustration, new Vector2(currentX + 5f + iconOffset, currentY + (ButtonSizeY / 2f)));
+
                     iconOffset += illustration.sprite.width;
                 }
 
@@ -124,7 +127,10 @@ namespace RainWorldBestiary.Menus
                 if (Bestiary.CurrentSelectedEntry.Info.EntryUnlocked)
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
-                    manager.ShowDialog(new BestiaryReadingMenu(manager));
+
+                    InSubMenu = true;
+                    backButton.menuLabel.text = string.Empty;
+                    manager.ShowDialog(new BestiaryReadingMenu(manager, this));
                 }
                 else
                 {
@@ -150,10 +156,17 @@ namespace RainWorldBestiary.Menus
                 TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && !Closing)
+            if (Input.GetKeyDown(KeyCode.Escape) && !Closing && !InSubMenu)
                 Singal(backObject, BackButtonMessage);
 
             base.Update();
+        }
+
+        private bool InSubMenu = false;
+        public void ReturningToThisMenu()
+        {
+            InSubMenu = false;
+            backButton.menuLabel.text = Translator.Translate("BACK");
         }
     }
 }

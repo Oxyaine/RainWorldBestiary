@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryTabMenu : Dialog
+    internal class BestiaryTabMenu : Dialog, ISubMenuOwner
     {
         private readonly int ButtonSizeX = 250;
         private readonly int ButtonSizeY = 40;
@@ -145,13 +145,13 @@ namespace RainWorldBestiary.Menus
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !ManualOpen && !Closing)
+            if (Input.GetKeyDown(KeyCode.Escape) && !InSubMenu && !Closing)
                 Singal(backObject, BackButtonMessage);
 
             base.Update();
         }
 
-        internal static bool ManualOpen = false;
+        internal bool InSubMenu = false;
         public override void Singal(MenuObject sender, string message)
         {
             if (message.Equals(BackButtonMessage))
@@ -180,32 +180,41 @@ namespace RainWorldBestiary.Menus
                 }
 
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.ShowDialog(new BestiaryEntryMenu(manager));
+                manager.ShowDialog(new BestiaryEntryMenu(manager, this));
             }
             else if (message.StartsWith(InstructionManualButtonMessage))
             {
-                ManualOpen = true;
+                InSubMenu = true;
                 PlaySound(SoundID.MENU_Player_Join_Game);
-                manager.ShowDialog(new InstructionManualDialog(manager, ManualTopics));
+                manager.ShowDialog(new InstructionManualDialog(manager, ManualTopics, this));
             }
         }
+
+        public void ReturningToThisMenu()
+        {
+            InSubMenu = false;
+        }
+    }
+
+    internal interface ISubMenuOwner
+    {
+        void ReturningToThisMenu();
     }
 
     internal class OverlappingMenu : Dialog
     {
         bool opening = false, closing = false;
-        private readonly float screenY;
         private float targetAlpha;
 
-        public OverlappingMenu(ProcessManager manager) : base(manager)
+        public readonly ISubMenuOwner owningMenu;
+
+        protected List<MovingObject> MovingObjects = new List<MovingObject>();
+
+        public OverlappingMenu(ProcessManager manager, ISubMenuOwner parentMenu = null) : base(manager)
         {
-            Vector2 screenSize = manager.rainWorld.options.ScreenSize;
-            screenY = screenSize.y;
-
-            pages[0].pos.y = screenY;
-
             opening = true;
             targetAlpha = 1f;
+            owningMenu = parentMenu;
         }
 
         public virtual void CloseMenu()
@@ -213,6 +222,17 @@ namespace RainWorldBestiary.Menus
             opening = false;
             closing = true;
             targetAlpha = 0f;
+        }
+
+        public void AddMovingObject(PositionedMenuObject @object, Vector2 secondPosition)
+        {
+            pages[0].subObjects.Add(@object);
+            MovingObjects.Add(new MovingObject(@object, @object.pos, secondPosition));
+        }
+        public void AddMovingObject(PositionedMenuObject @object, Vector2 firstPosition, Vector2 secondPosition)
+        {
+            @object.pos = firstPosition;
+            AddMovingObject(@object, secondPosition);
         }
 
         private float lastAlpha, currentAlpha, uAlpha;
@@ -223,7 +243,7 @@ namespace RainWorldBestiary.Menus
             lastAlpha = currentAlpha;
             currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * 10);
 
-            if (opening && pages[0].pos.y <= 0.01f)
+            if (opening && currentAlpha >= 0.999f)
             {
                 opening = false;
             }
@@ -243,7 +263,21 @@ namespace RainWorldBestiary.Menus
                 darkSprite.alpha = uAlpha * 0.8f;
             }
 
-            pages[0].pos.y = Mathf.Lerp(screenY + 100f, 0f, (uAlpha < 0.999f) ? uAlpha : 1f);
+            foreach (MovingObject @object in MovingObjects)
+                @object.MenuObject.pos = Vector2.Lerp(@object.FirstPosition, @object.SecondPosition, (uAlpha < 0.999f) ? uAlpha : 1f);
+        }
+
+        public class MovingObject
+        {
+            public PositionedMenuObject MenuObject;
+            public Vector2 FirstPosition, SecondPosition;
+
+            public MovingObject(PositionedMenuObject value, Vector2 firstPosition, Vector2 secondPosition)
+            {
+                MenuObject = value;
+                FirstPosition = firstPosition;
+                SecondPosition = secondPosition;
+            }
         }
     }
 }

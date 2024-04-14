@@ -6,19 +6,20 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryReadingMenu : OverlappingMenu
+    internal class BestiaryReadingMenu : OverlappingMenu, ISubMenuOwner
     {
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
 
-        private bool Closing = false;
+        private bool Closing = false, InSubMenu = false;
 
         readonly int WrapCount = 180;
 
         private readonly Entry DisplayedEntry;
 
+        readonly SimpleButton backButton;
         readonly string BackButtonMessage = "BACK";
-        public BestiaryReadingMenu(ProcessManager manager, Entry entry) : base(manager)
+        public BestiaryReadingMenu(ProcessManager manager, Entry entry, ISubMenuOwner parentMenu) : base(manager, parentMenu)
         {
             DisplayedEntry = entry;
 
@@ -26,26 +27,32 @@ namespace RainWorldBestiary.Menus
 
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
 
-            string backButtonText = "BACK";
+            backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
+            backButton.nextSelectable[0] = backButton;
+            backObject = backButton;
+            pages[0].subObjects.Add(backButton);
+
             if (Bestiary.PreviousEntriesChain.Count > 0)
             {
-                SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, 25f), new Vector2(220f, 30f));
-                pages[0].subObjects.Add(returnButton);
+                SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, -30f), new Vector2(220f, 30f));
+                AddMovingObject(returnButton, new Vector2(leftAnchor + 250f, 25f));
 
-                backButtonText = "BACK TO PREVIOUS";
+                if (Bestiary.PreviousEntriesChain.Count > 1)
+                {
+                    backButton.menuLabel.text = Translator.Translate("BACK TO PREVIOUS");
+                }
+                else
+                {
+                    Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
+                }
             }
-
-            SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate(backButtonText), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
-            pages[0].subObjects.Add(backButton);
-            backObject = backButton;
-            backButton.nextSelectable[0] = backButton;
 
             DisplayEntryInformation(DisplayedEntry, in screenSize);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
             Bestiary.DoAnimation = true;
         }
-        public BestiaryReadingMenu(ProcessManager manager) : this(manager, Bestiary.CurrentSelectedEntry) { }
+        public BestiaryReadingMenu(ProcessManager manager, ISubMenuOwner parentMenu) : this(manager, Bestiary.CurrentSelectedEntry, parentMenu) { }
 
         public override void ShutDownProcess()
         {
@@ -120,7 +127,9 @@ namespace RainWorldBestiary.Menus
                 EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
             }
 
-            SharedMenuUtilities.AddMenuTitleIllustration(this, pages[0], entry, in screenSize, out float spriteWidth);
+            MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], entry, in screenSize, out float spriteWidth);
+            foreach (MenuIllustration illustration in illustrations)
+                AddMovingObject(illustration, new Vector2(illustration.pos.x, illustration.pos.y + 200f), illustration.pos);
 
             widthOffset = spriteWidth / 2f;
 
@@ -131,25 +140,25 @@ namespace RainWorldBestiary.Menus
                 {
                     if (entry.Info.IconsNextToTitle && Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcons[i]))
                     {
-                        MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]), 
-                            new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y - 50), true, true)
+                        MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
+                            new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y + 200f), true, true)
                         {
                             sprite =
                             {
                                 scale = 2f
                             }
                         };
-                        pages[0].subObjects.Add(illustration);
+                        AddMovingObject(illustration, new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y - 50));
 
                         illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
-                            new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y - 50), true, true)
+                            new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y + 200f), true, true)
                         {
                             sprite =
                             {
                                 scale = 2f
                             }
                         };
-                        pages[0].subObjects.Add(illustration);
+                        AddMovingObject(illustration, new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y - 50));
 
                         iconOffset += illustration.sprite.width;
                     }
@@ -182,8 +191,11 @@ namespace RainWorldBestiary.Menus
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
                 if (Bestiary.PreviousEntriesChain.Count > 0)
+                {
                     Bestiary.PreviousEntriesChain.RemoveAt(0);
+                }
 
+                owningMenu?.ReturningToThisMenu();
                 CloseMenu();
             }
             else if (message.Equals(ReturnButtonMessage))
@@ -196,6 +208,7 @@ namespace RainWorldBestiary.Menus
 
                 Bestiary.PreviousEntriesChain.Clear();
 
+                owningMenu?.ReturningToThisMenu();
                 CloseMenu();
             }
             else if (message.StartsWith(ENTRY_REFERENCE_ID))
@@ -208,18 +221,29 @@ namespace RainWorldBestiary.Menus
                 if (entry != null)
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
+                    if (Bestiary.PreviousEntriesChain.Count == 0)
+                        Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
                     Bestiary.PreviousEntriesChain.Add(this);
-                    manager.ShowDialog(new BestiaryReadingMenu(manager, entry));
+                    InSubMenu = true;
+                    manager.ShowDialog(new BestiaryReadingMenu(manager, entry, this));
                 }
             }
         }
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !Closing)
+            if (Input.GetKeyDown(KeyCode.Escape) && !Closing && !InSubMenu)
                 Singal(backObject, BackButtonMessage);
 
             base.Update();
+        }
+
+        public void ReturningToThisMenu()
+        {
+            if (Bestiary.PreviousEntriesChain.Count == 0)
+                Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK")));
+
+            InSubMenu = false;
         }
     }
 }

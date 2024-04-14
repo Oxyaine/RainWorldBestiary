@@ -7,9 +7,11 @@ namespace RainWorldBestiary.Menus.Manual
 {
     internal class InstructionManualDialog : ManualDialog
     {
-        public InstructionManualDialog(ProcessManager manager, Dictionary<InstructionManualPages, int> topics)
-            : this(manager, topics.ToDictionary(v => v.Key.value, v => v.Value)) { }
-        public InstructionManualDialog(ProcessManager manager, Dictionary<string, int> topics) : base(manager, topics)
+        public ISubMenuOwner owner;
+
+        public InstructionManualDialog(ProcessManager manager, Dictionary<InstructionManualPages, int> topics, ISubMenuOwner owner)
+            : this(manager, topics.ToDictionary(v => v.Key.value, v => v.Value), owner) { }
+        public InstructionManualDialog(ProcessManager manager, Dictionary<string, int> topics, ISubMenuOwner owner) : base(manager, topics)
         {
             currentTopic = base.topics.Keys.ElementAt(0);
             pageNumber = 0;
@@ -22,6 +24,8 @@ namespace RainWorldBestiary.Menus.Manual
             catch
             {
             }
+
+            this.owner = owner;
         }
         public override void Update()
         {
@@ -36,7 +40,7 @@ namespace RainWorldBestiary.Menus.Manual
             if (message.Equals("CLOSE"))
             {
                 PlaySound(SoundID.MENU_Player_Unjoin_Game);
-                BestiaryTabMenu.ManualOpen = false;
+                owner.ReturningToThisMenu();
             }
 
             base.Singal(sender, message);

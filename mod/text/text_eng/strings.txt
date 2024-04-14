@@ -3,6 +3,9 @@
 Downpour|Downpour
 Modded|Modded
 
+BACK TO PREVIOUS|BACK TO PREVIOUS
+RETURN TO ENTRIES|RETURN TO ENTRIES
+
 Worm Grass|Worm Grass
 Youth Centipede|Youth Centipede
 Infant Centipede|Infant Centipede
