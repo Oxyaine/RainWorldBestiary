@@ -79,16 +79,16 @@ namespace RainWorldBestiary.Hooks
                     Enumerators.ForceCompleteEnumerators(ResourceManager.LoadingModsEnumerator, ResourceManager.UnloadingModsEnumerator);
                     self.currentMainLoop = new BestiaryTabMenu(self);
                 }
-                else if (ID == Main.BestiaryEntryMenu)
-                {
-                    Enumerators.ForceCompleteEnumerators(ResourceManager.cachingOperations.ToArray());
-                    ResourceManager.cachingOperations.Clear();
-                    self.currentMainLoop = new BestiaryEntryMenu(self);
-                }
-                else if (ID == Main.BestiaryReadingMenu)
-                {
-                    self.currentMainLoop = new BestiaryReadingMenu(self);
-                }
+                //else if (ID == Main.BestiaryEntryMenu)
+                //{
+                //    Enumerators.ForceCompleteEnumerators(ResourceManager.cachingOperations.ToArray());
+                //    ResourceManager.cachingOperations.Clear();
+                //    self.currentMainLoop = new BestiaryEntryMenu(self);
+                //}
+                //else if (ID == Main.BestiaryReadingMenu)
+                //{
+                //    self.currentMainLoop = new BestiaryReadingMenu(self);
+                //}
                 else if (ID == ErrorManager.BestiaryErrorMenu)
                 {
                     self.currentMainLoop = new ErrorManager(self);

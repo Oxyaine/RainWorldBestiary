@@ -1,6 +1,7 @@
 ﻿using Menu;
 using RainWorldBestiary.Menus.Manual;
 using RainWorldBestiary.Types;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -179,104 +180,70 @@ namespace RainWorldBestiary.Menus
                 }
 
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedTab.TabMenuProcessID, BestiarySettings.MenuFadeTimeSeconds);
+                manager.ShowDialog(new BestiaryEntryMenu(manager));
             }
             else if (message.StartsWith(InstructionManualButtonMessage))
             {
                 ManualOpen = true;
-                InstructionManualDialog dialog = new InstructionManualDialog(manager, ManualTopics);
                 PlaySound(SoundID.MENU_Player_Join_Game);
-                manager.ShowDialog(dialog);
+                manager.ShowDialog(new InstructionManualDialog(manager, ManualTopics));
             }
         }
     }
 
     internal class OverlappingMenu : Dialog
     {
-        bool opening = false;
-        bool closing = false;
-
-        readonly MoveablePage moveablePage = null;
+        bool opening = false, closing = false;
+        private readonly float screenY;
+        private float targetAlpha;
 
         public OverlappingMenu(ProcessManager manager) : base(manager)
         {
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
+            screenY = screenSize.y;
 
-            moveablePage = new MoveablePage(this, pages[0], "", 0, new Vector2(0f, screenSize.y), Vector2.zero);
-            pages.Add(moveablePage);
+            pages[0].pos.y = screenY;
 
             opening = true;
+            targetAlpha = 1f;
         }
 
         public virtual void CloseMenu()
         {
             opening = false;
             closing = true;
+            targetAlpha = 0f;
         }
 
+        private float lastAlpha, currentAlpha, uAlpha;
         public override void Update()
         {
             base.Update();
 
-            if (opening)
+            lastAlpha = currentAlpha;
+            currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * 10);
+
+            if (opening && pages[0].pos.y <= 0.01f)
             {
-                moveablePage.Move(Time.deltaTime);
-
-                darkSprite.alpha = Mathf.Clamp(darkSprite.alpha + Time.deltaTime, 0, 0.8f);
-
-                if (moveablePage.CanMoveIn)
-                    opening = false;
+                opening = false;
             }
-
-            if (closing)
+            if (closing && Math.Abs(currentAlpha - targetAlpha) < 0.09f)
             {
-                moveablePage.Move(-Time.deltaTime);
-
-                darkSprite.alpha = Mathf.Clamp(darkSprite.alpha - Time.deltaTime, 0, 0.8f);
-
-                if (moveablePage.CanMoveOut)
-                {
-                    manager.StopSideProcess(this);
-                    closing = false;
-                }
+                manager.StopSideProcess(this);
+                closing = false;
             }
         }
-    }
-
-    internal class MoveablePage : Page
-    {
-        public readonly Vector2 StartPosition, EndPosition, PositionDifference;
-        public float MovedPercentage = 0f;
-        public bool CanMoveIn = true, CanMoveOut = false;
-        public MoveablePage(Menu.Menu menu, MenuObject owner, string name, int index) : base(menu, owner, name, index) { }
-        public MoveablePage(Menu.Menu menu, MenuObject owner, string name, int index, Vector2 startingPos, Vector2 endingPos) : base(menu, owner, name, index)
+        public override void GrafUpdate(float timeStacker)
         {
-            StartPosition = startingPos;
-            EndPosition = endingPos;
-            PositionDifference = startingPos - endingPos;
-        }
+            base.GrafUpdate(timeStacker);
 
-        public void Move(float percentage)
-        {
-            MovedPercentage += percentage;
-            if (MovedPercentage <= 0f)
+            if (opening || closing)
             {
-                CanMoveOut = false;
-                CanMoveIn = true;
-                MovedPercentage = 0f;
-            }
-            else if (MovedPercentage >= 1f)
-            {
-                CanMoveOut = true;
-                CanMoveIn = false;
-                MovedPercentage = 1f;
-            }
-            else
-            {
-                CanMoveIn = CanMoveOut = true;
+                uAlpha = Mathf.Pow(Mathf.Max(0f, Mathf.Lerp(lastAlpha, currentAlpha, timeStacker)), 1.5f);
+                darkSprite.alpha = uAlpha * 0.8f;
             }
 
-            pos = StartPosition + (PositionDifference * MovedPercentage);
+            pages[0].pos.y = Mathf.Lerp(screenY + 100f, 0f, (uAlpha < 0.999f) ? uAlpha : 1f);
         }
     }
 }

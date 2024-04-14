@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryEntryMenu : Dialog
+    internal class BestiaryEntryMenu : OverlappingMenu
     {
         readonly string BackButtonMessage = "BACK";
         readonly string EntryPressedID = "Read_Entry_";
@@ -17,11 +17,6 @@ namespace RainWorldBestiary.Menus
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
-
-            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
-            pages[0].subObjects.Add(scene);
-
-            darkSprite.alpha = 0.8f;
 
             SimpleButton backButton = new SimpleButton(this, pages[0], Translator.Translate("BACK"), BackButtonMessage, new Vector2(leftAnchor + 15f, 25f), new Vector2(220f, 30f));
             pages[0].subObjects.Add(backButton);
@@ -107,7 +102,7 @@ namespace RainWorldBestiary.Menus
                 Bestiary.EnteringMenu = false;
 
                 PlaySound(SoundID.MENU_Switch_Page_Out);
-                manager.RequestMainProcessSwitch(Main.BestiaryTabMenu, BestiarySettings.MenuFadeTimeSeconds);
+                CloseMenu();
                 return;
             }
 
@@ -129,7 +124,7 @@ namespace RainWorldBestiary.Menus
                 if (Bestiary.CurrentSelectedEntry.Info.EntryUnlocked)
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
-                    manager.RequestMainProcessSwitch(Bestiary.CurrentSelectedEntry.EntryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                    manager.ShowDialog(new BestiaryReadingMenu(manager));
                 }
                 else
                 {

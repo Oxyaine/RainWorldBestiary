@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryReadingMenu : Dialog
+    internal class BestiaryReadingMenu : OverlappingMenu
     {
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
@@ -15,17 +15,16 @@ namespace RainWorldBestiary.Menus
 
         readonly int WrapCount = 180;
 
+        private readonly Entry DisplayedEntry;
+
         readonly string BackButtonMessage = "BACK";
-        public BestiaryReadingMenu(ProcessManager manager) : base(manager)
+        public BestiaryReadingMenu(ProcessManager manager, Entry entry) : base(manager)
         {
+            DisplayedEntry = entry;
+
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
-
-            scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.SubBackground);
-            pages[0].subObjects.Add(scene);
-
-            darkSprite.alpha = 0.9f;
 
             string backButtonText = "BACK";
             if (Bestiary.PreviousEntriesChain.Count > 0)
@@ -41,11 +40,12 @@ namespace RainWorldBestiary.Menus
             backObject = backButton;
             backButton.nextSelectable[0] = backButton;
 
-            DisplayEntryInformation(Bestiary.CurrentSelectedEntry, in screenSize);
+            DisplayEntryInformation(DisplayedEntry, in screenSize);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
             Bestiary.DoAnimation = true;
         }
+        public BestiaryReadingMenu(ProcessManager manager) : this(manager, Bestiary.CurrentSelectedEntry) { }
 
         public override void ShutDownProcess()
         {
@@ -182,24 +182,21 @@ namespace RainWorldBestiary.Menus
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
                 if (Bestiary.PreviousEntriesChain.Count > 0)
-                {
-                    Bestiary.CurrentSelectedEntry = Bestiary.PreviousEntriesChain[0];
                     Bestiary.PreviousEntriesChain.RemoveAt(0);
 
-                    Bestiary.DoAnimation = false;
-                    manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
-                }
-                else
-                    manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
+                CloseMenu();
             }
             else if (message.Equals(ReturnButtonMessage))
             {
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
+                foreach (BestiaryReadingMenu menu in Bestiary.PreviousEntriesChain)
+                    menu.CloseMenu();
+
                 Bestiary.PreviousEntriesChain.Clear();
 
-                manager.RequestMainProcessSwitch(Main.BestiaryEntryMenu, BestiarySettings.MenuFadeTimeSeconds);
+                CloseMenu();
             }
             else if (message.StartsWith(ENTRY_REFERENCE_ID))
             {
@@ -211,10 +208,8 @@ namespace RainWorldBestiary.Menus
                 if (entry != null)
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
-
-                    Bestiary.PreviousEntriesChain.Insert(0, Bestiary.CurrentSelectedEntry);
-                    Bestiary.CurrentSelectedEntry = entry;
-                    manager.RequestMainProcessSwitch(Main.BestiaryReadingMenu, BestiarySettings.MenuFadeTimeSeconds);
+                    Bestiary.PreviousEntriesChain.Add(this);
+                    manager.ShowDialog(new BestiaryReadingMenu(manager, entry));
                 }
             }
         }
