@@ -1,7 +1,6 @@
 ﻿using Menu;
 using RainWorldBestiary.Managers;
 using RainWorldBestiary.Types;
-using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -124,7 +123,28 @@ namespace RainWorldBestiary.Menus
             yield return new WaitTime(0.2f);
 
             int i = 0;
-            while(i < newText.Length)
+            while (i < newText.Length)
+            {
+                label.text += newText[i];
+                ++i;
+
+                yield return new WaitTime(0.01f);
+            }
+        }
+        public static IEnumerator AnimateDeleteText(MenuLabel label)
+        {
+            string oldText = label.text;
+
+            while (oldText.Length > 0)
+            {
+                label.text = oldText = oldText.Substring(0, oldText.Length - 1);
+                yield return new WaitTime(0.01f);
+            }
+        }
+        public static IEnumerator AnimatePrintText(MenuLabel label, string newText)
+        {
+            int i = 0;
+            while (i < newText.Length)
             {
                 label.text += newText[i];
                 ++i;

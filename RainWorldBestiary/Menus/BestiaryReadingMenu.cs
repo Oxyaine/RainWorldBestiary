@@ -193,9 +193,10 @@ namespace RainWorldBestiary.Menus
                 if (Bestiary.PreviousEntriesChain.Count > 0)
                 {
                     Bestiary.PreviousEntriesChain.RemoveAt(0);
+                    if (Bestiary.PreviousEntriesChain.Count == 0)
+                        Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
                 }
 
-                owningMenu?.ReturningToThisMenu();
                 CloseMenu();
             }
             else if (message.Equals(ReturnButtonMessage))
@@ -208,7 +209,6 @@ namespace RainWorldBestiary.Menus
 
                 Bestiary.PreviousEntriesChain.Clear();
 
-                owningMenu?.ReturningToThisMenu();
                 CloseMenu();
             }
             else if (message.StartsWith(ENTRY_REFERENCE_ID))
@@ -221,8 +221,10 @@ namespace RainWorldBestiary.Menus
                 if (entry != null)
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
+
                     if (Bestiary.PreviousEntriesChain.Count == 0)
                         Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
+
                     Bestiary.PreviousEntriesChain.Add(this);
                     InSubMenu = true;
                     manager.ShowDialog(new BestiaryReadingMenu(manager, entry, this));

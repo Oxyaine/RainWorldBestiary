@@ -222,6 +222,7 @@ namespace RainWorldBestiary.Menus
             opening = false;
             closing = true;
             targetAlpha = 0f;
+            owningMenu?.ReturningToThisMenu();
         }
 
         public void AddMovingObject(PositionedMenuObject @object, Vector2 secondPosition)
