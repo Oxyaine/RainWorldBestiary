@@ -110,26 +110,15 @@ namespace RainWorldBestiary.Menus
             if (label.text.Equals(newText))
                 yield break;
 
-            {
-                string oldText = label.text;
-
-                while (oldText.Length > 0)
-                {
-                    label.text = oldText = oldText.Substring(0, oldText.Length - 1);
-                    yield return new WaitTime(0.01f);
-                }
-            }
+            IEnumerator enumerator = AnimateDeleteText(label);
+            while (enumerator.MoveNext())
+                yield return enumerator.Current;
 
             yield return new WaitTime(0.2f);
 
-            int i = 0;
-            while (i < newText.Length)
-            {
-                label.text += newText[i];
-                ++i;
-
-                yield return new WaitTime(0.01f);
-            }
+            enumerator = AnimatePrintText(label, newText);
+            while (enumerator.MoveNext())
+                yield return enumerator.Current;
         }
         public static IEnumerator AnimateDeleteText(MenuLabel label)
         {
