@@ -203,7 +203,15 @@ namespace RainWorldBestiary.Menus
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             moveablePage = new MoveablePage(this, pages[0], "", 0, new Vector2(0f, screenSize.y), Vector2.zero);
+            pages.Add(moveablePage);
+
             opening = true;
+        }
+
+        public virtual void CloseMenu()
+        {
+            opening = false;
+            closing = true;
         }
 
         public override void Update()
@@ -227,7 +235,10 @@ namespace RainWorldBestiary.Menus
                 darkSprite.alpha = Mathf.Clamp(darkSprite.alpha - Time.deltaTime, 0, 0.8f);
 
                 if (moveablePage.CanMoveOut)
+                {
+                    manager.StopSideProcess(this);
                     closing = false;
+                }
             }
         }
     }
