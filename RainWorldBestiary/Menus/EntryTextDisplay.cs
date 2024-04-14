@@ -59,7 +59,7 @@ namespace RainWorldBestiary.Menus
                         currentTextPosition += RevealSpeed;
                         AmountRevealed += RevealSpeed;
 
-                        if (AmountRevealed >= currentSpriteCapBeforeFade)
+                        while (AmountRevealed >= currentSpriteCapBeforeFade)
                         {
                             currentSpriteCapBeforeFade += spriteGapBeforeFade;
                             Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
