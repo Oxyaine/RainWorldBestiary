@@ -12,9 +12,12 @@ namespace RainWorldBestiary.Menus
         readonly string EntryPressedID = "Read_Entry_";
 
         private bool Closing = false;
+        private readonly EntriesTab DisplayedTab;
 
-        public TabMenu(ProcessManager manager, ISubMenuOwner parentMenu) : base(manager, parentMenu)
+        public TabMenu(ProcessManager manager, EntriesTab tab, ISubMenuOwner parentMenu) : base(manager, parentMenu)
         {
+            DisplayedTab = tab;
+
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             float leftAnchor = (1366f - manager.rainWorld.options.ScreenSize.x) / 2f;
@@ -23,16 +26,13 @@ namespace RainWorldBestiary.Menus
             AddMovingObject(backButton, new Vector2(leftAnchor + 15f, 25f));
             backObject = backButton;
 
-            CreateEntryButtonsFromTab(Bestiary.CurrentSelectedTab, in screenSize, out MenuObject firstEntryButton);
+            CreateEntryButtonsFromTab(DisplayedTab, in screenSize, out MenuObject firstEntryButton);
 
-            MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], Bestiary.CurrentSelectedTab, in screenSize);
+            MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], DisplayedTab, in screenSize);
             foreach (MenuIllustration illustration in illustrations)
                 AddMovingObject(illustration, new Vector2(illustration.pos.x, illustration.pos.y + screenSize.y), illustration.pos);
 
-            if (Bestiary.EnteringMenu)
                 selectedObject = firstEntryButton;
-            else
-                backObject.nextSelectable[0] = backButton;
 
             TipLabel = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, 25f), Vector2.one, false);
             pages[0].subObjects.Add(TipLabel);
@@ -102,8 +102,6 @@ namespace RainWorldBestiary.Menus
             {
                 Closing = true;
 
-                Bestiary.EnteringMenu = false;
-
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 CloseMenu();
                 return;
@@ -111,32 +109,31 @@ namespace RainWorldBestiary.Menus
 
             if (message.StartsWith(EntryPressedID))
             {
-                Bestiary.EnteringMenu = true;
-
                 string msg = message.Substring(EntryPressedID.Length);
+                Entry selectedEntry = null;
 
-                foreach (Entry entry in Bestiary.CurrentSelectedTab)
+                foreach (Entry entry in DisplayedTab)
                 {
                     if (entry.Name.Equals(msg))
                     {
-                        Bestiary.CurrentSelectedEntry = entry;
+                        selectedEntry = entry;
                         break;
                     }
                 }
 
-                if (Bestiary.CurrentSelectedEntry.Info.EntryUnlocked)
+                if (selectedEntry != null && selectedEntry.Info.EntryUnlocked)
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
 
                     InSubMenu = true;
                     backButton.menuLabel.text = string.Empty;
-                    manager.ShowDialog(new EntryMenu(manager, this));
+                    manager.ShowDialog(new EntryMenu(manager, selectedEntry, this));
                 }
                 else
                 {
                     PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
 
-                    TipLabel.text = Translator.Translate(Bestiary.CurrentSelectedEntry.Info.LockedText);
+                    TipLabel.text = Translator.Translate(selectedEntry.Info.LockedText);
                     TipLabelAlpha = Mathf.Clamp(TipLabel.text.Length * 0.04f, 1.5f, 5f);
                 }
             }

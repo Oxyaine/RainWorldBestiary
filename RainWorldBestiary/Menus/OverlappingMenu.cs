@@ -15,7 +15,7 @@ namespace RainWorldBestiary.Menus
         bool opening = false, closing = false;
         private float targetAlpha;
 
-        public readonly ISubMenuOwner owningMenu;
+        private readonly ISubMenuOwner owningMenu;
 
         protected List<MovingObject> MovingObjects = new List<MovingObject>();
 

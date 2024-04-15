@@ -45,8 +45,7 @@ namespace RainWorldBestiary.Menus
 
         public BestiaryMenu(ProcessManager manager) : base(manager)
         {
-            if (Bestiary.EnteringMenu && MenuResources.Instance == null)
-                MenuResources.Create();
+            MenuResources.Create();
 
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
@@ -96,10 +95,7 @@ namespace RainWorldBestiary.Menus
 
             BindButtons();
 
-            if (Bestiary.EnteringMenu)
-                selectedObject = TabButtons[0];
-            else
-                selectedObject = BackButton;
+            selectedObject = TabButtons[0];
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
@@ -157,7 +153,6 @@ namespace RainWorldBestiary.Menus
             {
                 Closing = true;
 
-                Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
                 manager.RequestMainProcessSwitch(ProcessManager.ProcessID.MainMenu);
                 return;
@@ -165,21 +160,20 @@ namespace RainWorldBestiary.Menus
 
             if (message.StartsWith(BUTTON_ID))
             {
-                Bestiary.EnteringMenu = true;
-
                 string msg = message.Substring(BUTTON_ID.Length);
+                EntriesTab selectedTab = null;
 
                 foreach (EntriesTab tab in Bestiary.EntriesTabs)
                 {
                     if (tab.Name.Equals(msg))
                     {
-                        Bestiary.CurrentSelectedTab = tab;
+                        selectedTab = tab;
                         break;
                     }
                 }
 
                 PlaySound(SoundID.MENU_Switch_Page_In);
-                manager.ShowDialog(new TabMenu(manager, this));
+                manager.ShowDialog(new TabMenu(manager, selectedTab, this));
             }
             else if (message.StartsWith(InstructionManualButtonMessage))
             {

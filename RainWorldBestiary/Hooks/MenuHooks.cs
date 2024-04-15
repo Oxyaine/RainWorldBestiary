@@ -123,7 +123,6 @@ namespace RainWorldBestiary.Hooks
             {
                 manager.RequestMainProcessSwitch(Main.BestiaryTabMenu);
                 self.PlaySound(SoundID.MENU_Switch_Page_In);
-                Bestiary.EnteringMenu = true;
             }, 2);
 
             if (ErrorManager.HasErrors())

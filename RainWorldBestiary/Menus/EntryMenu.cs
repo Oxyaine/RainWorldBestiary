@@ -32,12 +32,12 @@ namespace RainWorldBestiary.Menus
             backObject = backButton;
             pages[0].subObjects.Add(backButton);
 
-            if (Bestiary.PreviousEntriesChain.Count > 0)
+            if (Bestiary.PreviousMenusChain.Count > 0)
             {
                 SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, -30f), new Vector2(220f, 30f));
                 AddMovingObject(returnButton, new Vector2(leftAnchor + 250f, 25f));
 
-                if (Bestiary.PreviousEntriesChain.Count > 1)
+                if (Bestiary.PreviousMenusChain.Count > 1)
                 {
                     backButton.menuLabel.text = Translator.Translate("BACK TO PREVIOUS");
                 }
@@ -50,9 +50,7 @@ namespace RainWorldBestiary.Menus
             DisplayEntryInformation(DisplayedEntry, in screenSize);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
-            Bestiary.DoAnimation = true;
         }
-        public EntryMenu(ProcessManager manager, ISubMenuOwner parentMenu) : this(manager, Bestiary.CurrentSelectedEntry, parentMenu) { }
 
         public override void ShutDownProcess()
         {
@@ -116,7 +114,7 @@ namespace RainWorldBestiary.Menus
         {
             float widthOffset, leftSpriteOffset = 60;
 
-            if (BestiarySettings.PerformTextAnimations.Value && Bestiary.DoAnimation)
+            if (BestiarySettings.PerformTextAnimations.Value)
             {
                 EntryTextDisplay display = new EntryTextDisplay();
                 PopulateDisplayID = Enumerators.StartEnumerator(display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
@@ -189,13 +187,12 @@ namespace RainWorldBestiary.Menus
             {
                 Closing = true;
 
-                Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
-                if (Bestiary.PreviousEntriesChain.Count > 0)
+                if (Bestiary.PreviousMenusChain.Count > 0)
                 {
-                    Bestiary.PreviousEntriesChain.RemoveAt(0);
-                    if (Bestiary.PreviousEntriesChain.Count == 0)
+                    Bestiary.PreviousMenusChain.RemoveAt(0);
+                    if (Bestiary.PreviousMenusChain.Count == 0)
                         Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
                 }
 
@@ -203,20 +200,17 @@ namespace RainWorldBestiary.Menus
             }
             else if (message.Equals(ReturnButtonMessage))
             {
-                Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
-                foreach (EntryMenu menu in Bestiary.PreviousEntriesChain)
+                foreach (EntryMenu menu in Bestiary.PreviousMenusChain)
                     menu.CloseMenu();
 
-                Bestiary.PreviousEntriesChain.Clear();
+                Bestiary.PreviousMenusChain.Clear();
 
                 CloseMenu();
             }
             else if (message.StartsWith(ENTRY_REFERENCE_ID))
             {
-                Bestiary.EnteringMenu = true;
-
                 string referenceID = message.Substring(message.IndexOf(';') + 1);
                 Entry entry = Bestiary.GetEntryByReferenceID(referenceID);
 
@@ -224,10 +218,10 @@ namespace RainWorldBestiary.Menus
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
 
-                    if (Bestiary.PreviousEntriesChain.Count == 0)
+                    if (Bestiary.PreviousMenusChain.Count == 0)
                         Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
 
-                    Bestiary.PreviousEntriesChain.Add(this);
+                    Bestiary.PreviousMenusChain.Add(this);
                     InSubMenu = true;
                     manager.ShowDialog(new EntryMenu(manager, entry, this));
                 }
@@ -244,7 +238,7 @@ namespace RainWorldBestiary.Menus
 
         public void ReturningToThisMenu()
         {
-            if (Bestiary.PreviousEntriesChain.Count == 0)
+            if (Bestiary.PreviousMenusChain.Count == 0)
                 Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK")));
 
             InSubMenu = false;

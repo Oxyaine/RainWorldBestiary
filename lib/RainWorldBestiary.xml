@@ -87,16 +87,6 @@
             </summary>
             <returns>The entry that was found, if no entry was found, null is returned</returns>
         </member>
-        <member name="P:RainWorldBestiary.Bestiary.CurrentSelectedTab">
-            <summary>
-            The tab that is currently selected
-            </summary>
-        </member>
-        <member name="P:RainWorldBestiary.Bestiary.CurrentSelectedEntry">
-            <summary>
-            The entry that is currently selected
-            </summary>
-        </member>
         <member name="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)">
             <inheritdoc cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)"/>
         </member>

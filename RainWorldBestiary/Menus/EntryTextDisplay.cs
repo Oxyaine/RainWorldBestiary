@@ -29,7 +29,7 @@ namespace RainWorldBestiary.Menus
             int currentObjectIndex = 0, currentTextPosition = 0, CurrentLength = 0, AmountRevealed = 0, CurrentSpriteIndex = 0;
             int spriteGapBeforeFade = TotalLength / characterSprites.Length;
             int currentSpriteCapBeforeFade = spriteGapBeforeFade;
-            const int RevealSpeed = 10;
+            const int RevealSpeed = 15;
             bool newLabel = true;
             string text = string.Empty;
 
