@@ -44,7 +44,7 @@ namespace RainWorldBestiary.Hooks
         {
             original(self, sender, message);
 
-            if (message.Equals("SHOW_ERRORS"))
+            if (message.Equals("SHOW_BESTIARY_ERRORS"))
             {
                 self.manager.RequestMainProcessSwitch(ErrorManager.BestiaryErrorMenu);
             }
@@ -77,18 +77,8 @@ namespace RainWorldBestiary.Hooks
                 if (ID == Main.BestiaryTabMenu)
                 {
                     Enumerators.ForceCompleteEnumerators(ResourceManager.LoadingModsEnumerator, ResourceManager.UnloadingModsEnumerator);
-                    self.currentMainLoop = new BestiaryTabMenu(self);
+                    self.currentMainLoop = new BestiaryMenu(self);
                 }
-                //else if (ID == Main.BestiaryEntryMenu)
-                //{
-                //    Enumerators.ForceCompleteEnumerators(ResourceManager.cachingOperations.ToArray());
-                //    ResourceManager.cachingOperations.Clear();
-                //    self.currentMainLoop = new BestiaryEntryMenu(self);
-                //}
-                //else if (ID == Main.BestiaryReadingMenu)
-                //{
-                //    self.currentMainLoop = new BestiaryReadingMenu(self);
-                //}
                 else if (ID == ErrorManager.BestiaryErrorMenu)
                 {
                     self.currentMainLoop = new ErrorManager(self);
@@ -138,7 +128,7 @@ namespace RainWorldBestiary.Hooks
 
             if (ErrorManager.HasErrors())
             {
-                SymbolButton button = new SymbolButton(self, self.pages[0], ErrorManager.GetSpriteName(ErrorManager.GetHighestErrorLevel()), "SHOW_ERRORS", new Vector2(screenSize.x - 40, screenSize.y - 40));
+                SymbolButton button = new SymbolButton(self, self.pages[0], ErrorManager.GetSpriteName(ErrorManager.GetHighestErrorLevel()), "SHOW_BESTIARY_ERRORS", new Vector2(screenSize.x - 40, screenSize.y - 40));
                 self.pages[0].subObjects.Add(button);
             }
         }

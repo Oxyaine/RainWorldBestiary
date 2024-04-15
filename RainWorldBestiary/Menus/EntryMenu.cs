@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryReadingMenu : OverlappingMenu, ISubMenuOwner
+    internal class EntryMenu : OverlappingMenu, ISubMenuOwner
     {
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
@@ -19,7 +19,7 @@ namespace RainWorldBestiary.Menus
 
         readonly SimpleButton backButton;
         readonly string BackButtonMessage = "BACK";
-        public BestiaryReadingMenu(ProcessManager manager, Entry entry, ISubMenuOwner parentMenu) : base(manager, parentMenu)
+        public EntryMenu(ProcessManager manager, Entry entry, ISubMenuOwner parentMenu) : base(manager, parentMenu)
         {
             DisplayedEntry = entry;
 
@@ -52,7 +52,7 @@ namespace RainWorldBestiary.Menus
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
             Bestiary.DoAnimation = true;
         }
-        public BestiaryReadingMenu(ProcessManager manager, ISubMenuOwner parentMenu) : this(manager, Bestiary.CurrentSelectedEntry, parentMenu) { }
+        public EntryMenu(ProcessManager manager, ISubMenuOwner parentMenu) : this(manager, Bestiary.CurrentSelectedEntry, parentMenu) { }
 
         public override void ShutDownProcess()
         {
@@ -204,7 +204,7 @@ namespace RainWorldBestiary.Menus
                 Bestiary.EnteringMenu = false;
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
-                foreach (BestiaryReadingMenu menu in Bestiary.PreviousEntriesChain)
+                foreach (EntryMenu menu in Bestiary.PreviousEntriesChain)
                     menu.CloseMenu();
 
                 Bestiary.PreviousEntriesChain.Clear();
@@ -227,7 +227,7 @@ namespace RainWorldBestiary.Menus
 
                     Bestiary.PreviousEntriesChain.Add(this);
                     InSubMenu = true;
-                    manager.ShowDialog(new BestiaryReadingMenu(manager, entry, this));
+                    manager.ShowDialog(new EntryMenu(manager, entry, this));
                 }
             }
         }

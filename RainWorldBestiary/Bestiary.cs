@@ -242,7 +242,7 @@ namespace RainWorldBestiary
         /// </summary>
         public static Entry CurrentSelectedEntry { get; internal set; }
 
-        internal static List<BestiaryReadingMenu> PreviousEntriesChain = new List<BestiaryReadingMenu>();
+        internal static List<EntryMenu> PreviousEntriesChain = new List<EntryMenu>();
 
         /// <inheritdoc cref="GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(Creature creature, bool useSpecialIdLogic = true) => GetCreatureUnlockName(creature.abstractCreature, useSpecialIdLogic);

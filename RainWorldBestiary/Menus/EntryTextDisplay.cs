@@ -235,7 +235,7 @@ namespace RainWorldBestiary.Menus
                                 entryAvailable = false;
 
                             Vector2 Position = new Vector2(currentX - xSize + currentSizeValue, Y - 10f);
-                            MovingSimpleButton button = new MovingSimpleButton(menu, owner, structure.Message, BestiaryReadingMenu.ENTRY_REFERENCE_ID + structure.OtherData,
+                            MovingSimpleButton button = new MovingSimpleButton(menu, owner, structure.Message, EntryMenu.ENTRY_REFERENCE_ID + structure.OtherData,
                                 buttonsOffScreen ? new Vector2(-100f, -100f) : Position, Position, new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                             {
                                 rectColor = new HSLColor(0f, 0f, 0f),

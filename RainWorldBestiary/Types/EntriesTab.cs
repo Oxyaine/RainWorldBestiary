@@ -34,12 +34,6 @@ namespace RainWorldBestiary.Types
         [JsonProperty("title_image")]
         public TitleSprite TitleSprite = null;
 
-        /// <summary>
-        /// The process ID that gets called when a tab button gets pressed, you can leave this as the default menu, or make a custom menu to display entries.
-        /// </summary>
-        [JsonIgnore]
-        public ProcessManager.ProcessID TabMenuProcessID = Main.BestiaryEntryMenu;
-
         [JsonIgnore]
         private readonly List<Entry> _entries = new List<Entry>();
 
@@ -87,7 +81,6 @@ namespace RainWorldBestiary.Types
             Path = other.Path;
             RequiredMods = other.RequiredMods;
             TitleSprite = other.TitleSprite;
-            TabMenuProcessID = other.TabMenuProcessID;
             _entries = other._entries;
             ContributingMods = other.ContributingMods;
         }
@@ -317,11 +310,6 @@ namespace RainWorldBestiary.Types
         public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = false)
         {
             Add(new EntriesTab(tabName, entries) { TitleSprite = titleSprite }, merge);
-        }
-        /// <inheritdoc cref="Add(EntriesTab, bool)"/>
-        public void Add(string tabName, IEnumerable<Entry> entries, ProcessManager.ProcessID menuProcessID, TitleSprite titleSprite = null, bool merge = false)
-        {
-            Add(new EntriesTab(tabName, entries) { TabMenuProcessID = menuProcessID, TitleSprite = titleSprite }, merge);
         }
 
         /// <inheritdoc/>
