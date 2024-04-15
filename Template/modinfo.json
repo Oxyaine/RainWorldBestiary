@@ -2,7 +2,7 @@
 	"id": "template.bestiary_entries",
 	"name": "Extra Bestiary Entries",
 	"version": "0.0.1",
-	"target_game_version": "v1.9.15",
+	"target_game_version": "v1.9.15b",
 	"authors": "template",
 	"description": "Additional Bestiary Entries Template to show how extra entries are added",
 	"requirements": [],
