@@ -169,14 +169,16 @@ namespace RainWorldBestiary.Menus
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {
-                    FSprite pip = new FSprite(entry.Info.Description[i].ModuleUnlocked ? MenuResources.Instance.UnlockPipUnlocked : MenuResources.Instance.UnlockPip)
+                    MenuIllustration illustration = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsIconsPath,
+                        entry.Info.Description[i].ModuleUnlocked ? MenuResources.Instance.UnlockPipUnlockedName : MenuResources.Instance.UnlockPipName,
+                        new Vector2(screenSize.x + 20f, screenSize.y - (i * 10) - 20f), true, true)
                     {
-                        x = screenSize.x - 20f,
-                        y = screenSize.y - (i * 10) - 20f,
-                        scale = 1f,
-                        color = entry.Info.Description[i].UnlockPipColor
+                        sprite =
+                        {
+                            color = entry.Info.Description[i].UnlockPipColor
+                        }
                     };
-                    pages[0].Container.AddChild(pip);
+                    AddMovingObject(illustration, new Vector2(screenSize.x - 20f, screenSize.y - (i * 10) - 20f));
                 }
             }
         }

@@ -9,9 +9,6 @@
         public MenuResources() { }
         //~MenuResources() { }
 
-        public readonly string UnlockPipUnlocked = "illustrations\\bestiary\\icons\\unlock_pip_full";
-        public readonly string UnlockPip = "illustrations\\bestiary\\icons\\unlock_pip";
-
         public readonly string IllustrationsIconsPath = "illustrations\\bestiary\\icons";
         public readonly string IllustrationsEntryIconsPath = "illustrations\\bestiary\\entry_icons";
         public readonly string IllustrationsTitlesPath = "illustrations\\bestiary\\titles";
