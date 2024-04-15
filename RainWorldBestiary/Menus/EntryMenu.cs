@@ -57,9 +57,9 @@ namespace RainWorldBestiary.Menus
             base.ShutDownProcess();
         }
 
-        private IEnumerator PerformTextAnimation(EntryTextDisplay display, Vector2 screenSize)
+        private IEnumerator PerformTextAnimation(Vector2 screenSize)
         {
-            int characters = display.PredictedTextLength / 100;
+            int characters = Display.PredictedTextLength / 100;
 
             FSprite[] sprites = new FSprite[characters];
 
@@ -106,19 +106,20 @@ namespace RainWorldBestiary.Menus
             }
 
             Enumerators.ForceCompleteEnumerators(PopulateDisplayID);
-            Enumerators.StartEnumerator(display.Animate(pages[0], sprites));
+            Enumerators.StartEnumerator(Display.Animate(pages[0], sprites));
         }
 
         private int PopulateDisplayID = -1;
+        private EntryTextDisplay Display;
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
             float widthOffset, leftSpriteOffset = 60;
 
             if (BestiarySettings.PerformTextAnimations.Value)
             {
-                EntryTextDisplay display = new EntryTextDisplay();
-                PopulateDisplayID = Enumerators.StartEnumerator(display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
-                Enumerators.StartEnumerator(PerformTextAnimation(display, screenSize));
+                Display = new EntryTextDisplay();
+                PopulateDisplayID = Enumerators.StartEnumerator(Display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
+                Enumerators.StartEnumerator(PerformTextAnimation(screenSize));
             }
             else
             {
