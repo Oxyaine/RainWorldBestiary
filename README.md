@@ -13,7 +13,7 @@ If you have a suggestion, want to report a bug or issue (including performance i
 This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
 
 Entries can be made in two ways, through code, and through JSON files placed in your mod.
-- Accessing the code allows you to completely customize your entry, setting a custom unlock condition, custom module unlock conditions, or making a custom menu for your entries reading page. However there are some drawbacks, accessing the code usually makes the Bestiary a hard dependency, meaning your mod wont run unless the bestiary is also installed. You also would have to manually load and unload your entries.
+- Accessing the code allows you to completely customize your entry, setting a custom unlock condition, and custom module unlock conditions. However there are some drawbacks, accessing the code usually makes the Bestiary a hard dependency, meaning your mod wont run unless the bestiary is also installed. You also would have to manually load and unload your entries.
 	- I am currently working on a fix, where your mod can have a separate DLL file that is only loaded if the bestiary is installed, giving you complete control and allowing you to set custom unlock conditions, while keeping the bestiary optional
 - Using JSON Files gives you slightly less control, but gives the advantages of making the Bestiary completely optional, meaning if the Bestiary is installed, your entries will be visible and unlockable, otherwise if the Bestiary is not installed, they will remain hidden.
 
