@@ -84,7 +84,7 @@ namespace RainWorldBestiary.Menus
 
             if (BestiarySettings.ShowManualButton.Value)
             {
-                InstructionManualButton = new SimpleButton(this, pages[0], "MANUAL", InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
+                InstructionManualButton = new SimpleButton(this, pages[0], Translate("MANUAL"), InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
                 pages[0].subObjects.Add(InstructionManualButton);
             }
 
