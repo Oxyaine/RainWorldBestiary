@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RainWorldBestiary.Plugins;
 using RainWorldBestiary.Types;
 using System;
 using System.Collections;
@@ -154,6 +155,36 @@ namespace RainWorldBestiary.Managers
             string tabsPath = Path.Combine(modPath, "bestiary");
             if (!Directory.Exists(tabsPath))
                 return;
+
+            string pluginsFolder = Path.Combine(modPath, "bestiary\\plugins");
+            if (Directory.Exists(pluginsFolder))
+            {
+                Type basePluginType = typeof(BestiaryPlugin);
+
+                string[] plugins = Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.AllDirectories);
+                foreach (string plugin in plugins)
+                {
+                    Assembly assembly = Assembly.LoadFile(plugin);
+                    Type[] types = assembly.GetTypes();
+                    foreach (Type type in types)
+                    {
+                        if (basePluginType.IsAssignableFrom(type))
+                        {
+                            try
+                            {
+                                BestiaryPlugin plug = (BestiaryPlugin)Activator.CreateInstance(type);
+                                plug.Awake();
+                                plug.Start();
+                                Main.Plugins.Add(plug);
+                            }
+                            catch
+                            {
+                                Main.Logger.LogError("Failed to cast type " + type.Name + " to BestiaryPlugin");
+                            }
+                        }
+                    }
+                }
+            }
 
             string[] tabs = Directory.GetFiles(tabsPath, "*.json", SearchOption.TopDirectoryOnly);
             foreach (string tab in tabs)

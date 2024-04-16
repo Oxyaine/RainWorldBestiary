@@ -1,6 +1,8 @@
-﻿using RainWorldBestiary.Types;
+﻿using RainWorldBestiary;
+using RainWorldBestiary.Hooks;
+using RainWorldBestiary.Types;
 
-namespace RainWorldBestiary.Hooks
+namespace BestiaryManualHooks
 {
     internal class ManualCreatureHooks
     {
@@ -16,7 +18,7 @@ namespace RainWorldBestiary.Hooks
         {
             Fly fly = original(self);
 
-            if (!AutoCreatureHooks.IgnoreID(self.abstractCreature.ID.number, 60))
+            if (!HooksUtilities.IgnoreID(self.abstractCreature.ID.number, UnlockTokenType.ObserveBehaviour, 60))
                 Bestiary.AddOrIncreaseToken(self, UnlockTokenType.ObserveBehaviour, alwaysAddToken: false, "Stacking");
 
             return fly;
@@ -25,7 +27,7 @@ namespace RainWorldBestiary.Hooks
         {
             original(self);
 
-            if (AutoCreatureHooks.IsPositionOnCamera(self.FlyPos))
+            if (HooksUtilities.IsPositionOnCamera(self.FlyPos))
             {
                 Bestiary.AddOrIncreaseToken(CreatureTemplate.Type.Fly.value, UnlockTokenType.ObserveHiding);
             }

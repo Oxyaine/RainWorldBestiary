@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainWorldBestiary", "RainWo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55A317D4-B7A3-4222-8ACB-E8C836059B58}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
 		IDEASnBUGS.md = IDEASnBUGS.md
+		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestiaryManualHooks", "BestiaryManualHooks\BestiaryManualHooks.csproj", "{90B5F3D0-0C2D-4707-86D2-9934B915FFA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8494BB09-5759-4FA9-BA49-4140DE66F48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8494BB09-5759-4FA9-BA49-4140DE66F48D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8494BB09-5759-4FA9-BA49-4140DE66F48D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B5F3D0-0C2D-4707-86D2-9934B915FFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B5F3D0-0C2D-4707-86D2-9934B915FFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B5F3D0-0C2D-4707-86D2-9934B915FFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B5F3D0-0C2D-4707-86D2-9934B915FFA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

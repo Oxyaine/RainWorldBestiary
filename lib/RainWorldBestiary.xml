@@ -137,6 +137,63 @@
             Whether all bestiary entries should be unlocked and completely readable
             </summary>
         </member>
+        <member name="T:RainWorldBestiary.Hooks.HooksUtilities">
+            <summary>
+            A couple utilities that may help with tracking creatures for unlocks
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Hooks.HooksUtilities.IgnoreID(System.Int32,RainWorldBestiary.Types.UnlockTokenType,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Checks if the ID is ignored, if its not, it will be added
+            </summary>
+            <remarks>
+            <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
+            </remarks>
+            <returns>True if the creature should be ignored, otherwise false</returns>
+        </member>
+        <member name="M:RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(Creature)">
+            <summary>
+            Checks if the given creature is currently visible on screen
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(AbstractCreature)">
+            <summary>
+            Checks if the given creature is currently visible on screen
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera(UnityEngine.Vector2)">
+            <summary>
+            Checks if the given position is currently visible on screen
+            </summary>
+        </member>
+        <member name="T:RainWorldBestiary.Plugins.BestiaryPlugin">
+            <summary>
+            The base class for a custom bestiary plugin, that is only loaded if the bestiary is active
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Update">
+            <summary>
+            Called every frame
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Awake">
+            <summary>
+            Called when the plugin is loaded
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Start">
+            <summary>
+            Called when the plugin is loaded, after awake
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate">
+            <summary>
+            Called every fixed update, usually around 50 times a second
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.#ctor">
+            
+        </member>
         <member name="T:RainWorldBestiary.Types.Description">
             <summary>
             A class representing an entries description, saved as a DescriptionModule array, but can be used as a string
@@ -970,15 +1027,6 @@
         </member>
         <member name="M:RainWorldBestiary.Types.CreatureUnlockToken.ToString">
             <returns>Creature ID + Token Type + Value</returns>
-        </member>
-        <member name="M:RainWorldBestiary.Hooks.AutoCreatureHooks.IgnoreID(System.Int32,System.Single,System.Boolean,System.Boolean)">
-            <summary>
-            Checks if the ID is ignored, if its not, it will be added
-            </summary>
-            <remarks>
-            <paramref name="timeSeconds"/>: The time the id should be ignored for when its added
-            </remarks>
-            <returns>True if the creature should be ignored, otherwise false</returns>
         </member>
         <member name="T:RainWorldBestiary.Extensions">
             <summary>

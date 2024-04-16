@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="Bestiary.cs" />
     <Compile Include="BestiarySettings.cs" />
+    <Compile Include="Hooks\HooksUtilities.cs" />
     <Compile Include="Menus\EntryTextDisplay.cs" />
     <Compile Include="Managers\ErrorManager.cs" />
     <Compile Include="Menus\BestiaryMenu.cs" />
     <Compile Include="Menus\OverlappingMenu.cs" />
+    <Compile Include="Plugins\BestiaryPlugin.cs" />
     <Compile Include="Types\BestiarySaveData.cs" />
     <Compile Include="Menus\TabMenu.cs" />
     <Compile Include="Hooks\Auto_CreatureHooks.cs" />
@@ -60,7 +62,6 @@
     <Compile Include="Enumerators.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Menus\Manual\InstructionManualDialog.cs" />
-    <Compile Include="Hooks\Manual_CreatureHooks.cs" />
     <Compile Include="Hooks\MenuHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Menus\RemixMenu.cs" />

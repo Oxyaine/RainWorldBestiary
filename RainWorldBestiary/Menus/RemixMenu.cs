@@ -18,8 +18,6 @@ namespace RainWorldBestiary.Menus
             BestiarySettings.ShowManualButton = config.Bind("bestiary_show_manual_button", true);
             BestiarySettings.ConsistentTitleSpacing = config.Bind("bestiary_use_character_spacing", false);
 
-            //
-
             BestiarySettings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
         }
 

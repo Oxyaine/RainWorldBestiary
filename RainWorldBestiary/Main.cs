@@ -3,6 +3,7 @@ using BepInEx.Logging;
 using RainWorldBestiary.Hooks;
 using RainWorldBestiary.Managers;
 using RainWorldBestiary.Menus;
+using RainWorldBestiary.Plugins;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +21,8 @@ namespace RainWorldBestiary
 
         internal static InGameTranslator.LanguageID CurrentLanguage = null;
         internal static int CurrentSaveSlot = 0;
+
+        internal static readonly List<BestiaryPlugin> Plugins = new List<BestiaryPlugin>();
 
         internal void Awake()
         {
@@ -39,8 +42,17 @@ namespace RainWorldBestiary
 
         internal void Update()
         {
-            AutoCreatureHooks.Update();
+            HooksUtilities.Update();
             Enumerators.Update();
+
+            foreach (BestiaryPlugin plugin in Plugins)
+                plugin.Update();
+        }
+
+        internal void FixedUpdate()
+        {
+            foreach (BestiaryPlugin plugin in Plugins)
+                plugin.FixedUpdate();
         }
 
         internal static List<string> ActiveMods = new List<string>();
@@ -76,8 +88,8 @@ namespace RainWorldBestiary
                     Bestiary.Load();
 
                     ResourceManager.Initialize();
+                    HooksUtilities.Initialize();
                     AutoCreatureHooks.Initialize();
-                    ManualCreatureHooks.Initialize();
 
                     MenuHooks.Initialize();
                 }
