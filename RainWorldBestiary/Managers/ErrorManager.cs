@@ -217,6 +217,7 @@ namespace RainWorldBestiary.Managers
 
         public static readonly ErrorCategory Default = new ErrorCategory();
         public static readonly ErrorCategory CreatureHookFailed = new ErrorCategory("Failed Creature Hooks", "The following interactions will not be recorded as there was a problem creating the necessary hooks.");
+        public static readonly ErrorCategory PluginLoadingFailed = new ErrorCategory("Failed Plugins", "The following plugins had an issue while loading, you can check the logs for more details.");
 
         public void SortErrors() => Errors.Sort();
         public int CompareTo(ErrorCategory other) => Category.CompareTo(other.Category);

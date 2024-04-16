@@ -177,9 +177,11 @@ namespace RainWorldBestiary.Managers
                                 plug.Start();
                                 Main.Plugins.Add(plug);
                             }
-                            catch
+                            catch (Exception ex)
                             {
+                                ErrorManager.AddError(assembly.FullName, ErrorCategory.PluginLoadingFailed, ErrorLevel.Fatal);
                                 Main.Logger.LogError("Failed to cast type " + type.Name + " to BestiaryPlugin");
+                                Main.Logger.LogError(ex);
                             }
                         }
                     }
