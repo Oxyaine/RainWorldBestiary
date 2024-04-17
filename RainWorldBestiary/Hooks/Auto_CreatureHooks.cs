@@ -1,8 +1,5 @@
 ﻿using RainWorldBestiary.Managers;
 using RainWorldBestiary.Types;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace RainWorldBestiary.Hooks
 {

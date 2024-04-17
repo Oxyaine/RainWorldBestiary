@@ -156,37 +156,7 @@ namespace RainWorldBestiary.Managers
             if (!Directory.Exists(tabsPath))
                 return;
 
-            string pluginsFolder = Path.Combine(modPath, "bestiary\\plugins");
-            if (Directory.Exists(pluginsFolder))
-            {
-                Type basePluginType = typeof(BestiaryPlugin);
-
-                string[] plugins = Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.AllDirectories);
-                foreach (string plugin in plugins)
-                {
-                    Assembly assembly = Assembly.LoadFile(plugin);
-                    Type[] types = assembly.GetTypes();
-                    foreach (Type type in types)
-                    {
-                        if (basePluginType.IsAssignableFrom(type))
-                        {
-                            try
-                            {
-                                BestiaryPlugin plug = (BestiaryPlugin)Activator.CreateInstance(type);
-                                plug.Awake();
-                                plug.Start();
-                                Main.Plugins.Add(plug);
-                            }
-                            catch (Exception ex)
-                            {
-                                ErrorManager.AddError(assembly.FullName, ErrorCategory.PluginLoadingFailed, ErrorLevel.Fatal);
-                                Main.Logger.LogError("Failed to cast type " + type.Name + " to BestiaryPlugin");
-                                Main.Logger.LogError(ex);
-                            }
-                        }
-                    }
-                }
-            }
+            CheckForDLLs(modPath, modID);
 
             string[] tabs = Directory.GetFiles(tabsPath, "*.json", SearchOption.TopDirectoryOnly);
             foreach (string tab in tabs)
@@ -222,6 +192,44 @@ namespace RainWorldBestiary.Managers
                 Bestiary.EntriesTabs.Add(entryTab, true);
             }
         }
+
+        private static void CheckForDLLs(string modPath, string modID)
+        {
+            string pluginsFolder = Path.Combine(modPath, "bestiary\\plugins");
+
+            if (Directory.Exists(pluginsFolder))
+            {
+                Type basePluginType = typeof(BestiaryPlugin);
+
+                string[] plugins = Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.AllDirectories);
+                foreach (string plugin in plugins)
+                {
+                    Assembly assembly = Assembly.LoadFile(plugin);
+                    Type[] types = assembly.GetTypes();
+                    foreach (Type type in types)
+                    {
+                        if (basePluginType.IsAssignableFrom(type))
+                        {
+                            try
+                            {
+                                BestiaryPlugin plug = (BestiaryPlugin)Activator.CreateInstance(type);
+                                plug.OwningModID = modID;
+                                plug.Awake();
+                                plug.Start();
+                                Main.Plugins.Add(plug);
+                            }
+                            catch (Exception ex)
+                            {
+                                ErrorManager.AddError(assembly.FullName, ErrorCategory.PluginLoadingFailed, ErrorLevel.Fatal);
+                                Main.Logger.LogError("Failed to cast type " + type.Name + " to BestiaryPlugin");
+                                Main.Logger.LogError(ex);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         private static Entry[] GetFilesAsEntries(string[] files, string owningModID)
         {
             Entry[] entries = new Entry[files.Length];

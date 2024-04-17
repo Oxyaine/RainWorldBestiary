@@ -5,6 +5,8 @@
     /// </summary>
     public abstract class BestiaryPlugin
     {
+        internal string OwningModID = string.Empty;
+
         /// <summary>
         /// Called every frame
         /// </summary>
