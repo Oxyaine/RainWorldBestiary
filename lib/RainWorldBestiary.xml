@@ -67,9 +67,9 @@
             <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
             Does not take into account if <see cref="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
         </member>
-        <member name="F:RainWorldBestiary.Bestiary.EntriesTabs">
+        <member name="P:RainWorldBestiary.Bestiary.EntriesTabs">
             <summary>
-            All the tabs, which hold all the entries, you can add your own, or add your entry to an existing tab
+            All the tabs, which hold all the entries
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.GetEntryByReferenceID(System.String)">
@@ -522,6 +522,9 @@
         </member>
         <member name="M:RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)">
             <inheritdoc/>
+        </member>
+        <member name="M:RainWorldBestiary.Types.EntriesTabList.RemoveAt(System.Int32)">
+            
         </member>
         <member name="M:RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)">
             <summary>

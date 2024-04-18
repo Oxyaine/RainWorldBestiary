@@ -22,17 +22,13 @@ namespace RainWorldBestiary
         internal static InGameTranslator.LanguageID CurrentLanguage = null;
         internal static int CurrentSaveSlot = 0;
 
-        internal static readonly List<BestiaryPlugin> Plugins = new List<BestiaryPlugin>();
-
         internal void Awake()
         {
             try
             {
                 Logger = base.Logger;
 
-                On.RainWorld.OnModsEnabled += RainWorld_OnModsEnabled;
                 On.RainWorld.OnModsInit += RainWorld_OnModsInit;
-                On.RainWorld.OnModsDisabled += RainWorld_OnModsDisabled;
             }
             catch (Exception data)
             {
@@ -45,28 +41,9 @@ namespace RainWorldBestiary
             HooksUtilities.Update();
             Enumerators.Update();
 
-            foreach (BestiaryPlugin plugin in Plugins)
-                plugin.Update();
+            BestiaryModManager.UpdatePlugins();
         }
-
-        internal void FixedUpdate()
-        {
-            foreach (BestiaryPlugin plugin in Plugins)
-                plugin.FixedUpdate();
-        }
-
-        internal static List<string> ActiveMods = new List<string>();
-
-        private void RainWorld_OnModsDisabled(On.RainWorld.orig_OnModsDisabled original, RainWorld self, ModManager.Mod[] newlyDisabledMods)
-        {
-            original(self, newlyDisabledMods);
-
-            foreach (ModManager.Mod mod in newlyDisabledMods)
-                ActiveMods.Remove(mod.id);
-
-            Enumerators.ForceCompleteEnumerator(ResourceManager.UnloadingModsEnumerator);
-            ResourceManager.UnloadingModsEnumerator = Enumerators.StartEnumerator(ResourceManager.UnloadMods(newlyDisabledMods));
-        }
+        internal void FixedUpdate() => BestiaryModManager.FixedUpdatePlugins();
 
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
@@ -79,14 +56,12 @@ namespace RainWorldBestiary
                 {
                     Initialized = true;
 
-                    foreach (ModManager.Mod mod in ModManager.ActiveMods)
-                        ActiveMods.Add(mod.id);
-
                     CurrentLanguage = self.options.language;
                     CurrentSaveSlot = self.options.saveSlot;
 
                     Bestiary.Load();
 
+                    BestiaryModManager.Initialize();
                     ResourceManager.Initialize();
                     HooksUtilities.Initialize();
                     AutoCreatureHooks.Initialize();
@@ -98,17 +73,6 @@ namespace RainWorldBestiary
             {
                 Logger.LogError(exception);
             }
-        }
-
-        private void RainWorld_OnModsEnabled(On.RainWorld.orig_OnModsEnabled original, RainWorld self, ModManager.Mod[] newlyEnabledMods)
-        {
-            original(self, newlyEnabledMods);
-
-            foreach (ModManager.Mod mod in newlyEnabledMods)
-                ActiveMods.Add(mod.id);
-
-            Enumerators.ForceCompleteEnumerator(ResourceManager.LoadingModsEnumerator);
-            ResourceManager.LoadingModsEnumerator = Enumerators.StartEnumerator(ResourceManager.LoadMods(newlyEnabledMods));
         }
     }
 }

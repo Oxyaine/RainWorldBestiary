@@ -15,35 +15,41 @@ namespace RainWorldBestiary.Hooks
         private static RainWorldGame game;
         private static AbstractRoom CurrentPlayerRoom;
 
+        private static bool Initialized = false;
         internal static void Initialize()
         {
-            try
+            if (!Initialized)
             {
-                On.RainWorldGame.ctor += RainWorldGame_ctor;
-                try
-                {
-                    On.Creature.SpitOutOfShortCut += Creature_SpitOutOfShortCut;
-                    On.Player.SpitOutOfShortCut += Player_SpitOutOfShortCut;
-                }
-                catch
-                {
-                    ErrorManager.AddError("Observing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-                }
-                try
-                {
+                Initialized = true;
 
-                    On.Creature.FlyIntoRoom += Creature_FlyIntoRoom;
-                    On.Creature.FlyAwayFromRoom += Creature_FlyAwayFromRoom;
+                try
+                {
+                    On.RainWorldGame.ctor += RainWorldGame_ctor;
+                    try
+                    {
+                        On.Creature.SpitOutOfShortCut += Creature_SpitOutOfShortCut;
+                        On.Player.SpitOutOfShortCut += Player_SpitOutOfShortCut;
+                    }
+                    catch
+                    {
+                        ErrorManager.AddError("Observing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                    }
+                    try
+                    {
+
+                        On.Creature.FlyIntoRoom += Creature_FlyIntoRoom;
+                        On.Creature.FlyAwayFromRoom += Creature_FlyAwayFromRoom;
+                    }
+                    catch
+                    {
+                        ErrorManager.AddError("Observing Flying Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                    }
                 }
                 catch
                 {
-                    ErrorManager.AddError("Observing Flying Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                    ErrorManager.AddError("Anything to do with observing creatures, such as seeing them, and watching them fighting, attacking, eating, etc", ErrorCategory.CreatureHookFailed, ErrorLevel.High);
+                    RainWorldGameCtorWorked = false;
                 }
-            }
-            catch
-            {
-                ErrorManager.AddError("Anything to do with observing creatures, such as seeing them, and watching them fighting, attacking, eating, etc", ErrorCategory.CreatureHookFailed, ErrorLevel.High);
-                RainWorldGameCtorWorked = false;
             }
         }
 

@@ -320,6 +320,8 @@ namespace RainWorldBestiary.Types
         public void CopyTo(EntriesTab[] array, int arrayIndex) => _tabs.CopyTo(array, arrayIndex);
         /// <inheritdoc/>
         public bool Remove(EntriesTab item) => _tabs.Remove(item);
+        ///
+        public void RemoveAt(int index) => _tabs.RemoveAt(index);
 
         /// <summary>
         /// Tries to get the tab using its name

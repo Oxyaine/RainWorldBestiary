@@ -7,90 +7,95 @@ namespace RainWorldBestiary.Hooks
     {
         public const string SlugcatUnlockName = "Slugcat";
 
+        private static bool Initialized = false;
         public static void Initialize()
         {
-            try
+            if (!Initialized)
             {
-                On.Creature.Die += Creature_Die;
-            }
-            catch
-            {
-                ErrorManager.AddError("Players Killing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Spear.LodgeInCreature_CollisionResult_bool += Spear_LodgeInCreature_CollisionResult_bool;
-            }
-            catch
-            {
-                ErrorManager.AddError("Players Impaling Creatures With Spears", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Player.Die += Player_Die;
-            }
-            catch
-            {
-                ErrorManager.AddError("Players Dying To Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Player.Grabbed += Player_Grabbed;
-            }
-            catch
-            {
-                ErrorManager.AddError("Players Getting Grabbed By Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Player.CanEatMeat += Player_CanEatMeat;
-            }
-            catch
-            {
-                ErrorManager.AddError("Players Eating Corpses", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Player.ObjectEaten += Player_ObjectEaten;
-            }
-            catch
-            {
-                ErrorManager.AddError("Players Eating Creatures (Not Corpses)", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Creature.HeardNoise += Creature_HeardNoise;
-            }
-            catch
-            {
-                ErrorManager.AddError("Creatures Hearing Players Noises", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Player.SlugcatGrab += Player_SlugcatGrab;
-            }
-            catch
-            {
-                ErrorManager.AddError("Slugcat Grabbing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-            try
-            {
-                On.Rock.HitSomething += Rock_HitSomething;
-            }
-            catch
-            {
-                ErrorManager.AddError("Slugcat Stunning Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
-            }
-
-            if (HooksUtilities.RainWorldGameCtorWorked)
-            {
+                Initialized = true;
                 try
                 {
-                    On.Creature.Grab += Creature_Grab;
+                    On.Creature.Die += Creature_Die;
                 }
                 catch
                 {
-                    ErrorManager.AddError("Observing creatures fighting, attacking, and eating", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                    ErrorManager.AddError("Players Killing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Spear.LodgeInCreature_CollisionResult_bool += Spear_LodgeInCreature_CollisionResult_bool;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Players Impaling Creatures With Spears", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Player.Die += Player_Die;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Players Dying To Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Player.Grabbed += Player_Grabbed;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Players Getting Grabbed By Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Player.CanEatMeat += Player_CanEatMeat;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Players Eating Corpses", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Player.ObjectEaten += Player_ObjectEaten;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Players Eating Creatures (Not Corpses)", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Creature.HeardNoise += Creature_HeardNoise;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Creatures Hearing Players Noises", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Player.SlugcatGrab += Player_SlugcatGrab;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Slugcat Grabbing Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+                try
+                {
+                    On.Rock.HitSomething += Rock_HitSomething;
+                }
+                catch
+                {
+                    ErrorManager.AddError("Slugcat Stunning Creatures", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                }
+
+                if (HooksUtilities.RainWorldGameCtorWorked)
+                {
+                    try
+                    {
+                        On.Creature.Grab += Creature_Grab;
+                    }
+                    catch
+                    {
+                        ErrorManager.AddError("Observing creatures fighting, attacking, and eating", ErrorCategory.CreatureHookFailed, ErrorLevel.Medium);
+                    }
                 }
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Menu;
+using RainWorldBestiary.Managers;
 using RainWorldBestiary.Menus.Manual;
 using RainWorldBestiary.Types;
 using System.Collections.Generic;
@@ -71,7 +72,7 @@ namespace RainWorldBestiary.Menus
                 for (int i = 0; i < Bestiary.EntriesTabs.Count; i++)
                 {
                     EntriesTab tab = Bestiary.EntriesTabs[i];
-                    if (tab.Count > 0 && Main.ActiveMods.ContainsAll(tab.RequiredMods))
+                    if (tab.Count > 0 && BestiaryModManager.ActiveModsIDs.ContainsAll(tab.RequiredMods))
                     {
                         tabs.Add(new SimpleButton(this, pages[0], Translator.Translate(tab.Name), string.Concat(BUTTON_ID, tab.Name), new Vector2(X, currentButtonY), new Vector2(ButtonSizeX, ButtonSizeY)));
                         pages[0].subObjects.Add(tabs[tabs.Count - 1]);
