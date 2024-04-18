@@ -69,7 +69,7 @@
         </member>
         <member name="P:RainWorldBestiary.Bestiary.EntriesTabs">
             <summary>
-            All the tabs, which hold all the entries
+            All the tabs, which hold all the entries, to add your own, use AddEntries
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.GetEntryByReferenceID(System.String)">

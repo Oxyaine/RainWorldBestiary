@@ -201,7 +201,7 @@ namespace RainWorldBestiary
         }
 
         /// <summary>
-        /// All the tabs, which hold all the entries
+        /// All the tabs, which hold all the entries, to add your own, use AddEntries
         /// </summary>
         public static EntriesTabList EntriesTabs { get; internal set; }
 
