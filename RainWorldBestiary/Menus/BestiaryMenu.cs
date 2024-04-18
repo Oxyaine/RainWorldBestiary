@@ -1,5 +1,5 @@
 ﻿using Menu;
-using RainWorldBestiary.Managers;
+using RainWorldBestiary.Plugins;
 using RainWorldBestiary.Menus.Manual;
 using RainWorldBestiary.Types;
 using System.Collections.Generic;

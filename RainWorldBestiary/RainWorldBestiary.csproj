@@ -43,7 +43,8 @@
     <Compile Include="Bestiary.cs" />
     <Compile Include="BestiarySettings.cs" />
     <Compile Include="Hooks\HooksUtilities.cs" />
-    <Compile Include="Managers\BestiaryModManager.cs" />
+    <Compile Include="Plugins\BestiaryMod.cs" />
+    <Compile Include="Plugins\BestiaryModManager.cs" />
     <Compile Include="Menus\EntryTextDisplay.cs" />
     <Compile Include="Managers\ErrorManager.cs" />
     <Compile Include="Menus\BestiaryMenu.cs" />

@@ -1,7 +1,7 @@
 ﻿using Menu;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using RainWorldBestiary.Managers;
+using RainWorldBestiary.Plugins;
 using RainWorldBestiary.Menus;
 using System;
 using UnityEngine;

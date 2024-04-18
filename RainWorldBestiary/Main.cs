@@ -1,7 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using RainWorldBestiary.Hooks;
-using RainWorldBestiary.Managers;
+using RainWorldBestiary.Plugins;
 using RainWorldBestiary.Menus;
 using RainWorldBestiary.Plugins;
 using System;

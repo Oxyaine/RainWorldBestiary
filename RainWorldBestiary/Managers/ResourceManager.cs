@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace RainWorldBestiary.Managers
+namespace RainWorldBestiary.Plugins
 {
     internal static class ResourceManager
     {

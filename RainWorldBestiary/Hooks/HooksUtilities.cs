@@ -1,4 +1,4 @@
-﻿using RainWorldBestiary.Managers;
+﻿using RainWorldBestiary.Plugins;
 using RainWorldBestiary.Types;
 using System;
 using System.Collections.Generic;
