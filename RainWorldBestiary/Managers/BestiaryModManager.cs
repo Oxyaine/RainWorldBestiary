@@ -219,7 +219,7 @@ namespace RainWorldBestiary.Managers
 
 
 
-
+        [Obsolete("Requires Improvements")]
         static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
         {
             foreach (Entry entry in entries)
@@ -255,6 +255,7 @@ namespace RainWorldBestiary.Managers
                 yield return null;
             }
         }
+        [Obsolete("Requires Improvements")]
         static IEnumerator CacheTokens(DescriptionModule module)
         {
             yield return null;
