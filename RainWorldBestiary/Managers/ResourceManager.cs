@@ -91,13 +91,5 @@ namespace RainWorldBestiary.Managers
                 Main.Logger.LogError(ex);
             }
         }
-
-
-
-
-
-
-        [Obsolete]
-        internal static List<int> cachingOperations => BestiaryModManager.cachingOperations;
     }
 }
