@@ -12,6 +12,8 @@ namespace RainWorldBestiary.Plugins
     {
         private static readonly Dictionary<string, BestiaryMod> LoadedMods = new Dictionary<string, BestiaryMod>();
 
+        private static readonly List<string> ignoredMods = new List<string>();
+
         internal static List<string> ActiveModsIDs = new List<string>();
 
         public static List<BestiaryPlugin> AllPlugins = new List<BestiaryPlugin>();
@@ -84,8 +86,11 @@ namespace RainWorldBestiary.Plugins
 
             foreach (ModManager.Mod mod in newlyEnabledMods)
             {
-                ActiveModsIDs.Add(mod.id);
-                LoadMod(mod);
+                if (!ignoredMods.Contains(mod.id))
+                {
+                    ActiveModsIDs.Add(mod.id);
+                    LoadMod(mod);
+                }
             }
         }
 
@@ -95,7 +100,10 @@ namespace RainWorldBestiary.Plugins
             string tabsPath = Path.Combine(modPath, "bestiary");
 
             if (!Directory.Exists(tabsPath))
+            {
+                ignoredMods.Add(modID);
                 return;
+            }
 
             BestiaryMod mod = new BestiaryMod(modID, CheckForDLLs(tabsPath, modID));
 
@@ -112,7 +120,7 @@ namespace RainWorldBestiary.Plugins
                     if (!string.IsNullOrEmpty(entryTab.Path))
                     {
                         string entriesPath = Path.Combine(modPath, entryTab.Path);
-                        if (!Directory.Exists(entriesPath))
+                        if (Directory.Exists(entriesPath))
                         {
                             string[] files = Directory.GetFiles(entriesPath, "*.json", SearchOption.AllDirectories);
                             Entry[] entries = GetFilesAsEntries(files, modID);
@@ -127,7 +135,7 @@ namespace RainWorldBestiary.Plugins
                 catch (Exception ex)
                 {
                     ErrorManager.AddError("Failed To Load Tab From File " + tabFile, ErrorLevel.Fatal);
-                    Main.Logger.LogWarning("Something went wrong trying to parse " + tabFile + ".json, creating the tab as a default tab using the folders name.");
+                    Main.Logger.LogWarning("Something went wrong trying to parse " + tabFile + ", creating the tab as a default tab using the folders name.");
                     Main.Logger.LogError(ex);
                 }
             }

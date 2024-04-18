@@ -6,7 +6,7 @@ namespace RainWorldBestiary.Plugins
     {
         public readonly string ID = string.Empty;
         public BestiaryPlugin[] Plugins = new BestiaryPlugin[0];
-        public EntriesTabList Tabs = null;
+        public EntriesTabList Tabs = new EntriesTabList();
 
         public BestiaryMod(string id) => ID = id;
         public BestiaryMod(string id, BestiaryPlugin[] plugins) : this(id)
