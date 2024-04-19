@@ -267,7 +267,7 @@
             A piece of a description, can be given a lock ID to lock this part of an entries description
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.Types.DescriptionModule.UnlockIDs">
+        <member name="F:RainWorldBestiary.Types.DescriptionModule.UnlockTokens">
             <summary>
             All the unlock tokens of this description module, used to determine what requirements need to be met to unlock this part of the description
             </summary>

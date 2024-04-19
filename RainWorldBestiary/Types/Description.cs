@@ -104,7 +104,7 @@ namespace RainWorldBestiary.Types
     public class DescriptionModule
     {
         [JsonProperty("unlock_id"), Obsolete]
-        private CreatureUnlockToken UnlockID
+        private CreatureUnlockToken UnlockTokenSetter
         {
             set => UnlockToken = value;
         }

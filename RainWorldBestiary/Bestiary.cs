@@ -127,7 +127,7 @@ namespace RainWorldBestiary
 
                 if (!alwaysAddToken)
                     if (!_CreatureUnlockIDs.Contains(creatureID))
-                        if (token.Count >= RequiredToken.Count && token.ContainsSpecialData(RequiredToken.SpecialData))
+                        if (token.Count >= RequiredToken.Count)
                             _CreatureUnlockIDs.Add(creatureID);
             }
         }

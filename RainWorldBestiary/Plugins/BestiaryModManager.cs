@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace RainWorldBestiary.Plugins
@@ -126,7 +127,7 @@ namespace RainWorldBestiary.Plugins
                             Entry[] entries = GetFilesAsEntries(files, modID);
                             entryTab.AddRange(entries);
 
-                            ScanEntriesAndCacheTokens(entries);
+                            CacheEntries(entries);
                         }
                     }
 
@@ -223,87 +224,32 @@ namespace RainWorldBestiary.Plugins
             Bestiary.EntriesTabs = AllTabs;
         }
 
-
-
         static void CacheEntries(Entry[] entries)
         {
             foreach (Entry entry in entries)
             {
                 foreach (DescriptionModule module in entry.Info.Description)
                 {
-                    foreach (CreatureUnlockToken token in module.UnlockTokens)
-                    {
-
-                    }
-                }
-            }
-        }
-
-
-        [Obsolete("Requires Improvements")]
-        static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
-        {
-            foreach (Entry entry in entries)
-            {
-                List<UnlockToken> tokens = new List<UnlockToken>();
-                bool added = false;
-
-                foreach (DescriptionModule v in entry.Info.Description)
-                {
-                    if (v.UnlockTokens.Length == 0)
+                    if (module.UnlockTokens.Length == 0)
                     {
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
                         continue;
                     }
 
-                    bool add = false;
-                    for (int i = 0; i < v.UnlockTokens.Length; i++)
+                    foreach (CreatureUnlockToken token in module.UnlockTokens)
                     {
-                        if (!added && v.UnlockTokens[i] == null)
-                            add = true;
-                        else if (!tokens.Contains(v.UnlockTokens[i]))
-                            tokens.Add(v.UnlockTokens[i]);
-                    }
-
-                    if (added = add)
-                        Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
-
-                    Enumerators.StartEnumerator(CacheTokens(v));
-
-                    yield return null;
-                }
-
-                yield return null;
-            }
-        }
-        [Obsolete("Requires Improvements")]
-        static IEnumerator CacheTokens(DescriptionModule module)
-        {
-            yield return null;
-            foreach (CreatureUnlockToken token in module.UnlockTokens)
-            {
-                if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
-                {
-                    bool tokenExists = false;
-                    int existingTokenIndex = 0;
-                    for (int i = 0; i < tokens.Count; ++i)
-                    {
-                        if (tokens[i].Equals(token))
+                        if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
                         {
-                            tokenExists = true;
-                            existingTokenIndex = i;
-                            break;
+                            int index = tokens.FindIndex(v => v.Equals(token));
+
+                            if (index == -1)
+                                tokens.Add(token);
+                            else if (token.Count > tokens[index].Count)
+                                tokens[index] = token;
                         }
+                        else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken> { token });
                     }
-
-                    if (!tokenExists)
-                        tokens.Add(token);
-                    else if (tokens[existingTokenIndex].Count < token.Count)
-                        tokens[existingTokenIndex] = token;
                 }
-                else Bestiary._allUniqueUnlockTokens.Add(token.CreatureID, new List<UnlockToken>() { token });
-
-                yield return null;
             }
         }
     }
