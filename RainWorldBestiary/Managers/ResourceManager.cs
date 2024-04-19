@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using RainWorldBestiary.Plugins;
-using RainWorldBestiary.Types;
+﻿using RainWorldBestiary.Types;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
