@@ -8,14 +8,12 @@ If you have a suggestion, want to report a bug or issue (including performance i
 
 ## First Things First
 ### To get a grasp on the Structure of how to add your own entries, you should download the template from the files above.
-*This only applies if you are adding the entries through files*
-######
 This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.
 
 Entries can be made in two ways, through code, and through JSON files placed in your mod.
-- Accessing the code allows you to completely customize your entry, setting a custom unlock condition, and custom module unlock conditions. However there are some drawbacks, accessing the code usually makes the Bestiary a hard dependency, meaning your mod wont run unless the bestiary is also installed. You also would have to manually load and unload your entries.
-	- I am currently working on a fix, where your mod can have a separate DLL file that is only loaded if the bestiary is installed, giving you complete control and allowing you to set custom unlock conditions, while keeping the bestiary optional
-- Using JSON Files gives you slightly less control, but gives the advantages of making the Bestiary completely optional, meaning if the Bestiary is installed, your entries will be visible and unlockable, otherwise if the Bestiary is not installed, they will remain hidden.
+- While adding entries through code is possible, it's not fully supported, and it's recommended you add entries through JSON files. Adding entries through code does give slightly more customization, such as setting a custom unlock condition, and custom module unlock conditions.
+	- There are ways to add custom code to the bestiary without making the bestiary a dependency, you can read a bit more on that [here]().
+- Using JSON Files gives you slightly less control, but is fully supported, and gives some advantages such as the bestiary managing the loading and unloading of your entries. It will also make your entries optional, meaning if the Bestiary is installed, your entries will be visible, otherwise if the Bestiary is not installed, they will remain hidden and unused.
 
 #
 #
