@@ -1,10 +1,10 @@
 {
     "name": "Tab titles also get translated!",
     "title_image":{
-        "element_name": "illustrations\\Tab_title",
+        "element_name": "illustrations\\my_bestiary_titles\\My_Tab_Title",
         "scale": 1,
         "x_offset": 0,
         "y_offset": 0
     },
-    "path": "bestiary\\tab"
+    "path": "bestiary\\MyTab"
 }
