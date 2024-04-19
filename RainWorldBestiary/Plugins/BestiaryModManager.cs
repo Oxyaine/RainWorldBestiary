@@ -104,7 +104,7 @@ namespace RainWorldBestiary.Plugins
                 return;
             }
 
-            BestiaryMod mod = new BestiaryMod(modID, CheckForDLLs(tabsPath, modID));
+            BestiaryMod mod = new BestiaryMod(modID, CheckForDLLs(tabsPath));
 
             string[] tabFiles = Directory.GetFiles(tabsPath, "*.json", SearchOption.TopDirectoryOnly);
             foreach (string tabFile in tabFiles)
@@ -142,7 +142,7 @@ namespace RainWorldBestiary.Plugins
             LoadedMods.Add(modID, mod);
             AllPlugins.AddRange(mod.Plugins);
         }
-        public static BestiaryPlugin[] CheckForDLLs(string modPath, string modID)
+        public static BestiaryPlugin[] CheckForDLLs(string modPath)
         {
             string pluginsFolder = Path.Combine(modPath, "bestiary\\plugins");
 
