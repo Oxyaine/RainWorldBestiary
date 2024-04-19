@@ -36,7 +36,7 @@ namespace RainWorldBestiary.Menus
             AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Show Manual Button"), BestiarySettings.ShowManualButton, description: Translator.Translate("OXY.BESTIARY.SHOW_MANUAL_BUTTON_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Use Consistent Title Character Spacing"), BestiarySettings.ConsistentTitleSpacing, ExperimentalColor, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Use Consistent Title Character Spacing"), BestiarySettings.ConsistentTitleSpacing, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();

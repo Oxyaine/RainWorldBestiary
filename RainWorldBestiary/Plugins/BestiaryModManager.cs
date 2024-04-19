@@ -26,7 +26,7 @@ namespace RainWorldBestiary.Plugins
             foreach (BestiaryPlugin plugin in AllPlugins)
                 plugin.FixedUpdate();
         }
-
+        
         private static bool Initialized = false;
         internal static void Initialize()
         {
@@ -226,11 +226,13 @@ namespace RainWorldBestiary.Plugins
         {
             foreach (Entry entry in entries)
             {
+                bool added = false;
                 foreach (DescriptionModule module in entry.Info.Description)
                 {
-                    if (module.UnlockTokens.Length == 0)
+                    if (added || module.UnlockTokens.Length == 0)
                     {
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
+                        added = true;
                         continue;
                     }
 
