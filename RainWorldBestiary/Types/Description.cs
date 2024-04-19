@@ -103,22 +103,33 @@ namespace RainWorldBestiary.Types
     /// </summary>
     public class DescriptionModule
     {
-        // A set only property so you can just say unlock_id in the json file and specify one creature unlock token
-        [JsonProperty("unlock_id")]
+        [JsonProperty("unlock_id"), Obsolete]
         private CreatureUnlockToken UnlockID
+        {
+            set => UnlockToken = value;
+        }
+        [JsonProperty("unlock_ids"), Obsolete]
+        private CreatureUnlockToken[] UnlockTokensSetter
+        {
+            set => UnlockTokens = value;
+        }
+
+        // A set only property so you can just say unlock_token in the json file and specify one creature unlock token
+        [JsonProperty("unlock_token")]
+        private CreatureUnlockToken UnlockToken
         {
             set
             {
                 if (value != null)
-                    UnlockIDs = UnlockIDs.Append(value).ToArray();
+                    UnlockTokens = UnlockTokens.Append(value).ToArray();
             }
         }
 
         /// <summary>
         /// All the unlock tokens of this description module, used to determine what requirements need to be met to unlock this part of the description
         /// </summary>
-        [JsonProperty("unlock_ids")]
-        public CreatureUnlockToken[] UnlockIDs = new CreatureUnlockToken[0];
+        [JsonProperty("unlock_tokens")]
+        public CreatureUnlockToken[] UnlockTokens = new CreatureUnlockToken[0];
 
         /// <summary>
         /// The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
@@ -136,7 +147,7 @@ namespace RainWorldBestiary.Types
                 return true;
 
             bool unlocked = true;
-            foreach (CreatureUnlockToken unlock in info.UnlockIDs)
+            foreach (CreatureUnlockToken unlock in info.UnlockTokens)
             {
                 bool thisValue = CheckIfUnlockTokenValid(unlock);
 
@@ -263,7 +274,7 @@ namespace RainWorldBestiary.Types
         /// <param name="newLine">Whether this module and the previous module should be separated by a new line '\n', otherwise just separates with a space.</param>
         public DescriptionModule(string body, CreatureUnlockToken unlockToken, bool newLine = false) : this(body, newLine)
         {
-            UnlockID = unlockToken;
+            UnlockToken = unlockToken;
         }
 
         /// <summary>
@@ -271,7 +282,7 @@ namespace RainWorldBestiary.Types
         /// </summary>
         public DescriptionModule(DescriptionModule other)
         {
-            other.UnlockIDs.CopyTo(UnlockIDs, 0);
+            other.UnlockTokens.CopyTo(UnlockTokens, 0);
             ModuleUnlockedCondition = other.ModuleUnlockedCondition;
             Body = new string(other.Body.ToCharArray());
             NewLine = other.NewLine;

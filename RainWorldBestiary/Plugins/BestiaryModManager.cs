@@ -225,6 +225,20 @@ namespace RainWorldBestiary.Plugins
 
 
 
+        static void CacheEntries(Entry[] entries)
+        {
+            foreach (Entry entry in entries)
+            {
+                foreach (DescriptionModule module in entry.Info.Description)
+                {
+                    foreach (CreatureUnlockToken token in module.UnlockTokens)
+                    {
+
+                    }
+                }
+            }
+        }
+
 
         [Obsolete("Requires Improvements")]
         static IEnumerator ScanEntriesAndCacheTokens(Entry[] entries)
@@ -236,19 +250,19 @@ namespace RainWorldBestiary.Plugins
 
                 foreach (DescriptionModule v in entry.Info.Description)
                 {
-                    if (v.UnlockIDs.Length == 0)
+                    if (v.UnlockTokens.Length == 0)
                     {
                         Bestiary.CreatureUnlockIDsOverride.Add(entry.Info.UnlockID);
                         continue;
                     }
 
                     bool add = false;
-                    for (int i = 0; i < v.UnlockIDs.Length; i++)
+                    for (int i = 0; i < v.UnlockTokens.Length; i++)
                     {
-                        if (!added && v.UnlockIDs[i] == null)
+                        if (!added && v.UnlockTokens[i] == null)
                             add = true;
-                        else if (!tokens.Contains(v.UnlockIDs[i]))
-                            tokens.Add(v.UnlockIDs[i]);
+                        else if (!tokens.Contains(v.UnlockTokens[i]))
+                            tokens.Add(v.UnlockTokens[i]);
                     }
 
                     if (added = add)
@@ -266,7 +280,7 @@ namespace RainWorldBestiary.Plugins
         static IEnumerator CacheTokens(DescriptionModule module)
         {
             yield return null;
-            foreach (CreatureUnlockToken token in module.UnlockIDs)
+            foreach (CreatureUnlockToken token in module.UnlockTokens)
             {
                 if (Bestiary._allUniqueUnlockTokens.TryGetValue(token.CreatureID, out List<UnlockToken> tokens))
                 {
