@@ -164,7 +164,6 @@ namespace RainWorldBestiary.Plugins
                         try
                         {
                             BestiaryPlugin plug = (BestiaryPlugin)Activator.CreateInstance(type);
-                            plug.OwningModID = modID;
                             plug.Awake();
                             plug.Start();
                             Plugins.Add(plug);

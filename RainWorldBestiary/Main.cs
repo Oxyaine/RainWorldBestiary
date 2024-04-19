@@ -1,11 +1,9 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using RainWorldBestiary.Hooks;
-using RainWorldBestiary.Plugins;
 using RainWorldBestiary.Menus;
 using RainWorldBestiary.Plugins;
 using System;
-using System.Collections.Generic;
 
 namespace RainWorldBestiary
 {
