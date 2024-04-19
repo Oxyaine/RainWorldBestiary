@@ -12,7 +12,7 @@
     "color": "dff5d6",
     "description":[
         {
-            "unlock_id": {
+            "unlock_token": {
                 "token_type": 0,
                 "value": 1,
                 "creature_id": "EntryOne"
@@ -20,28 +20,28 @@
             "body": "This text is always visible if the entry is visible! This will appear first!"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "body": "This text is always visible and will make the entry visible! This will appear second"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "body": "All text is by default translated, what you're reading right now isn't visible in game. You can see another example in the next module"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "body": "BESTIARY_ENTRY-ONE_TRANSLATION_EXAMPLE"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "body": "If no translation is found, this text will appear"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "translate": false,
             "body": "You can guess what this does"
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "PlayerGrabbed",
                     "value": 1,
@@ -58,7 +58,7 @@
             "body": "This text will appear if the player grabs the creature while its ALIVE OR the creature has grabbed the player"
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "PlayerGrabbed",
                     "value": 1,
@@ -76,18 +76,18 @@
             "body": "This text will appear on a new line from the previous modules, and only if the player grabs the creature while its DEAD AND the creature has grabbed the player"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "new_line": true,
             "translate": false,
             "body": "This module will always be visible, will appear on a new line from the previous modules, and will not be run through the in game translator"
         },
         {
-            "unlock_id": null,
+            "unlock_token": null,
             "new_line": false,
             "body": "Alternitively, you can use \n This text after the \\n will be on a new line!"
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "PlayerGrabbed",
                     "value": 1,
@@ -110,7 +110,7 @@
             "body": "If the creature has either been grabbed by the player or grabbed the player, AND, has killed the player, this text will be visible. "
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "PlayerGrabbed",
                     "value": 1,
@@ -133,7 +133,7 @@
             "body": "If the creature has killed the player, or, they have both been grabbed by the player and grabbed the player, this text will be visible."
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "ObserveFood",
                     "value": 1,
@@ -144,7 +144,7 @@
             "body": "This text is only visible if the creature has been seen eating both batflies and snails!"
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "ObserveFood",
                     "value": 1,
@@ -155,7 +155,7 @@
             "body": "This text is only visible if the creature has been seen getting eaten by a green lizard!"
         },
         {
-            "unlock_ids":[
+            "unlock_tokens":[
                 {
                     "token_type": "ObserveFood",
                     "value": 5,

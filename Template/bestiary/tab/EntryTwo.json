@@ -1,6 +1,6 @@
 {
     "name": "This will override the entries name!",
-    "unlock_id": "EntryOne",
+    "unlock_id": "EntryTwo",
     "locked_text": "This Entry Is Locked, you can find out why by checking its JSON file!.",
     "icons_next_to_title": true,
     "entry_icons": [ "illustrations\\Slugcat_Head", "illustrations\\Slugcat_Head_2" ],
@@ -13,18 +13,18 @@
     "color": "dff5d6",
     "description":[
         {
-            "unlock_id": {
+            "unlock_token": {
                 "token_type": 0,
                 "value": 1,
-                "creature_id": "EntryOne"
+                "creature_id": "EntryTwo"
             },
             "text": "This text is always visible if the entry is visible! This will appear first!"
         },
         {
-            "unlock_id": {
+            "unlock_token": {
                 "token_type": 0,
                 "value": 1,
-                "creature_id": "EntryOne"
+                "creature_id": "EntryTwo"
             },
             "text": "Because there is no module with a null \"unlock id\", this entry will not be visible until one of the modules is unlocked!"
         }

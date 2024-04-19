@@ -9,7 +9,7 @@
   "title_sprite": null,
   "description": [
     {
-      "unlock_ids": [
+      "unlock_tokens": [
         {
           "creature_id": "",
           "count": 1,
