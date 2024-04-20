@@ -72,7 +72,7 @@ namespace RainWorldBestiary.Menus
                 float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
                 for (int i = 0; i < elements.Length; i++)
                 {
-                    sprites[i] = new FSprite(elements[i])
+                    sprites[i] = new FSprite(Path.Combine(MenuResources.Instance.IllustrationsIconsPath, elements[i]))
                     {
                         x = currentX,
                         y = currentY,
