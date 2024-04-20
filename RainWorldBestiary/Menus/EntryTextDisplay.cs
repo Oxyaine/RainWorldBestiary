@@ -14,79 +14,42 @@ namespace RainWorldBestiary.Menus
         public int PredictedTextLength = 0;
         private readonly int LineSpacing = 20;
         private readonly List<MenuObject> _Objects = new List<MenuObject>();
+        private readonly List<IAnimatableObject> animatableObjects = new List<IAnimatableObject>();
 
-        private enum MenuObjectType : byte
-        {
-            Unknown,
-            Label,
-            SimpleButton
-        }
         public IEnumerator Animate(MenuObject owner, FSprite[] characterSprites)
         {
             if (_Objects.Count == 0)
                 yield break;
 
-            int currentObjectIndex = 0, currentTextPosition = 0, CurrentLength = 0, AmountRevealed = 0, CurrentSpriteIndex = 0;
+            int currentObjectIndex = 0,  AmountRevealed = 0, CurrentSpriteIndex = 0;
             int spriteGapBeforeFade = TotalLength / characterSprites.Length;
             int currentSpriteCapBeforeFade = spriteGapBeforeFade;
+
             const int RevealSpeed = 15;
-            bool newLabel = true;
-            string text = string.Empty;
+            int currentAmountRevealed = 0;
 
             while (currentObjectIndex < _Objects.Count)
             {
-                MenuObjectType type = GetMenuObjectType(_Objects[currentObjectIndex], out MovingSimpleButton button, out MenuLabel label);
+                owner.subObjects.Add(_Objects[currentObjectIndex]);
 
-                if (type == MenuObjectType.SimpleButton)
+                IEnumerator enumerator = animatableObjects[currentObjectIndex].Animate();
+
+                while (enumerator.MoveNext())
                 {
-                    owner.subObjects.Add(button.ToSimpleButton());
-                    AmountRevealed += button.menuLabel.text.Length;
-                }
-                else if (type == MenuObjectType.Label)
-                {
-                    if (newLabel)
+                    currentAmountRevealed += RevealSpeed;
+                    AmountRevealed += RevealSpeed;
+
+                    while (AmountRevealed >= currentSpriteCapBeforeFade)
                     {
-                        text = label.text;
-                        CurrentLength = text.Length;
-
-                        label.text = string.Empty;
-                        owner.subObjects.Add(label);
+                        currentSpriteCapBeforeFade += spriteGapBeforeFade;
+                        Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
+                        ++CurrentSpriteIndex;
                     }
 
-                    while (currentTextPosition + RevealSpeed < CurrentLength)
-                    {
-                        label.text += text.Substring(currentTextPosition, RevealSpeed);
-                        currentTextPosition += RevealSpeed;
-                        AmountRevealed += RevealSpeed;
-
-                        while (AmountRevealed >= currentSpriteCapBeforeFade)
-                        {
-                            currentSpriteCapBeforeFade += spriteGapBeforeFade;
-                            Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
-                            ++CurrentSpriteIndex;
-                        }
-
-                        yield return new WaitTime(0.01f);
-                    }
-
-                    label.text += text.Substring(currentTextPosition);
-                    AmountRevealed += CurrentLength - currentTextPosition;
-                    currentTextPosition = 0;
-                    newLabel = true;
-                }
-                else
-                {
-                    Main.Logger.LogError(_Objects[currentObjectIndex].GetType().Name + " has no animation behaviour for text revealing.");
+                    yield return enumerator.Current;
                 }
 
-                ++currentObjectIndex;
-
-                if (AmountRevealed >= currentSpriteCapBeforeFade)
-                {
-                    currentSpriteCapBeforeFade += spriteGapBeforeFade;
-                    Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
-                    ++CurrentSpriteIndex;
-                }
+                currentAmountRevealed += RevealSpeed;
 
                 yield return new WaitTime(0.005f);
             }
@@ -104,25 +67,6 @@ namespace RainWorldBestiary.Menus
             }
 
             sprite.RemoveFromContainer();
-        }
-        private static MenuObjectType GetMenuObjectType(MenuObject @object, out MovingSimpleButton simpleButton, out MenuLabel label)
-        {
-            switch (@object)
-            {
-                case MovingSimpleButton movingSimpleButton:
-                    simpleButton = movingSimpleButton;
-                    label = null;
-                    return MenuObjectType.SimpleButton;
-                case MenuLabel menuLabel:
-                    label = menuLabel;
-                    simpleButton = null;
-                    return MenuObjectType.Label;
-
-                default:
-                    label = null;
-                    simpleButton = null;
-                    return MenuObjectType.Unknown;
-            }
         }
 
         public EntryTextDisplay() { }
@@ -235,7 +179,7 @@ namespace RainWorldBestiary.Menus
                                 entryAvailable = false;
 
                             Vector2 Position = new Vector2(currentX - xSize + currentSizeValue, Y - 10f);
-                            MovingSimpleButton button = new MovingSimpleButton(menu, owner, structure.Message, EntryMenu.ENTRY_REFERENCE_ID + structure.OtherData,
+                            AnimatableSimpleButton button = new AnimatableSimpleButton(menu, owner, structure.Message, EntryMenu.ENTRY_REFERENCE_ID + structure.OtherData,
                                 buttonsOffScreen ? new Vector2(-100f, -100f) : Position, Position, new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
                             {
                                 rectColor = new HSLColor(0f, 0f, 0f),
@@ -244,29 +188,32 @@ namespace RainWorldBestiary.Menus
                             };
 
                             _Objects.Add(button);
+                            animatableObjects.Add(button);
 
                             currentSizeValue += 10f;
                         }
                         break;
                     case StructureType.Colour:
                         {
-                            MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
+                            AnimatableLabel label = new AnimatableLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
 
                             label.label.color = structure.OtherData.HexToColor();
                             label.label.alignment = FLabelAlignment.Left;
 
                             _Objects.Add(label);
+                            animatableObjects.Add(label);
 
                             currentSizeValue += 20f;
                         }
                         break;
                     default:
                         {
-                            MenuLabel label = new MenuLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
+                            AnimatableLabel label = new AnimatableLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
 
                             label.label.alignment = FLabelAlignment.Left;
 
                             _Objects.Add(label);
+                            animatableObjects.Add(label);
 
                             currentSizeValue += 10f;
                         }
@@ -315,20 +262,5 @@ namespace RainWorldBestiary.Menus
             => page.subObjects.AddRange(_Objects);
         public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
             => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
-    }
-
-    internal class MovingSimpleButton : SimpleButton
-    {
-        public Vector2 IntendedPosition = Vector2.zero;
-
-        public MovingSimpleButton(Menu.Menu menu, MenuObject owner, string displayText, string singalText, Vector2 currentPosition, Vector2 intendedPosition, Vector2 size) : base(menu, owner, displayText, singalText, currentPosition, size)
-        {
-            IntendedPosition = intendedPosition;
-        }
-        public SimpleButton ToSimpleButton()
-        {
-            pos = IntendedPosition;
-            return this;
-        }
     }
 }
