@@ -12,7 +12,7 @@ namespace RainWorldBestiary.Menus
 
     internal class OverlappingMenu : Dialog
     {
-        bool opening = false, closing = false;
+        private bool opening = false, closing = false;
         private float targetAlpha;
 
         private readonly ISubMenuOwner owningMenu;
@@ -59,8 +59,8 @@ namespace RainWorldBestiary.Menus
             }
             if (closing && Math.Abs(currentAlpha - targetAlpha) < 0.09f)
             {
-                manager.StopSideProcess(this);
                 closing = false;
+                manager.StopSideProcess(this);
             }
         }
         public override void GrafUpdate(float timeStacker)
