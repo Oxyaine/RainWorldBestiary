@@ -26,32 +26,38 @@ namespace RainWorldBestiary.Menus
             int currentSpriteCapBeforeFade = spriteGapBeforeFade;
 
             const int RevealSpeed = 15;
-            int currentAmountRevealed = 0;
 
             while (currentObjectIndex < _Objects.Count)
             {
                 owner.subObjects.Add(_Objects[currentObjectIndex]);
-
                 IEnumerator enumerator = animatableObjects[currentObjectIndex].Animate();
 
                 while (enumerator.MoveNext())
                 {
-                    currentAmountRevealed += RevealSpeed;
                     AmountRevealed += RevealSpeed;
 
-                    while (AmountRevealed >= currentSpriteCapBeforeFade)
-                    {
-                        currentSpriteCapBeforeFade += spriteGapBeforeFade;
-                        Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
-                        ++CurrentSpriteIndex;
-                    }
+                    CheckSpriteFading();
 
                     yield return enumerator.Current;
                 }
+                
+                AmountRevealed += RevealSpeed;
+                ++currentObjectIndex;
 
-                currentAmountRevealed += RevealSpeed;
+                yield return null;
+            }
 
-                yield return new WaitTime(0.005f);
+            for (int i = CurrentSpriteIndex; i < characterSprites.Length; i++)
+                Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[i]));
+
+            void CheckSpriteFading()
+            {
+                while (AmountRevealed >= currentSpriteCapBeforeFade && CurrentSpriteIndex < characterSprites.Length)
+                {
+                    currentSpriteCapBeforeFade += spriteGapBeforeFade;
+                    Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
+                    ++CurrentSpriteIndex;
+                }
             }
         }
         private IEnumerator FadeIconAnimation(FSprite sprite)

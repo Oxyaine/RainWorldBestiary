@@ -41,16 +41,17 @@ namespace RainWorldBestiary.Menus
         public IEnumerator Animate()
         {
             string text = label.text;
-            int textPosition = 0, textLength = text.Length;
-            while (textPosition + RevealSpeed < textLength)
+            label.text = string.Empty;
+            int currentTextIndex = 0, textLength = text.Length;
+            while (currentTextIndex + RevealSpeed < textLength)
             {
-                label.text += text.Substring(textPosition, RevealSpeed);
-                textPosition += RevealSpeed;
+                label.text += text.Substring(currentTextIndex, RevealSpeed);
+                currentTextIndex += RevealSpeed;
 
                 yield return new WaitTime(0.01f);
             }
 
-            label.text += text.Substring(textPosition, RevealSpeed);
+            label.text += text.Substring(currentTextIndex);
         }
 
         public IEnumerator ReverseAnimate()
