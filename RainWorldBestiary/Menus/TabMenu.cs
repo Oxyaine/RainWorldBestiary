@@ -32,7 +32,7 @@ namespace RainWorldBestiary.Menus
             foreach (MenuIllustration illustration in illustrations)
                 AddMovingObject(illustration, new Vector2(illustration.pos.x, illustration.pos.y + screenSize.y), illustration.pos);
 
-                selectedObject = firstEntryButton;
+            selectedObject = firstEntryButton;
 
             TipLabel = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, 25f), Vector2.one, false);
             pages[0].subObjects.Add(TipLabel);
@@ -163,6 +163,7 @@ namespace RainWorldBestiary.Menus
         public void ReturningToThisMenu()
         {
             InSubMenu = false;
+            Bestiary.ClosingAllReadingMenus = false;
             backButton.menuLabel.text = Translator.Translate("BACK");
         }
     }

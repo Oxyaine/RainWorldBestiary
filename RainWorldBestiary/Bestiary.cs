@@ -233,7 +233,8 @@ namespace RainWorldBestiary
             return null;
         }
 
-        internal static List<EntryMenu> PreviousMenusChain = new List<EntryMenu>();
+        internal static byte ReadingMenusDeep;
+        internal static bool ClosingAllReadingMenus = false;
 
         /// <inheritdoc cref="GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(Creature creature, bool useSpecialIdLogic = true) => GetCreatureUnlockName(creature.abstractCreature, useSpecialIdLogic);

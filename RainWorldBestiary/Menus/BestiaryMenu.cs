@@ -173,6 +173,7 @@ namespace RainWorldBestiary.Menus
                     }
                 }
 
+                InSubMenu = true;
                 PlaySound(SoundID.MENU_Switch_Page_In);
                 manager.ShowDialog(new TabMenu(manager, selectedTab, this));
             }

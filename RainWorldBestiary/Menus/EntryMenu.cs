@@ -32,12 +32,12 @@ namespace RainWorldBestiary.Menus
             backObject = backButton;
             pages[0].subObjects.Add(backButton);
 
-            if (Bestiary.PreviousMenusChain.Count > 0)
+            if (Bestiary.ReadingMenusDeep > 0)
             {
                 SimpleButton returnButton = new SimpleButton(this, pages[0], Translator.Translate("RETURN TO ENTRIES"), ReturnButtonMessage, new Vector2(leftAnchor + 250f, -30f), new Vector2(220f, 30f));
                 AddMovingObject(returnButton, new Vector2(leftAnchor + 250f, 25f));
 
-                if (Bestiary.PreviousMenusChain.Count > 1)
+                if (Bestiary.ReadingMenusDeep > 1)
                 {
                     backButton.menuLabel.text = Translator.Translate("BACK TO PREVIOUS");
                 }
@@ -50,6 +50,8 @@ namespace RainWorldBestiary.Menus
             DisplayEntryInformation(DisplayedEntry, in screenSize);
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
+
+            Bestiary.ClosingAllReadingMenus = false;
         }
 
         public override void ShutDownProcess()
@@ -190,10 +192,10 @@ namespace RainWorldBestiary.Menus
 
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
-                if (Bestiary.PreviousMenusChain.Count > 0)
+                if (Bestiary.ReadingMenusDeep > 0)
                 {
-                    Bestiary.PreviousMenusChain.RemoveAt(0);
-                    if (Bestiary.PreviousMenusChain.Count == 0)
+                    --Bestiary.ReadingMenusDeep;
+                    if (Bestiary.ReadingMenusDeep == 0)
                         Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
                 }
 
@@ -203,10 +205,10 @@ namespace RainWorldBestiary.Menus
             {
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
-                foreach (EntryMenu menu in Bestiary.PreviousMenusChain)
-                    menu.CloseMenu();
+                Bestiary.ReadingMenusDeep = 0;
+                Bestiary.ClosingAllReadingMenus = true;
 
-                Bestiary.PreviousMenusChain.Clear();
+                Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
 
                 CloseMenu();
             }
@@ -219,10 +221,10 @@ namespace RainWorldBestiary.Menus
                 {
                     PlaySound(SoundID.MENU_Switch_Page_In);
 
-                    if (Bestiary.PreviousMenusChain.Count == 0)
+                    if (Bestiary.ReadingMenusDeep == 0)
                         Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
+                    ++Bestiary.ReadingMenusDeep;
 
-                    Bestiary.PreviousMenusChain.Add(this);
                     InSubMenu = true;
                     manager.ShowDialog(new EntryMenu(manager, entry, this));
                 }
@@ -239,8 +241,15 @@ namespace RainWorldBestiary.Menus
 
         public void ReturningToThisMenu()
         {
-            if (Bestiary.PreviousMenusChain.Count == 0)
+            if (Bestiary.ClosingAllReadingMenus)
+            {
+                Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
+                CloseMenu();
+            }
+            else if (Bestiary.ReadingMenusDeep == 0)
+            {
                 Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK")));
+            }
 
             InSubMenu = false;
         }
