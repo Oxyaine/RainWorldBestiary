@@ -189,7 +189,6 @@ namespace RainWorldBestiary.Menus
         {
             InSubMenu = false;
         }
-
         public void ClosingSubMenu() { }
     }
 }

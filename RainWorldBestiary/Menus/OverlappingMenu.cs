@@ -43,13 +43,12 @@ namespace RainWorldBestiary.Menus
 
         public void AddMovingObject(PositionedMenuObject @object, Vector2 secondPosition)
         {
-            pages[0].subObjects.Add(@object);
-            MovingObjects.Add(new MovingObject(@object, @object.pos, secondPosition));
+            AddMovingObject(@object, @object.pos, secondPosition);
         }
         public void AddMovingObject(PositionedMenuObject @object, Vector2 firstPosition, Vector2 secondPosition)
         {
-            @object.pos = firstPosition;
-            AddMovingObject(@object, secondPosition);
+            pages[0].subObjects.Add(@object);
+            MovingObjects.Add(new MovingObject(@object, firstPosition, secondPosition));
         }
 
         private float lastAlpha, currentAlpha, uAlpha;
@@ -79,10 +78,15 @@ namespace RainWorldBestiary.Menus
             {
                 uAlpha = Mathf.Pow(Mathf.Max(0f, Mathf.Lerp(lastAlpha, currentAlpha, timeStacker)), 1.5f);
                 darkSprite.alpha = uAlpha * 0.8f;
-            }
 
-            foreach (MovingObject @object in MovingObjects)
-                @object.MenuObject.pos = Vector2.Lerp(@object.FirstPosition, @object.SecondPosition, (uAlpha < 0.999f) ? uAlpha : 1f);
+                foreach (MovingObject @object in MovingObjects)
+                {
+                    if (@object.MenuObject.pos != (closing ? @object.FirstPosition : @object.SecondPosition))
+                    {
+                        @object.MenuObject.pos = Vector2.Lerp(@object.FirstPosition, @object.SecondPosition, (uAlpha < 0.999f) ? uAlpha : 1f);
+                    }
+                }
+            }
         }
 
         public class MovingObject

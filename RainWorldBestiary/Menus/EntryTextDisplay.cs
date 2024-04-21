@@ -16,7 +16,7 @@ namespace RainWorldBestiary.Menus
         private readonly List<MenuObject> _Objects = new List<MenuObject>();
         private readonly List<IAnimatableObject> animatableObjects = new List<IAnimatableObject>();
 
-        public IEnumerator Animate(MenuObject owner, FSprite[] characterSprites)
+        public IEnumerator Animate(MenuObject owner, MenuIllustration[] characterSprites)
         {
             if (_Objects.Count == 0)
                 yield break;
@@ -48,31 +48,32 @@ namespace RainWorldBestiary.Menus
             }
 
             for (int i = CurrentSpriteIndex; i < characterSprites.Length; i++)
-                Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[i]));
+                Enumerators.StartEnumerator(FadeIconAnimation(owner, characterSprites[i]));
 
             void CheckSpriteFading()
             {
                 while (AmountRevealed >= currentSpriteCapBeforeFade && CurrentSpriteIndex < characterSprites.Length)
                 {
                     currentSpriteCapBeforeFade += spriteGapBeforeFade;
-                    Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex]));
+                    Enumerators.StartEnumerator(FadeIconAnimation(owner, characterSprites[CurrentSpriteIndex]));
                     ++CurrentSpriteIndex;
                 }
             }
         }
-        private IEnumerator FadeIconAnimation(FSprite sprite)
+        private IEnumerator FadeIconAnimation(MenuObject owner, MenuIllustration sprite)
         {
             //PlaySound(SoundID.HUD_Food_Meter_Deplete_Plop_A);
 
             while (sprite.alpha > 0)
             {
                 sprite.alpha -= Time.deltaTime * 2 / sprite.alpha;
-                sprite.scale += 0.05f;
+                sprite.sprite.scale += 0.05f;
 
                 yield return null;
             }
 
-            sprite.RemoveFromContainer();
+            sprite.RemoveSprites();
+            owner.RemoveSubObject(sprite);
         }
 
         public EntryTextDisplay() { }

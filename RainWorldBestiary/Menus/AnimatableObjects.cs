@@ -7,28 +7,20 @@ namespace RainWorldBestiary.Menus
     internal interface IAnimatableObject
     {
         IEnumerator Animate();
-        IEnumerator ReverseAnimate();
     }
     internal class AnimatableSimpleButton : SimpleButton, IAnimatableObject
     {
-        private Vector2 Position1 = Vector2.zero, Position2 = Vector2.zero;
+        private Vector2 Position2 = Vector2.zero;
 
         public AnimatableSimpleButton(Menu.Menu menu, MenuObject owner, string displayText, string singalText, Vector2 currentPosition, Vector2 intendedPosition, Vector2 size)
             : base(menu, owner, displayText, singalText, currentPosition, size)
         {
-            Position1 = currentPosition;
             Position2 = intendedPosition;
         }
 
         public IEnumerator Animate()
         {
             pos = Position2;
-            yield break;
-        }
-
-        public IEnumerator ReverseAnimate()
-        {
-            pos = Position1;
             yield break;
         }
     }
@@ -52,11 +44,6 @@ namespace RainWorldBestiary.Menus
             }
 
             label.text += text.Substring(currentTextIndex);
-        }
-
-        public IEnumerator ReverseAnimate()
-        {
-            yield break;
         }
     }
 }

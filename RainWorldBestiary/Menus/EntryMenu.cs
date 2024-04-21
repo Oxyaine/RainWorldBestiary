@@ -63,7 +63,7 @@ namespace RainWorldBestiary.Menus
         {
             int characters = Display.PredictedTextLength / 100;
 
-            FSprite[] sprites = new FSprite[characters];
+            MenuIllustration[] sprites = new MenuIllustration[characters];
 
             // Local Scope For Variable Cleanup
             {
@@ -74,16 +74,17 @@ namespace RainWorldBestiary.Menus
                 float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
                 for (int i = 0; i < elements.Length; i++)
                 {
-                    sprites[i] = new FSprite(Path.Combine(MenuResources.Instance.IllustrationsIconsPath, elements[i]))
+                    sprites[i] = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsIconsPath, elements[i], new Vector2(currentX, currentY), true, true)
                     {
-                        x = currentX,
-                        y = currentY,
-                        scale = 3f
+                        sprite =
+                        {
+                            scale = 3f
+                        }
                     };
 
-                    pages[0].Container.AddChild(sprites[i]);
+                    AddMovingObject(sprites[i], new Vector2(currentX, currentY + screenSize.y), new Vector2(currentX, currentY));
 
-                    currentX += sprites[i].width;
+                    currentX += sprites[i].sprite.width;
 
                     PlaySound(SoundID.SS_AI_Text, 0f, 1.75f, 1f);
                     yield return new WaitTime(0.05f);
@@ -95,20 +96,23 @@ namespace RainWorldBestiary.Menus
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < sprites.Length; j++)
-                    sprites[j].RemoveFromContainer();
+                    sprites[j].alpha = 0f;
 
                 yield return new WaitTime(0.3f);
 
 
                 for (int j = 0; j < sprites.Length; j++)
-                    pages[0].Container.AddChild(sprites[j]);
+                    sprites[j].alpha = 1f;
                 PlaySound(SoundID.SS_AI_Text_Blink, 0f, 1.75f, 1f);
 
                 yield return new WaitTime(0.2f);
             }
 
             Enumerators.ForceCompleteEnumerators(PopulateDisplayID);
-            Enumerators.StartEnumerator(Display.Animate(pages[0], sprites));
+            IEnumerator enumerator = Display.Animate(pages[0], sprites);
+
+            while (enumerator.MoveNext())
+                yield return enumerator.Current;
         }
 
         private int PopulateDisplayID = -1;
@@ -130,7 +134,11 @@ namespace RainWorldBestiary.Menus
 
             MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], entry, in screenSize, out float spriteWidth);
             foreach (MenuIllustration illustration in illustrations)
-                AddMovingObject(illustration, new Vector2(illustration.pos.x, illustration.pos.y + 200f), illustration.pos);
+            {
+                Vector2 newPos = illustration.pos + new Vector2(0f, 200f);
+                AddMovingObject(illustration, newPos, illustration.pos);
+                illustration.pos = newPos;
+            }
 
             widthOffset = spriteWidth / 2f;
 
@@ -253,7 +261,6 @@ namespace RainWorldBestiary.Menus
 
             InSubMenu = false;
         }
-
         public void ClosingSubMenu() { }
     }
 }

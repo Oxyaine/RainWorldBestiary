@@ -166,7 +166,6 @@ namespace RainWorldBestiary.Menus
             if (!Bestiary.ClosingAllReadingMenus)
                 backButton.menuLabel.text = Translator.Translate("BACK");
         }
-
         public void ClosingSubMenu()
         {
             if (Bestiary.ClosingAllReadingMenus)
