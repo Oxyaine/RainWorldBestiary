@@ -7,7 +7,7 @@ namespace RainWorldBestiary.Menus
     internal class RemixMenu : OptionInterface
     {
         private Color CheatColor = new Color(1f, 0.5f, 0.5f);
-        private Color ExperimentalColor = new Color(0.5f, 0.8f, 0.7f);
+        //private Color ExperimentalColor = new Color(0.5f, 0.8f, 0.7f);
         private Color DangerColor = new Color(1f, 0.2f, 0.2f);
 
         public RemixMenu()
@@ -46,8 +46,8 @@ namespace RainWorldBestiary.Menus
 
             //experimental.AddItems(items.ToArray());
 
-            items.Clear();
-            ResetElementPositions();
+            //items.Clear();
+            //ResetElementPositions();
 
             // Cheats Tab
             AddElements(ref items, Translator.Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("OXY.BESTIARY.UNLOCK_ALL_ENTRIES_DESCRIPTION"));
