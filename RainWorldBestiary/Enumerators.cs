@@ -99,6 +99,9 @@ namespace RainWorldBestiary
 
         public bool Progress()
         {
+            if (HoldTimeSeconds > 0f)
+                HoldTimeSeconds -= Time.deltaTime;
+
             if (HoldTimeSeconds <= 0)
             {
                 if (Enumerator.MoveNext())
@@ -113,7 +116,6 @@ namespace RainWorldBestiary
                 }
                 else return false;
             }
-            else HoldTimeSeconds -= Time.deltaTime;
 
             return true;
         }
