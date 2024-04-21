@@ -13,13 +13,15 @@ namespace RainWorldBestiary.Menus
         public int TotalLength = 0;
         public int PredictedTextLength = 0;
         private readonly int LineSpacing = 20;
-        private readonly List<MenuObject> _Objects = new List<MenuObject>();
+        private readonly List<PositionedMenuObject> _Objects = new List<PositionedMenuObject>();
         private readonly List<IAnimatableObject> animatableObjects = new List<IAnimatableObject>();
 
-        public IEnumerator Animate(MenuObject owner, MenuIllustration[] characterSprites)
+        public IEnumerator Animate(OverlappingMenu owner, MenuIllustration[] characterSprites, Action<SoundID, float, float, float> playSoundFunction = null)
         {
             if (_Objects.Count == 0)
                 yield break;
+
+            Vector2 screenSize = owner.manager.rainWorld.options.ScreenSize;
 
             int currentObjectIndex = 0,  AmountRevealed = 0, CurrentSpriteIndex = 0;
             int spriteGapBeforeFade = TotalLength / characterSprites.Length;
@@ -29,7 +31,7 @@ namespace RainWorldBestiary.Menus
 
             while (currentObjectIndex < _Objects.Count)
             {
-                owner.subObjects.Add(_Objects[currentObjectIndex]);
+                owner.AddMovingObject(_Objects[currentObjectIndex], _Objects[currentObjectIndex].pos + new Vector2(0f, screenSize.y), _Objects[currentObjectIndex].pos);
                 IEnumerator enumerator = animatableObjects[currentObjectIndex].Animate();
 
                 while (enumerator.MoveNext())
@@ -48,21 +50,21 @@ namespace RainWorldBestiary.Menus
             }
 
             for (int i = CurrentSpriteIndex; i < characterSprites.Length; i++)
-                Enumerators.StartEnumerator(FadeIconAnimation(owner, characterSprites[i]));
+                Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[i], playSoundFunction));
 
             void CheckSpriteFading()
             {
                 while (AmountRevealed >= currentSpriteCapBeforeFade && CurrentSpriteIndex < characterSprites.Length)
                 {
                     currentSpriteCapBeforeFade += spriteGapBeforeFade;
-                    Enumerators.StartEnumerator(FadeIconAnimation(owner, characterSprites[CurrentSpriteIndex]));
+                    Enumerators.StartEnumerator(FadeIconAnimation(characterSprites[CurrentSpriteIndex], playSoundFunction));
                     ++CurrentSpriteIndex;
                 }
             }
         }
-        private IEnumerator FadeIconAnimation(MenuObject owner, MenuIllustration sprite)
+        private IEnumerator FadeIconAnimation(MenuIllustration sprite, Action<SoundID, float, float, float> playSoundFunction = null)
         {
-            //PlaySound(SoundID.HUD_Food_Meter_Deplete_Plop_A);
+            playSoundFunction?.Invoke(SoundID.HUD_Food_Meter_Deplete_Plop_A, 0f, 1.75f, 1f);
 
             while (sprite.alpha > 0)
             {
@@ -73,7 +75,7 @@ namespace RainWorldBestiary.Menus
             }
 
             sprite.RemoveSprites();
-            owner.RemoveSubObject(sprite);
+            sprite.owner.RemoveSubObject(sprite);
         }
 
         public EntryTextDisplay() { }

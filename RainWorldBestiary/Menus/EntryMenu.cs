@@ -109,7 +109,7 @@ namespace RainWorldBestiary.Menus
             }
 
             Enumerators.ForceCompleteEnumerators(PopulateDisplayID);
-            IEnumerator enumerator = Display.Animate(pages[0], sprites);
+            IEnumerator enumerator = Display.Animate(this, sprites, PlaySound);
 
             while (enumerator.MoveNext())
                 yield return enumerator.Current;
