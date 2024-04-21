@@ -5,9 +5,16 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal interface ISubMenuOwner
+    internal interface IOverlappingMenuOwner
     {
+        /// <summary>
+        /// Called when the submenu starts closing
+        /// </summary>
         void ReturningToThisMenu();
+        /// <summary>
+        /// Called when the submenu is shut down
+        /// </summary>
+        void ClosingSubMenu();
     }
 
     internal class OverlappingMenu : Dialog
@@ -15,11 +22,11 @@ namespace RainWorldBestiary.Menus
         private bool opening = false, closing = false;
         private float targetAlpha;
 
-        private readonly ISubMenuOwner owningMenu;
+        private readonly IOverlappingMenuOwner owningMenu;
 
         protected List<MovingObject> MovingObjects = new List<MovingObject>();
 
-        public OverlappingMenu(ProcessManager manager, ISubMenuOwner parentMenu = null) : base(manager)
+        public OverlappingMenu(ProcessManager manager, IOverlappingMenuOwner parentMenu = null) : base(manager)
         {
             opening = true;
             targetAlpha = 1f;
@@ -60,6 +67,7 @@ namespace RainWorldBestiary.Menus
             if (closing && Math.Abs(currentAlpha - targetAlpha) < 0.09f)
             {
                 closing = false;
+                owningMenu?.ClosingSubMenu();
                 manager.StopSideProcess(this);
             }
         }

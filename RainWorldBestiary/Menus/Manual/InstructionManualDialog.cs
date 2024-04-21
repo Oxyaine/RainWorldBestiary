@@ -7,11 +7,11 @@ namespace RainWorldBestiary.Menus.Manual
 {
     internal class InstructionManualDialog : ManualDialog
     {
-        public ISubMenuOwner owner;
+        public IOverlappingMenuOwner owner;
 
-        public InstructionManualDialog(ProcessManager manager, Dictionary<InstructionManualPages, int> topics, ISubMenuOwner owner)
+        public InstructionManualDialog(ProcessManager manager, Dictionary<InstructionManualPages, int> topics, IOverlappingMenuOwner owner)
             : this(manager, topics.ToDictionary(v => v.Key.value, v => v.Value), owner) { }
-        public InstructionManualDialog(ProcessManager manager, Dictionary<string, int> topics, ISubMenuOwner owner) : base(manager, topics)
+        public InstructionManualDialog(ProcessManager manager, Dictionary<string, int> topics, IOverlappingMenuOwner owner) : base(manager, topics)
         {
             currentTopic = base.topics.Keys.ElementAt(0);
             pageNumber = 0;

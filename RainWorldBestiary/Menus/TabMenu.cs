@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class TabMenu : OverlappingMenu, ISubMenuOwner
+    internal class TabMenu : OverlappingMenu, IOverlappingMenuOwner
     {
         readonly SimpleButton backButton;
         readonly string BackButtonMessage = "BACK";
@@ -14,7 +14,7 @@ namespace RainWorldBestiary.Menus
         private bool Closing = false;
         private readonly EntriesTab DisplayedTab;
 
-        public TabMenu(ProcessManager manager, EntriesTab tab, ISubMenuOwner parentMenu) : base(manager, parentMenu)
+        public TabMenu(ProcessManager manager, EntriesTab tab, IOverlappingMenuOwner parentMenu) : base(manager, parentMenu)
         {
             DisplayedTab = tab;
 
@@ -163,8 +163,16 @@ namespace RainWorldBestiary.Menus
         public void ReturningToThisMenu()
         {
             InSubMenu = false;
+            if (!Bestiary.ClosingAllReadingMenus)
+                backButton.menuLabel.text = Translator.Translate("BACK");
+        }
+
+        public void ClosingSubMenu()
+        {
+            if (Bestiary.ClosingAllReadingMenus)
+                Enumerators.StartEnumerator(SharedMenuUtilities.AnimatePrintText(backButton.menuLabel, Translator.Translate("BACK")));
+
             Bestiary.ClosingAllReadingMenus = false;
-            backButton.menuLabel.text = Translator.Translate("BACK");
         }
     }
 }

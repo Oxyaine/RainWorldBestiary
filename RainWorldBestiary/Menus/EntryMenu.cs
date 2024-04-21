@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class EntryMenu : OverlappingMenu, ISubMenuOwner
+    internal class EntryMenu : OverlappingMenu, IOverlappingMenuOwner
     {
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
@@ -19,7 +19,7 @@ namespace RainWorldBestiary.Menus
 
         readonly SimpleButton backButton;
         readonly string BackButtonMessage = "BACK";
-        public EntryMenu(ProcessManager manager, Entry entry, ISubMenuOwner parentMenu) : base(manager, parentMenu)
+        public EntryMenu(ProcessManager manager, Entry entry, IOverlappingMenuOwner parentMenu) : base(manager, parentMenu)
         {
             DisplayedEntry = entry;
 
@@ -253,5 +253,7 @@ namespace RainWorldBestiary.Menus
 
             InSubMenu = false;
         }
+
+        public void ClosingSubMenu() { }
     }
 }

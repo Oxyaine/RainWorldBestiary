@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class BestiaryMenu : Dialog, ISubMenuOwner
+    internal class BestiaryMenu : Dialog, IOverlappingMenuOwner
     {
         private readonly int ButtonSizeX = 250;
         private readonly int ButtonSizeY = 40;
@@ -189,5 +189,7 @@ namespace RainWorldBestiary.Menus
         {
             InSubMenu = false;
         }
+
+        public void ClosingSubMenu() { }
     }
 }

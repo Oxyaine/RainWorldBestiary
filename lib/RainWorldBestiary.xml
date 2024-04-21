@@ -166,6 +166,16 @@
             Checks if the given position is currently visible on screen
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Menus.IOverlappingMenuOwner.ReturningToThisMenu">
+            <summary>
+            Called when the submenu starts closing
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Menus.IOverlappingMenuOwner.ClosingSubMenu">
+            <summary>
+            Called when the submenu is shut down
+            </summary>
+        </member>
         <member name="T:RainWorldBestiary.Plugins.BestiaryPlugin">
             <summary>
             The base class for a custom bestiary plugin, that is only loaded if the bestiary is active

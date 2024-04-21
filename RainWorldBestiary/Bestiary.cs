@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RainWorldBestiary.Menus;
 using RainWorldBestiary.Types;
 using System;
 using System.Collections.Generic;
