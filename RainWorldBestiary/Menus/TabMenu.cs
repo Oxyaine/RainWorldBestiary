@@ -30,7 +30,11 @@ namespace RainWorldBestiary.Menus
 
             MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], DisplayedTab, in screenSize);
             foreach (MenuIllustration illustration in illustrations)
-                AddMovingObject(illustration, new Vector2(illustration.pos.x, illustration.pos.y + screenSize.y), illustration.pos);
+            {
+                Vector2 newPos = illustration.pos + new Vector2(0f, screenSize.y);
+                AddMovingObject(illustration, newPos, illustration.pos);
+                illustration.pos = newPos;
+            }
 
             selectedObject = firstEntryButton;
 
