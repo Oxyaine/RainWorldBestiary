@@ -162,11 +162,6 @@ namespace RainWorldBestiary
         /// </summary>
         public static Vector2 ToVector2(this WorldCoordinate coordinate) => new Vector2(coordinate.x, coordinate.y);
 
-        /// <inheritdoc cref="Bestiary.GetCreatureUnlockName(Creature, bool)"/>
-        public static string GetCreatureUnlockName(this Creature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
-        /// <inheritdoc cref="Bestiary.GetCreatureUnlockName(AbstractCreature, bool)"/>
-        public static string GetCreatureUnlockName(this AbstractCreature creature, bool useSpecialIdLogic = true) => Bestiary.GetCreatureUnlockName(creature, useSpecialIdLogic);
-
         /// <summary>
         /// Converts this RGB color to a HSL color
         /// </summary>

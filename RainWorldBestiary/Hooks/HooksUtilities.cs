@@ -53,9 +53,9 @@ namespace RainWorldBestiary.Hooks
             }
         }
 
-        private static void RainWorldGame_ctor(On.RainWorldGame.orig_ctor orig, RainWorldGame self, ProcessManager manager)
+        private static void RainWorldGame_ctor(On.RainWorldGame.orig_ctor original, RainWorldGame self, ProcessManager manager)
         {
-            orig(self, manager);
+            original(self, manager);
             game = self;
         }
         private static void Creature_FlyAwayFromRoom(On.Creature.orig_FlyAwayFromRoom original, Creature self, bool carriedByOther)

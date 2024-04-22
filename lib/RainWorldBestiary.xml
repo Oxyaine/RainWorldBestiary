@@ -1098,12 +1098,6 @@
             Gets the x and y of this <see cref="T:WorldCoordinate"/> and returns it as a Vector2
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Extensions.GetCreatureUnlockName(Creature,System.Boolean)">
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)"/>
-        </member>
-        <member name="M:RainWorldBestiary.Extensions.GetCreatureUnlockName(AbstractCreature,System.Boolean)">
-            <inheritdoc cref="M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)"/>
-        </member>
         <member name="M:RainWorldBestiary.Extensions.ToHSL(UnityEngine.Color)">
             <summary>
             Converts this RGB color to a HSL color
