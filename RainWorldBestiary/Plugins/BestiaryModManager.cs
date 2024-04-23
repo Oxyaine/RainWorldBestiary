@@ -7,15 +7,15 @@ using System.Reflection;
 
 namespace RainWorldBestiary.Plugins
 {
-    internal class BestiaryModManager
+    internal static class BestiaryModManager
     {
-        private static readonly Dictionary<string, BestiaryMod> LoadedMods = new Dictionary<string, BestiaryMod>();
+        internal static readonly Dictionary<string, BestiaryMod> LoadedMods = new Dictionary<string, BestiaryMod>();
 
         private static readonly List<string> ignoredMods = new List<string>();
 
         internal static List<string> ActiveModsIDs = new List<string>();
 
-        public static List<BestiaryPlugin> AllPlugins = new List<BestiaryPlugin>();
+        internal static List<BestiaryPlugin> AllPlugins = new List<BestiaryPlugin>();
         internal static void UpdatePlugins()
         {
             foreach (BestiaryPlugin plugin in AllPlugins)
@@ -44,6 +44,8 @@ namespace RainWorldBestiary.Plugins
 
             string ModDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             LoadMod(ModDirectory, Main.MODID);
+
+            RecacheBestiaryEntries();
 
             foreach (ModManager.Mod mod in ModManager.ActiveMods)
             {
@@ -93,8 +95,8 @@ namespace RainWorldBestiary.Plugins
             }
         }
 
-        public static void LoadMod(ModManager.Mod mod) => LoadMod(mod.path, mod.id);
-        public static void LoadMod(string modPath, string modID)
+        internal static void LoadMod(ModManager.Mod mod) => LoadMod(mod.path, mod.id);
+        internal static void LoadMod(string modPath, string modID)
         {
             string tabsPath = Path.Combine(modPath, "bestiary");
 
@@ -140,9 +142,8 @@ namespace RainWorldBestiary.Plugins
             }
 
             LoadedMods.Add(modID, mod);
-            AllPlugins.AddRange(mod.Plugins);
         }
-        public static BestiaryPlugin[] CheckForDLLs(string modPath)
+        internal static BestiaryPlugin[] CheckForDLLs(string modPath)
         {
             string pluginsFolder = Path.Combine(modPath, "bestiary\\plugins");
 
@@ -210,15 +211,22 @@ namespace RainWorldBestiary.Plugins
         private static void RecacheBestiaryEntries()
         {
             EntriesTabList AllTabs = new EntriesTabList();
+            List<BestiaryPlugin> allPlugins = new List<BestiaryPlugin>();
             foreach (BestiaryMod mod in LoadedMods.Values)
             {
                 foreach (EntriesTab tab in mod.Tabs)
                 {
                     AllTabs.Add(tab, true);
                 }
+
+                foreach (BestiaryPlugin plugin in mod.Plugins)
+                {
+                    allPlugins.Add(plugin);
+                }
             }
 
             Bestiary.EntriesTabs = AllTabs;
+            AllPlugins = allPlugins;
         }
 
         static void CacheEntries(Entry[] entries)

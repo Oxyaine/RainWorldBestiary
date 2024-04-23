@@ -14,6 +14,7 @@ namespace RainWorldBestiary
     {
         internal static EntriesTabList EntriesTabs = null;
 
+
         // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
         // The creature unlock ids list, is publicly accessible through CreatureUnlockIDs

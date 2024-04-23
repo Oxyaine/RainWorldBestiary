@@ -84,6 +84,18 @@ namespace RainWorldBestiary.Types
             _entries = other._entries;
             ContributingMods = other.ContributingMods;
         }
+        /// <summary>
+        /// Copy Operator
+        /// </summary>
+        public EntriesTab(EntriesTab other, params Entry[] entries)
+        {
+            Name = other.Name;
+            Path = other.Path;
+            RequiredMods = other.RequiredMods;
+            TitleSprite = other.TitleSprite;
+            _entries = entries.ToList();
+            ContributingMods = other.ContributingMods;
+        }
 
         /// <summary>
         /// Gets the amount of entries in this tab
@@ -285,7 +297,7 @@ namespace RainWorldBestiary.Types
                     }
                     else
                     {
-                        _tabs[i].AddRange(item.GetEnumerator());
+                        _tabs[i].MergeWith(item);
                         return;
                     }
                 }

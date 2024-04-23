@@ -126,6 +126,28 @@
             Whether all bestiary entries should be unlocked and completely readable
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Bestiary.AddEntry(System.String,RainWorldBestiary.Types.Entry,RainWorldBestiary.Types.EntriesTab)">
+            <summary>
+            Adds an entry to the Bestiary
+            </summary>
+            <param name="owningModID">The ID (that is set in the `modinfo.json` file) of the mod that owns this entry</param>
+            <param name="entry">The entry that is to be added</param>
+            <param name="tab">The tab the entry is in</param>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.AddTab(System.String,RainWorldBestiary.Types.EntriesTab)">
+            <summary>
+            Adds a tab of entries to the Bestiary
+            </summary>
+            <param name="owningModID">The ID (that is set in the `modinfo.json` file) of the mod that owns this entry</param>
+            <param name="tab">The tab the entry is in</param>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.AddPlugin(System.String,RainWorldBestiary.Plugins.BestiaryPlugin)">
+            <summary>
+            Adds a plugin to the bestiary
+            </summary>
+            <param name="owningModID"></param>
+            <param name="plugin"></param>
+        </member>
         <member name="T:RainWorldBestiary.Hooks.HooksUtilities">
             <summary>
             A couple utilities that may help with tracking creatures for unlocks
@@ -378,6 +400,11 @@
             <inheritdoc cref="M:RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})"/>
         </member>
         <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)">
+            <summary>
+            Copy Operator
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])">
             <summary>
             Copy Operator
             </summary>
