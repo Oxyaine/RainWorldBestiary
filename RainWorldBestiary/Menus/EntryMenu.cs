@@ -128,7 +128,7 @@ namespace RainWorldBestiary.Menus
         {
             float widthOffset, leftSpriteOffset = 60;
 
-            if (BestiarySettings.PerformTextAnimations.Value)
+            if (Bestiary.Settings.PerformTextAnimations.Value)
             {
                 Display = new EntryTextDisplay();
                 PopulateDisplayID = Enumerators.StartEnumerator(Display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
@@ -181,7 +181,7 @@ namespace RainWorldBestiary.Menus
                 }
             }
 
-            if (BestiarySettings.ShowModuleLockPips.Value)
+            if (Bestiary.Settings.ShowModuleLockPips.Value)
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {

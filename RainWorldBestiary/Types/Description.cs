@@ -143,7 +143,7 @@ namespace RainWorldBestiary.Types
         /// </summary>
         public static bool DefaultModuleUnlockedCondition(DescriptionModule info)
         {
-            if (BestiarySettings.UnlockAllEntries.Value)
+            if (Bestiary.Settings.UnlockAllEntries.Value)
                 return true;
 
             bool unlocked = true;

@@ -10,18 +10,14 @@ namespace RainWorldBestiary
     /// <summary>
     /// The main class for the bestiary, everything should be accessible from this class
     /// </summary>
-    public static class Bestiary
+    public static partial class Bestiary
     {
+        internal static EntriesTabList EntriesTabs = null;
+
         // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
-
         // The creature unlock ids list, is publicly accessible through CreatureUnlockIDs
         private static List<string> _CreatureUnlockIDs = new List<string>();
-        /// <summary>
-        /// All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
-        /// </summary>
-        /// <remarks>To unlock your own creature, use <see cref="UnlockCreature(string)"/></remarks>
-        public static List<string> CreatureUnlockIDs => new List<string>(_CreatureUnlockIDs);
 
         /// <summary>
         /// Adds this creatureID to the <see cref="_CreatureUnlockIDs"/> list if its not already added
@@ -41,6 +37,8 @@ namespace RainWorldBestiary
         /// Checks if this creature is found in either the <see cref="_CreatureUnlockIDs"/> or <see cref="CreatureUnlockIDsOverride"/>
         /// </summary>
         public static bool IsCreatureUnlocked(string creatureId) => _CreatureUnlockIDs.Contains(creatureId) || CreatureUnlockIDsOverride.Contains(creatureId);
+
+
 
 
 
@@ -141,7 +139,7 @@ namespace RainWorldBestiary
         /// Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
         /// </summary>
         /// <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
-        /// Does not take into account if <see cref="BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
+        /// Does not take into account if <see cref="Settings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
             if (_ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
@@ -161,9 +159,11 @@ namespace RainWorldBestiary
 
 
 
+
+
         // The folder the save file is in
         internal static string SaveFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World";
-        // The save file to save to (yes, this file intentionally has no extension)
+        // The save file to save to (this file intentionally has no extension)
         internal static string SaveFile => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\\Videocult\\Rain World\\Bestiary" + Main.CurrentSaveSlot;
         // Saves all module unlocks and creature unlocks
         internal static void Save()
@@ -180,14 +180,12 @@ namespace RainWorldBestiary
             _ModuleUnlocks.Clear();
             _CreatureUnlockIDs.Clear();
         }
-
         // Deletes all the save data in the current slot
         internal static void DELETESaveDataInSlot()
         {
             ClearLoadedSaveData();
             Save();
         }
-
         // Loads all saved data into the bestiary, such as module unlock tokens and creature unlock ids
         internal static void Load()
         {
@@ -199,10 +197,16 @@ namespace RainWorldBestiary
             }
         }
 
-        /// <summary>
-        /// All the tabs, which hold all the entries, to add your own, use AddEntries
-        /// </summary>
-        public static EntriesTabList EntriesTabs { get; internal set; }
+
+
+
+
+        internal static byte ReadingMenusDeep;
+        internal static bool ClosingAllReadingMenus = false;
+
+
+
+
 
         /// <summary>
         /// Gets an entry using a reference id, <code></code>
@@ -232,9 +236,6 @@ namespace RainWorldBestiary
             return null;
         }
 
-        internal static byte ReadingMenusDeep;
-        internal static bool ClosingAllReadingMenus = false;
-
         /// <inheritdoc cref="GetCreatureUnlockName(AbstractCreature, bool)"/>
         public static string GetCreatureUnlockName(Creature creature, bool useSpecialIdLogic = true) => GetCreatureUnlockName(creature.abstractCreature, useSpecialIdLogic);
         /// <summary>
@@ -254,6 +255,10 @@ namespace RainWorldBestiary
             return id;
         }
 
+
+
+
+
         /// <summary>
         /// Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
         /// </summary>
@@ -262,7 +267,6 @@ namespace RainWorldBestiary
             { "CicadaA", CicadaSpecialIDLogic },
             { "CicadaB", CicadaSpecialIDLogic }
         };
-
         // Removes the A or B at the end of CicadaA or CicadaB
         private static string CicadaSpecialIDLogic(string _d_) => "Cicada";
     }

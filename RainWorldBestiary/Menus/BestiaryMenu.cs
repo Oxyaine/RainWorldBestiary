@@ -83,7 +83,7 @@ namespace RainWorldBestiary.Menus
                 TabButtons = tabs.ToArray();
             }
 
-            if (BestiarySettings.ShowManualButton.Value)
+            if (Bestiary.Settings.ShowManualButton.Value)
             {
                 InstructionManualButton = new SimpleButton(this, pages[0], Translator.Translate("MANUAL"), InstructionManualButtonMessage, new Vector2(screenSize.x - 180, screenSize.y - 50), new Vector2(160, 30));
                 pages[0].subObjects.Add(InstructionManualButton);
@@ -111,7 +111,7 @@ namespace RainWorldBestiary.Menus
                 else
                     TabButtons[i].nextSelectable[1] = TabButtons[i - 1];
 
-                if (BestiarySettings.ShowManualButton.Value)
+                if (Bestiary.Settings.ShowManualButton.Value)
                     TabButtons[i].nextSelectable[2] = InstructionManualButton;
                 else
                     TabButtons[i].nextSelectable[2] = TabButtons[i];
@@ -124,13 +124,13 @@ namespace RainWorldBestiary.Menus
 
             BackButton.nextSelectable[0] = BackButton;
             BackButton.nextSelectable[1] = TabButtons[TabButtons.Length - 1];
-            if (BestiarySettings.ShowManualButton.Value)
+            if (Bestiary.Settings.ShowManualButton.Value)
                 BackButton.nextSelectable[2] = InstructionManualButton;
             else
                 BackButton.nextSelectable[2] = BackButton;
             BackButton.nextSelectable[3] = TabButtons[0];
 
-            if (BestiarySettings.ShowManualButton.Value)
+            if (Bestiary.Settings.ShowManualButton.Value)
             {
                 InstructionManualButton.nextSelectable[0] = TabButtons[0];
                 InstructionManualButton.nextSelectable[3] = TabButtons[0];

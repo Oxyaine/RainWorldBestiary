@@ -12,13 +12,13 @@ namespace RainWorldBestiary.Menus
 
         public RemixMenu()
         {
-            BestiarySettings._MenuFadeTime = config.Bind("bestiary_menu_fade_time", 4);
-            BestiarySettings.ShowModuleLockPips = config.Bind("bestiary_show_module_lock_pips", true);
-            BestiarySettings.PerformTextAnimations = config.Bind("bestiary_perform_text_animation", true);
-            BestiarySettings.ShowManualButton = config.Bind("bestiary_show_manual_button", true);
-            BestiarySettings.ConsistentTitleSpacing = config.Bind("bestiary_use_character_spacing", false);
+            Bestiary.Settings._MenuFadeTime = config.Bind("bestiary_menu_fade_time", 4);
+            Bestiary.Settings.ShowModuleLockPips = config.Bind("bestiary_show_module_lock_pips", true);
+            Bestiary.Settings.PerformTextAnimations = config.Bind("bestiary_perform_text_animation", true);
+            Bestiary.Settings.ShowManualButton = config.Bind("bestiary_show_manual_button", true);
+            Bestiary.Settings.ConsistentTitleSpacing = config.Bind("bestiary_use_character_spacing", false);
 
-            BestiarySettings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
+            Bestiary.Settings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
         }
 
         public override void Initialize()
@@ -32,11 +32,11 @@ namespace RainWorldBestiary.Menus
             List<UIelement> items = new List<UIelement>();
 
             //Default Tab
-            AddElements(ref items, Translator.Translate("Menu Fade Time"), BestiarySettings._MenuFadeTime, asSlider: true, description: Translator.Translate("OXY.BESTIARY.MENU_FADE_TIME_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Show Unlock Pips"), BestiarySettings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), BestiarySettings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Show Manual Button"), BestiarySettings.ShowManualButton, description: Translator.Translate("OXY.BESTIARY.SHOW_MANUAL_BUTTON_DESCRIPTION"));
-            AddElements(ref items, Translator.Translate("Use Consistent Title Character Spacing"), BestiarySettings.ConsistentTitleSpacing, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Menu Fade Time"), Bestiary.Settings._MenuFadeTime, asSlider: true, description: Translator.Translate("OXY.BESTIARY.MENU_FADE_TIME_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Unlock Pips"), Bestiary.Settings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), Bestiary.Settings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Manual Button"), Bestiary.Settings.ShowManualButton, description: Translator.Translate("OXY.BESTIARY.SHOW_MANUAL_BUTTON_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Use Consistent Title Character Spacing"), Bestiary.Settings.ConsistentTitleSpacing, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
             def.AddItems(items.ToArray());
 
             items.Clear();
@@ -50,7 +50,7 @@ namespace RainWorldBestiary.Menus
             //ResetElementPositions();
 
             // Cheats Tab
-            AddElements(ref items, Translator.Translate("Unlock All Entries"), BestiarySettings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("OXY.BESTIARY.UNLOCK_ALL_ENTRIES_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Unlock All Entries"), Bestiary.Settings.UnlockAllEntries, color: CheatColor, description: Translator.Translate("OXY.BESTIARY.UNLOCK_ALL_ENTRIES_DESCRIPTION"));
             cheats.AddItems(items.ToArray());
 
             items.Clear();

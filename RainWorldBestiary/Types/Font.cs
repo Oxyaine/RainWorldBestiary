@@ -57,7 +57,7 @@ namespace RainWorldBestiary.Types
                 {
                     sprites[i] = new MenuIllustration(menu, owner, Path.GetDirectoryName(atlasName), Path.GetFileName(atlasName), new Vector2(currentX, 0), false, true);
 
-                    if (BestiarySettings.ConsistentTitleSpacing.Value)
+                    if (Bestiary.Settings.ConsistentTitleSpacing.Value)
                         currentX += 65f;
                     else
                         currentX += sprites[i].sprite.width + ((1f - (sprites[i].sprite.width / 40f)) * 20f);

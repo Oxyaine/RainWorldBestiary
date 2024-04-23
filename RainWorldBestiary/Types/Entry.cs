@@ -112,7 +112,7 @@ namespace RainWorldBestiary.Types
         /// </summary>
         /// <returns>True if the entry should be locked, otherwise false</returns>
         public static bool DefaultEntryUnlockedCondition(EntryInfo info)
-            => BestiarySettings.UnlockAllEntries.Value || Bestiary.IsCreatureUnlocked(info.UnlockID);
+            => Bestiary.Settings.UnlockAllEntries.Value || Bestiary.IsCreatureUnlocked(info.UnlockID);
 
         /// <summary>
         /// Checks if this entry info's unlock id and icons match

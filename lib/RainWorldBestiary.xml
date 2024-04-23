@@ -9,12 +9,6 @@
             The main class for the bestiary, everything should be accessible from this class
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.Bestiary.CreatureUnlockIDs">
-            <summary>
-            All the unlocked entries, this determines if an entry should be unlocked or not, even if a piece of the description is visible, the entry wont be visible unless its id is in this list
-            </summary>
-            <remarks>To unlock your own creature, use <see cref="M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)"/></remarks>
-        </member>
         <member name="M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)">
             <summary>
             Adds this creatureID to the <see cref="F:RainWorldBestiary.Bestiary._CreatureUnlockIDs"/> list if its not already added
@@ -65,12 +59,7 @@
             Checks if the given token is in either AutoModuleUnlocks or ModuleUnlocks
             </summary>
             <remarks>Returns true if the count is equal to or greater than the value in the registered token<code></code>
-            Does not take into account if <see cref="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries"/> is toggled</remarks>
-        </member>
-        <member name="P:RainWorldBestiary.Bestiary.EntriesTabs">
-            <summary>
-            All the tabs, which hold all the entries, to add your own, use AddEntries
-            </summary>
+            Does not take into account if <see cref="F:RainWorldBestiary.Bestiary.Settings.UnlockAllEntries"/> is toggled</remarks>
         </member>
         <member name="M:RainWorldBestiary.Bestiary.GetEntryByReferenceID(System.String)">
             <summary>
@@ -102,37 +91,37 @@
             Special logic to apply to certain IDs, for example, `CicadaA` and `CicadaB` (Squidacada's ID's) have custom logic to remove the `A` and `B` so its just `Cicada`
             </summary>
         </member>
-        <member name="T:RainWorldBestiary.BestiarySettings">
+        <member name="T:RainWorldBestiary.Bestiary.Settings">
             <summary>
             The main class for all the bestiary mods' settings, including remix menu options
             </summary>
         </member>
-        <member name="P:RainWorldBestiary.BestiarySettings.MenuFadeTimeSeconds">
+        <member name="P:RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds">
             <summary>
             The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.ShowModuleLockPips">
+        <member name="F:RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips">
             <summary>
             Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.PerformTextAnimations">
+        <member name="F:RainWorldBestiary.Bestiary.Settings.PerformTextAnimations">
             <summary>
             Whether to perform an animation when going to read an entry
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.ShowManualButton">
+        <member name="F:RainWorldBestiary.Bestiary.Settings.ShowManualButton">
             <summary>
             Whether to show the "Manual" button in the main bestiary menu
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.ConsistentTitleSpacing">
+        <member name="F:RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing">
             <summary>
             Makes the generated title in the menus use consistent spacing between each character, which brings them further apart, but makes the spacing more consistent.
             </summary>
         </member>
-        <member name="F:RainWorldBestiary.BestiarySettings.UnlockAllEntries">
+        <member name="F:RainWorldBestiary.Bestiary.Settings.UnlockAllEntries">
             <summary>
             Whether all bestiary entries should be unlocked and completely readable
             </summary>
