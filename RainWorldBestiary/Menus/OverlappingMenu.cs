@@ -17,7 +17,7 @@ namespace RainWorldBestiary.Menus
         void ClosingSubMenu();
     }
 
-    internal class OverlappingMenu : Dialog
+    internal abstract class OverlappingMenu : Dialog
     {
         private bool opening = false, closing = false;
         private float targetAlpha;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus.Manual
 {
-    internal class InstructionManualPages : ExtEnum<InstructionManualPages>
+    internal sealed class InstructionManualPages : ExtEnum<InstructionManualPages>
     {
         public static readonly InstructionManualPages Introduction = new InstructionManualPages("Introduction", true);
         public static readonly InstructionManualPages Tabs = new InstructionManualPages("Tabs", true);

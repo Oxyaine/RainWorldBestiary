@@ -8,7 +8,7 @@ using System;
 namespace RainWorldBestiary
 {
     [BepInPlugin(MODID, "Bestiary", "0.0.1")]
-    internal class Main : BaseUnityPlugin
+    internal sealed class Main : BaseUnityPlugin
     {
         internal const string MODID = "oxyaine.bestiary";
         private bool Initialized;

@@ -122,7 +122,7 @@ namespace RainWorldBestiary
         public bool ForceProgress() => Enumerator.MoveNext();
     }
 
-    internal class WaitTime
+    internal struct WaitTime
     {
         public float HoldTimeSeconds;
         public WaitTime(float holdTimeSeconds)

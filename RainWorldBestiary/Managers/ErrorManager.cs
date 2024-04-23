@@ -177,10 +177,10 @@ namespace RainWorldBestiary.Plugins
         High,
         Fatal
     }
-    internal class Error : IComparable<Error>
+    internal struct Error : IComparable<Error>
     {
         public string Message;
-        public ErrorLevel Level = ErrorLevel.Unknown;
+        public ErrorLevel Level;
 
         public Error(string message, ErrorLevel level = ErrorLevel.Unknown)
         {

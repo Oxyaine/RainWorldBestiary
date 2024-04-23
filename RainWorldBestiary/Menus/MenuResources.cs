@@ -1,6 +1,6 @@
 ﻿namespace RainWorldBestiary.Menus
 {
-    internal class MenuResources
+    internal sealed class MenuResources
     {
         // All the resources the menus need to properly operate, this is always null when not in the menus
         public static MenuResources Instance { get; internal set; } = null;

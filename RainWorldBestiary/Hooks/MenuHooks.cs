@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Hooks
 {
-    internal class MenuHooks
+    internal static class MenuHooks
     {
         public static void Initialize()
         {
