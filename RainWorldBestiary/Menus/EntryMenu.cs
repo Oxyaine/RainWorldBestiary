@@ -52,6 +52,13 @@ namespace RainWorldBestiary.Menus
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
 
             Bestiary.ClosingAllReadingMenus = false;
+
+            backObject.nextSelectable[0] = backObject;
+            backObject.nextSelectable[1] = backObject;
+            backObject.nextSelectable[2] = backObject;
+            backObject.nextSelectable[3] = backObject;
+
+            selectedObject = backObject;
         }
 
         public override void ShutDownProcess()

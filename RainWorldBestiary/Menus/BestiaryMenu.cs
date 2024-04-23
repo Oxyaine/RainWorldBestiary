@@ -189,6 +189,9 @@ namespace RainWorldBestiary.Menus
         {
             InSubMenu = false;
         }
-        public void ClosingSubMenu() { }
+        public void ClosingSubMenu()
+        {
+            selectedObject = backObject;
+        }
     }
 }
