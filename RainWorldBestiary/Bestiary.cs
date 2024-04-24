@@ -38,6 +38,10 @@ namespace RainWorldBestiary
         /// Checks if this creature is found in either the <see cref="_CreatureUnlockIDs"/> or <see cref="CreatureUnlockIDsOverride"/>
         /// </summary>
         public static bool IsCreatureUnlocked(string creatureId) => _CreatureUnlockIDs.Contains(creatureId) || CreatureUnlockIDsOverride.Contains(creatureId);
+        /// <inheritdoc cref="IsCreatureUnlocked(string)"/>
+        public static bool IsCreatureUnlocked(Creature creature) => IsCreatureUnlocked(GetCreatureUnlockName(creature));
+        /// <inheritdoc cref="IsCreatureUnlocked(string)"/>
+        public static bool IsCreatureUnlocked(AbstractCreature creature) => IsCreatureUnlocked(GetCreatureUnlockName(creature));
 
 
 

@@ -26,6 +26,12 @@
             Checks if this creature is found in either the <see cref="F:RainWorldBestiary.Bestiary._CreatureUnlockIDs"/> or <see cref="F:RainWorldBestiary.Bestiary.CreatureUnlockIDsOverride"/>
             </summary>
         </member>
+        <member name="M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(Creature)">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(System.String)"/>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(AbstractCreature)">
+            <inheritdoc cref="M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(System.String)"/>
+        </member>
         <member name="P:RainWorldBestiary.Bestiary.ModuleUnlocks">
             <summary>
             All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
