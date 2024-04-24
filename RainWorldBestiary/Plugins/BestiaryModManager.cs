@@ -76,9 +76,7 @@ namespace RainWorldBestiary.Plugins
             RecacheBestiaryEntries();
         }
         private static bool ModManager_ModFolderHasDLLContent(On.ModManager.orig_ModFolderHasDLLContent original, string modFolder)
-            => original(modFolder)
-            || Directory.Exists(Path.Combine(modFolder, Path.Combine("bestiary", "plugins")))
-            || Directory.Exists(Path.Combine(modFolder, Path.Combine("bestiary", "patchers")));
+            => original(modFolder) || Directory.Exists(Path.Combine(modFolder, "bestiary\\plugins"));
 
         private static void RainWorld_OnModsDisabled(On.RainWorld.orig_OnModsDisabled original, RainWorld self, ModManager.Mod[] newlyDisabledMods)
         {

@@ -40,8 +40,8 @@ namespace RainWorldBestiary
         /// <summary>
         /// Adds a plugin to the bestiary
         /// </summary>
-        /// <param name="owningModID"></param>
-        /// <param name="plugin"></param>
+        /// <param name="owningModID">The ID (that is set in the `modinfo.json` file) of the mod that owns this entry</param>
+        /// <param name="plugin">An instance of the plugin type</param>
         public static void AddPlugin(string owningModID, BestiaryPlugin plugin)
         {
             if (BestiaryModManager.LoadedMods.TryGetValue(owningModID, out BestiaryMod mod))
