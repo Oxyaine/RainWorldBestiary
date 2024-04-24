@@ -19,14 +19,32 @@ namespace RainWorldBestiary.Plugins
         internal static void UpdatePlugins()
         {
             foreach (BestiaryPlugin plugin in AllPlugins)
-                plugin.Update();
+            {
+                try
+                {
+                    plugin.Update();
+                }
+                catch (Exception ex)
+                {
+                    Main.Logger.LogError(ex);
+                }
+            }
         }
         internal static void FixedUpdatePlugins()
         {
             foreach (BestiaryPlugin plugin in AllPlugins)
-                plugin.FixedUpdate();
+            {
+                try
+                {
+                    plugin.FixedUpdate();
+                }
+                catch (Exception ex)
+                {
+                    Main.Logger.LogError(ex);
+                }
+            }
         }
-        
+
         private static bool Initialized = false;
         internal static void Initialize()
         {
@@ -106,7 +124,7 @@ namespace RainWorldBestiary.Plugins
                 return;
             }
 
-            BestiaryMod mod = new BestiaryMod(modID, CheckForDLLs(tabsPath));
+            BestiaryMod mod = new BestiaryMod(modID, CheckForDLLs(modPath));
 
             string[] tabFiles = Directory.GetFiles(tabsPath, "*.json", SearchOption.TopDirectoryOnly);
             foreach (string tabFile in tabFiles)

@@ -192,11 +192,6 @@
             The base class for a custom bestiary plugin, that is only loaded if the bestiary is active
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Update">
-            <summary>
-            Called every frame
-            </summary>
-        </member>
         <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Awake">
             <summary>
             Called when the plugin is loaded
@@ -204,16 +199,18 @@
         </member>
         <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Start">
             <summary>
-            Called when the plugin is loaded, after awake
+            Called when the plugin is loaded, shortly after awake
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.Update">
+            <summary>
+            Called every frame
             </summary>
         </member>
         <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate">
             <summary>
             Called every fixed update, usually around 50 times a second
             </summary>
-        </member>
-        <member name="M:RainWorldBestiary.Plugins.BestiaryPlugin.#ctor">
-            
         </member>
         <member name="T:RainWorldBestiary.Types.Description">
             <summary>

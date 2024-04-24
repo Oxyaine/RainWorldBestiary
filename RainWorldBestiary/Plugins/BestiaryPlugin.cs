@@ -6,23 +6,21 @@
     public abstract class BestiaryPlugin
     {
         /// <summary>
-        /// Called every frame
-        /// </summary>
-        public virtual void Update() { }
-        /// <summary>
         /// Called when the plugin is loaded
         /// </summary>
         public virtual void Awake() { }
         /// <summary>
-        /// Called when the plugin is loaded, after awake
+        /// Called when the plugin is loaded, shortly after awake
         /// </summary>
         public virtual void Start() { }
+
+        /// <summary>
+        /// Called every frame
+        /// </summary>
+        public virtual void Update() { }
         /// <summary>
         /// Called every fixed update, usually around 50 times a second
         /// </summary>
         public virtual void FixedUpdate() { }
-
-        ///
-        public BestiaryPlugin() { }
     }
 }
