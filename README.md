@@ -151,6 +151,7 @@ Same logic with the X offset, you might need some extra distance from the top of
 Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.
 
 #### "operation_against_value" : [OperationType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation-type)
+`Default = And`
 The operation this unlock token will perform against the current unlock value of the token. For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked; Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value. You can see all the operations [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation-type).
 
 #### "token_type" : [TokenType](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types)
