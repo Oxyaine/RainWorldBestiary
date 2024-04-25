@@ -29,7 +29,7 @@ Tabs and entries are also organized the way they are loaded from the files (alph
 Entries don't care what sub directory they are in, as the entry loader looks for all files in the tab folder, including entries in sub-directories.
 
 
-Merging tabs add all entries to the existing tab, If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used; Same logic applies to [tab_menu_process_id](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#tab_menu_process_id--string).
+Merging tabs add all entries to the existing tab, If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used.
 
 ### Tabs JSON Components
 
