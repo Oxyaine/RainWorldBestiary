@@ -81,19 +81,10 @@ namespace RainWorldBestiary.Menus
         public EntryTextDisplay() { }
         public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
         {
-            PredictedTextLength = wrappedText.Length;
-
-            string[] split = wrappedText.Split('\n');
-            int currentY = GetStartingYPosition(split.Length, (int)screenSize.y);
-
-            foreach (string line in split)
-            {
-                Enumerators.CompleteEnumerator(FormatHorizontalText(line, screenSize, currentY, menu, owner, false));
-                currentY -= LineSpacing;
-            }
+            Enumerators.CompleteEnumerator(Populate(wrappedText, screenSize, menu, owner, false));
         }
 
-        public IEnumerator Populate(string wrappedText, Vector2 screenSize, Menu.Menu menu, MenuObject owner)
+        public IEnumerator Populate(string wrappedText, Vector2 screenSize, Menu.Menu menu, MenuObject owner, bool buttonsOffScreen = true)
         {
             PredictedTextLength = wrappedText.Length;
 
@@ -102,7 +93,7 @@ namespace RainWorldBestiary.Menus
 
             foreach (string line in split)
             {
-                IEnumerator enumerator = FormatHorizontalText(line, screenSize, currentY, menu, owner, true);
+                IEnumerator enumerator = FormatHorizontalText(line, screenSize, currentY, menu, owner, buttonsOffScreen);
 
                 while (enumerator.MoveNext())
                     yield return null;
