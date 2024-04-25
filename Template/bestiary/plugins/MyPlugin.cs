@@ -1,9 +1,14 @@
 // This is a basic C# file showing off how to make your own plugin for the bestiary
-// Bestiary plugins work similar to other mods; Where you place a DLL file into the plugins folder;
+// Bestiary plugins work similar to other mods; Where you place a DLL file into the plugins folder; (with the bestiary you place it in `/bestiary/plugins`, not just `/plugins`)
 // The only difference is, bestiary plugins are only loaded when the bestiary mod is active, keeping the bestiary optional.
-// This File is just here to show what an example of the code would look like, this file should be compiled into a DLL file, and the DLL should be placed here instead
+// This File is just here to show what an example of the code would look like, this file should be compiled into a DLL file, and the DLL should be placed in this files location instead
 
+// In the code below, this gives access to the `Bestiary` class
+using RainWorldBestiary;
+// In the code below, this gives access to the `BestiaryPlugin` class
 using RainWorldBestiary.Plugins;
+// In the code below, this gives access to the `UnlockTokenType` enum
+using RainWorldBestiary.Types;
 
 namespace MyPlugin
 {
@@ -11,7 +16,7 @@ namespace MyPlugin
     // If you make a constructor for your custom class, make sure it also has a default constructor with no parameters, or an exception will be thrown
     public class MyBestiaryPlugin : BestiaryPlugin
     {
-        // Called when the plugin is loaded, awake is called before start
+        // Awake is called when the plugin is loaded, awake is called before start
         public override void Awake()
         {
             // While you can put any code here, and it'll function as a normal BepinEX plugin, for this example we'll just initialize a custom class
