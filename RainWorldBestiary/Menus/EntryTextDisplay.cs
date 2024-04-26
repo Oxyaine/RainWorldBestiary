@@ -23,7 +23,7 @@ namespace RainWorldBestiary.Menus
 
             Vector2 screenSize = owner.manager.rainWorld.options.ScreenSize;
 
-            int currentObjectIndex = 0,  AmountRevealed = 0, CurrentSpriteIndex = 0;
+            int currentObjectIndex = 0, AmountRevealed = 0, CurrentSpriteIndex = 0;
             int spriteGapBeforeFade = TotalLength / characterSprites.Length;
             int currentSpriteCapBeforeFade = spriteGapBeforeFade;
 
@@ -42,7 +42,7 @@ namespace RainWorldBestiary.Menus
 
                     yield return enumerator.Current;
                 }
-                
+
                 AmountRevealed += RevealSpeed;
                 ++currentObjectIndex;
 
@@ -79,12 +79,7 @@ namespace RainWorldBestiary.Menus
         }
 
         public EntryTextDisplay() { }
-        public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner)
-        {
-            Enumerators.CompleteEnumerator(Populate(wrappedText, screenSize, menu, owner, false));
-        }
-
-        public IEnumerator Populate(string wrappedText, Vector2 screenSize, Menu.Menu menu, MenuObject owner, bool buttonsOffScreen = true)
+        public EntryTextDisplay(string wrappedText, in Vector2 screenSize, in Menu.Menu menu, in MenuObject owner, bool buttonsOffScreen = true)
         {
             PredictedTextLength = wrappedText.Length;
 
@@ -93,10 +88,7 @@ namespace RainWorldBestiary.Menus
 
             foreach (string line in split)
             {
-                IEnumerator enumerator = FormatHorizontalText(line, screenSize, currentY, menu, owner, buttonsOffScreen);
-
-                while (enumerator.MoveNext())
-                    yield return null;
+                FormatHorizontalText(line, in screenSize, in currentY, menu, owner, buttonsOffScreen);
 
                 currentY -= LineSpacing;
             }
@@ -105,8 +97,8 @@ namespace RainWorldBestiary.Menus
         public enum StructureType
         {
             PlainText = 0, Plain = 0, Text = 0, Txt = 0,
+            Color = 0, Clr = 0, Colour = 0, Rgb = 0,
             Reference = 1, Ref = 1, Refer = 1,
-            Color = 2, Clr = 2, Colour = 2, Rgb = 2
         }
         public class StructureData
         {
@@ -128,103 +120,76 @@ namespace RainWorldBestiary.Menus
 
         // Current Valid Structures
         // References:  <ref="Hello!"=Rain World/creaturetype-Fly>
-        // Colors:      <color="Hello!"=FFFFFF>
+        // Colors:      <color="Hello!"=FFFFFF> || <color="Hello!">
+        // Text:        <text="Hello!"=FFFFFF> || <text="Hello!">
 
-        private IEnumerator FormatHorizontalText(string text, Vector2 screenSize, int Y, Menu.Menu menu, MenuObject owner, bool buttonsOffScreen = true)
+        private void FormatHorizontalText(string text, in Vector2 screenSize, in int Y, Menu.Menu menu, MenuObject owner, bool buttonsOffScreen = true)
         {
-            List<int> sizes = new List<int>();
-            List<StructureData> structures = new List<StructureData>();
-
-            // Scope 1
-            {
-                int currentPosition = 0;
-                int LessThanIndex;
-                while ((LessThanIndex = text.IndexOf('<', currentPosition)) != -1)
-                {
-                    StructureData structure = new StructureData(StructureType.PlainText, text.Substring(currentPosition, LessThanIndex - currentPosition));
-                    sizes.Add(structure.Message.Length);
-                    structures.Add(structure);
-
-                    structure = DecipherStructure(in text, LessThanIndex + 1, out currentPosition);
-                    sizes.Add(structure.Message.Length);
-                    structures.Add(structure);
-
-                    yield return null;
-                }
-                // Scope 2
-                {
-                    string remainder = text.Substring(currentPosition);
-                    structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
-                    sizes.Add(remainder.Length);
-                }
-            }
+            ParseHorizontalText(text, out List<int> sizes, out List<StructureData> structures);
 
             int sum = sizes.Sum();
             TotalLength += sum;
 
-            float currentX = (screenSize.x - (sum * 5.3f)) / 2f;
-            int currentSizeIndex = 0;
-            float currentSizeValue = 0;
-            foreach (StructureData structure in structures)
+            const float AverageCharacterSize = 5.3f;
+
+            float currentX = (screenSize.x - (sum * AverageCharacterSize)) / 2f;
+            for (int i = 0; i < structures.Count; i++)
             {
-                switch (structure.Type)
+                if (structures[i].Type == StructureType.Reference)
                 {
-                    case StructureType.Reference:
-                        {
-                            float xSize = sizes[currentSizeIndex] * 1.5f;
+                    Vector2 position = new Vector2(currentX - 6f, Y - 10f);
+                    float buttonSize = sizes[i] * AverageCharacterSize + 20f;
+                    AnimatableSimpleButton button = new AnimatableSimpleButton(menu, owner, structures[i].Message, EntryMenu.ENTRY_REFERENCE_ID + structures[i].OtherData,
+                        buttonsOffScreen ? new Vector2(-100f, -100f) : position, position, new Vector2(buttonSize, 20f))
+                    {
+                        rectColor = new HSLColor(0f, 0f, 0f),
+                        labelColor = new HSLColor(0f, 1f, 1f)
+                    };
 
-                            bool entryAvailable = true;
-                            Entry ent = Bestiary.GetEntryByReferenceID(structure.OtherData);
-                            if (ent == null || !ent.Info.EntryUnlocked)
-                                entryAvailable = false;
+                    _Objects.Add(button);
+                    animatableObjects.Add(button);
 
-                            Vector2 Position = new Vector2(currentX - xSize + currentSizeValue, Y - 10f);
-                            AnimatableSimpleButton button = new AnimatableSimpleButton(menu, owner, structure.Message, EntryMenu.ENTRY_REFERENCE_ID + structure.OtherData,
-                                buttonsOffScreen ? new Vector2(-100f, -100f) : Position, Position, new Vector2(sizes[currentSizeIndex] * 5.3f * 1.5f, 20f))
-                            {
-                                rectColor = new HSLColor(0f, 0f, 0f),
-                                labelColor = new HSLColor(0f, 1f, 1f),
-                                inactive = !entryAvailable
-                            };
-
-                            _Objects.Add(button);
-                            animatableObjects.Add(button);
-
-                            currentSizeValue += 10f;
-                        }
-                        break;
-                    case StructureType.Colour:
-                        {
-                            AnimatableLabel label = new AnimatableLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue + 20f, Y), Vector2.one, false);
-
-                            label.label.color = structure.OtherData.HexToColor();
-                            label.label.alignment = FLabelAlignment.Left;
-
-                            _Objects.Add(label);
-                            animatableObjects.Add(label);
-
-                            currentSizeValue += 20f;
-                        }
-                        break;
-                    default:
-                        {
-                            AnimatableLabel label = new AnimatableLabel(menu, owner, structure.Message, new Vector2(currentX + currentSizeValue, Y), Vector2.one, false);
-
-                            label.label.alignment = FLabelAlignment.Left;
-
-                            _Objects.Add(label);
-                            animatableObjects.Add(label);
-
-                            currentSizeValue += 10f;
-                        }
-                        break;
+                    currentX += buttonSize;
                 }
+                else
+                {
+                    AnimatableLabel label = new AnimatableLabel(menu, owner, structures[i].Message, new Vector2(currentX, Y), Vector2.one, false);
 
-                currentX += sizes[currentSizeIndex] * 5.3f;
-                currentSizeIndex++;
-                yield return null;
+                    label.label.color = structures[i].OtherData.HexToColor();
+                    label.label.alignment = FLabelAlignment.Left;
+
+                    _Objects.Add(label);
+                    animatableObjects.Add(label);
+
+                    currentX += sizes[i] * AverageCharacterSize + 12f;
+                }
             }
         }
+        private static void ParseHorizontalText(string text, out List<int> sizes, out List<StructureData> structures)
+        {
+            sizes = new List<int>();
+            structures = new List<StructureData>();
+
+            int currentPosition = 0;
+            int LessThanIndex = text.IndexOf('<');
+            while (LessThanIndex != -1)
+            {
+                StructureData plainStructure = new StructureData(StructureType.PlainText, text.Substring(currentPosition, LessThanIndex - currentPosition));
+                sizes.Add(plainStructure.Message.Length);
+                structures.Add(plainStructure);
+
+                StructureData structure = DecipherStructure(in text, LessThanIndex + 1, out currentPosition);
+                sizes.Add(structure.Message.Length);
+                structures.Add(structure);
+
+                LessThanIndex = text.IndexOf('<', currentPosition);
+            }
+
+            string remainder = text.Substring(currentPosition);
+            sizes.Add(remainder.Length);
+            structures.Add(new StructureData(StructureType.PlainText, remainder, string.Empty));
+        }
+
         private static StructureData DecipherStructure(in string text, int startingPosition, out int lastPosition)
         {
             lastPosition = text.IndexOf('>', startingPosition, true);
@@ -233,7 +198,7 @@ namespace RainWorldBestiary.Menus
             string[] split = SplitStructure(t);
 
             Enum.TryParse(split[0], true, out StructureType type);
-            string message = split.Length > 1 ? (type != StructureType.PlainText ? split[1].Trim('\"') : t) : string.Empty;
+            string message = split.Length > 1 ? split[1].Trim('\"') : string.Empty;
             string otherData = split.Length > 2 ? split[2] : string.Empty;
 
             ++lastPosition;
@@ -260,7 +225,7 @@ namespace RainWorldBestiary.Menus
 
         public void AddToPage(ref MenuObject page)
             => page.subObjects.AddRange(_Objects);
-        public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner)
-            => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner).AddToPage(ref owner);
+        public static void CreateAndAdd(string wrappedText, in Vector2 screenSize, Menu.Menu menu, MenuObject owner, bool buttonsOffScreen = false)
+            => new EntryTextDisplay(wrappedText, in screenSize, in menu, in owner, buttonsOffScreen).AddToPage(ref owner);
     }
 }

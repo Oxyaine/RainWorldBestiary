@@ -115,14 +115,12 @@ namespace RainWorldBestiary.Menus
                 yield return new WaitTime(0.2f);
             }
 
-            Enumerators.ForceCompleteEnumerators(PopulateDisplayID);
             IEnumerator enumerator = Display.Animate(this, sprites, PlaySound);
 
             while (enumerator.MoveNext())
                 yield return enumerator.Current;
         }
 
-        private int PopulateDisplayID = -1;
         private EntryTextDisplay Display;
         public void DisplayEntryInformation(Entry entry, in Vector2 screenSize)
         {
@@ -130,8 +128,7 @@ namespace RainWorldBestiary.Menus
 
             if (Bestiary.Settings.PerformTextAnimations.Value)
             {
-                Display = new EntryTextDisplay();
-                PopulateDisplayID = Enumerators.StartEnumerator(Display.Populate(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]));
+                Display = new EntryTextDisplay(entry.Info.Description.ToString().WrapText(WrapCount), screenSize, this, pages[0]);
                 Enumerators.StartEnumerator(PerformTextAnimation(screenSize));
             }
             else
@@ -234,14 +231,21 @@ namespace RainWorldBestiary.Menus
 
                 if (entry != null)
                 {
-                    PlaySound(SoundID.MENU_Switch_Page_In);
+                    if (entry.Info.EntryUnlocked)
+                    {
+                        PlaySound(SoundID.MENU_Switch_Page_In);
 
-                    if (Bestiary.ReadingMenusDeep == 0)
-                        Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
-                    ++Bestiary.ReadingMenusDeep;
+                        if (Bestiary.ReadingMenusDeep == 0)
+                            Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK TO PREVIOUS")));
+                        ++Bestiary.ReadingMenusDeep;
 
-                    InSubMenu = true;
-                    manager.ShowDialog(new EntryMenu(manager, entry, this));
+                        InSubMenu = true;
+                        manager.ShowDialog(new EntryMenu(manager, entry, this));
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
         }
