@@ -133,7 +133,13 @@ namespace RainWorldBestiary.Menus
             }
             else
             {
-                EntryTextDisplay.CreateAndAdd(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0]);
+                Display = new EntryTextDisplay(entry.Info.Description.ToString().WrapText(WrapCount), in screenSize, this, pages[0], false);
+                foreach (PositionedMenuObject @object in Display.Objects)
+                {
+                    Vector2 position = @object.pos + new Vector2(0f, screenSize.y);
+                    AddMovingObject(@object, position, @object.pos);
+                    @object.pos = position;
+                }
             }
 
             MenuIllustration[] illustrations = SharedMenuUtilities.GetMenuTitleIllustration(this, pages[0], entry, in screenSize, out float spriteWidth);

@@ -3,6 +3,7 @@ using RainWorldBestiary.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace RainWorldBestiary.Menus
         public int PredictedTextLength = 0;
         private readonly int LineSpacing = 20;
         private readonly List<PositionedMenuObject> _Objects = new List<PositionedMenuObject>();
+        public ReadOnlyCollection<PositionedMenuObject> Objects { get; private set; }
         private readonly List<IAnimatableObject> animatableObjects = new List<IAnimatableObject>();
 
         public IEnumerator Animate(OverlappingMenu owner, MenuIllustration[] characterSprites, Action<SoundID, float, float, float> playSoundFunction = null)
@@ -92,6 +94,8 @@ namespace RainWorldBestiary.Menus
 
                 currentY -= LineSpacing;
             }
+
+            Objects = _Objects.AsReadOnly();
         }
 
         public enum StructureType
