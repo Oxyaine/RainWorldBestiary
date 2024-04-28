@@ -102,7 +102,7 @@ namespace RainWorldBestiary.Menus
 
         public override void Singal(MenuObject sender, string message)
         {
-            if (message.Equals(BackButtonMessage))
+            if (message.Equals(BackButtonMessage) && !Closing)
             {
                 Closing = true;
 
@@ -135,7 +135,7 @@ namespace RainWorldBestiary.Menus
                 }
                 else
                 {
-                    PlaySound(SoundID.MENU_Button_Standard_Button_Pressed);
+                    PlaySound(SoundID.MENU_Error_Ping);
 
                     TipLabel.text = Translator.Translate(selectedEntry.Info.LockedText);
                     TipLabelAlpha = Mathf.Clamp(TipLabel.text.Length * 0.04f, 1.5f, 5f);

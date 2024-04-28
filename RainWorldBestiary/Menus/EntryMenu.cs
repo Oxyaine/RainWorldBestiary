@@ -201,7 +201,7 @@ namespace RainWorldBestiary.Menus
 
         public override void Singal(MenuObject sender, string message)
         {
-            if (message.Equals(BackButtonMessage))
+            if (message.Equals(BackButtonMessage) && !Closing)
             {
                 Closing = true;
 
@@ -216,8 +216,10 @@ namespace RainWorldBestiary.Menus
 
                 CloseMenu();
             }
-            else if (message.Equals(ReturnButtonMessage))
+            else if (message.Equals(ReturnButtonMessage) && !Closing)
             {
+                Closing = true;
+
                 PlaySound(SoundID.MENU_Switch_Page_Out);
 
                 Bestiary.ReadingMenusDeep = 0;
@@ -247,7 +249,7 @@ namespace RainWorldBestiary.Menus
                     }
                     else
                     {
-
+                        PlaySound(SoundID.MENU_Error_Ping);
                     }
                 }
             }
@@ -263,17 +265,20 @@ namespace RainWorldBestiary.Menus
 
         public void ReturningToThisMenu()
         {
-            if (Bestiary.ClosingAllReadingMenus)
+            if (InSubMenu)
             {
-                Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
-                CloseMenu();
-            }
-            else if (Bestiary.ReadingMenusDeep == 0)
-            {
-                Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK")));
-            }
+                if (Bestiary.ClosingAllReadingMenus)
+                {
+                    Enumerators.StartEnumerator(SharedMenuUtilities.AnimateDeleteText(backButton.menuLabel));
+                    CloseMenu();
+                }
+                else if (Bestiary.ReadingMenusDeep == 0)
+                {
+                    Enumerators.StartEnumerator(SharedMenuUtilities.AnimateTextSwitch(backButton.menuLabel, Translator.Translate("BACK")));
+                }
 
-            InSubMenu = false;
+                InSubMenu = false;
+            }
         }
         public void ClosingSubMenu() { }
     }
