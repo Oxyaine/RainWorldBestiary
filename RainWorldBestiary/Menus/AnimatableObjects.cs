@@ -40,7 +40,7 @@ namespace RainWorldBestiary.Menus
                 label.text += text.Substring(currentTextIndex, RevealSpeed);
                 currentTextIndex += RevealSpeed;
 
-                yield return new WaitTime(0.01f);
+                yield return new WaitTime(0.02f);
             }
 
             label.text += text.Substring(currentTextIndex);

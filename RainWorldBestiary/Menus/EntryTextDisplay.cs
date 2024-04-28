@@ -66,7 +66,7 @@ namespace RainWorldBestiary.Menus
         }
         private IEnumerator FadeIconAnimation(MenuIllustration sprite, Action<SoundID, float, float, float> playSoundFunction = null)
         {
-            playSoundFunction?.Invoke(SoundID.HUD_Food_Meter_Deplete_Plop_A, 0f, 1.75f, 1f);
+            playSoundFunction?.Invoke(SoundID.HUD_Food_Meter_Deplete_Plop_A, 0f, 1.5f, 1f);
 
             while (sprite.alpha > 0)
             {
