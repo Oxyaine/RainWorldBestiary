@@ -127,6 +127,11 @@
             Makes the generated title in the menus use consistent spacing between each character, which brings them further apart, but makes the spacing more consistent.
             </summary>
         </member>
+        <member name="F:RainWorldBestiary.Bestiary.Settings.ShowTitleIcons">
+            <summary>
+            Determines whether the icons of the entry should appear next to the title (that appears when reading the entry)
+            </summary>
+        </member>
         <member name="F:RainWorldBestiary.Bestiary.Settings.UnlockAllEntries">
             <summary>
             Whether all bestiary entries should be unlocked and completely readable
@@ -675,11 +680,6 @@
         <member name="F:RainWorldBestiary.Types.EntryInfo.LockedText">
             <summary>
             The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
-            </summary>
-        </member>
-        <member name="F:RainWorldBestiary.Types.EntryInfo.IconsNextToTitle">
-            <summary>
-            Whether the two icons specified by <see cref="P:RainWorldBestiary.Types.EntryInfo.EntryIcon"/> will be displayed either side of the title
             </summary>
         </member>
         <member name="P:RainWorldBestiary.Types.EntryInfo.EntryIcon">

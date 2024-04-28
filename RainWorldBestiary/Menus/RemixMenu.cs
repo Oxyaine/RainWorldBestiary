@@ -17,6 +17,7 @@ namespace RainWorldBestiary.Menus
             Bestiary.Settings.PerformTextAnimations = config.Bind("bestiary_perform_text_animation", true);
             Bestiary.Settings.ShowManualButton = config.Bind("bestiary_show_manual_button", true);
             Bestiary.Settings.ConsistentTitleSpacing = config.Bind("bestiary_use_character_spacing", false);
+            Bestiary.Settings.ShowTitleIcons = config.Bind("bestiary_hide_title_icons", true);
 
             Bestiary.Settings.UnlockAllEntries = config.Bind("bestiary_unlock_all_entries", false);
         }
@@ -36,6 +37,7 @@ namespace RainWorldBestiary.Menus
             AddElements(ref items, Translator.Translate("Show Unlock Pips"), Bestiary.Settings.ShowModuleLockPips, description: Translator.Translate("OXY.BESTIARY.SHOW_UNLOCK_PIPS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Perform Text Reveal Animation"), Bestiary.Settings.PerformTextAnimations, description: Translator.Translate("OXY.BESTIARY.SHOW_TEXT_ANIMATIONS_DESCRIPTION"));
             AddElements(ref items, Translator.Translate("Show Manual Button"), Bestiary.Settings.ShowManualButton, description: Translator.Translate("OXY.BESTIARY.SHOW_MANUAL_BUTTON_DESCRIPTION"));
+            AddElements(ref items, Translator.Translate("Show Icons Next To Titles"), Bestiary.Settings.ShowTitleIcons, description: "OXY.BESTIARY.SHOW_TITLE_ICONS_DESCRIPTION");
             AddElements(ref items, Translator.Translate("Use Consistent Title Character Spacing"), Bestiary.Settings.ConsistentTitleSpacing, description: Translator.Translate("OXY.BESTIARY.USE_CHARACTER_SPACING_DESCRIPTION"));
             def.AddItems(items.ToArray());
 

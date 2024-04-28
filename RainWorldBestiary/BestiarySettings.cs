@@ -28,7 +28,10 @@
             /// Makes the generated title in the menus use consistent spacing between each character, which brings them further apart, but makes the spacing more consistent.
             /// </summary>
             public static Configurable<bool> ConsistentTitleSpacing;
-
+            /// <summary>
+            /// Determines whether the icons of the entry should appear next to the title (that appears when reading the entry)
+            /// </summary>
+            public static Configurable<bool> ShowTitleIcons;
 
 
 

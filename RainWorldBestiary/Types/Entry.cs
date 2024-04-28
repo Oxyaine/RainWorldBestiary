@@ -134,13 +134,6 @@ namespace RainWorldBestiary.Types
 
 
         /// <summary>
-        /// Whether the two icons specified by <see cref="EntryIcon"/> will be displayed either side of the title
-        /// </summary>
-        [JsonProperty("icons_next_to_title")]
-        public bool IconsNextToTitle = true;
-
-
-        /// <summary>
         /// The name of the sprite in the atlas manager that will be used as the entry icon
         /// </summary>
         [JsonProperty("entry_icon")]

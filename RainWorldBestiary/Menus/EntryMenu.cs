@@ -152,35 +152,32 @@ namespace RainWorldBestiary.Menus
 
             widthOffset = spriteWidth / 2f;
 
-            if (entry.Info.IconsNextToTitle)
+            if (Bestiary.Settings.ShowTitleIcons.Value)
             {
                 float iconOffset = 0;
                 for (int i = 0; i < entry.Info.EntryIcons.Length; i++)
                 {
-                    if (entry.Info.IconsNextToTitle && Futile.atlasManager.DoesContainElementWithName(entry.Info.EntryIcons[i]))
+                    MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
+                        new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y + 200f), true, true)
                     {
-                        MenuIllustration illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
-                            new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y + 200f), true, true)
-                        {
-                            sprite =
+                        sprite =
                             {
                                 scale = 2f
                             }
-                        };
-                        AddMovingObject(illustration, new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y - 50));
+                    };
+                    AddMovingObject(illustration, new Vector2(screenSize.x / 2f - (widthOffset + leftSpriteOffset) - iconOffset, screenSize.y - 50));
 
-                        illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
-                            new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y + 200f), true, true)
-                        {
-                            sprite =
+                    illustration = new MenuIllustration(this, pages[0], Path.GetDirectoryName(entry.Info.EntryIcons[i]), Path.GetFileName(entry.Info.EntryIcons[i]),
+                        new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y + 200f), true, true)
+                    {
+                        sprite =
                             {
                                 scale = 2f
                             }
-                        };
-                        AddMovingObject(illustration, new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y - 50));
+                    };
+                    AddMovingObject(illustration, new Vector2(screenSize.x / 2f + (widthOffset + 10) + iconOffset, screenSize.y - 50));
 
-                        iconOffset += illustration.sprite.width;
-                    }
+                    iconOffset += illustration.sprite.width;
                 }
             }
 
