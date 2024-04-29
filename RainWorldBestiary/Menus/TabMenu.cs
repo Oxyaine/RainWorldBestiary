@@ -11,7 +11,6 @@ namespace RainWorldBestiary.Menus
         readonly string BackButtonMessage = "BACK";
         readonly string EntryPressedID = "Read_Entry_";
 
-        private bool Closing = false;
         private readonly EntriesTab DisplayedTab;
 
         public TabMenu(ProcessManager manager, EntriesTab tab, IOverlappingMenuOwner parentMenu) : base(manager, parentMenu)
@@ -104,9 +103,6 @@ namespace RainWorldBestiary.Menus
         {
             if (message.Equals(BackButtonMessage) && !Closing)
             {
-                Closing = true;
-
-                PlaySound(SoundID.MENU_Switch_Page_Out);
                 CloseMenu();
                 return;
             }
@@ -154,7 +150,7 @@ namespace RainWorldBestiary.Menus
             if (TipLabelAlpha > 0)
             {
                 TipLabelAlpha -= Time.deltaTime / Mathf.Clamp(TipLabelAlpha, 0f, 1f);
-                TipLabel.label.color = new Color(1f, 1f, 1f, TipLabelAlpha);
+                TipLabel.label.alpha = TipLabelAlpha;
             }
 
             if (Input.GetKeyDown(KeyCode.Escape) && !Closing && !InSubMenu)

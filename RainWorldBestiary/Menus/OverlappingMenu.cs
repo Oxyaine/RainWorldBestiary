@@ -19,24 +19,27 @@ namespace RainWorldBestiary.Menus
 
     internal abstract class OverlappingMenu : Dialog
     {
-        private bool opening = false, closing = false;
+        protected bool Opening { get; private set; } = false;
+        protected bool Closing { get; private set; } = false;
         private float targetAlpha;
 
         private readonly IOverlappingMenuOwner owningMenu;
 
-        protected List<MovingObject> MovingObjects = new List<MovingObject>();
+        private readonly List<MovingObject> MovingObjects = new List<MovingObject>();
 
-        public OverlappingMenu(ProcessManager manager, IOverlappingMenuOwner parentMenu = null) : base(manager)
+        public OverlappingMenu(ProcessManager manager, IOverlappingMenuOwner parentMenu) : base(manager)
         {
-            opening = true;
+            Opening = true;
             targetAlpha = 1f;
             owningMenu = parentMenu;
         }
 
         public virtual void CloseMenu()
         {
-            opening = false;
-            closing = true;
+            PlaySound(SoundID.MENU_Switch_Page_Out);
+
+            Opening = false;
+            Closing = true;
             targetAlpha = 0f;
             owningMenu?.ReturningToThisMenu();
         }
@@ -59,13 +62,13 @@ namespace RainWorldBestiary.Menus
             lastAlpha = currentAlpha;
             currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * 10);
 
-            if (opening && currentAlpha >= 0.999f)
+            if (Opening && currentAlpha >= 0.999f)
             {
-                opening = false;
+                Opening = false;
             }
-            if (closing && Math.Abs(currentAlpha - targetAlpha) < 0.09f)
+            if (Closing && Math.Abs(currentAlpha - targetAlpha) < 0.09f)
             {
-                closing = false;
+                Closing = false;
                 owningMenu?.ClosingSubMenu();
                 manager.StopSideProcess(this);
             }
@@ -74,14 +77,14 @@ namespace RainWorldBestiary.Menus
         {
             base.GrafUpdate(timeStacker);
 
-            if (opening || closing)
+            if (Opening || Closing)
             {
                 uAlpha = Mathf.Pow(Mathf.Max(0f, Mathf.Lerp(lastAlpha, currentAlpha, timeStacker)), 1.5f);
                 darkSprite.alpha = uAlpha * 0.8f;
 
                 foreach (MovingObject @object in MovingObjects)
                 {
-                    if (@object.MenuObject.pos != (closing ? @object.FirstPosition : @object.SecondPosition))
+                    if (@object.MenuObject.pos != (Closing ? @object.FirstPosition : @object.SecondPosition))
                     {
                         @object.MenuObject.pos = Vector2.Lerp(@object.FirstPosition, @object.SecondPosition, (uAlpha < 0.999f) ? uAlpha : 1f);
                     }

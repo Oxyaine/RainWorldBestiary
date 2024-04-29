@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RainWorldBestiary.Menus
 {
-    internal class RemixMenu : OptionInterface
+    internal sealed class RemixMenu : OptionInterface
     {
         private Color CheatColor = new Color(1f, 0.5f, 0.5f);
         //private Color ExperimentalColor = new Color(0.5f, 0.8f, 0.7f);

@@ -11,7 +11,7 @@ namespace RainWorldBestiary.Menus
         internal const string ENTRY_REFERENCE_ID = "Reference_To;";
         readonly string ReturnButtonMessage = "RETURN";
 
-        private bool Closing = false, InSubMenu = false;
+        private bool InSubMenu = false;
 
         readonly int WrapCount = 180;
 
@@ -203,10 +203,6 @@ namespace RainWorldBestiary.Menus
         {
             if (message.Equals(BackButtonMessage) && !Closing)
             {
-                Closing = true;
-
-                PlaySound(SoundID.MENU_Switch_Page_Out);
-
                 if (Bestiary.ReadingMenusDeep > 0)
                 {
                     --Bestiary.ReadingMenusDeep;
@@ -218,10 +214,6 @@ namespace RainWorldBestiary.Menus
             }
             else if (message.Equals(ReturnButtonMessage) && !Closing)
             {
-                Closing = true;
-
-                PlaySound(SoundID.MENU_Switch_Page_Out);
-
                 Bestiary.ReadingMenusDeep = 0;
                 Bestiary.ClosingAllReadingMenus = true;
 
