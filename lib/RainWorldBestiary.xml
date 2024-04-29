@@ -99,7 +99,7 @@
         </member>
         <member name="T:RainWorldBestiary.Bestiary.Settings">
             <summary>
-            The main class for all the bestiary mods' settings, including remix menu options
+            The class that holds all the remix menu options and their current values
             </summary>
         </member>
         <member name="P:RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds">

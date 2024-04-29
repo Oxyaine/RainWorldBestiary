@@ -3,7 +3,7 @@
     public static partial class Bestiary
     {
         /// <summary>
-        /// The main class for all the bestiary mods' settings, including remix menu options
+        /// The class that holds all the remix menu options and their current values
         /// </summary>
         public static class Settings
         {
