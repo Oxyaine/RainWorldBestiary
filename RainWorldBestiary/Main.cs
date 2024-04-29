@@ -36,12 +36,21 @@ namespace RainWorldBestiary
 
         internal void Update()
         {
-            HooksUtilities.Update();
-            Enumerators.Update();
+            if (Initialized)
+            {
+                HooksUtilities.Update();
+                Enumerators.Update();
 
-            BestiaryModManager.UpdatePlugins();
+                BestiaryModManager.UpdatePlugins();
+            }
         }
-        internal void FixedUpdate() => BestiaryModManager.FixedUpdatePlugins();
+        internal void FixedUpdate()
+        {
+            if (Initialized)
+            {
+                BestiaryModManager.FixedUpdatePlugins();
+            }
+        }
 
         private void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit original, RainWorld self)
         {
