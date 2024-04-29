@@ -9,15 +9,15 @@ namespace RainWorldBestiary.Menus
 {
     internal static class SharedMenuUtilities
     {
-        public static MenuIllustration[] GetMenuTitleIllustration(Menu.Menu menu, MenuObject owner, string elementName, float elementScale, in Vector2 screenSize, Vector2 offset, string generatedTitleText, out float spriteWidth)
+        public static MenuIllustration[] GetMenuTitleIllustration(Menu.Menu menu, MenuObject owner, TitleSprite sprite, in Vector2 screenSize, string generatedTitleText, out float spriteWidth)
         {
-            if (!string.IsNullOrEmpty(elementName))
+            if (!string.IsNullOrEmpty(sprite.ElementName))
             {
-                MenuIllustration menuIllustration = new MenuIllustration(menu, owner, Path.GetDirectoryName(elementName), Path.GetFileName(elementName), new Vector2(screenSize.x / 2f + offset.x, screenSize.y - 50f - offset.y), false, true)
+                MenuIllustration menuIllustration = new MenuIllustration(menu, owner, Path.GetDirectoryName(sprite.ElementName), Path.GetFileName(sprite.ElementName), new Vector2(screenSize.x / 2f + sprite.XOffset, screenSize.y - 50f - sprite.YOffset), false, true)
                 {
                     sprite =
                 {
-                     scale = 0.3f * elementScale
+                     scale = 0.3f * sprite.Scale
                 }
                 };
                 spriteWidth = menuIllustration.sprite.width;
@@ -43,7 +43,7 @@ namespace RainWorldBestiary.Menus
                 return GetGeneratedTitleIllustration(menu, owner, Translator.Translate(tab.Name), in screenSize, out _);
             }
 
-            return GetMenuTitleIllustration(menu, owner, tab.TitleSprite.ElementName, tab.TitleSprite.Scale, in screenSize, new Vector2(tab.TitleSprite.XOffset, tab.TitleSprite.YOffset), Translator.Translate(tab.Name), out _);
+            return GetMenuTitleIllustration(menu, owner, tab.TitleSprite, in screenSize, Translator.Translate(tab.Name), out _);
         }
         public static MenuIllustration[] GetMenuTitleIllustration(Menu.Menu menu, MenuObject owner, Entry entry, in Vector2 screenSize, out float spriteWidth)
         {
@@ -52,7 +52,7 @@ namespace RainWorldBestiary.Menus
                 return GetGeneratedTitleIllustration(menu, owner, Translator.Translate(entry.Name), in screenSize, out spriteWidth);
             }
 
-            return GetMenuTitleIllustration(menu, owner, entry.Info.TitleSprite.ElementName, entry.Info.TitleSprite.Scale, in screenSize, new Vector2(entry.Info.TitleSprite.XOffset, entry.Info.TitleSprite.YOffset), Translator.Translate(entry.Name), out spriteWidth);
+            return GetMenuTitleIllustration(menu, owner, entry.Info.TitleSprite, in screenSize, Translator.Translate(entry.Name), out spriteWidth);
         }
 
 

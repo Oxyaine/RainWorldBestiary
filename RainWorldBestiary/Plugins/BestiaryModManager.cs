@@ -101,13 +101,20 @@ namespace RainWorldBestiary.Plugins
         {
             original(self, newlyEnabledMods);
 
+            bool recache = false;
             foreach (ModManager.Mod mod in newlyEnabledMods)
             {
                 if (!ignoredMods.Contains(mod.id))
                 {
                     ActiveModsIDs.Add(mod.id);
                     LoadMod(mod);
+                    recache = true;
                 }
+            }
+
+            if (recache)
+            {
+                RecacheBestiaryEntries();
             }
         }
 

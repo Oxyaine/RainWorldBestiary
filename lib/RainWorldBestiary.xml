@@ -137,7 +137,12 @@
             Whether all bestiary entries should be unlocked and completely readable
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddEntry(System.String,RainWorldBestiary.Types.Entry,RainWorldBestiary.Types.EntriesTab)">
+        <member name="T:RainWorldBestiary.Bestiary.Extensions">
+            <summary>
+            A class with some extension methods, to add some partial support for adding your own entries through code
+            </summary>
+        </member>
+        <member name="M:RainWorldBestiary.Bestiary.Extensions.AddEntry(System.String,RainWorldBestiary.Types.Entry,RainWorldBestiary.Types.EntriesTab)">
             <summary>
             Adds an entry to the Bestiary
             </summary>
@@ -145,14 +150,14 @@
             <param name="entry">The entry that is to be added</param>
             <param name="tab">The tab the entry is in</param>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddTab(System.String,RainWorldBestiary.Types.EntriesTab)">
+        <member name="M:RainWorldBestiary.Bestiary.Extensions.AddTab(System.String,RainWorldBestiary.Types.EntriesTab)">
             <summary>
             Adds a tab of entries to the Bestiary
             </summary>
             <param name="owningModID">The ID (that is set in the `modinfo.json` file) of the mod that owns this entry</param>
             <param name="tab">The tab the entry is in</param>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AddPlugin(System.String,RainWorldBestiary.Plugins.BestiaryPlugin)">
+        <member name="M:RainWorldBestiary.Bestiary.Extensions.AddPlugin(System.String,RainWorldBestiary.Plugins.BestiaryPlugin)">
             <summary>
             Adds a plugin to the bestiary
             </summary>
