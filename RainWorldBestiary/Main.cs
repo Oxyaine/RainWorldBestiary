@@ -48,11 +48,11 @@ namespace RainWorldBestiary
             original(self);
             try
             {
-                MachineConnector.SetRegisteredOI(MODID, new RemixMenu());
-
                 if (!Initialized)
                 {
                     Initialized = true;
+
+                    MachineConnector.SetRegisteredOI(MODID, new RemixMenu());
 
                     CurrentLanguage = self.options.language;
                     CurrentSaveSlot = self.options.saveSlot;
