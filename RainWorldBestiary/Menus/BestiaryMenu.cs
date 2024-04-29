@@ -19,7 +19,6 @@ namespace RainWorldBestiary.Menus
         private bool Closing = false;
 
         private readonly string InstructionManualButtonMessage = "INSTRUCTION_MANUAL";
-        public static ProcessManager.ProcessID InstructionManualMenu = new ProcessManager.ProcessID("Bestiary_Instruction_Manual_Menu", true);
         internal readonly Dictionary<InstructionManualPages, int> ManualTopics = new Dictionary<InstructionManualPages, int>
         {
             {
@@ -55,7 +54,7 @@ namespace RainWorldBestiary.Menus
 
             darkSprite.alpha = 0.5f;
 
-            MenuIllustration menuIllustration = new MenuIllustration(this, pages[0], "illustrations\\bestiary\\titles", "Bestiary_Title", new Vector2(screenSize.x / 2, screenSize.y - 100), false, true)
+            MenuIllustration menuIllustration = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsTitlesPath, "Bestiary_Title", new Vector2(screenSize.x / 2, screenSize.y - 100), false, true)
             {
                 color = new Color(162f, 157f, 170f),
                 sprite =
