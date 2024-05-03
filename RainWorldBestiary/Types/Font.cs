@@ -10,7 +10,7 @@ namespace RainWorldBestiary.Types
         public readonly string Name;
 
         public const string UnknownFontCharacterPath = "illustrations\\bestiary\\icons";
-        public const string UnknownFontCharacterName = "Unknown_Character";
+        public const string UnknownFontCharacterName = "error";
 
         public Font(string fontName)
         {
@@ -65,7 +65,7 @@ namespace RainWorldBestiary.Types
                 else
                 {
                     sprites[i] = new MenuIllustration(menu, owner, UnknownFontCharacterPath, UnknownFontCharacterName, new Vector2(currentX, 0), true, true);
-                    currentX += sprites[i].sprite.width;
+                    currentX += sprites[i].sprite.width + 40f;
                 }
             }
 
