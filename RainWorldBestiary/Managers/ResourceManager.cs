@@ -46,7 +46,7 @@ namespace RainWorldBestiary.Plugins
 
             return null;
         }
-        internal static bool GetCustomFontByName(string fontName, out Font result)
+        internal static bool TryGetCustomFontByName(string fontName, out Font result)
         {
             Font f = GetCustomFontByName(fontName);
             result = f;
