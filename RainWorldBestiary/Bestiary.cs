@@ -15,18 +15,19 @@ namespace RainWorldBestiary
         internal static EntriesTabList EntriesTabs = null;
 
 
+        private static BestiaryData Data = new BestiaryData();
+
+
         // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
-        // The creature unlock ids list, is publicly accessible through CreatureUnlockIDs
-        private static List<string> _CreatureUnlockIDs = new List<string>();
 
         /// <summary>
-        /// Adds this creatureID to the <see cref="_CreatureUnlockIDs"/> list if its not already added
+        /// Adds this creatureID to the <see cref="BestiaryData.CreatureUnlockIDs"/> list if its not already added
         /// </summary>
         public static void UnlockCreature(string creatureID)
         {
-            if (!_CreatureUnlockIDs.Contains(creatureID))
-                _CreatureUnlockIDs.Add(creatureID);
+            if (!Data.CreatureUnlockIDs.Contains(creatureID))
+                Data.CreatureUnlockIDs.Add(creatureID);
         }
         /// <param name="creature">Automatically gets run through <see cref="GetCreatureUnlockName(Creature, bool)"/></param>
         /// <inheritdoc cref="UnlockCreature(string)"/>
@@ -35,9 +36,9 @@ namespace RainWorldBestiary
         public static void UnlockCreature(AbstractCreature creature) => UnlockCreature(GetCreatureUnlockName(creature));
 
         /// <summary>
-        /// Checks if this creature is found in either the <see cref="_CreatureUnlockIDs"/> or <see cref="CreatureUnlockIDsOverride"/>
+        /// Checks if this creature is found in either the <see cref="BestiaryData.CreatureUnlockIDs"/> or <see cref="CreatureUnlockIDsOverride"/>
         /// </summary>
-        public static bool IsCreatureUnlocked(string creatureId) => _CreatureUnlockIDs.Contains(creatureId) || CreatureUnlockIDsOverride.Contains(creatureId);
+        public static bool IsCreatureUnlocked(string creatureId) => Data.CreatureUnlockIDs.Contains(creatureId) || CreatureUnlockIDsOverride.Contains(creatureId);
         /// <inheritdoc cref="IsCreatureUnlocked(string)"/>
         public static bool IsCreatureUnlocked(Creature creature) => IsCreatureUnlocked(GetCreatureUnlockName(creature));
         /// <inheritdoc cref="IsCreatureUnlocked(string)"/>
@@ -46,24 +47,11 @@ namespace RainWorldBestiary
 
 
 
-
-        // The module unlocks dictionary, is accessed publicly through ModuleUnlocks, since we want people to use add or increase module unlock
-        private static Dictionary<string, List<UnlockToken>> _ModuleUnlocks = new Dictionary<string, List<UnlockToken>>();
-        /// <summary>
-        /// All the manual module unlock tokens, the first element defines the id of the creature the token belongs to, the second element is a list of all unlock tokens belonging to that creature
-        /// </summary>
-        /// <remarks>
-        /// If you'd like to add your own token, Use <see cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
-        /// <code></code>
-        /// You should also check out <see cref="IsUnlockTokenValid(CreatureUnlockToken)"/> for checking if the unlock token is valid
-        /// </remarks>
-        public static Dictionary<string, List<UnlockToken>> ModuleUnlocks => new Dictionary<string, List<UnlockToken>>(_ModuleUnlocks);
-
         // Pre cached in the resource manager while it checks if an entry should be unlocked
         // The string is the creatures unlock id, and the list is all unique unlocks tokens for that entry
         internal static readonly Dictionary<string, List<UnlockToken>> _allUniqueUnlockTokens = new Dictionary<string, List<UnlockToken>>();
         /// <summary>
-        /// Checks if <see cref="ModuleUnlocks"/> contains the <see cref="UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
+        /// Checks if <see cref="BestiaryData.ModuleUnlocks"/> contains the <see cref="UnlockTokenType"/> for the given creature ID, if it does, it increases the token, otherwise adds it as a new token
         /// </summary>
         /// <remarks>
         /// The token will only get added, if the token takes part in unlocking a description module, so if the token will never unlock a module, it wont get added. You can override this by setting <paramref name="alwaysAddToken"/> to true.
@@ -92,7 +80,7 @@ namespace RainWorldBestiary
             if (addToken)
             {
                 UnlockToken token = null;
-                if (_ModuleUnlocks.TryGetValue(creatureID, out List<UnlockToken> registeredTokens))
+                if (Data.ModuleUnlocks.TryGetValue(creatureID, out List<UnlockToken> registeredTokens))
                 {
                     bool tokenExists = false;
                     for (int i = 0; i < registeredTokens.Count; ++i)
@@ -124,13 +112,13 @@ namespace RainWorldBestiary
                 else
                 {
                     token = new UnlockToken(tokenType) { SpecialData = SpecialData.ToList() };
-                    _ModuleUnlocks.Add(creatureID, new List<UnlockToken> { token });
+                    Data.ModuleUnlocks.Add(creatureID, new List<UnlockToken> { token });
                 }
 
                 if (!alwaysAddToken)
-                    if (!_CreatureUnlockIDs.Contains(creatureID))
+                    if (!Data.CreatureUnlockIDs.Contains(creatureID))
                         if (token.Count >= RequiredToken.Count)
-                            _CreatureUnlockIDs.Add(creatureID);
+                            Data.CreatureUnlockIDs.Add(creatureID);
             }
         }
         /// <inheritdoc cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
@@ -147,7 +135,7 @@ namespace RainWorldBestiary
         /// Does not take into account if <see cref="Settings.UnlockAllEntries"/> is toggled</remarks>
         public static bool IsUnlockTokenValid(CreatureUnlockToken unlockToken)
         {
-            if (_ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
+            if (Data.ModuleUnlocks.TryGetValue(unlockToken.CreatureID, out List<UnlockToken> value))
             {
                 foreach (UnlockToken token in value)
                     if (unlockToken.Equals(token) && token.ContainsSpecialData(unlockToken.SpecialData))
@@ -175,15 +163,13 @@ namespace RainWorldBestiary
         {
             if (Directory.Exists(SaveFolder))
             {
-                BestiarySaveData saveData = new BestiarySaveData(_ModuleUnlocks, _CreatureUnlockIDs);
-                File.WriteAllText(SaveFile, JsonConvert.SerializeObject(saveData));
+                File.WriteAllText(SaveFile, JsonConvert.SerializeObject(Data));
             }
         }
         // Clears all the currently loaded save data, such as Module unlocks and creature unlock ids
         internal static void ClearLoadedSaveData()
         {
-            _ModuleUnlocks.Clear();
-            _CreatureUnlockIDs.Clear();
+            Data = new BestiaryData();
         }
         // Deletes all the save data in the current slot
         internal static void DELETESaveDataInSlot()
@@ -196,9 +182,7 @@ namespace RainWorldBestiary
         {
             if (File.Exists(SaveFile))
             {
-                BestiarySaveData saveData = JsonConvert.DeserializeObject<BestiarySaveData>(File.ReadAllText(SaveFile));
-                _ModuleUnlocks = saveData.ModuleUnlocks.ToDictionary(v => v.Key, v => v.Value);
-                _CreatureUnlockIDs = saveData.CreatureUnlockIDs;
+                Data = JsonConvert.DeserializeObject<BestiaryData>(File.ReadAllText(SaveFile));
             }
         }
 

@@ -52,7 +52,7 @@
     <Compile Include="Menus\OverlappingMenu.cs" />
     <Compile Include="Plugins\BestiaryPlugin.cs" />
     <Compile Include="BestiaryExtensions.cs" />
-    <Compile Include="Types\BestiarySaveData.cs" />
+    <Compile Include="Types\BestiaryData.cs" />
     <Compile Include="Menus\TabMenu.cs" />
     <Compile Include="Hooks\Auto_CreatureHooks.cs" />
     <Compile Include="Types\Description.cs" />
