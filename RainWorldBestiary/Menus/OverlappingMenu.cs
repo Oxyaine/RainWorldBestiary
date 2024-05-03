@@ -54,6 +54,18 @@ namespace RainWorldBestiary.Menus
             MovingObjects.Add(new MovingObject(@object, firstPosition, secondPosition));
         }
 
+        public void RemoveMovingObject(PositionedMenuObject @object)
+        {
+            for (int i = 0; i < MovingObjects.Count; i++)
+            {
+                if (MovingObjects[i].MenuObject == @object)
+                {
+                    MovingObjects.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
         private float lastAlpha, currentAlpha, uAlpha;
         public override void Update()
         {

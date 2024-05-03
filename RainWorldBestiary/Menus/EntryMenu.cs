@@ -21,6 +21,8 @@ namespace RainWorldBestiary.Menus
         readonly string BackButtonMessage = "BACK";
         public EntryMenu(ProcessManager manager, Entry entry, IOverlappingMenuOwner parentMenu) : base(manager, parentMenu)
         {
+            //Bestiary.MarkEntryAsRead(entry.Info.UnlockID);
+
             DisplayedEntry = entry;
 
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;

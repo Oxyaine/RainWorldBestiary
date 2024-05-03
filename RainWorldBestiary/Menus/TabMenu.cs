@@ -13,6 +13,8 @@ namespace RainWorldBestiary.Menus
 
         private readonly EntriesTab DisplayedTab;
 
+        private readonly MenuLabel MarkAllAsReadLabel;
+
         public TabMenu(ProcessManager manager, EntriesTab tab, IOverlappingMenuOwner parentMenu) : base(manager, parentMenu)
         {
             DisplayedTab = tab;
@@ -39,6 +41,18 @@ namespace RainWorldBestiary.Menus
 
             TipLabel = new MenuLabel(this, pages[0], "", new Vector2(screenSize.x / 2f, 25f), Vector2.one, false);
             pages[0].subObjects.Add(TipLabel);
+
+            //if (Bestiary.AnyUnread())
+            //{
+            //    MarkAllAsReadLabel = new MenuLabel(this, pages[0], "Press [TAB] To Mark All As Read", new Vector2(leftAnchor + 250f, -30f), Vector2.one, false)
+            //    {
+            //        label =
+            //    {
+            //        alignment = FLabelAlignment.Left,
+            //    }
+            //    };
+            //    AddMovingObject(MarkAllAsReadLabel, new Vector2(leftAnchor + 235f, 45f));
+            //}
 
             mySoundLoopID = SoundID.MENU_Main_Menu_LOOP;
         }
@@ -74,6 +88,13 @@ namespace RainWorldBestiary.Menus
                     rectColor = entryLocked ? LockedColor : tab[i].Info.EntryColor
                 };
                 AddMovingObject(button, new Vector2(currentX, currentY));
+
+                //if (Bestiary.CheckIfEntryUnread(tab[i].Info.UnlockID))
+                //{
+                //    MenuIllustration illustration = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsIconsPath, "ping",
+                //        new Vector2(currentX + ButtonSizeX, currentY + ButtonSizeY + screenSize.y), true, true);
+                //    AddMovingObject(illustration, new Vector2(currentX + ButtonSizeX, currentY + ButtonSizeY));
+                //}
 
                 if (i == 0)
                     firstEntryButton = button;
@@ -155,6 +176,11 @@ namespace RainWorldBestiary.Menus
 
             if (Input.GetKeyDown(KeyCode.Escape) && !Closing && !InSubMenu)
                 Singal(backObject, BackButtonMessage);
+
+            //if (Input.GetKeyDown(KeyCode.Tab) && !Closing && !InSubMenu)
+            //{
+            //    Bestiary.MarkAllAsRead();
+            //}
 
             base.Update();
         }

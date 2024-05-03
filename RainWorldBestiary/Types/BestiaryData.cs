@@ -19,8 +19,8 @@ namespace RainWorldBestiary.Types
         [JsonProperty("creature_unlock_ids")]
         public List<string> CreatureUnlockIDs = new List<string>();
 
-        //[JsonProperty("new_additions_ids")]
-        //public List<string> NewAdditionsIDs = new List<string>();
+        [JsonProperty("unread_entries")]
+        public List<string> UnreadEntries = new List<string>();
 
         [JsonConstructor]
         internal BestiaryData() { }
