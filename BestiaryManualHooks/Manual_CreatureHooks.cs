@@ -4,7 +4,7 @@ using RainWorldBestiary.Types;
 
 namespace BestiaryManualHooks
 {
-    internal class ManualCreatureHooks
+    internal static class ManualCreatureHooks
     {
         public static void Initialize()
         {
