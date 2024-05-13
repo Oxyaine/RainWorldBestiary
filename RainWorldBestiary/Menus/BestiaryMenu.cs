@@ -45,8 +45,6 @@ namespace RainWorldBestiary.Menus
 
         public BestiaryMenu(ProcessManager manager) : base(manager)
         {
-            MenuResources.Create();
-
             Vector2 screenSize = manager.rainWorld.options.ScreenSize;
 
             scene = new InteractiveMenuScene(this, pages[0], manager.rainWorld.options.subBackground);
@@ -54,7 +52,7 @@ namespace RainWorldBestiary.Menus
 
             darkSprite.alpha = 0.5f;
 
-            MenuIllustration menuIllustration = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsTitlesPath, "Bestiary_Title", new Vector2(screenSize.x / 2, screenSize.y - 100), false, true)
+            MenuIllustration menuIllustration = new MenuIllustration(this, pages[0], MenuResources.IllustrationsTitlesPath, "Bestiary_Title", new Vector2(screenSize.x / 2, screenSize.y - 100), false, true)
             {
                 color = new Color(162f, 157f, 170f),
                 sprite =

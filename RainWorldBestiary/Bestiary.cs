@@ -20,39 +20,6 @@ namespace RainWorldBestiary
 
 
 
-        /// <summary>
-        /// Checks if there are any entries marked as unread
-        /// </summary>
-        public static bool AnyUnread()
-        {
-            return Data.UnreadEntries.Count > 0;
-        }
-        /// <summary>
-        /// Checks if the entry is considered unread, meaning it either hasn't been read, or has a component that is unread.
-        /// </summary>
-        public static bool CheckIfEntryUnread(string creatureID)
-        {
-            if (Data.UnreadEntries.Contains(creatureID))
-            {
-                Data.UnreadEntries.Remove(creatureID);
-                return true;
-            }
-
-            return false;
-        }
-        /// <summary>
-        /// Marks it so the entry is considered read an up to date, so the ping won't be there anymore
-        /// </summary>
-        /// <returns>True if the entry was successfully removed from the unread entries list, otherwise false</returns>
-        public static bool MarkEntryAsRead(string creatureID) => Data.UnreadEntries.Remove(creatureID);
-        /// <summary>
-        /// Removes all entries from the unread entries list
-        /// </summary>
-        public static void MarkAllAsRead() => Data.UnreadEntries.Clear();
-
-
-
-
 
         // Force unlocks creature entries, if an entry has a module that is always visible it is automatically added to this list, besides that this list is unused
         internal readonly static List<string> CreatureUnlockIDsOverride = new List<string>();
@@ -65,7 +32,6 @@ namespace RainWorldBestiary
             if (!Data.CreatureUnlockIDs.Contains(creatureID))
             {
                 Data.CreatureUnlockIDs.Add(creatureID);
-                Data.UnreadEntries.Add(creatureID);
             }
         }
         /// <param name="creature">Automatically gets run through <see cref="GetCreatureUnlockName(Creature, bool)"/></param>
@@ -102,7 +68,6 @@ namespace RainWorldBestiary
         {
             bool addToken = alwaysAddToken;
             UnlockToken RequiredToken = null;
-            List<byte> counts = new List<byte>();
             if (!addToken && _allUniqueUnlockTokens.TryGetValue(creatureID, out List<UnlockToken> creaturesTokens))
             {
                 int tokensCount = creaturesTokens.Count;
@@ -111,7 +76,6 @@ namespace RainWorldBestiary
                     if (creaturesTokens[i].TokenType == tokenType)
                     {
                         addToken = true;
-                        counts.Add(creaturesTokens[i].Count);
                         if (RequiredToken != null && creaturesTokens[i].Count > RequiredToken.Count)
                             RequiredToken = creaturesTokens[i];
                     }
@@ -121,7 +85,6 @@ namespace RainWorldBestiary
             if (addToken)
             {
                 UnlockToken token = null;
-                byte oldCount = 0;
                 if (Data.ModuleUnlocks.TryGetValue(creatureID, out List<UnlockToken> registeredTokens))
                 {
                     bool tokenExists = false;
@@ -132,7 +95,7 @@ namespace RainWorldBestiary
                         {
                             if (alwaysAddToken)
                                 if (token.Count < RequiredToken.Count)
-                                    oldCount = token.Count++;
+                                    token.Count++;
 
                             foreach (string data in SpecialData)
                                 if (!token.SpecialData.Contains(data))
@@ -159,18 +122,6 @@ namespace RainWorldBestiary
                     if (!Data.CreatureUnlockIDs.Contains(creatureID))
                         if (token.Count >= RequiredToken.Count)
                             Data.CreatureUnlockIDs.Add(creatureID);
-
-                if (token.Count > oldCount)
-                {
-                    for (int i = 0; i < counts.Count; i++)
-                    {
-                        if (oldCount < counts[i] && token.Count > counts[i])
-                        {
-                            Data.UnreadEntries.Add(creatureID);
-                            break;
-                        }
-                    }
-                }
             }
         }
         /// <inheritdoc cref="AddOrIncreaseToken(string, UnlockTokenType, bool, string[])"/>
@@ -235,7 +186,6 @@ namespace RainWorldBestiary
             if (File.Exists(SaveFile))
             {
                 Data = JsonConvert.DeserializeObject<BestiaryData>(File.ReadAllText(SaveFile));
-                Data.UnreadEntries = new List<string>() { "Fly" };
             }
         }
 

@@ -9,27 +9,6 @@
             The main class for the bestiary, everything should be accessible from this class
             </summary>
         </member>
-        <member name="M:RainWorldBestiary.Bestiary.AnyUnread">
-            <summary>
-            Checks if there are any entries marked as unread
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.Bestiary.CheckIfEntryUnread(System.String)">
-            <summary>
-            Checks if the entry is considered unread, meaning it either hasn't been read, or has a component that is unread.
-            </summary>
-        </member>
-        <member name="M:RainWorldBestiary.Bestiary.MarkEntryAsRead(System.String)">
-            <summary>
-            Marks it so the entry is considered read an up to date, so the ping won't be there anymore
-            </summary>
-            <returns>True if the entry was successfully removed from the unread entries list, otherwise false</returns>
-        </member>
-        <member name="M:RainWorldBestiary.Bestiary.MarkAllAsRead">
-            <summary>
-            Removes all entries from the unread entries list
-            </summary>
-        </member>
         <member name="M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)">
             <summary>
             Adds this creatureID to the <see cref="F:RainWorldBestiary.Types.BestiaryData.CreatureUnlockIDs"/> list if its not already added

@@ -1,22 +1,15 @@
 ﻿namespace RainWorldBestiary.Menus
 {
-    internal sealed class MenuResources
+    internal static class MenuResources
     {
-        // All the resources the menus need to properly operate, this is always null when not in the menus
-        public static MenuResources Instance { get; internal set; } = null;
-        public static void Create() => Instance = new MenuResources();
-        public static void Dispose() => Instance = null;
-        public MenuResources() { }
-        //~MenuResources() { }
+        public static readonly string IllustrationsIconsPath = "illustrations\\bestiary\\icons";
+        public static readonly string IllustrationsEntryIconsPath = "illustrations\\bestiary\\entry_icons";
+        public static readonly string IllustrationsTitlesPath = "illustrations\\bestiary\\titles";
 
-        public readonly string IllustrationsIconsPath = "illustrations\\bestiary\\icons";
-        public readonly string IllustrationsEntryIconsPath = "illustrations\\bestiary\\entry_icons";
-        public readonly string IllustrationsTitlesPath = "illustrations\\bestiary\\titles";
+        public static readonly string UnlockPipUnlockedName = "unlock_pip_full";
+        public static readonly string UnlockPipName = "unlock_pip";
 
-        public readonly string UnlockPipUnlockedName = "unlock_pip_full";
-        public readonly string UnlockPipName = "unlock_pip";
-
-        public readonly string[] Characters = new string[]
+        public static readonly string[] Characters = new string[]
         {
             "Char_1",
             "Char_2",

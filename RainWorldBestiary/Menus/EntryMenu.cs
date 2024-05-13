@@ -76,14 +76,14 @@ namespace RainWorldBestiary.Menus
 
             // Local Scope For Variable Cleanup
             {
-                string[] elements = MenuResources.Instance.Characters.GetRandom(characters);
+                string[] elements = MenuResources.Characters.GetRandom(characters);
 
                 int position = characters * 16 * 3;
 
                 float currentX = (screenSize.x / 2f) - (position / 2f), currentY = screenSize.y - 175f;
                 for (int i = 0; i < elements.Length; i++)
                 {
-                    sprites[i] = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsIconsPath, elements[i], new Vector2(currentX, currentY), true, true)
+                    sprites[i] = new MenuIllustration(this, pages[0], MenuResources.IllustrationsIconsPath, elements[i], new Vector2(currentX, currentY), true, true)
                     {
                         sprite =
                         {
@@ -187,8 +187,8 @@ namespace RainWorldBestiary.Menus
             {
                 for (int i = 0; i < entry.Info.Description.Count; i++)
                 {
-                    MenuIllustration illustration = new MenuIllustration(this, pages[0], MenuResources.Instance.IllustrationsIconsPath,
-                        entry.Info.Description[i].ModuleUnlocked ? MenuResources.Instance.UnlockPipUnlockedName : MenuResources.Instance.UnlockPipName,
+                    MenuIllustration illustration = new MenuIllustration(this, pages[0], MenuResources.IllustrationsIconsPath,
+                        entry.Info.Description[i].ModuleUnlocked ? MenuResources.UnlockPipUnlockedName : MenuResources.UnlockPipName,
                         new Vector2(screenSize.x + 20f, screenSize.y - (i * 10) - 20f), true, true)
                     {
                         sprite =

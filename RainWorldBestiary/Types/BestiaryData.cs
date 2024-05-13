@@ -19,9 +19,6 @@ namespace RainWorldBestiary.Types
         [JsonProperty("creature_unlock_ids")]
         public List<string> CreatureUnlockIDs = new List<string>();
 
-        [JsonProperty("unread_entries")]
-        public List<string> UnreadEntries = new List<string>();
-
         [JsonConstructor]
         internal BestiaryData() { }
         public BestiaryData(Dictionary<string, List<UnlockToken>> moduleUnlocks, List<string> creatureUnlockIDs)

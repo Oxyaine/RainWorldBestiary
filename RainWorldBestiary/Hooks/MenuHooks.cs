@@ -82,10 +82,6 @@ namespace RainWorldBestiary.Hooks
                 {
                     self.currentMainLoop = new ErrorManager(self);
                 }
-                else if (ID == ProcessManager.ProcessID.MainMenu)
-                {
-                    MenuResources.Dispose();
-                }
             });
         }
         private static void MainMenu_AddMainMenuButton(ILContext il)
