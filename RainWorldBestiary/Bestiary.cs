@@ -76,7 +76,12 @@ namespace RainWorldBestiary
                     if (creaturesTokens[i].TokenType == tokenType)
                     {
                         addToken = true;
-                        if (RequiredToken != null && creaturesTokens[i].Count > RequiredToken.Count)
+                        if (RequiredToken != null)
+                        {
+                            if (creaturesTokens[i].Count > RequiredToken.Count)
+                                RequiredToken = creaturesTokens[i];
+                        }
+                        else
                             RequiredToken = creaturesTokens[i];
                     }
                 }
