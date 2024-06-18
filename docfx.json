@@ -3,9 +3,9 @@
     {
       "src": [
         {
-          "src": "../RainWorldBestiary",
+          "src": "..",
           "files": [
-            "**/*.csproj"
+            "lib/RainWorldBestiary.dll"
           ]
         }
       ],

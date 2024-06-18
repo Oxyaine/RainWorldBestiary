@@ -1,0 +1,586 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types.UnlockTokenType
+  commentId: T:RainWorldBestiary.Types.UnlockTokenType
+  id: UnlockTokenType
+  parent: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.UnlockTokenType.Eaten
+  - RainWorldBestiary.Types.UnlockTokenType.Evaded
+  - RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  - RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  - RainWorldBestiary.Types.UnlockTokenType.Impaled
+  - RainWorldBestiary.Types.UnlockTokenType.Killed
+  - RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  - RainWorldBestiary.Types.UnlockTokenType.None
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  - RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  - RainWorldBestiary.Types.UnlockTokenType.Observed
+  - RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  - RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  - RainWorldBestiary.Types.UnlockTokenType.Stunned
+  - RainWorldBestiary.Types.UnlockTokenType.Tamed
+  - RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  langs:
+  - csharp
+  - vb
+  name: UnlockTokenType
+  nameWithType: UnlockTokenType
+  fullName: RainWorldBestiary.Types.UnlockTokenType
+  type: Enum
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The type of unlock
+  example: []
+  syntax:
+    content: 'public enum UnlockTokenType : byte'
+    content.vb: Public Enum UnlockTokenType As Byte
+- uid: RainWorldBestiary.Types.UnlockTokenType.None
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.None
+  id: None
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: UnlockTokenType.None
+  fullName: RainWorldBestiary.Types.UnlockTokenType.None
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Tamed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Tamed
+  id: Tamed
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Tamed
+  nameWithType: UnlockTokenType.Tamed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Tamed
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For when the player tames the creature
+  example: []
+  syntax:
+    content: Tamed = 1
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Evaded
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Evaded
+  id: Evaded
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Evaded
+  nameWithType: UnlockTokenType.Evaded
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Evaded
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For when the player evades the creature, by dodging an attack, climbing to a place it can't reach, etc
+  example: []
+  syntax:
+    content: Evaded = 2
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  id: SnuckPast
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: SnuckPast
+  nameWithType: UnlockTokenType.SnuckPast
+  fullName: RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For when the player sneaks past a creature
+  example: []
+  syntax:
+    content: SnuckPast = 3
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Observed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Observed
+  id: Observed
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Observed
+  nameWithType: UnlockTokenType.Observed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Observed
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player sees the creature
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Observed = 4
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  id: ObserveFear
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveFear
+  nameWithType: UnlockTokenType.ObserveFear
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For when the player sees the creature run away in fear
+  example: []
+  syntax:
+    content: ObserveFear = 5
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  id: ObserveFood
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveFood
+  nameWithType: UnlockTokenType.ObserveFood
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player sees the creature eating or hunting another creature
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ObserveFood = 6
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  id: ObserveHunting
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveHunting
+  nameWithType: UnlockTokenType.ObserveHunting
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For when the player is getting chased by a creature
+  example: []
+  syntax:
+    content: ObserveHunting = 7
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Killed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Killed
+  id: Killed
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Killed
+  nameWithType: UnlockTokenType.Killed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Killed
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the creature is killed by the player
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Killed = 8
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Impaled
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Impaled
+  id: Impaled
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Impaled
+  nameWithType: UnlockTokenType.Impaled
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Impaled
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the creature gets impaled with a spear, by the player
+  remarks: Automatically Tracked (for spears inheriting from <xref href="Spear" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Impaled = 9
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Stunned
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Stunned
+  id: Stunned
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Stunned
+  nameWithType: UnlockTokenType.Stunned
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Stunned
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the creature is stunned, by the player
+  remarks: Automatically Tracked (for items inheriting from <xref href="Rock" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Stunned = 10
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  id: KilledPlayer
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: KilledPlayer
+  nameWithType: UnlockTokenType.KilledPlayer
+  fullName: RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player is killed by the creature
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: KilledPlayer = 11
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  id: GrabbedPlayer
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: GrabbedPlayer
+  nameWithType: UnlockTokenType.GrabbedPlayer
+  fullName: RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player is grabbed by the creature
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: GrabbedPlayer = 12
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Eaten
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Eaten
+  id: Eaten
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: Eaten
+  nameWithType: UnlockTokenType.Eaten
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Eaten
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Whenever the creature gets eaten by the player
+  remarks: Automatically Tracked
+  example: []
+  syntax:
+    content: Eaten = 13
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  id: ObserveAttraction
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveAttraction
+  nameWithType: UnlockTokenType.ObserveAttraction
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For whenever the player observes a creature being attracted to something, such as batflies to batnip
+  example: []
+  syntax:
+    content: ObserveAttraction = 14
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  id: UsedAsLure
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: UsedAsLure
+  nameWithType: UnlockTokenType.UsedAsLure
+  fullName: RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For whenever the player uses the creature to lure something else
+  example: []
+  syntax:
+    content: UsedAsLure = 15
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  id: ObserveHiding
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveHiding
+  nameWithType: UnlockTokenType.ObserveHiding
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For whenever the player notices a creature hiding or disguising itself in any way
+  example: []
+  syntax:
+    content: ObserveHiding = 16
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  id: ObserveBehaviour
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveBehaviour
+  nameWithType: UnlockTokenType.ObserveBehaviour
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: For whenever the player observes miscellaneous behaviour
+  example: []
+  syntax:
+    content: ObserveBehaviour = 17
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  id: HeardPlayer
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: HeardPlayer
+  nameWithType: UnlockTokenType.HeardPlayer
+  fullName: RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the creature hears the player
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: HeardPlayer = 18
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  id: PlayerGrabbed
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: PlayerGrabbed
+  nameWithType: UnlockTokenType.PlayerGrabbed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player grabs the creature or creatures corpse
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: PlayerGrabbed = 19
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  id: ObserveRivals
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveRivals
+  nameWithType: UnlockTokenType.ObserveRivals
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ObserveRivals = 20
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  id: ObserveAttacking
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveAttacking
+  nameWithType: UnlockTokenType.ObserveAttacking
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player observes the creature attacking another creature
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ObserveAttacking = 21
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  id: ObserveGrabbing
+  parent: RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: ObserveGrabbing
+  nameWithType: UnlockTokenType.ObserveGrabbing
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: When the player observes the creature grabbing something, for any reason. This is just a generic grab, for grabbing a creature in the case of attacking, rivals, or food, use <xref href="RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking" data-throw-if-not-resolved="false"></xref>, <xref href="RainWorldBestiary.Types.UnlockTokenType.ObserveRivals" data-throw-if-not-resolved="false"></xref>, and <xref href="RainWorldBestiary.Types.UnlockTokenType.ObserveFood" data-throw-if-not-resolved="false"></xref> respectively
+  remarks: Automatically Tracked (for creatures inheriting from <xref href="Creature" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ObserveGrabbing = 22
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+references:
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+- uid: RainWorldBestiary.Types.UnlockTokenType
+  commentId: T:RainWorldBestiary.Types.UnlockTokenType
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html
+  name: UnlockTokenType
+  nameWithType: UnlockTokenType
+  fullName: RainWorldBestiary.Types.UnlockTokenType
+- uid: Creature
+  isExternal: true
+  name: Creature
+  nameWithType: Creature
+  fullName: Creature
+- uid: Spear
+  commentId: T:Spear
+  isExternal: true
+- uid: Rock
+  commentId: T:Rock
+  isExternal: true
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveAttacking
+  name: ObserveAttacking
+  nameWithType: UnlockTokenType.ObserveAttacking
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveRivals
+  name: ObserveRivals
+  nameWithType: UnlockTokenType.ObserveRivals
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveFood
+  name: ObserveFood
+  nameWithType: UnlockTokenType.ObserveFood
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveFood

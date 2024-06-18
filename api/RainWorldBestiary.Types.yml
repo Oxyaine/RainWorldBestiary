@@ -1,0 +1,141 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  id: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.CreatureUnlockToken
+  - RainWorldBestiary.Types.Description
+  - RainWorldBestiary.Types.DescriptionModule
+  - RainWorldBestiary.Types.EntriesTab
+  - RainWorldBestiary.Types.EntriesTabList
+  - RainWorldBestiary.Types.Entry
+  - RainWorldBestiary.Types.EntryInfo
+  - RainWorldBestiary.Types.OperationType
+  - RainWorldBestiary.Types.TitleSprite
+  - RainWorldBestiary.Types.UnlockToken
+  - RainWorldBestiary.Types.UnlockTokenType
+  langs:
+  - csharp
+  - vb
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  type: Namespace
+  assemblies:
+  - RainWorldBestiary
+references:
+- uid: RainWorldBestiary.Types.Description
+  commentId: T:RainWorldBestiary.Types.Description
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.Description.html
+  name: Description
+  nameWithType: Description
+  fullName: RainWorldBestiary.Types.Description
+- uid: RainWorldBestiary.Types.DescriptionModule
+  commentId: T:RainWorldBestiary.Types.DescriptionModule
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.DescriptionModule.html
+  name: DescriptionModule
+  nameWithType: DescriptionModule
+  fullName: RainWorldBestiary.Types.DescriptionModule
+- uid: RainWorldBestiary.Types.EntriesTab
+  commentId: T:RainWorldBestiary.Types.EntriesTab
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html
+  name: EntriesTab
+  nameWithType: EntriesTab
+  fullName: RainWorldBestiary.Types.EntriesTab
+- uid: RainWorldBestiary.Types.EntriesTabList
+  commentId: T:RainWorldBestiary.Types.EntriesTabList
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html
+  name: EntriesTabList
+  nameWithType: EntriesTabList
+  fullName: RainWorldBestiary.Types.EntriesTabList
+- uid: RainWorldBestiary.Types.Entry
+  commentId: T:RainWorldBestiary.Types.Entry
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.Entry.html
+  name: Entry
+  nameWithType: Entry
+  fullName: RainWorldBestiary.Types.Entry
+- uid: RainWorldBestiary.Types.EntryInfo
+  commentId: T:RainWorldBestiary.Types.EntryInfo
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html
+  name: EntryInfo
+  nameWithType: EntryInfo
+  fullName: RainWorldBestiary.Types.EntryInfo
+- uid: RainWorldBestiary.Types.TitleSprite
+  commentId: T:RainWorldBestiary.Types.TitleSprite
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.TitleSprite.html
+  name: TitleSprite
+  nameWithType: TitleSprite
+  fullName: RainWorldBestiary.Types.TitleSprite
+- uid: RainWorldBestiary.Types.UnlockTokenType
+  commentId: T:RainWorldBestiary.Types.UnlockTokenType
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html
+  name: UnlockTokenType
+  nameWithType: UnlockTokenType
+  fullName: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockToken
+  commentId: T:RainWorldBestiary.Types.UnlockToken
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html
+  name: UnlockToken
+  nameWithType: UnlockToken
+  fullName: RainWorldBestiary.Types.UnlockToken
+- uid: RainWorldBestiary.Types.OperationType
+  commentId: T:RainWorldBestiary.Types.OperationType
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.OperationType.html
+  name: OperationType
+  nameWithType: OperationType
+  fullName: RainWorldBestiary.Types.OperationType
+- uid: RainWorldBestiary.Types.CreatureUnlockToken
+  commentId: T:RainWorldBestiary.Types.CreatureUnlockToken
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.CreatureUnlockToken.html
+  name: CreatureUnlockToken
+  nameWithType: CreatureUnlockToken
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html

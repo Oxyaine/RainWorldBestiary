@@ -1,0 +1,992 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types.UnlockToken
+  commentId: T:RainWorldBestiary.Types.UnlockToken
+  id: UnlockToken
+  parent: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.UnlockToken.#ctor
+  - RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockToken)
+  - RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  - RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})
+  - RainWorldBestiary.Types.UnlockToken.Count
+  - RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  - RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)
+  - RainWorldBestiary.Types.UnlockToken.Equals(System.Object)
+  - RainWorldBestiary.Types.UnlockToken.GetHashCode
+  - RainWorldBestiary.Types.UnlockToken.SpecialData
+  - RainWorldBestiary.Types.UnlockToken.ToString
+  - RainWorldBestiary.Types.UnlockToken.TokenType
+  langs:
+  - csharp
+  - vb
+  name: UnlockToken
+  nameWithType: UnlockToken
+  fullName: RainWorldBestiary.Types.UnlockToken
+  type: Class
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The base unlock token, used to register tokens so modules can be unlocked, inherited by <xref href="RainWorldBestiary.Types.CreatureUnlockToken" data-throw-if-not-resolved="false"></xref> which is used in <xref href="RainWorldBestiary.Types.DescriptionModule" data-throw-if-not-resolved="false"></xref> as the unlock ID
+  example: []
+  syntax:
+    content: 'public class UnlockToken : IEquatable<UnlockToken>'
+    content.vb: Public Class UnlockToken Implements IEquatable(Of UnlockToken)
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - RainWorldBestiary.Types.CreatureUnlockToken
+  implements:
+  - System.IEquatable{RainWorldBestiary.Types.UnlockToken}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: RainWorldBestiary.Types.UnlockToken.TokenType
+  commentId: F:RainWorldBestiary.Types.UnlockToken.TokenType
+  id: TokenType
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: TokenType
+  nameWithType: UnlockToken.TokenType
+  fullName: RainWorldBestiary.Types.UnlockToken.TokenType
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The type of token this module unlock targets
+  example: []
+  syntax:
+    content: public UnlockTokenType TokenType
+    return:
+      type: RainWorldBestiary.Types.UnlockTokenType
+    content.vb: Public TokenType As UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockToken.Count
+  commentId: F:RainWorldBestiary.Types.UnlockToken.Count
+  id: Count
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: UnlockToken.Count
+  fullName: RainWorldBestiary.Types.UnlockToken.Count
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The amount of times this token has been registered, or needs to be registered
+  example: []
+  syntax:
+    content: public byte Count
+    return:
+      type: System.Byte
+    content.vb: Public Count As Byte
+- uid: RainWorldBestiary.Types.UnlockToken.SpecialData
+  commentId: F:RainWorldBestiary.Types.UnlockToken.SpecialData
+  id: SpecialData
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: SpecialData
+  nameWithType: UnlockToken.SpecialData
+  fullName: RainWorldBestiary.Types.UnlockToken.SpecialData
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Extra data that is tied to this token, you can see a list of extra data that is auto recorded (either to use, or as an example) in the README.md file on GitHub
+  example: []
+  syntax:
+    content: public List<string> SpecialData
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public SpecialData As List(Of String)
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor
+  commentId: M:RainWorldBestiary.Types.UnlockToken.#ctor
+  id: '#ctor'
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: UnlockToken()
+  nameWithType: UnlockToken.UnlockToken()
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken()
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: protected UnlockToken()
+    content.vb: Protected Sub New()
+  overload: RainWorldBestiary.Types.UnlockToken.#ctor*
+  nameWithType.vb: UnlockToken.New()
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New()
+  name.vb: New()
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  commentId: M:RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  id: '#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)'
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: UnlockToken(UnlockTokenType, byte)
+  nameWithType: UnlockToken.UnlockToken(UnlockTokenType, byte)
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken(RainWorldBestiary.Types.UnlockTokenType, byte)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public UnlockToken(UnlockTokenType tokenType, byte value = 1)
+    parameters:
+    - id: tokenType
+      type: RainWorldBestiary.Types.UnlockTokenType
+      description: The type of token to look for
+    - id: value
+      type: System.Byte
+      description: The amount of times this token should be registered before this is considered unlocked
+    content.vb: Public Sub New(tokenType As UnlockTokenType, value As Byte = 1)
+  overload: RainWorldBestiary.Types.UnlockToken.#ctor*
+  nameWithType.vb: UnlockToken.New(UnlockTokenType, Byte)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New(RainWorldBestiary.Types.UnlockTokenType, Byte)
+  name.vb: New(UnlockTokenType, Byte)
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockToken)
+  commentId: M:RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockToken)
+  id: '#ctor(RainWorldBestiary.Types.UnlockToken)'
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: UnlockToken(UnlockToken)
+  nameWithType: UnlockToken.UnlockToken(UnlockToken)
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken(RainWorldBestiary.Types.UnlockToken)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Copy Operator
+  example: []
+  syntax:
+    content: public UnlockToken(UnlockToken other)
+    parameters:
+    - id: other
+      type: RainWorldBestiary.Types.UnlockToken
+    content.vb: Public Sub New(other As UnlockToken)
+  overload: RainWorldBestiary.Types.UnlockToken.#ctor*
+  nameWithType.vb: UnlockToken.New(UnlockToken)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New(RainWorldBestiary.Types.UnlockToken)
+  name.vb: New(UnlockToken)
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(System.Object)
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: Equals(object)
+  nameWithType: UnlockToken.Equals(object)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(object)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Checks if both objects are <xref href="RainWorldBestiary.Types.UnlockToken" data-throw-if-not-resolved="false"></xref>, then compares them using <xref href="RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)" data-throw-if-not-resolved="false"></xref>
+  remarks: >-
+    <xref href="RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)" data-throw-if-not-resolved="false"></xref> 
+            Checks if the token type matches
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: RainWorldBestiary.Types.UnlockToken.Equals*
+  nameWithType.vb: UnlockToken.Equals(Object)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.Equals(Object)
+  name.vb: Equals(Object)
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  id: Equals(RainWorldBestiary.Types.UnlockToken)
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: Equals(UnlockToken)
+  nameWithType: UnlockToken.Equals(UnlockToken)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  remarks: Checks if the token type matches
+  example: []
+  syntax:
+    content: public bool Equals(UnlockToken other)
+    parameters:
+    - id: other
+      type: RainWorldBestiary.Types.UnlockToken
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As UnlockToken) As Boolean
+  overload: RainWorldBestiary.Types.UnlockToken.Equals*
+  implements:
+  - System.IEquatable{RainWorldBestiary.Types.UnlockToken}.Equals(RainWorldBestiary.Types.UnlockToken)
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)
+  id: Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: Equals(UnlockToken, bool)
+  nameWithType: UnlockToken.Equals(UnlockToken, bool)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken, bool)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  remarks: Checks if the token type matches and, if <code class="paramref">checkSpecialData</code> is enabled, if <code class="paramref">other</code>'s <xref href="RainWorldBestiary.Types.UnlockToken.SpecialData" data-throw-if-not-resolved="false"></xref> is found in this <xref href="RainWorldBestiary.Types.UnlockToken.SpecialData" data-throw-if-not-resolved="false"></xref>, ignores <xref href="RainWorldBestiary.Types.UnlockToken.Count" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public bool Equals(UnlockToken other, bool checkSpecialData)
+    parameters:
+    - id: other
+      type: RainWorldBestiary.Types.UnlockToken
+    - id: checkSpecialData
+      type: System.Boolean
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As UnlockToken, checkSpecialData As Boolean) As Boolean
+  overload: RainWorldBestiary.Types.UnlockToken.Equals*
+  nameWithType.vb: UnlockToken.Equals(UnlockToken, Boolean)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken, Boolean)
+  name.vb: Equals(UnlockToken, Boolean)
+- uid: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})
+  commentId: M:RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})
+  id: ContainsSpecialData(System.Collections.Generic.List{System.String})
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: ContainsSpecialData(List<string>)
+  nameWithType: UnlockToken.ContainsSpecialData(List<string>)
+  fullName: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List<string>)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Checks if <xref href="RainWorldBestiary.Types.UnlockToken.SpecialData" data-throw-if-not-resolved="false"></xref> contains all the provided special data
+  example: []
+  syntax:
+    content: public bool ContainsSpecialData(List<string> specialData)
+    parameters:
+    - id: specialData
+      type: System.Collections.Generic.List{System.String}
+    return:
+      type: System.Boolean
+    content.vb: Public Function ContainsSpecialData(specialData As List(Of String)) As Boolean
+  overload: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData*
+  nameWithType.vb: UnlockToken.ContainsSpecialData(List(Of String))
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List(Of String))
+  name.vb: ContainsSpecialData(List(Of String))
+- uid: RainWorldBestiary.Types.UnlockToken.GetHashCode
+  commentId: M:RainWorldBestiary.Types.UnlockToken.GetHashCode
+  id: GetHashCode
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: UnlockToken.GetHashCode()
+  fullName: RainWorldBestiary.Types.UnlockToken.GetHashCode()
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.Object.GetHashCode
+  overload: RainWorldBestiary.Types.UnlockToken.GetHashCode*
+- uid: RainWorldBestiary.Types.UnlockToken.ToString
+  commentId: M:RainWorldBestiary.Types.UnlockToken.ToString
+  id: ToString
+  parent: RainWorldBestiary.Types.UnlockToken
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: UnlockToken.ToString()
+  fullName: RainWorldBestiary.Types.UnlockToken.ToString()
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: Token Type + Value
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: RainWorldBestiary.Types.UnlockToken.ToString*
+references:
+- uid: RainWorldBestiary.Types.CreatureUnlockToken
+  commentId: T:RainWorldBestiary.Types.CreatureUnlockToken
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.CreatureUnlockToken.html
+  name: CreatureUnlockToken
+  nameWithType: CreatureUnlockToken
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken
+- uid: RainWorldBestiary.Types.DescriptionModule
+  commentId: T:RainWorldBestiary.Types.DescriptionModule
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.DescriptionModule.html
+  name: DescriptionModule
+  nameWithType: DescriptionModule
+  fullName: RainWorldBestiary.Types.DescriptionModule
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{RainWorldBestiary.Types.UnlockToken}
+  commentId: T:System.IEquatable{RainWorldBestiary.Types.UnlockToken}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<UnlockToken>
+  nameWithType: IEquatable<UnlockToken>
+  fullName: System.IEquatable<RainWorldBestiary.Types.UnlockToken>
+  nameWithType.vb: IEquatable(Of UnlockToken)
+  fullName.vb: System.IEquatable(Of RainWorldBestiary.Types.UnlockToken)
+  name.vb: IEquatable(Of UnlockToken)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.UnlockToken
+    name: UnlockToken
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.UnlockToken
+    name: UnlockToken
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.UnlockTokenType
+  commentId: T:RainWorldBestiary.Types.UnlockTokenType
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html
+  name: UnlockTokenType
+  nameWithType: UnlockTokenType
+  fullName: RainWorldBestiary.Types.UnlockTokenType
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor*
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.#ctor
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken__ctor
+  name: UnlockToken
+  nameWithType: UnlockToken.UnlockToken
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken
+  nameWithType.vb: UnlockToken.New
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New
+  name.vb: New
+- uid: RainWorldBestiary.Types.UnlockToken
+  commentId: T:RainWorldBestiary.Types.UnlockToken
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html
+  name: UnlockToken
+  nameWithType: UnlockToken
+  fullName: RainWorldBestiary.Types.UnlockToken
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  parent: RainWorldBestiary.Types.UnlockToken
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_RainWorldBestiary_Types_UnlockToken_
+  name: Equals(UnlockToken)
+  nameWithType: UnlockToken.Equals(UnlockToken)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  spec.csharp:
+  - uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+    name: Equals
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_RainWorldBestiary_Types_UnlockToken_
+  - name: (
+  - uid: RainWorldBestiary.Types.UnlockToken
+    name: UnlockToken
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+    name: Equals
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_RainWorldBestiary_Types_UnlockToken_
+  - name: (
+  - uid: RainWorldBestiary.Types.UnlockToken
+    name: UnlockToken
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: RainWorldBestiary.Types.UnlockToken.Equals*
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.Equals
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_System_Object_
+  name: Equals
+  nameWithType: UnlockToken.Equals
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IEquatable{RainWorldBestiary.Types.UnlockToken}.Equals(RainWorldBestiary.Types.UnlockToken)
+  commentId: M:System.IEquatable{RainWorldBestiary.Types.UnlockToken}.Equals(RainWorldBestiary.Types.UnlockToken)
+  parent: System.IEquatable{RainWorldBestiary.Types.UnlockToken}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(UnlockToken)
+  nameWithType: IEquatable<UnlockToken>.Equals(UnlockToken)
+  fullName: System.IEquatable<RainWorldBestiary.Types.UnlockToken>.Equals(RainWorldBestiary.Types.UnlockToken)
+  nameWithType.vb: IEquatable(Of UnlockToken).Equals(UnlockToken)
+  fullName.vb: System.IEquatable(Of RainWorldBestiary.Types.UnlockToken).Equals(RainWorldBestiary.Types.UnlockToken)
+  spec.csharp:
+  - uid: System.IEquatable{RainWorldBestiary.Types.UnlockToken}.Equals(RainWorldBestiary.Types.UnlockToken)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: RainWorldBestiary.Types.UnlockToken
+    name: UnlockToken
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{RainWorldBestiary.Types.UnlockToken}.Equals(RainWorldBestiary.Types.UnlockToken)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: RainWorldBestiary.Types.UnlockToken
+    name: UnlockToken
+    isExternal: true
+    href: RainWorldBestiary.Types.UnlockToken.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.UnlockToken.SpecialData
+  commentId: F:RainWorldBestiary.Types.UnlockToken.SpecialData
+  parent: RainWorldBestiary.Types.UnlockToken
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_SpecialData
+  name: SpecialData
+  nameWithType: UnlockToken.SpecialData
+  fullName: RainWorldBestiary.Types.UnlockToken.SpecialData
+- uid: RainWorldBestiary.Types.UnlockToken.Count
+  commentId: F:RainWorldBestiary.Types.UnlockToken.Count
+  parent: RainWorldBestiary.Types.UnlockToken
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Count
+  name: Count
+  nameWithType: UnlockToken.Count
+  fullName: RainWorldBestiary.Types.UnlockToken.Count
+- uid: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData*
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.ContainsSpecialData
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_ContainsSpecialData_System_Collections_Generic_List_System_String__
+  name: ContainsSpecialData
+  nameWithType: UnlockToken.ContainsSpecialData
+  fullName: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.UnlockToken.GetHashCode*
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.GetHashCode
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_GetHashCode
+  name: GetHashCode
+  nameWithType: UnlockToken.GetHashCode
+  fullName: RainWorldBestiary.Types.UnlockToken.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.UnlockToken.ToString*
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.ToString
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_ToString
+  name: ToString
+  nameWithType: UnlockToken.ToString
+  fullName: RainWorldBestiary.Types.UnlockToken.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
