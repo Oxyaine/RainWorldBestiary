@@ -109,19 +109,19 @@
     "title": "Namespace RainWorldBestiary | Rain World Bestiary",
     "keywords": "Namespace RainWorldBestiary Classes Bestiary The main class for the bestiary, everything should be accessible from this class Bestiary.Extensions A class with some extension methods, to add some partial support for adding your own entries through code Bestiary.Settings The class that holds all the remix menu options and their current values Extensions A class with some extensions to speed up certain tasks Translator A class for custom translation behaviour"
   },
-  "articles/getting-started.html": {
-    "href": "articles/getting-started.html",
-    "title": "Getting Started | Rain World Bestiary",
-    "keywords": "Getting Started"
+  "articles/json-components.html": {
+    "href": "articles/json-components.html",
+    "title": "JSON Components | Rain World Bestiary",
+    "keywords": "JSON Components"
   },
-  "articles/introduction.html": {
-    "href": "articles/introduction.html",
-    "title": "Introduction | Rain World Bestiary",
-    "keywords": "Introduction"
+  "articles/walkthrough.html": {
+    "href": "articles/walkthrough.html",
+    "title": "Walkthrough | Rain World Bestiary",
+    "keywords": "Walkthrough To get a grasp on the Structure of how to add your own entries, you should download the template from the files above."
   },
   "index.html": {
     "href": "index.html",
-    "title": "This is the HOMEPAGE. | Rain World Bestiary",
-    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+    "title": "| Rain World Bestiary",
+    "keywords": "The Bestiary is a mod that adds an encyclopedia of creatures to Rain World, this bestiary unlocks as you interact with creatures, only displaying information the user has hopefully figured out by themselves. If you have a suggestion, want to report a bug or issue (including performance issues), or ask help with something, feel free to submit an issue request on GitHub, here To find more on how to setup entries in your mod, you can check out the walkthrough. To find out how to make entries, you can check out JSON Components."
   }
 }

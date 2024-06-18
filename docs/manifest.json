@@ -245,20 +245,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/getting-started.md",
+      "source_relative_path": "articles/json-components.md",
       "output": {
         ".html": {
-          "relative_path": "articles/getting-started.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "articles/introduction.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/introduction.html"
+          "relative_path": "articles/json-components.html"
         }
       },
       "version": ""
@@ -272,6 +262,16 @@
         },
         ".json": {
           "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/walkthrough.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/walkthrough.html"
         }
       },
       "version": ""
