@@ -1,0 +1,1040 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types.EntryInfo
+  commentId: T:RainWorldBestiary.Types.EntryInfo
+  id: EntryInfo
+  parent: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.EntryInfo.#ctor
+  - RainWorldBestiary.Types.EntryInfo.#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)
+  - RainWorldBestiary.Types.EntryInfo.#ctor(System.String,System.String,System.String,System.String)
+  - RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  - RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  - RainWorldBestiary.Types.EntryInfo.Description
+  - RainWorldBestiary.Types.EntryInfo.EntryColor
+  - RainWorldBestiary.Types.EntryInfo.EntryIcon
+  - RainWorldBestiary.Types.EntryInfo.EntryIcons
+  - RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  - RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  - RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  - RainWorldBestiary.Types.EntryInfo.LockedText
+  - RainWorldBestiary.Types.EntryInfo.TitleSprite
+  - RainWorldBestiary.Types.EntryInfo.UnlockID
+  langs:
+  - csharp
+  - vb
+  name: EntryInfo
+  nameWithType: EntryInfo
+  fullName: RainWorldBestiary.Types.EntryInfo
+  type: Class
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The contents of the entry file
+  example: []
+  syntax:
+    content: 'public class EntryInfo : IEquatable<EntryInfo>'
+    content.vb: Public Class EntryInfo Implements IEquatable(Of EntryInfo)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{RainWorldBestiary.Types.EntryInfo}
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  commentId: F:RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  id: BaseLockedText
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: BaseLockedText
+  nameWithType: EntryInfo.BaseLockedText
+  fullName: RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: A constant defining the default text that is shown when attempting to read a locked entry
+  example: []
+  syntax:
+    content: public const string BaseLockedText = "This entry is locked."
+    return:
+      type: System.String
+    content.vb: Public Const BaseLockedText As String = "This entry is locked."
+- uid: RainWorldBestiary.Types.EntryInfo.UnlockID
+  commentId: F:RainWorldBestiary.Types.EntryInfo.UnlockID
+  id: UnlockID
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: UnlockID
+  nameWithType: EntryInfo.UnlockID
+  fullName: RainWorldBestiary.Types.EntryInfo.UnlockID
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
+  example: []
+  syntax:
+    content: public string UnlockID
+    return:
+      type: System.String
+    content.vb: Public UnlockID As String
+- uid: RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  commentId: F:RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  id: EntryUnlockedCondition
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryUnlockedCondition
+  nameWithType: EntryInfo.EntryUnlockedCondition
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The condition that specifies whether this entry is visible or not, if this returns true, then the entry is visible. You can leave this as the default, or set your own custom condition.
+  remarks: Defaults to <xref href="RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public Func<EntryInfo, bool> EntryUnlockedCondition
+    return:
+      type: System.Func{RainWorldBestiary.Types.EntryInfo,System.Boolean}
+    content.vb: Public EntryUnlockedCondition As Func(Of EntryInfo, Boolean)
+- uid: RainWorldBestiary.Types.EntryInfo.LockedText
+  commentId: F:RainWorldBestiary.Types.EntryInfo.LockedText
+  id: LockedText
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: LockedText
+  nameWithType: EntryInfo.LockedText
+  fullName: RainWorldBestiary.Types.EntryInfo.LockedText
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
+  example: []
+  syntax:
+    content: public string LockedText
+    return:
+      type: System.String
+    content.vb: Public LockedText As String
+- uid: RainWorldBestiary.Types.EntryInfo.EntryIcons
+  commentId: F:RainWorldBestiary.Types.EntryInfo.EntryIcons
+  id: EntryIcons
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryIcons
+  nameWithType: EntryInfo.EntryIcons
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryIcons
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The name of the sprites in the atlas manager that will be used as the entry's icons
+  example: []
+  syntax:
+    content: public string[] EntryIcons
+    return:
+      type: System.String[]
+    content.vb: Public EntryIcons As String()
+- uid: RainWorldBestiary.Types.EntryInfo.TitleSprite
+  commentId: F:RainWorldBestiary.Types.EntryInfo.TitleSprite
+  id: TitleSprite
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: TitleSprite
+  nameWithType: EntryInfo.TitleSprite
+  fullName: RainWorldBestiary.Types.EntryInfo.TitleSprite
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The title image that gets displayed at the top when of the screen while reading the entry, if set to null, or if the image isn't found, some generated text will be placed instead
+  remarks: By title, I mean the name of the entry that is visible at the top while reading the entry
+  example: []
+  syntax:
+    content: public TitleSprite TitleSprite
+    return:
+      type: RainWorldBestiary.Types.TitleSprite
+    content.vb: Public TitleSprite As TitleSprite
+- uid: RainWorldBestiary.Types.EntryInfo.EntryColor
+  commentId: F:RainWorldBestiary.Types.EntryInfo.EntryColor
+  id: EntryColor
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryColor
+  nameWithType: EntryInfo.EntryColor
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryColor
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The color of the entry's button and title image
+  example: []
+  syntax:
+    content: public HSLColor EntryColor
+    return:
+      type: HSLColor
+    content.vb: Public EntryColor As HSLColor
+- uid: RainWorldBestiary.Types.EntryInfo.Description
+  commentId: F:RainWorldBestiary.Types.EntryInfo.Description
+  id: Description
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: EntryInfo.Description
+  fullName: RainWorldBestiary.Types.EntryInfo.Description
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The body of this entry, when converted to string, only returns the parts of the entry that are visible
+  example: []
+  syntax:
+    content: public Description Description
+    return:
+      type: RainWorldBestiary.Types.Description
+    content.vb: Public Description As Description
+- uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  commentId: M:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  id: DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: DefaultEntryUnlockedCondition(EntryInfo)
+  nameWithType: EntryInfo.DefaultEntryUnlockedCondition(EntryInfo)
+  fullName: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Checks whether any unlock tokens in <xref href="RainWorldBestiary.Bestiary" data-throw-if-not-resolved="false"></xref> have the <xref href="RainWorldBestiary.Types.UnlockTokenType" data-throw-if-not-resolved="false"></xref> for <xref href="RainWorldBestiary.Types.CreatureUnlockToken.CreatureID" data-throw-if-not-resolved="false"></xref> with a value that is equal to or lower than the required value
+  example: []
+  syntax:
+    content: public static bool DefaultEntryUnlockedCondition(EntryInfo info)
+    parameters:
+    - id: info
+      type: RainWorldBestiary.Types.EntryInfo
+    return:
+      type: System.Boolean
+      description: True if the entry should be locked, otherwise false
+    content.vb: Public Shared Function DefaultEntryUnlockedCondition(info As EntryInfo) As Boolean
+  overload: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition*
+- uid: RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  commentId: M:RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  id: Equals(RainWorldBestiary.Types.EntryInfo)
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: Equals(EntryInfo)
+  nameWithType: EntryInfo.Equals(EntryInfo)
+  fullName: RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Checks if this entry info's unlock id and icons match
+  example: []
+  syntax:
+    content: public bool Equals(EntryInfo other)
+    parameters:
+    - id: other
+      type: RainWorldBestiary.Types.EntryInfo
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As EntryInfo) As Boolean
+  overload: RainWorldBestiary.Types.EntryInfo.Equals*
+  implements:
+  - System.IEquatable{RainWorldBestiary.Types.EntryInfo}.Equals(RainWorldBestiary.Types.EntryInfo)
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor
+  commentId: M:RainWorldBestiary.Types.EntryInfo.#ctor
+  id: '#ctor'
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryInfo()
+  nameWithType: EntryInfo.EntryInfo()
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo()
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public EntryInfo()
+    content.vb: Public Sub New()
+  overload: RainWorldBestiary.Types.EntryInfo.#ctor*
+  nameWithType.vb: EntryInfo.New()
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New()
+  name.vb: New()
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)
+  commentId: M:RainWorldBestiary.Types.EntryInfo.#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)
+  id: '#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)'
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryInfo(Description, string, string, string)
+  nameWithType: EntryInfo.EntryInfo(Description, string, string, string)
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo(RainWorldBestiary.Types.Description, string, string, string)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public EntryInfo(Description description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
+    parameters:
+    - id: description
+      type: RainWorldBestiary.Types.Description
+      description: The body of this entry
+    - id: iD
+      type: System.String
+      description: The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
+    - id: lockedText
+      type: System.String
+      description: The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
+    - id: entryIcon
+      type: System.String
+      description: The name of the sprite in the atlas manager that will be used as the entry icon
+    content.vb: Public Sub New(description As Description, iD As String = "", lockedText As String = "This entry is locked.", entryIcon As String = "")
+  overload: RainWorldBestiary.Types.EntryInfo.#ctor*
+  nameWithType.vb: EntryInfo.New(Description, String, String, String)
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New(RainWorldBestiary.Types.Description, String, String, String)
+  name.vb: New(Description, String, String, String)
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor(System.String,System.String,System.String,System.String)
+  commentId: M:RainWorldBestiary.Types.EntryInfo.#ctor(System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String)'
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryInfo(string, string, string, string)
+  nameWithType: EntryInfo.EntryInfo(string, string, string, string)
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo(string, string, string, string)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Creates a new entry info with one description module that is by default visible
+  example: []
+  syntax:
+    content: public EntryInfo(string description, string iD = "", string lockedText = "This entry is locked.", string entryIcon = "")
+    parameters:
+    - id: description
+      type: System.String
+      description: The body of this entry
+    - id: iD
+      type: System.String
+      description: The ID of this entry, if the ID is found in the unlocked entries dictionary, this entry will be made visible
+    - id: lockedText
+      type: System.String
+      description: The text / tip that is shown when attempting to read the entry while its locked, this could be anything you want, leave blank for no message.
+    - id: entryIcon
+      type: System.String
+      description: The name of the sprite in the atlas manager that will be used as the entry icon
+    content.vb: Public Sub New(description As String, iD As String = "", lockedText As String = "This entry is locked.", entryIcon As String = "")
+  overload: RainWorldBestiary.Types.EntryInfo.#ctor*
+  nameWithType.vb: EntryInfo.New(String, String, String, String)
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New(String, String, String, String)
+  name.vb: New(String, String, String, String)
+- uid: RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  commentId: P:RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  id: EntryUnlocked
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryUnlocked
+  nameWithType: EntryInfo.EntryUnlocked
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Returns true if the entry is visible, else false
+  example: []
+  syntax:
+    content: public bool EntryUnlocked { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property EntryUnlocked As Boolean
+  overload: RainWorldBestiary.Types.EntryInfo.EntryUnlocked*
+- uid: RainWorldBestiary.Types.EntryInfo.EntryIcon
+  commentId: P:RainWorldBestiary.Types.EntryInfo.EntryIcon
+  id: EntryIcon
+  parent: RainWorldBestiary.Types.EntryInfo
+  langs:
+  - csharp
+  - vb
+  name: EntryIcon
+  nameWithType: EntryInfo.EntryIcon
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryIcon
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The name of the sprite in the atlas manager that will be used as the entry icon
+  example: []
+  syntax:
+    content: public string EntryIcon { set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public WriteOnly Property EntryIcon As String
+  overload: RainWorldBestiary.Types.EntryInfo.EntryIcon*
+references:
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{RainWorldBestiary.Types.EntryInfo}
+  commentId: T:System.IEquatable{RainWorldBestiary.Types.EntryInfo}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<EntryInfo>
+  nameWithType: IEquatable<EntryInfo>
+  fullName: System.IEquatable<RainWorldBestiary.Types.EntryInfo>
+  nameWithType.vb: IEquatable(Of EntryInfo)
+  fullName.vb: System.IEquatable(Of RainWorldBestiary.Types.EntryInfo)
+  name.vb: IEquatable(Of EntryInfo)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  commentId: M:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_DefaultEntryUnlockedCondition_RainWorldBestiary_Types_EntryInfo_
+  name: DefaultEntryUnlockedCondition(EntryInfo)
+  nameWithType: EntryInfo.DefaultEntryUnlockedCondition(EntryInfo)
+  fullName: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  spec.csharp:
+  - uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+    name: DefaultEntryUnlockedCondition
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_DefaultEntryUnlockedCondition_RainWorldBestiary_Types_EntryInfo_
+  - name: (
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+    name: DefaultEntryUnlockedCondition
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_DefaultEntryUnlockedCondition_RainWorldBestiary_Types_EntryInfo_
+  - name: (
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: )
+- uid: System.Func{RainWorldBestiary.Types.EntryInfo,System.Boolean}
+  commentId: T:System.Func{RainWorldBestiary.Types.EntryInfo,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<EntryInfo, bool>
+  nameWithType: Func<EntryInfo, bool>
+  fullName: System.Func<RainWorldBestiary.Types.EntryInfo, bool>
+  nameWithType.vb: Func(Of EntryInfo, Boolean)
+  fullName.vb: System.Func(Of RainWorldBestiary.Types.EntryInfo, Boolean)
+  name.vb: Func(Of EntryInfo, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.TitleSprite
+  commentId: T:RainWorldBestiary.Types.TitleSprite
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.TitleSprite.html
+  name: TitleSprite
+  nameWithType: TitleSprite
+  fullName: RainWorldBestiary.Types.TitleSprite
+- uid: HSLColor
+  isExternal: true
+  name: HSLColor
+  nameWithType: HSLColor
+  fullName: HSLColor
+- uid: RainWorldBestiary.Types.Description
+  commentId: T:RainWorldBestiary.Types.Description
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.Description.html
+  name: Description
+  nameWithType: Description
+  fullName: RainWorldBestiary.Types.Description
+- uid: RainWorldBestiary.Bestiary
+  commentId: T:RainWorldBestiary.Bestiary
+  isExternal: true
+  href: RainWorldBestiary.Bestiary.html
+  name: Bestiary
+  nameWithType: Bestiary
+  fullName: RainWorldBestiary.Bestiary
+- uid: RainWorldBestiary.Types.UnlockTokenType
+  commentId: T:RainWorldBestiary.Types.UnlockTokenType
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.UnlockTokenType.html
+  name: UnlockTokenType
+  nameWithType: UnlockTokenType
+  fullName: RainWorldBestiary.Types.UnlockTokenType
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.CreatureID
+  commentId: F:RainWorldBestiary.Types.CreatureUnlockToken.CreatureID
+  isExternal: true
+  href: RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_CreatureID
+  name: CreatureID
+  nameWithType: CreatureUnlockToken.CreatureID
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.CreatureID
+- uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition*
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_DefaultEntryUnlockedCondition_RainWorldBestiary_Types_EntryInfo_
+  name: DefaultEntryUnlockedCondition
+  nameWithType: EntryInfo.DefaultEntryUnlockedCondition
+  fullName: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition
+- uid: RainWorldBestiary.Types.EntryInfo
+  commentId: T:RainWorldBestiary.Types.EntryInfo
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html
+  name: EntryInfo
+  nameWithType: EntryInfo
+  fullName: RainWorldBestiary.Types.EntryInfo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: RainWorldBestiary.Types.EntryInfo.Equals*
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.Equals
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_Equals_RainWorldBestiary_Types_EntryInfo_
+  name: Equals
+  nameWithType: EntryInfo.Equals
+  fullName: RainWorldBestiary.Types.EntryInfo.Equals
+- uid: System.IEquatable{RainWorldBestiary.Types.EntryInfo}.Equals(RainWorldBestiary.Types.EntryInfo)
+  commentId: M:System.IEquatable{RainWorldBestiary.Types.EntryInfo}.Equals(RainWorldBestiary.Types.EntryInfo)
+  parent: System.IEquatable{RainWorldBestiary.Types.EntryInfo}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(EntryInfo)
+  nameWithType: IEquatable<EntryInfo>.Equals(EntryInfo)
+  fullName: System.IEquatable<RainWorldBestiary.Types.EntryInfo>.Equals(RainWorldBestiary.Types.EntryInfo)
+  nameWithType.vb: IEquatable(Of EntryInfo).Equals(EntryInfo)
+  fullName.vb: System.IEquatable(Of RainWorldBestiary.Types.EntryInfo).Equals(RainWorldBestiary.Types.EntryInfo)
+  spec.csharp:
+  - uid: System.IEquatable{RainWorldBestiary.Types.EntryInfo}.Equals(RainWorldBestiary.Types.EntryInfo)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{RainWorldBestiary.Types.EntryInfo}.Equals(RainWorldBestiary.Types.EntryInfo)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: RainWorldBestiary.Types.EntryInfo
+    name: EntryInfo
+    isExternal: true
+    href: RainWorldBestiary.Types.EntryInfo.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor*
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.#ctor
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo__ctor
+  name: EntryInfo
+  nameWithType: EntryInfo.EntryInfo
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo
+  nameWithType.vb: EntryInfo.New
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New
+  name.vb: New
+- uid: RainWorldBestiary.Types.EntryInfo.EntryUnlocked*
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryUnlocked
+  name: EntryUnlocked
+  nameWithType: EntryInfo.EntryUnlocked
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+- uid: RainWorldBestiary.Types.EntryInfo.EntryIcon*
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.EntryIcon
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryIcon
+  name: EntryIcon
+  nameWithType: EntryInfo.EntryIcon
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryIcon

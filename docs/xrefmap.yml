@@ -1,0 +1,2206 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: RainWorldBestiary
+  name: RainWorldBestiary
+  href: api/RainWorldBestiary.html
+  commentId: N:RainWorldBestiary
+  fullName: RainWorldBestiary
+  nameWithType: RainWorldBestiary
+- uid: RainWorldBestiary.Bestiary
+  name: Bestiary
+  href: api/RainWorldBestiary.Bestiary.html
+  commentId: T:RainWorldBestiary.Bestiary
+  fullName: RainWorldBestiary.Bestiary
+  nameWithType: Bestiary
+- uid: RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])
+  name: AddOrIncreaseToken(AbstractCreature, UnlockTokenType, bool, params string[])
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_AddOrIncreaseToken_AbstractCreature_RainWorldBestiary_Types_UnlockTokenType_System_Boolean_System_String___
+  commentId: M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])
+  name.vb: AddOrIncreaseToken(AbstractCreature, UnlockTokenType, Boolean, ParamArray String())
+  fullName: RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature, RainWorldBestiary.Types.UnlockTokenType, bool, params string[])
+  fullName.vb: RainWorldBestiary.Bestiary.AddOrIncreaseToken(AbstractCreature, RainWorldBestiary.Types.UnlockTokenType, Boolean, ParamArray String())
+  nameWithType: Bestiary.AddOrIncreaseToken(AbstractCreature, UnlockTokenType, bool, params string[])
+  nameWithType.vb: Bestiary.AddOrIncreaseToken(AbstractCreature, UnlockTokenType, Boolean, ParamArray String())
+- uid: RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])
+  name: AddOrIncreaseToken(Creature, UnlockTokenType, bool, params string[])
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_AddOrIncreaseToken_Creature_RainWorldBestiary_Types_UnlockTokenType_System_Boolean_System_String___
+  commentId: M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])
+  name.vb: AddOrIncreaseToken(Creature, UnlockTokenType, Boolean, ParamArray String())
+  fullName: RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature, RainWorldBestiary.Types.UnlockTokenType, bool, params string[])
+  fullName.vb: RainWorldBestiary.Bestiary.AddOrIncreaseToken(Creature, RainWorldBestiary.Types.UnlockTokenType, Boolean, ParamArray String())
+  nameWithType: Bestiary.AddOrIncreaseToken(Creature, UnlockTokenType, bool, params string[])
+  nameWithType.vb: Bestiary.AddOrIncreaseToken(Creature, UnlockTokenType, Boolean, ParamArray String())
+- uid: RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])
+  name: AddOrIncreaseToken(string, UnlockTokenType, bool, params string[])
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_AddOrIncreaseToken_System_String_RainWorldBestiary_Types_UnlockTokenType_System_Boolean_System_String___
+  commentId: M:RainWorldBestiary.Bestiary.AddOrIncreaseToken(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Boolean,System.String[])
+  name.vb: AddOrIncreaseToken(String, UnlockTokenType, Boolean, ParamArray String())
+  fullName: RainWorldBestiary.Bestiary.AddOrIncreaseToken(string, RainWorldBestiary.Types.UnlockTokenType, bool, params string[])
+  fullName.vb: RainWorldBestiary.Bestiary.AddOrIncreaseToken(String, RainWorldBestiary.Types.UnlockTokenType, Boolean, ParamArray String())
+  nameWithType: Bestiary.AddOrIncreaseToken(string, UnlockTokenType, bool, params string[])
+  nameWithType.vb: Bestiary.AddOrIncreaseToken(String, UnlockTokenType, Boolean, ParamArray String())
+- uid: RainWorldBestiary.Bestiary.AddOrIncreaseToken*
+  name: AddOrIncreaseToken
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_AddOrIncreaseToken_
+  commentId: Overload:RainWorldBestiary.Bestiary.AddOrIncreaseToken
+  fullName: RainWorldBestiary.Bestiary.AddOrIncreaseToken
+  nameWithType: Bestiary.AddOrIncreaseToken
+- uid: RainWorldBestiary.Bestiary.Extensions
+  name: Bestiary.Extensions
+  href: api/RainWorldBestiary.Bestiary.Extensions.html
+  commentId: T:RainWorldBestiary.Bestiary.Extensions
+  fullName: RainWorldBestiary.Bestiary.Extensions
+  nameWithType: Bestiary.Extensions
+- uid: RainWorldBestiary.Bestiary.Extensions.AddEntry(System.String,RainWorldBestiary.Types.Entry,RainWorldBestiary.Types.EntriesTab)
+  name: AddEntry(string, Entry, EntriesTab)
+  href: api/RainWorldBestiary.Bestiary.Extensions.html#RainWorldBestiary_Bestiary_Extensions_AddEntry_System_String_RainWorldBestiary_Types_Entry_RainWorldBestiary_Types_EntriesTab_
+  commentId: M:RainWorldBestiary.Bestiary.Extensions.AddEntry(System.String,RainWorldBestiary.Types.Entry,RainWorldBestiary.Types.EntriesTab)
+  name.vb: AddEntry(String, Entry, EntriesTab)
+  fullName: RainWorldBestiary.Bestiary.Extensions.AddEntry(string, RainWorldBestiary.Types.Entry, RainWorldBestiary.Types.EntriesTab)
+  fullName.vb: RainWorldBestiary.Bestiary.Extensions.AddEntry(String, RainWorldBestiary.Types.Entry, RainWorldBestiary.Types.EntriesTab)
+  nameWithType: Bestiary.Extensions.AddEntry(string, Entry, EntriesTab)
+  nameWithType.vb: Bestiary.Extensions.AddEntry(String, Entry, EntriesTab)
+- uid: RainWorldBestiary.Bestiary.Extensions.AddEntry*
+  name: AddEntry
+  href: api/RainWorldBestiary.Bestiary.Extensions.html#RainWorldBestiary_Bestiary_Extensions_AddEntry_
+  commentId: Overload:RainWorldBestiary.Bestiary.Extensions.AddEntry
+  fullName: RainWorldBestiary.Bestiary.Extensions.AddEntry
+  nameWithType: Bestiary.Extensions.AddEntry
+- uid: RainWorldBestiary.Bestiary.Extensions.AddPlugin(System.String,RainWorldBestiary.Plugins.BestiaryPlugin)
+  name: AddPlugin(string, BestiaryPlugin)
+  href: api/RainWorldBestiary.Bestiary.Extensions.html#RainWorldBestiary_Bestiary_Extensions_AddPlugin_System_String_RainWorldBestiary_Plugins_BestiaryPlugin_
+  commentId: M:RainWorldBestiary.Bestiary.Extensions.AddPlugin(System.String,RainWorldBestiary.Plugins.BestiaryPlugin)
+  name.vb: AddPlugin(String, BestiaryPlugin)
+  fullName: RainWorldBestiary.Bestiary.Extensions.AddPlugin(string, RainWorldBestiary.Plugins.BestiaryPlugin)
+  fullName.vb: RainWorldBestiary.Bestiary.Extensions.AddPlugin(String, RainWorldBestiary.Plugins.BestiaryPlugin)
+  nameWithType: Bestiary.Extensions.AddPlugin(string, BestiaryPlugin)
+  nameWithType.vb: Bestiary.Extensions.AddPlugin(String, BestiaryPlugin)
+- uid: RainWorldBestiary.Bestiary.Extensions.AddPlugin*
+  name: AddPlugin
+  href: api/RainWorldBestiary.Bestiary.Extensions.html#RainWorldBestiary_Bestiary_Extensions_AddPlugin_
+  commentId: Overload:RainWorldBestiary.Bestiary.Extensions.AddPlugin
+  fullName: RainWorldBestiary.Bestiary.Extensions.AddPlugin
+  nameWithType: Bestiary.Extensions.AddPlugin
+- uid: RainWorldBestiary.Bestiary.Extensions.AddTab(System.String,RainWorldBestiary.Types.EntriesTab)
+  name: AddTab(string, EntriesTab)
+  href: api/RainWorldBestiary.Bestiary.Extensions.html#RainWorldBestiary_Bestiary_Extensions_AddTab_System_String_RainWorldBestiary_Types_EntriesTab_
+  commentId: M:RainWorldBestiary.Bestiary.Extensions.AddTab(System.String,RainWorldBestiary.Types.EntriesTab)
+  name.vb: AddTab(String, EntriesTab)
+  fullName: RainWorldBestiary.Bestiary.Extensions.AddTab(string, RainWorldBestiary.Types.EntriesTab)
+  fullName.vb: RainWorldBestiary.Bestiary.Extensions.AddTab(String, RainWorldBestiary.Types.EntriesTab)
+  nameWithType: Bestiary.Extensions.AddTab(string, EntriesTab)
+  nameWithType.vb: Bestiary.Extensions.AddTab(String, EntriesTab)
+- uid: RainWorldBestiary.Bestiary.Extensions.AddTab*
+  name: AddTab
+  href: api/RainWorldBestiary.Bestiary.Extensions.html#RainWorldBestiary_Bestiary_Extensions_AddTab_
+  commentId: Overload:RainWorldBestiary.Bestiary.Extensions.AddTab
+  fullName: RainWorldBestiary.Bestiary.Extensions.AddTab
+  nameWithType: Bestiary.Extensions.AddTab
+- uid: RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)
+  name: GetCreatureUnlockName(AbstractCreature, bool)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_GetCreatureUnlockName_AbstractCreature_System_Boolean_
+  commentId: M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature,System.Boolean)
+  name.vb: GetCreatureUnlockName(AbstractCreature, Boolean)
+  fullName: RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature, bool)
+  fullName.vb: RainWorldBestiary.Bestiary.GetCreatureUnlockName(AbstractCreature, Boolean)
+  nameWithType: Bestiary.GetCreatureUnlockName(AbstractCreature, bool)
+  nameWithType.vb: Bestiary.GetCreatureUnlockName(AbstractCreature, Boolean)
+- uid: RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)
+  name: GetCreatureUnlockName(Creature, bool)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_GetCreatureUnlockName_Creature_System_Boolean_
+  commentId: M:RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature,System.Boolean)
+  name.vb: GetCreatureUnlockName(Creature, Boolean)
+  fullName: RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature, bool)
+  fullName.vb: RainWorldBestiary.Bestiary.GetCreatureUnlockName(Creature, Boolean)
+  nameWithType: Bestiary.GetCreatureUnlockName(Creature, bool)
+  nameWithType.vb: Bestiary.GetCreatureUnlockName(Creature, Boolean)
+- uid: RainWorldBestiary.Bestiary.GetCreatureUnlockName*
+  name: GetCreatureUnlockName
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_GetCreatureUnlockName_
+  commentId: Overload:RainWorldBestiary.Bestiary.GetCreatureUnlockName
+  fullName: RainWorldBestiary.Bestiary.GetCreatureUnlockName
+  nameWithType: Bestiary.GetCreatureUnlockName
+- uid: RainWorldBestiary.Bestiary.GetEntryByReferenceID(System.String)
+  name: GetEntryByReferenceID(string)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_GetEntryByReferenceID_System_String_
+  commentId: M:RainWorldBestiary.Bestiary.GetEntryByReferenceID(System.String)
+  name.vb: GetEntryByReferenceID(String)
+  fullName: RainWorldBestiary.Bestiary.GetEntryByReferenceID(string)
+  fullName.vb: RainWorldBestiary.Bestiary.GetEntryByReferenceID(String)
+  nameWithType: Bestiary.GetEntryByReferenceID(string)
+  nameWithType.vb: Bestiary.GetEntryByReferenceID(String)
+- uid: RainWorldBestiary.Bestiary.GetEntryByReferenceID*
+  name: GetEntryByReferenceID
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_GetEntryByReferenceID_
+  commentId: Overload:RainWorldBestiary.Bestiary.GetEntryByReferenceID
+  fullName: RainWorldBestiary.Bestiary.GetEntryByReferenceID
+  nameWithType: Bestiary.GetEntryByReferenceID
+- uid: RainWorldBestiary.Bestiary.IsCreatureUnlocked(AbstractCreature)
+  name: IsCreatureUnlocked(AbstractCreature)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_IsCreatureUnlocked_AbstractCreature_
+  commentId: M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(AbstractCreature)
+  fullName: RainWorldBestiary.Bestiary.IsCreatureUnlocked(AbstractCreature)
+  nameWithType: Bestiary.IsCreatureUnlocked(AbstractCreature)
+- uid: RainWorldBestiary.Bestiary.IsCreatureUnlocked(Creature)
+  name: IsCreatureUnlocked(Creature)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_IsCreatureUnlocked_Creature_
+  commentId: M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(Creature)
+  fullName: RainWorldBestiary.Bestiary.IsCreatureUnlocked(Creature)
+  nameWithType: Bestiary.IsCreatureUnlocked(Creature)
+- uid: RainWorldBestiary.Bestiary.IsCreatureUnlocked(System.String)
+  name: IsCreatureUnlocked(string)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_IsCreatureUnlocked_System_String_
+  commentId: M:RainWorldBestiary.Bestiary.IsCreatureUnlocked(System.String)
+  name.vb: IsCreatureUnlocked(String)
+  fullName: RainWorldBestiary.Bestiary.IsCreatureUnlocked(string)
+  fullName.vb: RainWorldBestiary.Bestiary.IsCreatureUnlocked(String)
+  nameWithType: Bestiary.IsCreatureUnlocked(string)
+  nameWithType.vb: Bestiary.IsCreatureUnlocked(String)
+- uid: RainWorldBestiary.Bestiary.IsCreatureUnlocked*
+  name: IsCreatureUnlocked
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_IsCreatureUnlocked_
+  commentId: Overload:RainWorldBestiary.Bestiary.IsCreatureUnlocked
+  fullName: RainWorldBestiary.Bestiary.IsCreatureUnlocked
+  nameWithType: Bestiary.IsCreatureUnlocked
+- uid: RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)
+  name: IsUnlockTokenValid(CreatureUnlockToken)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_IsUnlockTokenValid_RainWorldBestiary_Types_CreatureUnlockToken_
+  commentId: M:RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)
+  fullName: RainWorldBestiary.Bestiary.IsUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)
+  nameWithType: Bestiary.IsUnlockTokenValid(CreatureUnlockToken)
+- uid: RainWorldBestiary.Bestiary.IsUnlockTokenValid*
+  name: IsUnlockTokenValid
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_IsUnlockTokenValid_
+  commentId: Overload:RainWorldBestiary.Bestiary.IsUnlockTokenValid
+  fullName: RainWorldBestiary.Bestiary.IsUnlockTokenValid
+  nameWithType: Bestiary.IsUnlockTokenValid
+- uid: RainWorldBestiary.Bestiary.Settings
+  name: Bestiary.Settings
+  href: api/RainWorldBestiary.Bestiary.Settings.html
+  commentId: T:RainWorldBestiary.Bestiary.Settings
+  fullName: RainWorldBestiary.Bestiary.Settings
+  nameWithType: Bestiary.Settings
+- uid: RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  name: ConsistentTitleSpacing
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_ConsistentTitleSpacing
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  fullName: RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  nameWithType: Bestiary.Settings.ConsistentTitleSpacing
+- uid: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  name: MenuFadeTimeSeconds
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_MenuFadeTimeSeconds
+  commentId: P:RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  fullName: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  nameWithType: Bestiary.Settings.MenuFadeTimeSeconds
+- uid: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds*
+  name: MenuFadeTimeSeconds
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_MenuFadeTimeSeconds_
+  commentId: Overload:RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  fullName: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  nameWithType: Bestiary.Settings.MenuFadeTimeSeconds
+- uid: RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  name: PerformTextAnimations
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_PerformTextAnimations
+  commentId: F:RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  fullName: RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  nameWithType: Bestiary.Settings.PerformTextAnimations
+- uid: RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  name: ShowManualButton
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_ShowManualButton
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  fullName: RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  nameWithType: Bestiary.Settings.ShowManualButton
+- uid: RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  name: ShowModuleLockPips
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_ShowModuleLockPips
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  fullName: RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  nameWithType: Bestiary.Settings.ShowModuleLockPips
+- uid: RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  name: ShowTitleIcons
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_ShowTitleIcons
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  fullName: RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  nameWithType: Bestiary.Settings.ShowTitleIcons
+- uid: RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  name: UnlockAllEntries
+  href: api/RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_UnlockAllEntries
+  commentId: F:RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  fullName: RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  nameWithType: Bestiary.Settings.UnlockAllEntries
+- uid: RainWorldBestiary.Bestiary.SpecialIDsLogic
+  name: SpecialIDsLogic
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_SpecialIDsLogic
+  commentId: F:RainWorldBestiary.Bestiary.SpecialIDsLogic
+  fullName: RainWorldBestiary.Bestiary.SpecialIDsLogic
+  nameWithType: Bestiary.SpecialIDsLogic
+- uid: RainWorldBestiary.Bestiary.UnlockCreature(AbstractCreature)
+  name: UnlockCreature(AbstractCreature)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_UnlockCreature_AbstractCreature_
+  commentId: M:RainWorldBestiary.Bestiary.UnlockCreature(AbstractCreature)
+  fullName: RainWorldBestiary.Bestiary.UnlockCreature(AbstractCreature)
+  nameWithType: Bestiary.UnlockCreature(AbstractCreature)
+- uid: RainWorldBestiary.Bestiary.UnlockCreature(Creature)
+  name: UnlockCreature(Creature)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_UnlockCreature_Creature_
+  commentId: M:RainWorldBestiary.Bestiary.UnlockCreature(Creature)
+  fullName: RainWorldBestiary.Bestiary.UnlockCreature(Creature)
+  nameWithType: Bestiary.UnlockCreature(Creature)
+- uid: RainWorldBestiary.Bestiary.UnlockCreature(System.String)
+  name: UnlockCreature(string)
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_UnlockCreature_System_String_
+  commentId: M:RainWorldBestiary.Bestiary.UnlockCreature(System.String)
+  name.vb: UnlockCreature(String)
+  fullName: RainWorldBestiary.Bestiary.UnlockCreature(string)
+  fullName.vb: RainWorldBestiary.Bestiary.UnlockCreature(String)
+  nameWithType: Bestiary.UnlockCreature(string)
+  nameWithType.vb: Bestiary.UnlockCreature(String)
+- uid: RainWorldBestiary.Bestiary.UnlockCreature*
+  name: UnlockCreature
+  href: api/RainWorldBestiary.Bestiary.html#RainWorldBestiary_Bestiary_UnlockCreature_
+  commentId: Overload:RainWorldBestiary.Bestiary.UnlockCreature
+  fullName: RainWorldBestiary.Bestiary.UnlockCreature
+  nameWithType: Bestiary.UnlockCreature
+- uid: RainWorldBestiary.Extensions
+  name: Extensions
+  href: api/RainWorldBestiary.Extensions.html
+  commentId: T:RainWorldBestiary.Extensions
+  fullName: RainWorldBestiary.Extensions
+  nameWithType: Extensions
+- uid: RainWorldBestiary.Extensions.ARGBToHexString(UnityEngine.Color)
+  name: ARGBToHexString(Color)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ARGBToHexString_UnityEngine_Color_
+  commentId: M:RainWorldBestiary.Extensions.ARGBToHexString(UnityEngine.Color)
+  fullName: RainWorldBestiary.Extensions.ARGBToHexString(UnityEngine.Color)
+  nameWithType: Extensions.ARGBToHexString(Color)
+- uid: RainWorldBestiary.Extensions.ARGBToHexString*
+  name: ARGBToHexString
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ARGBToHexString_
+  commentId: Overload:RainWorldBestiary.Extensions.ARGBToHexString
+  fullName: RainWorldBestiary.Extensions.ARGBToHexString
+  nameWithType: Extensions.ARGBToHexString
+- uid: RainWorldBestiary.Extensions.ContainsAll*
+  name: ContainsAll
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll_
+  commentId: Overload:RainWorldBestiary.Extensions.ContainsAll
+  fullName: RainWorldBestiary.Extensions.ContainsAll
+  nameWithType: Extensions.ContainsAll
+- uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  name: ContainsAll<T>(IEnumerable<T>, IEnumerable<T>)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  commentId: M:RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  name.vb: ContainsAll(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+  fullName: RainWorldBestiary.Extensions.ContainsAll<T>(System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAll(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: Extensions.ContainsAll<T>(IEnumerable<T>, IEnumerable<T>)
+  nameWithType.vb: Extensions.ContainsAll(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+- uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.List{``0},``0[])
+  name: ContainsAll<T>(List<T>, T[])
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_List___0____0___
+  commentId: M:RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.List{``0},``0[])
+  name.vb: ContainsAll(Of T)(List(Of T), T())
+  fullName: RainWorldBestiary.Extensions.ContainsAll<T>(System.Collections.Generic.List<T>, T[])
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAll(Of T)(System.Collections.Generic.List(Of T), T())
+  nameWithType: Extensions.ContainsAll<T>(List<T>, T[])
+  nameWithType.vb: Extensions.ContainsAll(Of T)(List(Of T), T())
+- uid: RainWorldBestiary.Extensions.ContainsAny(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})
+  name: ContainsAny(List<string>, List<string>)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny_System_Collections_Generic_List_System_String__System_Collections_Generic_List_System_String__
+  commentId: M:RainWorldBestiary.Extensions.ContainsAny(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})
+  name.vb: ContainsAny(List(Of String), List(Of String))
+  fullName: RainWorldBestiary.Extensions.ContainsAny(System.Collections.Generic.List<string>, System.Collections.Generic.List<string>)
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAny(System.Collections.Generic.List(Of String), System.Collections.Generic.List(Of String))
+  nameWithType: Extensions.ContainsAny(List<string>, List<string>)
+  nameWithType.vb: Extensions.ContainsAny(List(Of String), List(Of String))
+- uid: RainWorldBestiary.Extensions.ContainsAny*
+  name: ContainsAny
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny_
+  commentId: Overload:RainWorldBestiary.Extensions.ContainsAny
+  fullName: RainWorldBestiary.Extensions.ContainsAny
+  nameWithType: Extensions.ContainsAny
+- uid: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  name: ContainsAny<T>(IEnumerable<T>, IEnumerable<T>)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  commentId: M:RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  name.vb: ContainsAny(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+  fullName: RainWorldBestiary.Extensions.ContainsAny<T>(System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAny(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: Extensions.ContainsAny<T>(IEnumerable<T>, IEnumerable<T>)
+  nameWithType.vb: Extensions.ContainsAny(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+- uid: RainWorldBestiary.Extensions.GetRandom*
+  name: GetRandom
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom_
+  commentId: Overload:RainWorldBestiary.Extensions.GetRandom
+  fullName: RainWorldBestiary.Extensions.GetRandom
+  nameWithType: Extensions.GetRandom
+- uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+  name: GetRandom<T>(IEnumerable<T>)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+  name.vb: GetRandom(Of T)(IEnumerable(Of T))
+  fullName: RainWorldBestiary.Extensions.GetRandom<T>(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: RainWorldBestiary.Extensions.GetRandom(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: Extensions.GetRandom<T>(IEnumerable<T>)
+  nameWithType.vb: Extensions.GetRandom(Of T)(IEnumerable(Of T))
+- uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+  name: GetRandom<T>(IEnumerable<T>, int)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  commentId: M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+  name.vb: GetRandom(Of T)(IEnumerable(Of T), Integer)
+  fullName: RainWorldBestiary.Extensions.GetRandom<T>(System.Collections.Generic.IEnumerable<T>, int)
+  fullName.vb: RainWorldBestiary.Extensions.GetRandom(Of T)(System.Collections.Generic.IEnumerable(Of T), Integer)
+  nameWithType: Extensions.GetRandom<T>(IEnumerable<T>, int)
+  nameWithType.vb: Extensions.GetRandom(Of T)(IEnumerable(Of T), Integer)
+- uid: RainWorldBestiary.Extensions.HexToColor(System.String)
+  name: HexToColor(string)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_HexToColor_System_String_
+  commentId: M:RainWorldBestiary.Extensions.HexToColor(System.String)
+  name.vb: HexToColor(String)
+  fullName: RainWorldBestiary.Extensions.HexToColor(string)
+  fullName.vb: RainWorldBestiary.Extensions.HexToColor(String)
+  nameWithType: Extensions.HexToColor(string)
+  nameWithType.vb: Extensions.HexToColor(String)
+- uid: RainWorldBestiary.Extensions.HexToColor*
+  name: HexToColor
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_HexToColor_
+  commentId: Overload:RainWorldBestiary.Extensions.HexToColor
+  fullName: RainWorldBestiary.Extensions.HexToColor
+  nameWithType: Extensions.HexToColor
+- uid: RainWorldBestiary.Extensions.IndexOf(System.String,System.Char,System.Int32,System.Boolean)
+  name: IndexOf(string, char, int, bool)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_IndexOf_System_String_System_Char_System_Int32_System_Boolean_
+  commentId: M:RainWorldBestiary.Extensions.IndexOf(System.String,System.Char,System.Int32,System.Boolean)
+  name.vb: IndexOf(String, Char, Integer, Boolean)
+  fullName: RainWorldBestiary.Extensions.IndexOf(string, char, int, bool)
+  fullName.vb: RainWorldBestiary.Extensions.IndexOf(String, Char, Integer, Boolean)
+  nameWithType: Extensions.IndexOf(string, char, int, bool)
+  nameWithType.vb: Extensions.IndexOf(String, Char, Integer, Boolean)
+- uid: RainWorldBestiary.Extensions.IndexOf*
+  name: IndexOf
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_IndexOf_
+  commentId: Overload:RainWorldBestiary.Extensions.IndexOf
+  fullName: RainWorldBestiary.Extensions.IndexOf
+  nameWithType: Extensions.IndexOf
+- uid: RainWorldBestiary.Extensions.RGBToHexString(UnityEngine.Color)
+  name: RGBToHexString(Color)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_RGBToHexString_UnityEngine_Color_
+  commentId: M:RainWorldBestiary.Extensions.RGBToHexString(UnityEngine.Color)
+  fullName: RainWorldBestiary.Extensions.RGBToHexString(UnityEngine.Color)
+  nameWithType: Extensions.RGBToHexString(Color)
+- uid: RainWorldBestiary.Extensions.RGBToHexString*
+  name: RGBToHexString
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_RGBToHexString_
+  commentId: Overload:RainWorldBestiary.Extensions.RGBToHexString
+  fullName: RainWorldBestiary.Extensions.RGBToHexString
+  nameWithType: Extensions.RGBToHexString
+- uid: RainWorldBestiary.Extensions.SplitIntoGroups(System.String,System.Int32)
+  name: SplitIntoGroups(string, int)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_SplitIntoGroups_System_String_System_Int32_
+  commentId: M:RainWorldBestiary.Extensions.SplitIntoGroups(System.String,System.Int32)
+  name.vb: SplitIntoGroups(String, Integer)
+  fullName: RainWorldBestiary.Extensions.SplitIntoGroups(string, int)
+  fullName.vb: RainWorldBestiary.Extensions.SplitIntoGroups(String, Integer)
+  nameWithType: Extensions.SplitIntoGroups(string, int)
+  nameWithType.vb: Extensions.SplitIntoGroups(String, Integer)
+- uid: RainWorldBestiary.Extensions.SplitIntoGroups*
+  name: SplitIntoGroups
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_SplitIntoGroups_
+  commentId: Overload:RainWorldBestiary.Extensions.SplitIntoGroups
+  fullName: RainWorldBestiary.Extensions.SplitIntoGroups
+  nameWithType: Extensions.SplitIntoGroups
+- uid: RainWorldBestiary.Extensions.ToHSL(UnityEngine.Color)
+  name: ToHSL(Color)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ToHSL_UnityEngine_Color_
+  commentId: M:RainWorldBestiary.Extensions.ToHSL(UnityEngine.Color)
+  fullName: RainWorldBestiary.Extensions.ToHSL(UnityEngine.Color)
+  nameWithType: Extensions.ToHSL(Color)
+- uid: RainWorldBestiary.Extensions.ToHSL*
+  name: ToHSL
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ToHSL_
+  commentId: Overload:RainWorldBestiary.Extensions.ToHSL
+  fullName: RainWorldBestiary.Extensions.ToHSL
+  nameWithType: Extensions.ToHSL
+- uid: RainWorldBestiary.Extensions.ToVector2(RWCustom.IntVector2)
+  name: ToVector2(IntVector2)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ToVector2_RWCustom_IntVector2_
+  commentId: M:RainWorldBestiary.Extensions.ToVector2(RWCustom.IntVector2)
+  fullName: RainWorldBestiary.Extensions.ToVector2(RWCustom.IntVector2)
+  nameWithType: Extensions.ToVector2(IntVector2)
+- uid: RainWorldBestiary.Extensions.ToVector2(WorldCoordinate)
+  name: ToVector2(WorldCoordinate)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ToVector2_WorldCoordinate_
+  commentId: M:RainWorldBestiary.Extensions.ToVector2(WorldCoordinate)
+  fullName: RainWorldBestiary.Extensions.ToVector2(WorldCoordinate)
+  nameWithType: Extensions.ToVector2(WorldCoordinate)
+- uid: RainWorldBestiary.Extensions.ToVector2*
+  name: ToVector2
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ToVector2_
+  commentId: Overload:RainWorldBestiary.Extensions.ToVector2
+  fullName: RainWorldBestiary.Extensions.ToVector2
+  nameWithType: Extensions.ToVector2
+- uid: RainWorldBestiary.Extensions.WrapText(System.String,System.Int32)
+  name: WrapText(string, int)
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_WrapText_System_String_System_Int32_
+  commentId: M:RainWorldBestiary.Extensions.WrapText(System.String,System.Int32)
+  name.vb: WrapText(String, Integer)
+  fullName: RainWorldBestiary.Extensions.WrapText(string, int)
+  fullName.vb: RainWorldBestiary.Extensions.WrapText(String, Integer)
+  nameWithType: Extensions.WrapText(string, int)
+  nameWithType.vb: Extensions.WrapText(String, Integer)
+- uid: RainWorldBestiary.Extensions.WrapText*
+  name: WrapText
+  href: api/RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_WrapText_
+  commentId: Overload:RainWorldBestiary.Extensions.WrapText
+  fullName: RainWorldBestiary.Extensions.WrapText
+  nameWithType: Extensions.WrapText
+- uid: RainWorldBestiary.Hooks
+  name: RainWorldBestiary.Hooks
+  href: api/RainWorldBestiary.Hooks.html
+  commentId: N:RainWorldBestiary.Hooks
+  fullName: RainWorldBestiary.Hooks
+  nameWithType: RainWorldBestiary.Hooks
+- uid: RainWorldBestiary.Hooks.HooksUtilities
+  name: HooksUtilities
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html
+  commentId: T:RainWorldBestiary.Hooks.HooksUtilities
+  fullName: RainWorldBestiary.Hooks.HooksUtilities
+  nameWithType: HooksUtilities
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IgnoreID(System.Int32,RainWorldBestiary.Types.UnlockTokenType,System.Single,System.Boolean,System.Boolean)
+  name: IgnoreID(int, UnlockTokenType, float, bool, bool)
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IgnoreID_System_Int32_RainWorldBestiary_Types_UnlockTokenType_System_Single_System_Boolean_System_Boolean_
+  commentId: M:RainWorldBestiary.Hooks.HooksUtilities.IgnoreID(System.Int32,RainWorldBestiary.Types.UnlockTokenType,System.Single,System.Boolean,System.Boolean)
+  name.vb: IgnoreID(Integer, UnlockTokenType, Single, Boolean, Boolean)
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IgnoreID(int, RainWorldBestiary.Types.UnlockTokenType, float, bool, bool)
+  fullName.vb: RainWorldBestiary.Hooks.HooksUtilities.IgnoreID(Integer, RainWorldBestiary.Types.UnlockTokenType, Single, Boolean, Boolean)
+  nameWithType: HooksUtilities.IgnoreID(int, UnlockTokenType, float, bool, bool)
+  nameWithType.vb: HooksUtilities.IgnoreID(Integer, UnlockTokenType, Single, Boolean, Boolean)
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IgnoreID*
+  name: IgnoreID
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IgnoreID_
+  commentId: Overload:RainWorldBestiary.Hooks.HooksUtilities.IgnoreID
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IgnoreID
+  nameWithType: HooksUtilities.IgnoreID
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(AbstractCreature)
+  name: IsCreatureOnCamera(AbstractCreature)
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IsCreatureOnCamera_AbstractCreature_
+  commentId: M:RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(AbstractCreature)
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(AbstractCreature)
+  nameWithType: HooksUtilities.IsCreatureOnCamera(AbstractCreature)
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(Creature)
+  name: IsCreatureOnCamera(Creature)
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IsCreatureOnCamera_Creature_
+  commentId: M:RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(Creature)
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera(Creature)
+  nameWithType: HooksUtilities.IsCreatureOnCamera(Creature)
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera*
+  name: IsCreatureOnCamera
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IsCreatureOnCamera_
+  commentId: Overload:RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IsCreatureOnCamera
+  nameWithType: HooksUtilities.IsCreatureOnCamera
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera(UnityEngine.Vector2)
+  name: IsPositionOnCamera(Vector2)
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IsPositionOnCamera_UnityEngine_Vector2_
+  commentId: M:RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera(UnityEngine.Vector2)
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera(UnityEngine.Vector2)
+  nameWithType: HooksUtilities.IsPositionOnCamera(Vector2)
+- uid: RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera*
+  name: IsPositionOnCamera
+  href: api/RainWorldBestiary.Hooks.HooksUtilities.html#RainWorldBestiary_Hooks_HooksUtilities_IsPositionOnCamera_
+  commentId: Overload:RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera
+  fullName: RainWorldBestiary.Hooks.HooksUtilities.IsPositionOnCamera
+  nameWithType: HooksUtilities.IsPositionOnCamera
+- uid: RainWorldBestiary.Plugins
+  name: RainWorldBestiary.Plugins
+  href: api/RainWorldBestiary.Plugins.html
+  commentId: N:RainWorldBestiary.Plugins
+  fullName: RainWorldBestiary.Plugins
+  nameWithType: RainWorldBestiary.Plugins
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin
+  name: BestiaryPlugin
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html
+  commentId: T:RainWorldBestiary.Plugins.BestiaryPlugin
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin
+  nameWithType: BestiaryPlugin
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.#ctor
+  name: BestiaryPlugin()
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin__ctor
+  commentId: M:RainWorldBestiary.Plugins.BestiaryPlugin.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.BestiaryPlugin()
+  fullName.vb: RainWorldBestiary.Plugins.BestiaryPlugin.New()
+  nameWithType: BestiaryPlugin.BestiaryPlugin()
+  nameWithType.vb: BestiaryPlugin.New()
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.#ctor*
+  name: BestiaryPlugin
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin__ctor_
+  commentId: Overload:RainWorldBestiary.Plugins.BestiaryPlugin.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.BestiaryPlugin
+  fullName.vb: RainWorldBestiary.Plugins.BestiaryPlugin.New
+  nameWithType: BestiaryPlugin.BestiaryPlugin
+  nameWithType.vb: BestiaryPlugin.New
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.Awake
+  name: Awake()
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_Awake
+  commentId: M:RainWorldBestiary.Plugins.BestiaryPlugin.Awake
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.Awake()
+  nameWithType: BestiaryPlugin.Awake()
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.Awake*
+  name: Awake
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_Awake_
+  commentId: Overload:RainWorldBestiary.Plugins.BestiaryPlugin.Awake
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.Awake
+  nameWithType: BestiaryPlugin.Awake
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate
+  name: FixedUpdate()
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_FixedUpdate
+  commentId: M:RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate()
+  nameWithType: BestiaryPlugin.FixedUpdate()
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate*
+  name: FixedUpdate
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_FixedUpdate_
+  commentId: Overload:RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate
+  nameWithType: BestiaryPlugin.FixedUpdate
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.Start
+  name: Start()
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_Start
+  commentId: M:RainWorldBestiary.Plugins.BestiaryPlugin.Start
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.Start()
+  nameWithType: BestiaryPlugin.Start()
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.Start*
+  name: Start
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_Start_
+  commentId: Overload:RainWorldBestiary.Plugins.BestiaryPlugin.Start
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.Start
+  nameWithType: BestiaryPlugin.Start
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.Update
+  name: Update()
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_Update
+  commentId: M:RainWorldBestiary.Plugins.BestiaryPlugin.Update
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.Update()
+  nameWithType: BestiaryPlugin.Update()
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin.Update*
+  name: Update
+  href: api/RainWorldBestiary.Plugins.BestiaryPlugin.html#RainWorldBestiary_Plugins_BestiaryPlugin_Update_
+  commentId: Overload:RainWorldBestiary.Plugins.BestiaryPlugin.Update
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin.Update
+  nameWithType: BestiaryPlugin.Update
+- uid: RainWorldBestiary.Translator
+  name: Translator
+  href: api/RainWorldBestiary.Translator.html
+  commentId: T:RainWorldBestiary.Translator
+  fullName: RainWorldBestiary.Translator
+  nameWithType: Translator
+- uid: RainWorldBestiary.Translator.Translate(System.String)
+  name: Translate(string)
+  href: api/RainWorldBestiary.Translator.html#RainWorldBestiary_Translator_Translate_System_String_
+  commentId: M:RainWorldBestiary.Translator.Translate(System.String)
+  name.vb: Translate(String)
+  fullName: RainWorldBestiary.Translator.Translate(string)
+  fullName.vb: RainWorldBestiary.Translator.Translate(String)
+  nameWithType: Translator.Translate(string)
+  nameWithType.vb: Translator.Translate(String)
+- uid: RainWorldBestiary.Translator.Translate*
+  name: Translate
+  href: api/RainWorldBestiary.Translator.html#RainWorldBestiary_Translator_Translate_
+  commentId: Overload:RainWorldBestiary.Translator.Translate
+  fullName: RainWorldBestiary.Translator.Translate
+  nameWithType: Translator.Translate
+- uid: RainWorldBestiary.Types
+  name: RainWorldBestiary.Types
+  href: api/RainWorldBestiary.Types.html
+  commentId: N:RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+- uid: RainWorldBestiary.Types.CreatureUnlockToken
+  name: CreatureUnlockToken
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html
+  commentId: T:RainWorldBestiary.Types.CreatureUnlockToken
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken
+  nameWithType: CreatureUnlockToken
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.#ctor(RainWorldBestiary.Types.CreatureUnlockToken)
+  name: CreatureUnlockToken(CreatureUnlockToken)
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken__ctor_RainWorldBestiary_Types_CreatureUnlockToken_
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.#ctor(RainWorldBestiary.Types.CreatureUnlockToken)
+  name.vb: New(CreatureUnlockToken)
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.CreatureUnlockToken(RainWorldBestiary.Types.CreatureUnlockToken)
+  fullName.vb: RainWorldBestiary.Types.CreatureUnlockToken.New(RainWorldBestiary.Types.CreatureUnlockToken)
+  nameWithType: CreatureUnlockToken.CreatureUnlockToken(CreatureUnlockToken)
+  nameWithType.vb: CreatureUnlockToken.New(CreatureUnlockToken)
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.#ctor(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  name: CreatureUnlockToken(string, UnlockTokenType, byte)
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken__ctor_System_String_RainWorldBestiary_Types_UnlockTokenType_System_Byte_
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.#ctor(System.String,RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  name.vb: New(String, UnlockTokenType, Byte)
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.CreatureUnlockToken(string, RainWorldBestiary.Types.UnlockTokenType, byte)
+  fullName.vb: RainWorldBestiary.Types.CreatureUnlockToken.New(String, RainWorldBestiary.Types.UnlockTokenType, Byte)
+  nameWithType: CreatureUnlockToken.CreatureUnlockToken(string, UnlockTokenType, byte)
+  nameWithType.vb: CreatureUnlockToken.New(String, UnlockTokenType, Byte)
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.#ctor*
+  name: CreatureUnlockToken
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken__ctor_
+  commentId: Overload:RainWorldBestiary.Types.CreatureUnlockToken.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.CreatureUnlockToken
+  fullName.vb: RainWorldBestiary.Types.CreatureUnlockToken.New
+  nameWithType: CreatureUnlockToken.CreatureUnlockToken
+  nameWithType.vb: CreatureUnlockToken.New
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.CreatureID
+  name: CreatureID
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_CreatureID
+  commentId: F:RainWorldBestiary.Types.CreatureUnlockToken.CreatureID
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.CreatureID
+  nameWithType: CreatureUnlockToken.CreatureID
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)
+  name: Equals(CreatureUnlockToken)
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_Equals_RainWorldBestiary_Types_CreatureUnlockToken_
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken)
+  nameWithType: CreatureUnlockToken.Equals(CreatureUnlockToken)
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)
+  name: Equals(CreatureUnlockToken, bool)
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_Equals_RainWorldBestiary_Types_CreatureUnlockToken_System_Boolean_
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)
+  name.vb: Equals(CreatureUnlockToken, Boolean)
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken, bool)
+  fullName.vb: RainWorldBestiary.Types.CreatureUnlockToken.Equals(RainWorldBestiary.Types.CreatureUnlockToken, Boolean)
+  nameWithType: CreatureUnlockToken.Equals(CreatureUnlockToken, bool)
+  nameWithType.vb: CreatureUnlockToken.Equals(CreatureUnlockToken, Boolean)
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.Equals(System.Object)
+  name: Equals(object)
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_Equals_System_Object_
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.Equals(object)
+  fullName.vb: RainWorldBestiary.Types.CreatureUnlockToken.Equals(Object)
+  nameWithType: CreatureUnlockToken.Equals(object)
+  nameWithType.vb: CreatureUnlockToken.Equals(Object)
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.Equals*
+  name: Equals
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_Equals_
+  commentId: Overload:RainWorldBestiary.Types.CreatureUnlockToken.Equals
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.Equals
+  nameWithType: CreatureUnlockToken.Equals
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode
+  name: GetHashCode()
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_GetHashCode
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode()
+  nameWithType: CreatureUnlockToken.GetHashCode()
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode*
+  name: GetHashCode
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_GetHashCode_
+  commentId: Overload:RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.GetHashCode
+  nameWithType: CreatureUnlockToken.GetHashCode
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.OperationAgainstCurrentValue
+  name: OperationAgainstCurrentValue
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_OperationAgainstCurrentValue
+  commentId: F:RainWorldBestiary.Types.CreatureUnlockToken.OperationAgainstCurrentValue
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.OperationAgainstCurrentValue
+  nameWithType: CreatureUnlockToken.OperationAgainstCurrentValue
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.ToString
+  name: ToString()
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_ToString
+  commentId: M:RainWorldBestiary.Types.CreatureUnlockToken.ToString
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.ToString()
+  nameWithType: CreatureUnlockToken.ToString()
+- uid: RainWorldBestiary.Types.CreatureUnlockToken.ToString*
+  name: ToString
+  href: api/RainWorldBestiary.Types.CreatureUnlockToken.html#RainWorldBestiary_Types_CreatureUnlockToken_ToString_
+  commentId: Overload:RainWorldBestiary.Types.CreatureUnlockToken.ToString
+  fullName: RainWorldBestiary.Types.CreatureUnlockToken.ToString
+  nameWithType: CreatureUnlockToken.ToString
+- uid: RainWorldBestiary.Types.Description
+  name: Description
+  href: api/RainWorldBestiary.Types.Description.html
+  commentId: T:RainWorldBestiary.Types.Description
+  fullName: RainWorldBestiary.Types.Description
+  nameWithType: Description
+- uid: RainWorldBestiary.Types.Description.#ctor
+  name: Description()
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description__ctor
+  commentId: M:RainWorldBestiary.Types.Description.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.Description.Description()
+  fullName.vb: RainWorldBestiary.Types.Description.New()
+  nameWithType: Description.Description()
+  nameWithType.vb: Description.New()
+- uid: RainWorldBestiary.Types.Description.#ctor(RainWorldBestiary.Types.Description)
+  name: Description(Description)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description__ctor_RainWorldBestiary_Types_Description_
+  commentId: M:RainWorldBestiary.Types.Description.#ctor(RainWorldBestiary.Types.Description)
+  name.vb: New(Description)
+  fullName: RainWorldBestiary.Types.Description.Description(RainWorldBestiary.Types.Description)
+  fullName.vb: RainWorldBestiary.Types.Description.New(RainWorldBestiary.Types.Description)
+  nameWithType: Description.Description(Description)
+  nameWithType.vb: Description.New(Description)
+- uid: RainWorldBestiary.Types.Description.#ctor(RainWorldBestiary.Types.DescriptionModule[])
+  name: Description(params DescriptionModule[])
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description__ctor_RainWorldBestiary_Types_DescriptionModule___
+  commentId: M:RainWorldBestiary.Types.Description.#ctor(RainWorldBestiary.Types.DescriptionModule[])
+  name.vb: New(ParamArray DescriptionModule())
+  fullName: RainWorldBestiary.Types.Description.Description(params RainWorldBestiary.Types.DescriptionModule[])
+  fullName.vb: RainWorldBestiary.Types.Description.New(ParamArray RainWorldBestiary.Types.DescriptionModule())
+  nameWithType: Description.Description(params DescriptionModule[])
+  nameWithType.vb: Description.New(ParamArray DescriptionModule())
+- uid: RainWorldBestiary.Types.Description.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.DescriptionModule})
+  name: Description(IEnumerable<DescriptionModule>)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description__ctor_System_Collections_Generic_IEnumerable_RainWorldBestiary_Types_DescriptionModule__
+  commentId: M:RainWorldBestiary.Types.Description.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.DescriptionModule})
+  name.vb: New(IEnumerable(Of DescriptionModule))
+  fullName: RainWorldBestiary.Types.Description.Description(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.DescriptionModule>)
+  fullName.vb: RainWorldBestiary.Types.Description.New(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.DescriptionModule))
+  nameWithType: Description.Description(IEnumerable<DescriptionModule>)
+  nameWithType.vb: Description.New(IEnumerable(Of DescriptionModule))
+- uid: RainWorldBestiary.Types.Description.#ctor(System.String)
+  name: Description(string)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description__ctor_System_String_
+  commentId: M:RainWorldBestiary.Types.Description.#ctor(System.String)
+  name.vb: New(String)
+  fullName: RainWorldBestiary.Types.Description.Description(string)
+  fullName.vb: RainWorldBestiary.Types.Description.New(String)
+  nameWithType: Description.Description(string)
+  nameWithType.vb: Description.New(String)
+- uid: RainWorldBestiary.Types.Description.#ctor*
+  name: Description
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description__ctor_
+  commentId: Overload:RainWorldBestiary.Types.Description.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.Description.Description
+  fullName.vb: RainWorldBestiary.Types.Description.New
+  nameWithType: Description.Description
+  nameWithType.vb: Description.New
+- uid: RainWorldBestiary.Types.Description.Add(RainWorldBestiary.Types.DescriptionModule)
+  name: Add(DescriptionModule)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Add_RainWorldBestiary_Types_DescriptionModule_
+  commentId: M:RainWorldBestiary.Types.Description.Add(RainWorldBestiary.Types.DescriptionModule)
+  fullName: RainWorldBestiary.Types.Description.Add(RainWorldBestiary.Types.DescriptionModule)
+  nameWithType: Description.Add(DescriptionModule)
+- uid: RainWorldBestiary.Types.Description.Add*
+  name: Add
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Add_
+  commentId: Overload:RainWorldBestiary.Types.Description.Add
+  fullName: RainWorldBestiary.Types.Description.Add
+  nameWithType: Description.Add
+- uid: RainWorldBestiary.Types.Description.Clear
+  name: Clear()
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Clear
+  commentId: M:RainWorldBestiary.Types.Description.Clear
+  fullName: RainWorldBestiary.Types.Description.Clear()
+  nameWithType: Description.Clear()
+- uid: RainWorldBestiary.Types.Description.Clear*
+  name: Clear
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Clear_
+  commentId: Overload:RainWorldBestiary.Types.Description.Clear
+  fullName: RainWorldBestiary.Types.Description.Clear
+  nameWithType: Description.Clear
+- uid: RainWorldBestiary.Types.Description.Contains(RainWorldBestiary.Types.DescriptionModule)
+  name: Contains(DescriptionModule)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Contains_RainWorldBestiary_Types_DescriptionModule_
+  commentId: M:RainWorldBestiary.Types.Description.Contains(RainWorldBestiary.Types.DescriptionModule)
+  fullName: RainWorldBestiary.Types.Description.Contains(RainWorldBestiary.Types.DescriptionModule)
+  nameWithType: Description.Contains(DescriptionModule)
+- uid: RainWorldBestiary.Types.Description.Contains*
+  name: Contains
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Contains_
+  commentId: Overload:RainWorldBestiary.Types.Description.Contains
+  fullName: RainWorldBestiary.Types.Description.Contains
+  nameWithType: Description.Contains
+- uid: RainWorldBestiary.Types.Description.CopyTo(RainWorldBestiary.Types.DescriptionModule[],System.Int32)
+  name: CopyTo(DescriptionModule[], int)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_CopyTo_RainWorldBestiary_Types_DescriptionModule___System_Int32_
+  commentId: M:RainWorldBestiary.Types.Description.CopyTo(RainWorldBestiary.Types.DescriptionModule[],System.Int32)
+  name.vb: CopyTo(DescriptionModule(), Integer)
+  fullName: RainWorldBestiary.Types.Description.CopyTo(RainWorldBestiary.Types.DescriptionModule[], int)
+  fullName.vb: RainWorldBestiary.Types.Description.CopyTo(RainWorldBestiary.Types.DescriptionModule(), Integer)
+  nameWithType: Description.CopyTo(DescriptionModule[], int)
+  nameWithType.vb: Description.CopyTo(DescriptionModule(), Integer)
+- uid: RainWorldBestiary.Types.Description.CopyTo*
+  name: CopyTo
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_CopyTo_
+  commentId: Overload:RainWorldBestiary.Types.Description.CopyTo
+  fullName: RainWorldBestiary.Types.Description.CopyTo
+  nameWithType: Description.CopyTo
+- uid: RainWorldBestiary.Types.Description.Count
+  name: Count
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Count
+  commentId: P:RainWorldBestiary.Types.Description.Count
+  fullName: RainWorldBestiary.Types.Description.Count
+  nameWithType: Description.Count
+- uid: RainWorldBestiary.Types.Description.Count*
+  name: Count
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Count_
+  commentId: Overload:RainWorldBestiary.Types.Description.Count
+  fullName: RainWorldBestiary.Types.Description.Count
+  nameWithType: Description.Count
+- uid: RainWorldBestiary.Types.Description.GetEnumerator
+  name: GetEnumerator()
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_GetEnumerator
+  commentId: M:RainWorldBestiary.Types.Description.GetEnumerator
+  fullName: RainWorldBestiary.Types.Description.GetEnumerator()
+  nameWithType: Description.GetEnumerator()
+- uid: RainWorldBestiary.Types.Description.GetEnumerator*
+  name: GetEnumerator
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_GetEnumerator_
+  commentId: Overload:RainWorldBestiary.Types.Description.GetEnumerator
+  fullName: RainWorldBestiary.Types.Description.GetEnumerator
+  nameWithType: Description.GetEnumerator
+- uid: RainWorldBestiary.Types.Description.IsReadOnly
+  name: IsReadOnly
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_IsReadOnly
+  commentId: P:RainWorldBestiary.Types.Description.IsReadOnly
+  fullName: RainWorldBestiary.Types.Description.IsReadOnly
+  nameWithType: Description.IsReadOnly
+- uid: RainWorldBestiary.Types.Description.IsReadOnly*
+  name: IsReadOnly
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_IsReadOnly_
+  commentId: Overload:RainWorldBestiary.Types.Description.IsReadOnly
+  fullName: RainWorldBestiary.Types.Description.IsReadOnly
+  nameWithType: Description.IsReadOnly
+- uid: RainWorldBestiary.Types.Description.Item(System.Int32)
+  name: this[int]
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Item_System_Int32_
+  commentId: P:RainWorldBestiary.Types.Description.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: RainWorldBestiary.Types.Description.this[int]
+  fullName.vb: RainWorldBestiary.Types.Description.this[](Integer)
+  nameWithType: Description.this[int]
+  nameWithType.vb: Description.this[](Integer)
+- uid: RainWorldBestiary.Types.Description.Item*
+  name: this
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Item_
+  commentId: Overload:RainWorldBestiary.Types.Description.Item
+  name.vb: this[]
+  fullName: RainWorldBestiary.Types.Description.this
+  fullName.vb: RainWorldBestiary.Types.Description.this[]
+  nameWithType: Description.this
+  nameWithType.vb: Description.this[]
+- uid: RainWorldBestiary.Types.Description.Remove(RainWorldBestiary.Types.DescriptionModule)
+  name: Remove(DescriptionModule)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Remove_RainWorldBestiary_Types_DescriptionModule_
+  commentId: M:RainWorldBestiary.Types.Description.Remove(RainWorldBestiary.Types.DescriptionModule)
+  fullName: RainWorldBestiary.Types.Description.Remove(RainWorldBestiary.Types.DescriptionModule)
+  nameWithType: Description.Remove(DescriptionModule)
+- uid: RainWorldBestiary.Types.Description.Remove*
+  name: Remove
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_Remove_
+  commentId: Overload:RainWorldBestiary.Types.Description.Remove
+  fullName: RainWorldBestiary.Types.Description.Remove
+  nameWithType: Description.Remove
+- uid: RainWorldBestiary.Types.Description.ToString
+  name: ToString()
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_ToString
+  commentId: M:RainWorldBestiary.Types.Description.ToString
+  fullName: RainWorldBestiary.Types.Description.ToString()
+  nameWithType: Description.ToString()
+- uid: RainWorldBestiary.Types.Description.ToString*
+  name: ToString
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_ToString_
+  commentId: Overload:RainWorldBestiary.Types.Description.ToString
+  fullName: RainWorldBestiary.Types.Description.ToString
+  nameWithType: Description.ToString
+- uid: RainWorldBestiary.Types.Description.op_Implicit(RainWorldBestiary.Types.DescriptionModule[])~RainWorldBestiary.Types.Description
+  name: implicit operator Description(DescriptionModule[])
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_op_Implicit_RainWorldBestiary_Types_DescriptionModule____RainWorldBestiary_Types_Description
+  commentId: M:RainWorldBestiary.Types.Description.op_Implicit(RainWorldBestiary.Types.DescriptionModule[])~RainWorldBestiary.Types.Description
+  name.vb: CType(DescriptionModule())
+  fullName: RainWorldBestiary.Types.Description.implicit operator RainWorldBestiary.Types.Description(RainWorldBestiary.Types.DescriptionModule[])
+  fullName.vb: RainWorldBestiary.Types.Description.CType(RainWorldBestiary.Types.DescriptionModule())
+  nameWithType: Description.implicit operator Description(DescriptionModule[])
+  nameWithType.vb: Description.CType(DescriptionModule())
+- uid: RainWorldBestiary.Types.Description.op_Implicit(System.Collections.Generic.List{RainWorldBestiary.Types.DescriptionModule})~RainWorldBestiary.Types.Description
+  name: implicit operator Description(List<DescriptionModule>)
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_op_Implicit_System_Collections_Generic_List_RainWorldBestiary_Types_DescriptionModule___RainWorldBestiary_Types_Description
+  commentId: M:RainWorldBestiary.Types.Description.op_Implicit(System.Collections.Generic.List{RainWorldBestiary.Types.DescriptionModule})~RainWorldBestiary.Types.Description
+  name.vb: CType(List(Of DescriptionModule))
+  fullName: RainWorldBestiary.Types.Description.implicit operator RainWorldBestiary.Types.Description(System.Collections.Generic.List<RainWorldBestiary.Types.DescriptionModule>)
+  fullName.vb: RainWorldBestiary.Types.Description.CType(System.Collections.Generic.List(Of RainWorldBestiary.Types.DescriptionModule))
+  nameWithType: Description.implicit operator Description(List<DescriptionModule>)
+  nameWithType.vb: Description.CType(List(Of DescriptionModule))
+- uid: RainWorldBestiary.Types.Description.op_Implicit*
+  name: implicit operator
+  href: api/RainWorldBestiary.Types.Description.html#RainWorldBestiary_Types_Description_op_Implicit_
+  commentId: Overload:RainWorldBestiary.Types.Description.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: RainWorldBestiary.Types.Description.implicit operator
+  fullName.vb: RainWorldBestiary.Types.Description.CType
+  nameWithType: Description.implicit operator
+  nameWithType.vb: Description.CType
+- uid: RainWorldBestiary.Types.DescriptionModule
+  name: DescriptionModule
+  href: api/RainWorldBestiary.Types.DescriptionModule.html
+  commentId: T:RainWorldBestiary.Types.DescriptionModule
+  fullName: RainWorldBestiary.Types.DescriptionModule
+  nameWithType: DescriptionModule
+- uid: RainWorldBestiary.Types.DescriptionModule.#ctor
+  name: DescriptionModule()
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule__ctor
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.DescriptionModule.DescriptionModule()
+  fullName.vb: RainWorldBestiary.Types.DescriptionModule.New()
+  nameWithType: DescriptionModule.DescriptionModule()
+  nameWithType.vb: DescriptionModule.New()
+- uid: RainWorldBestiary.Types.DescriptionModule.#ctor(RainWorldBestiary.Types.DescriptionModule)
+  name: DescriptionModule(DescriptionModule)
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule__ctor_RainWorldBestiary_Types_DescriptionModule_
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.#ctor(RainWorldBestiary.Types.DescriptionModule)
+  name.vb: New(DescriptionModule)
+  fullName: RainWorldBestiary.Types.DescriptionModule.DescriptionModule(RainWorldBestiary.Types.DescriptionModule)
+  fullName.vb: RainWorldBestiary.Types.DescriptionModule.New(RainWorldBestiary.Types.DescriptionModule)
+  nameWithType: DescriptionModule.DescriptionModule(DescriptionModule)
+  nameWithType.vb: DescriptionModule.New(DescriptionModule)
+- uid: RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)
+  name: DescriptionModule(string, CreatureUnlockToken, bool)
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule__ctor_System_String_RainWorldBestiary_Types_CreatureUnlockToken_System_Boolean_
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,RainWorldBestiary.Types.CreatureUnlockToken,System.Boolean)
+  name.vb: New(String, CreatureUnlockToken, Boolean)
+  fullName: RainWorldBestiary.Types.DescriptionModule.DescriptionModule(string, RainWorldBestiary.Types.CreatureUnlockToken, bool)
+  fullName.vb: RainWorldBestiary.Types.DescriptionModule.New(String, RainWorldBestiary.Types.CreatureUnlockToken, Boolean)
+  nameWithType: DescriptionModule.DescriptionModule(string, CreatureUnlockToken, bool)
+  nameWithType.vb: DescriptionModule.New(String, CreatureUnlockToken, Boolean)
+- uid: RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,System.Boolean)
+  name: DescriptionModule(string, bool)
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule__ctor_System_String_System_Boolean_
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.#ctor(System.String,System.Boolean)
+  name.vb: New(String, Boolean)
+  fullName: RainWorldBestiary.Types.DescriptionModule.DescriptionModule(string, bool)
+  fullName.vb: RainWorldBestiary.Types.DescriptionModule.New(String, Boolean)
+  nameWithType: DescriptionModule.DescriptionModule(string, bool)
+  nameWithType.vb: DescriptionModule.New(String, Boolean)
+- uid: RainWorldBestiary.Types.DescriptionModule.#ctor*
+  name: DescriptionModule
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule__ctor_
+  commentId: Overload:RainWorldBestiary.Types.DescriptionModule.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.DescriptionModule.DescriptionModule
+  fullName.vb: RainWorldBestiary.Types.DescriptionModule.New
+  nameWithType: DescriptionModule.DescriptionModule
+  nameWithType.vb: DescriptionModule.New
+- uid: RainWorldBestiary.Types.DescriptionModule.Body
+  name: Body
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_Body
+  commentId: F:RainWorldBestiary.Types.DescriptionModule.Body
+  fullName: RainWorldBestiary.Types.DescriptionModule.Body
+  nameWithType: DescriptionModule.Body
+- uid: RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)
+  name: CheckIfUnlockTokenValid(CreatureUnlockToken)
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_CheckIfUnlockTokenValid_RainWorldBestiary_Types_CreatureUnlockToken_
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)
+  fullName: RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid(RainWorldBestiary.Types.CreatureUnlockToken)
+  nameWithType: DescriptionModule.CheckIfUnlockTokenValid(CreatureUnlockToken)
+- uid: RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid*
+  name: CheckIfUnlockTokenValid
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_CheckIfUnlockTokenValid_
+  commentId: Overload:RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid
+  fullName: RainWorldBestiary.Types.DescriptionModule.CheckIfUnlockTokenValid
+  nameWithType: DescriptionModule.CheckIfUnlockTokenValid
+- uid: RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.Types.DescriptionModule)
+  name: DefaultModuleUnlockedCondition(DescriptionModule)
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_DefaultModuleUnlockedCondition_RainWorldBestiary_Types_DescriptionModule_
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.Types.DescriptionModule)
+  fullName: RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition(RainWorldBestiary.Types.DescriptionModule)
+  nameWithType: DescriptionModule.DefaultModuleUnlockedCondition(DescriptionModule)
+- uid: RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition*
+  name: DefaultModuleUnlockedCondition
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_DefaultModuleUnlockedCondition_
+  commentId: Overload:RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition
+  fullName: RainWorldBestiary.Types.DescriptionModule.DefaultModuleUnlockedCondition
+  nameWithType: DescriptionModule.DefaultModuleUnlockedCondition
+- uid: RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked
+  name: ModuleUnlocked
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_ModuleUnlocked
+  commentId: P:RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked
+  fullName: RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked
+  nameWithType: DescriptionModule.ModuleUnlocked
+- uid: RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked*
+  name: ModuleUnlocked
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_ModuleUnlocked_
+  commentId: Overload:RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked
+  fullName: RainWorldBestiary.Types.DescriptionModule.ModuleUnlocked
+  nameWithType: DescriptionModule.ModuleUnlocked
+- uid: RainWorldBestiary.Types.DescriptionModule.ModuleUnlockedCondition
+  name: ModuleUnlockedCondition
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_ModuleUnlockedCondition
+  commentId: F:RainWorldBestiary.Types.DescriptionModule.ModuleUnlockedCondition
+  fullName: RainWorldBestiary.Types.DescriptionModule.ModuleUnlockedCondition
+  nameWithType: DescriptionModule.ModuleUnlockedCondition
+- uid: RainWorldBestiary.Types.DescriptionModule.NewLine
+  name: NewLine
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_NewLine
+  commentId: F:RainWorldBestiary.Types.DescriptionModule.NewLine
+  fullName: RainWorldBestiary.Types.DescriptionModule.NewLine
+  nameWithType: DescriptionModule.NewLine
+- uid: RainWorldBestiary.Types.DescriptionModule.ToString
+  name: ToString()
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_ToString
+  commentId: M:RainWorldBestiary.Types.DescriptionModule.ToString
+  fullName: RainWorldBestiary.Types.DescriptionModule.ToString()
+  nameWithType: DescriptionModule.ToString()
+- uid: RainWorldBestiary.Types.DescriptionModule.ToString*
+  name: ToString
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_ToString_
+  commentId: Overload:RainWorldBestiary.Types.DescriptionModule.ToString
+  fullName: RainWorldBestiary.Types.DescriptionModule.ToString
+  nameWithType: DescriptionModule.ToString
+- uid: RainWorldBestiary.Types.DescriptionModule.Translate
+  name: Translate
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_Translate
+  commentId: F:RainWorldBestiary.Types.DescriptionModule.Translate
+  fullName: RainWorldBestiary.Types.DescriptionModule.Translate
+  nameWithType: DescriptionModule.Translate
+- uid: RainWorldBestiary.Types.DescriptionModule.UnlockPipColor
+  name: UnlockPipColor
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_UnlockPipColor
+  commentId: F:RainWorldBestiary.Types.DescriptionModule.UnlockPipColor
+  fullName: RainWorldBestiary.Types.DescriptionModule.UnlockPipColor
+  nameWithType: DescriptionModule.UnlockPipColor
+- uid: RainWorldBestiary.Types.DescriptionModule.UnlockTokens
+  name: UnlockTokens
+  href: api/RainWorldBestiary.Types.DescriptionModule.html#RainWorldBestiary_Types_DescriptionModule_UnlockTokens
+  commentId: F:RainWorldBestiary.Types.DescriptionModule.UnlockTokens
+  fullName: RainWorldBestiary.Types.DescriptionModule.UnlockTokens
+  nameWithType: DescriptionModule.UnlockTokens
+- uid: RainWorldBestiary.Types.EntriesTab
+  name: EntriesTab
+  href: api/RainWorldBestiary.Types.EntriesTab.html
+  commentId: T:RainWorldBestiary.Types.EntriesTab
+  fullName: RainWorldBestiary.Types.EntriesTab
+  nameWithType: EntriesTab
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor
+  name: EntriesTab()
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab()
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New()
+  nameWithType: EntriesTab.EntriesTab()
+  nameWithType.vb: EntriesTab.New()
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)
+  name: EntriesTab(EntriesTab)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor_RainWorldBestiary_Types_EntriesTab_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)
+  name.vb: New(EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(RainWorldBestiary.Types.EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(RainWorldBestiary.Types.EntriesTab)
+  nameWithType: EntriesTab.EntriesTab(EntriesTab)
+  nameWithType.vb: EntriesTab.New(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])
+  name: EntriesTab(EntriesTab, params Entry[])
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor_RainWorldBestiary_Types_EntriesTab_RainWorldBestiary_Types_Entry___
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])
+  name.vb: New(EntriesTab, ParamArray Entry())
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(RainWorldBestiary.Types.EntriesTab, params RainWorldBestiary.Types.Entry[])
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(RainWorldBestiary.Types.EntriesTab, ParamArray RainWorldBestiary.Types.Entry())
+  nameWithType: EntriesTab.EntriesTab(EntriesTab, params Entry[])
+  nameWithType.vb: EntriesTab.New(EntriesTab, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  name: EntriesTab(IEnumerable<Entry>)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor_System_Collections_Generic_IEnumerable_RainWorldBestiary_Types_Entry__
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  name.vb: New(IEnumerable(Of Entry))
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry))
+  nameWithType: EntriesTab.EntriesTab(IEnumerable<Entry>)
+  nameWithType.vb: EntriesTab.New(IEnumerable(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(System.String,RainWorldBestiary.Types.Entry[])
+  name: EntriesTab(string, params Entry[])
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor_System_String_RainWorldBestiary_Types_Entry___
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(System.String,RainWorldBestiary.Types.Entry[])
+  name.vb: New(String, ParamArray Entry())
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(string, params RainWorldBestiary.Types.Entry[])
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(String, ParamArray RainWorldBestiary.Types.Entry())
+  nameWithType: EntriesTab.EntriesTab(string, params Entry[])
+  nameWithType.vb: EntriesTab.New(String, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  name: EntriesTab(string, IEnumerable<Entry>)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor_System_String_System_Collections_Generic_IEnumerable_RainWorldBestiary_Types_Entry__
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  name.vb: New(String, IEnumerable(Of Entry))
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(string, System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(String, System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry))
+  nameWithType: EntriesTab.EntriesTab(string, IEnumerable<Entry>)
+  nameWithType.vb: EntriesTab.New(String, IEnumerable(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor*
+  name: EntriesTab
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New
+  nameWithType: EntriesTab.EntriesTab
+  nameWithType.vb: EntriesTab.New
+- uid: RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  name: Add(Entry)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Add_RainWorldBestiary_Types_Entry_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  nameWithType: EntriesTab.Add(Entry)
+- uid: RainWorldBestiary.Types.EntriesTab.Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  name: Add(string, EntryInfo, string)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Add_System_String_RainWorldBestiary_Types_EntryInfo_System_String_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  name.vb: Add(String, EntryInfo, String)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(string, RainWorldBestiary.Types.EntryInfo, string)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Add(String, RainWorldBestiary.Types.EntryInfo, String)
+  nameWithType: EntriesTab.Add(string, EntryInfo, string)
+  nameWithType.vb: EntriesTab.Add(String, EntryInfo, String)
+- uid: RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)
+  name: Add(string, string, string, Description, string)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Add_System_String_System_String_System_String_RainWorldBestiary_Types_Description_System_String_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)
+  name.vb: Add(String, String, String, Description, String)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(string, string, string, RainWorldBestiary.Types.Description, string)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Add(String, String, String, RainWorldBestiary.Types.Description, String)
+  nameWithType: EntriesTab.Add(string, string, string, Description, string)
+  nameWithType.vb: EntriesTab.Add(String, String, String, Description, String)
+- uid: RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)
+  name: Add(string, string, string, string, string)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Add_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)
+  name.vb: Add(String, String, String, String, String)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(string, string, string, string, string)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Add(String, String, String, String, String)
+  nameWithType: EntriesTab.Add(string, string, string, string, string)
+  nameWithType.vb: EntriesTab.Add(String, String, String, String, String)
+- uid: RainWorldBestiary.Types.EntriesTab.Add*
+  name: Add
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Add_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Add
+  fullName: RainWorldBestiary.Types.EntriesTab.Add
+  nameWithType: EntriesTab.Add
+- uid: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  name: AddRange(IEnumerable<Entry>)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_AddRange_System_Collections_Generic_IEnumerable_RainWorldBestiary_Types_Entry__
+  commentId: M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  name.vb: AddRange(IEnumerable(Of Entry))
+  fullName: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry))
+  nameWithType: EntriesTab.AddRange(IEnumerable<Entry>)
+  nameWithType.vb: EntriesTab.AddRange(IEnumerable(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})
+  name: AddRange(IEnumerator<Entry>)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_AddRange_System_Collections_Generic_IEnumerator_RainWorldBestiary_Types_Entry__
+  commentId: M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})
+  name.vb: AddRange(IEnumerator(Of Entry))
+  fullName: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator<RainWorldBestiary.Types.Entry>)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator(Of RainWorldBestiary.Types.Entry))
+  nameWithType: EntriesTab.AddRange(IEnumerator<Entry>)
+  nameWithType.vb: EntriesTab.AddRange(IEnumerator(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.AddRange*
+  name: AddRange
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_AddRange_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.AddRange
+  fullName: RainWorldBestiary.Types.EntriesTab.AddRange
+  nameWithType: EntriesTab.AddRange
+- uid: RainWorldBestiary.Types.EntriesTab.Clear
+  name: Clear()
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Clear
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Clear
+  fullName: RainWorldBestiary.Types.EntriesTab.Clear()
+  nameWithType: EntriesTab.Clear()
+- uid: RainWorldBestiary.Types.EntriesTab.Clear*
+  name: Clear
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Clear_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Clear
+  fullName: RainWorldBestiary.Types.EntriesTab.Clear
+  nameWithType: EntriesTab.Clear
+- uid: RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  name: Contains(Entry)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Contains_RainWorldBestiary_Types_Entry_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  nameWithType: EntriesTab.Contains(Entry)
+- uid: RainWorldBestiary.Types.EntriesTab.Contains(System.String)
+  name: Contains(string)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Contains_System_String_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Contains(System.String)
+  name.vb: Contains(String)
+  fullName: RainWorldBestiary.Types.EntriesTab.Contains(string)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Contains(String)
+  nameWithType: EntriesTab.Contains(string)
+  nameWithType.vb: EntriesTab.Contains(String)
+- uid: RainWorldBestiary.Types.EntriesTab.Contains*
+  name: Contains
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Contains_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Contains
+  fullName: RainWorldBestiary.Types.EntriesTab.Contains
+  nameWithType: EntriesTab.Contains
+- uid: RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)
+  name: CopyTo(Entry[], int)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_CopyTo_RainWorldBestiary_Types_Entry___System_Int32_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)
+  name.vb: CopyTo(Entry(), Integer)
+  fullName: RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[], int)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry(), Integer)
+  nameWithType: EntriesTab.CopyTo(Entry[], int)
+  nameWithType.vb: EntriesTab.CopyTo(Entry(), Integer)
+- uid: RainWorldBestiary.Types.EntriesTab.CopyTo*
+  name: CopyTo
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_CopyTo_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.CopyTo
+  fullName: RainWorldBestiary.Types.EntriesTab.CopyTo
+  nameWithType: EntriesTab.CopyTo
+- uid: RainWorldBestiary.Types.EntriesTab.Count
+  name: Count
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Count
+  commentId: P:RainWorldBestiary.Types.EntriesTab.Count
+  fullName: RainWorldBestiary.Types.EntriesTab.Count
+  nameWithType: EntriesTab.Count
+- uid: RainWorldBestiary.Types.EntriesTab.Count*
+  name: Count
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Count_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Count
+  fullName: RainWorldBestiary.Types.EntriesTab.Count
+  nameWithType: EntriesTab.Count
+- uid: RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  name: GetEnumerator()
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_GetEnumerator
+  commentId: M:RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  fullName: RainWorldBestiary.Types.EntriesTab.GetEnumerator()
+  nameWithType: EntriesTab.GetEnumerator()
+- uid: RainWorldBestiary.Types.EntriesTab.GetEnumerator*
+  name: GetEnumerator
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_GetEnumerator_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  fullName: RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  nameWithType: EntriesTab.GetEnumerator
+- uid: RainWorldBestiary.Types.EntriesTab.Item(System.Int32)
+  name: this[int]
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Item_System_Int32_
+  commentId: P:RainWorldBestiary.Types.EntriesTab.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: RainWorldBestiary.Types.EntriesTab.this[int]
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.this[](Integer)
+  nameWithType: EntriesTab.this[int]
+  nameWithType.vb: EntriesTab.this[](Integer)
+- uid: RainWorldBestiary.Types.EntriesTab.Item(System.String)
+  name: this[string]
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Item_System_String_
+  commentId: P:RainWorldBestiary.Types.EntriesTab.Item(System.String)
+  name.vb: this[](String)
+  fullName: RainWorldBestiary.Types.EntriesTab.this[string]
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.this[](String)
+  nameWithType: EntriesTab.this[string]
+  nameWithType.vb: EntriesTab.this[](String)
+- uid: RainWorldBestiary.Types.EntriesTab.Item*
+  name: this
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Item_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Item
+  name.vb: this[]
+  fullName: RainWorldBestiary.Types.EntriesTab.this
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.this[]
+  nameWithType: EntriesTab.this
+  nameWithType.vb: EntriesTab.this[]
+- uid: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  name: MergeWith(in EntriesTab)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_MergeWith_RainWorldBestiary_Types_EntriesTab__
+  commentId: M:RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  name.vb: MergeWith(EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTab.MergeWith(in RainWorldBestiary.Types.EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab)
+  nameWithType: EntriesTab.MergeWith(in EntriesTab)
+  nameWithType.vb: EntriesTab.MergeWith(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTab.MergeWith*
+  name: MergeWith
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_MergeWith_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.MergeWith
+  fullName: RainWorldBestiary.Types.EntriesTab.MergeWith
+  nameWithType: EntriesTab.MergeWith
+- uid: RainWorldBestiary.Types.EntriesTab.Name
+  name: Name
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Name
+  commentId: F:RainWorldBestiary.Types.EntriesTab.Name
+  fullName: RainWorldBestiary.Types.EntriesTab.Name
+  nameWithType: EntriesTab.Name
+- uid: RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  name: Remove(Entry)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Remove_RainWorldBestiary_Types_Entry_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  nameWithType: EntriesTab.Remove(Entry)
+- uid: RainWorldBestiary.Types.EntriesTab.Remove*
+  name: Remove
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Remove_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Remove
+  fullName: RainWorldBestiary.Types.EntriesTab.Remove
+  nameWithType: EntriesTab.Remove
+- uid: RainWorldBestiary.Types.EntriesTab.RemoveAt(System.Int32)
+  name: RemoveAt(int)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_RemoveAt_System_Int32_
+  commentId: M:RainWorldBestiary.Types.EntriesTab.RemoveAt(System.Int32)
+  name.vb: RemoveAt(Integer)
+  fullName: RainWorldBestiary.Types.EntriesTab.RemoveAt(int)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.RemoveAt(Integer)
+  nameWithType: EntriesTab.RemoveAt(int)
+  nameWithType.vb: EntriesTab.RemoveAt(Integer)
+- uid: RainWorldBestiary.Types.EntriesTab.RemoveAt*
+  name: RemoveAt
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_RemoveAt_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.RemoveAt
+  fullName: RainWorldBestiary.Types.EntriesTab.RemoveAt
+  nameWithType: EntriesTab.RemoveAt
+- uid: RainWorldBestiary.Types.EntriesTab.RequiredMods
+  name: RequiredMods
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_RequiredMods
+  commentId: F:RainWorldBestiary.Types.EntriesTab.RequiredMods
+  fullName: RainWorldBestiary.Types.EntriesTab.RequiredMods
+  nameWithType: EntriesTab.RequiredMods
+- uid: RainWorldBestiary.Types.EntriesTab.TitleSprite
+  name: TitleSprite
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_TitleSprite
+  commentId: F:RainWorldBestiary.Types.EntriesTab.TitleSprite
+  fullName: RainWorldBestiary.Types.EntriesTab.TitleSprite
+  nameWithType: EntriesTab.TitleSprite
+- uid: RainWorldBestiary.Types.EntriesTab.TryGet(System.String,RainWorldBestiary.Types.Entry@)
+  name: TryGet(string, out Entry)
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_TryGet_System_String_RainWorldBestiary_Types_Entry__
+  commentId: M:RainWorldBestiary.Types.EntriesTab.TryGet(System.String,RainWorldBestiary.Types.Entry@)
+  name.vb: TryGet(String, Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.TryGet(string, out RainWorldBestiary.Types.Entry)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.TryGet(String, RainWorldBestiary.Types.Entry)
+  nameWithType: EntriesTab.TryGet(string, out Entry)
+  nameWithType.vb: EntriesTab.TryGet(String, Entry)
+- uid: RainWorldBestiary.Types.EntriesTab.TryGet*
+  name: TryGet
+  href: api/RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_TryGet_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.TryGet
+  fullName: RainWorldBestiary.Types.EntriesTab.TryGet
+  nameWithType: EntriesTab.TryGet
+- uid: RainWorldBestiary.Types.EntriesTabList
+  name: EntriesTabList
+  href: api/RainWorldBestiary.Types.EntriesTabList.html
+  commentId: T:RainWorldBestiary.Types.EntriesTabList
+  fullName: RainWorldBestiary.Types.EntriesTabList
+  nameWithType: EntriesTabList
+- uid: RainWorldBestiary.Types.EntriesTabList.#ctor
+  name: EntriesTabList()
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList__ctor
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.EntriesTabList.EntriesTabList()
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.New()
+  nameWithType: EntriesTabList.EntriesTabList()
+  nameWithType.vb: EntriesTabList.New()
+- uid: RainWorldBestiary.Types.EntriesTabList.#ctor(RainWorldBestiary.Types.EntriesTab[])
+  name: EntriesTabList(params EntriesTab[])
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList__ctor_RainWorldBestiary_Types_EntriesTab___
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.#ctor(RainWorldBestiary.Types.EntriesTab[])
+  name.vb: New(ParamArray EntriesTab())
+  fullName: RainWorldBestiary.Types.EntriesTabList.EntriesTabList(params RainWorldBestiary.Types.EntriesTab[])
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.New(ParamArray RainWorldBestiary.Types.EntriesTab())
+  nameWithType: EntriesTabList.EntriesTabList(params EntriesTab[])
+  nameWithType.vb: EntriesTabList.New(ParamArray EntriesTab())
+- uid: RainWorldBestiary.Types.EntriesTabList.#ctor*
+  name: EntriesTabList
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList__ctor_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.EntriesTabList.EntriesTabList
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.New
+  nameWithType: EntriesTabList.EntriesTabList
+  nameWithType.vb: EntriesTabList.New
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  name: Add(EntriesTab)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_RainWorldBestiary_Types_EntriesTab_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  nameWithType: EntriesTabList.Add(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)
+  name: Add(EntriesTab, bool)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_RainWorldBestiary_Types_EntriesTab_System_Boolean_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)
+  name.vb: Add(EntriesTab, Boolean)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab, bool)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab, Boolean)
+  nameWithType: EntriesTabList.Add(EntriesTab, bool)
+  nameWithType.vb: EntriesTabList.Add(EntriesTab, Boolean)
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(System.String,RainWorldBestiary.Types.Entry[])
+  name: Add(string, params Entry[])
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_System_String_RainWorldBestiary_Types_Entry___
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,RainWorldBestiary.Types.Entry[])
+  name.vb: Add(String, ParamArray Entry())
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(string, params RainWorldBestiary.Types.Entry[])
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, ParamArray RainWorldBestiary.Types.Entry())
+  nameWithType: EntriesTabList.Add(string, params Entry[])
+  nameWithType.vb: EntriesTabList.Add(String, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])
+  name: Add(string, bool, params Entry[])
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_System_String_System_Boolean_RainWorldBestiary_Types_Entry___
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])
+  name.vb: Add(String, Boolean, ParamArray Entry())
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(string, bool, params RainWorldBestiary.Types.Entry[])
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, Boolean, ParamArray RainWorldBestiary.Types.Entry())
+  nameWithType: EntriesTabList.Add(string, bool, params Entry[])
+  nameWithType.vb: EntriesTabList.Add(String, Boolean, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)
+  name: Add(string, IEnumerable<Entry>, TitleSprite, bool)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_System_String_System_Collections_Generic_IEnumerable_RainWorldBestiary_Types_Entry__RainWorldBestiary_Types_TitleSprite_System_Boolean_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)
+  name.vb: Add(String, IEnumerable(Of Entry), TitleSprite, Boolean)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(string, System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>, RainWorldBestiary.Types.TitleSprite, bool)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry), RainWorldBestiary.Types.TitleSprite, Boolean)
+  nameWithType: EntriesTabList.Add(string, IEnumerable<Entry>, TitleSprite, bool)
+  nameWithType.vb: EntriesTabList.Add(String, IEnumerable(Of Entry), TitleSprite, Boolean)
+- uid: RainWorldBestiary.Types.EntriesTabList.Add*
+  name: Add
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Add
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add
+  nameWithType: EntriesTabList.Add
+- uid: RainWorldBestiary.Types.EntriesTabList.Clear
+  name: Clear()
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Clear
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Clear
+  fullName: RainWorldBestiary.Types.EntriesTabList.Clear()
+  nameWithType: EntriesTabList.Clear()
+- uid: RainWorldBestiary.Types.EntriesTabList.Clear*
+  name: Clear
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Clear_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Clear
+  fullName: RainWorldBestiary.Types.EntriesTabList.Clear
+  nameWithType: EntriesTabList.Clear
+- uid: RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  name: Contains(EntriesTab)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Contains_RainWorldBestiary_Types_EntriesTab_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  nameWithType: EntriesTabList.Contains(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.Contains*
+  name: Contains
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Contains_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Contains
+  fullName: RainWorldBestiary.Types.EntriesTabList.Contains
+  nameWithType: EntriesTabList.Contains
+- uid: RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  name: CopyTo(EntriesTab[], int)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_CopyTo_RainWorldBestiary_Types_EntriesTab___System_Int32_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  name.vb: CopyTo(EntriesTab(), Integer)
+  fullName: RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[], int)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab(), Integer)
+  nameWithType: EntriesTabList.CopyTo(EntriesTab[], int)
+  nameWithType.vb: EntriesTabList.CopyTo(EntriesTab(), Integer)
+- uid: RainWorldBestiary.Types.EntriesTabList.CopyTo*
+  name: CopyTo
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_CopyTo_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.CopyTo
+  fullName: RainWorldBestiary.Types.EntriesTabList.CopyTo
+  nameWithType: EntriesTabList.CopyTo
+- uid: RainWorldBestiary.Types.EntriesTabList.Count
+  name: Count
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Count
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.Count
+  fullName: RainWorldBestiary.Types.EntriesTabList.Count
+  nameWithType: EntriesTabList.Count
+- uid: RainWorldBestiary.Types.EntriesTabList.Count*
+  name: Count
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Count_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Count
+  fullName: RainWorldBestiary.Types.EntriesTabList.Count
+  nameWithType: EntriesTabList.Count
+- uid: RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  name: GetEnumerator()
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_GetEnumerator
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  fullName: RainWorldBestiary.Types.EntriesTabList.GetEnumerator()
+  nameWithType: EntriesTabList.GetEnumerator()
+- uid: RainWorldBestiary.Types.EntriesTabList.GetEnumerator*
+  name: GetEnumerator
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_GetEnumerator_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  fullName: RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  nameWithType: EntriesTabList.GetEnumerator
+- uid: RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  name: IsReadOnly
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_IsReadOnly
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  fullName: RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  nameWithType: EntriesTabList.IsReadOnly
+- uid: RainWorldBestiary.Types.EntriesTabList.IsReadOnly*
+  name: IsReadOnly
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_IsReadOnly_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  fullName: RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  nameWithType: EntriesTabList.IsReadOnly
+- uid: RainWorldBestiary.Types.EntriesTabList.Item(System.Int32)
+  name: this[int]
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Item_System_Int32_
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: RainWorldBestiary.Types.EntriesTabList.this[int]
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.this[](Integer)
+  nameWithType: EntriesTabList.this[int]
+  nameWithType.vb: EntriesTabList.this[](Integer)
+- uid: RainWorldBestiary.Types.EntriesTabList.Item(System.String)
+  name: this[string]
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Item_System_String_
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.Item(System.String)
+  name.vb: this[](String)
+  fullName: RainWorldBestiary.Types.EntriesTabList.this[string]
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.this[](String)
+  nameWithType: EntriesTabList.this[string]
+  nameWithType.vb: EntriesTabList.this[](String)
+- uid: RainWorldBestiary.Types.EntriesTabList.Item*
+  name: this
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Item_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Item
+  name.vb: this[]
+  fullName: RainWorldBestiary.Types.EntriesTabList.this
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.this[]
+  nameWithType: EntriesTabList.this
+  nameWithType.vb: EntriesTabList.this[]
+- uid: RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  name: Remove(EntriesTab)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Remove_RainWorldBestiary_Types_EntriesTab_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  nameWithType: EntriesTabList.Remove(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.Remove*
+  name: Remove
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Remove_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Remove
+  fullName: RainWorldBestiary.Types.EntriesTabList.Remove
+  nameWithType: EntriesTabList.Remove
+- uid: RainWorldBestiary.Types.EntriesTabList.RemoveAt(System.Int32)
+  name: RemoveAt(int)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_RemoveAt_System_Int32_
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.RemoveAt(System.Int32)
+  name.vb: RemoveAt(Integer)
+  fullName: RainWorldBestiary.Types.EntriesTabList.RemoveAt(int)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.RemoveAt(Integer)
+  nameWithType: EntriesTabList.RemoveAt(int)
+  nameWithType.vb: EntriesTabList.RemoveAt(Integer)
+- uid: RainWorldBestiary.Types.EntriesTabList.RemoveAt*
+  name: RemoveAt
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_RemoveAt_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.RemoveAt
+  fullName: RainWorldBestiary.Types.EntriesTabList.RemoveAt
+  nameWithType: EntriesTabList.RemoveAt
+- uid: RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)
+  name: TryGet(string, out EntriesTab)
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_TryGet_System_String_RainWorldBestiary_Types_EntriesTab__
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)
+  name.vb: TryGet(String, EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.TryGet(string, out RainWorldBestiary.Types.EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.TryGet(String, RainWorldBestiary.Types.EntriesTab)
+  nameWithType: EntriesTabList.TryGet(string, out EntriesTab)
+  nameWithType.vb: EntriesTabList.TryGet(String, EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.TryGet*
+  name: TryGet
+  href: api/RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_TryGet_
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.TryGet
+  fullName: RainWorldBestiary.Types.EntriesTabList.TryGet
+  nameWithType: EntriesTabList.TryGet
+- uid: RainWorldBestiary.Types.Entry
+  name: Entry
+  href: api/RainWorldBestiary.Types.Entry.html
+  commentId: T:RainWorldBestiary.Types.Entry
+  fullName: RainWorldBestiary.Types.Entry
+  nameWithType: Entry
+- uid: RainWorldBestiary.Types.Entry.#ctor
+  name: Entry()
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry__ctor
+  commentId: M:RainWorldBestiary.Types.Entry.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.Entry.Entry()
+  fullName.vb: RainWorldBestiary.Types.Entry.New()
+  nameWithType: Entry.Entry()
+  nameWithType.vb: Entry.New()
+- uid: RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.Description,System.String,System.String,System.String,System.String)
+  name: Entry(string, Description, string, string, string, string)
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry__ctor_System_String_RainWorldBestiary_Types_Description_System_String_System_String_System_String_System_String_
+  commentId: M:RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.Description,System.String,System.String,System.String,System.String)
+  name.vb: New(String, Description, String, String, String, String)
+  fullName: RainWorldBestiary.Types.Entry.Entry(string, RainWorldBestiary.Types.Description, string, string, string, string)
+  fullName.vb: RainWorldBestiary.Types.Entry.New(String, RainWorldBestiary.Types.Description, String, String, String, String)
+  nameWithType: Entry.Entry(string, Description, string, string, string, string)
+  nameWithType.vb: Entry.New(String, Description, String, String, String, String)
+- uid: RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  name: Entry(string, EntryInfo, string)
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry__ctor_System_String_RainWorldBestiary_Types_EntryInfo_System_String_
+  commentId: M:RainWorldBestiary.Types.Entry.#ctor(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  name.vb: New(String, EntryInfo, String)
+  fullName: RainWorldBestiary.Types.Entry.Entry(string, RainWorldBestiary.Types.EntryInfo, string)
+  fullName.vb: RainWorldBestiary.Types.Entry.New(String, RainWorldBestiary.Types.EntryInfo, String)
+  nameWithType: Entry.Entry(string, EntryInfo, string)
+  nameWithType.vb: Entry.New(String, EntryInfo, String)
+- uid: RainWorldBestiary.Types.Entry.#ctor(System.String,System.String)
+  name: Entry(string, string)
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry__ctor_System_String_System_String_
+  commentId: M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: RainWorldBestiary.Types.Entry.Entry(string, string)
+  fullName.vb: RainWorldBestiary.Types.Entry.New(String, String)
+  nameWithType: Entry.Entry(string, string)
+  nameWithType.vb: Entry.New(String, String)
+- uid: RainWorldBestiary.Types.Entry.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)
+  name: Entry(string, string, string, string, string, string)
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry__ctor_System_String_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:RainWorldBestiary.Types.Entry.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)
+  name.vb: New(String, String, String, String, String, String)
+  fullName: RainWorldBestiary.Types.Entry.Entry(string, string, string, string, string, string)
+  fullName.vb: RainWorldBestiary.Types.Entry.New(String, String, String, String, String, String)
+  nameWithType: Entry.Entry(string, string, string, string, string, string)
+  nameWithType.vb: Entry.New(String, String, String, String, String, String)
+- uid: RainWorldBestiary.Types.Entry.#ctor*
+  name: Entry
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry__ctor_
+  commentId: Overload:RainWorldBestiary.Types.Entry.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.Entry.Entry
+  fullName.vb: RainWorldBestiary.Types.Entry.New
+  nameWithType: Entry.Entry
+  nameWithType.vb: Entry.New
+- uid: RainWorldBestiary.Types.Entry.Equals(RainWorldBestiary.Types.Entry)
+  name: Equals(Entry)
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry_Equals_RainWorldBestiary_Types_Entry_
+  commentId: M:RainWorldBestiary.Types.Entry.Equals(RainWorldBestiary.Types.Entry)
+  fullName: RainWorldBestiary.Types.Entry.Equals(RainWorldBestiary.Types.Entry)
+  nameWithType: Entry.Equals(Entry)
+- uid: RainWorldBestiary.Types.Entry.Equals*
+  name: Equals
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry_Equals_
+  commentId: Overload:RainWorldBestiary.Types.Entry.Equals
+  fullName: RainWorldBestiary.Types.Entry.Equals
+  nameWithType: Entry.Equals
+- uid: RainWorldBestiary.Types.Entry.Error
+  name: Error
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry_Error
+  commentId: P:RainWorldBestiary.Types.Entry.Error
+  fullName: RainWorldBestiary.Types.Entry.Error
+  nameWithType: Entry.Error
+- uid: RainWorldBestiary.Types.Entry.Error*
+  name: Error
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry_Error_
+  commentId: Overload:RainWorldBestiary.Types.Entry.Error
+  fullName: RainWorldBestiary.Types.Entry.Error
+  nameWithType: Entry.Error
+- uid: RainWorldBestiary.Types.Entry.Info
+  name: Info
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry_Info
+  commentId: F:RainWorldBestiary.Types.Entry.Info
+  fullName: RainWorldBestiary.Types.Entry.Info
+  nameWithType: Entry.Info
+- uid: RainWorldBestiary.Types.Entry.Name
+  name: Name
+  href: api/RainWorldBestiary.Types.Entry.html#RainWorldBestiary_Types_Entry_Name
+  commentId: F:RainWorldBestiary.Types.Entry.Name
+  fullName: RainWorldBestiary.Types.Entry.Name
+  nameWithType: Entry.Name
+- uid: RainWorldBestiary.Types.EntryInfo
+  name: EntryInfo
+  href: api/RainWorldBestiary.Types.EntryInfo.html
+  commentId: T:RainWorldBestiary.Types.EntryInfo
+  fullName: RainWorldBestiary.Types.EntryInfo
+  nameWithType: EntryInfo
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor
+  name: EntryInfo()
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo__ctor
+  commentId: M:RainWorldBestiary.Types.EntryInfo.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo()
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New()
+  nameWithType: EntryInfo.EntryInfo()
+  nameWithType.vb: EntryInfo.New()
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)
+  name: EntryInfo(Description, string, string, string)
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo__ctor_RainWorldBestiary_Types_Description_System_String_System_String_System_String_
+  commentId: M:RainWorldBestiary.Types.EntryInfo.#ctor(RainWorldBestiary.Types.Description,System.String,System.String,System.String)
+  name.vb: New(Description, String, String, String)
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo(RainWorldBestiary.Types.Description, string, string, string)
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New(RainWorldBestiary.Types.Description, String, String, String)
+  nameWithType: EntryInfo.EntryInfo(Description, string, string, string)
+  nameWithType.vb: EntryInfo.New(Description, String, String, String)
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor(System.String,System.String,System.String,System.String)
+  name: EntryInfo(string, string, string, string)
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo__ctor_System_String_System_String_System_String_System_String_
+  commentId: M:RainWorldBestiary.Types.EntryInfo.#ctor(System.String,System.String,System.String,System.String)
+  name.vb: New(String, String, String, String)
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo(string, string, string, string)
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New(String, String, String, String)
+  nameWithType: EntryInfo.EntryInfo(string, string, string, string)
+  nameWithType.vb: EntryInfo.New(String, String, String, String)
+- uid: RainWorldBestiary.Types.EntryInfo.#ctor*
+  name: EntryInfo
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo__ctor_
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryInfo
+  fullName.vb: RainWorldBestiary.Types.EntryInfo.New
+  nameWithType: EntryInfo.EntryInfo
+  nameWithType.vb: EntryInfo.New
+- uid: RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  name: BaseLockedText
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_BaseLockedText
+  commentId: F:RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  fullName: RainWorldBestiary.Types.EntryInfo.BaseLockedText
+  nameWithType: EntryInfo.BaseLockedText
+- uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  name: DefaultEntryUnlockedCondition(EntryInfo)
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_DefaultEntryUnlockedCondition_RainWorldBestiary_Types_EntryInfo_
+  commentId: M:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  fullName: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition(RainWorldBestiary.Types.EntryInfo)
+  nameWithType: EntryInfo.DefaultEntryUnlockedCondition(EntryInfo)
+- uid: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition*
+  name: DefaultEntryUnlockedCondition
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_DefaultEntryUnlockedCondition_
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition
+  fullName: RainWorldBestiary.Types.EntryInfo.DefaultEntryUnlockedCondition
+  nameWithType: EntryInfo.DefaultEntryUnlockedCondition
+- uid: RainWorldBestiary.Types.EntryInfo.Description
+  name: Description
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_Description
+  commentId: F:RainWorldBestiary.Types.EntryInfo.Description
+  fullName: RainWorldBestiary.Types.EntryInfo.Description
+  nameWithType: EntryInfo.Description
+- uid: RainWorldBestiary.Types.EntryInfo.EntryColor
+  name: EntryColor
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryColor
+  commentId: F:RainWorldBestiary.Types.EntryInfo.EntryColor
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryColor
+  nameWithType: EntryInfo.EntryColor
+- uid: RainWorldBestiary.Types.EntryInfo.EntryIcon
+  name: EntryIcon
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryIcon
+  commentId: P:RainWorldBestiary.Types.EntryInfo.EntryIcon
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryIcon
+  nameWithType: EntryInfo.EntryIcon
+- uid: RainWorldBestiary.Types.EntryInfo.EntryIcon*
+  name: EntryIcon
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryIcon_
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.EntryIcon
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryIcon
+  nameWithType: EntryInfo.EntryIcon
+- uid: RainWorldBestiary.Types.EntryInfo.EntryIcons
+  name: EntryIcons
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryIcons
+  commentId: F:RainWorldBestiary.Types.EntryInfo.EntryIcons
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryIcons
+  nameWithType: EntryInfo.EntryIcons
+- uid: RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  name: EntryUnlocked
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryUnlocked
+  commentId: P:RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  nameWithType: EntryInfo.EntryUnlocked
+- uid: RainWorldBestiary.Types.EntryInfo.EntryUnlocked*
+  name: EntryUnlocked
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryUnlocked_
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryUnlocked
+  nameWithType: EntryInfo.EntryUnlocked
+- uid: RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  name: EntryUnlockedCondition
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_EntryUnlockedCondition
+  commentId: F:RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  fullName: RainWorldBestiary.Types.EntryInfo.EntryUnlockedCondition
+  nameWithType: EntryInfo.EntryUnlockedCondition
+- uid: RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  name: Equals(EntryInfo)
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_Equals_RainWorldBestiary_Types_EntryInfo_
+  commentId: M:RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  fullName: RainWorldBestiary.Types.EntryInfo.Equals(RainWorldBestiary.Types.EntryInfo)
+  nameWithType: EntryInfo.Equals(EntryInfo)
+- uid: RainWorldBestiary.Types.EntryInfo.Equals*
+  name: Equals
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_Equals_
+  commentId: Overload:RainWorldBestiary.Types.EntryInfo.Equals
+  fullName: RainWorldBestiary.Types.EntryInfo.Equals
+  nameWithType: EntryInfo.Equals
+- uid: RainWorldBestiary.Types.EntryInfo.LockedText
+  name: LockedText
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_LockedText
+  commentId: F:RainWorldBestiary.Types.EntryInfo.LockedText
+  fullName: RainWorldBestiary.Types.EntryInfo.LockedText
+  nameWithType: EntryInfo.LockedText
+- uid: RainWorldBestiary.Types.EntryInfo.TitleSprite
+  name: TitleSprite
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_TitleSprite
+  commentId: F:RainWorldBestiary.Types.EntryInfo.TitleSprite
+  fullName: RainWorldBestiary.Types.EntryInfo.TitleSprite
+  nameWithType: EntryInfo.TitleSprite
+- uid: RainWorldBestiary.Types.EntryInfo.UnlockID
+  name: UnlockID
+  href: api/RainWorldBestiary.Types.EntryInfo.html#RainWorldBestiary_Types_EntryInfo_UnlockID
+  commentId: F:RainWorldBestiary.Types.EntryInfo.UnlockID
+  fullName: RainWorldBestiary.Types.EntryInfo.UnlockID
+  nameWithType: EntryInfo.UnlockID
+- uid: RainWorldBestiary.Types.OperationType
+  name: OperationType
+  href: api/RainWorldBestiary.Types.OperationType.html
+  commentId: T:RainWorldBestiary.Types.OperationType
+  fullName: RainWorldBestiary.Types.OperationType
+  nameWithType: OperationType
+- uid: RainWorldBestiary.Types.OperationType.And
+  name: And
+  href: api/RainWorldBestiary.Types.OperationType.html#RainWorldBestiary_Types_OperationType_And
+  commentId: F:RainWorldBestiary.Types.OperationType.And
+  fullName: RainWorldBestiary.Types.OperationType.And
+  nameWithType: OperationType.And
+- uid: RainWorldBestiary.Types.OperationType.NAnd
+  name: NAnd
+  href: api/RainWorldBestiary.Types.OperationType.html#RainWorldBestiary_Types_OperationType_NAnd
+  commentId: F:RainWorldBestiary.Types.OperationType.NAnd
+  fullName: RainWorldBestiary.Types.OperationType.NAnd
+  nameWithType: OperationType.NAnd
+- uid: RainWorldBestiary.Types.OperationType.NOr
+  name: NOr
+  href: api/RainWorldBestiary.Types.OperationType.html#RainWorldBestiary_Types_OperationType_NOr
+  commentId: F:RainWorldBestiary.Types.OperationType.NOr
+  fullName: RainWorldBestiary.Types.OperationType.NOr
+  nameWithType: OperationType.NOr
+- uid: RainWorldBestiary.Types.OperationType.Or
+  name: Or
+  href: api/RainWorldBestiary.Types.OperationType.html#RainWorldBestiary_Types_OperationType_Or
+  commentId: F:RainWorldBestiary.Types.OperationType.Or
+  fullName: RainWorldBestiary.Types.OperationType.Or
+  nameWithType: OperationType.Or
+- uid: RainWorldBestiary.Types.OperationType.XAnd
+  name: XAnd
+  href: api/RainWorldBestiary.Types.OperationType.html#RainWorldBestiary_Types_OperationType_XAnd
+  commentId: F:RainWorldBestiary.Types.OperationType.XAnd
+  fullName: RainWorldBestiary.Types.OperationType.XAnd
+  nameWithType: OperationType.XAnd
+- uid: RainWorldBestiary.Types.OperationType.XOr
+  name: XOr
+  href: api/RainWorldBestiary.Types.OperationType.html#RainWorldBestiary_Types_OperationType_XOr
+  commentId: F:RainWorldBestiary.Types.OperationType.XOr
+  fullName: RainWorldBestiary.Types.OperationType.XOr
+  nameWithType: OperationType.XOr
+- uid: RainWorldBestiary.Types.TitleSprite
+  name: TitleSprite
+  href: api/RainWorldBestiary.Types.TitleSprite.html
+  commentId: T:RainWorldBestiary.Types.TitleSprite
+  fullName: RainWorldBestiary.Types.TitleSprite
+  nameWithType: TitleSprite
+- uid: RainWorldBestiary.Types.TitleSprite.#ctor(System.String)
+  name: TitleSprite(string)
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite__ctor_System_String_
+  commentId: M:RainWorldBestiary.Types.TitleSprite.#ctor(System.String)
+  name.vb: New(String)
+  fullName: RainWorldBestiary.Types.TitleSprite.TitleSprite(string)
+  fullName.vb: RainWorldBestiary.Types.TitleSprite.New(String)
+  nameWithType: TitleSprite.TitleSprite(string)
+  nameWithType.vb: TitleSprite.New(String)
+- uid: RainWorldBestiary.Types.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)
+  name: TitleSprite(string, float, int, int)
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite__ctor_System_String_System_Single_System_Int32_System_Int32_
+  commentId: M:RainWorldBestiary.Types.TitleSprite.#ctor(System.String,System.Single,System.Int32,System.Int32)
+  name.vb: New(String, Single, Integer, Integer)
+  fullName: RainWorldBestiary.Types.TitleSprite.TitleSprite(string, float, int, int)
+  fullName.vb: RainWorldBestiary.Types.TitleSprite.New(String, Single, Integer, Integer)
+  nameWithType: TitleSprite.TitleSprite(string, float, int, int)
+  nameWithType.vb: TitleSprite.New(String, Single, Integer, Integer)
+- uid: RainWorldBestiary.Types.TitleSprite.#ctor*
+  name: TitleSprite
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite__ctor_
+  commentId: Overload:RainWorldBestiary.Types.TitleSprite.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.TitleSprite.TitleSprite
+  fullName.vb: RainWorldBestiary.Types.TitleSprite.New
+  nameWithType: TitleSprite.TitleSprite
+  nameWithType.vb: TitleSprite.New
+- uid: RainWorldBestiary.Types.TitleSprite.ElementName
+  name: ElementName
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite_ElementName
+  commentId: F:RainWorldBestiary.Types.TitleSprite.ElementName
+  fullName: RainWorldBestiary.Types.TitleSprite.ElementName
+  nameWithType: TitleSprite.ElementName
+- uid: RainWorldBestiary.Types.TitleSprite.Scale
+  name: Scale
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite_Scale
+  commentId: F:RainWorldBestiary.Types.TitleSprite.Scale
+  fullName: RainWorldBestiary.Types.TitleSprite.Scale
+  nameWithType: TitleSprite.Scale
+- uid: RainWorldBestiary.Types.TitleSprite.XOffset
+  name: XOffset
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite_XOffset
+  commentId: F:RainWorldBestiary.Types.TitleSprite.XOffset
+  fullName: RainWorldBestiary.Types.TitleSprite.XOffset
+  nameWithType: TitleSprite.XOffset
+- uid: RainWorldBestiary.Types.TitleSprite.YOffset
+  name: YOffset
+  href: api/RainWorldBestiary.Types.TitleSprite.html#RainWorldBestiary_Types_TitleSprite_YOffset
+  commentId: F:RainWorldBestiary.Types.TitleSprite.YOffset
+  fullName: RainWorldBestiary.Types.TitleSprite.YOffset
+  nameWithType: TitleSprite.YOffset
+- uid: RainWorldBestiary.Types.UnlockToken
+  name: UnlockToken
+  href: api/RainWorldBestiary.Types.UnlockToken.html
+  commentId: T:RainWorldBestiary.Types.UnlockToken
+  fullName: RainWorldBestiary.Types.UnlockToken
+  nameWithType: UnlockToken
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor
+  name: UnlockToken()
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken__ctor
+  commentId: M:RainWorldBestiary.Types.UnlockToken.#ctor
+  name.vb: New()
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken()
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New()
+  nameWithType: UnlockToken.UnlockToken()
+  nameWithType.vb: UnlockToken.New()
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockToken)
+  name: UnlockToken(UnlockToken)
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken__ctor_RainWorldBestiary_Types_UnlockToken_
+  commentId: M:RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockToken)
+  name.vb: New(UnlockToken)
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken(RainWorldBestiary.Types.UnlockToken)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New(RainWorldBestiary.Types.UnlockToken)
+  nameWithType: UnlockToken.UnlockToken(UnlockToken)
+  nameWithType.vb: UnlockToken.New(UnlockToken)
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  name: UnlockToken(UnlockTokenType, byte)
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken__ctor_RainWorldBestiary_Types_UnlockTokenType_System_Byte_
+  commentId: M:RainWorldBestiary.Types.UnlockToken.#ctor(RainWorldBestiary.Types.UnlockTokenType,System.Byte)
+  name.vb: New(UnlockTokenType, Byte)
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken(RainWorldBestiary.Types.UnlockTokenType, byte)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New(RainWorldBestiary.Types.UnlockTokenType, Byte)
+  nameWithType: UnlockToken.UnlockToken(UnlockTokenType, byte)
+  nameWithType.vb: UnlockToken.New(UnlockTokenType, Byte)
+- uid: RainWorldBestiary.Types.UnlockToken.#ctor*
+  name: UnlockToken
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken__ctor_
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.#ctor
+  name.vb: New
+  fullName: RainWorldBestiary.Types.UnlockToken.UnlockToken
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.New
+  nameWithType: UnlockToken.UnlockToken
+  nameWithType.vb: UnlockToken.New
+- uid: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})
+  name: ContainsSpecialData(List<string>)
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_ContainsSpecialData_System_Collections_Generic_List_System_String__
+  commentId: M:RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List{System.String})
+  name.vb: ContainsSpecialData(List(Of String))
+  fullName: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List<string>)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData(System.Collections.Generic.List(Of String))
+  nameWithType: UnlockToken.ContainsSpecialData(List<string>)
+  nameWithType.vb: UnlockToken.ContainsSpecialData(List(Of String))
+- uid: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData*
+  name: ContainsSpecialData
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_ContainsSpecialData_
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.ContainsSpecialData
+  fullName: RainWorldBestiary.Types.UnlockToken.ContainsSpecialData
+  nameWithType: UnlockToken.ContainsSpecialData
+- uid: RainWorldBestiary.Types.UnlockToken.Count
+  name: Count
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Count
+  commentId: F:RainWorldBestiary.Types.UnlockToken.Count
+  fullName: RainWorldBestiary.Types.UnlockToken.Count
+  nameWithType: UnlockToken.Count
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  name: Equals(UnlockToken)
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_RainWorldBestiary_Types_UnlockToken_
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken)
+  nameWithType: UnlockToken.Equals(UnlockToken)
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)
+  name: Equals(UnlockToken, bool)
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_RainWorldBestiary_Types_UnlockToken_System_Boolean_
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken,System.Boolean)
+  name.vb: Equals(UnlockToken, Boolean)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken, bool)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.Equals(RainWorldBestiary.Types.UnlockToken, Boolean)
+  nameWithType: UnlockToken.Equals(UnlockToken, bool)
+  nameWithType.vb: UnlockToken.Equals(UnlockToken, Boolean)
+- uid: RainWorldBestiary.Types.UnlockToken.Equals(System.Object)
+  name: Equals(object)
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_System_Object_
+  commentId: M:RainWorldBestiary.Types.UnlockToken.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals(object)
+  fullName.vb: RainWorldBestiary.Types.UnlockToken.Equals(Object)
+  nameWithType: UnlockToken.Equals(object)
+  nameWithType.vb: UnlockToken.Equals(Object)
+- uid: RainWorldBestiary.Types.UnlockToken.Equals*
+  name: Equals
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_Equals_
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.Equals
+  fullName: RainWorldBestiary.Types.UnlockToken.Equals
+  nameWithType: UnlockToken.Equals
+- uid: RainWorldBestiary.Types.UnlockToken.GetHashCode
+  name: GetHashCode()
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_GetHashCode
+  commentId: M:RainWorldBestiary.Types.UnlockToken.GetHashCode
+  fullName: RainWorldBestiary.Types.UnlockToken.GetHashCode()
+  nameWithType: UnlockToken.GetHashCode()
+- uid: RainWorldBestiary.Types.UnlockToken.GetHashCode*
+  name: GetHashCode
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_GetHashCode_
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.GetHashCode
+  fullName: RainWorldBestiary.Types.UnlockToken.GetHashCode
+  nameWithType: UnlockToken.GetHashCode
+- uid: RainWorldBestiary.Types.UnlockToken.SpecialData
+  name: SpecialData
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_SpecialData
+  commentId: F:RainWorldBestiary.Types.UnlockToken.SpecialData
+  fullName: RainWorldBestiary.Types.UnlockToken.SpecialData
+  nameWithType: UnlockToken.SpecialData
+- uid: RainWorldBestiary.Types.UnlockToken.ToString
+  name: ToString()
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_ToString
+  commentId: M:RainWorldBestiary.Types.UnlockToken.ToString
+  fullName: RainWorldBestiary.Types.UnlockToken.ToString()
+  nameWithType: UnlockToken.ToString()
+- uid: RainWorldBestiary.Types.UnlockToken.ToString*
+  name: ToString
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_ToString_
+  commentId: Overload:RainWorldBestiary.Types.UnlockToken.ToString
+  fullName: RainWorldBestiary.Types.UnlockToken.ToString
+  nameWithType: UnlockToken.ToString
+- uid: RainWorldBestiary.Types.UnlockToken.TokenType
+  name: TokenType
+  href: api/RainWorldBestiary.Types.UnlockToken.html#RainWorldBestiary_Types_UnlockToken_TokenType
+  commentId: F:RainWorldBestiary.Types.UnlockToken.TokenType
+  fullName: RainWorldBestiary.Types.UnlockToken.TokenType
+  nameWithType: UnlockToken.TokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType
+  name: UnlockTokenType
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html
+  commentId: T:RainWorldBestiary.Types.UnlockTokenType
+  fullName: RainWorldBestiary.Types.UnlockTokenType
+  nameWithType: UnlockTokenType
+- uid: RainWorldBestiary.Types.UnlockTokenType.Eaten
+  name: Eaten
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Eaten
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Eaten
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Eaten
+  nameWithType: UnlockTokenType.Eaten
+- uid: RainWorldBestiary.Types.UnlockTokenType.Evaded
+  name: Evaded
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Evaded
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Evaded
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Evaded
+  nameWithType: UnlockTokenType.Evaded
+- uid: RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  name: GrabbedPlayer
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_GrabbedPlayer
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  fullName: RainWorldBestiary.Types.UnlockTokenType.GrabbedPlayer
+  nameWithType: UnlockTokenType.GrabbedPlayer
+- uid: RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  name: HeardPlayer
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_HeardPlayer
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  fullName: RainWorldBestiary.Types.UnlockTokenType.HeardPlayer
+  nameWithType: UnlockTokenType.HeardPlayer
+- uid: RainWorldBestiary.Types.UnlockTokenType.Impaled
+  name: Impaled
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Impaled
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Impaled
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Impaled
+  nameWithType: UnlockTokenType.Impaled
+- uid: RainWorldBestiary.Types.UnlockTokenType.Killed
+  name: Killed
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Killed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Killed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Killed
+  nameWithType: UnlockTokenType.Killed
+- uid: RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  name: KilledPlayer
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_KilledPlayer
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  fullName: RainWorldBestiary.Types.UnlockTokenType.KilledPlayer
+  nameWithType: UnlockTokenType.KilledPlayer
+- uid: RainWorldBestiary.Types.UnlockTokenType.None
+  name: None
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_None
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.None
+  fullName: RainWorldBestiary.Types.UnlockTokenType.None
+  nameWithType: UnlockTokenType.None
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  name: ObserveAttacking
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveAttacking
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveAttacking
+  nameWithType: UnlockTokenType.ObserveAttacking
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  name: ObserveAttraction
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveAttraction
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveAttraction
+  nameWithType: UnlockTokenType.ObserveAttraction
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  name: ObserveBehaviour
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveBehaviour
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveBehaviour
+  nameWithType: UnlockTokenType.ObserveBehaviour
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  name: ObserveFear
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveFear
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveFear
+  nameWithType: UnlockTokenType.ObserveFear
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  name: ObserveFood
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveFood
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveFood
+  nameWithType: UnlockTokenType.ObserveFood
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  name: ObserveGrabbing
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveGrabbing
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveGrabbing
+  nameWithType: UnlockTokenType.ObserveGrabbing
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  name: ObserveHiding
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveHiding
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveHiding
+  nameWithType: UnlockTokenType.ObserveHiding
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  name: ObserveHunting
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveHunting
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveHunting
+  nameWithType: UnlockTokenType.ObserveHunting
+- uid: RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  name: ObserveRivals
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_ObserveRivals
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  fullName: RainWorldBestiary.Types.UnlockTokenType.ObserveRivals
+  nameWithType: UnlockTokenType.ObserveRivals
+- uid: RainWorldBestiary.Types.UnlockTokenType.Observed
+  name: Observed
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Observed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Observed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Observed
+  nameWithType: UnlockTokenType.Observed
+- uid: RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  name: PlayerGrabbed
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_PlayerGrabbed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.PlayerGrabbed
+  nameWithType: UnlockTokenType.PlayerGrabbed
+- uid: RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  name: SnuckPast
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_SnuckPast
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  fullName: RainWorldBestiary.Types.UnlockTokenType.SnuckPast
+  nameWithType: UnlockTokenType.SnuckPast
+- uid: RainWorldBestiary.Types.UnlockTokenType.Stunned
+  name: Stunned
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Stunned
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Stunned
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Stunned
+  nameWithType: UnlockTokenType.Stunned
+- uid: RainWorldBestiary.Types.UnlockTokenType.Tamed
+  name: Tamed
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_Tamed
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.Tamed
+  fullName: RainWorldBestiary.Types.UnlockTokenType.Tamed
+  nameWithType: UnlockTokenType.Tamed
+- uid: RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  name: UsedAsLure
+  href: api/RainWorldBestiary.Types.UnlockTokenType.html#RainWorldBestiary_Types_UnlockTokenType_UsedAsLure
+  commentId: F:RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  fullName: RainWorldBestiary.Types.UnlockTokenType.UsedAsLure
+  nameWithType: UnlockTokenType.UsedAsLure

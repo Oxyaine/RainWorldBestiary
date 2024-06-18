@@ -1,0 +1,2293 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types.EntriesTabList
+  commentId: T:RainWorldBestiary.Types.EntriesTabList
+  id: EntriesTabList
+  parent: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.EntriesTabList.#ctor
+  - RainWorldBestiary.Types.EntriesTabList.#ctor(RainWorldBestiary.Types.EntriesTab[])
+  - RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  - RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)
+  - RainWorldBestiary.Types.EntriesTabList.Add(System.String,RainWorldBestiary.Types.Entry[])
+  - RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])
+  - RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)
+  - RainWorldBestiary.Types.EntriesTabList.Clear
+  - RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  - RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  - RainWorldBestiary.Types.EntriesTabList.Count
+  - RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  - RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  - RainWorldBestiary.Types.EntriesTabList.Item(System.Int32)
+  - RainWorldBestiary.Types.EntriesTabList.Item(System.String)
+  - RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  - RainWorldBestiary.Types.EntriesTabList.RemoveAt(System.Int32)
+  - RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)
+  langs:
+  - csharp
+  - vb
+  name: EntriesTabList
+  nameWithType: EntriesTabList
+  fullName: RainWorldBestiary.Types.EntriesTabList
+  type: Class
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: A class that represents a list of <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref>
+  remarks: Not using regular list since this allows more control such as preventing two <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref> with the same name
+  example: []
+  syntax:
+    content: 'public class EntriesTabList : ICollection<EntriesTab>, IEnumerable<EntriesTab>, IEnumerable'
+    content.vb: Public Class EntriesTabList Implements ICollection(Of EntriesTab), IEnumerable(Of EntriesTab), IEnumerable
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  - System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+  - System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+  - System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.GetRandom``1
+  - System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.GetRandom``1(System.Int32)
+- uid: RainWorldBestiary.Types.EntriesTabList.#ctor
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.#ctor
+  id: '#ctor'
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: EntriesTabList()
+  nameWithType: EntriesTabList.EntriesTabList()
+  fullName: RainWorldBestiary.Types.EntriesTabList.EntriesTabList()
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public EntriesTabList()
+    content.vb: Public Sub New()
+  overload: RainWorldBestiary.Types.EntriesTabList.#ctor*
+  nameWithType.vb: EntriesTabList.New()
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.New()
+  name.vb: New()
+- uid: RainWorldBestiary.Types.EntriesTabList.#ctor(RainWorldBestiary.Types.EntriesTab[])
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.#ctor(RainWorldBestiary.Types.EntriesTab[])
+  id: '#ctor(RainWorldBestiary.Types.EntriesTab[])'
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: EntriesTabList(params EntriesTab[])
+  nameWithType: EntriesTabList.EntriesTabList(params EntriesTab[])
+  fullName: RainWorldBestiary.Types.EntriesTabList.EntriesTabList(params RainWorldBestiary.Types.EntriesTab[])
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public EntriesTabList(params EntriesTab[] tabs)
+    parameters:
+    - id: tabs
+      type: RainWorldBestiary.Types.EntriesTab[]
+      description: The default tabs to add to this tab list
+    content.vb: Public Sub New(ParamArray tabs As EntriesTab())
+  overload: RainWorldBestiary.Types.EntriesTabList.#ctor*
+  nameWithType.vb: EntriesTabList.New(ParamArray EntriesTab())
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.New(ParamArray RainWorldBestiary.Types.EntriesTab())
+  name.vb: New(ParamArray EntriesTab())
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)
+  id: Add(RainWorldBestiary.Types.EntriesTab,System.Boolean)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Add(EntriesTab, bool)
+  nameWithType: EntriesTabList.Add(EntriesTab, bool)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab, bool)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new tab of entries to this collection
+  example: []
+  syntax:
+    content: public void Add(EntriesTab item, bool merge = false)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.EntriesTab
+      description: The item to add
+    - id: merge
+      type: System.Boolean
+      description: Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <xref href="RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab%40)" data-throw-if-not-resolved="false"></xref><pre><code class="lang-csharp"></code></pre>
+    content.vb: Public Sub Add(item As EntriesTab, merge As Boolean = False)
+  overload: RainWorldBestiary.Types.EntriesTabList.Add*
+  nameWithType.vb: EntriesTabList.Add(EntriesTab, Boolean)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab, Boolean)
+  name.vb: Add(EntriesTab, Boolean)
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  id: Add(RainWorldBestiary.Types.EntriesTab)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Add(EntriesTab)
+  nameWithType: EntriesTabList.Add(EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new tab of entries to this collection
+  example: []
+  syntax:
+    content: public void Add(EntriesTab item)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.EntriesTab
+      description: The item to add
+    content.vb: Public Sub Add(item As EntriesTab)
+  overload: RainWorldBestiary.Types.EntriesTabList.Add*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Add(RainWorldBestiary.Types.EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(System.String,RainWorldBestiary.Types.Entry[])
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,RainWorldBestiary.Types.Entry[])
+  id: Add(System.String,RainWorldBestiary.Types.Entry[])
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Add(string, params Entry[])
+  nameWithType: EntriesTabList.Add(string, params Entry[])
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(string, params RainWorldBestiary.Types.Entry[])
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new tab of entries to this collection
+  example: []
+  syntax:
+    content: public void Add(string tabName, params Entry[] entries)
+    parameters:
+    - id: tabName
+      type: System.String
+    - id: entries
+      type: RainWorldBestiary.Types.Entry[]
+    content.vb: Public Sub Add(tabName As String, ParamArray entries As Entry())
+  overload: RainWorldBestiary.Types.EntriesTabList.Add*
+  nameWithType.vb: EntriesTabList.Add(String, ParamArray Entry())
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, ParamArray RainWorldBestiary.Types.Entry())
+  name.vb: Add(String, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])
+  id: Add(System.String,System.Boolean,RainWorldBestiary.Types.Entry[])
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Add(string, bool, params Entry[])
+  nameWithType: EntriesTabList.Add(string, bool, params Entry[])
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(string, bool, params RainWorldBestiary.Types.Entry[])
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new tab of entries to this collection
+  example: []
+  syntax:
+    content: public void Add(string tabName, bool merge, params Entry[] entries)
+    parameters:
+    - id: tabName
+      type: System.String
+    - id: merge
+      type: System.Boolean
+      description: Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <xref href="RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab%40)" data-throw-if-not-resolved="false"></xref><pre><code class="lang-csharp"></code></pre>
+    - id: entries
+      type: RainWorldBestiary.Types.Entry[]
+    content.vb: Public Sub Add(tabName As String, merge As Boolean, ParamArray entries As Entry())
+  overload: RainWorldBestiary.Types.EntriesTabList.Add*
+  nameWithType.vb: EntriesTabList.Add(String, Boolean, ParamArray Entry())
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, Boolean, ParamArray RainWorldBestiary.Types.Entry())
+  name.vb: Add(String, Boolean, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)
+  id: Add(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry},RainWorldBestiary.Types.TitleSprite,System.Boolean)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Add(string, IEnumerable<Entry>, TitleSprite, bool)
+  nameWithType: EntriesTabList.Add(string, IEnumerable<Entry>, TitleSprite, bool)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add(string, System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>, RainWorldBestiary.Types.TitleSprite, bool)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new tab of entries to this collection
+  example: []
+  syntax:
+    content: public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = false)
+    parameters:
+    - id: tabName
+      type: System.String
+    - id: entries
+      type: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+    - id: titleSprite
+      type: RainWorldBestiary.Types.TitleSprite
+    - id: merge
+      type: System.Boolean
+      description: Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <xref href="RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab%40)" data-throw-if-not-resolved="false"></xref><pre><code class="lang-csharp"></code></pre>
+    content.vb: Public Sub Add(tabName As String, entries As IEnumerable(Of Entry), titleSprite As TitleSprite = Nothing, merge As Boolean = False)
+  overload: RainWorldBestiary.Types.EntriesTabList.Add*
+  nameWithType.vb: EntriesTabList.Add(String, IEnumerable(Of Entry), TitleSprite, Boolean)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry), RainWorldBestiary.Types.TitleSprite, Boolean)
+  name.vb: Add(String, IEnumerable(Of Entry), TitleSprite, Boolean)
+- uid: RainWorldBestiary.Types.EntriesTabList.Clear
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Clear
+  id: Clear
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: EntriesTabList.Clear()
+  fullName: RainWorldBestiary.Types.EntriesTabList.Clear()
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: RainWorldBestiary.Types.EntriesTabList.Clear*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Clear
+- uid: RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  id: Contains(RainWorldBestiary.Types.EntriesTab)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Contains(EntriesTab)
+  nameWithType: EntriesTabList.Contains(EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Contains(RainWorldBestiary.Types.EntriesTab)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public bool Contains(EntriesTab item)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.EntriesTab
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(item As EntriesTab) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTabList.Contains*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Contains(RainWorldBestiary.Types.EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  id: CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(EntriesTab[], int)
+  nameWithType: EntriesTabList.CopyTo(EntriesTab[], int)
+  fullName: RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab[], int)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public void CopyTo(EntriesTab[] array, int arrayIndex)
+    parameters:
+    - id: array
+      type: RainWorldBestiary.Types.EntriesTab[]
+    - id: arrayIndex
+      type: System.Int32
+    content.vb: Public Sub CopyTo(array As EntriesTab(), arrayIndex As Integer)
+  overload: RainWorldBestiary.Types.EntriesTabList.CopyTo*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  nameWithType.vb: EntriesTabList.CopyTo(EntriesTab(), Integer)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.CopyTo(RainWorldBestiary.Types.EntriesTab(), Integer)
+  name.vb: CopyTo(EntriesTab(), Integer)
+- uid: RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  id: Remove(RainWorldBestiary.Types.EntriesTab)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Remove(EntriesTab)
+  nameWithType: EntriesTabList.Remove(EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.Remove(RainWorldBestiary.Types.EntriesTab)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public bool Remove(EntriesTab item)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.EntriesTab
+    return:
+      type: System.Boolean
+    content.vb: Public Function Remove(item As EntriesTab) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTabList.Remove*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Remove(RainWorldBestiary.Types.EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.RemoveAt(System.Int32)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.RemoveAt(System.Int32)
+  id: RemoveAt(System.Int32)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: RemoveAt(int)
+  nameWithType: EntriesTabList.RemoveAt(int)
+  fullName: RainWorldBestiary.Types.EntriesTabList.RemoveAt(int)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public void RemoveAt(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub RemoveAt(index As Integer)
+  overload: RainWorldBestiary.Types.EntriesTabList.RemoveAt*
+  nameWithType.vb: EntriesTabList.RemoveAt(Integer)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+- uid: RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)
+  id: TryGet(System.String,RainWorldBestiary.Types.EntriesTab@)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: TryGet(string, out EntriesTab)
+  nameWithType: EntriesTabList.TryGet(string, out EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTabList.TryGet(string, out RainWorldBestiary.Types.EntriesTab)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Tries to get the tab using its name
+  example: []
+  syntax:
+    content: public bool TryGet(string tabName, out EntriesTab tab)
+    parameters:
+    - id: tabName
+      type: System.String
+    - id: tab
+      type: RainWorldBestiary.Types.EntriesTab
+    return:
+      type: System.Boolean
+      description: True if the tab was found, otherwise false
+    content.vb: Public Function TryGet(tabName As String, tab As EntriesTab) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTabList.TryGet*
+  nameWithType.vb: EntriesTabList.TryGet(String, EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.TryGet(String, RainWorldBestiary.Types.EntriesTab)
+  name.vb: TryGet(String, EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  commentId: M:RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  id: GetEnumerator
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: EntriesTabList.GetEnumerator()
+  fullName: RainWorldBestiary.Types.EntriesTabList.GetEnumerator()
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public IEnumerator<EntriesTab> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.EntriesTab}
+    content.vb: Public Function GetEnumerator() As IEnumerator(Of EntriesTab)
+  overload: RainWorldBestiary.Types.EntriesTabList.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.GetEnumerator
+- uid: RainWorldBestiary.Types.EntriesTabList.Count
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.Count
+  id: Count
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: EntriesTabList.Count
+  fullName: RainWorldBestiary.Types.EntriesTabList.Count
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: RainWorldBestiary.Types.EntriesTabList.Count*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Count
+- uid: RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  id: IsReadOnly
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: EntriesTabList.IsReadOnly
+  fullName: RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public bool IsReadOnly { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReadOnly As Boolean
+  overload: RainWorldBestiary.Types.EntriesTabList.IsReadOnly*
+  implements:
+  - System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.IsReadOnly
+- uid: RainWorldBestiary.Types.EntriesTabList.Item(System.Int32)
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: EntriesTabList.this[int]
+  fullName: RainWorldBestiary.Types.EntriesTabList.this[int]
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Gets the <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref> at the given index
+  example: []
+  syntax:
+    content: public EntriesTab this[int index] { get; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: RainWorldBestiary.Types.EntriesTab
+    content.vb: Public ReadOnly Default Property this[](index As Integer) As EntriesTab
+  overload: RainWorldBestiary.Types.EntriesTabList.Item*
+  nameWithType.vb: EntriesTabList.this[](Integer)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.this[](Integer)
+  name.vb: this[](Integer)
+- uid: RainWorldBestiary.Types.EntriesTabList.Item(System.String)
+  commentId: P:RainWorldBestiary.Types.EntriesTabList.Item(System.String)
+  id: Item(System.String)
+  parent: RainWorldBestiary.Types.EntriesTabList
+  langs:
+  - csharp
+  - vb
+  name: this[string]
+  nameWithType: EntriesTabList.this[string]
+  fullName: RainWorldBestiary.Types.EntriesTabList.this[string]
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Gets a tab using its name
+  example: []
+  syntax:
+    content: public EntriesTab this[string tabName] { get; }
+    parameters:
+    - id: tabName
+      type: System.String
+    return:
+      type: RainWorldBestiary.Types.EntriesTab
+    content.vb: Public ReadOnly Default Property this[](tabName As String) As EntriesTab
+  overload: RainWorldBestiary.Types.EntriesTabList.Item*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: ''
+  nameWithType.vb: EntriesTabList.this[](String)
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.this[](String)
+  name.vb: this[](String)
+references:
+- uid: RainWorldBestiary.Types.EntriesTab
+  commentId: T:RainWorldBestiary.Types.EntriesTab
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html
+  name: EntriesTab
+  nameWithType: EntriesTab
+  fullName: RainWorldBestiary.Types.EntriesTab
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  commentId: T:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<EntriesTab>
+  nameWithType: ICollection<EntriesTab>
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>
+  nameWithType.vb: ICollection(Of EntriesTab)
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab)
+  name.vb: ICollection(Of EntriesTab)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}
+  commentId: T:System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<EntriesTab>
+  nameWithType: IEnumerable<EntriesTab>
+  fullName: System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>
+  nameWithType.vb: IEnumerable(Of EntriesTab)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab)
+  name.vb: IEnumerable(Of EntriesTab)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+  commentId: M:RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  parent: RainWorldBestiary.Extensions
+  definition: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  name: ContainsAll<EntriesTab>(IEnumerable<EntriesTab>, IEnumerable<EntriesTab>)
+  nameWithType: Extensions.ContainsAll<EntriesTab>(IEnumerable<EntriesTab>, IEnumerable<EntriesTab>)
+  fullName: RainWorldBestiary.Extensions.ContainsAll<RainWorldBestiary.Types.EntriesTab>(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>, System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>)
+  nameWithType.vb: Extensions.ContainsAll(Of EntriesTab)(IEnumerable(Of EntriesTab), IEnumerable(Of EntriesTab))
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAll(Of RainWorldBestiary.Types.EntriesTab)(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab), System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab))
+  name.vb: ContainsAll(Of EntriesTab)(IEnumerable(Of EntriesTab), IEnumerable(Of EntriesTab))
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab},System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+    name: ContainsAll
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab},System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+    name: ContainsAll
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+  commentId: M:RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  parent: RainWorldBestiary.Extensions
+  definition: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  name: ContainsAny<EntriesTab>(IEnumerable<EntriesTab>, IEnumerable<EntriesTab>)
+  nameWithType: Extensions.ContainsAny<EntriesTab>(IEnumerable<EntriesTab>, IEnumerable<EntriesTab>)
+  fullName: RainWorldBestiary.Extensions.ContainsAny<RainWorldBestiary.Types.EntriesTab>(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>, System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>)
+  nameWithType.vb: Extensions.ContainsAny(Of EntriesTab)(IEnumerable(Of EntriesTab), IEnumerable(Of EntriesTab))
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAny(Of RainWorldBestiary.Types.EntriesTab)(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab), System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab))
+  name.vb: ContainsAny(Of EntriesTab)(IEnumerable(Of EntriesTab), IEnumerable(Of EntriesTab))
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab},System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+    name: ContainsAny
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab},System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+    name: ContainsAny
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.GetRandom``1
+  commentId: M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+  parent: RainWorldBestiary.Extensions
+  definition: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  name: GetRandom<EntriesTab>(IEnumerable<EntriesTab>)
+  nameWithType: Extensions.GetRandom<EntriesTab>(IEnumerable<EntriesTab>)
+  fullName: RainWorldBestiary.Extensions.GetRandom<RainWorldBestiary.Types.EntriesTab>(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>)
+  nameWithType.vb: Extensions.GetRandom(Of EntriesTab)(IEnumerable(Of EntriesTab))
+  fullName.vb: RainWorldBestiary.Extensions.GetRandom(Of RainWorldBestiary.Types.EntriesTab)(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab))
+  name.vb: GetRandom(Of EntriesTab)(IEnumerable(Of EntriesTab))
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab})
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.RainWorldBestiary.Extensions.GetRandom``1(System.Int32)
+  commentId: M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+  parent: RainWorldBestiary.Extensions
+  definition: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  name: GetRandom<EntriesTab>(IEnumerable<EntriesTab>, int)
+  nameWithType: Extensions.GetRandom<EntriesTab>(IEnumerable<EntriesTab>, int)
+  fullName: RainWorldBestiary.Extensions.GetRandom<RainWorldBestiary.Types.EntriesTab>(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>, int)
+  nameWithType.vb: Extensions.GetRandom(Of EntriesTab)(IEnumerable(Of EntriesTab), Integer)
+  fullName.vb: RainWorldBestiary.Extensions.GetRandom(Of RainWorldBestiary.Types.EntriesTab)(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab), Integer)
+  name.vb: GetRandom(Of EntriesTab)(IEnumerable(Of EntriesTab), Integer)
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab},System.Int32)
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab},System.Int32)
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  commentId: M:RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  name: ContainsAll<T>(IEnumerable<T>, IEnumerable<T>)
+  nameWithType: Extensions.ContainsAll<T>(IEnumerable<T>, IEnumerable<T>)
+  fullName: RainWorldBestiary.Extensions.ContainsAll<T>(System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: Extensions.ContainsAll(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAll(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Collections.Generic.IEnumerable(Of T))
+  name.vb: ContainsAll(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+    name: ContainsAll
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+    name: ContainsAll
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: RainWorldBestiary.Extensions
+  commentId: T:RainWorldBestiary.Extensions
+  parent: RainWorldBestiary
+  isExternal: true
+  href: RainWorldBestiary.Extensions.html
+  name: Extensions
+  nameWithType: Extensions
+  fullName: RainWorldBestiary.Extensions
+- uid: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  commentId: M:RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  name: ContainsAny<T>(IEnumerable<T>, IEnumerable<T>)
+  nameWithType: Extensions.ContainsAny<T>(IEnumerable<T>, IEnumerable<T>)
+  fullName: RainWorldBestiary.Extensions.ContainsAny<T>(System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: Extensions.ContainsAny(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+  fullName.vb: RainWorldBestiary.Extensions.ContainsAny(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Collections.Generic.IEnumerable(Of T))
+  name.vb: ContainsAny(Of T)(IEnumerable(Of T), IEnumerable(Of T))
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+    name: ContainsAny
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})
+    name: ContainsAny
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  name: GetRandom<T>(IEnumerable<T>)
+  nameWithType: Extensions.GetRandom<T>(IEnumerable<T>)
+  fullName: RainWorldBestiary.Extensions.GetRandom<T>(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: Extensions.GetRandom(Of T)(IEnumerable(Of T))
+  fullName.vb: RainWorldBestiary.Extensions.GetRandom(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: GetRandom(Of T)(IEnumerable(Of T))
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0})
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+  commentId: M:RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+  isExternal: true
+  href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  name: GetRandom<T>(IEnumerable<T>, int)
+  nameWithType: Extensions.GetRandom<T>(IEnumerable<T>, int)
+  fullName: RainWorldBestiary.Extensions.GetRandom<T>(System.Collections.Generic.IEnumerable<T>, int)
+  nameWithType.vb: Extensions.GetRandom(Of T)(IEnumerable(Of T), Integer)
+  fullName.vb: RainWorldBestiary.Extensions.GetRandom(Of T)(System.Collections.Generic.IEnumerable(Of T), Integer)
+  name.vb: GetRandom(Of T)(IEnumerable(Of T), Integer)
+  spec.csharp:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Extensions.GetRandom``1(System.Collections.Generic.IEnumerable{``0},System.Int32)
+    name: GetRandom
+    isExternal: true
+    href: RainWorldBestiary.Extensions.html#RainWorldBestiary_Extensions_GetRandom__1_System_Collections_Generic_IEnumerable___0__System_Int32_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: RainWorldBestiary
+  commentId: N:RainWorldBestiary
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary
+  nameWithType: RainWorldBestiary
+  fullName: RainWorldBestiary
+- uid: RainWorldBestiary.Types.EntriesTabList.#ctor*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.#ctor
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList__ctor
+  name: EntriesTabList
+  nameWithType: EntriesTabList.EntriesTabList
+  fullName: RainWorldBestiary.Types.EntriesTabList.EntriesTabList
+  nameWithType.vb: EntriesTabList.New
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.New
+  name.vb: New
+- uid: RainWorldBestiary.Types.EntriesTab[]
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html
+  name: EntriesTab[]
+  nameWithType: EntriesTab[]
+  fullName: RainWorldBestiary.Types.EntriesTab[]
+  nameWithType.vb: EntriesTab()
+  fullName.vb: RainWorldBestiary.Types.EntriesTab()
+  name.vb: EntriesTab()
+  spec.csharp:
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_MergeWith_RainWorldBestiary_Types_EntriesTab__
+  name: MergeWith(in EntriesTab)
+  nameWithType: EntriesTab.MergeWith(in EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTab.MergeWith(in RainWorldBestiary.Types.EntriesTab)
+  nameWithType.vb: EntriesTab.MergeWith(EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab)
+  name.vb: MergeWith(EntriesTab)
+  spec.csharp:
+  - uid: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+    name: MergeWith
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_MergeWith_RainWorldBestiary_Types_EntriesTab__
+  - name: (
+  - name: in
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  spec.vb:
+  - uid: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+    name: MergeWith
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_MergeWith_RainWorldBestiary_Types_EntriesTab__
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTabList.Add*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Add
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Add_RainWorldBestiary_Types_EntriesTab_System_Boolean_
+  name: Add
+  nameWithType: EntriesTabList.Add
+  fullName: RainWorldBestiary.Types.EntriesTabList.Add
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Add(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Add(RainWorldBestiary.Types.EntriesTab)
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.Add(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  name: Add(EntriesTab)
+  nameWithType: ICollection<EntriesTab>.Add(EntriesTab)
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.Add(RainWorldBestiary.Types.EntriesTab)
+  nameWithType.vb: ICollection(Of EntriesTab).Add(EntriesTab)
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).Add(RainWorldBestiary.Types.EntriesTab)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Add(RainWorldBestiary.Types.EntriesTab)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Add(RainWorldBestiary.Types.EntriesTab)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Add(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Add(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  name: Add(T)
+  nameWithType: ICollection<T>.Add(T)
+  fullName: System.Collections.Generic.ICollection<T>.Add(T)
+  nameWithType.vb: ICollection(Of T).Add(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Add(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - name: T
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: RainWorldBestiary.Types.Entry[]
+  isExternal: true
+  href: RainWorldBestiary.Types.Entry.html
+  name: Entry[]
+  nameWithType: Entry[]
+  fullName: RainWorldBestiary.Types.Entry[]
+  nameWithType.vb: Entry()
+  fullName.vb: RainWorldBestiary.Types.Entry()
+  name.vb: Entry()
+  spec.csharp:
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+  commentId: T:System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Entry>
+  nameWithType: IEnumerable<Entry>
+  fullName: System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>
+  nameWithType.vb: IEnumerable(Of Entry)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry)
+  name.vb: IEnumerable(Of Entry)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: )
+- uid: RainWorldBestiary.Types.TitleSprite
+  commentId: T:RainWorldBestiary.Types.TitleSprite
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.TitleSprite.html
+  name: TitleSprite
+  nameWithType: TitleSprite
+  fullName: RainWorldBestiary.Types.TitleSprite
+- uid: RainWorldBestiary.Types.EntriesTabList.Clear*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Clear
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Clear
+  name: Clear
+  nameWithType: EntriesTabList.Clear
+  fullName: RainWorldBestiary.Types.EntriesTabList.Clear
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Clear
+  commentId: M:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Clear
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.Clear
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  name: Clear()
+  nameWithType: ICollection<EntriesTab>.Clear()
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.Clear()
+  nameWithType.vb: ICollection(Of EntriesTab).Clear()
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Clear
+  commentId: M:System.Collections.Generic.ICollection`1.Clear
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  name: Clear()
+  nameWithType: ICollection<T>.Clear()
+  fullName: System.Collections.Generic.ICollection<T>.Clear()
+  nameWithType.vb: ICollection(Of T).Clear()
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTabList.Contains*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Contains
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Contains_RainWorldBestiary_Types_EntriesTab_
+  name: Contains
+  nameWithType: EntriesTabList.Contains
+  fullName: RainWorldBestiary.Types.EntriesTabList.Contains
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Contains(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Contains(RainWorldBestiary.Types.EntriesTab)
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.Contains(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  name: Contains(EntriesTab)
+  nameWithType: ICollection<EntriesTab>.Contains(EntriesTab)
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.Contains(RainWorldBestiary.Types.EntriesTab)
+  nameWithType.vb: ICollection(Of EntriesTab).Contains(EntriesTab)
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).Contains(RainWorldBestiary.Types.EntriesTab)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Contains(RainWorldBestiary.Types.EntriesTab)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Contains(RainWorldBestiary.Types.EntriesTab)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Contains(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Contains(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  name: Contains(T)
+  nameWithType: ICollection<T>.Contains(T)
+  fullName: System.Collections.Generic.ICollection<T>.Contains(T)
+  nameWithType.vb: ICollection(Of T).Contains(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Contains(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTabList.CopyTo*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.CopyTo
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_CopyTo_RainWorldBestiary_Types_EntriesTab___System_Int32_
+  name: CopyTo
+  nameWithType: EntriesTabList.CopyTo
+  fullName: RainWorldBestiary.Types.EntriesTabList.CopyTo
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  commentId: M:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  name: CopyTo(EntriesTab[], int)
+  nameWithType: ICollection<EntriesTab>.CopyTo(EntriesTab[], int)
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.CopyTo(RainWorldBestiary.Types.EntriesTab[], int)
+  nameWithType.vb: ICollection(Of EntriesTab).CopyTo(EntriesTab(), Integer)
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).CopyTo(RainWorldBestiary.Types.EntriesTab(), Integer)
+  name.vb: CopyTo(EntriesTab(), Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.CopyTo(RainWorldBestiary.Types.EntriesTab[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  commentId: M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  name: CopyTo(T[], int)
+  nameWithType: ICollection<T>.CopyTo(T[], int)
+  fullName: System.Collections.Generic.ICollection<T>.CopyTo(T[], int)
+  nameWithType.vb: ICollection(Of T).CopyTo(T(), Integer)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).CopyTo(T(), Integer)
+  name.vb: CopyTo(T(), Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - name: T
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - name: T
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTabList.Remove*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Remove
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Remove_RainWorldBestiary_Types_EntriesTab_
+  name: Remove
+  nameWithType: EntriesTabList.Remove
+  fullName: RainWorldBestiary.Types.EntriesTabList.Remove
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Remove(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Remove(RainWorldBestiary.Types.EntriesTab)
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.Remove(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  name: Remove(EntriesTab)
+  nameWithType: ICollection<EntriesTab>.Remove(EntriesTab)
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.Remove(RainWorldBestiary.Types.EntriesTab)
+  nameWithType.vb: ICollection(Of EntriesTab).Remove(EntriesTab)
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).Remove(RainWorldBestiary.Types.EntriesTab)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Remove(RainWorldBestiary.Types.EntriesTab)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Remove(RainWorldBestiary.Types.EntriesTab)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Remove(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Remove(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  name: Remove(T)
+  nameWithType: ICollection<T>.Remove(T)
+  fullName: System.Collections.Generic.ICollection<T>.Remove(T)
+  nameWithType.vb: ICollection(Of T).Remove(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Remove(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTabList.RemoveAt*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.RemoveAt
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_RemoveAt_System_Int32_
+  name: RemoveAt
+  nameWithType: EntriesTabList.RemoveAt
+  fullName: RainWorldBestiary.Types.EntriesTabList.RemoveAt
+- uid: RainWorldBestiary.Types.EntriesTabList.TryGet*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.TryGet
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_TryGet_System_String_RainWorldBestiary_Types_EntriesTab__
+  name: TryGet
+  nameWithType: EntriesTabList.TryGet
+  fullName: RainWorldBestiary.Types.EntriesTabList.TryGet
+- uid: RainWorldBestiary.Types.EntriesTabList.GetEnumerator*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_GetEnumerator
+  name: GetEnumerator
+  nameWithType: EntriesTabList.GetEnumerator
+  fullName: RainWorldBestiary.Types.EntriesTabList.GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<EntriesTab>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.EntriesTab>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of EntriesTab).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.EntriesTab).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.EntriesTab}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.EntriesTab}
+  commentId: T:System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.EntriesTab}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<EntriesTab>
+  nameWithType: IEnumerator<EntriesTab>
+  fullName: System.Collections.Generic.IEnumerator<RainWorldBestiary.Types.EntriesTab>
+  nameWithType.vb: IEnumerator(Of EntriesTab)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of RainWorldBestiary.Types.EntriesTab)
+  name.vb: IEnumerator(Of EntriesTab)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.EntriesTab
+    name: EntriesTab
+    isExternal: true
+    href: RainWorldBestiary.Types.EntriesTab.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTabList.Count*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Count
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Count
+  name: Count
+  nameWithType: EntriesTabList.Count
+  fullName: RainWorldBestiary.Types.EntriesTabList.Count
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Count
+  commentId: P:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.Count
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.Count
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.count
+  name: Count
+  nameWithType: ICollection<EntriesTab>.Count
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.Count
+  nameWithType.vb: ICollection(Of EntriesTab).Count
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).Count
+- uid: System.Collections.Generic.ICollection`1.Count
+  commentId: P:System.Collections.Generic.ICollection`1.Count
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.count
+  name: Count
+  nameWithType: ICollection<T>.Count
+  fullName: System.Collections.Generic.ICollection<T>.Count
+  nameWithType.vb: ICollection(Of T).Count
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Count
+- uid: RainWorldBestiary.Types.EntriesTabList.IsReadOnly*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_IsReadOnly
+  name: IsReadOnly
+  nameWithType: EntriesTabList.IsReadOnly
+  fullName: RainWorldBestiary.Types.EntriesTabList.IsReadOnly
+- uid: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.IsReadOnly
+  commentId: P:System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}.IsReadOnly
+  parent: System.Collections.Generic.ICollection{RainWorldBestiary.Types.EntriesTab}
+  definition: System.Collections.Generic.ICollection`1.IsReadOnly
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.isreadonly
+  name: IsReadOnly
+  nameWithType: ICollection<EntriesTab>.IsReadOnly
+  fullName: System.Collections.Generic.ICollection<RainWorldBestiary.Types.EntriesTab>.IsReadOnly
+  nameWithType.vb: ICollection(Of EntriesTab).IsReadOnly
+  fullName.vb: System.Collections.Generic.ICollection(Of RainWorldBestiary.Types.EntriesTab).IsReadOnly
+- uid: System.Collections.Generic.ICollection`1.IsReadOnly
+  commentId: P:System.Collections.Generic.ICollection`1.IsReadOnly
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.isreadonly
+  name: IsReadOnly
+  nameWithType: ICollection<T>.IsReadOnly
+  fullName: System.Collections.Generic.ICollection<T>.IsReadOnly
+  nameWithType.vb: ICollection(Of T).IsReadOnly
+  fullName.vb: System.Collections.Generic.ICollection(Of T).IsReadOnly
+- uid: RainWorldBestiary.Types.EntriesTabList.Item*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTabList.Item
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTabList.html#RainWorldBestiary_Types_EntriesTabList_Item_System_Int32_
+  name: this
+  nameWithType: EntriesTabList.this
+  fullName: RainWorldBestiary.Types.EntriesTabList.this
+  nameWithType.vb: EntriesTabList.this[]
+  fullName.vb: RainWorldBestiary.Types.EntriesTabList.this[]
+  name.vb: this[]
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
