@@ -1,3 +1,5 @@
+- name: Structure
+  href: structure.md
 - name: Walkthrough
   href: walkthrough.md
 - name: JSON Components
