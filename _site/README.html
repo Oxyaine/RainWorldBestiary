@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Rain World Bestiary | RainWorldBestiary </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Rain World Bestiary | RainWorldBestiary ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="RainWorldBestiary">
+            RainWorldBestiary
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="rain-world-bestiary">Rain World Bestiary</h1>
+
+<p>The Bestiary is a mod that adds an encyclopedia of creatures to Rain World, this bestiary unlocks as you interact with creatures, carefully only displaying information the user could have figured out themselves.</p>
+<p>If you have a suggestion, want to report a bug or issue (including performance issues), or ask help with something, feel free to submit an issue request on GitHub, <a href="https://github.com/Oxyaine/RainWorldBestiary/issues">here</a></p>
+<h1 id="section"></h1>
+<h2 id="first-things-first">First Things First</h2>
+<h3 id="to-get-a-grasp-on-the-structure-of-how-to-add-your-own-entries-you-should-download-the-template-from-the-files-above">To get a grasp on the Structure of how to add your own entries, you should download the template from the files above.</h3>
+<p>This README.md file is just here to tell you everything that is in the mod, such as all the JSON components you can add, as well as which unlock tokens are automatically tracked, stuff like that.</p>
+<p>Entries can be made in two ways, through code, and through JSON files placed in your mod.</p>
+<ul>
+<li>While adding entries through code is possible, it's not fully supported, and it's recommended you add entries through JSON files. Adding entries through code does give slightly more customization, such as setting a custom unlock condition, and custom module unlock conditions.
+<ul>
+<li>There are ways to add custom code to the bestiary without making the bestiary a dependency, you can read a bit more on that <a href="">here</a>.</li>
+</ul>
+</li>
+<li>Using JSON Files gives you slightly less control, but is fully supported, and gives some advantages such as the bestiary managing the loading and unloading of your entries. It will also make your entries optional, meaning if the Bestiary is installed, your entries will be visible, otherwise if the Bestiary is not installed, they will remain hidden and unused.</li>
+</ul>
+<h1 id="section-1"></h1>
+<h1 id="section-2"></h1>
+<h1 id="section-3"></h1>
+<h2 id="tabs">Tabs</h2>
+<p>Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
+When adding entries, you can add your own tab, or you can use the <code>Modded</code> tab, for if your mod only adds a few entries.
+To add entries to the <code>Modded</code> tab, make sure your tabs name is also <code>Modded</code> (<em>case sensitive</em>), two tabs with the same name will be merged.</p>
+<p>Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your files with numbers to change the order they appear, this wont matter if your merging with another tab, as it'll use whatever position the existing tab is in.
+Entries don't care what sub directory they are in, as the entry loader looks for all files in the tab folder, including entries in sub-directories.</p>
+<p>Merging tabs add all entries to the existing tab, If your tab has a custom <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">title image</a> and the existing tab doesn't, your tabs title image will be used.</p>
+<h3 id="tabs-json-components">Tabs JSON Components</h3>
+<p>Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:</p>
+<h4 id="name--string">&quot;name&quot; : string</h4>
+<p><code>Default = (The name of the file)</code>
+The name of the tab.</p>
+<h4 id="title_image--titlesprite">&quot;title_image&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">TitleSprite</a></h4>
+<p><code>Default = null</code>
+The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">here</a>.</p>
+<h4 id="path--string">&quot;path&quot; : string</h4>
+<p><code>Default = null</code>
+The local path to the folder that contains your entries, this is a local path from your mods folder, so if your tabs are in the folder <code>\*mod directory*\bestiary\mytab</code>, you would set this to <code>bestiary\mytab</code>, as your mods folder path is prepended.</p>
+<h4 id="required_mods--string">&quot;required_mods&quot; : string[]</h4>
+<p><code>Default = []</code>
+All the mods (by their IDs) that have to be active for this tab to be visible, if one of the ids specified is not an active mod, the tab wont be visible.</p>
+<h1 id="section-4"></h1>
+<h1 id="section-5"></h1>
+<h1 id="section-6"></h1>
+<h2 id="structure---entries">Structure - Entries</h2>
+<p>Entries' content is also loaded from JSON files. The name of the file determines the name of the entry (however this can be overridden with &quot;name&quot;), and the content of the file determines the rest of the entry's data.</p>
+<h4 id="name--string-1">&quot;name&quot; : string</h4>
+<p><code>Default = (The name of the file)</code>
+While by default the name of the file is the name of the entry, you can override the name with this property, and instead, this value you set will become the name of entry.</p>
+<h4 id="unlock_id--string">&quot;unlock_id&quot; : string</h4>
+<p><code>Default = &quot;&quot;</code>
+The id of the creature that will be used to unlock this entry. You can see the ID by using <code>Bestiary.GetCreatureUnlockName()</code>, or by going to <code>AbstractCreature.creatureTemplate.name</code> of an instance of your creature, and removing the spaces.</p>
+<h4 id="locked_text--string">&quot;locked_text&quot; : string</h4>
+<p><code>Default = &quot;This entry is locked.&quot;</code>
+The text / tip that is shown when attempting to read the entry while its locked. Can be used to show a tip on where to find the creature and so on.
+This gets run through the in game translator, so you can just give it an ID and add the translation logic for it in the short strings dictionary file.</p>
+<h4 id="entry_icon--string">&quot;entry_icon&quot; : string</h4>
+<p>The icon of the entry, use this if your entry only has 1 icon, otherwise use <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#entry_icons--string">&quot;entry_icons&quot;</a>.
+This is the name of the icon in the atlas manager, make sure to load all your custom icons into the atlas manager, or nothing will happen.
+You can do this in code using:
+<code>Futile.atlasManager.LoadImage()</code></p>
+<h4 id="entry_icons--string">&quot;entry_icons&quot; : string[]</h4>
+<p>The multiple icons of your entry, use this if your entry has multiple icons. This is an array of the names of your icons in the atlas manager, once again, make sure to load all your custom icons into the atlas manager, or nothing will happen.</p>
+<h4 id="icons_next_to_title--bool">&quot;icons_next_to_title&quot; : bool</h4>
+<p><code>Default = true</code>
+Whether to show the entry's icon(s) next to the <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">entry's title</a> while reading the entry.</p>
+<h4 id="title_sprite--titlesprite">&quot;title_sprite&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">TitleSprite</a></h4>
+<p><code>Default = null</code>
+The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">here</a>.</p>
+<h4 id="color--string">&quot;color&quot; : string*</h4>
+<p><code>Default = dff5d6</code>
+The hex string for a color, (<em>uses the last six characters of the string as the hex value</em>) that determines the color of the entry's button when its unlocked.</p>
+<h4 id="description--description">&quot;description&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description">Description</a></h4>
+<p>The description of the entry, uses a custom class that can be found <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description">here</a>.</p>
+<h1 id="section-7"></h1>
+<h1 id="section-8"></h1>
+<h1 id="section-9"></h1>
+<h2 id="description">Description</h2>
+<p>An entry's description is an array of description modules, each module can be given custom unlock behaviour using <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token">unlock tokens</a></p>
+<h4 id="unlock_token--unlocktoken">&quot;unlock_token&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token">UnlockToken</a></h4>
+<p><code>Default = null</code>
+The unlock token of this description module, use this if your module only has 1 condition, otherwise use <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock__ids---unlocktoken">&quot;unlock_ids&quot;</a>, used to determine what requirements need to be met to unlock this part of the description</p>
+<h4 id="unlock_tokens--unlocktoken">&quot;unlock_tokens&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token">UnlockToken</a>[]</h4>
+<p><code>Default = []</code>
+The unlock tokens of this description module, use <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation_against_value">&quot;operation_against_value&quot;</a> to determine which operation each module will use against the current value (defaults to and, meaning both this token and the previous token needs to be true for this entry to unlock). This is used to determine what requirements need to be met to unlock this part of the description</p>
+<h4 id="body--string">&quot;body&quot; : string</h4>
+<p>The text of this module, this gets run through the in game translator, so you can make the description something like &quot;ENTRY_BATFLY_APPEARANCE&quot;, then define a translation into whatever language using the short strings dictionary in <code>text\text_eng\strings.txt</code></p>
+<h4 id="new_line--bool">&quot;new_line&quot; : bool</h4>
+<p><code>Default = false</code>
+Whether this module and the previous module should be separated by a new line '\n'. Otherwise just separates with a space.</p>
+<h4 id="translate--bool">&quot;translate&quot; : bool</h4>
+<p><code>Default = true</code>
+Whether to run the body of this module through the in-game translator, if no translation is found, then nothing will happen</p>
+<h1 id="section-10"></h1>
+<h1 id="section-11"></h1>
+<h1 id="section-12"></h1>
+<h2 id="title-sprite">Title Sprite</h2>
+<p>The title that appears at the top of a tab or entry while reading it. This usually shows the name of an entry, but really can be set to anything you want. If set to null or if the image isn't found in the atlas manager, an <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/master/Known%20Issues.md#issue---auto-generated-title">auto generated title</a> will be placed instead.</p>
+<h4 id="element_name--string">&quot;element_name&quot; : string</h4>
+<p>This is the name of your title element in the atlas manager, make sure to load your title into the atlas manager, or nothing will happen.
+You can do this in code using: <code>Futile.atlasManager.LoadImage()</code></p>
+<h4 id="scale--float">&quot;scale&quot; : float</h4>
+<p><code>Default = 1</code>
+The scale multiplier for your image, this will affect the size of your image on screen.</p>
+<h4 id="x_offset--int">&quot;x_offset&quot; : int</h4>
+<p>While the sprite is automatically centered, the image might be just a little bit off, so this is here to allow you to add an offset to it, positive numbers send the image to the right, while negative sends it to the left.</p>
+<h4 id="y_offset--int">&quot;y_offset&quot; : int</h4>
+<p>Same logic with the X offset, you might need some extra distance from the top of the screen, or maybe less, so positive brings the image down, while negative lifts your sprite up.</p>
+<h1 id="section-13"></h1>
+<h1 id="section-14"></h1>
+<h1 id="section-15"></h1>
+<h2 id="unlock-token">Unlock Token</h2>
+<p>Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.</p>
+<h4 id="operation_against_value--operationtype">&quot;operation_against_value&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation-type">OperationType</a></h4>
+<p><code>Default = And</code>
+The operation this unlock token will perform against the current unlock value of the token. For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked; Then if this unlock tokens operation is &quot;or&quot;, that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value. You can see all the operations <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation-type">here</a>.</p>
+<h4 id="token_type--tokentype">&quot;token_type&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types">TokenType</a></h4>
+<p><code>Default = null</code>
+A TokenType that represents the token type of this unlock, you can see a list of token types <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types">here</a> as well as their respective names and id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
+<em><strong>To specify a specific token type you can either enter its name or its id, as either a string or an int.</strong></em></p>
+<h4 id="creature_id--string">&quot;creature_id&quot; : string</h4>
+<p>The name of this creature that this unlock token should check for, you don't want any creature killing the player to unlock this part of the description, so you set the creature id to say which creature specifically, same rules with the creature ID apply with the <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock_id--string">entry's unlock ID</a>.</p>
+<h4 id="count--byte">&quot;count&quot; : byte</h4>
+<p><code>Default = 1</code>
+A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.</p>
+<h4 id="special_data--string">&quot;special_data&quot; : string[]</h4>
+<p>Special data is data that can be added to unlock tokens to give some specifics about which interactions the player should've had before this unlock token is valid, if all the strings in here are found in the registered unlock token, this will be considered valid. You can see more info <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#special-data">here</a>.</p>
+<h1 id="section-16"></h1>
+<h1 id="section-17"></h1>
+<h1 id="section-18"></h1>
+<h2 id="operation-type">Operation Type</h2>
+<p>The operation this unlock token will perform against the current unlock value of the token. See more info <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation_against_value--operationtype">here</a>.
+Here is a list of all operations, like with <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token-types">TokenType</a>, you can set it as either the name or the id in the JSON file.</p>
+<p><em><strong>0 = false, 1 = true</strong></em></p>
+<ul>
+<li>And = 0 : True if both the values are true
+<ul>
+<li>0 : 0 = 0</li>
+<li>1 : 0 = 0</li>
+<li>0 : 1 = 0</li>
+<li>1 : 1 = 1</li>
+</ul>
+</li>
+<li>OR = 1 : True if either of the inputs are true
+<ul>
+<li>0 : 0 = 0</li>
+<li>1 : 0 = 1</li>
+<li>0 : 1 = 1</li>
+<li>1 : 1 = 1</li>
+</ul>
+</li>
+<li>XOr = 2 : True if either of the inputs are true, but not when both inputs are true
+<ul>
+<li>0 : 0 = 0</li>
+<li>1 : 0 = 1</li>
+<li>0 : 1 = 1</li>
+<li>1 : 1 = 0</li>
+</ul>
+</li>
+<li>NAnd = 3 : True if either value is false
+<ul>
+<li>0 : 0 = 1</li>
+<li>1 : 0 = 1</li>
+<li>0 : 1 = 1</li>
+<li>1 : 1 = 0</li>
+</ul>
+</li>
+<li>Nor = 4 : True if neither value is true
+<ul>
+<li>0 : 0 = 1</li>
+<li>1 : 0 = 0</li>
+<li>0 : 1 = 0</li>
+<li>1 : 1 = 0</li>
+</ul>
+</li>
+<li>XAnd = 4 : True if both values are the same
+<ul>
+<li>0 : 0 = 1</li>
+<li>1 : 0 = 0</li>
+<li>0 : 1 = 0</li>
+<li>1 : 1 = 1</li>
+</ul>
+</li>
+</ul>
+<h1 id="section-19"></h1>
+<h1 id="section-20"></h1>
+<h1 id="section-21"></h1>
+<h2 id="unlock-token-types">Unlock Token Types</h2>
+<h4 id="unlock-tokens">Unlock Tokens</h4>
+<p>Here is a full list of all unlock tokens, further down you can see a list of <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#automatic">which tokens are automatically tracked</a>, although despite them being automatically tracked, you can also just track them manually, if you'd like.
+<em><strong>To specify a specific token type in a JSON file, you can either enter its name or its id, as either a string or an int.</strong></em></p>
+<ul>
+<li>None = 0 : This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible</li>
+<li>Tamed = 1 : For when the player tames the creature</li>
+<li>Evaded = 2 : For when the player evades the creature</li>
+<li>Snuck Past = 3 : For when the player sneaks past the creature</li>
+<li>Observed = 4 : For when the player sees the creature</li>
+<li>Observe Fear = 5 : For when the player sees the creature fear something</li>
+<li>Observe Food = 6 : For when the player sees the creature want to eat something or eating something</li>
+<li>Observe Hunting = 7 : For when the player gets hunted / chased by the creature</li>
+<li>Killed = 8 : When the creature gets killed by the player</li>
+<li>Impaled = 9 : When the creature gets impaled with a spear, by the player</li>
+<li>Stunned = 10 : When the creature gets stunned with a rock, by the player</li>
+<li>Killed Player = 11 : When the player is killed by the creature</li>
+<li>Grabbed Player = 12 : When the player gets grabbed by the creature</li>
+<li>Eaten = 13 : When the player eats the creature</li>
+<li>Observe Attraction = 14 : For when the player observes a creature being attracted to something, like batflies to batnip, etc</li>
+<li>Used As Lure = 15 : For when the player uses the creature to lure / distract something else</li>
+<li>Observe Hiding = 16 : For when the player observes a creature hiding</li>
+<li>Observe Behaviour = 17 : For when the player observes a creature doing a behaviour</li>
+<li>Heard Player = 18 : When a creature hears the player</li>
+<li>Player Grabbed = 19 : When the player grabs the creature</li>
+<li>Observe Rivals = 20 : When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory</li>
+<li>Observe Attacking = 21 : When the player observes the creature attacking another creature</li>
+</ul>
+<h4 id="automatic">Automatic</h4>
+<p>Automatic unlock tokens are tokens that are automatically tracked and added by the mod.</p>
+<p><em><strong>Please keep in mind, that most if not all of these tokens are only tracked for creatures that inherit from base game types, such as the <code>Creature</code> class , <code>AbstractCreature</code> class, and so on.</strong></em></p>
+<p>Here is a list of all current automatic token types:</p>
+<ul>
+<li>Observe Food = 6 : For when the player sees the creature want to eat something or eating something</li>
+<li>Killed = 8 : When the creature gets killed by the player</li>
+<li>Impaled = 9 : When the creature gets impaled with a spear, by the player</li>
+<li>Stunned = 10 : When the creature gets stunned with a rock, by the player</li>
+<li>Killed Player = 11 : When the player is killed by the creature</li>
+<li>Grabbed Player = 12 : When the player gets grabbed by the creature</li>
+<li>Eaten = 13 : When the player eats the creature</li>
+<li>Heard Player = 18 : When the creature hears the player</li>
+<li>Player Grabbed = 19 : When the player grabs the creature</li>
+<li>Observe Rivals = 20 : When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory</li>
+<li>Observe Attacking = 21 : When the player observes the creature attacking another creature, excluding food</li>
+</ul>
+<h1 id="section-22"></h1>
+<h1 id="section-23"></h1>
+<h1 id="section-24"></h1>
+<h2 id="special-data">Special Data</h2>
+<p>Special data is data that can be added to unlock tokens to give some specifics to which interactions the player has had, and allows you to set more defined unlock logic for your modules. Below you can see a list of which data is automatically tracked and for which tokens.</p>
+<ul>
+<li>Player Grabbed: When the player grabs a creature
+<ul>
+<li>Adds &quot;Dead&quot; or &quot;Alive&quot; depending on the status of the creature when its grabbed.</li>
+</ul>
+</li>
+<li>Observe Food: For when the player sees the creature want to eat something or eating something
+<ul>
+<li>Adds the unlock name of the creature that was attacked / eaten</li>
+</ul>
+</li>
+<li>Observe Attacking: When the player observes the creature attacking another creature, excluding food
+<ul>
+<li>Adds the unlock name of the creature that was attacked</li>
+</ul>
+</li>
+<li>Observe Rivals: When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory
+<ul>
+<li>Adds the unlock name of the creature that this creature was competing with</li>
+</ul>
+</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
