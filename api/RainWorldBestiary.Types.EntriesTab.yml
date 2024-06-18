@@ -1,0 +1,1437 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types.EntriesTab
+  commentId: T:RainWorldBestiary.Types.EntriesTab
+  id: EntriesTab
+  parent: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.EntriesTab.#ctor
+  - RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)
+  - RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])
+  - RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  - RainWorldBestiary.Types.EntriesTab.#ctor(System.String,RainWorldBestiary.Types.Entry[])
+  - RainWorldBestiary.Types.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  - RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  - RainWorldBestiary.Types.EntriesTab.Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  - RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)
+  - RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)
+  - RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  - RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})
+  - RainWorldBestiary.Types.EntriesTab.Clear
+  - RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  - RainWorldBestiary.Types.EntriesTab.Contains(System.String)
+  - RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)
+  - RainWorldBestiary.Types.EntriesTab.Count
+  - RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  - RainWorldBestiary.Types.EntriesTab.Item(System.Int32)
+  - RainWorldBestiary.Types.EntriesTab.Item(System.String)
+  - RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  - RainWorldBestiary.Types.EntriesTab.Name
+  - RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  - RainWorldBestiary.Types.EntriesTab.RemoveAt(System.Int32)
+  - RainWorldBestiary.Types.EntriesTab.RequiredMods
+  - RainWorldBestiary.Types.EntriesTab.TitleSprite
+  - RainWorldBestiary.Types.EntriesTab.TryGet(System.String,RainWorldBestiary.Types.Entry@)
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab
+  nameWithType: EntriesTab
+  fullName: RainWorldBestiary.Types.EntriesTab
+  type: Class
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: A class representing a tab full of entries in the bestiary
+  example: []
+  syntax:
+    content: public class EntriesTab
+    content.vb: Public Class EntriesTab
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: RainWorldBestiary.Types.EntriesTab.Name
+  commentId: F:RainWorldBestiary.Types.EntriesTab.Name
+  id: Name
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: EntriesTab.Name
+  fullName: RainWorldBestiary.Types.EntriesTab.Name
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The name of this tab
+  example: []
+  syntax:
+    content: public string Name
+    return:
+      type: System.String
+    content.vb: Public Name As String
+- uid: RainWorldBestiary.Types.EntriesTab.RequiredMods
+  commentId: F:RainWorldBestiary.Types.EntriesTab.RequiredMods
+  id: RequiredMods
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: RequiredMods
+  nameWithType: EntriesTab.RequiredMods
+  fullName: RainWorldBestiary.Types.EntriesTab.RequiredMods
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The mods (by ids), that are required to be active for this tab to be visible
+  example: []
+  syntax:
+    content: public string[] RequiredMods
+    return:
+      type: System.String[]
+    content.vb: Public RequiredMods As String()
+- uid: RainWorldBestiary.Types.EntriesTab.TitleSprite
+  commentId: F:RainWorldBestiary.Types.EntriesTab.TitleSprite
+  id: TitleSprite
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: TitleSprite
+  nameWithType: EntriesTab.TitleSprite
+  fullName: RainWorldBestiary.Types.EntriesTab.TitleSprite
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
+  remarks: By title, I mean the name of the tab that is visible at the top while viewing entries in the tab
+  example: []
+  syntax:
+    content: public TitleSprite TitleSprite
+    return:
+      type: RainWorldBestiary.Types.TitleSprite
+    content.vb: Public TitleSprite As TitleSprite
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor
+  id: '#ctor'
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab()
+  nameWithType: EntriesTab.EntriesTab()
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab()
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Creates an empty <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public EntriesTab()
+    content.vb: Public Sub New()
+  overload: RainWorldBestiary.Types.EntriesTab.#ctor*
+  nameWithType.vb: EntriesTab.New()
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New()
+  name.vb: New()
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  id: '#ctor(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})'
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab(IEnumerable<Entry>)
+  nameWithType: EntriesTab.EntriesTab(IEnumerable<Entry>)
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Creates an <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref> with all entries in <code class="paramref">entries</code> as the entries
+  example: []
+  syntax:
+    content: public EntriesTab(IEnumerable<Entry> entries)
+    parameters:
+    - id: entries
+      type: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+    content.vb: Public Sub New(entries As IEnumerable(Of Entry))
+  overload: RainWorldBestiary.Types.EntriesTab.#ctor*
+  nameWithType.vb: EntriesTab.New(IEnumerable(Of Entry))
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry))
+  name.vb: New(IEnumerable(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  id: '#ctor(System.String,System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})'
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab(string, IEnumerable<Entry>)
+  nameWithType: EntriesTab.EntriesTab(string, IEnumerable<Entry>)
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(string, System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Creates an <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref> with all entries in <code class="paramref">entries</code> as the entries
+  example: []
+  syntax:
+    content: public EntriesTab(string tabName, IEnumerable<Entry> entries)
+    parameters:
+    - id: tabName
+      type: System.String
+    - id: entries
+      type: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+    content.vb: Public Sub New(tabName As String, entries As IEnumerable(Of Entry))
+  overload: RainWorldBestiary.Types.EntriesTab.#ctor*
+  nameWithType.vb: EntriesTab.New(String, IEnumerable(Of Entry))
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(String, System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry))
+  name.vb: New(String, IEnumerable(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(System.String,RainWorldBestiary.Types.Entry[])
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(System.String,RainWorldBestiary.Types.Entry[])
+  id: '#ctor(System.String,RainWorldBestiary.Types.Entry[])'
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab(string, params Entry[])
+  nameWithType: EntriesTab.EntriesTab(string, params Entry[])
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(string, params RainWorldBestiary.Types.Entry[])
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Creates an <xref href="RainWorldBestiary.Types.EntriesTab" data-throw-if-not-resolved="false"></xref> with all entries in <code class="paramref">entries</code> as the entries
+  example: []
+  syntax:
+    content: public EntriesTab(string tabName, params Entry[] entries)
+    parameters:
+    - id: tabName
+      type: System.String
+    - id: entries
+      type: RainWorldBestiary.Types.Entry[]
+    content.vb: Public Sub New(tabName As String, ParamArray entries As Entry())
+  overload: RainWorldBestiary.Types.EntriesTab.#ctor*
+  nameWithType.vb: EntriesTab.New(String, ParamArray Entry())
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(String, ParamArray RainWorldBestiary.Types.Entry())
+  name.vb: New(String, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab)
+  id: '#ctor(RainWorldBestiary.Types.EntriesTab)'
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab(EntriesTab)
+  nameWithType: EntriesTab.EntriesTab(EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(RainWorldBestiary.Types.EntriesTab)
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Copy Operator
+  example: []
+  syntax:
+    content: public EntriesTab(EntriesTab other)
+    parameters:
+    - id: other
+      type: RainWorldBestiary.Types.EntriesTab
+    content.vb: Public Sub New(other As EntriesTab)
+  overload: RainWorldBestiary.Types.EntriesTab.#ctor*
+  nameWithType.vb: EntriesTab.New(EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(RainWorldBestiary.Types.EntriesTab)
+  name.vb: New(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])
+  commentId: M:RainWorldBestiary.Types.EntriesTab.#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])
+  id: '#ctor(RainWorldBestiary.Types.EntriesTab,RainWorldBestiary.Types.Entry[])'
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: EntriesTab(EntriesTab, params Entry[])
+  nameWithType: EntriesTab.EntriesTab(EntriesTab, params Entry[])
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab(RainWorldBestiary.Types.EntriesTab, params RainWorldBestiary.Types.Entry[])
+  type: Constructor
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Copy Operator
+  example: []
+  syntax:
+    content: public EntriesTab(EntriesTab other, params Entry[] entries)
+    parameters:
+    - id: other
+      type: RainWorldBestiary.Types.EntriesTab
+    - id: entries
+      type: RainWorldBestiary.Types.Entry[]
+    content.vb: Public Sub New(other As EntriesTab, ParamArray entries As Entry())
+  overload: RainWorldBestiary.Types.EntriesTab.#ctor*
+  nameWithType.vb: EntriesTab.New(EntriesTab, ParamArray Entry())
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New(RainWorldBestiary.Types.EntriesTab, ParamArray RainWorldBestiary.Types.Entry())
+  name.vb: New(EntriesTab, ParamArray Entry())
+- uid: RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  id: Add(RainWorldBestiary.Types.Entry)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Add(Entry)
+  nameWithType: EntriesTab.Add(Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(RainWorldBestiary.Types.Entry)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new entry to this tab
+  example: []
+  syntax:
+    content: public void Add(Entry item)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.Entry
+    content.vb: Public Sub Add(item As Entry)
+  overload: RainWorldBestiary.Types.EntriesTab.Add*
+- uid: RainWorldBestiary.Types.EntriesTab.Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  id: Add(System.String,RainWorldBestiary.Types.EntryInfo,System.String)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Add(string, EntryInfo, string)
+  nameWithType: EntriesTab.Add(string, EntryInfo, string)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(string, RainWorldBestiary.Types.EntryInfo, string)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new entry to this tab
+  example: []
+  syntax:
+    content: public void Add(string entryName, EntryInfo info, string owningModID = null)
+    parameters:
+    - id: entryName
+      type: System.String
+      description: ''
+    - id: info
+      type: RainWorldBestiary.Types.EntryInfo
+    - id: owningModID
+      type: System.String
+      description: The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled
+    content.vb: Public Sub Add(entryName As String, info As EntryInfo, owningModID As String = Nothing)
+  overload: RainWorldBestiary.Types.EntriesTab.Add*
+  nameWithType.vb: EntriesTab.Add(String, EntryInfo, String)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Add(String, RainWorldBestiary.Types.EntryInfo, String)
+  name.vb: Add(String, EntryInfo, String)
+- uid: RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)
+  id: Add(System.String,System.String,System.String,RainWorldBestiary.Types.Description,System.String)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Add(string, string, string, Description, string)
+  nameWithType: EntriesTab.Add(string, string, string, Description, string)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(string, string, string, RainWorldBestiary.Types.Description, string)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new entry to this tab
+  example: []
+  syntax:
+    content: public void Add(string entryName, string unlockID, string iconAtlasName, Description description, string owningModID = null)
+    parameters:
+    - id: entryName
+      type: System.String
+      description: ''
+    - id: unlockID
+      type: System.String
+      description: ''
+    - id: iconAtlasName
+      type: System.String
+      description: ''
+    - id: description
+      type: RainWorldBestiary.Types.Description
+      description: ''
+    - id: owningModID
+      type: System.String
+      description: The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled
+    content.vb: Public Sub Add(entryName As String, unlockID As String, iconAtlasName As String, description As Description, owningModID As String = Nothing)
+  overload: RainWorldBestiary.Types.EntriesTab.Add*
+  nameWithType.vb: EntriesTab.Add(String, String, String, Description, String)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Add(String, String, String, RainWorldBestiary.Types.Description, String)
+  name.vb: Add(String, String, String, Description, String)
+- uid: RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Add(System.String,System.String,System.String,System.String,System.String)
+  id: Add(System.String,System.String,System.String,System.String,System.String)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Add(string, string, string, string, string)
+  nameWithType: EntriesTab.Add(string, string, string, string, string)
+  fullName: RainWorldBestiary.Types.EntriesTab.Add(string, string, string, string, string)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds a new entry to this tab
+  example: []
+  syntax:
+    content: public void Add(string entryName, string unlockID, string iconAtlasName, string description, string owningModID = null)
+    parameters:
+    - id: entryName
+      type: System.String
+      description: ''
+    - id: unlockID
+      type: System.String
+      description: ''
+    - id: iconAtlasName
+      type: System.String
+      description: ''
+    - id: description
+      type: System.String
+      description: ''
+    - id: owningModID
+      type: System.String
+      description: The ID of the mod (id that is set in `modinfo.json` file) that this entry belongs to, set this if you'd like this entry to automatically unload when the mod gets disabled
+    content.vb: Public Sub Add(entryName As String, unlockID As String, iconAtlasName As String, description As String, owningModID As String = Nothing)
+  overload: RainWorldBestiary.Types.EntriesTab.Add*
+  nameWithType.vb: EntriesTab.Add(String, String, String, String, String)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Add(String, String, String, String, String)
+  name.vb: Add(String, String, String, String, String)
+- uid: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  commentId: M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  id: AddRange(System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry})
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: AddRange(IEnumerable<Entry>)
+  nameWithType: EntriesTab.AddRange(IEnumerable<Entry>)
+  fullName: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds all the entries from the collection into this tab
+  example: []
+  syntax:
+    content: public void AddRange(IEnumerable<Entry> items)
+    parameters:
+    - id: items
+      type: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+    content.vb: Public Sub AddRange(items As IEnumerable(Of Entry))
+  overload: RainWorldBestiary.Types.EntriesTab.AddRange*
+  nameWithType.vb: EntriesTab.AddRange(IEnumerable(Of Entry))
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry))
+  name.vb: AddRange(IEnumerable(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})
+  commentId: M:RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})
+  id: AddRange(System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry})
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: AddRange(IEnumerator<Entry>)
+  nameWithType: EntriesTab.AddRange(IEnumerator<Entry>)
+  fullName: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator<RainWorldBestiary.Types.Entry>)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Adds all the entries from the collection into this tab
+  example: []
+  syntax:
+    content: public void AddRange(IEnumerator<Entry> items)
+    parameters:
+    - id: items
+      type: System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry}
+    content.vb: Public Sub AddRange(items As IEnumerator(Of Entry))
+  overload: RainWorldBestiary.Types.EntriesTab.AddRange*
+  nameWithType.vb: EntriesTab.AddRange(IEnumerator(Of Entry))
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.AddRange(System.Collections.Generic.IEnumerator(Of RainWorldBestiary.Types.Entry))
+  name.vb: AddRange(IEnumerator(Of Entry))
+- uid: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  id: MergeWith(RainWorldBestiary.Types.EntriesTab@)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: MergeWith(in EntriesTab)
+  nameWithType: EntriesTab.MergeWith(in EntriesTab)
+  fullName: RainWorldBestiary.Types.EntriesTab.MergeWith(in RainWorldBestiary.Types.EntriesTab)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    Adds <code class="paramref">tab</code>'s entries to this this<pre><code class="lang-csharp"></code></pre>
+
+    If this TitleImage is null, it gets replaced with <code class="paramref">tab</code>'s TitleImage<pre><code class="lang-csharp"></code></pre>
+
+    If this TabMenuProcessID is set to the default, it sets it to <code class="paramref">tab</code>'s TabMenuProcessID
+  example: []
+  syntax:
+    content: public void MergeWith(in EntriesTab tab)
+    parameters:
+    - id: tab
+      type: RainWorldBestiary.Types.EntriesTab
+      description: ''
+    content.vb: Public Sub MergeWith(tab As EntriesTab)
+  overload: RainWorldBestiary.Types.EntriesTab.MergeWith*
+  nameWithType.vb: EntriesTab.MergeWith(EntriesTab)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab)
+  name.vb: MergeWith(EntriesTab)
+- uid: RainWorldBestiary.Types.EntriesTab.TryGet(System.String,RainWorldBestiary.Types.Entry@)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.TryGet(System.String,RainWorldBestiary.Types.Entry@)
+  id: TryGet(System.String,RainWorldBestiary.Types.Entry@)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: TryGet(string, out Entry)
+  nameWithType: EntriesTab.TryGet(string, out Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.TryGet(string, out RainWorldBestiary.Types.Entry)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Tries to get the entry with the given name
+  example: []
+  syntax:
+    content: public bool TryGet(string entryName, out Entry entry)
+    parameters:
+    - id: entryName
+      type: System.String
+    - id: entry
+      type: RainWorldBestiary.Types.Entry
+    return:
+      type: System.Boolean
+      description: True if the entry was found, otherwise false
+    content.vb: Public Function TryGet(entryName As String, entry As Entry) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTab.TryGet*
+  nameWithType.vb: EntriesTab.TryGet(String, Entry)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.TryGet(String, RainWorldBestiary.Types.Entry)
+  name.vb: TryGet(String, Entry)
+- uid: RainWorldBestiary.Types.EntriesTab.Clear
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Clear
+  id: Clear
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: EntriesTab.Clear()
+  fullName: RainWorldBestiary.Types.EntriesTab.Clear()
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Clears this tab of all its entries
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: RainWorldBestiary.Types.EntriesTab.Clear*
+- uid: RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  id: Contains(RainWorldBestiary.Types.Entry)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Contains(Entry)
+  nameWithType: EntriesTab.Contains(Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.Contains(RainWorldBestiary.Types.Entry)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Checks if this tab contains the given entry
+  example: []
+  syntax:
+    content: public bool Contains(Entry item)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.Entry
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(item As Entry) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTab.Contains*
+- uid: RainWorldBestiary.Types.EntriesTab.Contains(System.String)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Contains(System.String)
+  id: Contains(System.String)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Contains(string)
+  nameWithType: EntriesTab.Contains(string)
+  fullName: RainWorldBestiary.Types.EntriesTab.Contains(string)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Determines whether this tab contains an entry with the given name
+  example: []
+  syntax:
+    content: public bool Contains(string entryName)
+    parameters:
+    - id: entryName
+      type: System.String
+      description: The name of the entry to check for
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(entryName As String) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTab.Contains*
+  nameWithType.vb: EntriesTab.Contains(String)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.Contains(String)
+  name.vb: Contains(String)
+- uid: RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)
+  id: CopyTo(RainWorldBestiary.Types.Entry[],System.Int32)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(Entry[], int)
+  nameWithType: EntriesTab.CopyTo(Entry[], int)
+  fullName: RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry[], int)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public void CopyTo(Entry[] array, int arrayIndex)
+    parameters:
+    - id: array
+      type: RainWorldBestiary.Types.Entry[]
+    - id: arrayIndex
+      type: System.Int32
+    content.vb: Public Sub CopyTo(array As Entry(), arrayIndex As Integer)
+  overload: RainWorldBestiary.Types.EntriesTab.CopyTo*
+  nameWithType.vb: EntriesTab.CopyTo(Entry(), Integer)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.CopyTo(RainWorldBestiary.Types.Entry(), Integer)
+  name.vb: CopyTo(Entry(), Integer)
+- uid: RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  id: Remove(RainWorldBestiary.Types.Entry)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Remove(Entry)
+  nameWithType: EntriesTab.Remove(Entry)
+  fullName: RainWorldBestiary.Types.EntriesTab.Remove(RainWorldBestiary.Types.Entry)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Removes the given entry from this tab
+  example: []
+  syntax:
+    content: public bool Remove(Entry item)
+    parameters:
+    - id: item
+      type: RainWorldBestiary.Types.Entry
+    return:
+      type: System.Boolean
+    content.vb: Public Function Remove(item As Entry) As Boolean
+  overload: RainWorldBestiary.Types.EntriesTab.Remove*
+- uid: RainWorldBestiary.Types.EntriesTab.RemoveAt(System.Int32)
+  commentId: M:RainWorldBestiary.Types.EntriesTab.RemoveAt(System.Int32)
+  id: RemoveAt(System.Int32)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: RemoveAt(int)
+  nameWithType: EntriesTab.RemoveAt(int)
+  fullName: RainWorldBestiary.Types.EntriesTab.RemoveAt(int)
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Removes an entry at the specified index
+  example: []
+  syntax:
+    content: public void RemoveAt(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub RemoveAt(index As Integer)
+  overload: RainWorldBestiary.Types.EntriesTab.RemoveAt*
+  nameWithType.vb: EntriesTab.RemoveAt(Integer)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+- uid: RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  commentId: M:RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  id: GetEnumerator
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: EntriesTab.GetEnumerator()
+  fullName: RainWorldBestiary.Types.EntriesTab.GetEnumerator()
+  type: Method
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  example: []
+  syntax:
+    content: public IEnumerator<Entry> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry}
+    content.vb: Public Function GetEnumerator() As IEnumerator(Of Entry)
+  overload: RainWorldBestiary.Types.EntriesTab.GetEnumerator*
+- uid: RainWorldBestiary.Types.EntriesTab.Count
+  commentId: P:RainWorldBestiary.Types.EntriesTab.Count
+  id: Count
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: EntriesTab.Count
+  fullName: RainWorldBestiary.Types.EntriesTab.Count
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Gets the amount of entries in this tab
+  example: []
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: RainWorldBestiary.Types.EntriesTab.Count*
+- uid: RainWorldBestiary.Types.EntriesTab.Item(System.Int32)
+  commentId: P:RainWorldBestiary.Types.EntriesTab.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: EntriesTab.this[int]
+  fullName: RainWorldBestiary.Types.EntriesTab.this[int]
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Gets or sets an entry at the given index
+  example: []
+  syntax:
+    content: public Entry this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: RainWorldBestiary.Types.Entry
+    content.vb: Public Default Property this[](index As Integer) As Entry
+  overload: RainWorldBestiary.Types.EntriesTab.Item*
+  nameWithType.vb: EntriesTab.this[](Integer)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.this[](Integer)
+  name.vb: this[](Integer)
+- uid: RainWorldBestiary.Types.EntriesTab.Item(System.String)
+  commentId: P:RainWorldBestiary.Types.EntriesTab.Item(System.String)
+  id: Item(System.String)
+  parent: RainWorldBestiary.Types.EntriesTab
+  langs:
+  - csharp
+  - vb
+  name: this[string]
+  nameWithType: EntriesTab.this[string]
+  fullName: RainWorldBestiary.Types.EntriesTab.this[string]
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: Gets an entry with the given name
+  example: []
+  syntax:
+    content: public Entry this[string entryName] { get; }
+    parameters:
+    - id: entryName
+      type: System.String
+    return:
+      type: RainWorldBestiary.Types.Entry
+    content.vb: Public ReadOnly Default Property this[](entryName As String) As Entry
+  overload: RainWorldBestiary.Types.EntriesTab.Item*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: ''
+  nameWithType.vb: EntriesTab.this[](String)
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.this[](String)
+  name.vb: this[](String)
+references:
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.TitleSprite
+  commentId: T:RainWorldBestiary.Types.TitleSprite
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.TitleSprite.html
+  name: TitleSprite
+  nameWithType: TitleSprite
+  fullName: RainWorldBestiary.Types.TitleSprite
+- uid: RainWorldBestiary.Types.EntriesTab
+  commentId: T:RainWorldBestiary.Types.EntriesTab
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html
+  name: EntriesTab
+  nameWithType: EntriesTab
+  fullName: RainWorldBestiary.Types.EntriesTab
+- uid: RainWorldBestiary.Types.EntriesTab.#ctor*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.#ctor
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab__ctor
+  name: EntriesTab
+  nameWithType: EntriesTab.EntriesTab
+  fullName: RainWorldBestiary.Types.EntriesTab.EntriesTab
+  nameWithType.vb: EntriesTab.New
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.New
+  name.vb: New
+- uid: System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+  commentId: T:System.Collections.Generic.IEnumerable{RainWorldBestiary.Types.Entry}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Entry>
+  nameWithType: IEnumerable<Entry>
+  fullName: System.Collections.Generic.IEnumerable<RainWorldBestiary.Types.Entry>
+  nameWithType.vb: IEnumerable(Of Entry)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry)
+  name.vb: IEnumerable(Of Entry)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: RainWorldBestiary.Types.Entry[]
+  isExternal: true
+  href: RainWorldBestiary.Types.Entry.html
+  name: Entry[]
+  nameWithType: Entry[]
+  fullName: RainWorldBestiary.Types.Entry[]
+  nameWithType.vb: Entry()
+  fullName.vb: RainWorldBestiary.Types.Entry()
+  name.vb: Entry()
+  spec.csharp:
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: (
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTab.Add*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Add
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Add_RainWorldBestiary_Types_Entry_
+  name: Add
+  nameWithType: EntriesTab.Add
+  fullName: RainWorldBestiary.Types.EntriesTab.Add
+- uid: RainWorldBestiary.Types.Entry
+  commentId: T:RainWorldBestiary.Types.Entry
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.Entry.html
+  name: Entry
+  nameWithType: Entry
+  fullName: RainWorldBestiary.Types.Entry
+- uid: RainWorldBestiary.Types.EntryInfo
+  commentId: T:RainWorldBestiary.Types.EntryInfo
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.EntryInfo.html
+  name: EntryInfo
+  nameWithType: EntryInfo
+  fullName: RainWorldBestiary.Types.EntryInfo
+- uid: RainWorldBestiary.Types.Description
+  commentId: T:RainWorldBestiary.Types.Description
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.Description.html
+  name: Description
+  nameWithType: Description
+  fullName: RainWorldBestiary.Types.Description
+- uid: RainWorldBestiary.Types.EntriesTab.AddRange*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.AddRange
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_AddRange_System_Collections_Generic_IEnumerable_RainWorldBestiary_Types_Entry__
+  name: AddRange
+  nameWithType: EntriesTab.AddRange
+  fullName: RainWorldBestiary.Types.EntriesTab.AddRange
+- uid: System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry}
+  commentId: T:System.Collections.Generic.IEnumerator{RainWorldBestiary.Types.Entry}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<Entry>
+  nameWithType: IEnumerator<Entry>
+  fullName: System.Collections.Generic.IEnumerator<RainWorldBestiary.Types.Entry>
+  nameWithType.vb: IEnumerator(Of Entry)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of RainWorldBestiary.Types.Entry)
+  name.vb: IEnumerator(Of Entry)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: RainWorldBestiary.Types.Entry
+    name: Entry
+    isExternal: true
+    href: RainWorldBestiary.Types.Entry.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: RainWorldBestiary.Types.EntriesTab.MergeWith*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.MergeWith
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_MergeWith_RainWorldBestiary_Types_EntriesTab__
+  name: MergeWith
+  nameWithType: EntriesTab.MergeWith
+  fullName: RainWorldBestiary.Types.EntriesTab.MergeWith
+- uid: RainWorldBestiary.Types.EntriesTab.TryGet*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.TryGet
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_TryGet_System_String_RainWorldBestiary_Types_Entry__
+  name: TryGet
+  nameWithType: EntriesTab.TryGet
+  fullName: RainWorldBestiary.Types.EntriesTab.TryGet
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: RainWorldBestiary.Types.EntriesTab.Clear*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Clear
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Clear
+  name: Clear
+  nameWithType: EntriesTab.Clear
+  fullName: RainWorldBestiary.Types.EntriesTab.Clear
+- uid: RainWorldBestiary.Types.EntriesTab.Contains*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Contains
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Contains_RainWorldBestiary_Types_Entry_
+  name: Contains
+  nameWithType: EntriesTab.Contains
+  fullName: RainWorldBestiary.Types.EntriesTab.Contains
+- uid: RainWorldBestiary.Types.EntriesTab.CopyTo*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.CopyTo
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_CopyTo_RainWorldBestiary_Types_Entry___System_Int32_
+  name: CopyTo
+  nameWithType: EntriesTab.CopyTo
+  fullName: RainWorldBestiary.Types.EntriesTab.CopyTo
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: RainWorldBestiary.Types.EntriesTab.Remove*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Remove
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Remove_RainWorldBestiary_Types_Entry_
+  name: Remove
+  nameWithType: EntriesTab.Remove
+  fullName: RainWorldBestiary.Types.EntriesTab.Remove
+- uid: RainWorldBestiary.Types.EntriesTab.RemoveAt*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.RemoveAt
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_RemoveAt_System_Int32_
+  name: RemoveAt
+  nameWithType: EntriesTab.RemoveAt
+  fullName: RainWorldBestiary.Types.EntriesTab.RemoveAt
+- uid: RainWorldBestiary.Types.EntriesTab.GetEnumerator*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.GetEnumerator
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_GetEnumerator
+  name: GetEnumerator
+  nameWithType: EntriesTab.GetEnumerator
+  fullName: RainWorldBestiary.Types.EntriesTab.GetEnumerator
+- uid: RainWorldBestiary.Types.EntriesTab.Count*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Count
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Count
+  name: Count
+  nameWithType: EntriesTab.Count
+  fullName: RainWorldBestiary.Types.EntriesTab.Count
+- uid: RainWorldBestiary.Types.EntriesTab.Item*
+  commentId: Overload:RainWorldBestiary.Types.EntriesTab.Item
+  isExternal: true
+  href: RainWorldBestiary.Types.EntriesTab.html#RainWorldBestiary_Types_EntriesTab_Item_System_Int32_
+  name: this
+  nameWithType: EntriesTab.this
+  fullName: RainWorldBestiary.Types.EntriesTab.this
+  nameWithType.vb: EntriesTab.this[]
+  fullName.vb: RainWorldBestiary.Types.EntriesTab.this[]
+  name.vb: this[]
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException

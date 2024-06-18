@@ -1,0 +1,202 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Types.OperationType
+  commentId: T:RainWorldBestiary.Types.OperationType
+  id: OperationType
+  parent: RainWorldBestiary.Types
+  children:
+  - RainWorldBestiary.Types.OperationType.And
+  - RainWorldBestiary.Types.OperationType.NAnd
+  - RainWorldBestiary.Types.OperationType.NOr
+  - RainWorldBestiary.Types.OperationType.Or
+  - RainWorldBestiary.Types.OperationType.XAnd
+  - RainWorldBestiary.Types.OperationType.XOr
+  langs:
+  - csharp
+  - vb
+  name: OperationType
+  nameWithType: OperationType
+  fullName: RainWorldBestiary.Types.OperationType
+  type: Enum
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: A type of operation gate that can be applied to bools
+  example: []
+  syntax:
+    content: public enum OperationType
+    content.vb: Public Enum OperationType
+- uid: RainWorldBestiary.Types.OperationType.And
+  commentId: F:RainWorldBestiary.Types.OperationType.And
+  id: And
+  parent: RainWorldBestiary.Types.OperationType
+  langs:
+  - csharp
+  - vb
+  name: And
+  nameWithType: OperationType.And
+  fullName: RainWorldBestiary.Types.OperationType.And
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    True if both the values are true
+
+    <pre><code class="lang-csharp">0 - 0 = 0</code></pre><pre><code class="lang-csharp">1 - 0 = 0</code></pre><pre><code class="lang-csharp">0 - 1 = 0</code></pre><pre><code class="lang-csharp">1 - 1 = 1</code></pre>
+  example: []
+  syntax:
+    content: And = 0
+    return:
+      type: RainWorldBestiary.Types.OperationType
+- uid: RainWorldBestiary.Types.OperationType.Or
+  commentId: F:RainWorldBestiary.Types.OperationType.Or
+  id: Or
+  parent: RainWorldBestiary.Types.OperationType
+  langs:
+  - csharp
+  - vb
+  name: Or
+  nameWithType: OperationType.Or
+  fullName: RainWorldBestiary.Types.OperationType.Or
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    True if either of the inputs are true
+
+    <pre><code class="lang-csharp">0 - 0 = 0</code></pre><pre><code class="lang-csharp">1 - 0 = 1</code></pre><pre><code class="lang-csharp">0 - 1 = 1</code></pre><pre><code class="lang-csharp">1 - 1 = 1</code></pre>
+  example: []
+  syntax:
+    content: Or = 1
+    return:
+      type: RainWorldBestiary.Types.OperationType
+- uid: RainWorldBestiary.Types.OperationType.XOr
+  commentId: F:RainWorldBestiary.Types.OperationType.XOr
+  id: XOr
+  parent: RainWorldBestiary.Types.OperationType
+  langs:
+  - csharp
+  - vb
+  name: XOr
+  nameWithType: OperationType.XOr
+  fullName: RainWorldBestiary.Types.OperationType.XOr
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    True if either of the inputs are true, but not when both inputs are true
+
+    <pre><code class="lang-csharp">0 - 0 = 0</code></pre><pre><code class="lang-csharp">1 - 0 = 1</code></pre><pre><code class="lang-csharp">0 - 1 = 1</code></pre><pre><code class="lang-csharp">1 - 1 = 0</code></pre>
+  example: []
+  syntax:
+    content: XOr = 2
+    return:
+      type: RainWorldBestiary.Types.OperationType
+- uid: RainWorldBestiary.Types.OperationType.NAnd
+  commentId: F:RainWorldBestiary.Types.OperationType.NAnd
+  id: NAnd
+  parent: RainWorldBestiary.Types.OperationType
+  langs:
+  - csharp
+  - vb
+  name: NAnd
+  nameWithType: OperationType.NAnd
+  fullName: RainWorldBestiary.Types.OperationType.NAnd
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    True if either value is false
+
+    <pre><code class="lang-csharp">0 - 0 = 1</code></pre><pre><code class="lang-csharp">1 - 0 = 1</code></pre><pre><code class="lang-csharp">0 - 1 = 1</code></pre><pre><code class="lang-csharp">1 - 1 = 0</code></pre>
+  example: []
+  syntax:
+    content: NAnd = 3
+    return:
+      type: RainWorldBestiary.Types.OperationType
+- uid: RainWorldBestiary.Types.OperationType.NOr
+  commentId: F:RainWorldBestiary.Types.OperationType.NOr
+  id: NOr
+  parent: RainWorldBestiary.Types.OperationType
+  langs:
+  - csharp
+  - vb
+  name: NOr
+  nameWithType: OperationType.NOr
+  fullName: RainWorldBestiary.Types.OperationType.NOr
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    True if neither value is true
+
+    <pre><code class="lang-csharp">0 - 0 = 1</code></pre><pre><code class="lang-csharp">1 - 0 = 0</code></pre><pre><code class="lang-csharp">0 - 1 = 0</code></pre><pre><code class="lang-csharp">1 - 1 = 0</code></pre>
+  example: []
+  syntax:
+    content: NOr = 4
+    return:
+      type: RainWorldBestiary.Types.OperationType
+- uid: RainWorldBestiary.Types.OperationType.XAnd
+  commentId: F:RainWorldBestiary.Types.OperationType.XAnd
+  id: XAnd
+  parent: RainWorldBestiary.Types.OperationType
+  langs:
+  - csharp
+  - vb
+  name: XAnd
+  nameWithType: OperationType.XAnd
+  fullName: RainWorldBestiary.Types.OperationType.XAnd
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary.Types
+  summary: >-
+    True if both values are the same
+
+    <pre><code class="lang-csharp">0 - 0 = 1</code></pre><pre><code class="lang-csharp">1 - 0 = 0</code></pre><pre><code class="lang-csharp">0 - 1 = 0</code></pre><pre><code class="lang-csharp">1 - 1 = 1</code></pre>
+  example: []
+  syntax:
+    content: XAnd = 5
+    return:
+      type: RainWorldBestiary.Types.OperationType
+references:
+- uid: RainWorldBestiary.Types
+  commentId: N:RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Types
+  nameWithType: RainWorldBestiary.Types
+  fullName: RainWorldBestiary.Types
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Types
+    name: Types
+    isExternal: true
+    href: RainWorldBestiary.Types.html
+- uid: RainWorldBestiary.Types.OperationType
+  commentId: T:RainWorldBestiary.Types.OperationType
+  parent: RainWorldBestiary.Types
+  isExternal: true
+  href: RainWorldBestiary.Types.OperationType.html
+  name: OperationType
+  nameWithType: OperationType
+  fullName: RainWorldBestiary.Types.OperationType

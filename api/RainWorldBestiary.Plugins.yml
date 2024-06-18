@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Plugins
+  commentId: N:RainWorldBestiary.Plugins
+  id: RainWorldBestiary.Plugins
+  children:
+  - RainWorldBestiary.Plugins.BestiaryPlugin
+  langs:
+  - csharp
+  - vb
+  name: RainWorldBestiary.Plugins
+  nameWithType: RainWorldBestiary.Plugins
+  fullName: RainWorldBestiary.Plugins
+  type: Namespace
+  assemblies:
+  - RainWorldBestiary
+references:
+- uid: RainWorldBestiary.Plugins.BestiaryPlugin
+  commentId: T:RainWorldBestiary.Plugins.BestiaryPlugin
+  parent: RainWorldBestiary.Plugins
+  isExternal: true
+  href: RainWorldBestiary.Plugins.BestiaryPlugin.html
+  name: BestiaryPlugin
+  nameWithType: BestiaryPlugin
+  fullName: RainWorldBestiary.Plugins.BestiaryPlugin
+- uid: RainWorldBestiary.Plugins
+  commentId: N:RainWorldBestiary.Plugins
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary.Plugins
+  nameWithType: RainWorldBestiary.Plugins
+  fullName: RainWorldBestiary.Plugins
+  spec.csharp:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Plugins
+    name: Plugins
+    isExternal: true
+    href: RainWorldBestiary.Plugins.html
+  spec.vb:
+  - uid: RainWorldBestiary
+    name: RainWorldBestiary
+    isExternal: true
+    href: RainWorldBestiary.html
+  - name: .
+  - uid: RainWorldBestiary.Plugins
+    name: Plugins
+    isExternal: true
+    href: RainWorldBestiary.Plugins.html

@@ -1,0 +1,506 @@
+### YamlMime:ManagedReference
+items:
+- uid: RainWorldBestiary.Bestiary.Settings
+  commentId: T:RainWorldBestiary.Bestiary.Settings
+  id: Bestiary.Settings
+  parent: RainWorldBestiary
+  children:
+  - RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  - RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  - RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  - RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  - RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  - RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  - RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  langs:
+  - csharp
+  - vb
+  name: Bestiary.Settings
+  nameWithType: Bestiary.Settings
+  fullName: RainWorldBestiary.Bestiary.Settings
+  type: Class
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: The class that holds all the remix menu options and their current values
+  example: []
+  syntax:
+    content: public static class Bestiary.Settings
+    content.vb: Public Module Bestiary.Settings
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  id: ShowModuleLockPips
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: ShowModuleLockPips
+  nameWithType: Bestiary.Settings.ShowModuleLockPips
+  fullName: RainWorldBestiary.Bestiary.Settings.ShowModuleLockPips
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: Whether to show the little pips in the top right while reading an entry, to show how many modules of the bestiary you have unlocked
+  example: []
+  syntax:
+    content: public static Configurable<bool> ShowModuleLockPips
+    return:
+      type: Configurable{System.Boolean}
+    content.vb: Public Shared ShowModuleLockPips As Configurable(Of Boolean)
+- uid: RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  commentId: F:RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  id: PerformTextAnimations
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: PerformTextAnimations
+  nameWithType: Bestiary.Settings.PerformTextAnimations
+  fullName: RainWorldBestiary.Bestiary.Settings.PerformTextAnimations
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: Whether to perform an animation when going to read an entry
+  example: []
+  syntax:
+    content: public static Configurable<bool> PerformTextAnimations
+    return:
+      type: Configurable{System.Boolean}
+    content.vb: Public Shared PerformTextAnimations As Configurable(Of Boolean)
+- uid: RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  id: ShowManualButton
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: ShowManualButton
+  nameWithType: Bestiary.Settings.ShowManualButton
+  fullName: RainWorldBestiary.Bestiary.Settings.ShowManualButton
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: Whether to show the "Manual" button in the main bestiary menu
+  example: []
+  syntax:
+    content: public static Configurable<bool> ShowManualButton
+    return:
+      type: Configurable{System.Boolean}
+    content.vb: Public Shared ShowManualButton As Configurable(Of Boolean)
+- uid: RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  id: ConsistentTitleSpacing
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: ConsistentTitleSpacing
+  nameWithType: Bestiary.Settings.ConsistentTitleSpacing
+  fullName: RainWorldBestiary.Bestiary.Settings.ConsistentTitleSpacing
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: Makes the generated title in the menus use consistent spacing between each character, which brings them further apart, but makes the spacing more consistent.
+  example: []
+  syntax:
+    content: public static Configurable<bool> ConsistentTitleSpacing
+    return:
+      type: Configurable{System.Boolean}
+    content.vb: Public Shared ConsistentTitleSpacing As Configurable(Of Boolean)
+- uid: RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  commentId: F:RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  id: ShowTitleIcons
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: ShowTitleIcons
+  nameWithType: Bestiary.Settings.ShowTitleIcons
+  fullName: RainWorldBestiary.Bestiary.Settings.ShowTitleIcons
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: Determines whether the icons of the entry should appear next to the title (that appears when reading the entry)
+  example: []
+  syntax:
+    content: public static Configurable<bool> ShowTitleIcons
+    return:
+      type: Configurable{System.Boolean}
+    content.vb: Public Shared ShowTitleIcons As Configurable(Of Boolean)
+- uid: RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  commentId: F:RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  id: UnlockAllEntries
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: UnlockAllEntries
+  nameWithType: Bestiary.Settings.UnlockAllEntries
+  fullName: RainWorldBestiary.Bestiary.Settings.UnlockAllEntries
+  type: Field
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: Whether all bestiary entries should be unlocked and completely readable
+  example: []
+  syntax:
+    content: public static Configurable<bool> UnlockAllEntries
+    return:
+      type: Configurable{System.Boolean}
+    content.vb: Public Shared UnlockAllEntries As Configurable(Of Boolean)
+- uid: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  commentId: P:RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  id: MenuFadeTimeSeconds
+  parent: RainWorldBestiary.Bestiary.Settings
+  langs:
+  - csharp
+  - vb
+  name: MenuFadeTimeSeconds
+  nameWithType: Bestiary.Settings.MenuFadeTimeSeconds
+  fullName: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  type: Property
+  assemblies:
+  - RainWorldBestiary
+  namespace: RainWorldBestiary
+  summary: The time the bestiary menu's should take to fade between each other, does not affect non bestiary menus
+  example: []
+  syntax:
+    content: public static float MenuFadeTimeSeconds { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property MenuFadeTimeSeconds As Single
+  overload: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds*
+references:
+- uid: RainWorldBestiary
+  commentId: N:RainWorldBestiary
+  isExternal: true
+  href: RainWorldBestiary.html
+  name: RainWorldBestiary
+  nameWithType: RainWorldBestiary
+  fullName: RainWorldBestiary
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Configurable{System.Boolean}
+  commentId: '!:Configurable{System.Boolean}'
+  definition: Configurable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: Configurable<bool>
+  nameWithType: Configurable<bool>
+  fullName: Configurable<bool>
+  nameWithType.vb: Configurable(Of Boolean)
+  fullName.vb: Configurable(Of Boolean)
+  name.vb: Configurable(Of Boolean)
+  spec.csharp:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Configurable`1
+  isExternal: true
+  name: Configurable<>
+  nameWithType: Configurable<>
+  fullName: Configurable<>
+  nameWithType.vb: Configurable(Of )
+  fullName.vb: Configurable(Of )
+  name.vb: Configurable(Of )
+  spec.csharp:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: <
+  - name: '>'
+  spec.vb:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: ''
+  - name: )
+- uid: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds*
+  commentId: Overload:RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+  isExternal: true
+  href: RainWorldBestiary.Bestiary.Settings.html#RainWorldBestiary_Bestiary_Settings_MenuFadeTimeSeconds
+  name: MenuFadeTimeSeconds
+  nameWithType: Bestiary.Settings.MenuFadeTimeSeconds
+  fullName: RainWorldBestiary.Bestiary.Settings.MenuFadeTimeSeconds
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
