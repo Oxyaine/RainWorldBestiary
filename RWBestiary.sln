@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docfx.json = docfx.json
 		IDEASnBUGS.md = IDEASnBUGS.md
 		index.md = index.md
+		articles\introduction.md = articles\introduction.md
 		README.md = README.md
 		articles\json-components.md = articles\json-components.md
 		articles\structure.md = articles\structure.md
