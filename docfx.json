@@ -19,7 +19,9 @@
           "**/*.{md,yml}"
         ],
         "exclude": [
-          "docs/**"
+          "docs/**",
+          "**/README.md",
+          "**/IDEASnBUGS.md"
         ]
       }
     ],
