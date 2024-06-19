@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Namespace RainWorldBestiary | Rain World Bestiary </title>
+      <title>Description | Rain World Bestiary </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Namespace RainWorldBestiary | Rain World Bestiary ">
+      <meta name="title" content="Description | Rain World Bestiary ">
       
       
-      <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
-      <meta name="docfx:rel" content="../">
+      <meta name="docfx:rel" content="../../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/description.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./../public/docfx.min.js"></script>
+      <script type="module" src="./../../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -39,12 +39,12 @@
 
   </head>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Rain World Bestiary">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Rain World Bestiary">
             Rain World Bestiary
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,43 +84,32 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="RainWorldBestiary">
+        <article data-uid="">
+<h1 id="description">Description</h1>
 
-  <h1 id="RainWorldBestiary" data-uid="RainWorldBestiary" class="text-break">Namespace RainWorldBestiary</h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-
-    <h3 id="classes">
-Classes
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="RainWorldBestiary.Bestiary.html">Bestiary</a></dt>
-      <dd><p>The main class for the bestiary, everything should be accessible from this class</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="RainWorldBestiary.Bestiary.Extensions.html">Bestiary.Extensions</a></dt>
-      <dd><p>A class with some extension methods, to add some partial support for adding your own entries through code</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="RainWorldBestiary.Bestiary.Settings.html">Bestiary.Settings</a></dt>
-      <dd><p>The class that holds all the remix menu options and their current values</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="RainWorldBestiary.Extensions.html">Extensions</a></dt>
-      <dd><p>A class with some extensions to speed up certain tasks</p>
-</dd>
-    </dl>
-
+<p>An entry's description is an array of description modules, each module can be given custom unlock behaviour using <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token">unlock tokens</a></p>
+<h4 id="unlock_token--unlocktoken">&quot;unlock_token&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token">UnlockToken</a></h4>
+<p><code>Default = null</code>
+The unlock token of this description module, use this if your module only has 1 condition, otherwise use <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock__ids---unlocktoken">&quot;unlock_ids&quot;</a>, used to determine what requirements need to be met to unlock this part of the description</p>
+<h4 id="unlock_tokens--unlocktoken">&quot;unlock_tokens&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#unlock-token">UnlockToken</a>[]</h4>
+<p><code>Default = []</code>
+The unlock tokens of this description module, use <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#operation_against_value">&quot;operation_against_value&quot;</a> to determine which operation each module will use against the current value (defaults to and, meaning both this token and the previous token needs to be true for this entry to unlock). This is used to determine what requirements need to be met to unlock this part of the description</p>
+<h4 id="body--string">&quot;body&quot; : string</h4>
+<p>The text of this module, this gets run through the in game translator, so you can make the description something like &quot;ENTRY_BATFLY_APPEARANCE&quot;, then define a translation into whatever language using the short strings dictionary in <code>text\text_eng\strings.txt</code></p>
+<h4 id="new_line--bool">&quot;new_line&quot; : bool</h4>
+<p><code>Default = false</code>
+Whether this module and the previous module should be separated by a new line '\n'. Otherwise just separates with a space.</p>
+<h4 id="translate--bool">&quot;translate&quot; : bool</h4>
+<p><code>Default = true</code>
+Whether to run the body of this module through the in-game translator, if no translation is found, then nothing will happen</p>
 
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/description.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 

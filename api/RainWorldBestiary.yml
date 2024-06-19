@@ -8,7 +8,6 @@ items:
   - RainWorldBestiary.Bestiary.Extensions
   - RainWorldBestiary.Bestiary.Settings
   - RainWorldBestiary.Extensions
-  - RainWorldBestiary.Translator
   langs:
   - csharp
   - vb
@@ -88,13 +87,6 @@ references:
   name: Extensions
   nameWithType: Extensions
   fullName: RainWorldBestiary.Extensions
-- uid: RainWorldBestiary.Translator
-  commentId: T:RainWorldBestiary.Translator
-  isExternal: true
-  href: RainWorldBestiary.Translator.html
-  name: Translator
-  nameWithType: Translator
-  fullName: RainWorldBestiary.Translator
 - uid: RainWorldBestiary
   commentId: N:RainWorldBestiary
   isExternal: true

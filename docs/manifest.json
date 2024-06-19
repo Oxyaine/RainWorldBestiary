@@ -245,20 +245,73 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/introduction.md",
+      "source_relative_path": "articles/components/description.md",
       "output": {
         ".html": {
-          "relative_path": "articles/introduction.html"
+          "relative_path": "articles/components/description.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/json-components.md",
+      "source_relative_path": "articles/components/entry.md",
       "output": {
         ".html": {
-          "relative_path": "articles/json-components.html"
+          "relative_path": "articles/components/entry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/components/tabs.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/components/tabs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/components/title-sprite.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/components/title-sprite.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/components/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/components/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/components/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/components/unlock-token.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/components/unlock-token.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/introduction.html"
         }
       },
       "version": ""
@@ -282,6 +335,16 @@
         },
         ".json": {
           "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/token-types.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/token-types.html"
         }
       },
       "version": ""

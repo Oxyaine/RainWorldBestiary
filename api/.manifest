@@ -56,8 +56,6 @@
   "RainWorldBestiary.Plugins.BestiaryPlugin.FixedUpdate": "RainWorldBestiary.Plugins.BestiaryPlugin.yml",
   "RainWorldBestiary.Plugins.BestiaryPlugin.Start": "RainWorldBestiary.Plugins.BestiaryPlugin.yml",
   "RainWorldBestiary.Plugins.BestiaryPlugin.Update": "RainWorldBestiary.Plugins.BestiaryPlugin.yml",
-  "RainWorldBestiary.Translator": "RainWorldBestiary.Translator.yml",
-  "RainWorldBestiary.Translator.Translate(System.String)": "RainWorldBestiary.Translator.yml",
   "RainWorldBestiary.Types": "RainWorldBestiary.Types.yml",
   "RainWorldBestiary.Types.CreatureUnlockToken": "RainWorldBestiary.Types.CreatureUnlockToken.yml",
   "RainWorldBestiary.Types.CreatureUnlockToken.#ctor(RainWorldBestiary.Types.CreatureUnlockToken)": "RainWorldBestiary.Types.CreatureUnlockToken.yml",

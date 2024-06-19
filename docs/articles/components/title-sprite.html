@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Getting Started | Rain World Bestiary </title>
+      <title>Title Sprite | Rain World Bestiary </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Getting Started | Rain World Bestiary ">
+      <meta name="title" content="Title Sprite | Rain World Bestiary ">
       
       
-      <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
-      <meta name="docfx:rel" content="../">
+      <meta name="docfx:rel" content="../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/getting-started.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/title-sprite.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./../public/docfx.min.js"></script>
+      <script type="module" src="./../../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -43,8 +43,8 @@
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Rain World Bestiary">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Rain World Bestiary">
             Rain World Bestiary
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,13 +85,24 @@
         </div>
 
         <article data-uid="">
-<h1 id="getting-started">Getting Started</h1>
+<h1 id="title-sprite">Title Sprite</h1>
 
+<p>The title that appears at the top of a tab or entry while reading it. This usually shows the name of an entry, but really can be set to anything you want. If set to null or if the image isn't found in the atlas manager, an <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/master/Known%20Issues.md#issue---auto-generated-title">auto generated title</a> will be placed instead.</p>
+<h4 id="element_name--string">&quot;element_name&quot; : string</h4>
+<p>This is the name of your title element in the atlas manager, make sure to load your title into the atlas manager, or nothing will happen.
+You can do this in code using: <code>Futile.atlasManager.LoadImage()</code></p>
+<h4 id="scale--float">&quot;scale&quot; : float</h4>
+<p><code>Default = 1</code>
+The scale multiplier for your image, this will affect the size of your image on screen.</p>
+<h4 id="x_offset--int">&quot;x_offset&quot; : int</h4>
+<p>While the sprite is automatically centered, the image might be just a little bit off, so this is here to allow you to add an offset to it, positive numbers send the image to the right, while negative sends it to the left.</p>
+<h4 id="y_offset--int">&quot;y_offset&quot; : int</h4>
+<p>Same logic with the X offset, you might need some extra distance from the top of the screen, or maybe less, so positive brings the image down, while negative lifts your sprite up.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/getting-started.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/title-sprite.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

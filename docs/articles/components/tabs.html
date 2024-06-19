@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Introduction | Rain World Bestiary </title>
+      <title>Tabs | Rain World Bestiary </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Introduction | Rain World Bestiary ">
+      <meta name="title" content="Tabs | Rain World Bestiary ">
       
       
-      <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
       
-      <meta name="docfx:rel" content="../">
+      <meta name="docfx:rel" content="../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/introduction.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/tabs.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./../public/docfx.min.js"></script>
+      <script type="module" src="./../../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -43,8 +43,8 @@
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Rain World Bestiary">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Rain World Bestiary">
             Rain World Bestiary
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,23 +85,33 @@
         </div>
 
         <article data-uid="">
-<h1 id="introduction">Introduction</h1>
+<h1 id="tabs">Tabs</h1>
 
-<h2 id="entries-adding-methods">Entries Adding Methods</h2>
-<p>Entries can be made in two ways, through code, and through JSON files placed in your mod.</p>
-<ul>
-<li>While adding entries through code is possible, it's not fully supported, and it's recommended you add entries through JSON files. Adding entries through code does give slightly more customization, such as setting a custom unlock condition, and custom module unlock conditions.
-<ul>
-<li>There are ways to add custom code to the bestiary without making the bestiary a dependency, you can read a bit more on that <a href="">here</a>.</li>
-</ul>
-</li>
-<li>Using JSON Files gives you slightly less control, but is fully supported, and gives some advantages such as the bestiary managing the loading and unloading of your entries. It will also make your entries optional, meaning if the Bestiary is installed, your entries will be visible, otherwise if the Bestiary is not installed, they will remain hidden and unused.</li>
-</ul>
+<p>Tabs are categories that entries can be stored in, they appear as the first set of buttons you see when entering the bestiary menu.
+When adding entries, you can add your own tab, or you can use the <code>Modded</code> tab, for if your mod only adds a few entries.
+To add entries to the <code>Modded</code> tab, make sure your tabs name is also <code>Modded</code> (<em>case sensitive</em>), two tabs with the same name will be merged.</p>
+<p>Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your files with numbers to change the order they appear, this wont matter if your merging with another tab, as it'll use whatever position the existing tab is in.
+Entries don't care what sub directory they are in, as the entry loader looks for all files in the tab folder, including entries in sub-directories.</p>
+<p>Merging tabs add all entries to the existing tab, If your tab has a custom <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">title image</a> and the existing tab doesn't, your tabs title image will be used.</p>
+<h3 id="tabs-json-components">Tabs JSON Components</h3>
+<p>Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:</p>
+<h4 id="name--string">&quot;name&quot; : string</h4>
+<p><code>Default = (The name of the file)</code>
+The name of the tab.</p>
+<h4 id="title_image--titlesprite">&quot;title_image&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">TitleSprite</a></h4>
+<p><code>Default = null</code>
+The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">here</a>.</p>
+<h4 id="path--string">&quot;path&quot; : string</h4>
+<p><code>Default = null</code>
+The local path to the folder that contains your entries, this is a local path from your mods folder, so if your tabs are in the folder <code>\*mod directory*\bestiary\mytab</code>, you would set this to <code>bestiary\mytab</code>, as your mods folder path is prepended.</p>
+<h4 id="required_mods--string">&quot;required_mods&quot; : string[]</h4>
+<p><code>Default = []</code>
+All the mods (by their IDs) that have to be active for this tab to be visible, if one of the ids specified is not an active mod, the tab wont be visible.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/introduction.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/tabs.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

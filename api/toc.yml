@@ -11,8 +11,6 @@ items:
     name: Bestiary.Settings
   - uid: RainWorldBestiary.Extensions
     name: Extensions
-  - uid: RainWorldBestiary.Translator
-    name: Translator
 - uid: RainWorldBestiary.Hooks
   name: RainWorldBestiary.Hooks
   items:

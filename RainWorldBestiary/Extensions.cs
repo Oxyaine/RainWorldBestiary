@@ -258,7 +258,7 @@ namespace RainWorldBestiary
     /// <summary>
     /// A class for custom translation behaviour
     /// </summary>
-    public static class Translator
+    internal static class Translator
     {
         /// <summary>
         /// Translates this text using the short strings dictionary
