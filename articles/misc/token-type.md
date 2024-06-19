@@ -29,7 +29,7 @@ Here is a full list of all unlock tokens, **further down you can see a list of w
 
 
 ### Automatic
-Automatic unlock tokens are tokens that are automatically tracked and added by the mod.
+Automatic unlock tokens are tokens that are automatically tracked and added by the Bestiary.
 
 ***Please keep in mind, that most if not all of these tokens are only tracked for creatures that inherit from base game types, such as the `Creature` class , `AbstractCreature` class, and so on.***
 

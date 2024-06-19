@@ -8,9 +8,9 @@ Tabs and entries are also organized the way they are loaded from the files (alph
 Entries don't care what sub directory they are in, as the entry loader looks for all files in the tab folder, including entries in sub-directories.
 
 
-Merging tabs add all entries to the existing tab, If your tab has a custom [title image](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) and the existing tab doesn't, your tabs title image will be used.
+Merging tabs add all entries to the existing tab, If your tab has a custom Title Sprite and the existing tab doesn't, your tabs title image will be used.
 
-### Tabs JSON Components
+## Tabs JSON Components
 
 Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:
 
@@ -18,9 +18,9 @@ Tabs must be created using a JSON file, which can be used to give the tab a cust
 `Default = (The name of the file)`
 The name of the tab.
 
-#### "title_image" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite)
+#### "title_image" : TitleSprite
 `Default = null`
-The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
+The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab.
 
 #### "path" : string
 `Default = null`

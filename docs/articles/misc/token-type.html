@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Description | Rain World Bestiary </title>
+      <title>Unlock Token Types | Rain World Bestiary </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Description | Rain World Bestiary ">
+      <meta name="title" content="Unlock Token Types | Rain World Bestiary ">
       
       
       <link rel="icon" href="../../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/description.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/misc/token-type.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,28 +85,57 @@
         </div>
 
         <article data-uid="">
-<h1 id="description">Description</h1>
+<h1 id="unlock-token-types">Unlock Token Types</h1>
 
-<p>An entry's description is an array of description modules, each module can be given custom unlock behaviour using unlock tokens</p>
-<h4 id="unlock_token--unlocktoken">&quot;unlock_token&quot; : UnlockToken</h4>
-<p><code>Default = null</code>
-The unlock token of this description module, use this if your module only has 1 condition, otherwise use &quot;unlock_ids&quot;, used to determine what requirements need to be met to unlock this part of the description</p>
-<h4 id="unlock_tokens--unlocktoken">&quot;unlock_tokens&quot; : UnlockToken[]</h4>
-<p><code>Default = []</code>
-The unlock tokens of this description module, use &quot;operation_against_value&quot; to determine which operation each module will use against the current value (defaults to and, meaning both this token and the previous token needs to be true for this entry to unlock). This is used to determine what requirements need to be met to unlock this part of the description</p>
-<h4 id="body--string">&quot;body&quot; : string</h4>
-<p>The text of this module, this gets run through the in game translator, so you can make the description something like &quot;ENTRY_BATFLY_APPEARANCE&quot;, then define a translation into whatever language using the short strings dictionary in <code>text\text_eng\strings.txt</code></p>
-<h4 id="new_line--bool">&quot;new_line&quot; : bool</h4>
-<p><code>Default = false</code>
-Whether this module and the previous module should be separated by a new line '\n'. Otherwise just separates with a space.</p>
-<h4 id="translate--bool">&quot;translate&quot; : bool</h4>
-<p><code>Default = true</code>
-Whether to run the body of this module through the in-game translator, if no translation is found, then nothing will happen</p>
+<h3 id="unlock-tokens">Unlock Tokens</h3>
+<p>Here is a full list of all unlock tokens, <strong>further down you can see a list of which tokens are automatically tracked</strong>, although despite them being automatically tracked, you can also just track them manually, if you'd like.
+<em><strong>To specify a specific token type in a JSON file, you can either enter its name or its id, as either a string or an int.</strong></em></p>
+<ul>
+<li>None = 0 : This means this part of the description will always be visible if the entry is visible, however, unlike modules with no unlock token(s), this wont make the entry visible</li>
+<li>Tamed = 1 : For when the player tames the creature</li>
+<li>Evaded = 2 : For when the player evades the creature</li>
+<li>Snuck Past = 3 : For when the player sneaks past the creature</li>
+<li>Observed = 4 : For when the player sees the creature</li>
+<li>Observe Fear = 5 : For when the player sees the creature fear something</li>
+<li>Observe Food = 6 : For when the player sees the creature want to eat something or eating something</li>
+<li>Observe Hunting = 7 : For when the player gets hunted / chased by the creature</li>
+<li>Killed = 8 : When the creature gets killed by the player</li>
+<li>Impaled = 9 : When the creature gets impaled with a spear, by the player</li>
+<li>Stunned = 10 : When the creature gets stunned with a rock, by the player</li>
+<li>Killed Player = 11 : When the player is killed by the creature</li>
+<li>Grabbed Player = 12 : When the player gets grabbed by the creature</li>
+<li>Eaten = 13 : When the player eats the creature</li>
+<li>Observe Attraction = 14 : For when the player observes a creature being attracted to something, like batflies to batnip, etc</li>
+<li>Used As Lure = 15 : For when the player uses the creature to lure / distract something else</li>
+<li>Observe Hiding = 16 : For when the player observes a creature hiding</li>
+<li>Observe Behaviour = 17 : For when the player observes a creature doing a behaviour</li>
+<li>Heard Player = 18 : When a creature hears the player</li>
+<li>Player Grabbed = 19 : When the player grabs the creature</li>
+<li>Observe Rivals = 20 : When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory</li>
+<li>Observe Attacking = 21 : When the player observes the creature attacking another creature</li>
+</ul>
+<h3 id="automatic">Automatic</h3>
+<p>Automatic unlock tokens are tokens that are automatically tracked and added by the Bestiary.</p>
+<p><em><strong>Please keep in mind, that most if not all of these tokens are only tracked for creatures that inherit from base game types, such as the <code>Creature</code> class , <code>AbstractCreature</code> class, and so on.</strong></em></p>
+<p>Here is a list of all current automatic token types:</p>
+<ul>
+<li>Observe Food = 6 : For when the player sees the creature want to eat something or eating something</li>
+<li>Killed = 8 : When the creature gets killed by the player</li>
+<li>Impaled = 9 : When the creature gets impaled with a spear, by the player</li>
+<li>Stunned = 10 : When the creature gets stunned with a rock, by the player</li>
+<li>Killed Player = 11 : When the player is killed by the creature</li>
+<li>Grabbed Player = 12 : When the player gets grabbed by the creature</li>
+<li>Eaten = 13 : When the player eats the creature</li>
+<li>Heard Player = 18 : When the creature hears the player</li>
+<li>Player Grabbed = 19 : When the player grabs the creature</li>
+<li>Observe Rivals = 20 : When the player observes the creature fighting another creature as a rival, like two lizards fighting for territory</li>
+<li>Observe Attacking = 21 : When the player observes the creature attacking another creature, excluding food</li>
+</ul>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/components/description.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Oxyaine/RainWorldBestiary/blob/indev/articles/misc/token-type.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

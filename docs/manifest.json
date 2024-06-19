@@ -318,6 +318,49 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/misc/operation-type.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/misc/operation-type.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/misc/special-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/misc/special-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/misc/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/misc/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/misc/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/misc/token-type.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/misc/token-type.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/structure.md",
       "output": {
         ".html": {
@@ -335,16 +378,6 @@
         },
         ".json": {
           "relative_path": "articles/toc.json"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "articles/token-types.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/token-types.html"
         }
       },
       "version": ""

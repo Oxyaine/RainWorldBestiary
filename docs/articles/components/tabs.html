@@ -92,15 +92,15 @@ When adding entries, you can add your own tab, or you can use the <code>Modded</
 To add entries to the <code>Modded</code> tab, make sure your tabs name is also <code>Modded</code> (<em>case sensitive</em>), two tabs with the same name will be merged.</p>
 <p>Tabs and entries are also organized the way they are loaded from the files (alphabetically), so you can prefix your files with numbers to change the order they appear, this wont matter if your merging with another tab, as it'll use whatever position the existing tab is in.
 Entries don't care what sub directory they are in, as the entry loader looks for all files in the tab folder, including entries in sub-directories.</p>
-<p>Merging tabs add all entries to the existing tab, If your tab has a custom <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">title image</a> and the existing tab doesn't, your tabs title image will be used.</p>
-<h3 id="tabs-json-components">Tabs JSON Components</h3>
+<p>Merging tabs add all entries to the existing tab, If your tab has a custom Title Sprite and the existing tab doesn't, your tabs title image will be used.</p>
+<h2 id="tabs-json-components">Tabs JSON Components</h2>
 <p>Tabs must be created using a JSON file, which can be used to give the tab a custom name and specify some additional details about the tab. The JSON file can contain the following elements:</p>
 <h4 id="name--string">&quot;name&quot; : string</h4>
 <p><code>Default = (The name of the file)</code>
 The name of the tab.</p>
-<h4 id="title_image--titlesprite">&quot;title_image&quot; : <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">TitleSprite</a></h4>
+<h4 id="title_image--titlesprite">&quot;title_image&quot; : TitleSprite</h4>
 <p><code>Default = null</code>
-The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab. You can see some more info <a href="https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite">here</a>.</p>
+The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab.</p>
 <h4 id="path--string">&quot;path&quot; : string</h4>
 <p><code>Default = null</code>
 The local path to the folder that contains your entries, this is a local path from your mods folder, so if your tabs are in the folder <code>\*mod directory*\bestiary\mytab</code>, you would set this to <code>bestiary\mytab</code>, as your mods folder path is prepended.</p>

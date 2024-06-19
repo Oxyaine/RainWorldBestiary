@@ -16,7 +16,7 @@ The text / tip that is shown when attempting to read the entry while its locked.
 This gets run through the in game translator, so you can just give it an ID and add the translation logic for it in the short strings dictionary file.
 
 #### "entry_icon" : string
-The icon of the entry, use this if your entry only has 1 icon, otherwise use ["entry_icons"](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#entry_icons--string).
+The icon of the entry, use this if your entry only has 1 icon, otherwise use "entry_icons".
 This is the name of the icon in the atlas manager, make sure to load all your custom icons into the atlas manager, or nothing will happen.
 You can do this in code using:
 `Futile.atlasManager.LoadImage()`
@@ -26,15 +26,15 @@ The multiple icons of your entry, use this if your entry has multiple icons. Thi
 
 #### "icons_next_to_title" : bool
 `Default = true`
-Whether to show the entry's icon(s) next to the [entry's title](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite) while reading the entry.
+Whether to show the entry's icon(s) next to the entry's title while reading the entry.
 
-#### "title_sprite" : [TitleSprite](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite)
+#### "title_sprite" : TitleSprite
 `Default = null`
-The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#title-sprite).
+The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites here.
 
 #### "color" : string*
 `Default = dff5d6`
 The hex string for a color, (*uses the last six characters of the string as the hex value*) that determines the color of the entry's button when its unlocked.
 
-#### "description" : [Description](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description)
-The description of the entry, uses a custom class that can be found [here](https://github.com/Oxyaine/RainWorldBestiary?tab=readme-ov-file#description).
+#### "description" : Description
+The description of the entry.
