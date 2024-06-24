@@ -18,7 +18,7 @@ Tabs must be created using a JSON file, which can be used to give the tab a cust
 `Default = (The name of the file)`
 The name of the tab.
 
-#### "title_image" : TitleSprite
+#### "title_sprite" : TitleSprite
 `Default = null`
 The image that is displayed at the top of the tab while viewing it, this is the title image that displays the name of the tab.
 

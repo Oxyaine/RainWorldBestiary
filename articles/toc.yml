@@ -4,7 +4,7 @@
   href: structure.md
 - name: Walkthroughs
   href: walkthrough.md
-- name: JSON Components
+- name: JSON Properties
   homepage: json-components.md
   href: components/toc.yml
 - name: Misc

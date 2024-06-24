@@ -27,11 +27,14 @@ namespace RainWorldBestiary.Types
         [JsonProperty("required_mods")]
         public string[] RequiredMods = new string[0];
 
+        [JsonProperty("title_image"), Obsolete("Use TitleSprite Instead")]
+        internal TitleSprite TitleImage { set => TitleSprite = value; }
+
         /// <summary>
         /// The title image that gets displayed at the top when of the screen when viewing the tab, if set to null, or if the image isn't found, some generated text will be placed instead
         /// </summary>
         /// <remarks>By title, I mean the name of the tab that is visible at the top while viewing entries in the tab</remarks>
-        [JsonProperty("title_image")]
+        [JsonProperty("title_sprite")]
         public TitleSprite TitleSprite = null;
 
         [JsonIgnore]

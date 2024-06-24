@@ -403,6 +403,56 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/walkthrough/1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/walkthrough/1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/walkthrough/2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/walkthrough/2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/walkthrough/3.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/walkthrough/3.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/walkthrough/4.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/walkthrough/4.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/walkthrough/5.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/walkthrough/5.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
