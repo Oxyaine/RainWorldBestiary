@@ -2,9 +2,10 @@
   href: introduction.md
 - name: Structure
   href: structure.md
-- name: Walkthrough
+- name: Walkthroughs
   href: walkthrough.md
 - name: JSON Components
+  homepage: json-components.md
   href: components/toc.yml
 - name: Misc
   href: misc/toc.yml

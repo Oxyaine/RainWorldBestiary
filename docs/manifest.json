@@ -318,6 +318,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/json-components.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/json-components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/misc/operation-type.md",
       "output": {
         ".html": {

@@ -139,6 +139,11 @@
     "title": "Introduction | Rain World Bestiary",
     "keywords": "Introduction Entries Adding Methods Entries can be made in two ways, through code, and through JSON files placed in your mod. There are ways to add entries without making the Bestiary a dependency; With JSON files, this is done automatically, as the Bestiary can only load your entries if it is active; With code however, you must take an additional step, You can read more on how to do this here. Through Code While adding entries through code is possible, it's not fully supported, and it's recommended you add entries through JSON files. Adding entries through code does give slightly more customization, such as setting a custom unlock condition, and custom module unlock conditions. Through JSON Files Using JSON Files gives you slightly less control, but is fully supported, and gives some advantages such as the bestiary managing the loading and unloading of your entries."
   },
+  "articles/json-components.html": {
+    "href": "articles/json-components.html",
+    "title": "JSON Components | Rain World Bestiary",
+    "keywords": "JSON Components This article assumes you already know the basics behind how the JSON format works. Tabs Entry Description Unlock Tokens Title Sprite"
+  },
   "articles/misc/operation-type.html": {
     "href": "articles/misc/operation-type.html",
     "title": "Operation Type | Rain World Bestiary",
@@ -162,11 +167,11 @@
   "articles/walkthrough.html": {
     "href": "articles/walkthrough.html",
     "title": "Walkthrough | Rain World Bestiary",
-    "keywords": "Walkthrough To get a grasp on the Structure of how to add your own entries, you should download the template here."
+    "keywords": "Walkthrough To get a grasp on the Structure of how to add your own entries, you should download the mod template here. Template Default Plugins"
   },
   "index.html": {
     "href": "index.html",
     "title": "| Rain World Bestiary",
-    "keywords": "The Bestiary is a mod that adds an encyclopedia of creatures to Rain World, this bestiary unlocks as you interact with creatures, only displaying information the user has hopefully figured out by themselves. If you have a suggestion, want to report a bug or issue (including performance issues), or ask help with something, feel free to submit an issue request on GitHub, here You can check out the walkthrough and the template to familiarize yourself with the mod, or you can check out the JSON Components if you are already familiar with the Bestiary."
+    "keywords": "The Bestiary is a mod that adds an encyclopedia of creatures to Rain World, this bestiary unlocks as you interact with creatures, only displaying information the user has hopefully figured out by themselves. If you have a feedback or a suggestion, feel free to submit a ticket here. Source Code: https://github.com/Oxyaine/RainWorldBestiary Check out the walkthrough and the template to familiarize yourself with the mod. Or you can check out the JSON Components if you are already familiar with the Bestiary."
   }
 }
