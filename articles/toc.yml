@@ -5,7 +5,6 @@
 - name: Walkthroughs
   href: walkthrough.md
 - name: JSON Properties
-  homepage: json-components.md
   href: components/toc.yml
 - name: Misc
   href: misc/toc.yml
