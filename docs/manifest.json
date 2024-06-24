@@ -404,6 +404,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/plugins-walkthrough/5.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/plugins-walkthrough/5.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/walkthrough/1.png",
       "output": {
         "resource": {
@@ -438,16 +448,6 @@
       "output": {
         "resource": {
           "relative_path": "images/walkthrough/4.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/walkthrough/5.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/walkthrough/5.png"
         }
       },
       "version": ""

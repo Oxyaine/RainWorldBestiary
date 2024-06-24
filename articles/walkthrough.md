@@ -47,10 +47,6 @@ Next
 
 To Do
 
-<img src="../images/walkthrough/5.png" />
-
-To Do
-
 ```cs
 
 ```
