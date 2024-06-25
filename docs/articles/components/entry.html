@@ -87,34 +87,34 @@
         <article data-uid="">
 <h1 id="entries">Entries</h1>
 
-<p>Entries' content is also loaded from JSON files. The name of the file determines the name of the entry (however this can be overridden with &quot;name&quot;), and the content of the file determines the rest of the entry's data.</p>
-<h3 id="name--string">&quot;name&quot; : string</h3>
+<p><a href="https://oxyaine.github.io/RainWorldBestiary/articles/structure.html#entries"><strong>Explanation</strong></a></p>
+<h2 id="name--string">&quot;name&quot; : string</h2>
 <p><code>Default = (The name of the file)</code>
 While by default the name of the file is the name of the entry, you can override the name with this property, and instead, this value you set will become the name of entry.</p>
-<h3 id="unlock_id--string">&quot;unlock_id&quot; : string</h3>
+<h2 id="unlock_id--string">&quot;unlock_id&quot; : string</h2>
 <p><code>Default = &quot;&quot;</code>
 The id of the creature that will be used to unlock this entry. You can see the ID by using <code>Bestiary.GetCreatureUnlockName()</code>, or by going to <code>AbstractCreature.creatureTemplate.name</code> of an instance of your creature, and removing the spaces.</p>
-<h3 id="locked_text--string">&quot;locked_text&quot; : string</h3>
+<h2 id="locked_text--string">&quot;locked_text&quot; : string</h2>
 <p><code>Default = &quot;This entry is locked.&quot;</code>
 The text / tip that is shown when attempting to read the entry while its locked. Can be used to show a tip on where to find the creature and so on.
 This gets run through the in game translator, so you can just give it an ID and add the translation logic for it in the short strings dictionary file.</p>
-<h3 id="entry_icon--string">&quot;entry_icon&quot; : string</h3>
+<h2 id="entry_icon--string">&quot;entry_icon&quot; : string</h2>
 <p>The icon of the entry, use this if your entry only has 1 icon, otherwise use &quot;entry_icons&quot;.
 This is the name of the icon in the atlas manager, make sure to load all your custom icons into the atlas manager, or nothing will happen.
 You can do this in code using:
 <code>Futile.atlasManager.LoadImage()</code></p>
-<h3 id="entry_icons--string">&quot;entry_icons&quot; : string[]</h3>
+<h2 id="entry_icons--string">&quot;entry_icons&quot; : string[]</h2>
 <p>The multiple icons of your entry, use this if your entry has multiple icons. This is an array of the names of your icons in the atlas manager, once again, make sure to load all your custom icons into the atlas manager, or nothing will happen.</p>
-<h3 id="icons_next_to_title--bool">&quot;icons_next_to_title&quot; : bool</h3>
+<h2 id="icons_next_to_title--bool">&quot;icons_next_to_title&quot; : bool</h2>
 <p><code>Default = true</code>
 Whether to show the entry's icon(s) next to the entry's title while reading the entry.</p>
-<h3 id="title_sprite--titlesprite">&quot;title_sprite&quot; : TitleSprite</h3>
+<h2 id="title_sprite--titlesprite">&quot;title_sprite&quot; : TitleSprite</h2>
 <p><code>Default = null</code>
 The title image that gets displayed at the top of the screen while reading the entry, you can find more info on title sprites here.</p>
-<h3 id="color--string">&quot;color&quot; : string*</h3>
+<h2 id="color--string">&quot;color&quot; : string*</h2>
 <p><code>Default = dff5d6</code>
 The hex string for a color, (<em>uses the last six characters of the string as the hex value</em>) that determines the color of the entry's button when its unlocked.</p>
-<h3 id="description--description">&quot;description&quot; : Description</h3>
+<h2 id="description--description">&quot;description&quot; : Description</h2>
 <p>The description of the entry.</p>
 
 </article>

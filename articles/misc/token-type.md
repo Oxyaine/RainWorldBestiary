@@ -1,6 +1,6 @@
 # Unlock Token Types
 
-### Unlock Tokens
+## Unlock Tokens
 Here is a full list of all unlock tokens, **further down you can see a list of which tokens are automatically tracked**, although despite them being automatically tracked, you can also just track them manually, if you'd like.
 ***To specify a specific token type in a JSON file, you can either enter its name or its id, as either a string or an int.***
 
@@ -28,7 +28,7 @@ Here is a full list of all unlock tokens, **further down you can see a list of w
 * Observe Attacking = 21 : When the player observes the creature attacking another creature
 
 
-### Automatic
+## Automatic
 Automatic unlock tokens are tokens that are automatically tracked and added by the Bestiary.
 
 ***Please keep in mind, that most if not all of these tokens are only tracked for creatures that inherit from base game types, such as the `Creature` class , `AbstractCreature` class, and so on.***
