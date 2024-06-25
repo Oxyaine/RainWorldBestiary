@@ -94,7 +94,6 @@
 <img src="../images/walkthrough/1.png">
 <p>Here you can see an example of the basic structure of a Rain World Mod, for this example the mod doesn't do anything, all we've got is the illustrations (sprites) folder and the text (translations) folder, + the two files required for a mod to be registered in game.</p>
 <p>First of all lets add the <code>bestiary</code> folder into our mod, this is the only folder the Bestiary actually accesses to check for plugins, tabs, and entries, so it's necessary if you want to add anything to the Bestiary.</p>
-<p>Your mod should now look like this.</p>
 <img src="../images/walkthrough/2.png">
 <p>Now that we've added the folder, we're going to decide what tab we want our entry to be in, tabs are categories that entries are stored in, these categories are used for separating different entries, such as the base Rain World entries from Downpour entries, and so on.</p>
 <p>To create a new tab, we'll make a folder to hold the entries that are in that tab, and a new JSON file that will tell the bestiary the tab exists.</p>
@@ -106,9 +105,9 @@
 </ul>
 <p>and</p>
 <ul>
-<li><code>name</code> -&gt; which will set the name of our tab.</li>
+<li><code>name</code> -&gt; We also have to specify a name for our tab, if this is left blank, the bestiary will use the name of the file as the tabs name.</li>
 </ul>
-<p>We can do two things, we can set the name to be the same as an already existing tab, which will cause the two tabs to merge together, or we can set a unique name to create an entirely new tab; You can read more on merging tabs <a href=""><strong>here</strong></a>.</p>
+<p>With the name we can do two things, we can set the name to be the same as an already existing tab, which will cause the two tabs to merge together, or we can set a unique name to create an entirely new tab; You can read more on merging tabs <a href=""><strong>here</strong></a>.</p>
 <p>For this example, we will create a new tab which we will call <code>My Tab</code>, just to keep things simple.</p>
 <p>Your tabs JSON file should look something like this:</p>
 <pre><code class="lang-json">{

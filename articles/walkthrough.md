@@ -13,8 +13,6 @@ Here you can see an example of the basic structure of a Rain World Mod, for this
 
 First of all lets add the `bestiary` folder into our mod, this is the only folder the Bestiary actually accesses to check for plugins, tabs, and entries, so it's necessary if you want to add anything to the Bestiary.
 
-Your mod should now look like this.
-
 <img src="../images/walkthrough/2.png" />
 
 Now that we've added the folder, we're going to decide what tab we want our entry to be in, tabs are categories that entries are stored in, these categories are used for separating different entries, such as the base Rain World entries from Downpour entries, and so on.
@@ -29,9 +27,9 @@ We will add two properties to our tab:
 - `path` -> We have to tell the Bestiary which folder this tab uses to store its entries, this is the folder starting from your mods root directory, so in this case our folder is called `MyTab`, so we will set the `path` property to `bestiary\\MyTab`.
 
 and
-- `name` -> which will set the name of our tab.
+- `name` -> We also have to specify a name for our tab, if this is left blank, the bestiary will use the name of the file as the tabs name.
 
-We can do two things, we can set the name to be the same as an already existing tab, which will cause the two tabs to merge together, or we can set a unique name to create an entirely new tab; You can read more on merging tabs [__here__]().
+With the name we can do two things, we can set the name to be the same as an already existing tab, which will cause the two tabs to merge together, or we can set a unique name to create an entirely new tab; You can read more on merging tabs [__here__]().
 
 For this example, we will create a new tab which we will call `My Tab`, just to keep things simple.
 
