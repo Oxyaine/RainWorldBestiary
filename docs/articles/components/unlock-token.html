@@ -88,19 +88,19 @@
 <h1 id="unlock-token">Unlock Token</h1>
 
 <p>Unlock tokens are the way the bestiary determines what parts of descriptions can be unlocked, you can define your own unlock token to set a condition on when your module should be made available.</p>
-<h4 id="operation_against_value--operationtype">&quot;operation_against_value&quot; : OperationType</h4>
+<h3 id="operation_against_value--operationtype">&quot;operation_against_value&quot; : OperationType</h3>
 <p><code>Default = And</code>
 The operation this unlock token will perform against the current unlock value of the token. For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked; Then if this unlock tokens operation is &quot;or&quot;, that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value.</p>
-<h4 id="token_type--tokentype">&quot;token_type&quot; : TokenType</h4>
+<h3 id="token_type--tokentype">&quot;token_type&quot; : TokenType</h3>
 <p><code>Default = null</code>
 A TokenType that represents the token type of this unlock, you can see a list of token types in the misc category, as well as their respective names and id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
 <em><strong>To specify a specific token type you can either enter its name or its id, as either a string or an int.</strong></em></p>
-<h4 id="creature_id--string">&quot;creature_id&quot; : string</h4>
+<h3 id="creature_id--string">&quot;creature_id&quot; : string</h3>
 <p>The name of this creature that this unlock token should check for, you don't want any creature killing the player to unlock this part of the description, so you set the creature id to say which creature specifically, same rules with the creature ID apply with the entry's unlock ID.</p>
-<h4 id="count--byte">&quot;count&quot; : byte</h4>
+<h3 id="count--byte">&quot;count&quot; : byte</h3>
 <p><code>Default = 1</code>
 A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.</p>
-<h4 id="special_data--string">&quot;special_data&quot; : string[]</h4>
+<h3 id="special_data--string">&quot;special_data&quot; : string[]</h3>
 <p>Special data is data that can be added to unlock tokens to give some specifics about which interactions the player should've had before this unlock token is valid, if all the strings in here are found in the registered unlock token, this will be considered valid.</p>
 
 </article>

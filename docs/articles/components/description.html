@@ -88,18 +88,18 @@
 <h1 id="description">Description</h1>
 
 <p>An entry's description is an array of description modules, each module can be given custom unlock behaviour using unlock tokens</p>
-<h4 id="unlock_token--unlocktoken">&quot;unlock_token&quot; : UnlockToken</h4>
+<h3 id="unlock_token--unlocktoken">&quot;unlock_token&quot; : UnlockToken</h3>
 <p><code>Default = null</code>
 The unlock token of this description module, use this if your module only has 1 condition, otherwise use &quot;unlock_ids&quot;, used to determine what requirements need to be met to unlock this part of the description</p>
-<h4 id="unlock_tokens--unlocktoken">&quot;unlock_tokens&quot; : UnlockToken[]</h4>
+<h3 id="unlock_tokens--unlocktoken">&quot;unlock_tokens&quot; : UnlockToken[]</h3>
 <p><code>Default = []</code>
 The unlock tokens of this description module, use &quot;operation_against_value&quot; to determine which operation each module will use against the current value (defaults to and, meaning both this token and the previous token needs to be true for this entry to unlock). This is used to determine what requirements need to be met to unlock this part of the description</p>
-<h4 id="body--string">&quot;body&quot; : string</h4>
+<h3 id="body--string">&quot;body&quot; : string</h3>
 <p>The text of this module, this gets run through the in game translator, so you can make the description something like &quot;ENTRY_BATFLY_APPEARANCE&quot;, then define a translation into whatever language using the short strings dictionary in <code>text\text_eng\strings.txt</code></p>
-<h4 id="new_line--bool">&quot;new_line&quot; : bool</h4>
+<h3 id="new_line--bool">&quot;new_line&quot; : bool</h3>
 <p><code>Default = false</code>
 Whether this module and the previous module should be separated by a new line '\n'. Otherwise just separates with a space.</p>
-<h4 id="translate--bool">&quot;translate&quot; : bool</h4>
+<h3 id="translate--bool">&quot;translate&quot; : bool</h3>
 <p><code>Default = true</code>
 Whether to run the body of this module through the in-game translator, if no translation is found, then nothing will happen</p>
 
