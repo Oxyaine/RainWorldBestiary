@@ -4,6 +4,7 @@
 
 ## "operation_against_value" : OperationType
 `Default = And`
+
 The operation this unlock token will use to compare against the current unlock state of the module. 
 
 For example, if all the previous tokens determine the module should be visible, it will compare the result of this token against that value to get the result.
@@ -13,7 +14,8 @@ To add more details, lets say all the previous tokens ended with a result of `tr
 
 
 ## "token_type" : TokenType
-`Default = null`
+`Default = None`
+
 A TokenType that represents the token type of this unlock, you can see a list of token types in the misc category, as well as their respective names and id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
 ***To specify a specific token type you can either enter its name or its id, as either a string or an int.***
 
@@ -22,6 +24,7 @@ The name of this creature that this unlock token should check for, you don't wan
 
 ## "count" : byte
 `Default = 1`
+
 A number (max 255) that represents how many times the unlock token, defined by token_type and creature_id, should be registered before this token is considered valid. Examples include needing to kill 4-5 of the creature before this module is unlocked (which you would set the value to 4 or 5 depending on what your after), and so on.
 
 ## "special_data" : string[]

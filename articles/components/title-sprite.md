@@ -8,6 +8,7 @@ You can do this in code using: `Futile.atlasManager.LoadImage()`
 
 ## "scale" : float
 `Default = 1`
+
 The scale multiplier for your image, this will affect the size of your image on screen.
 
 ## "x_offset" : int
