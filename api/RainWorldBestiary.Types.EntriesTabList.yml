@@ -123,7 +123,7 @@ items:
   summary: Adds a new tab of entries to this collection
   example: []
   syntax:
-    content: public void Add(EntriesTab item, bool merge = false)
+    content: public void Add(EntriesTab item, bool merge = true)
     parameters:
     - id: item
       type: RainWorldBestiary.Types.EntriesTab
@@ -131,7 +131,7 @@ items:
     - id: merge
       type: System.Boolean
       description: Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <xref href="RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab%40)" data-throw-if-not-resolved="false"></xref><pre><code class="lang-csharp"></code></pre>
-    content.vb: Public Sub Add(item As EntriesTab, merge As Boolean = False)
+    content.vb: Public Sub Add(item As EntriesTab, merge As Boolean = True)
   overload: RainWorldBestiary.Types.EntriesTabList.Add*
   nameWithType.vb: EntriesTabList.Add(EntriesTab, Boolean)
   fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(RainWorldBestiary.Types.EntriesTab, Boolean)
@@ -238,7 +238,7 @@ items:
   summary: Adds a new tab of entries to this collection
   example: []
   syntax:
-    content: public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = false)
+    content: public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = true)
     parameters:
     - id: tabName
       type: System.String
@@ -249,7 +249,7 @@ items:
     - id: merge
       type: System.Boolean
       description: Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <xref href="RainWorldBestiary.Types.EntriesTab.MergeWith(RainWorldBestiary.Types.EntriesTab%40)" data-throw-if-not-resolved="false"></xref><pre><code class="lang-csharp"></code></pre>
-    content.vb: Public Sub Add(tabName As String, entries As IEnumerable(Of Entry), titleSprite As TitleSprite = Nothing, merge As Boolean = False)
+    content.vb: Public Sub Add(tabName As String, entries As IEnumerable(Of Entry), titleSprite As TitleSprite = Nothing, merge As Boolean = True)
   overload: RainWorldBestiary.Types.EntriesTabList.Add*
   nameWithType.vb: EntriesTabList.Add(String, IEnumerable(Of Entry), TitleSprite, Boolean)
   fullName.vb: RainWorldBestiary.Types.EntriesTabList.Add(String, System.Collections.Generic.IEnumerable(Of RainWorldBestiary.Types.Entry), RainWorldBestiary.Types.TitleSprite, Boolean)
