@@ -4,7 +4,13 @@
 
 ## "operation_against_value" : OperationType
 `Default = And`
-The operation this unlock token will perform against the current unlock value of the token. For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked; Then if this unlock tokens operation is "or", that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value.
+The operation this unlock token will use to compare against the current unlock state of the module. 
+
+For example, if all the previous tokens determine the module should be visible, it will compare the result of this token against that value to get the result.
+
+To add more details, lets say all the previous tokens ended with a result of `true`, meaning the module should be visible, if this tokens value is `false`, and the operation type is `or`, that it will check if the current result of `true` OR if this tokens value of `false` are true. The same goes with the `and` operation, it will check if the current result of `true` AND this tokens value of `false` are true.
+- You can check the template entries for some more details if this is still confusing.
+
 
 ## "token_type" : TokenType
 `Default = null`

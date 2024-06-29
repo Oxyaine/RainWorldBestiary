@@ -287,16 +287,16 @@ namespace RainWorldBestiary.Types
         /// <param name="merge">
         /// Whether to resolve the case that two tabs have the same name, by merging them together. Merges as per the rules of <see cref="EntriesTab.MergeWith(in EntriesTab)"/><code></code>
         /// </param>
-        public void Add(EntriesTab item, bool merge = false)
+        public void Add(EntriesTab item, bool merge = true)
         {
             for (int i = 0; i < _tabs.Count; i++)
             {
-                if (_tabs[i].Name.Equals(item.Name))
+                if (_tabs[i].Name.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
                 {
                     if (!merge)
                     {
                         Main.Logger.LogError("A tab with the name " + item.Name + "already exists.");
-                        throw new Exception("A tab with the name " + item.Name + " already exists.");
+                        return;
                     }
                     else
                     {
@@ -309,12 +309,12 @@ namespace RainWorldBestiary.Types
             _tabs.Add(item);
         }
         /// <inheritdoc cref="Add(EntriesTab, bool)"/>
-        public void Add(EntriesTab item) => Add(item, false);
+        public void Add(EntriesTab item) => Add(item, true);
 
         /// <inheritdoc cref="Add(EntriesTab, bool)"/>
         public void Add(string tabName, params Entry[] entries)
         {
-            Add(new EntriesTab(tabName, entries), false);
+            Add(new EntriesTab(tabName, entries), true);
         }
         /// <inheritdoc cref="Add(EntriesTab, bool)"/>
         public void Add(string tabName, bool merge, params Entry[] entries)
@@ -322,7 +322,7 @@ namespace RainWorldBestiary.Types
             Add(new EntriesTab(tabName, entries), merge);
         }
         /// <inheritdoc cref="Add(EntriesTab, bool)"/>
-        public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = false)
+        public void Add(string tabName, IEnumerable<Entry> entries, TitleSprite titleSprite = null, bool merge = true)
         {
             Add(new EntriesTab(tabName, entries) { TitleSprite = titleSprite }, merge);
         }

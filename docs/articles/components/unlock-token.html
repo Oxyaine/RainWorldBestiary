@@ -90,7 +90,12 @@
 <p><a href="https://oxyaine.github.io/RainWorldBestiary/articles/structure.html#unlock-tokens"><strong>Explanation</strong></a></p>
 <h2 id="operation_against_value--operationtype">&quot;operation_against_value&quot; : OperationType</h2>
 <p><code>Default = And</code>
-The operation this unlock token will perform against the current unlock value of the token. For example, if the previous two tokens where valid, that means the current unlock value is true, since by the logic of the two previous tokens, the module should be unlocked; Then if this unlock tokens operation is &quot;or&quot;, that it will check if the current unlock value OR this value is true, then set the result as the new current unlock value.</p>
+The operation this unlock token will use to compare against the current unlock state of the module.</p>
+<p>For example, if all the previous tokens determine the module should be visible, it will compare the result of this token against that value to get the result.</p>
+<p>To add more details, lets say all the previous tokens ended with a result of <code>true</code>, meaning the module should be visible, if this tokens value is <code>false</code>, and the operation type is <code>or</code>, that it will check if the current result of <code>true</code> OR if this tokens value of <code>false</code> are true. The same goes with the <code>and</code> operation, it will check if the current result of <code>true</code> AND this tokens value of <code>false</code> are true.</p>
+<ul>
+<li>You can check the template entries for some more details if this is still confusing.</li>
+</ul>
 <h2 id="token_type--tokentype">&quot;token_type&quot; : TokenType</h2>
 <p><code>Default = null</code>
 A TokenType that represents the token type of this unlock, you can see a list of token types in the misc category, as well as their respective names and id's. The token type determines what action should happen with a creature before this module is unlocked, such as the player killing the creature, or the other way around.
