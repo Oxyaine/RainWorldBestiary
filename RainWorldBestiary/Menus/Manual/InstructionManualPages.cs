@@ -21,7 +21,7 @@ namespace RainWorldBestiary.Menus.Manual
             : base(menu, owner)
         {
             float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_INTRODUCTION_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
-            string text = menu.Translate("BESTIARY_MANUAL_INTRODUCTION_1") + "\n" + menu.Translate("BESTIARY_MANUAL_INTRODUCTION_2") + "\n" + menu.Translate("BESTIARY_MANUAL_INTRODUCTION_3");
+            string text = menu.Translate("BESTIARY_MANUAL_INTRODUCTION_1");
             AddManualText(text, startY, bigText: false, centered: false);
         }
     }
@@ -31,7 +31,7 @@ namespace RainWorldBestiary.Menus.Manual
             : base(menu, owner)
         {
             float startY = AddManualText(menu.Translate("BESTIARY_MANUAL_TABS_TITLE"), belowHeaderPos.y - spaceBuffer * 2f);
-            string text = menu.Translate("BESTIARY_MANUAL_TABS_1") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_2") + "\n" + menu.Translate("BESTIARY_MANUAL_TABS_3");
+            string text = menu.Translate("BESTIARY_MANUAL_TABS_1");
             AddManualText(text, startY, bigText: false, centered: false);
         }
     }
